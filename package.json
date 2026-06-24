@@ -1,0 +1,13 @@
+{
+  "name": "react-3d-icons-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:lab": "npm run dev --workspace=packages/lab",
+    "build:lib": "npm run build --workspace=packages/library",
+    "build:lab": "npm run build --workspace=packages/lab"
+  }
+}
