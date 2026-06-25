@@ -35,7 +35,8 @@ export const translations = {
     category_mechanics: "Mechanics",
     category_brands: "Brands",
     category_utility: "Utility",
-    category_emojies: "Emojis"
+    category_emojies: "Emojis",
+    category_alphabet: "Alphabet"
   },
   es: {
     hero_title: "Iconos 3D premium y de código abierto bellamente diseñados",
@@ -73,7 +74,8 @@ export const translations = {
     category_mechanics: "Mecánica",
     category_brands: "Marcas",
     category_utility: "Utilidad",
-    category_emojies: "Emojis"
+    category_emojies: "Emojis",
+    category_alphabet: "Alfabeto"
   },
   de: {
     hero_title: "Wunderschön gestaltete Open-Source- und Premium-3D-Icons",
@@ -111,7 +113,8 @@ export const translations = {
     category_mechanics: "Mechanik",
     category_brands: "Marken",
     category_utility: "Hilfsmittel",
-    category_emojies: "Emojis"
+    category_emojies: "Emojis",
+    category_alphabet: "Alphabet"
   }
 } as const;
 

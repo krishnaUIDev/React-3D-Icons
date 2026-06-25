@@ -10,7 +10,28 @@ export const Fallback2D: React.FC<Fallback2DProps> = ({ id, color = "#6366f1", t
   const isDark = theme === "dark";
   const strokeColor = (color.toLowerCase() === "#ffffff" || color.toLowerCase() === "#fff") && !isDark ? "#475569" : color;
 
-  // Render premium handcrafted SVG layouts for all 65 icons
+  // Letter icons: render bold SVG text for any "letter-*" id
+  if (id.startsWith("letter-")) {
+    const letter = id.replace("letter-", "").toUpperCase();
+    return (
+      <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">
+        <text
+          x="12"
+          y="18"
+          textAnchor="middle"
+          fontSize="18"
+          fontWeight="bold"
+          fill={strokeColor}
+          fontFamily="Arial, Helvetica, sans-serif"
+          letterSpacing="-0.5"
+        >
+          {letter}
+        </text>
+      </svg>
+    );
+  }
+
+  // Render premium handcrafted SVG layouts for all icons
   switch (id) {
     case "database":
       return (

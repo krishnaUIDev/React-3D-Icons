@@ -20,7 +20,7 @@ function parseHash(hash: string): RouteState {
   const cleanHash = hash.replace(/^#\/?/, "");
 
   // Match /icons/([color])-([iconId])
-  const iconMatch = cleanHash.match(/^icons\/([a-fA-F0-9]{6})-([a-zA-Z0-9]+)$/);
+  const iconMatch = cleanHash.match(/^icons\/([a-fA-F0-9]{6})-([a-zA-Z0-9][a-zA-Z0-9-]*)$/);
   if (iconMatch) {
     return {
       route: "customize",

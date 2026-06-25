@@ -91,4 +91,14 @@ export { ShieldCheckIcon } from "./components/ShieldCheckIcon";
 export { ReactIcon } from "./components/ReactIcon";
 export { NodeIcon } from "./components/NodeIcon";
 
+// Alphabet icons – A through Z
+export {
+  LetterIcon,
+  AIcon, BIcon, CIcon, DIcon, EIcon, FIcon, GIcon,
+  HIcon, IIcon, JIcon, KIcon, LIcon, MIcon, NIcon,
+  OIcon, PIcon, QIcon, RIcon, SIcon, TIcon, UIcon,
+  VIcon, WIcon, XIcon, YIcon, ZIcon
+} from "./components/LetterIcon";
+export type { LetterIconProps } from "./components/LetterIcon";
+
 export * from "./types";

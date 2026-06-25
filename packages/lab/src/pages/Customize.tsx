@@ -94,6 +94,7 @@ import {
   ShieldCheckIcon,
   ReactIcon,
   NodeIcon,
+  LetterIcon,
   IconPreset,
   IconAngle
 } from "react-3d-icons";
@@ -203,7 +204,26 @@ const ICONS_REGISTRY = [
   { id: "container", name: "ContainerIcon", Component: ContainerIcon, color: "#2496ed", accentColor: "#f59e0b" },
   { id: "shieldcheck", name: "ShieldCheckIcon", Component: ShieldCheckIcon, color: "#0d9488", accentColor: "#10b981" },
   { id: "react", name: "ReactIcon", Component: ReactIcon, color: "#61dafb", accentColor: "#20232a" },
-  { id: "node", name: "NodeIcon", Component: NodeIcon, color: "#68a063", accentColor: "#3c873a" }
+  { id: "node", name: "NodeIcon", Component: NodeIcon, color: "#68a063", accentColor: "#3c873a" },
+  // Alphabet icons A-Z
+  ...(() => {
+    const LETTER_COLORS: Record<string, string> = {
+      A: "#f43f5e", B: "#f97316", C: "#eab308", D: "#84cc16",
+      E: "#22c55e", F: "#10b981", G: "#14b8a6", H: "#06b6d4",
+      I: "#0ea5e9", J: "#3b82f6", K: "#6366f1", L: "#8b5cf6",
+      M: "#a855f7", N: "#d946ef", O: "#ec4899", P: "#f43f5e",
+      Q: "#ef4444", R: "#f97316", S: "#f59e0b", T: "#10b981",
+      U: "#06b6d4", V: "#3b82f6", W: "#6366f1", X: "#8b5cf6",
+      Y: "#a855f7", Z: "#d946ef"
+    };
+    return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(l => ({
+      id: `letter-${l.toLowerCase()}`,
+      name: `${l}Icon`,
+      Component: (props: any) => <LetterIcon letter={l} {...props} />,
+      color: LETTER_COLORS[l],
+      accentColor: "#ffffff"
+    }));
+  })()
 ];
 
 const LUCIDE_FALLBACKS: Record<string, React.ComponentType<any>> = {

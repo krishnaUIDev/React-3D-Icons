@@ -95,7 +95,8 @@ import {
   ContainerIcon,
   ShieldCheckIcon,
   ReactIcon,
-  NodeIcon
+  NodeIcon,
+  LetterIcon
 } from "react-3d-icons";
 import { TranslationKey } from "../i18n/translations";
 
@@ -933,10 +934,31 @@ const ICONS_REGISTRY = [
     Component: NodeIcon,
     color: "#68a063",
     accentColor: "#3c873a"
-  }
+  },
+  // Alphabet icons – generated dynamically A-Z
+  ...(() => {
+    const LETTER_COLORS: Record<string, string> = {
+      A: "#f43f5e", B: "#f97316", C: "#eab308", D: "#84cc16",
+      E: "#22c55e", F: "#10b981", G: "#14b8a6", H: "#06b6d4",
+      I: "#0ea5e9", J: "#3b82f6", K: "#6366f1", L: "#8b5cf6",
+      M: "#a855f7", N: "#d946ef", O: "#ec4899", P: "#f43f5e",
+      Q: "#ef4444", R: "#f97316", S: "#f59e0b", T: "#10b981",
+      U: "#06b6d4", V: "#3b82f6", W: "#6366f1", X: "#8b5cf6",
+      Y: "#a855f7", Z: "#d946ef"
+    };
+    return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(l => ({
+      id: `letter-${l.toLowerCase()}`,
+      name: `${l}Icon`,
+      category: "alphabet" as const,
+      description: `Extruded 3D bold letter ${l} with beveled edges and material presets`,
+      Component: (props: any) => <LetterIcon letter={l} {...props} />,
+      color: LETTER_COLORS[l],
+      accentColor: "#ffffff"
+    }));
+  })()
 ];
 
-const CATEGORIES = ["all", "storage", "systems", "hardware", "networking", "mechanics", "brands", "emojies", "utility"] as const;
+const CATEGORIES = ["all", "storage", "systems", "hardware", "networking", "mechanics", "brands", "emojies", "utility", "alphabet"] as const;
 
 export const Landing: React.FC<LandingProps> = ({ theme, search }) => {
   const { t } = useTranslation();

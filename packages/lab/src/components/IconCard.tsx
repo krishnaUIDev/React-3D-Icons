@@ -153,12 +153,27 @@ export const IconCard: React.FC<IconCardProps> = ({
               className="absolute inset-0 rounded-full blur-xl opacity-15 dark:opacity-20 transition-opacity duration-300"
               style={{ backgroundColor: color }}
             />
-            <FallbackIcon 
-              size={28} 
-              strokeWidth={1.8}
-              style={{ color: color }} 
-              className="transition-transform duration-300"
-            />
+            {id.startsWith("letter-") ? (
+              <span
+                style={{
+                  color,
+                  fontSize: "28px",
+                  fontWeight: 900,
+                  fontFamily: "Arial, Helvetica, sans-serif",
+                  lineHeight: 1,
+                  letterSpacing: "-1px",
+                }}
+              >
+                {id.replace("letter-", "").toUpperCase()}
+              </span>
+            ) : (
+              <FallbackIcon 
+                size={28} 
+                strokeWidth={1.8}
+                style={{ color: color }} 
+                className="transition-transform duration-300"
+              />
+            )}
           </div>
         )}
       </div>
