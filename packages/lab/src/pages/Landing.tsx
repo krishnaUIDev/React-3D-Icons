@@ -102,6 +102,11 @@ import {
   PipelineIcon,
   RefreshIcon,
   WebhookIcon,
+  PlusIcon,
+  MinusIcon,
+  CloseIcon,
+  InfoIcon,
+  AlertCircleIcon,
   LetterIcon
 } from "react-3d-icons";
 import { TranslationKey } from "../i18n/translations";
@@ -113,6 +118,51 @@ interface LandingProps {
 }
 
 const ICONS_REGISTRY = [
+  {
+    id: "plus",
+    name: "PlusIcon",
+    category: "utility",
+    description: "3D mathematical plus sign composed of two intersecting cylinders",
+    Component: PlusIcon,
+    color: "#10b981",
+    accentColor: "#34d399"
+  },
+  {
+    id: "minus",
+    name: "MinusIcon",
+    category: "utility",
+    description: "3D horizontal minus cylinder bar with glowing status caps",
+    Component: MinusIcon,
+    color: "#6b7280",
+    accentColor: "#9ca3af"
+  },
+  {
+    id: "close",
+    name: "CloseIcon",
+    category: "utility",
+    description: "3D close cross sign composed of two diagonal intersecting cylinders",
+    Component: CloseIcon,
+    color: "#ef4444",
+    accentColor: "#f87171"
+  },
+  {
+    id: "info",
+    name: "InfoIcon",
+    category: "utility",
+    description: "3D lowercase letter i inside a circular ring with glowing accent dot",
+    Component: InfoIcon,
+    color: "#3b82f6",
+    accentColor: "#60a5fa"
+  },
+  {
+    id: "alertcircle",
+    name: "AlertCircleIcon",
+    category: "utility",
+    description: "3D exclamation point inside a circular ring with glowing warning dot",
+    Component: AlertCircleIcon,
+    color: "#f59e0b",
+    accentColor: "#fbbf24"
+  },
   {
     id: "anchor",
     name: "AnchorIcon",
