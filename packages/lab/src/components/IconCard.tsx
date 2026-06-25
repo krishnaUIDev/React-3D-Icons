@@ -98,6 +98,12 @@ const LUCIDE_FALLBACKS: Record<string, React.ComponentType<any>> = {
   terminal: Lucide.Terminal,
   git: Lucide.GitBranch,
   figma: Lucide.Figma,
+  barchart: Lucide.BarChart2,
+  check: Lucide.CheckCircle2,
+  container: Lucide.Package,
+  shieldcheck: Lucide.ShieldCheck,
+  react: Lucide.Atom,
+  node: Lucide.Hexagon,
 };
 
 export const IconCard: React.FC<IconCardProps> = ({

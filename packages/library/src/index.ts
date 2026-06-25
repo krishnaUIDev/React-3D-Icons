@@ -84,5 +84,11 @@ export { CodeIcon } from "./components/CodeIcon";
 export { TerminalIcon } from "./components/TerminalIcon";
 export { GitIcon } from "./components/GitIcon";
 export { FigmaIcon } from "./components/FigmaIcon";
+export { BarChartIcon } from "./components/BarChartIcon";
+export { CheckIcon } from "./components/CheckIcon";
+export { ContainerIcon } from "./components/ContainerIcon";
+export { ShieldCheckIcon } from "./components/ShieldCheckIcon";
+export { ReactIcon } from "./components/ReactIcon";
+export { NodeIcon } from "./components/NodeIcon";
 
 export * from "./types";

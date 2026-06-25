@@ -89,7 +89,13 @@ import {
   CodeIcon,
   TerminalIcon,
   GitIcon,
-  FigmaIcon
+  FigmaIcon,
+  BarChartIcon,
+  CheckIcon,
+  ContainerIcon,
+  ShieldCheckIcon,
+  ReactIcon,
+  NodeIcon
 } from "react-3d-icons";
 import { TranslationKey } from "../i18n/translations";
 
@@ -873,6 +879,60 @@ const ICONS_REGISTRY = [
     Component: HeartEyesIcon,
     color: "#f59e0b",
     accentColor: "#ef4444"
+  },
+  {
+    id: "barchart",
+    name: "BarChartIcon",
+    category: "utility",
+    description: "Three ascending 3D bar chart columns on a glowing base plate",
+    Component: BarChartIcon,
+    color: "#6366f1",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "check",
+    name: "CheckIcon",
+    category: "utility",
+    description: "Bold glowing 3D checkmark on a beveled circular disc backing",
+    Component: CheckIcon,
+    color: "#10b981",
+    accentColor: "#34d399"
+  },
+  {
+    id: "container",
+    name: "ContainerIcon",
+    category: "systems",
+    description: "Corrugated cargo shipping container representing Docker deployments",
+    Component: ContainerIcon,
+    color: "#2496ed",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "shieldcheck",
+    name: "ShieldCheckIcon",
+    category: "utility",
+    description: "Security shield with embedded verified checkmark for trusted payment and security UIs",
+    Component: ShieldCheckIcon,
+    color: "#0d9488",
+    accentColor: "#10b981"
+  },
+  {
+    id: "react",
+    name: "ReactIcon",
+    category: "brands",
+    description: "Three-orbital atomic React logo with glowing nucleus sphere",
+    Component: ReactIcon,
+    color: "#61dafb",
+    accentColor: "#20232a"
+  },
+  {
+    id: "node",
+    name: "NodeIcon",
+    category: "brands",
+    description: "Hexagonal Node.js badge with inner circuit trace details",
+    Component: NodeIcon,
+    color: "#68a063",
+    accentColor: "#3c873a"
   }
 ];
 

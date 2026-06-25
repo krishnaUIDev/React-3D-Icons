@@ -88,6 +88,12 @@ import {
   TerminalIcon,
   GitIcon,
   FigmaIcon,
+  BarChartIcon,
+  CheckIcon,
+  ContainerIcon,
+  ShieldCheckIcon,
+  ReactIcon,
+  NodeIcon,
   IconPreset,
   IconAngle
 } from "react-3d-icons";
@@ -191,7 +197,13 @@ const ICONS_REGISTRY = [
   { id: "code", name: "CodeIcon", Component: CodeIcon, color: "#6366f1", accentColor: "#ec4899" },
   { id: "terminal", name: "TerminalIcon", Component: TerminalIcon, color: "#10b981", accentColor: "#020617" },
   { id: "git", name: "GitIcon", Component: GitIcon, color: "#f43f5e", accentColor: "#ffffff" },
-  { id: "figma", name: "FigmaIcon", Component: FigmaIcon, color: "#f24e1e", accentColor: "#a259ff" }
+  { id: "figma", name: "FigmaIcon", Component: FigmaIcon, color: "#f24e1e", accentColor: "#a259ff" },
+  { id: "barchart", name: "BarChartIcon", Component: BarChartIcon, color: "#6366f1", accentColor: "#ec4899" },
+  { id: "check", name: "CheckIcon", Component: CheckIcon, color: "#10b981", accentColor: "#34d399" },
+  { id: "container", name: "ContainerIcon", Component: ContainerIcon, color: "#2496ed", accentColor: "#f59e0b" },
+  { id: "shieldcheck", name: "ShieldCheckIcon", Component: ShieldCheckIcon, color: "#0d9488", accentColor: "#10b981" },
+  { id: "react", name: "ReactIcon", Component: ReactIcon, color: "#61dafb", accentColor: "#20232a" },
+  { id: "node", name: "NodeIcon", Component: NodeIcon, color: "#68a063", accentColor: "#3c873a" }
 ];
 
 const LUCIDE_FALLBACKS: Record<string, React.ComponentType<any>> = {
@@ -281,6 +293,12 @@ const LUCIDE_FALLBACKS: Record<string, React.ComponentType<any>> = {
   terminal: LucideAll.Terminal,
   git: LucideAll.GitBranch,
   figma: LucideAll.Figma,
+  barchart: LucideAll.BarChart2,
+  check: LucideAll.CheckCircle2,
+  container: LucideAll.Package,
+  shieldcheck: LucideAll.ShieldCheck,
+  react: LucideAll.Atom,
+  node: LucideAll.Hexagon,
 };
 
 // Curated palettes: { name, color, accentColor }
