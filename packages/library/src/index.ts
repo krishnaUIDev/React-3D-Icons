@@ -76,5 +76,9 @@ export { HeartEyesIcon } from "./components/HeartEyesIcon";
 export { HammerIcon } from "./components/HammerIcon";
 export { ScrewdriverIcon } from "./components/ScrewdriverIcon";
 export { NutIcon } from "./components/NutIcon";
+export { PrinterIcon } from "./components/PrinterIcon";
+export { SpeakerIcon } from "./components/SpeakerIcon";
+export { EthernetIcon } from "./components/EthernetIcon";
+export { SatelliteIcon } from "./components/SatelliteIcon";
 
 export * from "./types";

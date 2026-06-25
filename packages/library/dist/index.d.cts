@@ -290,4 +290,20 @@ type NutIconProps = IconProps;
 
 declare function NutIcon(props: NutIconProps): react.JSX.Element;
 
-export { BagIcon, BellIcon, BoltIcon, BookIcon, BriefcaseIcon, BulbIcon, CalendarIcon, CameraIcon, CartIcon, ChatIcon, ClockIcon, CloudIcon, CoffeeIcon, CompassIcon, CpuIcon, CreditCardIcon, CrownIcon, DatabaseIcon, DollarIcon, DownloadIcon, EditIcon, EyeIcon, FacebookIcon, FlagIcon, FlashIcon, FolderIcon, FrownIcon, GamepadIcon, GearIcon, GiftIcon, GithubIcon, GlassmorphismIcon, GlobeIcon, GoogleIcon, HammerIcon, HardDriveIcon, HeartEyesIcon, HeartIcon, HomeIcon, type IconAngle, type IconPreset, type IconProps, KeyIcon, KeyboardIcon, LayersIcon, LinkIcon, LockIcon, MailIcon, MapPinIcon, type MaterialConfig, MegaphoneIcon, MonitorIcon, MouseIcon, MusicIcon, NetworkIcon, NutIcon, PhoneIcon, PinIcon, PlayIcon, RocketIcon, RouterIcon, ScrewdriverIcon, SearchIcon, SendIcon, ServerIcon, ShareIcon, ShieldIcon, SmileIcon, SparklesIcon, StarIcon, SunIcon, TagIcon, TargetIcon, ThumbUpIcon, TrashIcon, TrophyIcon, TwitterIcon, UploadIcon, UserIcon, WalletIcon, WifiIcon, WrenchIcon };
+type PrinterIconProps = IconProps;
+
+declare function PrinterIcon(props: PrinterIconProps): react.JSX.Element;
+
+type SpeakerIconProps = IconProps;
+
+declare function SpeakerIcon(props: SpeakerIconProps): react.JSX.Element;
+
+type EthernetIconProps = IconProps;
+
+declare function EthernetIcon(props: EthernetIconProps): react.JSX.Element;
+
+type SatelliteIconProps = IconProps;
+
+declare function SatelliteIcon(props: SatelliteIconProps): react.JSX.Element;
+
+export { BagIcon, BellIcon, BoltIcon, BookIcon, BriefcaseIcon, BulbIcon, CalendarIcon, CameraIcon, CartIcon, ChatIcon, ClockIcon, CloudIcon, CoffeeIcon, CompassIcon, CpuIcon, CreditCardIcon, CrownIcon, DatabaseIcon, DollarIcon, DownloadIcon, EditIcon, EthernetIcon, EyeIcon, FacebookIcon, FlagIcon, FlashIcon, FolderIcon, FrownIcon, GamepadIcon, GearIcon, GiftIcon, GithubIcon, GlassmorphismIcon, GlobeIcon, GoogleIcon, HammerIcon, HardDriveIcon, HeartEyesIcon, HeartIcon, HomeIcon, type IconAngle, type IconPreset, type IconProps, KeyIcon, KeyboardIcon, LayersIcon, LinkIcon, LockIcon, MailIcon, MapPinIcon, type MaterialConfig, MegaphoneIcon, MonitorIcon, MouseIcon, MusicIcon, NetworkIcon, NutIcon, PhoneIcon, PinIcon, PlayIcon, PrinterIcon, RocketIcon, RouterIcon, SatelliteIcon, ScrewdriverIcon, SearchIcon, SendIcon, ServerIcon, ShareIcon, ShieldIcon, SmileIcon, SparklesIcon, SpeakerIcon, StarIcon, SunIcon, TagIcon, TargetIcon, ThumbUpIcon, TrashIcon, TrophyIcon, TwitterIcon, UploadIcon, UserIcon, WalletIcon, WifiIcon, WrenchIcon };

@@ -107,6 +107,8 @@ Icons are categorized to align with filter catalogs:
 - `WifiIcon`
 - `RouterIcon`
 - `ServerIcon`
+- `EthernetIcon`
+- `SatelliteIcon`
 
 ### Storage
 - `DatabaseIcon`
@@ -126,6 +128,8 @@ Icons are categorized to align with filter catalogs:
 - `KeyboardIcon`
 - `MouseIcon`
 - `HardDriveIcon`
+- `PrinterIcon`
+- `SpeakerIcon`
 
 ### Mechanics
 - `RocketIcon`

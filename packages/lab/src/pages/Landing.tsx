@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "../i18n/useTranslation";
 import { Hero } from "../components/Hero";
 import { IconCard } from "../components/IconCard";
@@ -81,7 +81,11 @@ import {
   HeartEyesIcon,
   HammerIcon,
   ScrewdriverIcon,
-  NutIcon
+  NutIcon,
+  PrinterIcon,
+  SpeakerIcon,
+  EthernetIcon,
+  SatelliteIcon
 } from "react-3d-icons";
 import { TranslationKey } from "../i18n/translations";
 
@@ -669,6 +673,24 @@ const ICONS_REGISTRY = [
     accentColor: "#94a3b8"
   },
   {
+    id: "printer",
+    name: "PrinterIcon",
+    category: "hardware",
+    description: "Chassis scanner bed printer with active paper output tray sheet",
+    Component: PrinterIcon,
+    color: "#64748b",
+    accentColor: "#cbd5e1"
+  },
+  {
+    id: "speaker",
+    name: "SpeakerIcon",
+    category: "hardware",
+    description: "Cabinet media loudspeaker baffle featuring double cones and active signal arcs",
+    Component: SpeakerIcon,
+    color: "#71717a",
+    accentColor: "#818cf8"
+  },
+  {
     id: "glassmorphism",
     name: "GlassmorphismIcon",
     category: "utility",
@@ -721,6 +743,24 @@ const ICONS_REGISTRY = [
     Component: ServerIcon,
     color: "#3b82f6",
     accentColor: "#10b981"
+  },
+  {
+    id: "ethernet",
+    name: "EthernetIcon",
+    category: "networking",
+    description: "Extruded transparent RJ45 plug connector with detailed gold contact pins and locking lever",
+    Component: EthernetIcon,
+    color: "#3b82f6",
+    accentColor: "#d4af37"
+  },
+  {
+    id: "satellite",
+    name: "SatelliteIcon",
+    category: "networking",
+    description: "Central communications satellite body featuring solar panel wings and antenna dish",
+    Component: SatelliteIcon,
+    color: "#06b6d4",
+    accentColor: "#4f46e5"
   },
   {
     id: "wrench",
@@ -802,6 +842,17 @@ export const Landing: React.FC<LandingProps> = ({ theme, search }) => {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<typeof CATEGORIES[number]>("all");
 
+  const [requestSubmitted, setRequestSubmitted] = useState(false);
+  const [requestIconName, setRequestIconName] = useState(search || "");
+  const [requestCategory, setRequestCategory] = useState("utility");
+  const [requestDetails, setRequestDetails] = useState("");
+  const [requestEmail, setRequestEmail] = useState("");
+
+  // Sync suggestion field with search input
+  useEffect(() => {
+    setRequestIconName(search);
+  }, [search]);
+
   const filteredIcons = ICONS_REGISTRY.filter(icon => {
     const matchesSearch = 
       icon.name.toLowerCase().includes(search.toLowerCase()) || 
@@ -854,12 +905,117 @@ export const Landing: React.FC<LandingProps> = ({ theme, search }) => {
           ))}
 
           {filteredIcons.length === 0 && (
-            <div className="col-span-full py-16 flex flex-col items-center justify-center text-center text-zinc-400 dark:text-zinc-500 gap-3 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-2xl">
-              <HelpCircle size={36} className="stroke-1 text-zinc-300" />
-              <div>
-                <p className="text-sm font-semibold text-zinc-600 dark:text-zinc-300">No icons found</p>
-                <p className="text-xs mt-1">Try modifying your search or category</p>
+            <div className="col-span-full py-12 px-6 flex flex-col items-center justify-center text-center text-zinc-400 dark:text-zinc-500 gap-6 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl bg-zinc-50/50 dark:bg-[#090d16]/30 backdrop-blur-sm max-w-md mx-auto w-full">
+              <div className="flex flex-col items-center gap-1.5">
+                <HelpCircle size={40} className="stroke-1 text-indigo-500 animate-pulse" />
+                <h3 className="text-sm font-extrabold text-zinc-800 dark:text-zinc-200 uppercase tracking-wide">
+                  Can't find the icon you need?
+                </h3>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  Submit a request and our modeling team will design it!
+                </p>
               </div>
+
+              {requestSubmitted ? (
+                <div className="py-6 px-8 rounded-2xl bg-indigo-50/30 dark:bg-indigo-950/20 border border-indigo-100/50 dark:border-indigo-900/30 text-center space-y-2 w-full animate-fadeIn">
+                  <p className="text-xs font-extrabold text-indigo-600 dark:text-indigo-400">
+                    ✓ Request Submitted Successfully!
+                  </p>
+                  <p className="text-[10px] text-zinc-500 dark:text-zinc-400">
+                    Thank you! We've queued "{requestIconName}" for custom 3D modeling.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setRequestSubmitted(false);
+                      setRequestDetails("");
+                      setRequestEmail("");
+                    }}
+                    className="mt-4 px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-white text-[10px] font-bold transition cursor-pointer"
+                  >
+                    Submit Another Request
+                  </button>
+                </div>
+              ) : (
+                <form 
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setRequestSubmitted(true);
+                  }}
+                  className="w-full space-y-4 text-left"
+                >
+                  {/* Icon Name */}
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                      Suggested Icon Name
+                    </label>
+                    <input 
+                      type="text" 
+                      required
+                      value={requestIconName}
+                      onChange={(e) => setRequestIconName(e.target.value)}
+                      placeholder="e.g. Bluetooth, Satellite, Printer"
+                      className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0a0d14] text-zinc-800 dark:text-zinc-200 text-xs font-medium focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                    />
+                  </div>
+
+                  {/* Category Dropdown */}
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                      Icon Category
+                    </label>
+                    <select
+                      value={requestCategory}
+                      onChange={(e) => setRequestCategory(e.target.value)}
+                      className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0a0d14] text-zinc-800 dark:text-zinc-200 text-xs font-medium focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                    >
+                      <option value="utility">Utility</option>
+                      <option value="hardware">Hardware</option>
+                      <option value="networking">Networking</option>
+                      <option value="storage">Storage</option>
+                      <option value="systems">Systems</option>
+                      <option value="mechanics">Mechanics</option>
+                      <option value="brands">Brands</option>
+                      <option value="emojies">Emojies</option>
+                    </select>
+                  </div>
+
+                  {/* Description / Details */}
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                      Design Description (optional)
+                    </label>
+                    <textarea
+                      value={requestDetails}
+                      onChange={(e) => setRequestDetails(e.target.value)}
+                      placeholder="Describe the shape, colors, or metallic accents..."
+                      rows={3}
+                      className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0a0d14] text-zinc-800 dark:text-zinc-200 text-xs font-medium focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all resize-none"
+                    />
+                  </div>
+
+                  {/* User Email */}
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                      Your Email (optional)
+                    </label>
+                    <input 
+                      type="email" 
+                      value={requestEmail}
+                      onChange={(e) => setRequestEmail(e.target.value)}
+                      placeholder="you@example.com"
+                      className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0a0d14] text-zinc-800 dark:text-zinc-200 text-xs font-medium focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all"
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-md shadow-indigo-600/10 hover:scale-[1.01] transition active:scale-99 cursor-pointer text-center block border-0"
+                  >
+                    Submit Icon Request
+                  </button>
+                </form>
+              )}
             </div>
           )}
         </div>
