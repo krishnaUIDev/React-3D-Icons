@@ -632,6 +632,41 @@ export const Fallback2D: React.FC<Fallback2DProps> = ({ id, color = "#6366f1", t
           <path d="M4 20a4 4 0 0 1 4-4" />
         </svg>
       );
+    case "code":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+          <line x1="14" y1="4" x2="10" y2="20" />
+        </svg>
+      );
+    case "terminal":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <polyline points="4 17 10 11 4 5" />
+          <line x1="12" y1="19" x2="20" y2="19" />
+        </svg>
+      );
+    case "git":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="18" cy="18" r="3" />
+          <circle cx="6" cy="6" r="3" />
+          <circle cx="6" cy="18" r="3" />
+          <path d="M18 15V9a4 4 0 0 0-4-4H9" />
+          <line x1="6" y1="9" x2="6" y2="15" />
+        </svg>
+      );
+    case "figma":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z" />
+          <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z" />
+          <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z" />
+          <path d="M12 9h3.5a3.5 3.5 0 1 1-3.5 3.5V9z" />
+          <path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z" />
+        </svg>
+      );
     default:
       return (
         <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">

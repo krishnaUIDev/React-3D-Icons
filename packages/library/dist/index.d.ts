@@ -306,4 +306,20 @@ type SatelliteIconProps = IconProps;
 
 declare function SatelliteIcon(props: SatelliteIconProps): react.JSX.Element;
 
-export { BagIcon, BellIcon, BoltIcon, BookIcon, BriefcaseIcon, BulbIcon, CalendarIcon, CameraIcon, CartIcon, ChatIcon, ClockIcon, CloudIcon, CoffeeIcon, CompassIcon, CpuIcon, CreditCardIcon, CrownIcon, DatabaseIcon, DollarIcon, DownloadIcon, EditIcon, EthernetIcon, EyeIcon, FacebookIcon, FlagIcon, FlashIcon, FolderIcon, FrownIcon, GamepadIcon, GearIcon, GiftIcon, GithubIcon, GlassmorphismIcon, GlobeIcon, GoogleIcon, HammerIcon, HardDriveIcon, HeartEyesIcon, HeartIcon, HomeIcon, type IconAngle, type IconPreset, type IconProps, KeyIcon, KeyboardIcon, LayersIcon, LinkIcon, LockIcon, MailIcon, MapPinIcon, type MaterialConfig, MegaphoneIcon, MonitorIcon, MouseIcon, MusicIcon, NetworkIcon, NutIcon, PhoneIcon, PinIcon, PlayIcon, PrinterIcon, RocketIcon, RouterIcon, SatelliteIcon, ScrewdriverIcon, SearchIcon, SendIcon, ServerIcon, ShareIcon, ShieldIcon, SmileIcon, SparklesIcon, SpeakerIcon, StarIcon, SunIcon, TagIcon, TargetIcon, ThumbUpIcon, TrashIcon, TrophyIcon, TwitterIcon, UploadIcon, UserIcon, WalletIcon, WifiIcon, WrenchIcon };
+type CodeIconProps = IconProps;
+
+declare function CodeIcon(props: CodeIconProps): react.JSX.Element;
+
+type TerminalIconProps = IconProps;
+
+declare function TerminalIcon(props: TerminalIconProps): react.JSX.Element;
+
+type GitIconProps = IconProps;
+
+declare function GitIcon(props: GitIconProps): react.JSX.Element;
+
+type FigmaIconProps = IconProps;
+
+declare function FigmaIcon(props: FigmaIconProps): react.JSX.Element;
+
+export { BagIcon, BellIcon, BoltIcon, BookIcon, BriefcaseIcon, BulbIcon, CalendarIcon, CameraIcon, CartIcon, ChatIcon, ClockIcon, CloudIcon, CodeIcon, CoffeeIcon, CompassIcon, CpuIcon, CreditCardIcon, CrownIcon, DatabaseIcon, DollarIcon, DownloadIcon, EditIcon, EthernetIcon, EyeIcon, FacebookIcon, FigmaIcon, FlagIcon, FlashIcon, FolderIcon, FrownIcon, GamepadIcon, GearIcon, GiftIcon, GitIcon, GithubIcon, GlassmorphismIcon, GlobeIcon, GoogleIcon, HammerIcon, HardDriveIcon, HeartEyesIcon, HeartIcon, HomeIcon, type IconAngle, type IconPreset, type IconProps, KeyIcon, KeyboardIcon, LayersIcon, LinkIcon, LockIcon, MailIcon, MapPinIcon, type MaterialConfig, MegaphoneIcon, MonitorIcon, MouseIcon, MusicIcon, NetworkIcon, NutIcon, PhoneIcon, PinIcon, PlayIcon, PrinterIcon, RocketIcon, RouterIcon, SatelliteIcon, ScrewdriverIcon, SearchIcon, SendIcon, ServerIcon, ShareIcon, ShieldIcon, SmileIcon, SparklesIcon, SpeakerIcon, StarIcon, SunIcon, TagIcon, TargetIcon, TerminalIcon, ThumbUpIcon, TrashIcon, TrophyIcon, TwitterIcon, UploadIcon, UserIcon, WalletIcon, WifiIcon, WrenchIcon };

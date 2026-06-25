@@ -94,6 +94,10 @@ const LUCIDE_FALLBACKS: Record<string, React.ComponentType<any>> = {
   smile: Lucide.Smile,
   frown: Lucide.Frown,
   hearteyes: Lucide.Smile,
+  code: Lucide.Code,
+  terminal: Lucide.Terminal,
+  git: Lucide.GitBranch,
+  figma: Lucide.Figma,
 };
 
 export const IconCard: React.FC<IconCardProps> = ({

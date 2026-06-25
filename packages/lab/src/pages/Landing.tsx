@@ -85,7 +85,11 @@ import {
   PrinterIcon,
   SpeakerIcon,
   EthernetIcon,
-  SatelliteIcon
+  SatelliteIcon,
+  CodeIcon,
+  TerminalIcon,
+  GitIcon,
+  FigmaIcon
 } from "react-3d-icons";
 import { TranslationKey } from "../i18n/translations";
 
@@ -637,6 +641,33 @@ const ICONS_REGISTRY = [
     accentColor: "#34d399"
   },
   {
+    id: "code",
+    name: "CodeIcon",
+    category: "utility",
+    description: "Sleek beveled HTML code tag brackets with a floating diagonal slash",
+    Component: CodeIcon,
+    color: "#6366f1",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "terminal",
+    name: "TerminalIcon",
+    category: "utility",
+    description: "Charming terminal command window prompt complete with title bar and cursor block",
+    Component: TerminalIcon,
+    color: "#10b981",
+    accentColor: "#020617"
+  },
+  {
+    id: "git",
+    name: "GitIcon",
+    category: "utility",
+    description: "Extruded git branch diagram on a tilted diamond status board",
+    Component: GitIcon,
+    color: "#f43f5e",
+    accentColor: "#ffffff"
+  },
+  {
     id: "monitor",
     name: "MonitorIcon",
     category: "hardware",
@@ -725,6 +756,15 @@ const ICONS_REGISTRY = [
     Component: GoogleIcon,
     color: "#4285f4",
     accentColor: "#ea4335"
+  },
+  {
+    id: "figma",
+    name: "FigmaIcon",
+    category: "brands",
+    description: "Five layered signature brand-color circles stacked vertically in 3D",
+    Component: FigmaIcon,
+    color: "#f24e1e",
+    accentColor: "#a259ff"
   },
   {
     id: "router",

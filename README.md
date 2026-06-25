@@ -92,7 +92,7 @@ Every icon component accepts the following customizable props:
 
 ---
 
-## Icon Catalog (75 Premium Icons)
+## Icon Catalog (79 Premium Icons)
 
 Icons are categorized to align with filter catalogs:
 
@@ -101,6 +101,7 @@ Icons are categorized to align with filter catalogs:
 - `GithubIcon`
 - `TwitterIcon`
 - `GoogleIcon`
+- `FigmaIcon`
 
 ### Networking
 - `NetworkIcon`
@@ -193,6 +194,9 @@ Icons are categorized to align with filter catalogs:
 - `DownloadIcon`
 - `UploadIcon`
 - `GlassmorphismIcon`
+- `CodeIcon`
+- `TerminalIcon`
+- `GitIcon`
 
 ---
 

@@ -80,5 +80,9 @@ export { PrinterIcon } from "./components/PrinterIcon";
 export { SpeakerIcon } from "./components/SpeakerIcon";
 export { EthernetIcon } from "./components/EthernetIcon";
 export { SatelliteIcon } from "./components/SatelliteIcon";
+export { CodeIcon } from "./components/CodeIcon";
+export { TerminalIcon } from "./components/TerminalIcon";
+export { GitIcon } from "./components/GitIcon";
+export { FigmaIcon } from "./components/FigmaIcon";
 
 export * from "./types";

@@ -84,6 +84,10 @@ import {
   SpeakerIcon,
   EthernetIcon,
   SatelliteIcon,
+  CodeIcon,
+  TerminalIcon,
+  GitIcon,
+  FigmaIcon,
   IconPreset,
   IconAngle
 } from "react-3d-icons";
@@ -183,7 +187,11 @@ const ICONS_REGISTRY = [
   { id: "nut", name: "NutIcon", Component: NutIcon, color: "#94a3b8", accentColor: "#475569" },
   { id: "smile", name: "SmileIcon", Component: SmileIcon, color: "#f59e0b", accentColor: "#f43f5e" },
   { id: "frown", name: "FrownIcon", Component: FrownIcon, color: "#f59e0b", accentColor: "#f43f5e" },
-  { id: "hearteyes", name: "HeartEyesIcon", Component: HeartEyesIcon, color: "#f59e0b", accentColor: "#ef4444" }
+  { id: "hearteyes", name: "HeartEyesIcon", Component: HeartEyesIcon, color: "#f59e0b", accentColor: "#ef4444" },
+  { id: "code", name: "CodeIcon", Component: CodeIcon, color: "#6366f1", accentColor: "#ec4899" },
+  { id: "terminal", name: "TerminalIcon", Component: TerminalIcon, color: "#10b981", accentColor: "#020617" },
+  { id: "git", name: "GitIcon", Component: GitIcon, color: "#f43f5e", accentColor: "#ffffff" },
+  { id: "figma", name: "FigmaIcon", Component: FigmaIcon, color: "#f24e1e", accentColor: "#a259ff" }
 ];
 
 const LUCIDE_FALLBACKS: Record<string, React.ComponentType<any>> = {
@@ -269,6 +277,10 @@ const LUCIDE_FALLBACKS: Record<string, React.ComponentType<any>> = {
   smile: LucideAll.Smile,
   frown: LucideAll.Frown,
   hearteyes: LucideAll.Smile,
+  code: LucideAll.Code,
+  terminal: LucideAll.Terminal,
+  git: LucideAll.GitBranch,
+  figma: LucideAll.Figma,
 };
 
 // Curated palettes: { name, color, accentColor }
