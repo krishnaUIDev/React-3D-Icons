@@ -1,0 +1,1 @@
+export { UmbrellaIcon } from "./UmbrellaIcon";

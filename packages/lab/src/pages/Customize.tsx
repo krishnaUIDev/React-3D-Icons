@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { createRoot } from "react-dom/client";
 import { useRouter } from "../router/Router";
 import { useTranslation } from "../i18n/useTranslation";
 import { 
@@ -106,8 +107,148 @@ import {
   InfoIcon,
   AlertCircleIcon,
   LetterIcon,
+  Fallback2D,
   IconPreset,
-  IconAngle
+  IconAngle,
+  BugIcon,
+  FlaskIcon,
+  PieChartIcon,
+  FlameIcon,
+  ActivityIcon,
+  GraduationCapIcon,
+  TrendingUpIcon,
+  InstagramIcon,
+  PackageIcon,
+  AirplaneIcon,
+  BatteryIcon,
+  VideoIcon,
+  MicrophoneIcon,
+  SlidersIcon,
+  MapIcon,
+  UmbrellaIcon,
+  ScissorsIcon,
+  UnlockIcon,
+  ArchiveIcon,
+  ShieldAlertIcon,
+  EyeOffIcon,
+  UserPlusIcon,
+  TrendingDownIcon,
+  CopyIcon,
+  GaugeIcon,
+  MagnetIcon,
+  StackIcon,
+  WorkflowIcon,
+  TopologyIcon,
+  FileIcon,
+  HeadphonesIcon,
+  MoonIcon,
+  PaperclipIcon,
+  BookmarkIcon,
+  CloudLightningIcon,
+  FolderOpenIcon,
+  VolumeIcon,
+  BellOffIcon,
+  SunMoonIcon,
+  PistonIcon,
+  SpringIcon,
+  AnvilIcon,
+  HookIcon,
+  TurbineIcon,
+  PliersIcon,
+  DrillIcon,
+  HacksawIcon,
+  TapeMeasureIcon,
+  CaliperIcon,
+  SpiritLevelIcon,
+  SledgehammerIcon,
+  PhoneMobileIcon,
+  TabletIcon,
+  LaptopIcon,
+  SmartWatchIcon,
+  RouterWifiIcon,
+  ServerRackIcon,
+  HardDriveExternalIcon,
+  WebcamIcon,
+  ChiselIcon,
+  CrowbarIcon,
+  FunnelIcon,
+  OilCanIcon,
+  BearingIcon,
+  PulleyIcon,
+  SprocketIcon,
+  ProjectorIcon,
+  GameConsoleIcon,
+  VRHeadsetIcon,
+  SmartSpeakerIcon,
+  PowerBankIcon,
+  UsbDriveIcon,
+  MotherboardIcon,
+  RamStickIcon,
+  CrankIcon,
+  CamshaftIcon,
+  DriveShaftIcon,
+  ValveIcon,
+  PropellerIcon,
+  HelicopterRotorIcon,
+  HydraulicJackIcon,
+  GpuIcon,
+  PowerSupplyIcon,
+  NetworkSwitchIcon,
+  SmartPlugIcon,
+  SmartBulbIcon,
+  SecurityCameraIcon,
+  SmartLockIcon,
+  ThermostatIcon,
+  GClampIcon,
+  ViceIcon,
+  GreaseGunIcon,
+  GearboxIcon,
+  DifferentialIcon,
+  SuspensionIcon,
+  WindlassIcon,
+  EarbudsIcon,
+  SmartRingIcon,
+  DrawingTabletIcon,
+  BarcodeScannerIcon,
+  POSRegisterIcon,
+  CalculatorIcon,
+  RemoteControlIcon,
+  SoundbarIcon,
+  JackhammerIcon,
+  SolderingIronIcon,
+  BlowtorchIcon,
+  WheelbarrowIcon,
+  PlumbBobIcon,
+  ShearsIcon,
+  WireStripperIcon,
+  PipeWrenchIcon,
+  FloppyDiskIcon,
+  TapeCassetteIcon,
+  CompactDiscIcon,
+  TvIcon,
+  RadioIcon,
+  WalkieTalkieIcon,
+  HeadsetIcon,
+  FishIcon,
+  ButterflyIcon,
+  BirdIcon,
+  CatIcon,
+  DogIcon,
+  RabbitIcon,
+  ElephantIcon,
+  OwlIcon,
+  TurtleIcon,
+  DolphinIcon,
+  RoseIcon,
+  SunflowerIcon,
+  TulipIcon,
+  LotusIcon,
+  DaisyIcon,
+  HibiscusIcon,
+  OrchidIcon,
+  LilyIcon,
+  CactusIcon,
+  LavenderIcon
 } from "react-3d-icons";
 import { 
   ArrowLeft, 
@@ -115,7 +256,7 @@ import {
   Check, 
   RotateCw, 
   Sparkles, 
-  Sliders as SlidersIcon, 
+  Sliders as LucideSliders, 
   Palette, 
   Code,
   Zap
@@ -124,109 +265,248 @@ import * as LucideAll from "lucide-react";
 
 // List of all procedural components with descriptions and unique default colors
 const ICONS_REGISTRY = [
-  { id: "plus", name: "PlusIcon", Component: PlusIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "minus", name: "MinusIcon", Component: MinusIcon, color: "#6b7280", accentColor: "#9ca3af" },
-  { id: "close", name: "CloseIcon", Component: CloseIcon, color: "#ef4444", accentColor: "#f87171" },
-  { id: "info", name: "InfoIcon", Component: InfoIcon, color: "#3b82f6", accentColor: "#60a5fa" },
-  { id: "alertcircle", name: "AlertCircleIcon", Component: AlertCircleIcon, color: "#f59e0b", accentColor: "#fbbf24" },
-  { id: "anchor", name: "AnchorIcon", Component: AnchorIcon, color: "#475569", accentColor: "#f43f5e" },
-  { id: "diamond", name: "DiamondIcon", Component: DiamondIcon, color: "#0ea5e9", accentColor: "#10b981" },
-  { id: "filter", name: "FilterIcon", Component: FilterIcon, color: "#f43f5e", accentColor: "#38bdf8" },
-  { id: "pipeline", name: "PipelineIcon", Component: PipelineIcon, color: "#0d9488", accentColor: "#10b981" },
-  { id: "refresh", name: "RefreshIcon", Component: RefreshIcon, color: "#8b5cf6", accentColor: "#ec4899" },
-  { id: "webhook", name: "WebhookIcon", Component: WebhookIcon, color: "#6366f1", accentColor: "#10b981" },
-  { id: "facebook", name: "FacebookIcon", Component: FacebookIcon, color: "#1877f2", accentColor: "#3b82f6" },
-  { id: "shield", name: "ShieldIcon", Component: ShieldIcon, color: "#0d9488", accentColor: "#34d399" },
-  { id: "rocket", name: "RocketIcon", Component: RocketIcon, color: "#ef4444", accentColor: "#f59e0b" },
-  { id: "database", name: "DatabaseIcon", Component: DatabaseIcon, color: "#4f46e5", accentColor: "#ec4899" },
-  { id: "folder", name: "FolderIcon", Component: FolderIcon, color: "#f59e0b", accentColor: "#eab308" },
-  { id: "cloud", name: "CloudIcon", Component: CloudIcon, color: "#0ea5e9", accentColor: "#38bdf8" },
-  { id: "network", name: "NetworkIcon", Component: NetworkIcon, color: "#06b6d4", accentColor: "#a855f7" },
-  { id: "cpu", name: "CpuIcon", Component: CpuIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "gear", name: "GearIcon", Component: GearIcon, color: "#71717a", accentColor: "#b45309" },
-  { id: "mail", name: "MailIcon", Component: MailIcon, color: "#e11d48", accentColor: "#ec4899" },
-  { id: "calendar", name: "CalendarIcon", Component: CalendarIcon, color: "#6366f1", accentColor: "#ef4444" },
-  { id: "wallet", name: "WalletIcon", Component: WalletIcon, color: "#b45309", accentColor: "#d97706" },
-  { id: "dollar", name: "DollarIcon", Component: DollarIcon, color: "#eab308", accentColor: "#f59e0b" },
-  { id: "thumbup", name: "ThumbUpIcon", Component: ThumbUpIcon, color: "#f43f5e", accentColor: "#fb7185" },
-  { id: "flash", name: "FlashIcon", Component: FlashIcon, color: "#eab308", accentColor: "#f97316" },
-  { id: "heart", name: "HeartIcon", Component: HeartIcon, color: "#ec4899", accentColor: "#f43f5e" },
-  { id: "chat", name: "ChatIcon", Component: ChatIcon, color: "#8b5cf6", accentColor: "#a78bfa" },
-  { id: "key", name: "KeyIcon", Component: KeyIcon, color: "#f59e0b", accentColor: "#fbbf24" },
-  { id: "star", name: "StarIcon", Component: StarIcon, color: "#fbbf24", accentColor: "#f59e0b" },
-  { id: "cart", name: "CartIcon", Component: CartIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "music", name: "MusicIcon", Component: MusicIcon, color: "#ec4899", accentColor: "#f43f5e" },
-  { id: "gamepad", name: "GamepadIcon", Component: GamepadIcon, color: "#6366f1", accentColor: "#8b5cf6" },
-  { id: "bell", name: "BellIcon", Component: BellIcon, color: "#f59e0b", accentColor: "#d97706" },
-  { id: "sun", name: "SunIcon", Component: SunIcon, color: "#f97316", accentColor: "#eab308" },
-  { id: "bulb", name: "BulbIcon", Component: BulbIcon, color: "#fbbf24", accentColor: "#f59e0b" },
-  { id: "camera", name: "CameraIcon", Component: CameraIcon, color: "#06b6d4", accentColor: "#3b82f6" },
-  { id: "clock", name: "ClockIcon", Component: ClockIcon, color: "#ef4444", accentColor: "#cbd5e1" },
-  { id: "trophy", name: "TrophyIcon", Component: TrophyIcon, color: "#eab308", accentColor: "#f59e0b" },
-  { id: "lock", name: "LockIcon", Component: LockIcon, color: "#6366f1", accentColor: "#8b5cf6" },
-  { id: "mappin", name: "MapPinIcon", Component: MapPinIcon, color: "#ef4444", accentColor: "#f43f5e" },
-  { id: "creditcard", name: "CreditCardIcon", Component: CreditCardIcon, color: "#4f46e5", accentColor: "#0ea5e9" },
-  { id: "wifi", name: "WifiIcon", Component: WifiIcon, color: "#0ea5e9", accentColor: "#38bdf8" },
-  { id: "search", name: "SearchIcon", Component: SearchIcon, color: "#3b82f6", accentColor: "#38bdf8" },
-  { id: "home", name: "HomeIcon", Component: HomeIcon, color: "#10b981", accentColor: "#f43f5e" },
-  { id: "trash", name: "TrashIcon", Component: TrashIcon, color: "#71717a", accentColor: "#ef4444" },
-  { id: "user", name: "UserIcon", Component: UserIcon, color: "#6366f1", accentColor: "#10b981" },
-  { id: "play", name: "PlayIcon", Component: PlayIcon, color: "#10b981", accentColor: "#38bdf8" },
-  { id: "gift", name: "GiftIcon", Component: GiftIcon, color: "#f43f5e", accentColor: "#ef4444" },
-  { id: "globe", name: "GlobeIcon", Component: GlobeIcon, color: "#0ea5e9", accentColor: "#3b82f6" },
-  { id: "bag", name: "BagIcon", Component: BagIcon, color: "#f59e0b", accentColor: "#38bdf8" },
-  { id: "compass", name: "CompassIcon", Component: CompassIcon, color: "#d4af37", accentColor: "#ef4444" },
-  { id: "send", name: "SendIcon", Component: SendIcon, color: "#6366f1", accentColor: "#3b82f6" },
-  { id: "target", name: "TargetIcon", Component: TargetIcon, color: "#ef4444", accentColor: "#f59e0b" },
-  { id: "edit", name: "EditIcon", Component: EditIcon, color: "#eab308", accentColor: "#fed7aa" },
-  { id: "phone", name: "PhoneIcon", Component: PhoneIcon, color: "#10b981", accentColor: "#cbd5e1" },
-  { id: "book", name: "BookIcon", Component: BookIcon, color: "#e11d48", accentColor: "#fda4af" },
-  { id: "link", name: "LinkIcon", Component: LinkIcon, color: "#71717a", accentColor: "#cbd5e1" },
-  { id: "crown", name: "CrownIcon", Component: CrownIcon, color: "#d4af37", accentColor: "#fbbf24" },
-  { id: "pin", name: "PinIcon", Component: PinIcon, color: "#ef4444", accentColor: "#fb7185" },
-  { id: "flag", name: "FlagIcon", Component: FlagIcon, color: "#8b5cf6", accentColor: "#a78bfa" },
-  { id: "briefcase", name: "BriefcaseIcon", Component: BriefcaseIcon, color: "#b45309", accentColor: "#f59e0b" },
-  { id: "eye", name: "EyeIcon", Component: EyeIcon, color: "#0ea5e9", accentColor: "#a855f7" },
-  { id: "tag", name: "TagIcon", Component: TagIcon, color: "#ec4899", accentColor: "#fb7185" },
-  { id: "coffee", name: "CoffeeIcon", Component: CoffeeIcon, color: "#ea580c", accentColor: "#fed7aa" },
-  { id: "share", name: "ShareIcon", Component: ShareIcon, color: "#6366f1", accentColor: "#818cf8" },
-  { id: "layers", name: "LayersIcon", Component: LayersIcon, color: "#0ea5e9", accentColor: "#38bdf8" },
-  { id: "sparkles", name: "SparklesIcon", Component: SparklesIcon, color: "#eab308", accentColor: "#fbbf24" },
-  { id: "megaphone", name: "MegaphoneIcon", Component: MegaphoneIcon, color: "#ef4444", accentColor: "#f43f5e" },
-  { id: "download", name: "DownloadIcon", Component: DownloadIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "upload", name: "UploadIcon", Component: UploadIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "monitor", name: "MonitorIcon", Component: MonitorIcon, color: "#06b6d4", accentColor: "#3b82f6" },
-  { id: "keyboard", name: "KeyboardIcon", Component: KeyboardIcon, color: "#6366f1", accentColor: "#a855f7" },
-  { id: "mouse", name: "MouseIcon", Component: MouseIcon, color: "#10b981", accentColor: "#cbd5e1" },
-  { id: "harddrive", name: "HardDriveIcon", Component: HardDriveIcon, color: "#71717a", accentColor: "#94a3b8" },
-  { id: "printer", name: "PrinterIcon", Component: PrinterIcon, color: "#64748b", accentColor: "#cbd5e1" },
-  { id: "speaker", name: "SpeakerIcon", Component: SpeakerIcon, color: "#71717a", accentColor: "#818cf8" },
-  { id: "glassmorphism", name: "GlassmorphismIcon", Component: GlassmorphismIcon, color: "#ffffff", accentColor: "#ec4899" },
-  { id: "github", name: "GithubIcon", Component: GithubIcon, color: "#24292e", accentColor: "#6e5494" },
-  { id: "twitter", name: "TwitterIcon", Component: TwitterIcon, color: "#1da1f2", accentColor: "#0f1419" },
-  { id: "google", name: "GoogleIcon", Component: GoogleIcon, color: "#4285f4", accentColor: "#ea4335" },
-  { id: "router", name: "RouterIcon", Component: RouterIcon, color: "#06b6d4", accentColor: "#10b981" },
-  { id: "server", name: "ServerIcon", Component: ServerIcon, color: "#3b82f6", accentColor: "#10b981" },
-  { id: "ethernet", name: "EthernetIcon", Component: EthernetIcon, color: "#3b82f6", accentColor: "#d4af37" },
-  { id: "satellite", name: "SatelliteIcon", Component: SatelliteIcon, color: "#06b6d4", accentColor: "#4f46e5" },
-  { id: "wrench", name: "WrenchIcon", Component: WrenchIcon, color: "#94a3b8", accentColor: "#475569" },
-  { id: "bolt", name: "BoltIcon", Component: BoltIcon, color: "#71717a", accentColor: "#cbd5e1" },
-  { id: "hammer", name: "HammerIcon", Component: HammerIcon, color: "#cbd5e1", accentColor: "#f59e0b" },
-  { id: "screwdriver", name: "ScrewdriverIcon", Component: ScrewdriverIcon, color: "#cbd5e1", accentColor: "#6366f1" },
-  { id: "nut", name: "NutIcon", Component: NutIcon, color: "#94a3b8", accentColor: "#475569" },
-  { id: "smile", name: "SmileIcon", Component: SmileIcon, color: "#f59e0b", accentColor: "#f43f5e" },
-  { id: "frown", name: "FrownIcon", Component: FrownIcon, color: "#f59e0b", accentColor: "#f43f5e" },
-  { id: "hearteyes", name: "HeartEyesIcon", Component: HeartEyesIcon, color: "#f59e0b", accentColor: "#ef4444" },
-  { id: "code", name: "CodeIcon", Component: CodeIcon, color: "#6366f1", accentColor: "#ec4899" },
-  { id: "terminal", name: "TerminalIcon", Component: TerminalIcon, color: "#10b981", accentColor: "#020617" },
-  { id: "git", name: "GitIcon", Component: GitIcon, color: "#f43f5e", accentColor: "#ffffff" },
-  { id: "figma", name: "FigmaIcon", Component: FigmaIcon, color: "#f24e1e", accentColor: "#a259ff" },
-  { id: "barchart", name: "BarChartIcon", Component: BarChartIcon, color: "#6366f1", accentColor: "#ec4899" },
-  { id: "check", name: "CheckIcon", Component: CheckIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "container", name: "ContainerIcon", Component: ContainerIcon, color: "#2496ed", accentColor: "#f59e0b" },
-  { id: "shieldcheck", name: "ShieldCheckIcon", Component: ShieldCheckIcon, color: "#0d9488", accentColor: "#10b981" },
-  { id: "react", name: "ReactIcon", Component: ReactIcon, color: "#61dafb", accentColor: "#20232a" },
-  { id: "node", name: "NodeIcon", Component: NodeIcon, color: "#68a063", accentColor: "#3c873a" },
+  { id: "plus", name: "PlusIcon", category: "utility", Component: PlusIcon, color: "#10b981", accentColor: "#34d399" },
+  { id: "minus", name: "MinusIcon", category: "utility", Component: MinusIcon, color: "#6b7280", accentColor: "#9ca3af" },
+  { id: "close", name: "CloseIcon", category: "utility", Component: CloseIcon, color: "#ef4444", accentColor: "#f87171" },
+  { id: "info", name: "InfoIcon", category: "utility", Component: InfoIcon, color: "#3b82f6", accentColor: "#60a5fa" },
+  { id: "alertcircle", name: "AlertCircleIcon", category: "utility", Component: AlertCircleIcon, color: "#f59e0b", accentColor: "#fbbf24" },
+  { id: "anchor", name: "AnchorIcon", category: "utility", Component: AnchorIcon, color: "#475569", accentColor: "#f43f5e" },
+  { id: "diamond", name: "DiamondIcon", category: "utility", Component: DiamondIcon, color: "#0ea5e9", accentColor: "#10b981" },
+  { id: "filter", name: "FilterIcon", category: "utility", Component: FilterIcon, color: "#f43f5e", accentColor: "#38bdf8" },
+  { id: "pipeline", name: "PipelineIcon", category: "networking", Component: PipelineIcon, color: "#0d9488", accentColor: "#10b981" },
+  { id: "refresh", name: "RefreshIcon", category: "utility", Component: RefreshIcon, color: "#8b5cf6", accentColor: "#ec4899" },
+  { id: "webhook", name: "WebhookIcon", category: "networking", Component: WebhookIcon, color: "#6366f1", accentColor: "#10b981" },
+  { id: "facebook", name: "FacebookIcon", category: "brands", Component: FacebookIcon, color: "#1877f2", accentColor: "#3b82f6" },
+  { id: "shield", name: "ShieldIcon", category: "utility", Component: ShieldIcon, color: "#0d9488", accentColor: "#34d399" },
+  { id: "rocket", name: "RocketIcon", category: "mechanics", Component: RocketIcon, color: "#ef4444", accentColor: "#f59e0b" },
+  { id: "database", name: "DatabaseIcon", category: "storage", Component: DatabaseIcon, color: "#4f46e5", accentColor: "#ec4899" },
+  { id: "folder", name: "FolderIcon", category: "storage", Component: FolderIcon, color: "#f59e0b", accentColor: "#eab308" },
+  { id: "cloud", name: "CloudIcon", category: "systems", Component: CloudIcon, color: "#0ea5e9", accentColor: "#38bdf8" },
+  { id: "network", name: "NetworkIcon", category: "networking", Component: NetworkIcon, color: "#06b6d4", accentColor: "#a855f7" },
+  { id: "cpu", name: "CpuIcon", category: "hardware", Component: CpuIcon, color: "#10b981", accentColor: "#34d399" },
+  { id: "gear", name: "GearIcon", category: "mechanics", Component: GearIcon, color: "#71717a", accentColor: "#b45309" },
+  { id: "mail", name: "MailIcon", category: "utility", Component: MailIcon, color: "#e11d48", accentColor: "#ec4899" },
+  { id: "calendar", name: "CalendarIcon", category: "utility", Component: CalendarIcon, color: "#6366f1", accentColor: "#ef4444" },
+  { id: "wallet", name: "WalletIcon", category: "utility", Component: WalletIcon, color: "#b45309", accentColor: "#d97706" },
+  { id: "dollar", name: "DollarIcon", category: "utility", Component: DollarIcon, color: "#eab308", accentColor: "#f59e0b" },
+  { id: "thumbup", name: "ThumbUpIcon", category: "utility", Component: ThumbUpIcon, color: "#f43f5e", accentColor: "#fb7185" },
+  { id: "flash", name: "FlashIcon", category: "utility", Component: FlashIcon, color: "#eab308", accentColor: "#f97316" },
+  { id: "heart", name: "HeartIcon", category: "utility", Component: HeartIcon, color: "#ec4899", accentColor: "#f43f5e" },
+  { id: "chat", name: "ChatIcon", category: "utility", Component: ChatIcon, color: "#8b5cf6", accentColor: "#a78bfa" },
+  { id: "key", name: "KeyIcon", category: "utility", Component: KeyIcon, color: "#f59e0b", accentColor: "#fbbf24" },
+  { id: "star", name: "StarIcon", category: "utility", Component: StarIcon, color: "#fbbf24", accentColor: "#f59e0b" },
+  { id: "cart", name: "CartIcon", category: "utility", Component: CartIcon, color: "#10b981", accentColor: "#34d399" },
+  { id: "music", name: "MusicIcon", category: "utility", Component: MusicIcon, color: "#ec4899", accentColor: "#f43f5e" },
+  { id: "gamepad", name: "GamepadIcon", category: "hardware", Component: GamepadIcon, color: "#6366f1", accentColor: "#8b5cf6" },
+  { id: "bell", name: "BellIcon", category: "utility", Component: BellIcon, color: "#f59e0b", accentColor: "#d97706" },
+  { id: "sun", name: "SunIcon", category: "systems", Component: SunIcon, color: "#f97316", accentColor: "#eab308" },
+  { id: "bulb", name: "BulbIcon", category: "utility", Component: BulbIcon, color: "#fbbf24", accentColor: "#f59e0b" },
+  { id: "camera", name: "CameraIcon", category: "hardware", Component: CameraIcon, color: "#06b6d4", accentColor: "#3b82f6" },
+  { id: "clock", name: "ClockIcon", category: "utility", Component: ClockIcon, color: "#ef4444", accentColor: "#cbd5e1" },
+  { id: "trophy", name: "TrophyIcon", category: "utility", Component: TrophyIcon, color: "#eab308", accentColor: "#f59e0b" },
+  { id: "lock", name: "LockIcon", category: "utility", Component: LockIcon, color: "#6366f1", accentColor: "#8b5cf6" },
+  { id: "mappin", name: "MapPinIcon", category: "utility", Component: MapPinIcon, color: "#ef4444", accentColor: "#f43f5e" },
+  { id: "creditcard", name: "CreditCardIcon", category: "utility", Component: CreditCardIcon, color: "#4f46e5", accentColor: "#0ea5e9" },
+  { id: "wifi", name: "WifiIcon", category: "networking", Component: WifiIcon, color: "#0ea5e9", accentColor: "#38bdf8" },
+  { id: "search", name: "SearchIcon", category: "utility", Component: SearchIcon, color: "#3b82f6", accentColor: "#38bdf8" },
+  { id: "home", name: "HomeIcon", category: "utility", Component: HomeIcon, color: "#10b981", accentColor: "#f43f5e" },
+  { id: "trash", name: "TrashIcon", category: "utility", Component: TrashIcon, color: "#71717a", accentColor: "#ef4444" },
+  { id: "user", name: "UserIcon", category: "utility", Component: UserIcon, color: "#6366f1", accentColor: "#10b981" },
+  { id: "play", name: "PlayIcon", category: "utility", Component: PlayIcon, color: "#10b981", accentColor: "#38bdf8" },
+  { id: "gift", name: "GiftIcon", category: "utility", Component: GiftIcon, color: "#f43f5e", accentColor: "#ef4444" },
+  { id: "globe", name: "GlobeIcon", category: "systems", Component: GlobeIcon, color: "#0ea5e9", accentColor: "#3b82f6" },
+  { id: "bag", name: "BagIcon", category: "utility", Component: BagIcon, color: "#f59e0b", accentColor: "#38bdf8" },
+  { id: "compass", name: "CompassIcon", category: "utility", Component: CompassIcon, color: "#d4af37", accentColor: "#ef4444" },
+  { id: "send", name: "SendIcon", category: "utility", Component: SendIcon, color: "#6366f1", accentColor: "#3b82f6" },
+  { id: "target", name: "TargetIcon", category: "utility", Component: TargetIcon, color: "#ef4444", accentColor: "#f59e0b" },
+  { id: "edit", name: "EditIcon", category: "utility", Component: EditIcon, color: "#eab308", accentColor: "#fed7aa" },
+  { id: "phone", name: "PhoneIcon", category: "utility", Component: PhoneIcon, color: "#10b981", accentColor: "#cbd5e1" },
+  { id: "book", name: "BookIcon", category: "utility", Component: BookIcon, color: "#e11d48", accentColor: "#fda4af" },
+  { id: "link", name: "LinkIcon", category: "utility", Component: LinkIcon, color: "#71717a", accentColor: "#cbd5e1" },
+  { id: "crown", name: "CrownIcon", category: "utility", Component: CrownIcon, color: "#d4af37", accentColor: "#fbbf24" },
+  { id: "pin", name: "PinIcon", category: "utility", Component: PinIcon, color: "#ef4444", accentColor: "#fb7185" },
+  { id: "flag", name: "FlagIcon", category: "utility", Component: FlagIcon, color: "#8b5cf6", accentColor: "#a78bfa" },
+  { id: "briefcase", name: "BriefcaseIcon", category: "utility", Component: BriefcaseIcon, color: "#b45309", accentColor: "#f59e0b" },
+  { id: "eye", name: "EyeIcon", category: "utility", Component: EyeIcon, color: "#0ea5e9", accentColor: "#a855f7" },
+  { id: "tag", name: "TagIcon", category: "utility", Component: TagIcon, color: "#ec4899", accentColor: "#fb7185" },
+  { id: "coffee", name: "CoffeeIcon", category: "utility", Component: CoffeeIcon, color: "#ea580c", accentColor: "#fed7aa" },
+  { id: "share", name: "ShareIcon", category: "utility", Component: ShareIcon, color: "#6366f1", accentColor: "#818cf8" },
+  { id: "layers", name: "LayersIcon", category: "storage", Component: LayersIcon, color: "#0ea5e9", accentColor: "#38bdf8" },
+  { id: "sparkles", name: "SparklesIcon", category: "utility", Component: SparklesIcon, color: "#eab308", accentColor: "#fbbf24" },
+  { id: "megaphone", name: "MegaphoneIcon", category: "utility", Component: MegaphoneIcon, color: "#ef4444", accentColor: "#f43f5e" },
+  { id: "download", name: "DownloadIcon", category: "utility", Component: DownloadIcon, color: "#10b981", accentColor: "#34d399" },
+  { id: "upload", name: "UploadIcon", category: "utility", Component: UploadIcon, color: "#10b981", accentColor: "#34d399" },
+  { id: "monitor", name: "MonitorIcon", category: "hardware", Component: MonitorIcon, color: "#06b6d4", accentColor: "#3b82f6" },
+  { id: "keyboard", name: "KeyboardIcon", category: "hardware", Component: KeyboardIcon, color: "#6366f1", accentColor: "#a855f7" },
+  { id: "mouse", name: "MouseIcon", category: "hardware", Component: MouseIcon, color: "#10b981", accentColor: "#cbd5e1" },
+  { id: "harddrive", name: "HardDriveIcon", category: "hardware", Component: HardDriveIcon, color: "#71717a", accentColor: "#94a3b8" },
+  { id: "printer", name: "PrinterIcon", category: "hardware", Component: PrinterIcon, color: "#64748b", accentColor: "#cbd5e1" },
+  { id: "speaker", name: "SpeakerIcon", category: "hardware", Component: SpeakerIcon, color: "#71717a", accentColor: "#818cf8" },
+  { id: "glassmorphism", name: "GlassmorphismIcon", category: "utility", Component: GlassmorphismIcon, color: "#ffffff", accentColor: "#ec4899" },
+  { id: "github", name: "GithubIcon", category: "brands", Component: GithubIcon, color: "#24292e", accentColor: "#6e5494" },
+  { id: "twitter", name: "TwitterIcon", category: "brands", Component: TwitterIcon, color: "#1da1f2", accentColor: "#0f1419" },
+  { id: "google", name: "GoogleIcon", category: "brands", Component: GoogleIcon, color: "#4285f4", accentColor: "#ea4335" },
+  { id: "router", name: "RouterIcon", category: "networking", Component: RouterIcon, color: "#06b6d4", accentColor: "#10b981" },
+  { id: "server", name: "ServerIcon", category: "networking", Component: ServerIcon, color: "#3b82f6", accentColor: "#10b981" },
+  { id: "ethernet", name: "EthernetIcon", category: "networking", Component: EthernetIcon, color: "#3b82f6", accentColor: "#d4af37" },
+  { id: "satellite", name: "SatelliteIcon", category: "networking", Component: SatelliteIcon, color: "#06b6d4", accentColor: "#4f46e5" },
+  { id: "wrench", name: "WrenchIcon", category: "mechanics", Component: WrenchIcon, color: "#94a3b8", accentColor: "#475569" },
+  { id: "bolt", name: "BoltIcon", category: "mechanics", Component: BoltIcon, color: "#71717a", accentColor: "#cbd5e1" },
+  { id: "hammer", name: "HammerIcon", category: "mechanics", Component: HammerIcon, color: "#cbd5e1", accentColor: "#f59e0b" },
+  { id: "screwdriver", name: "ScrewdriverIcon", category: "mechanics", Component: ScrewdriverIcon, color: "#cbd5e1", accentColor: "#6366f1" },
+  { id: "nut", name: "NutIcon", category: "mechanics", Component: NutIcon, color: "#94a3b8", accentColor: "#475569" },
+  { id: "smile", name: "SmileIcon", category: "emojies", Component: SmileIcon, color: "#f59e0b", accentColor: "#f43f5e" },
+  { id: "frown", name: "FrownIcon", category: "emojies", Component: FrownIcon, color: "#f59e0b", accentColor: "#f43f5e" },
+  { id: "hearteyes", name: "HeartEyesIcon", category: "emojies", Component: HeartEyesIcon, color: "#f59e0b", accentColor: "#ef4444" },
+  { id: "code", name: "CodeIcon", category: "utility", Component: CodeIcon, color: "#6366f1", accentColor: "#ec4899" },
+  { id: "terminal", name: "TerminalIcon", category: "utility", Component: TerminalIcon, color: "#10b981", accentColor: "#020617" },
+  { id: "git", name: "GitIcon", category: "utility", Component: GitIcon, color: "#f43f5e", accentColor: "#ffffff" },
+  { id: "figma", name: "FigmaIcon", category: "brands", Component: FigmaIcon, color: "#f24e1e", accentColor: "#a259ff" },
+  { id: "barchart", name: "BarChartIcon", category: "utility", Component: BarChartIcon, color: "#6366f1", accentColor: "#ec4899" },
+  { id: "check", name: "CheckIcon", category: "utility", Component: CheckIcon, color: "#10b981", accentColor: "#34d399" },
+  { id: "container", name: "ContainerIcon", category: "systems", Component: ContainerIcon, color: "#2496ed", accentColor: "#f59e0b" },
+  { id: "shieldcheck", name: "ShieldCheckIcon", category: "utility", Component: ShieldCheckIcon, color: "#0d9488", accentColor: "#10b981" },
+  { id: "react", name: "ReactIcon", category: "brands", Component: ReactIcon, color: "#61dafb", accentColor: "#20232a" },
+  { id: "node", name: "NodeIcon", category: "brands", Component: NodeIcon, color: "#68a063", accentColor: "#3c873a" },
+  { id: "bug", name: "BugIcon", category: "utility", Component: BugIcon, color: "#475569", accentColor: "#ef4444" },
+  { id: "flask", name: "FlaskIcon", category: "utility", Component: FlaskIcon, color: "#4f46e5", accentColor: "#a855f7" },
+  { id: "piechart", name: "PieChartIcon", category: "utility", Component: PieChartIcon, color: "#6366f1", accentColor: "#ec4899" },
+  { id: "flame", name: "FlameIcon", category: "utility", Component: FlameIcon, color: "#f97316", accentColor: "#ef4444" },
+  { id: "activity", name: "ActivityIcon", category: "systems", Component: ActivityIcon, color: "#0d9488", accentColor: "#10b981" },
+  { id: "graduationcap", name: "GraduationCapIcon", category: "utility", Component: GraduationCapIcon, color: "#3f3f46", accentColor: "#eab308" },
+  { id: "trendingup", name: "TrendingUpIcon", category: "utility", Component: TrendingUpIcon, color: "#10b981", accentColor: "#34d399" },
+  { id: "instagram", name: "InstagramIcon", category: "brands", Component: InstagramIcon, color: "#e1306c", accentColor: "#f77737" },
+  { id: "package", name: "PackageIcon", category: "storage", Component: PackageIcon, color: "#b45309", accentColor: "#38bdf8" },
+  { id: "airplane", name: "AirplaneIcon", category: "utility", Component: AirplaneIcon, color: "#0ea5e9", accentColor: "#f43f5e" },
+  { id: "battery", name: "BatteryIcon", category: "hardware", Component: BatteryIcon, color: "#10b981", accentColor: "#34d399" },
+  { id: "video", name: "VideoIcon", category: "utility", Component: VideoIcon, color: "#8b5cf6", accentColor: "#ec4899" },
+  { id: "microphone", name: "MicrophoneIcon", category: "utility", Component: MicrophoneIcon, color: "#ec4899", accentColor: "#3b82f6" },
+  { id: "sliders", name: "SlidersIcon", category: "utility", Component: SlidersIcon, color: "#6366f1", accentColor: "#f59e0b" },
+  { id: "map", name: "MapIcon", category: "utility", Component: MapIcon, color: "#10b981", accentColor: "#f43f5e" },
+  { id: "umbrella", name: "UmbrellaIcon", category: "utility", Component: UmbrellaIcon, color: "#0ea5e9", accentColor: "#ec4899" },
+  { id: "scissors", name: "ScissorsIcon", category: "utility", Component: ScissorsIcon, color: "#f59e0b", accentColor: "#3b82f6" },
+  { id: "unlock", name: "UnlockIcon", category: "utility", Component: UnlockIcon, color: "#eab308", accentColor: "#22c55e" },
+  { id: "archive", name: "ArchiveIcon", category: "storage", Component: ArchiveIcon, color: "#a855f7", accentColor: "#ec4899" },
+  { id: "shieldalert", name: "ShieldAlertIcon", category: "utility", Component: ShieldAlertIcon, color: "#475569", accentColor: "#ef4444" },
+  { id: "eyeoff", name: "EyeOffIcon", category: "utility", Component: EyeOffIcon, color: "#6366f1", accentColor: "#ef4444" },
+  { id: "userplus", name: "UserPlusIcon", category: "utility", Component: UserPlusIcon, color: "#3b82f6", accentColor: "#10b981" },
+  { id: "trendingdown", name: "TrendingDownIcon", category: "utility", Component: TrendingDownIcon, color: "#ef4444", accentColor: "#fb7185" },
+  { id: "copy", name: "CopyIcon", category: "utility", Component: CopyIcon, color: "#06b6d4", accentColor: "#22d3ee" },
+  { id: "gauge", name: "GaugeIcon", category: "mechanics", Component: GaugeIcon, color: "#64748b", accentColor: "#ef4444" },
+  { id: "magnet", name: "MagnetIcon", category: "mechanics", Component: MagnetIcon, color: "#71717a", accentColor: "#ef4444" },
+  { id: "stack", name: "StackIcon", category: "systems", Component: StackIcon, color: "#4f46e5", accentColor: "#10b981" },
+  { id: "workflow", name: "WorkflowIcon", category: "systems", Component: WorkflowIcon, color: "#0ea5e9", accentColor: "#10b981" },
+  { id: "topology", name: "TopologyIcon", category: "systems", Component: TopologyIcon, color: "#06b6d4", accentColor: "#10b981" },
+  { id: "file", name: "FileIcon", category: "utility", Component: FileIcon, color: "#64748b", accentColor: "#ef4444" },
+  { id: "headphones", name: "HeadphonesIcon", category: "utility", Component: HeadphonesIcon, color: "#4f46e5", accentColor: "#3b82f6" },
+  { id: "moon", name: "MoonIcon", category: "utility", Component: MoonIcon, color: "#a855f7", accentColor: "#f59e0b" },
+  { id: "paperclip", name: "PaperclipIcon", category: "utility", Component: PaperclipIcon, color: "#94a3b8", accentColor: "#ef4444" },
+  { id: "bookmark", name: "BookmarkIcon", category: "utility", Component: BookmarkIcon, color: "#e11d48", accentColor: "#ef4444" },
+  { id: "cloudlightning", name: "CloudLightningIcon", category: "systems", Component: CloudLightningIcon, color: "#0ea5e9", accentColor: "#fbbf24" },
+  { id: "folderopen", name: "FolderOpenIcon", category: "storage", Component: FolderOpenIcon, color: "#f59e0b", accentColor: "#10b981" },
+  { id: "volume", name: "VolumeIcon", category: "hardware", Component: VolumeIcon, color: "#6366f1", accentColor: "#3b82f6" },
+  { id: "belloff", name: "BellOffIcon", category: "utility", Component: BellOffIcon, color: "#f59e0b", accentColor: "#ef4444" },
+  { id: "sunmoon", name: "SunMoonIcon", category: "systems", Component: SunMoonIcon, color: "#6366f1", accentColor: "#f59e0b" },
+  { id: "piston", name: "PistonIcon", category: "mechanics", Component: PistonIcon, color: "#71717a", accentColor: "#10b981" },
+  { id: "spring", name: "SpringIcon", category: "mechanics", Component: SpringIcon, color: "#64748b", accentColor: "#10b981" },
+  { id: "anvil", name: "AnvilIcon", category: "mechanics", Component: AnvilIcon, color: "#4b5563", accentColor: "#f97316" },
+  { id: "hook", name: "HookIcon", category: "mechanics", Component: HookIcon, color: "#475569", accentColor: "#f59e0b" },
+  { id: "turbine", name: "TurbineIcon", category: "mechanics", Component: TurbineIcon, color: "#64748b", accentColor: "#06b6d4" },
+  { id: "pliers", name: "PliersIcon", category: "mechanics", Component: PliersIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "drill", name: "DrillIcon", category: "mechanics", Component: DrillIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "hacksaw", name: "HacksawIcon", category: "mechanics", Component: HacksawIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "tapemeasure", name: "TapeMeasureIcon", category: "mechanics", Component: TapeMeasureIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "caliper", name: "CaliperIcon", category: "mechanics", Component: CaliperIcon, color: "#94a3b8", accentColor: "#10b981" },
+  { id: "spiritlevel", name: "SpiritLevelIcon", category: "mechanics", Component: SpiritLevelIcon, color: "#64748b", accentColor: "#22c55e" },
+  { id: "sledgehammer", name: "SledgehammerIcon", category: "mechanics", Component: SledgehammerIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "phonemobile", name: "PhoneMobileIcon", category: "hardware", Component: PhoneMobileIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "tablet", name: "TabletIcon", category: "hardware", Component: TabletIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "laptop", name: "LaptopIcon", category: "hardware", Component: LaptopIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "smartwatch", name: "SmartWatchIcon", category: "hardware", Component: SmartWatchIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "routerwifi", name: "RouterWifiIcon", category: "hardware", Component: RouterWifiIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "serverrack", name: "ServerRackIcon", category: "hardware", Component: ServerRackIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "harddriveexternal", name: "HardDriveExternalIcon", category: "hardware", Component: HardDriveExternalIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "webcam", name: "WebcamIcon", category: "hardware", Component: WebcamIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "chisel", name: "ChiselIcon", category: "mechanics", Component: ChiselIcon, color: "#78350f", accentColor: "#10b981" },
+  { id: "crowbar", name: "CrowbarIcon", category: "mechanics", Component: CrowbarIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "funnel", name: "FunnelIcon", category: "mechanics", Component: FunnelIcon, color: "#0f766e", accentColor: "#10b981" },
+  { id: "oilcan", name: "OilCanIcon", category: "mechanics", Component: OilCanIcon, color: "#b45309", accentColor: "#10b981" },
+  { id: "bearing", name: "BearingIcon", category: "mechanics", Component: BearingIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "pulley", name: "PulleyIcon", category: "mechanics", Component: PulleyIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "sprocket", name: "SprocketIcon", category: "mechanics", Component: SprocketIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "projector", name: "ProjectorIcon", category: "hardware", Component: ProjectorIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "gameconsole", name: "GameConsoleIcon", category: "hardware", Component: GameConsoleIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "vrheadset", name: "VRHeadsetIcon", category: "hardware", Component: VRHeadsetIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "smartspeaker", name: "SmartSpeakerIcon", category: "hardware", Component: SmartSpeakerIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "powerbank", name: "PowerBankIcon", category: "hardware", Component: PowerBankIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "usbdrive", name: "UsbDriveIcon", category: "hardware", Component: UsbDriveIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "motherboard", name: "MotherboardIcon", category: "hardware", Component: MotherboardIcon, color: "#065f46", accentColor: "#10b981" },
+  { id: "ramstick", name: "RamStickIcon", category: "hardware", Component: RamStickIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "crank", name: "CrankIcon", category: "mechanics", Component: CrankIcon, color: "#71717a", accentColor: "#10b981" },
+  { id: "camshaft", name: "CamshaftIcon", category: "mechanics", Component: CamshaftIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "driveshaft", name: "DriveShaftIcon", category: "mechanics", Component: DriveShaftIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "valve", name: "ValveIcon", category: "mechanics", Component: ValveIcon, color: "#4b5563", accentColor: "#10b981" },
+  { id: "propeller", name: "PropellerIcon", category: "mechanics", Component: PropellerIcon, color: "#78350f", accentColor: "#10b981" },
+  { id: "rotor", name: "HelicopterRotorIcon", category: "mechanics", Component: HelicopterRotorIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "hydraulicjack", name: "HydraulicJackIcon", category: "mechanics", Component: HydraulicJackIcon, color: "#ef4444", accentColor: "#10b981" },
+  { id: "gpu", name: "GpuIcon", category: "hardware", Component: GpuIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "powersupply", name: "PowerSupplyIcon", category: "hardware", Component: PowerSupplyIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "networkswitch", name: "NetworkSwitchIcon", category: "hardware", Component: NetworkSwitchIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "smartplug", name: "SmartPlugIcon", category: "hardware", Component: SmartPlugIcon, color: "#cbd5e1", accentColor: "#10b981" },
+  { id: "smartbulb", name: "SmartBulbIcon", category: "hardware", Component: SmartBulbIcon, color: "#eab308", accentColor: "#10b981" },
+  { id: "securitycamera", name: "SecurityCameraIcon", category: "hardware", Component: SecurityCameraIcon, color: "#cbd5e1", accentColor: "#10b981" },
+  { id: "smartlock", name: "SmartLockIcon", category: "hardware", Component: SmartLockIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "thermostat", name: "ThermostatIcon", category: "hardware", Component: ThermostatIcon, color: "#0f172a", accentColor: "#10b981" },
+  { id: "gclamp", name: "GClampIcon", category: "mechanics", Component: GClampIcon, color: "#4b5563", accentColor: "#10b981" },
+  { id: "vice", name: "ViceIcon", category: "mechanics", Component: ViceIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "greasegun", name: "GreaseGunIcon", category: "mechanics", Component: GreaseGunIcon, color: "#64748b", accentColor: "#10b981" },
+  { id: "gearbox", name: "GearboxIcon", category: "mechanics", Component: GearboxIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "differential", name: "DifferentialIcon", category: "mechanics", Component: DifferentialIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "suspension", name: "SuspensionIcon", category: "mechanics", Component: SuspensionIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "windlass", name: "WindlassIcon", category: "mechanics", Component: WindlassIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "earbuds", name: "EarbudsIcon", category: "hardware", Component: EarbudsIcon, color: "#cbd5e1", accentColor: "#10b981" },
+  { id: "smartring", name: "SmartRingIcon", category: "hardware", Component: SmartRingIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "drawingtablet", name: "DrawingTabletIcon", category: "hardware", Component: DrawingTabletIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "barcodescanner", name: "BarcodeScannerIcon", category: "hardware", Component: BarcodeScannerIcon, color: "#cbd5e1", accentColor: "#10b981" },
+  { id: "posregister", name: "POSRegisterIcon", category: "hardware", Component: POSRegisterIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "calculator", name: "CalculatorIcon", category: "hardware", Component: CalculatorIcon, color: "#cbd5e1", accentColor: "#10b981" },
+  { id: "remotecontrol", name: "RemoteControlIcon", category: "hardware", Component: RemoteControlIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "soundbar", name: "SoundbarIcon", category: "hardware", Component: SoundbarIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "jackhammer", name: "JackhammerIcon", category: "mechanics", Component: JackhammerIcon, color: "#e2e8f0", accentColor: "#10b981" },
+  { id: "solderingiron", name: "SolderingIronIcon", category: "mechanics", Component: SolderingIronIcon, color: "#cbd5e1", accentColor: "#10b981" },
+  { id: "blowtorch", name: "BlowtorchIcon", category: "mechanics", Component: BlowtorchIcon, color: "#0284c7", accentColor: "#10b981" },
+  { id: "wheelbarrow", name: "WheelbarrowIcon", category: "mechanics", Component: WheelbarrowIcon, color: "#ea580c", accentColor: "#10b981" },
+  { id: "plumbbob", name: "PlumbBobIcon", category: "mechanics", Component: PlumbBobIcon, color: "#d97706", accentColor: "#10b981" },
+  { id: "shears", name: "ShearsIcon", category: "mechanics", Component: ShearsIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "wirestripper", name: "WireStripperIcon", category: "mechanics", Component: WireStripperIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "pipewrench", name: "PipeWrenchIcon", category: "mechanics", Component: PipeWrenchIcon, color: "#dc2626", accentColor: "#10b981" },
+  { id: "floppy", name: "FloppyDiskIcon", category: "storage", Component: FloppyDiskIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "tapecassette", name: "TapeCassetteIcon", category: "storage", Component: TapeCassetteIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "cd", name: "CompactDiscIcon", category: "storage", Component: CompactDiscIcon, color: "#f1f5f9", accentColor: "#10b981" },
+  { id: "tv", name: "TvIcon", category: "hardware", Component: TvIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "radio", name: "RadioIcon", category: "hardware", Component: RadioIcon, color: "#7c2d12", accentColor: "#10b981" },
+  { id: "walkietalkie", name: "WalkieTalkieIcon", category: "hardware", Component: WalkieTalkieIcon, color: "#19222f", accentColor: "#10b981" },
+  { id: "headset", name: "HeadsetIcon", category: "hardware", Component: HeadsetIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "fish", name: "FishIcon", category: "emojies", Component: FishIcon, color: "#0ea5e9", accentColor: "#10b981" },
+  { id: "butterfly", name: "ButterflyIcon", category: "emojies", Component: ButterflyIcon, color: "#d946ef", accentColor: "#10b981" },
+  { id: "bird", name: "BirdIcon", category: "emojies", Component: BirdIcon, color: "#cbd5e1", accentColor: "#10b981" },
+  { id: "cat", name: "CatIcon", category: "emojies", Component: CatIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "dog", name: "DogIcon", category: "emojies", Component: DogIcon, color: "#e2e8f0", accentColor: "#10b981" },
+  { id: "rabbit", name: "RabbitIcon", category: "emojies", Component: RabbitIcon, color: "#cbd5e1", accentColor: "#10b981" },
+  { id: "elephant", name: "ElephantIcon", category: "emojies", Component: ElephantIcon, color: "#334155", accentColor: "#10b981" },
+  { id: "owl", name: "OwlIcon", category: "emojies", Component: OwlIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "turtle", name: "TurtleIcon", category: "emojies", Component: TurtleIcon, color: "#16a34a", accentColor: "#10b981" },
+  { id: "dolphin", name: "DolphinIcon", category: "emojies", Component: DolphinIcon, color: "#0ea5e9", accentColor: "#10b981" },
+  { id: "rose", name: "RoseIcon", category: "emojies", Component: RoseIcon, color: "#ec4899", accentColor: "#10b981" },
+  { id: "sunflower", name: "SunflowerIcon", category: "emojies", Component: SunflowerIcon, color: "#eab308", accentColor: "#10b981" },
+  { id: "tulip", name: "TulipIcon", category: "emojies", Component: TulipIcon, color: "#f43f5e", accentColor: "#10b981" },
+  { id: "lotus", name: "LotusIcon", category: "emojies", Component: LotusIcon, color: "#f472b6", accentColor: "#10b981" },
+  { id: "daisy", name: "DaisyIcon", category: "emojies", Component: DaisyIcon, color: "#eab308", accentColor: "#10b981" },
+  { id: "hibiscus", name: "HibiscusIcon", category: "emojies", Component: HibiscusIcon, color: "#ec4899", accentColor: "#10b981" },
+  { id: "orchid", name: "OrchidIcon", category: "emojies", Component: OrchidIcon, color: "#d946ef", accentColor: "#10b981" },
+  { id: "lily", name: "LilyIcon", category: "emojies", Component: LilyIcon, color: "#fdf2f8", accentColor: "#10b981" },
+  { id: "cactus", name: "CactusIcon", category: "emojies", Component: CactusIcon, color: "#16a34a", accentColor: "#10b981" },
+  { id: "lavender", name: "LavenderIcon", category: "emojies", Component: LavenderIcon, color: "#a855f7", accentColor: "#10b981" },
   // Alphabet icons A-Z
   ...(() => {
     const LETTER_COLORS: Record<string, string> = {
@@ -241,107 +521,13 @@ const ICONS_REGISTRY = [
     return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(l => ({
       id: `letter-${l.toLowerCase()}`,
       name: `${l}Icon`,
+      category: "alphabet",
       Component: (props: any) => <LetterIcon letter={l} {...props} />,
       color: LETTER_COLORS[l],
       accentColor: "#ffffff"
     }));
   })()
 ];
-
-const LUCIDE_FALLBACKS: Record<string, React.ComponentType<any>> = {
-  facebook: LucideAll.Facebook,
-  shield: LucideAll.Shield,
-  rocket: LucideAll.Rocket,
-  database: LucideAll.Database,
-  folder: LucideAll.Folder,
-  cloud: LucideAll.Cloud,
-  network: LucideAll.Network,
-  cpu: LucideAll.Cpu,
-  gear: LucideAll.Settings,
-  mail: LucideAll.Mail,
-  calendar: LucideAll.Calendar,
-  wallet: LucideAll.Wallet,
-  dollar: LucideAll.DollarSign,
-  thumbup: LucideAll.ThumbsUp,
-  flash: LucideAll.Zap,
-  heart: LucideAll.Heart,
-  chat: LucideAll.MessageSquare,
-  key: LucideAll.Key,
-  star: LucideAll.Star,
-  cart: LucideAll.ShoppingCart,
-  music: LucideAll.Music,
-  gamepad: LucideAll.Gamepad2,
-  bell: LucideAll.Bell,
-  sun: LucideAll.Sun,
-  bulb: LucideAll.Lightbulb,
-  camera: LucideAll.Camera,
-  clock: LucideAll.Clock,
-  trophy: LucideAll.Trophy,
-  lock: LucideAll.Lock,
-  mappin: LucideAll.MapPin,
-  creditcard: LucideAll.CreditCard,
-  wifi: LucideAll.Wifi,
-  search: LucideAll.Search,
-  home: LucideAll.Home,
-  trash: LucideAll.Trash2,
-  user: LucideAll.User,
-  play: LucideAll.Play,
-  gift: LucideAll.Gift,
-  globe: LucideAll.Globe,
-  bag: LucideAll.ShoppingBag,
-  compass: LucideAll.Compass,
-  send: LucideAll.Send,
-  target: LucideAll.Target,
-  edit: LucideAll.Pencil,
-  phone: LucideAll.Phone,
-  book: LucideAll.BookOpen,
-  link: LucideAll.Link,
-  crown: LucideAll.Crown,
-  pin: LucideAll.Pin,
-  flag: LucideAll.Flag,
-  briefcase: LucideAll.Briefcase,
-  eye: LucideAll.Eye,
-  tag: LucideAll.Tag,
-  coffee: LucideAll.Coffee,
-  share: LucideAll.Share2,
-  layers: LucideAll.Layers,
-  sparkles: LucideAll.Sparkles,
-  megaphone: LucideAll.Megaphone,
-  download: LucideAll.Download,
-  upload: LucideAll.Upload,
-  monitor: LucideAll.Monitor,
-  keyboard: LucideAll.Keyboard,
-  mouse: LucideAll.Mouse,
-  harddrive: LucideAll.HardDrive,
-  glassmorphism: LucideAll.Layers,
-  printer: LucideAll.Printer,
-  speaker: LucideAll.Speaker,
-  github: LucideAll.Github,
-  twitter: LucideAll.Twitter,
-  google: LucideAll.Chrome,
-  router: LucideAll.Router,
-  server: LucideAll.Server,
-  ethernet: LucideAll.Network,
-  satellite: LucideAll.Satellite,
-  wrench: LucideAll.Wrench,
-  bolt: LucideAll.Bolt,
-  hammer: LucideAll.Hammer,
-  screwdriver: LucideAll.Wrench,
-  nut: LucideAll.Hexagon,
-  smile: LucideAll.Smile,
-  frown: LucideAll.Frown,
-  hearteyes: LucideAll.Smile,
-  code: LucideAll.Code,
-  terminal: LucideAll.Terminal,
-  git: LucideAll.GitBranch,
-  figma: LucideAll.Figma,
-  barchart: LucideAll.BarChart2,
-  check: LucideAll.CheckCircle2,
-  container: LucideAll.Package,
-  shieldcheck: LucideAll.ShieldCheck,
-  react: LucideAll.Atom,
-  node: LucideAll.Hexagon,
-};
 
 // Curated palettes: { name, color, accentColor }
 const CURATED_PALETTES = [
@@ -376,6 +562,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [floatHeight, setFloatHeight] = useState(1.0);
   const [interactive, setInteractive] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [downloading, setDownloading] = useState(false);
   const [renderMode, setRenderMode] = useState<"3d" | "2d">("3d");
 
   // Sync color with URL changes
@@ -417,6 +604,48 @@ function App() {
     navigator.clipboard.writeText(codeString);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleDownloadSVG = () => {
+    if (downloading) return;
+    setDownloading(true);
+
+    const container = document.createElement("div");
+    container.style.position = "absolute";
+    container.style.left = "-9999px";
+    document.body.appendChild(container);
+
+    const root = createRoot(container);
+    root.render(
+      <Fallback2D
+        id={currentIcon.id}
+        color={color}
+        theme={theme}
+        preset={preset}
+      />
+    );
+
+    setTimeout(() => {
+      const svgElement = container.querySelector("svg");
+      if (svgElement) {
+        svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        const svgContent = svgElement.outerHTML;
+        const blob = new Blob([svgContent], { type: "image/svg+xml" });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `${currentIcon.id}-2d-${preset}.svg`;
+        document.body.appendChild(link);
+        link.click();
+
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }
+      root.unmount();
+      document.body.removeChild(container);
+      setDownloading(false);
+    }, 100);
   };
 
   const handlePaletteSelect = (pColor: string, pAccent: string) => {
@@ -537,13 +766,24 @@ function App() {
                 </span>
               </div>
               
-              <button
-                onClick={handleCopyCode}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-md shadow-indigo-600/10 hover:scale-[1.02] transition active:scale-98 cursor-pointer"
-              >
-                {copied ? <Check size={14} /> : <Copy size={14} />}
-                <span>{copied ? t("copied_btn") : t("copy_btn")}</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleCopyCode}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-md shadow-indigo-600/10 hover:scale-[1.02] transition active:scale-98 cursor-pointer"
+                >
+                  {copied ? <Check size={14} /> : <Copy size={14} />}
+                  <span>{copied ? t("copied_btn") : t("copy_btn")}</span>
+                </button>
+
+                <button
+                  onClick={handleDownloadSVG}
+                  disabled={downloading}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 dark:bg-zinc-700 dark:hover:bg-zinc-600 text-white text-xs font-bold shadow-md shadow-zinc-800/10 hover:scale-[1.02] transition active:scale-98 cursor-pointer disabled:opacity-50"
+                >
+                  <LucideAll.Download size={14} />
+                  <span>{downloading ? "Downloading..." : "Download SVG"}</span>
+                </button>
+              </div>
             </div>
             <pre className="p-6 text-xs text-zinc-700 dark:text-zinc-300 font-mono overflow-x-auto leading-relaxed bg-zinc-50/20 dark:bg-[#0b0e16] custom-scrollbar">
               {codeString}
@@ -556,7 +796,7 @@ function App() {
           <div className="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] shadow-xl space-y-6">
             
             <div className="flex items-center gap-2 border-b border-zinc-100 dark:border-zinc-800/80 pb-4">
-              <SlidersIcon size={18} className="text-indigo-500" />
+              <LucideSliders size={18} className="text-indigo-500" />
               <h2 className="text-sm font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider">
                 {t("editor_title")}
               </h2>
@@ -762,11 +1002,11 @@ function App() {
       <div className="space-y-3 pt-6 border-t border-zinc-200 dark:border-zinc-800">
         <h3 className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider flex items-center gap-1.5">
           <Zap size={14} className="text-indigo-500" />
-          <span>Switch Component</span>
+          <span>Similar Icons ({t(`category_${currentIcon.category}` as any)})</span>
         </h3>
         
         <div className="flex gap-4 overflow-x-auto pb-4 pt-1 custom-scrollbar">
-          {ICONS_REGISTRY.map((icon) => {
+          {ICONS_REGISTRY.filter((icon) => icon.category === currentIcon.category).map((icon) => {
             const isSelected = icon.id === iconId;
             return (
               <button
@@ -784,16 +1024,15 @@ function App() {
                     className="absolute inset-1 rounded-full blur-lg opacity-10 dark:opacity-15"
                     style={{ backgroundColor: icon.color }}
                   />
-                  {(() => {
-                    const FallbackIcon = LUCIDE_FALLBACKS[icon.id] || LucideAll.HelpCircle;
-                    return (
-                      <FallbackIcon 
-                        size={26} 
-                        strokeWidth={1.8}
-                        style={{ color: icon.color }} 
-                      />
-                    );
-                  })()}
+                  <icon.Component
+                    variant="2d"
+                    preset="glass"
+                    theme={theme}
+                    color={icon.color}
+                    accentColor={icon.accentColor}
+                    interactive={false}
+                    size="100%"
+                  />
                 </div>
                 <span className="text-[9px] font-bold text-zinc-700 dark:text-zinc-300 mt-1 truncate w-full text-center">
                   {icon.name.replace("Icon", "")}

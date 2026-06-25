@@ -1,0 +1,1 @@
+export { TrendingDownIcon } from "./TrendingDownIcon";

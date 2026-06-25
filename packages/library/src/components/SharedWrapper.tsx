@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Float, Environment } from "@react-three/drei";
 import * as THREE from "three";
@@ -156,11 +156,11 @@ const StudioLights: React.FC<{ theme: "light" | "dark" }> = ({ theme }) => {
 
   return (
     <>
-      <ambientLight 
-        intensity={isDark ? 0.4 : 0.7} 
-        color={isDark ? "#3f3f46" : "#ffffff"} 
+      <ambientLight
+        intensity={isDark ? 0.4 : 0.7}
+        color={isDark ? "#3f3f46" : "#ffffff"}
       />
-      
+
       <directionalLight
         position={[5, 10, 5]}
         intensity={isDark ? 1.5 : 1.2}
@@ -168,11 +168,11 @@ const StudioLights: React.FC<{ theme: "light" | "dark" }> = ({ theme }) => {
         castShadow
         shadow-mapSize={[1024, 1024]}
       />
-      
-      <pointLight 
-        position={[-5, 5, -5]} 
-        intensity={isDark ? 0.8 : 0.4} 
-        color={isDark ? "#818cf8" : "#d1d5db"} 
+
+      <pointLight
+        position={[-5, 5, -5]}
+        intensity={isDark ? 0.8 : 0.4}
+        color={isDark ? "#818cf8" : "#d1d5db"}
       />
 
       <spotLight
@@ -197,50 +197,79 @@ const IconScene: React.FC<{
   floatHeight: number;
   theme: "light" | "dark";
   interactive: boolean;
-}> = ({ children, preset, angle, color, accentColor, spinSpeed, floatHeight, theme, interactive }) => {
-  const groupRef = useRef<THREE.Group>(null);
-  const [hovered, setHovered] = useState(false);
+  customMaterial?: Partial<MaterialConfig>;
+}> = ({
+  children,
+  preset,
+  angle,
+  color,
+  accentColor,
+  spinSpeed,
+  floatHeight,
+  theme,
+  interactive,
+  customMaterial
+}) => {
+    const groupRef = useRef<THREE.Group>(null);
+    const meshRef = useRef<THREE.Group>(null);
+    const [hovered, setHovered] = useState(false);
 
-  // Compute material configs
-  const matConfig = getMaterialConfig(preset, color, theme, accentColor);
+    // Compute material configs
+    const matConfig = getMaterialConfig(preset, color, theme, accentColor);
+    const mergedMatConfig = { ...matConfig, ...customMaterial };
 
-  useFrame((state) => {
-    if (!groupRef.current) return;
+    useFrame((state) => {
+      if (!groupRef.current) return;
 
-    const t = state.clock.getElapsedTime();
+      const t = state.clock.getElapsedTime();
 
-    // Constant rotation
-    groupRef.current.rotation.y = t * 0.3 * spinSpeed;
+      // Constant rotation
+      groupRef.current.rotation.y = t * 0.3 * spinSpeed;
 
-    // Hover scale interpolation (smooth lerping)
-    const targetScale = hovered && interactive ? 1.2 : 1.0;
-    groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.15);
-  });
+      // Hover scale interpolation (smooth lerping)
+      const targetScale = hovered && interactive ? 1.15 : 1.0;
+      groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.15);
 
-  const angleRotations: Record<IconAngle, [number, number, number]> = {
-    front: [0, 0, 0],
-    perspective: [0.25, -0.35, 0],
-    tilted: [0.25, -0.25, 0.25]
-  };
+      // Mouse tracking tilt effect (3D parallax)
+      if (meshRef.current) {
+        if (hovered && interactive) {
+          const targetX = (-state.pointer.y * Math.PI) / 8; // Pitch
+          const targetY = (state.pointer.x * Math.PI) / 8;  // Yaw
+          meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, targetX, 0.1);
+          meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetY, 0.1);
+        } else {
+          meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, 0, 0.1);
+          meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, 0, 0.1);
+        }
+      }
+    });
 
-  return (
-    <group 
-      ref={groupRef}
-      onPointerOver={() => interactive && setHovered(true)}
-      onPointerOut={() => interactive && setHovered(false)}
-    >
-      <group rotation={angleRotations[angle]}>
-        <Float
-          speed={1.5 * spinSpeed} 
-          rotationIntensity={0.2} 
-          floatIntensity={1.0 * floatHeight}
-        >
-          {children(matConfig)}
-        </Float>
+    const angleRotations: Record<IconAngle, [number, number, number]> = {
+      front: [0, 0, 0],
+      perspective: [0.25, -0.35, 0],
+      tilted: [0.25, -0.25, 0.25]
+    };
+
+    return (
+      <group
+        ref={groupRef}
+        onPointerOver={() => interactive && setHovered(true)}
+        onPointerOut={() => interactive && setHovered(false)}
+      >
+        <group ref={meshRef}>
+          <group rotation={angleRotations[angle]}>
+            <Float
+              speed={1.5 * spinSpeed}
+              rotationIntensity={0.2}
+              floatIntensity={1.0 * floatHeight}
+            >
+              {children(mergedMatConfig)}
+            </Float>
+          </group>
+        </group>
       </group>
-    </group>
-  );
-};
+    );
+  };
 
 export function SharedWrapper({
   preset = "glass",
@@ -255,39 +284,65 @@ export function SharedWrapper({
   size,
   fallback2d,
   iconId,
+  canvas = true,
+  customMaterial,
   children,
   ...props
-}: IconProps & { 
-  fallback2d?: React.ReactNode; 
+}: IconProps & {
+  fallback2d?: React.ReactNode;
   iconId?: string;
-  children: (mat: MaterialConfig) => React.ReactNode; 
+  customMaterial?: Partial<MaterialConfig>;
+  children: (mat: MaterialConfig) => React.ReactNode;
 }) {
   const sizeStyle = size !== undefined
     ? { width: typeof size === "number" ? `${size}px` : size, height: typeof size === "number" ? `${size}px` : size }
     : { width: "100%", height: "100%" };
 
-  const use2d = variant === "2d" || !isWebGLAvailable();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const use2d = variant === "2d" || !isWebGLAvailable() || !mounted;
 
   if (use2d) {
     return (
-      <div 
-        style={{ 
-          ...sizeStyle, 
-          display: "flex", 
-          alignItems: "center", 
-          justifyContent: "center", 
-          position: "relative" 
-        }} 
+      <div
+        style={{
+          ...sizeStyle,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative"
+        }}
         {...props}
       >
-        <div style={{ width: "60%", height: "60%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ width: "85%", height: "85%", display: "flex", alignItems: "center", justifyContent: "center" }}>
           {fallback2d || (iconId ? (
-            <Fallback2D id={iconId} color={color} theme={theme} />
+            <Fallback2D id={iconId} color={color} theme={theme} preset={preset} />
           ) : (
             <div style={{ color: color || "#6366f1", fontStyle: "italic", fontSize: "11px" }}>3D Icon</div>
           ))}
         </div>
       </div>
+    );
+  }
+
+  if (!canvas) {
+    return (
+      <IconScene
+        preset={preset}
+        angle={angle}
+        color={color}
+        accentColor={accentColor}
+        spinSpeed={spinSpeed}
+        floatHeight={floatHeight}
+        theme={theme}
+        interactive={interactive}
+        customMaterial={customMaterial}
+      >
+        {children}
+      </IconScene>
     );
   }
 
@@ -300,7 +355,7 @@ export function SharedWrapper({
       >
         <StudioLights theme={theme} />
         <Environment preset="city" />
-        
+
         <IconScene
           preset={preset}
           angle={angle}
@@ -310,14 +365,15 @@ export function SharedWrapper({
           floatHeight={floatHeight}
           theme={theme}
           interactive={interactive}
+          customMaterial={customMaterial}
         >
           {children}
         </IconScene>
 
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false} 
-          makeDefault 
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          makeDefault
         />
       </Canvas>
     </div>

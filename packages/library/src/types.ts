@@ -14,6 +14,8 @@ export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" 
   theme?: "light" | "dark";
   interactive?: boolean; // React to mouse hover
   size?: number | string; // Size configuration (width & height)
+  canvas?: boolean; // If false, skips wrapping in a Canvas context
+  customMaterial?: Partial<MaterialConfig>; // Override physical material parameters
 }
 
 // Internal standard material config interface

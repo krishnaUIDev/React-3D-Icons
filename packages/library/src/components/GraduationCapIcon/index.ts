@@ -1,0 +1,1 @@
+export { GraduationCapIcon } from "./GraduationCapIcon";

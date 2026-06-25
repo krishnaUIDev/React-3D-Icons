@@ -1,0 +1,1 @@
+export { AirplaneIcon } from "./AirplaneIcon";

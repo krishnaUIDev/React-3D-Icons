@@ -107,7 +107,146 @@ import {
   CloseIcon,
   InfoIcon,
   AlertCircleIcon,
-  LetterIcon
+  LetterIcon,
+  BugIcon,
+  FlaskIcon,
+  PieChartIcon,
+  FlameIcon,
+  ActivityIcon,
+  GraduationCapIcon,
+  TrendingUpIcon,
+  InstagramIcon,
+  PackageIcon,
+  AirplaneIcon,
+  BatteryIcon,
+  VideoIcon,
+  MicrophoneIcon,
+  SlidersIcon,
+  MapIcon,
+  UmbrellaIcon,
+  ScissorsIcon,
+  UnlockIcon,
+  ArchiveIcon,
+  ShieldAlertIcon,
+  EyeOffIcon,
+  UserPlusIcon,
+  TrendingDownIcon,
+  CopyIcon,
+  GaugeIcon,
+  MagnetIcon,
+  StackIcon,
+  WorkflowIcon,
+  TopologyIcon,
+  FileIcon,
+  HeadphonesIcon,
+  MoonIcon,
+  PaperclipIcon,
+  BookmarkIcon,
+  CloudLightningIcon,
+  FolderOpenIcon,
+  VolumeIcon,
+  BellOffIcon,
+  SunMoonIcon,
+  PistonIcon,
+  SpringIcon,
+  AnvilIcon,
+  HookIcon,
+  TurbineIcon,
+  PliersIcon,
+  DrillIcon,
+  HacksawIcon,
+  TapeMeasureIcon,
+  CaliperIcon,
+  SpiritLevelIcon,
+  SledgehammerIcon,
+  PhoneMobileIcon,
+  TabletIcon,
+  LaptopIcon,
+  SmartWatchIcon,
+  RouterWifiIcon,
+  ServerRackIcon,
+  HardDriveExternalIcon,
+  WebcamIcon,
+  ChiselIcon,
+  CrowbarIcon,
+  FunnelIcon,
+  OilCanIcon,
+  BearingIcon,
+  PulleyIcon,
+  SprocketIcon,
+  ProjectorIcon,
+  GameConsoleIcon,
+  VRHeadsetIcon,
+  SmartSpeakerIcon,
+  PowerBankIcon,
+  UsbDriveIcon,
+  MotherboardIcon,
+  RamStickIcon,
+  CrankIcon,
+  CamshaftIcon,
+  DriveShaftIcon,
+  ValveIcon,
+  PropellerIcon,
+  HelicopterRotorIcon,
+  HydraulicJackIcon,
+  GpuIcon,
+  PowerSupplyIcon,
+  NetworkSwitchIcon,
+  SmartPlugIcon,
+  SmartBulbIcon,
+  SecurityCameraIcon,
+  SmartLockIcon,
+  ThermostatIcon,
+  GClampIcon,
+  ViceIcon,
+  GreaseGunIcon,
+  GearboxIcon,
+  DifferentialIcon,
+  SuspensionIcon,
+  WindlassIcon,
+  EarbudsIcon,
+  SmartRingIcon,
+  DrawingTabletIcon,
+  BarcodeScannerIcon,
+  POSRegisterIcon,
+  CalculatorIcon,
+  RemoteControlIcon,
+  SoundbarIcon,
+  JackhammerIcon,
+  SolderingIronIcon,
+  BlowtorchIcon,
+  WheelbarrowIcon,
+  PlumbBobIcon,
+  ShearsIcon,
+  WireStripperIcon,
+  PipeWrenchIcon,
+  FloppyDiskIcon,
+  TapeCassetteIcon,
+  CompactDiscIcon,
+  TvIcon,
+  RadioIcon,
+  WalkieTalkieIcon,
+  HeadsetIcon,
+  FishIcon,
+  ButterflyIcon,
+  BirdIcon,
+  CatIcon,
+  DogIcon,
+  RabbitIcon,
+  ElephantIcon,
+  OwlIcon,
+  TurtleIcon,
+  DolphinIcon,
+  RoseIcon,
+  SunflowerIcon,
+  TulipIcon,
+  LotusIcon,
+  DaisyIcon,
+  HibiscusIcon,
+  OrchidIcon,
+  LilyIcon,
+  CactusIcon,
+  LavenderIcon
 } from "react-3d-icons";
 import { TranslationKey } from "../i18n/translations";
 
@@ -1044,6 +1183,1257 @@ const ICONS_REGISTRY = [
     Component: NodeIcon,
     color: "#68a063",
     accentColor: "#3c873a"
+  },
+  {
+    id: "bug",
+    name: "BugIcon",
+    category: "utility",
+    description: "3D software bug model with segmented body, glowing eyes and legs",
+    Component: BugIcon,
+    color: "#475569",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "flask",
+    name: "FlaskIcon",
+    category: "utility",
+    description: "3D chemistry science lab flask containing glowing fluid and rising bubbles",
+    Component: FlaskIcon,
+    color: "#4f46e5",
+    accentColor: "#a855f7"
+  },
+  {
+    id: "piechart",
+    name: "PieChartIcon",
+    category: "utility",
+    description: "3D circular pie chart divided into three distinct colored proportional wedges",
+    Component: PieChartIcon,
+    color: "#6366f1",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "flame",
+    name: "FlameIcon",
+    category: "utility",
+    description: "3D layered organic fire flame showing warm red, orange, and yellow cores",
+    Component: FlameIcon,
+    color: "#f97316",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "activity",
+    name: "ActivityIcon",
+    category: "systems",
+    description: "3D medical heartbeat ECG monitor line with glowing joint beads",
+    Component: ActivityIcon,
+    color: "#0d9488",
+    accentColor: "#10b981"
+  },
+  {
+    id: "graduationcap",
+    name: "GraduationCapIcon",
+    category: "utility",
+    description: "3D academic graduation mortarboard cap with golden hanging tassel",
+    Component: GraduationCapIcon,
+    color: "#3f3f46",
+    accentColor: "#eab308"
+  },
+  {
+    id: "trendingup",
+    name: "TrendingUpIcon",
+    category: "utility",
+    description: "3D line chart arrow showing rising analytics growth and trend trajectory",
+    Component: TrendingUpIcon,
+    color: "#10b981",
+    accentColor: "#34d399"
+  },
+  {
+    id: "instagram",
+    name: "InstagramIcon",
+    category: "brands",
+    description: "3D Instagram brand mark camera lens with metallic ring and golden flash",
+    Component: InstagramIcon,
+    color: "#e1306c",
+    accentColor: "#f77737"
+  },
+  {
+    id: "package",
+    name: "PackageIcon",
+    category: "storage",
+    description: "3D cardboard box storage packaging parcel with glowing tape overlay",
+    Component: PackageIcon,
+    color: "#b45309",
+    accentColor: "#38bdf8"
+  },
+  {
+    id: "airplane",
+    name: "AirplaneIcon",
+    category: "utility",
+    description: "Sleek 3D aircraft with swept-back wings, dual underwing engines, and detailed tail fins",
+    Component: AirplaneIcon,
+    color: "#0ea5e9",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "battery",
+    name: "BatteryIcon",
+    category: "hardware",
+    description: "3D battery cylinder featuring transparent outer casing and glowing green energy charge indicator cells",
+    Component: BatteryIcon,
+    color: "#10b981",
+    accentColor: "#34d399"
+  },
+  {
+    id: "video",
+    name: "VideoIcon",
+    category: "utility",
+    description: "3D cinema video camera with physical casing, concentric focus lens, and side-mounted display panel",
+    Component: VideoIcon,
+    color: "#8b5cf6",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "microphone",
+    name: "MicrophoneIcon",
+    category: "utility",
+    description: "3D recording studio microphone capsule mounted on vertical desktop swivel base",
+    Component: MicrophoneIcon,
+    color: "#ec4899",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "sliders",
+    name: "SlidersIcon",
+    category: "utility",
+    description: "3D control dashboard sliders showing vertical track rods and slider level nodes with glowing indicators",
+    Component: SlidersIcon,
+    color: "#6366f1",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "map",
+    name: "MapIcon",
+    category: "utility",
+    description: "3D folded accordion map with road lines and a glowing location pin",
+    Component: MapIcon,
+    color: "#10b981",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "umbrella",
+    name: "UmbrellaIcon",
+    category: "utility",
+    description: "3D open umbrella canopy with a central steel shaft and J-hook handle",
+    Component: UmbrellaIcon,
+    color: "#0ea5e9",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "scissors",
+    name: "ScissorsIcon",
+    category: "utility",
+    description: "3D scissors with crossing blades, pivot screw, and grip loops",
+    Component: ScissorsIcon,
+    color: "#f59e0b",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "unlock",
+    name: "UnlockIcon",
+    category: "utility",
+    description: "3D open lock featuring a physical body base and rotated shackle",
+    Component: UnlockIcon,
+    color: "#eab308",
+    accentColor: "#22c55e"
+  },
+  {
+    id: "archive",
+    name: "ArchiveIcon",
+    category: "storage",
+    description: "3D archive cabinet with sliding drawer panels and metal pulls",
+    Component: ArchiveIcon,
+    color: "#a855f7",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "shieldalert",
+    name: "ShieldAlertIcon",
+    category: "utility",
+    description: "3D guard shield with a central vertical exclamation warning symbol",
+    Component: ShieldAlertIcon,
+    color: "#475569",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "eyeoff",
+    name: "EyeOffIcon",
+    category: "utility",
+    description: "3D eyeball Crossed out by a front-diagonal slash bar indicating hidden state",
+    Component: EyeOffIcon,
+    color: "#6366f1",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "userplus",
+    name: "UserPlusIcon",
+    category: "utility",
+    description: "3D user body profile alongside a floating plus sign badge representing user addition",
+    Component: UserPlusIcon,
+    color: "#3b82f6",
+    accentColor: "#10b981"
+  },
+  {
+    id: "trendingdown",
+    name: "TrendingDownIcon",
+    category: "utility",
+    description: "3D line chart arrow pointing downwards indicating negative trend metrics",
+    Component: TrendingDownIcon,
+    color: "#ef4444",
+    accentColor: "#fb7185"
+  },
+  {
+    id: "copy",
+    name: "CopyIcon",
+    category: "utility",
+    description: "3D overlapping duplicate document sheets with horizontal glowing layout lines",
+    Component: CopyIcon,
+    color: "#06b6d4",
+    accentColor: "#22d3ee"
+  },
+  {
+    id: "gauge",
+    name: "GaugeIcon",
+    category: "mechanics",
+    description: "3D dial gauge speedometer with tick marks and a rotating pointer needle",
+    Component: GaugeIcon,
+    color: "#64748b",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "magnet",
+    name: "MagnetIcon",
+    category: "mechanics",
+    description: "3D horseshoe magnet with polar colored ends and floating force-field rings",
+    Component: MagnetIcon,
+    color: "#71717a",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "stack",
+    name: "StackIcon",
+    category: "systems",
+    description: "3D stack of database slabs with glowing illuminated spacer layers",
+    Component: StackIcon,
+    color: "#4f46e5",
+    accentColor: "#10b981"
+  },
+  {
+    id: "workflow",
+    name: "WorkflowIcon",
+    category: "systems",
+    description: "3D process flowchart hierarchy showing root node connected to child nodes",
+    Component: WorkflowIcon,
+    color: "#0ea5e9",
+    accentColor: "#10b981"
+  },
+  {
+    id: "topology",
+    name: "TopologyIcon",
+    category: "systems",
+    description: "3D hub-and-spoke network diagram with central hub and satellite nodes",
+    Component: TopologyIcon,
+    color: "#06b6d4",
+    accentColor: "#10b981"
+  },
+  {
+    id: "file",
+    name: "FileIcon",
+    category: "utility",
+    description: "3D document page sheet with folded corner and glowing text lines",
+    Component: FileIcon,
+    color: "#64748b",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "headphones",
+    name: "HeadphonesIcon",
+    category: "utility",
+    description: "Sleek 3D over-ear music headphones with soft earcups and metallic sliders",
+    Component: HeadphonesIcon,
+    color: "#4f46e5",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "moon",
+    name: "MoonIcon",
+    category: "utility",
+    description: "Glossy 3D crescent moon with floating yellow night-sky stars",
+    Component: MoonIcon,
+    color: "#a855f7",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "paperclip",
+    name: "PaperclipIcon",
+    category: "utility",
+    description: "Looping 3D metallic paperclip attachment wireframe with red status band",
+    Component: PaperclipIcon,
+    color: "#94a3b8",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "bookmark",
+    name: "BookmarkIcon",
+    category: "utility",
+    description: "Hanging 3D ribbon bookmark tab with metallic mounting loop and grommet",
+    Component: BookmarkIcon,
+    color: "#e11d48",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "cloudlightning",
+    name: "CloudLightningIcon",
+    category: "systems",
+    description: "3D fluffy weather data cloud with a central glowing lightning bolt",
+    Component: CloudLightningIcon,
+    color: "#0ea5e9",
+    accentColor: "#fbbf24"
+  },
+  {
+    id: "folderopen",
+    name: "FolderOpenIcon",
+    category: "storage",
+    description: "3D open folder container with nesting document sheet panels",
+    Component: FolderOpenIcon,
+    color: "#f59e0b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "volume",
+    name: "VolumeIcon",
+    category: "hardware",
+    description: "3D audio speaker cone with glowing concentric audio wave arcs",
+    Component: VolumeIcon,
+    color: "#6366f1",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "belloff",
+    name: "BellOffIcon",
+    category: "utility",
+    description: "3D notification alert bell crossed out by a front diagonal slash bar",
+    Component: BellOffIcon,
+    color: "#f59e0b",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "sunmoon",
+    name: "SunMoonIcon",
+    category: "systems",
+    description: "3D hybrid sun sphere and overlapping crescent moon mode switcher",
+    Component: SunMoonIcon,
+    color: "#6366f1",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "piston",
+    name: "PistonIcon",
+    category: "mechanics",
+    description: "3D engine piston chamber with glowing rings and moving connecting rod",
+    Component: PistonIcon,
+    color: "#71717a",
+    accentColor: "#10b981"
+  },
+  {
+    id: "spring",
+    name: "SpringIcon",
+    category: "mechanics",
+    description: "3D helical suspension coil spring with glowing top and bottom attachment loops",
+    Component: SpringIcon,
+    color: "#64748b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "anvil",
+    name: "AnvilIcon",
+    category: "mechanics",
+    description: "3D blacksmith forged anvil body with a horn, deck, and glowing metal bar",
+    Component: AnvilIcon,
+    color: "#4b5563",
+    accentColor: "#f97316"
+  },
+  {
+    id: "hook",
+    name: "HookIcon",
+    category: "mechanics",
+    description: "3D heavy crane lifting hook with warning pulley housing and swivel axle",
+    Component: HookIcon,
+    color: "#475569",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "turbine",
+    name: "TurbineIcon",
+    category: "mechanics",
+    description: "3D mechanical wind turbine propeller with angled pitch blades and central hub",
+    Component: TurbineIcon,
+    color: "#64748b",
+    accentColor: "#06b6d4"
+  },
+  {
+    id: "pliers",
+    name: "PliersIcon",
+    category: "mechanics",
+    description: "3D double-handle hand pliers with rubberized grip sleeves and textured jaws",
+    Component: PliersIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "drill",
+    name: "DrillIcon",
+    category: "mechanics",
+    description: "3D cordless power drill with motor housing barrel, battery pack, and steel chuck",
+    Component: DrillIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "hacksaw",
+    name: "HacksawIcon",
+    category: "mechanics",
+    description: "3D metal cutting hacksaw with a steel frame rod, blade, and D-shaped grip",
+    Component: HacksawIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "tapemeasure",
+    name: "TapeMeasureIcon",
+    category: "mechanics",
+    description: "3D pocket tape measure with bumper guard casing, extended steel blade, and lock switch",
+    Component: TapeMeasureIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "caliper",
+    name: "CaliperIcon",
+    category: "mechanics",
+    description: "3D precision vernier caliper slide gauge with measuring jaws and depth rod",
+    Component: CaliperIcon,
+    color: "#94a3b8",
+    accentColor: "#10b981"
+  },
+  {
+    id: "spiritlevel",
+    name: "SpiritLevelIcon",
+    category: "mechanics",
+    description: "3D builder bubble level bar featuring horizontal and vertical indicator vials",
+    Component: SpiritLevelIcon,
+    color: "#64748b",
+    accentColor: "#22c55e"
+  },
+  {
+    id: "sledgehammer",
+    name: "SledgehammerIcon",
+    category: "mechanics",
+    description: "3D heavy demolition sledgehammer head with fiberglass shaft and rubber grip",
+    Component: SledgehammerIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "phonemobile",
+    name: "PhoneMobileIcon",
+    category: "hardware",
+    description: "3D bezel-less mobile smartphone screen with camera punch and desktop widgets",
+    Component: PhoneMobileIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "tablet",
+    name: "TabletIcon",
+    category: "hardware",
+    description: "3D display tablet screen with bezel borders and floating overlay widgets",
+    Component: TabletIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "laptop",
+    name: "LaptopIcon",
+    category: "hardware",
+    description: "3D open laptop deck with raised keyboard rows, trackpad, and angled display screen",
+    Component: LaptopIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "smartwatch",
+    name: "SmartWatchIcon",
+    category: "hardware",
+    description: "3D smartwatch housing featuring glass watch face screen and wrapping strap bands",
+    Component: SmartWatchIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "routerwifi",
+    name: "RouterWifiIcon",
+    category: "hardware",
+    description: "3D home broadband internet wifi router base with dual vertical antennas",
+    Component: RouterWifiIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "serverrack",
+    name: "ServerRackIcon",
+    category: "hardware",
+    description: "3D enterprise datacenter server cabinet with stacked server drawers and LED indicators",
+    Component: ServerRackIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "harddriveexternal",
+    name: "HardDriveExternalIcon",
+    category: "hardware",
+    description: "3D portable external backup hard drive block with side rubber bumper guards",
+    Component: HardDriveExternalIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "webcam",
+    name: "WebcamIcon",
+    category: "hardware",
+    description: "3D spherical desktop webcam with lens bezel, aperture glass, and mounting stand clamp",
+    Component: WebcamIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "chisel",
+    name: "ChiselIcon",
+    category: "mechanics",
+    description: "3D octagonal wood chisel tool with beveled steel tip, metal tang, and glowing accent bolster",
+    Component: ChiselIcon,
+    color: "#78350f",
+    accentColor: "#10b981"
+  },
+  {
+    id: "crowbar",
+    name: "CrowbarIcon",
+    category: "mechanics",
+    description: "3D bent steel crowbar pry rod with split claw head, wedge tip, and glowing accent split",
+    Component: CrowbarIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "funnel",
+    name: "FunnelIcon",
+    category: "mechanics",
+    description: "3D conical fluid funnel with narrow outlet spout, rim loop, and a glowing suspended droplet",
+    Component: FunnelIcon,
+    color: "#0f766e",
+    accentColor: "#10b981"
+  },
+  {
+    id: "oilcan",
+    name: "OilCanIcon",
+    category: "mechanics",
+    description: "3D thumb-pump oil can canister with slanted spout, trigger lever, and glowing fluid drop",
+    Component: OilCanIcon,
+    color: "#b45309",
+    accentColor: "#10b981"
+  },
+  {
+    id: "bearing",
+    name: "BearingIcon",
+    category: "mechanics",
+    description: "3D ball bearing cage assembly with concentric inner/outer rings and spherical steel balls",
+    Component: BearingIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "pulley",
+    name: "PulleyIcon",
+    category: "mechanics",
+    description: "3D mechanical pulley block with U-bracket frame, grooved wheel, and guiding wire rope",
+    Component: PulleyIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "sprocket",
+    name: "SprocketIcon",
+    category: "mechanics",
+    description: "3D drive sprocket wheel with beveled teeth, central shaft hole, and glowing concentric tracks",
+    Component: SprocketIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "projector",
+    name: "ProjectorIcon",
+    category: "hardware",
+    description: "3D table presentation projector with concentric lens, controls pad, and glowing focus ring",
+    Component: ProjectorIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "gameconsole",
+    name: "GameConsoleIcon",
+    category: "hardware",
+    description: "3D slim home console stand with side panels, vertical base, and glowing status stripe",
+    Component: GameConsoleIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "vrheadset",
+    name: "VRHeadsetIcon",
+    category: "hardware",
+    description: "3D virtual reality goggle headset with front glass shield visor and glowing indicator strip",
+    Component: VRHeadsetIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "smartspeaker",
+    name: "SmartSpeakerIcon",
+    category: "hardware",
+    description: "3D assistant smart speaker cylinder with control deck and glowing voice response ring",
+    Component: SmartSpeakerIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "powerbank",
+    name: "PowerBankIcon",
+    category: "hardware",
+    description: "3D backup power bank battery brick with USB port slots and glowing status level LEDs",
+    Component: PowerBankIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "usbdrive",
+    name: "UsbDriveIcon",
+    category: "hardware",
+    description: "3D flash thumb drive memory key with metal connector plug and glowing keyring loop",
+    Component: UsbDriveIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "motherboard",
+    name: "MotherboardIcon",
+    category: "hardware",
+    description: "3D green circuit motherboard board with CPU socket frame, RAM slots, and glowing core",
+    Component: MotherboardIcon,
+    color: "#065f46",
+    accentColor: "#10b981"
+  },
+  {
+    id: "ramstick",
+    name: "RamStickIcon",
+    category: "hardware",
+    description: "3D desktop memory RAM stick module with golden pin edge and glowing top RGB light diffuser",
+    Component: RamStickIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "crank",
+    name: "CrankIcon",
+    category: "mechanics",
+    description: "3D offset manual crank arm handle with a pivot sleeve, counterweight, and glowing accent cap",
+    Component: CrankIcon,
+    color: "#71717a",
+    accentColor: "#10b981"
+  },
+  {
+    id: "camshaft",
+    name: "CamshaftIcon",
+    category: "mechanics",
+    description: "3D engine camshaft shaft populated with eccentric cam lobes, journals, and a glowing accent gear",
+    Component: CamshaftIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "driveshaft",
+    name: "DriveShaftIcon",
+    category: "mechanics",
+    description: "3D torqued driveshaft rod with double universal joints, weld yokes, and a glowing spider cross",
+    Component: DriveShaftIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "valve",
+    name: "ValveIcon",
+    category: "mechanics",
+    description: "3D pipeline fluid control gate valve wheel with a threaded stem and glowing accent ring",
+    Component: ValveIcon,
+    color: "#4b5563",
+    accentColor: "#10b981"
+  },
+  {
+    id: "propeller",
+    name: "PropellerIcon",
+    category: "mechanics",
+    description: "3D marine propeller hub containing three twisted blades, adapter shaft, and glowing nose cap",
+    Component: PropellerIcon,
+    color: "#78350f",
+    accentColor: "#10b981"
+  },
+  {
+    id: "rotor",
+    name: "HelicopterRotorIcon",
+    category: "mechanics",
+    description: "3D multi-blade helicopter rotor hub with control rods, swashplate, and glowing control ring",
+    Component: HelicopterRotorIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "hydraulicjack",
+    name: "HydraulicJackIcon",
+    category: "mechanics",
+    description: "3D heavy hydraulic bottle jack cylinder lifting jack with a base plate and glowing accent collar",
+    Component: HydraulicJackIcon,
+    color: "#ef4444",
+    accentColor: "#10b981"
+  },
+  {
+    id: "gpu",
+    name: "GpuIcon",
+    category: "hardware",
+    description: "3D high-end desktop GPU graphics card with triple active fan spinner blades and top RGB glowing strip",
+    Component: GpuIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "powersupply",
+    name: "PowerSupplyIcon",
+    category: "hardware",
+    description: "3D boxy ATX power unit with a round fan cooling grille, braided cables, and glowing indicator red switch",
+    Component: PowerSupplyIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "networkswitch",
+    name: "NetworkSwitchIcon",
+    category: "hardware",
+    description: "3D rack unit populated with dual rows of RJ45 ports, mount brackets, and glowing status LED panel",
+    Component: NetworkSwitchIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "smartplug",
+    name: "SmartPlugIcon",
+    category: "hardware",
+    description: "3D smart wall outlet adapter plug with US receptacle holes and a glowing status power button",
+    Component: SmartPlugIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "smartbulb",
+    name: "SmartBulbIcon",
+    category: "hardware",
+    description: "3D smart RGB LED lightbulb containing a wifi accent ring and glowing inner LED tower",
+    Component: SmartBulbIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "securitycamera",
+    name: "SecurityCameraIcon",
+    category: "hardware",
+    description: "3D spherical dome security surveillance lens camera with mount bracket and glowing status LED ring",
+    Component: SecurityCameraIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "smartlock",
+    name: "SmartLockIcon",
+    category: "hardware",
+    description: "3D heavy mechanical cylinder door smart lock with electronic touchpad and glowing status ring",
+    Component: SmartLockIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "thermostat",
+    name: "ThermostatIcon",
+    category: "hardware",
+    description: "3D circular smart home climate thermostat dials with digital number readout and glowing accent scale",
+    Component: ThermostatIcon,
+    color: "#0f172a",
+    accentColor: "#10b981"
+  },
+  {
+    id: "gclamp",
+    name: "GClampIcon",
+    category: "mechanics",
+    description: "3D heavy threaded G-clamp frame with a rotatable clamping screw rod and glowing collar guide",
+    Component: GClampIcon,
+    color: "#4b5563",
+    accentColor: "#10b981"
+  },
+  {
+    id: "vice",
+    name: "ViceIcon",
+    category: "mechanics",
+    description: "3D heavy duty workbench jaws vice tool with sliding track guide and glowing hub dial",
+    Component: ViceIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "greasegun",
+    name: "GreaseGunIcon",
+    category: "mechanics",
+    description: "3D hand-lever grease injector gun canister with high pressure extension pipe and glowing accent sleeve",
+    Component: GreaseGunIcon,
+    color: "#64748b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "gearbox",
+    name: "GearboxIcon",
+    category: "mechanics",
+    description: "3D mechanical gearbox casing enclosure showing meshed cogs and a glowing center indicator",
+    Component: GearboxIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "differential",
+    name: "DifferentialIcon",
+    category: "mechanics",
+    description: "3D automotive differential pumpkin gear casing with axle tubes and a glowing perimeter flange",
+    Component: DifferentialIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "suspension",
+    name: "SuspensionIcon",
+    category: "mechanics",
+    description: "3D wishbone frame car suspension arm with shock absorber strut and glowing spiral spring coils",
+    Component: SuspensionIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "windlass",
+    name: "WindlassIcon",
+    category: "mechanics",
+    description: "3D cable winch windlass drum cylinder with a hand crank, support brackets, and glowing end flange",
+    Component: WindlassIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "earbuds",
+    name: "EarbudsIcon",
+    category: "hardware",
+    description: "3D open wireless charging earbuds case with twin nested buds and glowing battery status LED",
+    Component: EarbudsIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "smartring",
+    name: "SmartRingIcon",
+    category: "hardware",
+    description: "3D high gloss titanium smart health tracker ring with glowing exterior sensor crown line",
+    Component: SmartRingIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "drawingtablet",
+    name: "DrawingTabletIcon",
+    category: "hardware",
+    description: "3D graphics drawing tablet bezel frame and active canvas screen with a hovering stylus pen",
+    Component: DrawingTabletIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "barcodescanner",
+    name: "BarcodeScannerIcon",
+    category: "hardware",
+    description: "3D pistol-trigger barcode laser scanner handle with top rubber guard and red glowing laser window",
+    Component: BarcodeScannerIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "posregister",
+    name: "POSRegisterIcon",
+    category: "hardware",
+    description: "3D cashier register terminal display with cash drawer base, printer paper sheet, and pole LCD screen",
+    Component: POSRegisterIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "calculator",
+    name: "CalculatorIcon",
+    category: "hardware",
+    description: "3D pocket calculator casing with 4x4 keypad grid, solar strip, and glowing display matrix",
+    Component: CalculatorIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "remotecontrol",
+    name: "RemoteControlIcon",
+    category: "hardware",
+    description: "3D TV remote control wand with navigation D-pad disk, number keys, and glowing power switch",
+    Component: RemoteControlIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "soundbar",
+    name: "SoundbarIcon",
+    category: "hardware",
+    description: "3D slim audio soundbar horizontal cabinet with front fabric mesh and standing companion subwoofer",
+    Component: SoundbarIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "jackhammer",
+    name: "JackhammerIcon",
+    category: "mechanics",
+    description: "3D pneumatic demolition jackhammer with T-handle grip, shock absorber spring, and steel chisel bit",
+    Component: JackhammerIcon,
+    color: "#e2e8f0",
+    accentColor: "#10b981"
+  },
+  {
+    id: "solderingiron",
+    name: "SolderingIronIcon",
+    category: "mechanics",
+    description: "3D pen-style high-temperature soldering iron with grip collar, connection cable, and fine copper tip",
+    Component: SolderingIronIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "blowtorch",
+    name: "BlowtorchIcon",
+    category: "mechanics",
+    description: "3D portable welding gas torch cylinder with brass valve knob, angled neck, and glowing jet nozzle",
+    Component: BlowtorchIcon,
+    color: "#0284c7",
+    accentColor: "#10b981"
+  },
+  {
+    id: "wheelbarrow",
+    name: "WheelbarrowIcon",
+    category: "mechanics",
+    description: "3D heavy construction hand push wheelbarrow with deep container tray, support legs, and front rubber wheel",
+    Component: WheelbarrowIcon,
+    color: "#ea580c",
+    accentColor: "#10b981"
+  },
+  {
+    id: "plumbbob",
+    name: "PlumbBobIcon",
+    category: "mechanics",
+    description: "3D suspended conical plumb bob alignment weight with brass cap collar and thin hanging wire",
+    Component: PlumbBobIcon,
+    color: "#d97706",
+    accentColor: "#10b981"
+  },
+  {
+    id: "shears",
+    name: "ShearsIcon",
+    category: "mechanics",
+    description: "3D sheet metal hand shears with double pivot hinge and curved rubber-coated handle loops",
+    Component: ShearsIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "wirestripper",
+    name: "WireStripperIcon",
+    category: "mechanics",
+    description: "3D spring-loaded wire insulation stripper plier jaws with metric sizing notches and rubber handle sleeve",
+    Component: WireStripperIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "pipewrench",
+    name: "PipeWrenchIcon",
+    category: "mechanics",
+    description: "3D plumber heavy pipe wrench with adjustable hook jaw, thread turn ring, and steel grip handle",
+    Component: PipeWrenchIcon,
+    color: "#dc2626",
+    accentColor: "#10b981"
+  },
+  {
+    id: "floppy",
+    name: "FloppyDiskIcon",
+    category: "storage",
+    description: "3D vintage 3.5 inch floppy diskette with metal sliding shutter casing, write-protect tab, and paper label",
+    Component: FloppyDiskIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "tapecassette",
+    name: "TapeCassetteIcon",
+    category: "storage",
+    description: "3D retro audio tape cassette shell case with central sprocket holes and magnetic tape reel spool packs",
+    Component: TapeCassetteIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "cd",
+    name: "CompactDiscIcon",
+    category: "storage",
+    description: "3D optical compact disc showing shiny iridescent colors, clear central hub ring, and spindle hole",
+    Component: CompactDiscIcon,
+    color: "#f1f5f9",
+    accentColor: "#10b981"
+  },
+  {
+    id: "tv",
+    name: "TvIcon",
+    category: "hardware",
+    description: "3D flat widescreen television display screen resting on a central column stand and rectangular base",
+    Component: TvIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "radio",
+    name: "RadioIcon",
+    category: "hardware",
+    description: "3D retro transistor radio cabinet showing left speaker fabric mesh, horizontal tuning bar, and dials",
+    Component: RadioIcon,
+    color: "#7c2d12",
+    accentColor: "#10b981"
+  },
+  {
+    id: "walkietalkie",
+    name: "WalkieTalkieIcon",
+    category: "hardware",
+    description: "3D wireless handheld walkie-talkie handset with flexible top antenna, volume knob, and side PTT button",
+    Component: WalkieTalkieIcon,
+    color: "#19222f",
+    accentColor: "#10b981"
+  },
+  {
+    id: "headset",
+    name: "HeadsetIcon",
+    category: "hardware",
+    description: "3D call center headset with padded overhead band, left/right earmuff cushions, and a boom microphone",
+    Component: HeadsetIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "fish",
+    name: "FishIcon",
+    category: "emojies",
+    description: "3D stylized swimming fish with curved dorsal fins, tail fins, and a glowing scale-band",
+    Component: FishIcon,
+    color: "#0ea5e9",
+    accentColor: "#10b981"
+  },
+  {
+    id: "butterfly",
+    name: "ButterflyIcon",
+    category: "emojies",
+    description: "3D symmetrical butterfly with upper and lower glass wings, antennae, and glowing inner wing slots",
+    Component: ButterflyIcon,
+    color: "#d946ef",
+    accentColor: "#10b981"
+  },
+  {
+    id: "bird",
+    name: "BirdIcon",
+    category: "emojies",
+    description: "3D aerodynamic flying bird in upstroke wing pose, with glowing beak and wing tip highlights",
+    Component: BirdIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "cat",
+    name: "CatIcon",
+    category: "emojies",
+    description: "3D round feline head with pointed ears, whiskers, glowing eyes, and a collar band",
+    Component: CatIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "dog",
+    name: "DogIcon",
+    category: "emojies",
+    description: "3D canine head showing floppy ears, protruding snout, round glowing eyes, and a collar tag",
+    Component: DogIcon,
+    color: "#e2e8f0",
+    accentColor: "#10b981"
+  },
+  {
+    id: "rabbit",
+    name: "RabbitIcon",
+    category: "emojies",
+    description: "3D cute rabbit head with long vertical ears, glowing inner ear canals, and a tiny nose snout",
+    Component: RabbitIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "elephant",
+    name: "ElephantIcon",
+    category: "emojies",
+    description: "3D stately elephant profile showing raised trunk, large ear plates, and glowing tusks",
+    Component: ElephantIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "owl",
+    name: "OwlIcon",
+    category: "emojies",
+    description: "3D owl head showing top tufts, large concentric eye rings with glowing pupils, and beak",
+    Component: OwlIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "turtle",
+    name: "TurtleIcon",
+    category: "emojies",
+    description: "3D domed sea turtle shell wrapped in a glowing collar rim, with four flippers and head",
+    Component: TurtleIcon,
+    color: "#16a34a",
+    accentColor: "#10b981"
+  },
+  {
+    id: "dolphin",
+    name: "DolphinIcon",
+    category: "emojies",
+    description: "3D curved dolphin body leaping forward, featuring dorsal fin, tail fluke, and glowing snout tip",
+    Component: DolphinIcon,
+    color: "#0ea5e9",
+    accentColor: "#10b981"
+  },
+  {
+    id: "rose",
+    name: "RoseIcon",
+    category: "emojies",
+    description: "3D concentric rose petals structure with stem, thorns, and glowing center core",
+    Component: RoseIcon,
+    color: "#ec4899",
+    accentColor: "#10b981"
+  },
+  {
+    id: "sunflower",
+    name: "SunflowerIcon",
+    category: "emojies",
+    description: "3D circular array of yellow pointed petals with a dark seed disc and glowing grid seeds",
+    Component: SunflowerIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "tulip",
+    name: "TulipIcon",
+    category: "emojies",
+    description: "3D closed cup tulip blossom with green stem leaf and glowing stamen",
+    Component: TulipIcon,
+    color: "#f43f5e",
+    accentColor: "#10b981"
+  },
+  {
+    id: "lotus",
+    name: "LotusIcon",
+    category: "emojies",
+    description: "3D symmetrical blooming lotus petals layered above a flat water lily pad",
+    Component: LotusIcon,
+    color: "#f472b6",
+    accentColor: "#10b981"
+  },
+  {
+    id: "daisy",
+    name: "DaisyIcon",
+    category: "emojies",
+    description: "3D flat yellow center button with radiating white capsule petals and glowing stamen dots",
+    Component: DaisyIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "hibiscus",
+    name: "HibiscusIcon",
+    category: "emojies",
+    description: "3D flared hibiscus petals with a curved central style tube and glowing pollen tips",
+    Component: HibiscusIcon,
+    color: "#ec4899",
+    accentColor: "#10b981"
+  },
+  {
+    id: "orchid",
+    name: "OrchidIcon",
+    category: "emojies",
+    description: "3D exotic asymmetric orchid petals with a center hood and glowing stamen node",
+    Component: OrchidIcon,
+    color: "#d946ef",
+    accentColor: "#10b981"
+  },
+  {
+    id: "lily",
+    name: "LilyIcon",
+    category: "emojies",
+    description: "3D trumpet-like recurved lily petals, green calyx base, and glowing stamen tips",
+    Component: LilyIcon,
+    color: "#fdf2f8",
+    accentColor: "#10b981"
+  },
+  {
+    id: "cactus",
+    name: "CactusIcon",
+    category: "emojies",
+    description: "3D Saguaro cactus silhouette with ribbed trunk, side branches, and glowing spine pins",
+    Component: CactusIcon,
+    color: "#16a34a",
+    accentColor: "#10b981"
+  },
+  {
+    id: "lavender",
+    name: "LavenderIcon",
+    category: "emojies",
+    description: "3D thin green stem with vertically stacked purple flower pod tiers and glowing centers",
+    Component: LavenderIcon,
+    color: "#a855f7",
+    accentColor: "#10b981"
   },
   // Alphabet icons – generated dynamically A-Z
   ...(() => {

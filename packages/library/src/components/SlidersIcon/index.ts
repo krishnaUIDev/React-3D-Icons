@@ -1,0 +1,1 @@
+export { SlidersIcon } from "./SlidersIcon";
