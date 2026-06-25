@@ -34,7 +34,8 @@ export const translations = {
     category_networking: "Networking",
     category_mechanics: "Mechanics",
     category_brands: "Brands",
-    category_utility: "Utility"
+    category_utility: "Utility",
+    category_emojies: "Emojis"
   },
   es: {
     hero_title: "Iconos 3D premium y de código abierto bellamente diseñados",
@@ -71,7 +72,8 @@ export const translations = {
     category_networking: "Redes",
     category_mechanics: "Mecánica",
     category_brands: "Marcas",
-    category_utility: "Utilidad"
+    category_utility: "Utilidad",
+    category_emojies: "Emojis"
   },
   de: {
     hero_title: "Wunderschön gestaltete Open-Source- und Premium-3D-Icons",
@@ -108,7 +110,8 @@ export const translations = {
     category_networking: "Netzwerke",
     category_mechanics: "Mechanik",
     category_brands: "Marken",
-    category_utility: "Hilfsmittel"
+    category_utility: "Hilfsmittel",
+    category_emojies: "Emojis"
   }
 } as const;
 

@@ -77,6 +77,19 @@ const LUCIDE_FALLBACKS: Record<string, React.ComponentType<any>> = {
   mouse: Lucide.Mouse,
   harddrive: Lucide.HardDrive,
   glassmorphism: Lucide.Layers,
+  github: Lucide.Github,
+  twitter: Lucide.Twitter,
+  google: Lucide.Chrome,
+  router: Lucide.Router,
+  server: Lucide.Server,
+  wrench: Lucide.Wrench,
+  bolt: Lucide.Bolt,
+  hammer: Lucide.Hammer,
+  screwdriver: Lucide.Wrench,
+  nut: Lucide.Hexagon,
+  smile: Lucide.Smile,
+  frown: Lucide.Frown,
+  hearteyes: Lucide.Smile,
 };
 
 export const IconCard: React.FC<IconCardProps> = ({

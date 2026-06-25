@@ -67,6 +67,19 @@ import {
   MouseIcon,
   HardDriveIcon,
   GlassmorphismIcon,
+  GithubIcon,
+  TwitterIcon,
+  GoogleIcon,
+  RouterIcon,
+  ServerIcon,
+  WrenchIcon,
+  BoltIcon,
+  SmileIcon,
+  FrownIcon,
+  HeartEyesIcon,
+  HammerIcon,
+  ScrewdriverIcon,
+  NutIcon,
   IconPreset,
   IconAngle
 } from "react-3d-icons";
@@ -149,7 +162,20 @@ const ICONS_REGISTRY = [
   { id: "keyboard", name: "KeyboardIcon", Component: KeyboardIcon, color: "#6366f1", accentColor: "#a855f7" },
   { id: "mouse", name: "MouseIcon", Component: MouseIcon, color: "#10b981", accentColor: "#cbd5e1" },
   { id: "harddrive", name: "HardDriveIcon", Component: HardDriveIcon, color: "#71717a", accentColor: "#94a3b8" },
-  { id: "glassmorphism", name: "GlassmorphismIcon", Component: GlassmorphismIcon, color: "#ffffff", accentColor: "#ec4899" }
+  { id: "glassmorphism", name: "GlassmorphismIcon", Component: GlassmorphismIcon, color: "#ffffff", accentColor: "#ec4899" },
+  { id: "github", name: "GithubIcon", Component: GithubIcon, color: "#24292e", accentColor: "#6e5494" },
+  { id: "twitter", name: "TwitterIcon", Component: TwitterIcon, color: "#1da1f2", accentColor: "#0f1419" },
+  { id: "google", name: "GoogleIcon", Component: GoogleIcon, color: "#4285f4", accentColor: "#ea4335" },
+  { id: "router", name: "RouterIcon", Component: RouterIcon, color: "#06b6d4", accentColor: "#10b981" },
+  { id: "server", name: "ServerIcon", Component: ServerIcon, color: "#3b82f6", accentColor: "#10b981" },
+  { id: "wrench", name: "WrenchIcon", Component: WrenchIcon, color: "#94a3b8", accentColor: "#475569" },
+  { id: "bolt", name: "BoltIcon", Component: BoltIcon, color: "#71717a", accentColor: "#cbd5e1" },
+  { id: "hammer", name: "HammerIcon", Component: HammerIcon, color: "#cbd5e1", accentColor: "#f59e0b" },
+  { id: "screwdriver", name: "ScrewdriverIcon", Component: ScrewdriverIcon, color: "#cbd5e1", accentColor: "#6366f1" },
+  { id: "nut", name: "NutIcon", Component: NutIcon, color: "#94a3b8", accentColor: "#475569" },
+  { id: "smile", name: "SmileIcon", Component: SmileIcon, color: "#f59e0b", accentColor: "#f43f5e" },
+  { id: "frown", name: "FrownIcon", Component: FrownIcon, color: "#f59e0b", accentColor: "#f43f5e" },
+  { id: "hearteyes", name: "HeartEyesIcon", Component: HeartEyesIcon, color: "#f59e0b", accentColor: "#ef4444" }
 ];
 
 const LUCIDE_FALLBACKS: Record<string, React.ComponentType<any>> = {
@@ -218,6 +244,19 @@ const LUCIDE_FALLBACKS: Record<string, React.ComponentType<any>> = {
   mouse: LucideAll.Mouse,
   harddrive: LucideAll.HardDrive,
   glassmorphism: LucideAll.Layers,
+  github: LucideAll.Github,
+  twitter: LucideAll.Twitter,
+  google: LucideAll.Chrome,
+  router: LucideAll.Router,
+  server: LucideAll.Server,
+  wrench: LucideAll.Wrench,
+  bolt: LucideAll.Bolt,
+  hammer: LucideAll.Hammer,
+  screwdriver: LucideAll.Wrench,
+  nut: LucideAll.Hexagon,
+  smile: LucideAll.Smile,
+  frown: LucideAll.Frown,
+  hearteyes: LucideAll.Smile,
 };
 
 // Curated palettes: { name, color, accentColor }

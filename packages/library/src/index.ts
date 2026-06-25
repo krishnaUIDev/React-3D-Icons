@@ -63,5 +63,18 @@ export { KeyboardIcon } from "./components/KeyboardIcon";
 export { MouseIcon } from "./components/MouseIcon";
 export { HardDriveIcon } from "./components/HardDriveIcon";
 export { GlassmorphismIcon } from "./components/GlassmorphismIcon";
+export { GithubIcon } from "./components/GithubIcon";
+export { TwitterIcon } from "./components/TwitterIcon";
+export { GoogleIcon } from "./components/GoogleIcon";
+export { RouterIcon } from "./components/RouterIcon";
+export { ServerIcon } from "./components/ServerIcon";
+export { WrenchIcon } from "./components/WrenchIcon";
+export { BoltIcon } from "./components/BoltIcon";
+export { SmileIcon } from "./components/SmileIcon";
+export { FrownIcon } from "./components/FrownIcon";
+export { HeartEyesIcon } from "./components/HeartEyesIcon";
+export { HammerIcon } from "./components/HammerIcon";
+export { ScrewdriverIcon } from "./components/ScrewdriverIcon";
+export { NutIcon } from "./components/NutIcon";
 
 export * from "./types";

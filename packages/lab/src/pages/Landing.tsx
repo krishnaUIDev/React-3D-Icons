@@ -68,7 +68,20 @@ import {
   KeyboardIcon,
   MouseIcon,
   HardDriveIcon,
-  GlassmorphismIcon
+  GlassmorphismIcon,
+  GithubIcon,
+  TwitterIcon,
+  GoogleIcon,
+  RouterIcon,
+  ServerIcon,
+  WrenchIcon,
+  BoltIcon,
+  SmileIcon,
+  FrownIcon,
+  HeartEyesIcon,
+  HammerIcon,
+  ScrewdriverIcon,
+  NutIcon
 } from "react-3d-icons";
 import { TranslationKey } from "../i18n/translations";
 
@@ -663,10 +676,127 @@ const ICONS_REGISTRY = [
     Component: GlassmorphismIcon,
     color: "#ffffff",
     accentColor: "#ec4899"
+  },
+  {
+    id: "github",
+    name: "GithubIcon",
+    category: "brands",
+    description: "Sleek extruded silhouette of Octocat logo badge",
+    Component: GithubIcon,
+    color: "#24292e",
+    accentColor: "#6e5494"
+  },
+  {
+    id: "twitter",
+    name: "TwitterIcon",
+    category: "brands",
+    description: "Extruded geometric X logo outline on a glossy glass backplate",
+    Component: TwitterIcon,
+    color: "#1da1f2",
+    accentColor: "#0f1419"
+  },
+  {
+    id: "google",
+    name: "GoogleIcon",
+    category: "brands",
+    description: "Rotational beveled circular G emblem segmented in brand colors",
+    Component: GoogleIcon,
+    color: "#4285f4",
+    accentColor: "#ea4335"
+  },
+  {
+    id: "router",
+    name: "RouterIcon",
+    category: "networking",
+    description: "Procedural network router model with rear antennas and signal wave arcs",
+    Component: RouterIcon,
+    color: "#06b6d4",
+    accentColor: "#10b981"
+  },
+  {
+    id: "server",
+    name: "ServerIcon",
+    category: "networking",
+    description: "Vertical metal server cabinet featuring three stacked blade slots and LEDs",
+    Component: ServerIcon,
+    color: "#3b82f6",
+    accentColor: "#10b981"
+  },
+  {
+    id: "wrench",
+    name: "WrenchIcon",
+    category: "mechanics",
+    description: "Combination double-head wrench key angled in 3D space",
+    Component: WrenchIcon,
+    color: "#94a3b8",
+    accentColor: "#475569"
+  },
+  {
+    id: "bolt",
+    name: "BoltIcon",
+    category: "mechanics",
+    description: "Hexagonal bolt fastener head with a detailed spiral thread shaft",
+    Component: BoltIcon,
+    color: "#71717a",
+    accentColor: "#cbd5e1"
+  },
+  {
+    id: "hammer",
+    name: "HammerIcon",
+    category: "mechanics",
+    description: "Extruded steel claw hammer head with a rubber-sleeved grip handle",
+    Component: HammerIcon,
+    color: "#cbd5e1",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "screwdriver",
+    name: "ScrewdriverIcon",
+    category: "mechanics",
+    description: "Classic flathead screwdriver with fluted grip handle and steel shaft",
+    Component: ScrewdriverIcon,
+    color: "#cbd5e1",
+    accentColor: "#6366f1"
+  },
+  {
+    id: "nut",
+    name: "NutIcon",
+    category: "mechanics",
+    description: "Hexagonal threaded locknut fastener with concentric inner coil details",
+    Component: NutIcon,
+    color: "#94a3b8",
+    accentColor: "#475569"
+  },
+  {
+    id: "smile",
+    name: "SmileIcon",
+    category: "emojies",
+    description: "Classic happy face emoji disk featuring R3F beveled smile shapes",
+    Component: SmileIcon,
+    color: "#f59e0b",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "frown",
+    name: "FrownIcon",
+    category: "emojies",
+    description: "Classic sad face emoji disk featuring down-curved R3F torus mouth",
+    Component: FrownIcon,
+    color: "#f59e0b",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "hearteyes",
+    name: "HeartEyesIcon",
+    category: "emojies",
+    description: "Smiley face emoji featuring dual 3D heart-shaped eye geometry meshes",
+    Component: HeartEyesIcon,
+    color: "#f59e0b",
+    accentColor: "#ef4444"
   }
 ];
 
-const CATEGORIES = ["all", "storage", "systems", "hardware", "networking", "mechanics", "brands", "utility"] as const;
+const CATEGORIES = ["all", "storage", "systems", "hardware", "networking", "mechanics", "brands", "emojies", "utility"] as const;
 
 export const Landing: React.FC<LandingProps> = ({ theme, search }) => {
   const { t } = useTranslation();

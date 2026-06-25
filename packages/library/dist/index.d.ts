@@ -238,4 +238,56 @@ declare function HardDriveIcon(props: IconProps): react.JSX.Element;
 
 declare function GlassmorphismIcon(props: IconProps): react.JSX.Element;
 
-export { BagIcon, BellIcon, BookIcon, BriefcaseIcon, BulbIcon, CalendarIcon, CameraIcon, CartIcon, ChatIcon, ClockIcon, CloudIcon, CoffeeIcon, CompassIcon, CpuIcon, CreditCardIcon, CrownIcon, DatabaseIcon, DollarIcon, DownloadIcon, EditIcon, EyeIcon, FacebookIcon, FlagIcon, FlashIcon, FolderIcon, GamepadIcon, GearIcon, GiftIcon, GlassmorphismIcon, GlobeIcon, HardDriveIcon, HeartIcon, HomeIcon, type IconAngle, type IconPreset, type IconProps, KeyIcon, KeyboardIcon, LayersIcon, LinkIcon, LockIcon, MailIcon, MapPinIcon, type MaterialConfig, MegaphoneIcon, MonitorIcon, MouseIcon, MusicIcon, NetworkIcon, PhoneIcon, PinIcon, PlayIcon, RocketIcon, SearchIcon, SendIcon, ShareIcon, ShieldIcon, SparklesIcon, StarIcon, SunIcon, TagIcon, TargetIcon, ThumbUpIcon, TrashIcon, TrophyIcon, UploadIcon, UserIcon, WalletIcon, WifiIcon };
+type GithubIconProps = IconProps;
+
+declare function GithubIcon(props: GithubIconProps): react.JSX.Element;
+
+type TwitterIconProps = IconProps;
+
+declare function TwitterIcon(props: TwitterIconProps): react.JSX.Element;
+
+type GoogleIconProps = IconProps;
+
+declare function GoogleIcon(props: GoogleIconProps): react.JSX.Element;
+
+type RouterIconProps = IconProps;
+
+declare function RouterIcon(props: RouterIconProps): react.JSX.Element;
+
+type ServerIconProps = IconProps;
+
+declare function ServerIcon(props: ServerIconProps): react.JSX.Element;
+
+type WrenchIconProps = IconProps;
+
+declare function WrenchIcon(props: WrenchIconProps): react.JSX.Element;
+
+type BoltIconProps = IconProps;
+
+declare function BoltIcon(props: BoltIconProps): react.JSX.Element;
+
+type SmileIconProps = IconProps;
+
+declare function SmileIcon(props: SmileIconProps): react.JSX.Element;
+
+type FrownIconProps = IconProps;
+
+declare function FrownIcon(props: FrownIconProps): react.JSX.Element;
+
+type HeartEyesIconProps = IconProps;
+
+declare function HeartEyesIcon(props: HeartEyesIconProps): react.JSX.Element;
+
+type HammerIconProps = IconProps;
+
+declare function HammerIcon(props: HammerIconProps): react.JSX.Element;
+
+type ScrewdriverIconProps = IconProps;
+
+declare function ScrewdriverIcon(props: ScrewdriverIconProps): react.JSX.Element;
+
+type NutIconProps = IconProps;
+
+declare function NutIcon(props: NutIconProps): react.JSX.Element;
+
+export { BagIcon, BellIcon, BoltIcon, BookIcon, BriefcaseIcon, BulbIcon, CalendarIcon, CameraIcon, CartIcon, ChatIcon, ClockIcon, CloudIcon, CoffeeIcon, CompassIcon, CpuIcon, CreditCardIcon, CrownIcon, DatabaseIcon, DollarIcon, DownloadIcon, EditIcon, EyeIcon, FacebookIcon, FlagIcon, FlashIcon, FolderIcon, FrownIcon, GamepadIcon, GearIcon, GiftIcon, GithubIcon, GlassmorphismIcon, GlobeIcon, GoogleIcon, HammerIcon, HardDriveIcon, HeartEyesIcon, HeartIcon, HomeIcon, type IconAngle, type IconPreset, type IconProps, KeyIcon, KeyboardIcon, LayersIcon, LinkIcon, LockIcon, MailIcon, MapPinIcon, type MaterialConfig, MegaphoneIcon, MonitorIcon, MouseIcon, MusicIcon, NetworkIcon, NutIcon, PhoneIcon, PinIcon, PlayIcon, RocketIcon, RouterIcon, ScrewdriverIcon, SearchIcon, SendIcon, ServerIcon, ShareIcon, ShieldIcon, SmileIcon, SparklesIcon, StarIcon, SunIcon, TagIcon, TargetIcon, ThumbUpIcon, TrashIcon, TrophyIcon, TwitterIcon, UploadIcon, UserIcon, WalletIcon, WifiIcon, WrenchIcon };

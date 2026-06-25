@@ -266,11 +266,13 @@ export function SharedWrapper({
         }} 
         {...props}
       >
-        {fallback2d || (iconId ? (
-          <Fallback2D id={iconId} color={color} theme={theme} />
-        ) : (
-          <div style={{ color: color || "#6366f1", fontStyle: "italic", fontSize: "11px" }}>3D Icon</div>
-        ))}
+        <div style={{ width: "60%", height: "60%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          {fallback2d || (iconId ? (
+            <Fallback2D id={iconId} color={color} theme={theme} />
+          ) : (
+            <div style={{ color: color || "#6366f1", fontStyle: "italic", fontSize: "11px" }}>3D Icon</div>
+          ))}
+        </div>
       </div>
     );
   }
