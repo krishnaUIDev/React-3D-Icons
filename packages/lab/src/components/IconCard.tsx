@@ -12,6 +12,12 @@ interface IconCardProps {
 }
 
 const LUCIDE_FALLBACKS: Record<string, React.ComponentType<any>> = {
+  anchor: Lucide.Anchor,
+  diamond: Lucide.Diamond,
+  filter: Lucide.Filter,
+  pipeline: Lucide.Workflow,
+  refresh: Lucide.RefreshCw,
+  webhook: Lucide.Webhook,
   facebook: Lucide.Facebook,
   shield: Lucide.Shield,
   rocket: Lucide.Rocket,

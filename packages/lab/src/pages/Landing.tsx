@@ -96,6 +96,12 @@ import {
   ShieldCheckIcon,
   ReactIcon,
   NodeIcon,
+  AnchorIcon,
+  DiamondIcon,
+  FilterIcon,
+  PipelineIcon,
+  RefreshIcon,
+  WebhookIcon,
   LetterIcon
 } from "react-3d-icons";
 import { TranslationKey } from "../i18n/translations";
@@ -107,6 +113,60 @@ interface LandingProps {
 }
 
 const ICONS_REGISTRY = [
+  {
+    id: "anchor",
+    name: "AnchorIcon",
+    category: "utility",
+    description: "Maritime physical anchor with upper stock bar and bottom crescent flukes",
+    Component: AnchorIcon,
+    color: "#475569",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "diamond",
+    name: "DiamondIcon",
+    category: "utility",
+    description: "Gemstone cut diamond with bevel facet edges and metal girdle belt",
+    Component: DiamondIcon,
+    color: "#0ea5e9",
+    accentColor: "#10b981"
+  },
+  {
+    id: "filter",
+    name: "FilterIcon",
+    category: "utility",
+    description: "Conical liquid funnel filter showing internal tray and bottom droplet",
+    Component: FilterIcon,
+    color: "#f43f5e",
+    accentColor: "#38bdf8"
+  },
+  {
+    id: "pipeline",
+    name: "PipelineIcon",
+    category: "networking",
+    description: "Multi-joint physical network flow pipelines with central control valve wheel",
+    Component: PipelineIcon,
+    color: "#0d9488",
+    accentColor: "#10b981"
+  },
+  {
+    id: "refresh",
+    name: "RefreshIcon",
+    category: "utility",
+    description: "Dual symmetrical circular arrows in continuous sync loop motion",
+    Component: RefreshIcon,
+    color: "#8b5cf6",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "webhook",
+    name: "WebhookIcon",
+    category: "networking",
+    description: "Forked merge network connector showing 3 terminal spheres and status bulbs",
+    Component: WebhookIcon,
+    color: "#6366f1",
+    accentColor: "#10b981"
+  },
   {
     id: "facebook",
     name: "FacebookIcon",

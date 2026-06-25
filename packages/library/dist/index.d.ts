@@ -1,7 +1,7 @@
 import * as react from 'react';
 import { HTMLAttributes } from 'react';
 
-type IconPreset = "glass" | "metal" | "clay" | "hologram" | "gold" | "glassmorphism" | "carbon" | "wood";
+type IconPreset = "glass" | "metal" | "clay" | "hologram" | "gold" | "silver" | "glassmorphism" | "carbon" | "wood";
 type IconAngle = "front" | "perspective" | "tilted";
 interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" | "children"> {
     preset?: IconPreset;
@@ -51,6 +51,30 @@ declare function GearIcon(props: GearIconProps): react.JSX.Element;
 type FacebookIconProps = IconProps;
 
 declare function FacebookIcon(props: FacebookIconProps): react.JSX.Element;
+
+type AnchorIconProps = IconProps;
+
+declare function AnchorIcon(props: AnchorIconProps): react.JSX.Element;
+
+type DiamondIconProps = IconProps;
+
+declare function DiamondIcon(props: DiamondIconProps): react.JSX.Element;
+
+type FilterIconProps = IconProps;
+
+declare function FilterIcon(props: FilterIconProps): react.JSX.Element;
+
+type PipelineIconProps = IconProps;
+
+declare function PipelineIcon(props: PipelineIconProps): react.JSX.Element;
+
+type RefreshIconProps = IconProps;
+
+declare function RefreshIcon(props: RefreshIconProps): react.JSX.Element;
+
+type WebhookIconProps = IconProps;
+
+declare function WebhookIcon(props: WebhookIconProps): react.JSX.Element;
 
 type RocketIconProps = IconProps;
 
@@ -202,7 +226,9 @@ declare function BookIcon(props: IconProps): react.JSX.Element;
 
 declare function LinkIcon(props: IconProps): react.JSX.Element;
 
-declare function CrownIcon(props: IconProps): react.JSX.Element;
+type CrownIconProps = IconProps;
+
+declare function CrownIcon(props: CrownIconProps): react.JSX.Element;
 
 declare function PinIcon(props: IconProps): react.JSX.Element;
 
@@ -382,5 +408,15 @@ declare const WIcon: (props: LetterOnlyProps) => react.JSX.Element;
 declare const XIcon: (props: LetterOnlyProps) => react.JSX.Element;
 declare const YIcon: (props: LetterOnlyProps) => react.JSX.Element;
 declare const ZIcon: (props: LetterOnlyProps) => react.JSX.Element;
+declare const ZeroIcon: (props: LetterOnlyProps) => react.JSX.Element;
+declare const OneIcon: (props: LetterOnlyProps) => react.JSX.Element;
+declare const TwoIcon: (props: LetterOnlyProps) => react.JSX.Element;
+declare const ThreeIcon: (props: LetterOnlyProps) => react.JSX.Element;
+declare const FourIcon: (props: LetterOnlyProps) => react.JSX.Element;
+declare const FiveIcon: (props: LetterOnlyProps) => react.JSX.Element;
+declare const SixIcon: (props: LetterOnlyProps) => react.JSX.Element;
+declare const SevenIcon: (props: LetterOnlyProps) => react.JSX.Element;
+declare const EightIcon: (props: LetterOnlyProps) => react.JSX.Element;
+declare const NineIcon: (props: LetterOnlyProps) => react.JSX.Element;
 
-export { AIcon, BIcon, BagIcon, BarChartIcon, BellIcon, BoltIcon, BookIcon, BriefcaseIcon, BulbIcon, CIcon, CalendarIcon, CameraIcon, CartIcon, ChatIcon, CheckIcon, ClockIcon, CloudIcon, CodeIcon, CoffeeIcon, CompassIcon, ContainerIcon, CpuIcon, CreditCardIcon, CrownIcon, DIcon, DatabaseIcon, DollarIcon, DownloadIcon, EIcon, EditIcon, EthernetIcon, EyeIcon, FIcon, FacebookIcon, FigmaIcon, FlagIcon, FlashIcon, FolderIcon, FrownIcon, GIcon, GamepadIcon, GearIcon, GiftIcon, GitIcon, GithubIcon, GlassmorphismIcon, GlobeIcon, GoogleIcon, HIcon, HammerIcon, HardDriveIcon, HeartEyesIcon, HeartIcon, HomeIcon, IIcon, type IconAngle, type IconPreset, type IconProps, JIcon, KIcon, KeyIcon, KeyboardIcon, LIcon, LayersIcon, LetterIcon, type LetterIconProps, LinkIcon, LockIcon, MIcon, MailIcon, MapPinIcon, type MaterialConfig, MegaphoneIcon, MonitorIcon, MouseIcon, MusicIcon, NIcon, NetworkIcon, NodeIcon, NutIcon, OIcon, PIcon, PhoneIcon, PinIcon, PlayIcon, PrinterIcon, QIcon, RIcon, ReactIcon, RocketIcon, RouterIcon, SIcon, SatelliteIcon, ScrewdriverIcon, SearchIcon, SendIcon, ServerIcon, ShareIcon, ShieldCheckIcon, ShieldIcon, SmileIcon, SparklesIcon, SpeakerIcon, StarIcon, SunIcon, TIcon, TagIcon, TargetIcon, TerminalIcon, ThumbUpIcon, TrashIcon, TrophyIcon, TwitterIcon, UIcon, UploadIcon, UserIcon, VIcon, WIcon, WalletIcon, WifiIcon, WrenchIcon, XIcon, YIcon, ZIcon };
+export { AIcon, AnchorIcon, BIcon, BagIcon, BarChartIcon, BellIcon, BoltIcon, BookIcon, BriefcaseIcon, BulbIcon, CIcon, CalendarIcon, CameraIcon, CartIcon, ChatIcon, CheckIcon, ClockIcon, CloudIcon, CodeIcon, CoffeeIcon, CompassIcon, ContainerIcon, CpuIcon, CreditCardIcon, CrownIcon, DIcon, DatabaseIcon, DiamondIcon, DollarIcon, DownloadIcon, EIcon, EditIcon, EightIcon, EthernetIcon, EyeIcon, FIcon, FacebookIcon, FigmaIcon, FilterIcon, FiveIcon, FlagIcon, FlashIcon, FolderIcon, FourIcon, FrownIcon, GIcon, GamepadIcon, GearIcon, GiftIcon, GitIcon, GithubIcon, GlassmorphismIcon, GlobeIcon, GoogleIcon, HIcon, HammerIcon, HardDriveIcon, HeartEyesIcon, HeartIcon, HomeIcon, IIcon, type IconAngle, type IconPreset, type IconProps, JIcon, KIcon, KeyIcon, KeyboardIcon, LIcon, LayersIcon, LetterIcon, type LetterIconProps, LinkIcon, LockIcon, MIcon, MailIcon, MapPinIcon, type MaterialConfig, MegaphoneIcon, MonitorIcon, MouseIcon, MusicIcon, NIcon, NetworkIcon, NineIcon, NodeIcon, NutIcon, OIcon, OneIcon, PIcon, PhoneIcon, PinIcon, PipelineIcon, PlayIcon, PrinterIcon, QIcon, RIcon, ReactIcon, RefreshIcon, RocketIcon, RouterIcon, SIcon, SatelliteIcon, ScrewdriverIcon, SearchIcon, SendIcon, ServerIcon, SevenIcon, ShareIcon, ShieldCheckIcon, ShieldIcon, SixIcon, SmileIcon, SparklesIcon, SpeakerIcon, StarIcon, SunIcon, TIcon, TagIcon, TargetIcon, TerminalIcon, ThreeIcon, ThumbUpIcon, TrashIcon, TrophyIcon, TwitterIcon, TwoIcon, UIcon, UploadIcon, UserIcon, VIcon, WIcon, WalletIcon, WebhookIcon, WifiIcon, WrenchIcon, XIcon, YIcon, ZIcon, ZeroIcon };

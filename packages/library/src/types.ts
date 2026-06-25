@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react";
 
-export type IconPreset = "glass" | "metal" | "clay" | "hologram" | "gold" | "glassmorphism" | "carbon" | "wood";
+export type IconPreset = "glass" | "metal" | "clay" | "hologram" | "gold" | "silver" | "glassmorphism" | "carbon" | "wood";
 export type IconAngle = "front" | "perspective" | "tilted";
 
 export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" | "children"> {

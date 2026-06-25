@@ -19,6 +19,7 @@ export function getMaterialConfig(
     clay: "#f43f5e",  // Rose
     hologram: "#a855f7", // Violet
     gold: "#d4af37",   // Gold
+    silver: "#e2e8f0", // Silver
     glassmorphism: theme === "dark" ? "#ffffff" : "#64748b", // Frosted Glass
     carbon: "#27272a", // Carbon slate
     wood: "#d97706"   // Wood
@@ -79,6 +80,19 @@ export function getMaterialConfig(
         color,
         emissive: theme === "dark" ? "#221100" : "#000000",
         emissiveIntensity: theme === "dark" ? 0.25 : 0
+      };
+    case "silver":
+      return {
+        roughness: 0.12,
+        metalness: 0.98,
+        transmission: 0,
+        thickness: 0,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.05,
+        ior: 1.5,
+        color,
+        emissive: theme === "dark" ? "#111111" : "#000000",
+        emissiveIntensity: theme === "dark" ? 0.2 : 0
       };
     case "metal":
       return {

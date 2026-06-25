@@ -416,6 +416,7 @@ function App() {
       clay: "#f43f5e",
       hologram: "#a855f7",
       gold: "#d4af37",
+      silver: "#e2e8f0",
       glassmorphism: theme === "dark" ? "#ffffff" : "#64748b",
       carbon: "#27272a",
       wood: "#d97706"
@@ -570,7 +571,7 @@ function App() {
                 {t("presets_label")}
               </label>
               <div className="flex flex-wrap gap-2">
-                {(["glass", "metal", "clay", "hologram", "gold", "glassmorphism", "carbon", "wood"] as IconPreset[]).map((p) => {
+                {(["glass", "metal", "clay", "hologram", "gold", "silver", "glassmorphism", "carbon", "wood"] as IconPreset[]).map((p) => {
                   const isSelected = preset === p;
                   return (
                     <button

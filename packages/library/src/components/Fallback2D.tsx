@@ -41,6 +41,53 @@ export const Fallback2D: React.FC<Fallback2DProps> = ({ id, color = "#6366f1", t
           <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
         </svg>
       );
+    case "anchor":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="12" cy="5" r="3" />
+          <line x1="12" y1="8" x2="12" y2="22" />
+          <line x1="9" y1="11" x2="15" y2="11" />
+          <path d="M5 12H2a10 10 0 0 0 20 0h-3" />
+        </svg>
+      );
+    case "diamond":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M6 3h12l4 6-10 12L2 9z" />
+          <path d="M11 3 8 9l4 12 4-12-3-6" />
+          <path d="M2 9h20" />
+        </svg>
+      );
+    case "filter":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+        </svg>
+      );
+    case "pipeline":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <rect x="2" y="9" width="5" height="6" rx="1" />
+          <rect x="17" y="9" width="5" height="6" rx="1" />
+          <rect x="9.5" y="9" width="5" height="6" rx="1" />
+          <path d="M7 12h2.5M14.5 12H17" />
+        </svg>
+      );
+    case "refresh":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3l1.2 2.8M22 12.5a10 10 0 0 1-18.8 4.2l-1.2-2.8" />
+        </svg>
+      );
+    case "webhook":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="18" cy="18" r="3" />
+          <circle cx="6" cy="6" r="3" />
+          <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+          <path d="M11 18H8a2 2 0 0 1-2-2V9" />
+        </svg>
+      );
     case "cloud":
       return (
         <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
