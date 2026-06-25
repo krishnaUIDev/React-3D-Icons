@@ -1,0 +1,1 @@
+export { BugIcon } from "./BugIcon";

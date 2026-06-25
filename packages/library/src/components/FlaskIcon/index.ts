@@ -1,0 +1,1 @@
+export { FlaskIcon } from "./FlaskIcon";

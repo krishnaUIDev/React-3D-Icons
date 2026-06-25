@@ -97,7 +97,10 @@ export {
   AIcon, BIcon, CIcon, DIcon, EIcon, FIcon, GIcon,
   HIcon, IIcon, JIcon, KIcon, LIcon, MIcon, NIcon,
   OIcon, PIcon, QIcon, RIcon, SIcon, TIcon, UIcon,
-  VIcon, WIcon, XIcon, YIcon, ZIcon
+  VIcon, WIcon, XIcon, YIcon, ZIcon,
+  // Digit icons – 0 through 9
+  ZeroIcon, OneIcon, TwoIcon, ThreeIcon, FourIcon,
+  FiveIcon, SixIcon, SevenIcon, EightIcon, NineIcon
 } from "./components/LetterIcon";
 export type { LetterIconProps } from "./components/LetterIcon";
 

@@ -1,0 +1,1 @@
+export { AnchorIcon } from "./AnchorIcon";

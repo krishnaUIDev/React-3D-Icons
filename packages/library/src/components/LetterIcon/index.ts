@@ -4,5 +4,7 @@ export {
   AIcon, BIcon, CIcon, DIcon, EIcon, FIcon, GIcon,
   HIcon, IIcon, JIcon, KIcon, LIcon, MIcon, NIcon,
   OIcon, PIcon, QIcon, RIcon, SIcon, TIcon, UIcon,
-  VIcon, WIcon, XIcon, YIcon, ZIcon
+  VIcon, WIcon, XIcon, YIcon, ZIcon,
+  ZeroIcon, OneIcon, TwoIcon, ThreeIcon, FourIcon,
+  FiveIcon, SixIcon, SevenIcon, EightIcon, NineIcon
 } from "./letters";

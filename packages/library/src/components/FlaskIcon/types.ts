@@ -1,2 +1,2 @@
 import { IconProps } from "../../types";
-export type CrownIconProps = IconProps;
+export type FlaskIconProps = IconProps;

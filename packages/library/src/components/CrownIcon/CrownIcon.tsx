@@ -1,92 +1,43 @@
 import { SharedWrapper } from "../SharedWrapper";
-import { IconProps } from "../../types";
+import { CrownIconProps } from "./types";
 
-export function CrownIcon(props: IconProps) {
-  // Generate coordinates for the 5 crown points
-  const peakCount = 5;
-  const radius = 0.52;
-  const peaks = Array.from({ length: peakCount }).map((_, i) => {
-    const angle = (i * 2 * Math.PI) / peakCount - Math.PI / 2;
-    return {
-      x: Math.cos(angle) * radius,
-      z: Math.sin(angle) * radius,
-      rotationY: -angle - Math.PI / 2,
-    };
-  });
-
+export function CrownIcon(props: CrownIconProps) {
   return (
     <SharedWrapper iconId="crown" {...props}>
-      {(mat) => (
-        <group rotation={[0.2, 0.2, 0]} position={[0, -0.2, 0]}>
-          
-          {/* Base Rim Cylinder */}
-          <mesh castShadow receiveShadow position={[0, 0.08, 0]}>
-            <cylinderGeometry args={[0.56, 0.56, 0.16, 32, 1, true]} />
-            <meshPhysicalMaterial
-              roughness={mat.roughness}
-              metalness={mat.metalness}
-              transmission={mat.transmission}
-              thickness={mat.thickness}
-              clearcoat={mat.clearcoat}
-              clearcoatRoughness={mat.clearcoatRoughness}
-              ior={mat.ior}
-              color={mat.color}
-              side={2} // DoubleSide so inside is rendered too
-            />
-          </mesh>
-
-          {/* Bottom Solid Rim Ring */}
-          <mesh position={[0, 0.02, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow>
-            <torusGeometry args={[0.56, 0.04, 12, 32]} />
-            <meshPhysicalMaterial
-              roughness={mat.roughness}
-              metalness={mat.metalness}
-              transmission={mat.transmission}
-              thickness={mat.thickness}
-              color={mat.color}
-            />
-          </mesh>
-
-          {/* Five crown spikes/peaks */}
-          {peaks.map((p, idx) => (
-            <group key={idx} position={[p.x, 0.35, p.z]} rotation={[0.15, p.rotationY, 0]}>
-              
-              {/* Triangular peak spike */}
-              <mesh rotation={[0, Math.PI / 4, 0]} castShadow>
-                <coneGeometry args={[0.14, 0.44, 4]} />
-                <meshPhysicalMaterial
-                  roughness={mat.roughness}
-                  metalness={mat.metalness}
-                  transmission={mat.transmission}
-                  thickness={mat.thickness}
-                  color={mat.color}
-                />
+      {(mat) => {
+        const ac = mat.emissiveIntensity > 0 ? mat.emissive : (props.accentColor || "#f59e0b");
+        return (
+          <group rotation={[0.15, -0.25, 0.05]}>
+            {/* Crown band base */}
+            <mesh castShadow receiveShadow position={[0, -0.28, 0]}>
+              <boxGeometry args={[1.5, 0.28, 0.35]} />
+              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} transmission={mat.transmission} thickness={mat.thickness} clearcoat={mat.clearcoat} clearcoatRoughness={mat.clearcoatRoughness} ior={mat.ior} color={mat.color} emissive={mat.emissive} emissiveIntensity={mat.emissiveIntensity * 0.4} />
+            </mesh>
+            {/* Left spike */}
+            <mesh castShadow position={[-0.54, 0.22, 0]}>
+              <boxGeometry args={[0.22, 0.76, 0.3]} />
+              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} transmission={mat.transmission} thickness={mat.thickness} clearcoat={mat.clearcoat} clearcoatRoughness={mat.clearcoatRoughness} ior={mat.ior} color={mat.color} emissive={mat.emissive} emissiveIntensity={mat.emissiveIntensity * 0.4} />
+            </mesh>
+            {/* Center spike – taller */}
+            <mesh castShadow position={[0, 0.38, 0]}>
+              <boxGeometry args={[0.24, 1.06, 0.3]} />
+              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} transmission={mat.transmission} thickness={mat.thickness} clearcoat={mat.clearcoat} clearcoatRoughness={mat.clearcoatRoughness} ior={mat.ior} color={mat.color} emissive={mat.emissive} emissiveIntensity={mat.emissiveIntensity * 0.6} />
+            </mesh>
+            {/* Right spike */}
+            <mesh castShadow position={[0.54, 0.22, 0]}>
+              <boxGeometry args={[0.22, 0.76, 0.3]} />
+              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} transmission={mat.transmission} thickness={mat.thickness} clearcoat={mat.clearcoat} clearcoatRoughness={mat.clearcoatRoughness} ior={mat.ior} color={mat.color} emissive={mat.emissive} emissiveIntensity={mat.emissiveIntensity * 0.4} />
+            </mesh>
+            {/* Gems */}
+            {([-0.54, 0, 0.54] as number[]).map((x, i) => (
+              <mesh key={i} position={[x, i === 1 ? 0.92 : 0.62, 0.18]}>
+                <octahedronGeometry args={[0.1]} />
+                <meshStandardMaterial color={ac} emissive={ac} emissiveIntensity={1.2} roughness={0.05} metalness={0.2} />
               </mesh>
-
-              {/* Sphere Jewel on Tip */}
-              <mesh position={[0, 0.24, 0]} castShadow>
-                <sphereGeometry args={[0.06, 16, 16]} />
-                <meshStandardMaterial
-                  roughness={0.1}
-                  metalness={0.9}
-                  color={idx % 2 === 0 ? "#ef4444" : "#3b82f6"} // Alternating red & blue jewels
-                />
-              </mesh>
-            </group>
-          ))}
-
-          {/* Central Crown Soft Velvet Cushion inside (dark royal blue or red) */}
-          <mesh position={[0, 0.16, 0]} castShadow>
-            <sphereGeometry args={[0.5, 32, 16, 0, Math.PI * 2, 0, Math.PI / 2]} />
-            <meshStandardMaterial
-              roughness={0.9}
-              metalness={0.1}
-              color={props.preset === "gold" ? "#7f1d1d" : "#1e1b4b"} // Crimson red for gold, navy purple otherwise
-            />
-          </mesh>
-
-        </group>
-      )}
+            ))}
+          </group>
+        );
+      }}
     </SharedWrapper>
   );
 }

@@ -34,3 +34,15 @@ export const WIcon = (props: LetterOnlyProps) => <LetterIcon letter="W" {...prop
 export const XIcon = (props: LetterOnlyProps) => <LetterIcon letter="X" {...props} />;
 export const YIcon = (props: LetterOnlyProps) => <LetterIcon letter="Y" {...props} />;
 export const ZIcon = (props: LetterOnlyProps) => <LetterIcon letter="Z" {...props} />;
+
+// Digit icons 0–9 (same Text3D approach as letters)
+export const ZeroIcon  = (props: LetterOnlyProps) => <LetterIcon letter="0" {...props} />;
+export const OneIcon   = (props: LetterOnlyProps) => <LetterIcon letter="1" {...props} />;
+export const TwoIcon   = (props: LetterOnlyProps) => <LetterIcon letter="2" {...props} />;
+export const ThreeIcon = (props: LetterOnlyProps) => <LetterIcon letter="3" {...props} />;
+export const FourIcon  = (props: LetterOnlyProps) => <LetterIcon letter="4" {...props} />;
+export const FiveIcon  = (props: LetterOnlyProps) => <LetterIcon letter="5" {...props} />;
+export const SixIcon   = (props: LetterOnlyProps) => <LetterIcon letter="6" {...props} />;
+export const SevenIcon = (props: LetterOnlyProps) => <LetterIcon letter="7" {...props} />;
+export const EightIcon = (props: LetterOnlyProps) => <LetterIcon letter="8" {...props} />;
+export const NineIcon  = (props: LetterOnlyProps) => <LetterIcon letter="9" {...props} />;

@@ -1,3 +1,1 @@
-import { IconProps } from "../../types";
-
-export type TargetIconProps = IconProps;
+import { IconProps } from "../../types"; export type TargetIconProps = IconProps;
