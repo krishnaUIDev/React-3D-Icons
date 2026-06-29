@@ -11,9 +11,13 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -24,6 +28,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Configure Git & Bump Version
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          cd packages/library
+          npm version patch -m "chore(release): bump version to %s [skip ci]"
+
       - name: Build Library
         run: npm run build:lib
 
@@ -31,3 +42,6 @@ jobs:
         run: npm publish ./packages/library --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push Git Changes
+        run: git push origin main --follow-tags
