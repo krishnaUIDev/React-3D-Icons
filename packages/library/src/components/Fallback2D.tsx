@@ -2297,6 +2297,94 @@ const getRawSVG = (id: string, strokeColor: string, isDark: boolean): React.Reac
           <path d="M12 22c5.5 0 10-4.5 10-10 0-2-.6-3.9-1.7-5.5l-1.3 1.3c.6 1.2 1 2.7 1 4.2 0 4.4-3.6 8-8 8-1.5 0-3-.4-4.2-1l-1.3 1.3c1.6 1.1 3.5 1.7 5.5 1.7z" />
         </svg>
       );
+    case "burger":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M2 12c0-4 4-8 10-8s10 4 10 8H2z" />
+          <path d="M2 12c0 2 2 3 5 3s5-1 5-3m-10 0v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2" />
+          <path d="M2 15h20" />
+        </svg>
+      );
+    case "pizza":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M22 11L12 22 2 11c0-5.5 4.5-10 10-10s10 4.5 10 10z" />
+          <circle cx="12" cy="7" r="1" />
+          <circle cx="8" cy="12" r="1" />
+          <circle cx="16" cy="12" r="1" />
+          <path d="M2 11h20" />
+        </svg>
+      );
+    case "apple":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M12 22c4.97 0 9-3.03 9-8 0-4.5-3-6-5-6-.5 0-1.07.13-1.63.38A5.86 5.86 0 0 0 12 8c-.78 0-1.64.13-2.37.38C9.07 8.13 8.5 8 8 8c-2 0-5 1.5-5 6 0 4.97 4.03 8 9 8z" />
+          <path d="M12 8V4c0-1 1-2 2-2" />
+        </svg>
+      );
+    case "banana":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M16 3c.5 1.5-.5 3-2.5 4.5s-5.5 3-8 5.5-3.5 5-3.5 7.5c2.5 0 5-1 7.5-3.5s4-6 5.5-8 3-3 4.5-2.5z" />
+          <path d="M3 21.5l-1 1" />
+        </svg>
+      );
+    case "cake":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <rect x="3" y="11" width="18" height="10" rx="2" />
+          <rect x="6" y="5" width="12" height="6" rx="2" />
+          <line x1="12" y1="5" x2="12" y2="2" />
+          <path d="M12 2c.5 0 1 .5 1 1s-.5 1-1 1-1-.5-1-1 .5-1 1-1z" />
+        </svg>
+      );
+    case "icecream":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V22l4-2 4 2v-7.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z" />
+          <path d="M5 9h14" />
+        </svg>
+      );
+    case "donut":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="12" cy="12" r="10" />
+          <circle cx="12" cy="12" r="3" />
+          <path d="M10 5.5a1 1 0 1 0 0-2" />
+          <path d="M14 19a1 1 0 1 0 0 2" />
+          <path d="M5 13a1 1 0 1 0 0 2" />
+          <path d="M18.5 9.5a1 1 0 1 0 0-2" />
+        </svg>
+      );
+    case "popcorn":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M18 8l-1.5 14H7.5L6 8h12z" />
+          <path d="M10 8v14M14 8v14" />
+          <path d="M6.5 8C5.5 8 5 7 5 6s1-2 2-2 2 1 2.5 2M18.5 8c1 0 1.5-1 1.5-2s-1-2-2-2-2 1-2.5 2M9 6a3 3 0 0 1 6 0" />
+        </svg>
+      );
+    case "watermelon":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M22 12a10 10 0 0 1-20 0h20z" />
+          <path d="M18 12a6 6 0 0 1-12 0" />
+          <circle cx="9" cy="14" r="0.5" />
+          <circle cx="12" cy="16" r="0.5" />
+          <circle cx="15" cy="14" r="0.5" />
+        </svg>
+      );
+    case "cookie":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="12" cy="12" r="10" />
+          <circle cx="8" cy="9" r="1.5" />
+          <circle cx="15" cy="8" r="1.5" />
+          <circle cx="9" cy="15" r="1.5" />
+          <circle cx="14" cy="14" r="1.5" />
+          <path d="M18.5 5.5a3 3 0 0 1 0 5 3 3 0 0 1-3 0" />
+        </svg>
+      );
 
 
 

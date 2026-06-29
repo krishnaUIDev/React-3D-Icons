@@ -256,7 +256,17 @@ import {
   ThermometerIcon,
   LeafIcon,
   TreeIcon,
-  HurricaneIcon
+  HurricaneIcon,
+  BurgerIcon,
+  PizzaIcon,
+  AppleIcon,
+  BananaIcon,
+  CakeIcon,
+  IceCreamIcon,
+  DonutIcon,
+  PopcornIcon,
+  WatermelonIcon,
+  CookieIcon
 } from "react-3d-icons";
 import { TranslationKey } from "../i18n/translations";
 
@@ -2534,6 +2544,96 @@ const ICONS_REGISTRY = [
     Component: HurricaneIcon,
     color: "#0284c7",
     accentColor: "#0ea5e9"
+  },
+  {
+    id: "burger",
+    name: "BurgerIcon",
+    category: "emojies",
+    description: "3D stacked burger with buns, sesame seeds, meat patty, cheese, and green lettuce layers",
+    Component: BurgerIcon,
+    color: "#d97706",
+    accentColor: "#eab308"
+  },
+  {
+    id: "pizza",
+    name: "PizzaIcon",
+    category: "emojies",
+    description: "3D triangular pizza slice with cheese, base crust, and glowing red pepperoni discs",
+    Component: PizzaIcon,
+    color: "#f59e0b",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "apple",
+    name: "AppleIcon",
+    category: "emojies",
+    description: "3D cleft apple body with top indentation, vertical stem, green leaf, and glowing core seed",
+    Component: AppleIcon,
+    color: "#ef4444",
+    accentColor: "#eab308"
+  },
+  {
+    id: "banana",
+    name: "BananaIcon",
+    category: "emojies",
+    description: "3D partially peeled banana with matte cream core and yellow skin peeling flaps",
+    Component: BananaIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "cake",
+    name: "CakeIcon",
+    category: "emojies",
+    description: "3D dual-layer celebration cake with white frosting, rim whipped cream, and glowing candle",
+    Component: CakeIcon,
+    color: "#ec4899",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "icecream",
+    name: "IceCreamIcon",
+    category: "emojies",
+    description: "3D waffle cone containing a scoop of ice cream with whipped cream and glowing cherry on top",
+    Component: IceCreamIcon,
+    color: "#f472b6",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "donut",
+    name: "DonutIcon",
+    category: "emojies",
+    description: "3D baked ring donut with thick colored frosting glaze and scattered multi-color sprinkles",
+    Component: DonutIcon,
+    color: "#db2777",
+    accentColor: "#eab308"
+  },
+  {
+    id: "popcorn",
+    name: "PopcornIcon",
+    category: "emojies",
+    description: "3D striped popcorn tub overflowing with white and buttery glowing yellow popcorn kernels",
+    Component: PopcornIcon,
+    color: "#ef4444",
+    accentColor: "#eab308"
+  },
+  {
+    id: "watermelon",
+    name: "WatermelonIcon",
+    category: "emojies",
+    description: "3D triangular watermelon wedge showing green rind, white outline, red flesh, and black seeds",
+    Component: WatermelonIcon,
+    color: "#ef4444",
+    accentColor: "#1e293b"
+  },
+  {
+    id: "cookie",
+    name: "CookieIcon",
+    category: "emojies",
+    description: "3D circular baked cookie disc with dark chocolate chips and a central glowing accent chip",
+    Component: CookieIcon,
+    color: "#ca8a04",
+    accentColor: "#10b981"
   },
   // Alphabet icons – generated dynamically A-Z
   ...(() => {

@@ -258,7 +258,17 @@ import {
   ThermometerIcon,
   LeafIcon,
   TreeIcon,
-  HurricaneIcon
+  HurricaneIcon,
+  BurgerIcon,
+  PizzaIcon,
+  AppleIcon,
+  BananaIcon,
+  CakeIcon,
+  IceCreamIcon,
+  DonutIcon,
+  PopcornIcon,
+  WatermelonIcon,
+  CookieIcon
 } from "react-3d-icons";
 import { 
   ArrowLeft, 
@@ -527,6 +537,16 @@ const ICONS_REGISTRY = [
   { id: "leaf", name: "LeafIcon", category: "emojies", Component: LeafIcon, color: "#16a34a", accentColor: "#0ea5e9" },
   { id: "tree", name: "TreeIcon", category: "emojies", Component: TreeIcon, color: "#15803d", accentColor: "#10b981" },
   { id: "hurricane", name: "HurricaneIcon", category: "systems", Component: HurricaneIcon, color: "#0284c7", accentColor: "#0ea5e9" },
+  { id: "burger", name: "BurgerIcon", category: "emojies", Component: BurgerIcon, color: "#d97706", accentColor: "#eab308" },
+  { id: "pizza", name: "PizzaIcon", category: "emojies", Component: PizzaIcon, color: "#f59e0b", accentColor: "#ef4444" },
+  { id: "apple", name: "AppleIcon", category: "emojies", Component: AppleIcon, color: "#ef4444", accentColor: "#eab308" },
+  { id: "banana", name: "BananaIcon", category: "emojies", Component: BananaIcon, color: "#eab308", accentColor: "#10b981" },
+  { id: "cake", name: "CakeIcon", category: "emojies", Component: CakeIcon, color: "#ec4899", accentColor: "#f59e0b" },
+  { id: "icecream", name: "IceCreamIcon", category: "emojies", Component: IceCreamIcon, color: "#f472b6", accentColor: "#ef4444" },
+  { id: "donut", name: "DonutIcon", category: "emojies", Component: DonutIcon, color: "#db2777", accentColor: "#eab308" },
+  { id: "popcorn", name: "PopcornIcon", category: "emojies", Component: PopcornIcon, color: "#ef4444", accentColor: "#eab308" },
+  { id: "watermelon", name: "WatermelonIcon", category: "emojies", Component: WatermelonIcon, color: "#ef4444", accentColor: "#1e293b" },
+  { id: "cookie", name: "CookieIcon", category: "emojies", Component: CookieIcon, color: "#ca8a04", accentColor: "#10b981" },
   // Alphabet icons A-Z
   ...(() => {
     const LETTER_COLORS: Record<string, string> = {
@@ -600,7 +620,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   }, [iconId]);
 
   // React component usage string
-  const codeString = `import { ${currentIcon.name} } from 'react-3d-icons';
+  const codeString = `import { ${currentIcon.name} } from 'r3d-icons';
 
 function App() {
   return (

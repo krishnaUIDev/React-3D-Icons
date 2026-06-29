@@ -250,6 +250,16 @@ export { ThermometerIcon } from "./components/ThermometerIcon";
 export { LeafIcon } from "./components/LeafIcon";
 export { TreeIcon } from "./components/TreeIcon";
 export { HurricaneIcon } from "./components/HurricaneIcon";
+export { BurgerIcon } from "./components/BurgerIcon";
+export { PizzaIcon } from "./components/PizzaIcon";
+export { AppleIcon } from "./components/AppleIcon";
+export { BananaIcon } from "./components/BananaIcon";
+export { CakeIcon } from "./components/CakeIcon";
+export { IceCreamIcon } from "./components/IceCreamIcon";
+export { DonutIcon } from "./components/DonutIcon";
+export { PopcornIcon } from "./components/PopcornIcon";
+export { WatermelonIcon } from "./components/WatermelonIcon";
+export { CookieIcon } from "./components/CookieIcon";
 // Alphabet icons – A through Z
 export {
   LetterIcon,

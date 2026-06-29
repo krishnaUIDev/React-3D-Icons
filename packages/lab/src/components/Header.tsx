@@ -131,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({ theme, setTheme, search, setSear
 
           {/* GitHub Source Link */}
           <a
-            href="https://github.com"
+            href="https://github.com/krishnaUIDev/React-3D-Icons"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-100 text-xs font-semibold shadow-sm transition"

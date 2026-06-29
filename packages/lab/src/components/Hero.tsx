@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "../i18n/useTranslation";
-import { Sparkles, Download, Heart } from "lucide-react";
+import { Sparkles, Download } from "lucide-react";
+import pkg from "../../../library/package.json";
 
 export const Hero: React.FC = () => {
   const { t } = useTranslation();
@@ -34,14 +35,12 @@ export const Hero: React.FC = () => {
 
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-sm font-bold shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30 hover:scale-[1.02] transition active:scale-98 cursor-pointer">
+        <button
+          onClick={() => window.open("https://www.npmjs.com/package/r3d-icons", "_blank")}
+          className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-sm font-bold shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30 hover:scale-[1.02] transition active:scale-98 cursor-pointer"
+        >
           <Download size={16} />
-          <span>{t("btn_download_all")}</span>
-        </button>
-
-        <button className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800/80 hover:scale-[1.02] text-zinc-700 dark:text-zinc-300 text-sm font-bold shadow-sm transition active:scale-98 cursor-pointer">
-          <Heart size={16} className="text-pink-500" />
-          <span>{t("btn_donate")}</span>
+          <span>{t("btn_download_all")} v{pkg.version}</span>
         </button>
       </div>
     </div>
