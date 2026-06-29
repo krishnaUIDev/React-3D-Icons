@@ -2385,6 +2385,80 @@ const getRawSVG = (id: string, strokeColor: string, isDark: boolean): React.Reac
           <path d="M18.5 5.5a3 3 0 0 1 0 5 3 3 0 0 1-3 0" />
         </svg>
       );
+    case "safe":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M20 12h2M2 12h2" />
+        </svg>
+      );
+    case "goldbars":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M2 17h20M2 21h20M5 17L3 9h18l-2 8M6 9L4 2h16l-2 7" />
+        </svg>
+      );
+    case "bank":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3" />
+        </svg>
+      );
+    case "coin":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="12" cy="12" r="8" />
+          <line x1="12" y1="8" x2="12" y2="16" />
+          <path d="M14.5 10a2.5 2.5 0 0 0-5 0c0 2 3 2 3 4a2.5 2.5 0 0 1-5 0" />
+        </svg>
+      );
+    case "piggybank":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M19 12h2a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-2M15 5c-1.5 0-2.8 1.4-3 3-1-.6-2.2-1-3.5-1A9.5 9.5 0 0 0 3 14c0 3 2.5 5 5.5 5h7.5c2 0 4-1.5 4-4.5V11c0-3.3-2.7-6-6-6z" />
+          <path d="M7 19v2M13 19v2M12 2v4" />
+        </svg>
+      );
+    case "shoppingbag":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <path d="M16 10a4 4 0 0 1-8 0" />
+        </svg>
+      );
+    case "shoppingcart":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="9" cy="21" r="1" />
+          <circle cx="20" cy="21" r="1" />
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+        </svg>
+      );
+    case "scale":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M12 3v17M12 20H8m8 0h-8M3 7h18M6 7l-3 6h6l-3-6M18 7l-3 6h6l-3-6" />
+        </svg>
+      );
+    case "receipt":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z" />
+          <line x1="8" y1="8" x2="16" y2="8" />
+          <line x1="8" y1="12" x2="16" y2="12" />
+          <line x1="8" y1="16" x2="12" y2="16" />
+        </svg>
+      );
+    case "banknote":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <rect x="2" y="6" width="20" height="12" rx="2" />
+          <circle cx="12" cy="12" r="2" />
+          <path d="M6 12h.01M18 12h.01" />
+        </svg>
+      );
 
 
 

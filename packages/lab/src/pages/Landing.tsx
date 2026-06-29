@@ -266,7 +266,17 @@ import {
   DonutIcon,
   PopcornIcon,
   WatermelonIcon,
-  CookieIcon
+  CookieIcon,
+  SafeIcon,
+  GoldBarsIcon,
+  ScaleIcon,
+  BanknoteIcon,
+  BankIcon,
+  CoinIcon,
+  PiggyBankIcon,
+  ShoppingBagIcon,
+  ShoppingCartIcon,
+  ReceiptIcon
 } from "r3d-icons";
 import { TranslationKey } from "../i18n/translations";
 
@@ -2634,6 +2644,96 @@ const ICONS_REGISTRY = [
     Component: CookieIcon,
     color: "#ca8a04",
     accentColor: "#10b981"
+  },
+  {
+    id: "safe",
+    name: "SafeIcon",
+    category: "utility",
+    description: "3D steel combination vault safe box with circular combination dial, lever handle, and a glowing node",
+    Component: SafeIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "goldbars",
+    name: "GoldBarsIcon",
+    category: "utility",
+    description: "3D stacked gold bars showing trapezoidal shape contours, polished finish, and a glowing end stamp",
+    Component: GoldBarsIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "bank",
+    name: "BankIcon",
+    category: "utility",
+    description: "3D classical temple bank building with vertical pillars, foundation steps, and a glowing portal",
+    Component: BankIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "coin",
+    name: "CoinIcon",
+    category: "utility",
+    description: "3D ridged gold coin showing raised outer borders and a glowing central currency dollar symbol",
+    Component: CoinIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "piggybank",
+    name: "PiggyBankIcon",
+    category: "utility",
+    description: "3D stylized piggy bank featuring a top slot and a glowing gold coin drop entry",
+    Component: PiggyBankIcon,
+    color: "#f472b6",
+    accentColor: "#eab308"
+  },
+  {
+    id: "shoppingbag",
+    name: "ShoppingBagIcon",
+    category: "utility",
+    description: "3D paper shopping bag with rope handles, side crease folds, and a glowing star label badge",
+    Component: ShoppingBagIcon,
+    color: "#ca8a04",
+    accentColor: "#eab308"
+  },
+  {
+    id: "shoppingcart",
+    name: "ShoppingCartIcon",
+    category: "utility",
+    description: "3D metallic shopping cart with support frames, moving wheels, and a glowing gift item inside",
+    Component: ShoppingCartIcon,
+    color: "#94a3b8",
+    accentColor: "#10b981"
+  },
+  {
+    id: "scale",
+    name: "ScaleIcon",
+    category: "utility",
+    description: "3D justice balance scale showing central stand column, balance crossbeam, hanging pans, and glowing pivot",
+    Component: ScaleIcon,
+    color: "#94a3b8",
+    accentColor: "#10b981"
+  },
+  {
+    id: "receipt",
+    name: "ReceiptIcon",
+    category: "utility",
+    description: "3D curved transaction receipt slip with jagged cut edges, printed lines, and a glowing checkmark",
+    Component: ReceiptIcon,
+    color: "#f8fafc",
+    accentColor: "#10b981"
+  },
+  {
+    id: "banknote",
+    name: "BanknoteIcon",
+    category: "utility",
+    description: "3D paper banknote bills stacked together with center strap collar and a glowing coin badge in center",
+    Component: BanknoteIcon,
+    color: "#16a34a",
+    accentColor: "#eab308"
   },
   // Alphabet icons – generated dynamically A-Z
   ...(() => {

@@ -268,7 +268,17 @@ import {
   DonutIcon,
   PopcornIcon,
   WatermelonIcon,
-  CookieIcon
+  CookieIcon,
+  SafeIcon,
+  GoldBarsIcon,
+  ScaleIcon,
+  BanknoteIcon,
+  BankIcon,
+  CoinIcon,
+  PiggyBankIcon,
+  ShoppingBagIcon,
+  ShoppingCartIcon,
+  ReceiptIcon
 } from "r3d-icons";
 import { 
   ArrowLeft, 
@@ -547,6 +557,16 @@ const ICONS_REGISTRY = [
   { id: "popcorn", name: "PopcornIcon", category: "emojies", Component: PopcornIcon, color: "#ef4444", accentColor: "#eab308" },
   { id: "watermelon", name: "WatermelonIcon", category: "emojies", Component: WatermelonIcon, color: "#ef4444", accentColor: "#1e293b" },
   { id: "cookie", name: "CookieIcon", category: "emojies", Component: CookieIcon, color: "#ca8a04", accentColor: "#10b981" },
+  { id: "safe", name: "SafeIcon", category: "utility", Component: SafeIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "goldbars", name: "GoldBarsIcon", category: "utility", Component: GoldBarsIcon, color: "#eab308", accentColor: "#10b981" },
+  { id: "bank", name: "BankIcon", category: "utility", Component: BankIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "coin", name: "CoinIcon", category: "utility", Component: CoinIcon, color: "#eab308", accentColor: "#10b981" },
+  { id: "piggybank", name: "PiggyBankIcon", category: "utility", Component: PiggyBankIcon, color: "#f472b6", accentColor: "#eab308" },
+  { id: "shoppingbag", name: "ShoppingBagIcon", category: "utility", Component: ShoppingBagIcon, color: "#ca8a04", accentColor: "#eab308" },
+  { id: "shoppingcart", name: "ShoppingCartIcon", category: "utility", Component: ShoppingCartIcon, color: "#94a3b8", accentColor: "#10b981" },
+  { id: "scale", name: "ScaleIcon", category: "utility", Component: ScaleIcon, color: "#94a3b8", accentColor: "#10b981" },
+  { id: "receipt", name: "ReceiptIcon", category: "utility", Component: ReceiptIcon, color: "#f8fafc", accentColor: "#10b981" },
+  { id: "banknote", name: "BanknoteIcon", category: "utility", Component: BanknoteIcon, color: "#16a34a", accentColor: "#eab308" },
   // Alphabet icons A-Z
   ...(() => {
     const LETTER_COLORS: Record<string, string> = {

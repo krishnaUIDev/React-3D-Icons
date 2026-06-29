@@ -260,6 +260,16 @@ export { DonutIcon } from "./components/DonutIcon";
 export { PopcornIcon } from "./components/PopcornIcon";
 export { WatermelonIcon } from "./components/WatermelonIcon";
 export { CookieIcon } from "./components/CookieIcon";
+export { SafeIcon } from "./components/SafeIcon";
+export { GoldBarsIcon } from "./components/GoldBarsIcon";
+export { ScaleIcon } from "./components/ScaleIcon";
+export { BanknoteIcon } from "./components/BanknoteIcon";
+export { BankIcon } from "./components/BankIcon";
+export { CoinIcon } from "./components/CoinIcon";
+export { PiggyBankIcon } from "./components/PiggyBankIcon";
+export { ShoppingBagIcon } from "./components/ShoppingBagIcon";
+export { ShoppingCartIcon } from "./components/ShoppingCartIcon";
+export { ReceiptIcon } from "./components/ReceiptIcon";
 // Alphabet icons – A through Z
 export {
   LetterIcon,
