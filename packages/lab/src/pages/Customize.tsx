@@ -274,6 +274,7 @@ import {
   ScaleIcon,
   BanknoteIcon,
   EuroIcon,
+  YenIcon,
   BankIcon,
   CoinIcon,
   PiggyBankIcon,
@@ -569,6 +570,7 @@ const ICONS_REGISTRY = [
   { id: "receipt", name: "ReceiptIcon", category: "utility", Component: ReceiptIcon, color: "#f8fafc", accentColor: "#10b981" },
   { id: "banknote", name: "BanknoteIcon", category: "utility", Component: BanknoteIcon, color: "#16a34a", accentColor: "#eab308" },
   { id: "euro", name: "EuroIcon", category: "utility", Component: EuroIcon, color: "#eab308", accentColor: "#10b981" },
+  { id: "yen", name: "YenIcon", category: "utility", Component: YenIcon, color: "#eab308", accentColor: "#10b981" },
   // Alphabet icons A-Z
   ...(() => {
     const LETTER_COLORS: Record<string, string> = {

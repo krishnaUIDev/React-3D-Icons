@@ -272,6 +272,7 @@ import {
   ScaleIcon,
   BanknoteIcon,
   EuroIcon,
+  YenIcon,
   BankIcon,
   CoinIcon,
   PiggyBankIcon,
@@ -2742,6 +2743,15 @@ const ICONS_REGISTRY = [
     category: "utility",
     description: "3D ridged gold coin showing raised outer borders and a glowing central currency euro symbol",
     Component: EuroIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "yen",
+    name: "YenIcon",
+    category: "utility",
+    description: "3D ridged gold coin showing raised outer borders and a glowing central currency yen symbol",
+    Component: YenIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
