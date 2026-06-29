@@ -269,7 +269,7 @@ import {
   PopcornIcon,
   WatermelonIcon,
   CookieIcon
-} from "@krishnaUIDev/r3d-icons";
+} from "r3d-icons";
 import { 
   ArrowLeft, 
   Copy, 
@@ -620,7 +620,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   }, [iconId]);
 
   // React component usage string
-  const codeString = `import { ${currentIcon.name} } from '@krishnaUIDev/r3d-icons';
+  const codeString = `import { ${currentIcon.name} } from 'r3d-icons';
 
 function App() {
   return (
