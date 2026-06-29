@@ -2459,6 +2459,13 @@ const getRawSVG = (id: string, strokeColor: string, isDark: boolean): React.Reac
           <path d="M6 12h.01M18 12h.01" />
         </svg>
       );
+    case "euro":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M16 8a4 4 0 1 0 0 8M9 10h6M9 14h6" />
+        </svg>
+      );
 
 
 

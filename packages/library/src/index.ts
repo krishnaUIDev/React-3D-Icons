@@ -264,6 +264,7 @@ export { SafeIcon } from "./components/SafeIcon";
 export { GoldBarsIcon } from "./components/GoldBarsIcon";
 export { ScaleIcon } from "./components/ScaleIcon";
 export { BanknoteIcon } from "./components/BanknoteIcon";
+export { EuroIcon } from "./components/EuroIcon";
 export { BankIcon } from "./components/BankIcon";
 export { CoinIcon } from "./components/CoinIcon";
 export { PiggyBankIcon } from "./components/PiggyBankIcon";

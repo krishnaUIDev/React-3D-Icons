@@ -273,6 +273,7 @@ import {
   GoldBarsIcon,
   ScaleIcon,
   BanknoteIcon,
+  EuroIcon,
   BankIcon,
   CoinIcon,
   PiggyBankIcon,
@@ -567,6 +568,7 @@ const ICONS_REGISTRY = [
   { id: "scale", name: "ScaleIcon", category: "utility", Component: ScaleIcon, color: "#94a3b8", accentColor: "#10b981" },
   { id: "receipt", name: "ReceiptIcon", category: "utility", Component: ReceiptIcon, color: "#f8fafc", accentColor: "#10b981" },
   { id: "banknote", name: "BanknoteIcon", category: "utility", Component: BanknoteIcon, color: "#16a34a", accentColor: "#eab308" },
+  { id: "euro", name: "EuroIcon", category: "utility", Component: EuroIcon, color: "#eab308", accentColor: "#10b981" },
   // Alphabet icons A-Z
   ...(() => {
     const LETTER_COLORS: Record<string, string> = {

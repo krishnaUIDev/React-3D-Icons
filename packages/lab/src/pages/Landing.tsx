@@ -271,6 +271,7 @@ import {
   GoldBarsIcon,
   ScaleIcon,
   BanknoteIcon,
+  EuroIcon,
   BankIcon,
   CoinIcon,
   PiggyBankIcon,
@@ -2734,6 +2735,15 @@ const ICONS_REGISTRY = [
     Component: BanknoteIcon,
     color: "#16a34a",
     accentColor: "#eab308"
+  },
+  {
+    id: "euro",
+    name: "EuroIcon",
+    category: "utility",
+    description: "3D ridged gold coin showing raised outer borders and a glowing central currency euro symbol",
+    Component: EuroIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
   },
   // Alphabet icons – generated dynamically A-Z
   ...(() => {
