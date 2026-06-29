@@ -246,7 +246,17 @@ import {
   OrchidIcon,
   LilyIcon,
   CactusIcon,
-  LavenderIcon
+  LavenderIcon,
+  CloudRainIcon,
+  CloudSnowIcon,
+  WindIcon,
+  TornadoIcon,
+  SnowflakeIcon,
+  RainbowIcon,
+  ThermometerIcon,
+  LeafIcon,
+  TreeIcon,
+  HurricaneIcon
 } from "react-3d-icons";
 import { TranslationKey } from "../i18n/translations";
 
@@ -2434,6 +2444,96 @@ const ICONS_REGISTRY = [
     Component: LavenderIcon,
     color: "#a855f7",
     accentColor: "#10b981"
+  },
+  {
+    id: "cloudrain",
+    name: "CloudRainIcon",
+    category: "systems",
+    description: "3D glassmorphic cloud body with falling cylindrical glowing raindrops",
+    Component: CloudRainIcon,
+    color: "#0ea5e9",
+    accentColor: "#38bdf8"
+  },
+  {
+    id: "cloudsnow",
+    name: "CloudSnowIcon",
+    category: "systems",
+    description: "3D glassmorphic cloud body with falling glowing spherical snowflakes",
+    Component: CloudSnowIcon,
+    color: "#0ea5e9",
+    accentColor: "#e2e8f0"
+  },
+  {
+    id: "wind",
+    name: "WindIcon",
+    category: "systems",
+    description: "3D horizontal blowing breeze air streams with glowing vector curls",
+    Component: WindIcon,
+    color: "#64748b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "tornado",
+    name: "TornadoIcon",
+    category: "systems",
+    description: "3D helical spinning funnel vortex storm with a glowing vertical axis core",
+    Component: TornadoIcon,
+    color: "#475569",
+    accentColor: "#0ea5e9"
+  },
+  {
+    id: "snowflake",
+    name: "SnowflakeIcon",
+    category: "systems",
+    description: "3D six-sided symmetrical crystalline snowflake with a central glowing core",
+    Component: SnowflakeIcon,
+    color: "#38bdf8",
+    accentColor: "#e2e8f0"
+  },
+  {
+    id: "rainbow",
+    name: "RainbowIcon",
+    category: "systems",
+    description: "3D multi-layered arching rainbow with nested semi-toruses and base clouds",
+    Component: RainbowIcon,
+    color: "#ef4444",
+    accentColor: "#06b6d4"
+  },
+  {
+    id: "thermometer",
+    name: "ThermometerIcon",
+    category: "utility",
+    description: "3D temperature gauge cylinder tube with base bulb and glowing red fluid core",
+    Component: ThermometerIcon,
+    color: "#cbd5e1",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "leaf",
+    name: "LeafIcon",
+    category: "emojies",
+    description: "3D organic styled leaf blade with midrib veins and a glowing dewdrop sphere",
+    Component: LeafIcon,
+    color: "#16a34a",
+    accentColor: "#0ea5e9"
+  },
+  {
+    id: "tree",
+    name: "TreeIcon",
+    category: "emojies",
+    description: "3D coniferous pine tree with stacked green cones, trunk, and a glowing peak node",
+    Component: TreeIcon,
+    color: "#15803d",
+    accentColor: "#10b981"
+  },
+  {
+    id: "hurricane",
+    name: "HurricaneIcon",
+    category: "systems",
+    description: "3D symmetrical spiral storm vortex arms around a central glowing eye sphere",
+    Component: HurricaneIcon,
+    color: "#0284c7",
+    accentColor: "#0ea5e9"
   },
   // Alphabet icons – generated dynamically A-Z
   ...(() => {

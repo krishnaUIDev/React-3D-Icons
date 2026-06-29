@@ -240,6 +240,16 @@ export { OrchidIcon } from "./components/OrchidIcon";
 export { LilyIcon } from "./components/LilyIcon";
 export { CactusIcon } from "./components/CactusIcon";
 export { LavenderIcon } from "./components/LavenderIcon";
+export { CloudRainIcon } from "./components/CloudRainIcon";
+export { CloudSnowIcon } from "./components/CloudSnowIcon";
+export { WindIcon } from "./components/WindIcon";
+export { TornadoIcon } from "./components/TornadoIcon";
+export { SnowflakeIcon } from "./components/SnowflakeIcon";
+export { RainbowIcon } from "./components/RainbowIcon";
+export { ThermometerIcon } from "./components/ThermometerIcon";
+export { LeafIcon } from "./components/LeafIcon";
+export { TreeIcon } from "./components/TreeIcon";
+export { HurricaneIcon } from "./components/HurricaneIcon";
 // Alphabet icons – A through Z
 export {
   LetterIcon,

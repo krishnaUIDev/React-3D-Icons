@@ -248,7 +248,17 @@ import {
   OrchidIcon,
   LilyIcon,
   CactusIcon,
-  LavenderIcon
+  LavenderIcon,
+  CloudRainIcon,
+  CloudSnowIcon,
+  WindIcon,
+  TornadoIcon,
+  SnowflakeIcon,
+  RainbowIcon,
+  ThermometerIcon,
+  LeafIcon,
+  TreeIcon,
+  HurricaneIcon
 } from "react-3d-icons";
 import { 
   ArrowLeft, 
@@ -507,6 +517,16 @@ const ICONS_REGISTRY = [
   { id: "lily", name: "LilyIcon", category: "emojies", Component: LilyIcon, color: "#fdf2f8", accentColor: "#10b981" },
   { id: "cactus", name: "CactusIcon", category: "emojies", Component: CactusIcon, color: "#16a34a", accentColor: "#10b981" },
   { id: "lavender", name: "LavenderIcon", category: "emojies", Component: LavenderIcon, color: "#a855f7", accentColor: "#10b981" },
+  { id: "cloudrain", name: "CloudRainIcon", category: "systems", Component: CloudRainIcon, color: "#0ea5e9", accentColor: "#38bdf8" },
+  { id: "cloudsnow", name: "CloudSnowIcon", category: "systems", Component: CloudSnowIcon, color: "#0ea5e9", accentColor: "#e2e8f0" },
+  { id: "wind", name: "WindIcon", category: "systems", Component: WindIcon, color: "#64748b", accentColor: "#10b981" },
+  { id: "tornado", name: "TornadoIcon", category: "systems", Component: TornadoIcon, color: "#475569", accentColor: "#0ea5e9" },
+  { id: "snowflake", name: "SnowflakeIcon", category: "systems", Component: SnowflakeIcon, color: "#38bdf8", accentColor: "#e2e8f0" },
+  { id: "rainbow", name: "RainbowIcon", category: "systems", Component: RainbowIcon, color: "#ef4444", accentColor: "#06b6d4" },
+  { id: "thermometer", name: "ThermometerIcon", category: "utility", Component: ThermometerIcon, color: "#cbd5e1", accentColor: "#ef4444" },
+  { id: "leaf", name: "LeafIcon", category: "emojies", Component: LeafIcon, color: "#16a34a", accentColor: "#0ea5e9" },
+  { id: "tree", name: "TreeIcon", category: "emojies", Component: TreeIcon, color: "#15803d", accentColor: "#10b981" },
+  { id: "hurricane", name: "HurricaneIcon", category: "systems", Component: HurricaneIcon, color: "#0284c7", accentColor: "#0ea5e9" },
   // Alphabet icons A-Z
   ...(() => {
     const LETTER_COLORS: Record<string, string> = {

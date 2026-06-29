@@ -2225,6 +2225,78 @@ const getRawSVG = (id: string, strokeColor: string, isDark: boolean): React.Reac
           <path d="M12 18c-1.5-.5-2-1.5-2-2.5s1-1.5 2-1 2 0 2 1-1.5 2-2 2.5z" />
         </svg>
       );
+    case "cloudrain":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+          <path d="M16 14v6" />
+          <path d="M8 14v6" />
+          <path d="M12 16v6" />
+        </svg>
+      );
+    case "cloudsnow":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+          <path d="M8 15h.01M8 19h.01M12 17h.01M12 21h.01M16 15h.01M16 19h.01" />
+        </svg>
+      );
+    case "wind":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" />
+        </svg>
+      );
+    case "tornado":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M21 4H3M20 8H4M18 12H6M15 16H9M13 20h-2" />
+        </svg>
+      );
+    case "snowflake":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <line x1="2" y1="12" x2="22" y2="12" />
+          <line x1="12" y1="2" x2="12" y2="22" />
+          <path d="M20 16l-4-4 4-4M4 8l4 4-4 4M16 4l-4 4-4-4M8 20l4-4 4 4" />
+        </svg>
+      );
+    case "rainbow":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M22 17a10 10 0 0 0-20 0" />
+          <path d="M18 17a6 6 0 0 0-12 0" />
+          <path d="M14 17a2 2 0 0 0-4 0" />
+        </svg>
+      );
+    case "thermometer":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
+        </svg>
+      );
+    case "leaf":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.8a7 7 0 0 1-13.9.2" />
+          <path d="M9 22L19 12" />
+        </svg>
+      );
+    case "tree":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M12 19V5M5 13l7-7 7 7M3 17l9-9 9 9" />
+          <path d="M9 22h6" />
+        </svg>
+      );
+    case "hurricane":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2C6.5 2 2 6.5 2 12c0 2 .6 3.9 1.7 5.5l1.3-1.3C4.4 15 4 13.5 4 12c0-4.4 3.6-8 8-8 1.5 0 3 .4 4.2 1l1.3-1.3C15.9 2.6 14 2 12 2z" />
+          <path d="M12 22c5.5 0 10-4.5 10-10 0-2-.6-3.9-1.7-5.5l-1.3 1.3c.6 1.2 1 2.7 1 4.2 0 4.4-3.6 8-8 8-1.5 0-3-.4-4.2-1l-1.3 1.3c1.6 1.1 3.5 1.7 5.5 1.7z" />
+        </svg>
+      );
 
 
 
