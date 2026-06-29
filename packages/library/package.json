@@ -1,5 +1,5 @@
 {
-  "name": "r3d-icons",
+  "name": "@krishnaUIDev/r3d-icons",
   "version": "1.1.0",
   "description": "Premium, customizable, high-definition 3D icons built with React Three Fiber",
   "type": "module",
@@ -40,7 +40,7 @@
     "design-system"
   ],
   "publishConfig": {
-    "access": "public"
+    "registry": "https://npm.pkg.github.com"
   },
   "scripts": {
     "build": "tsup",

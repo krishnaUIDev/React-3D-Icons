@@ -267,7 +267,7 @@ import {
   PopcornIcon,
   WatermelonIcon,
   CookieIcon
-} from "react-3d-icons";
+} from "@krishnaUIDev/r3d-icons";
 import { TranslationKey } from "../i18n/translations";
 
 
