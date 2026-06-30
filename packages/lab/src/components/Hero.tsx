@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "../i18n/useTranslation";
 import { Sparkles, Download } from "lucide-react";
 import pkg from "../../../library/package.json";
 
 export const Hero: React.FC = () => {
   const { t } = useTranslation();
+  const [version, setVersion] = useState(pkg.version);
+
+  useEffect(() => {
+    // Dynamically retrieve the latest version from NPM registry
+    fetch("https://registry.npmjs.org/r3d-icons/latest")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.version) {
+          setVersion(data.version);
+        }
+      })
+      .catch((err) => console.warn("Failed to fetch latest version from npm registry:", err));
+  }, []);
 
   return (
     <div className="relative pt-8 pb-8 text-center max-w-4xl mx-auto px-6 overflow-hidden">
@@ -40,7 +53,7 @@ export const Hero: React.FC = () => {
           className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-sm font-bold shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30 hover:scale-[1.02] transition active:scale-98 cursor-pointer"
         >
           <Download size={16} />
-          <span>{t("btn_download_all")} v{pkg.version}</span>
+          <span>{t("btn_download_all")} v{version}</span>
         </button>
       </div>
     </div>
