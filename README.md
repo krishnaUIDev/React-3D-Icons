@@ -92,50 +92,103 @@ Every icon component accepts the following customizable props:
 
 ---
 
-## Icon Catalog (85 Premium Icons)
+## Icon Catalog (Over 270+ Premium Icons)
 
-Icons are categorized to align with filter catalogs:
+Icons are categorized into modern, high-fidelity sets:
 
-### Brands
-- `FacebookIcon`
+### 💼 Finance & Commerce
+- `SafeIcon`
+- `GoldBarsIcon`
+- `BankIcon`
+- `CoinIcon`
+- `PiggyBankIcon`
+- `ShoppingBagIcon`
+- `ShoppingCartIcon`
+- `ScaleIcon`
+- `ReceiptIcon`
+- `BanknoteIcon`
+- `EuroIcon`
+- `YenIcon`
+- `PoundIcon`
+- `WalletIcon`
+- `CreditCardIcon`
+- `BriefcaseIcon`
+
+### 🍔 Food & Drinks
+- `BurgerIcon`
+- `PizzaIcon`
+- `AppleIcon`
+- `BananaIcon`
+- `CakeIcon`
+- `IceCreamIcon`
+- `DonutIcon`
+- `PopcornIcon`
+- `WatermelonIcon`
+- `CookieIcon`
+
+### 🐾 Animals
+- `DogIcon`
+- `CatIcon`
+- `PandaIcon`
+- `LionIcon`
+- `TigerIcon`
+- `MonkeyIcon`
+- `BearIcon`
+- `RabbitIcon`
+- `ElephantIcon`
+- `OwlIcon`
+- `TurtleIcon`
+- `DolphinIcon`
+
+### ⛅ Weather & Nature
+- `CloudRainIcon`
+- `CloudSnowIcon`
+- `WindIcon`
+- `TornadoIcon`
+- `SnowflakeIcon`
+- `RainbowIcon`
+- `ThermometerIcon`
+- `LeafIcon`
+- `TreeIcon`
+- `HurricaneIcon`
+
+### 🏷️ Brands & Tech
+- `ReactIcon`
+- `JavascriptIcon`
 - `GithubIcon`
+- `DockerIcon`
+- `FirebaseIcon`
+- `SlackIcon`
+- `DiscordIcon`
+- `ChromeIcon`
+- `VSCodeIcon`
+- `FigmaIcon`
+- `FacebookIcon`
 - `TwitterIcon`
 - `GoogleIcon`
-- `FigmaIcon`
-- `ReactIcon`
 - `NodeIcon`
+- `GitIcon`
 
-### Networking
-- `NetworkIcon`
-- `WifiIcon`
-- `RouterIcon`
-- `ServerIcon`
-- `EthernetIcon`
-- `SatelliteIcon`
-
-### Storage
-- `DatabaseIcon`
-- `FolderIcon`
-- `LayersIcon`
-
-### Systems
-- `CloudIcon`
-- `SunIcon`
-- `GlobeIcon`
-- `ContainerIcon`
-
-### Hardware
+### 🛠️ Hardware & Devices
 - `CpuIcon`
 - `GamepadIcon`
+- `VRHeadsetIcon`
 - `CameraIcon`
+- `SpeakerIcon`
+- `MicIcon`
+- `HeadphonesIcon`
+- `WatchIcon`
+- `PhoneIcon`
+- `TabletIcon`
+- `LaptopIcon`
 - `MonitorIcon`
 - `KeyboardIcon`
 - `MouseIcon`
 - `HardDriveIcon`
 - `PrinterIcon`
-- `SpeakerIcon`
+- `RouterIcon`
 
-### Mechanics
+### ⚙️ Mechanics & Utility
 - `RocketIcon`
 - `GearIcon`
 - `WrenchIcon`
@@ -143,66 +196,27 @@ Icons are categorized to align with filter catalogs:
 - `HammerIcon`
 - `ScrewdriverIcon`
 - `NutIcon`
-
-### Emojies (Emojis)
-- `SmileIcon`
-- `FrownIcon`
-- `HeartEyesIcon`
-
-### Utility
 - `ShieldIcon`
+- `LockIcon`
+- `KeyIcon`
 - `MailIcon`
 - `CalendarIcon`
-- `WalletIcon`
-- `DollarIcon`
-- `ThumbUpIcon`
-- `FlashIcon`
-- `HeartIcon`
-- `ChatIcon`
-- `KeyIcon`
-- `StarIcon`
-- `CartIcon`
-- `MusicIcon`
-- `BellIcon`
-- `BulbIcon`
 - `ClockIcon`
-- `TrophyIcon`
-- `LockIcon`
-- `MapPinIcon`
-- `CreditCardIcon`
 - `SearchIcon`
+- `BellIcon`
 - `HomeIcon`
 - `TrashIcon`
 - `UserIcon`
-- `PlayIcon`
-- `GiftIcon`
-- `BagIcon`
-- `CompassIcon`
-- `SendIcon`
-- `TargetIcon`
-- `EditIcon`
-- `PhoneIcon`
-- `BookIcon`
-- `LinkIcon`
-- `CrownIcon`
-- `PinIcon`
-- `FlagIcon`
-- `BriefcaseIcon`
-- `EyeIcon`
-- `TagIcon`
-- `CoffeeIcon`
-- `ShareIcon`
-- `SparklesIcon`
-- `MegaphoneIcon`
+- `MapPinIcon`
+- `ReceiptIcon`
 - `DownloadIcon`
 - `UploadIcon`
-- `GlassmorphismIcon`
-- `CodeIcon`
-- `TerminalIcon`
-- `GitIcon`
-- `BarChartIcon`
 - `CheckIcon`
 - `ShieldCheckIcon`
+
+### 🔤 Alphanumerics & Symbols
+- **Alphabet (A-Z)**: `AIcon` through `ZIcon`
+- **Digits (0-9)**: `ZeroIcon` through `NineIcon`
 
 ---
 
