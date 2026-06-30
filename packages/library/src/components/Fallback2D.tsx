@@ -2473,6 +2473,13 @@ const getRawSVG = (id: string, strokeColor: string, isDark: boolean): React.Reac
           <path d="M12 12V7M12 12L9 7M12 12l3-5M9 15h6M9 19h6" />
         </svg>
       );
+    case "pound":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M16 8a4 4 0 0 0-7.3-2h0a4 4 0 0 0-.7 2V16h7M9 12h6" />
+        </svg>
+      );
 
 
 
