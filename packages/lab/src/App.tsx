@@ -49,9 +49,13 @@ function AppContent() {
       {/* Dynamic Page Views */}
       <main className="flex-grow">
         {route === "landing" ? (
-          <Landing theme={theme} search={search} setSearch={setSearch} />
+          <div key="landing" className="animate-page-fade">
+            <Landing theme={theme} search={search} setSearch={setSearch} />
+          </div>
         ) : (
-          <Customize theme={theme} />
+          <div key="customize" className="animate-page-fade">
+            <Customize theme={theme} />
+          </div>
         )}
       </main>
       {/* Shared WebGL Canvas Port */}
