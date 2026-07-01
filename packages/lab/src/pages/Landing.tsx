@@ -279,6 +279,11 @@ import {
   MicroscopeIcon,
   TelescopeIcon,
   BeakerIcon,
+  FolderPlusIcon,
+  FolderMinusIcon,
+  FolderCheckIcon,
+  CalendarPlusIcon,
+  CalendarCheckIcon,
   BankIcon,
   CoinIcon,
   PiggyBankIcon,
@@ -2813,6 +2818,51 @@ const ICONS_REGISTRY = [
     description: "3D laboratory beaker containing bubbling liquid volume and measurement markers",
     Component: BeakerIcon,
     color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "folderplus",
+    name: "FolderPlusIcon",
+    category: "storage",
+    description: "3D directory folder with a raised glowing green plus sign on the front cover",
+    Component: FolderPlusIcon,
+    color: "#f59e0b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "folderminus",
+    name: "FolderMinusIcon",
+    category: "storage",
+    description: "3D directory folder with a raised glowing red minus sign on the front cover",
+    Component: FolderMinusIcon,
+    color: "#f59e0b",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "foldercheck",
+    name: "FolderCheckIcon",
+    category: "storage",
+    description: "3D directory folder with a raised glowing green checkmark on the front cover",
+    Component: FolderCheckIcon,
+    color: "#f59e0b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "calendarplus",
+    name: "CalendarPlusIcon",
+    category: "utility",
+    description: "3D calendar grids plate with a raised glowing green plus sign on the front corner",
+    Component: CalendarPlusIcon,
+    color: "#6366f1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "calendarcheck",
+    name: "CalendarCheckIcon",
+    category: "utility",
+    description: "3D calendar grids plate with a raised glowing green checkmark on the front corner",
+    Component: CalendarCheckIcon,
+    color: "#6366f1",
     accentColor: "#10b981"
   },
   // Alphabet icons – generated dynamically A-Z

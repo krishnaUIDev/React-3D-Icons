@@ -282,6 +282,11 @@ import {
   MicroscopeIcon,
   TelescopeIcon,
   BeakerIcon,
+  FolderPlusIcon,
+  FolderMinusIcon,
+  FolderCheckIcon,
+  CalendarPlusIcon,
+  CalendarCheckIcon,
   BankIcon,
   CoinIcon,
   PiggyBankIcon,
@@ -584,6 +589,11 @@ const ICONS_REGISTRY = [
   { id: "microscope", name: "MicroscopeIcon", category: "utility", Component: MicroscopeIcon, color: "#475569", accentColor: "#10b981" },
   { id: "telescope", name: "TelescopeIcon", category: "utility", Component: TelescopeIcon, color: "#1e293b", accentColor: "#10b981" },
   { id: "beaker", name: "BeakerIcon", category: "utility", Component: BeakerIcon, color: "#cbd5e1", accentColor: "#10b981" },
+  { id: "folderplus", name: "FolderPlusIcon", category: "storage", Component: FolderPlusIcon, color: "#f59e0b", accentColor: "#10b981" },
+  { id: "folderminus", name: "FolderMinusIcon", category: "storage", Component: FolderMinusIcon, color: "#f59e0b", accentColor: "#ef4444" },
+  { id: "foldercheck", name: "FolderCheckIcon", category: "storage", Component: FolderCheckIcon, color: "#f59e0b", accentColor: "#10b981" },
+  { id: "calendarplus", name: "CalendarPlusIcon", category: "utility", Component: CalendarPlusIcon, color: "#6366f1", accentColor: "#10b981" },
+  { id: "calendarcheck", name: "CalendarCheckIcon", category: "utility", Component: CalendarCheckIcon, color: "#6366f1", accentColor: "#10b981" },
   // Alphabet icons A-Z
   ...(() => {
     const LETTER_COLORS: Record<string, string> = {
