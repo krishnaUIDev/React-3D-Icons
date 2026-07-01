@@ -2899,11 +2899,21 @@ export const Landing: React.FC<LandingProps> = ({ theme, search }) => {
   const [requestCategory, setRequestCategory] = useState("utility");
   const [requestDetails, setRequestDetails] = useState("");
   const [requestEmail, setRequestEmail] = useState("");
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Sync suggestion field with search input
   useEffect(() => {
     setRequestIconName(search);
   }, [search]);
+
+  // Handle scroll tracking for Back to Top button
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const filteredIcons = ICONS_REGISTRY.filter(icon => {
     const matchesSearch = 
@@ -3072,6 +3082,28 @@ export const Landing: React.FC<LandingProps> = ({ theme, search }) => {
           )}
         </div>
       </div>
+
+      {/* Floating Back to Top Button */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className={`fixed bottom-6 right-6 z-50 flex items-center justify-center p-3 rounded-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500/90 dark:hover:bg-indigo-600 text-white shadow-xl shadow-indigo-600/20 hover:shadow-indigo-600/30 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer backdrop-blur-md ${
+          showScrollTop ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-90 pointer-events-none"
+        }`}
+        aria-label="Back to Top"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="w-4 h-4"
+        >
+          <path d="M18 15l-6-6-6 6" />
+        </svg>
+      </button>
     </div>
   );
 };
