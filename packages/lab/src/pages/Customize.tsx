@@ -651,6 +651,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [copied, setCopied] = useState(false);
   const [copiedSVG, setCopiedSVG] = useState(false);
   const [downloading, setDownloading] = useState(false);
+  const [downloadingPNG, setDownloadingPNG] = useState(false);
   const [resetKey, setResetKey] = useState(0);
   const [renderMode, setRenderMode] = useState<"3d" | "2d">("3d");
   const [environment, setEnvironment] = useState<IconEnvironment>("city");
@@ -736,6 +737,29 @@ function App() {
       root.unmount();
       document.body.removeChild(container);
       setDownloading(false);
+    }, 100);
+  };
+
+  const handleDownloadPNG = () => {
+    if (downloadingPNG) return;
+    setDownloadingPNG(true);
+
+    setTimeout(() => {
+      const canvasElement = document.querySelector("canvas");
+      if (canvasElement) {
+        try {
+          const dataUrl = canvasElement.toDataURL("image/png");
+          const link = document.createElement("a");
+          link.href = dataUrl;
+          link.download = `${currentIcon.id}-3d-${preset}.png`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } catch (err) {
+          console.error("Failed to capture 3D canvas PNG snapshot:", err);
+        }
+      }
+      setDownloadingPNG(false);
     }, 100);
   };
 
@@ -915,6 +939,17 @@ function App() {
                   <LucideAll.Download size={14} />
                   <span>{downloading ? "Downloading..." : "Download SVG"}</span>
                 </button>
+
+                {renderMode === "3d" && (
+                  <button
+                    onClick={handleDownloadPNG}
+                    disabled={downloadingPNG}
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold shadow-md shadow-violet-600/10 hover:scale-[1.02] transition active:scale-98 cursor-pointer disabled:opacity-50"
+                  >
+                    <LucideAll.Camera size={14} />
+                    <span>{downloadingPNG ? "Capturing..." : "Download 3D PNG"}</span>
+                  </button>
+                )}
               </div>
             </div>
             <pre className="p-6 text-xs text-zinc-700 dark:text-zinc-300 font-mono overflow-x-auto leading-relaxed bg-zinc-50/20 dark:bg-[#0b0e16] custom-scrollbar">
