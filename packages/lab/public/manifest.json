@@ -1,0 +1,17 @@
+{
+  "short_name": "R3D Icons",
+  "name": "React 3D Icons Customizer Lab",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#090b11",
+  "theme_color": "#6366f1",
+  "display": "standalone",
+  "orientation": "any"
+}
