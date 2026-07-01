@@ -276,6 +276,11 @@ import {
   EuroIcon,
   YenIcon,
   PoundIcon,
+  AtomIcon,
+  DNAIcon,
+  MicroscopeIcon,
+  TelescopeIcon,
+  BeakerIcon,
   BankIcon,
   CoinIcon,
   PiggyBankIcon,
@@ -573,6 +578,11 @@ const ICONS_REGISTRY = [
   { id: "euro", name: "EuroIcon", category: "utility", Component: EuroIcon, color: "#eab308", accentColor: "#10b981" },
   { id: "yen", name: "YenIcon", category: "utility", Component: YenIcon, color: "#eab308", accentColor: "#10b981" },
   { id: "pound", name: "PoundIcon", category: "utility", Component: PoundIcon, color: "#eab308", accentColor: "#10b981" },
+  { id: "atom", name: "AtomIcon", category: "utility", Component: AtomIcon, color: "#6366f1", accentColor: "#10b981" },
+  { id: "dna", name: "DNAIcon", category: "utility", Component: DNAIcon, color: "#3b82f6", accentColor: "#10b981" },
+  { id: "microscope", name: "MicroscopeIcon", category: "utility", Component: MicroscopeIcon, color: "#475569", accentColor: "#10b981" },
+  { id: "telescope", name: "TelescopeIcon", category: "utility", Component: TelescopeIcon, color: "#1e293b", accentColor: "#10b981" },
+  { id: "beaker", name: "BeakerIcon", category: "utility", Component: BeakerIcon, color: "#cbd5e1", accentColor: "#10b981" },
   // Alphabet icons A-Z
   ...(() => {
     const LETTER_COLORS: Record<string, string> = {

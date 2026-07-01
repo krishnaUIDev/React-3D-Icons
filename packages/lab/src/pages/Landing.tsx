@@ -274,6 +274,11 @@ import {
   EuroIcon,
   YenIcon,
   PoundIcon,
+  AtomIcon,
+  DNAIcon,
+  MicroscopeIcon,
+  TelescopeIcon,
+  BeakerIcon,
   BankIcon,
   CoinIcon,
   PiggyBankIcon,
@@ -2763,6 +2768,51 @@ const ICONS_REGISTRY = [
     description: "3D ridged gold coin showing raised outer borders and a glowing central currency pound symbol",
     Component: PoundIcon,
     color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "atom",
+    name: "AtomIcon",
+    category: "utility",
+    description: "3D Rutherford-Bohr atom model with orbiting electrons and a clustered nucleus",
+    Component: AtomIcon,
+    color: "#6366f1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "dna",
+    name: "DNAIcon",
+    category: "utility",
+    description: "3D winding double-helix structure with connected base pairs",
+    Component: DNAIcon,
+    color: "#3b82f6",
+    accentColor: "#10b981"
+  },
+  {
+    id: "microscope",
+    name: "MicroscopeIcon",
+    category: "utility",
+    description: "3D laboratory microscope featuring adjustable focus knobs and a specimen platform",
+    Component: MicroscopeIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "telescope",
+    name: "TelescopeIcon",
+    category: "utility",
+    description: "3D astronomical telescope with refractor main tube on tripod support legs",
+    Component: TelescopeIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "beaker",
+    name: "BeakerIcon",
+    category: "utility",
+    description: "3D laboratory beaker containing bubbling liquid volume and measurement markers",
+    Component: BeakerIcon,
+    color: "#cbd5e1",
     accentColor: "#10b981"
   },
   // Alphabet icons – generated dynamically A-Z

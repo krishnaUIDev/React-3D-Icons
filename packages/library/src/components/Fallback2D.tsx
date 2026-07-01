@@ -2480,6 +2480,41 @@ const getRawSVG = (id: string, strokeColor: string, isDark: boolean): React.Reac
           <path d="M16 8a4 4 0 0 0-7.3-2h0a4 4 0 0 0-.7 2V16h7M9 12h6" />
         </svg>
       );
+    case "atom":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="12" cy="12" r="2" />
+          <ellipse cx="12" cy="12" rx="4" ry="9" transform="rotate(45 12 12)" />
+          <ellipse cx="12" cy="12" rx="4" ry="9" transform="rotate(-45 12 12)" />
+          <ellipse cx="12" cy="12" rx="9" ry="4" />
+        </svg>
+      );
+    case "dna":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M4.5 10.5C4.5 5 19.5 5 19.5 10.5S4.5 16 4.5 19.5" />
+          <path d="M19.5 10.5c0 5.5-15 5.5-15 11" />
+          <path d="M6 8h12M4.5 12h15M6.5 16h11" />
+        </svg>
+      );
+    case "microscope":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M6 18h8M3 22h14M12 6a4 4 0 0 0-4 4v8M9 6h6M12 2v4M5 14h6" />
+        </svg>
+      );
+    case "telescope":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M18.5 5.5L8 16M13.5 3.5l1.5 1.5M7 14.5l1.5 1.5M9 21l3-5M12 16l3 5M6 21h12" />
+        </svg>
+      );
+    case "beaker":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M6 3h12M6 3v15a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V3M6 14h12M12 17h.01M9 17h.01" />
+        </svg>
+      );
 
 
 
