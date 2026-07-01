@@ -24,34 +24,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(156, 163, 175, 0.45);
 }
-
-/* Leva GUI customization overrides to integrate with glassmorphic cards */
-.leva-c-root {
-  --leva-colors-elevation1: rgba(24, 24, 27, 0.8) !important;
-  --leva-colors-elevation2: rgba(39, 39, 42, 0.9) !important;
-  --leva-colors-elevation3: rgba(63, 63, 70, 0.9) !important;
-  --leva-colors-accent1: #6366f1 !important;
-  --leva-colors-accent2: #4f46e5 !important;
-  --leva-colors-accent3: #4338ca !important;
-  --leva-colors-highlight1: #f4f4f5 !important;
-  --leva-colors-highlight2: #e4e4e7 !important;
-  --leva-colors-highlight3: #d4d4d8 !important;
-  --leva-shadows-root-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
-  --leva-radii-xs: 6px !important;
-  --leva-radii-sm: 8px !important;
-  --leva-radii-lg: 12px !important;
-  --leva-fonts-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
-  
-  font-family: ui-sans-serif, system-ui, sans-serif !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: 12px !important;
-  backdrop-filter: blur(12px) !important;
-  overflow: hidden !important;
-}
-
-.leva-c-title {
-  font-weight: 600 !important;
-  letter-spacing: 0.025em !important;
-  text-transform: uppercase !important;
-  font-size: 0.75rem !important;
-}
