@@ -2916,7 +2916,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search }) => {
   return (
     <div>
       {/* Hero Section */}
-      <Hero />
+      <Hero totalIcons={ICONS_REGISTRY.length} />
 
       {/* Grid Section */}
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 pb-16">

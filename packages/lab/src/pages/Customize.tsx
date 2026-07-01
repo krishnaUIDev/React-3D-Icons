@@ -649,6 +649,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [floatHeight, setFloatHeight] = useState(1.0);
   const [interactive, setInteractive] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [copiedSVG, setCopiedSVG] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [renderMode, setRenderMode] = useState<"3d" | "2d">("3d");
   const [environment, setEnvironment] = useState<IconEnvironment>("city");
@@ -734,6 +735,36 @@ function App() {
       root.unmount();
       document.body.removeChild(container);
       setDownloading(false);
+    }, 100);
+  };
+
+  const handleCopySVG = () => {
+    const container = document.createElement("div");
+    container.style.position = "absolute";
+    container.style.left = "-9999px";
+    document.body.appendChild(container);
+
+    const root = createRoot(container);
+    root.render(
+      <Fallback2D
+        id={currentIcon.id}
+        color={color}
+        theme={theme}
+        preset={preset}
+      />
+    );
+
+    setTimeout(() => {
+      const svgElement = container.querySelector("svg");
+      if (svgElement) {
+        svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        const svgContent = svgElement.outerHTML;
+        navigator.clipboard.writeText(svgContent);
+        setCopiedSVG(true);
+        setTimeout(() => setCopiedSVG(false), 2000);
+      }
+      root.unmount();
+      document.body.removeChild(container);
     }, 100);
   };
 
@@ -863,6 +894,14 @@ function App() {
                 >
                   {copied ? <Check size={14} /> : <Copy size={14} />}
                   <span>{copied ? t("copied_btn") : t("copy_btn")}</span>
+                </button>
+
+                <button
+                  onClick={handleCopySVG}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md shadow-emerald-600/10 hover:scale-[1.02] transition active:scale-98 cursor-pointer"
+                >
+                  {copiedSVG ? <Check size={14} /> : <Copy size={14} />}
+                  <span>{copiedSVG ? "SVG Copied!" : "Copy SVG Code"}</span>
                 </button>
 
                 <button

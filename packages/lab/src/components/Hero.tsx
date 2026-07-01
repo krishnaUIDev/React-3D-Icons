@@ -3,7 +3,11 @@ import { useTranslation } from "../i18n/useTranslation";
 import { Sparkles, Download } from "lucide-react";
 import pkg from "../../../library/package.json";
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  totalIcons?: number;
+}
+
+export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
   const { t } = useTranslation();
   const [version, setVersion] = useState(pkg.version);
 
@@ -43,7 +47,7 @@ export const Hero: React.FC = () => {
 
       {/* Subtitle */}
       <p className="text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-6 leading-relaxed font-medium">
-        {t("hero_subtitle")}
+        {t("hero_subtitle", { count: totalIcons * 9 })}
       </p>
 
       {/* Action Buttons */}

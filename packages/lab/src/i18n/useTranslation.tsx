@@ -4,7 +4,7 @@ import { translations, LanguageCode, TranslationKey } from "./translations";
 interface LanguageContextProps {
   lang: LanguageCode;
   setLang: (code: LanguageCode) => void;
-  t: (key: TranslationKey) => string;
+  t: (key: TranslationKey, replacements?: Record<string, string | number>) => string;
 }
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
@@ -24,8 +24,14 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     localStorage.setItem("react-3d-icons-lang", code);
   };
 
-  const t = (key: TranslationKey): string => {
-    return translations[lang][key] || translations.en[key] || String(key);
+  const t = (key: TranslationKey, replacements?: Record<string, string | number>): string => {
+    let str: string = translations[lang][key] || translations.en[key] || String(key);
+    if (replacements) {
+      Object.entries(replacements).forEach(([k, v]) => {
+        str = str.replace(`{${k}}`, String(v));
+      });
+    }
+    return str;
   };
 
   return (
