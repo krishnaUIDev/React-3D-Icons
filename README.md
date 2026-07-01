@@ -8,7 +8,7 @@ A premium, interactive React component library for high-fidelity 3D and 2D vecto
 [![npm downloads](https://img.shields.io/npm/dm/r3d-icons.svg?color=ec4899&style=flat-square)](https://www.npmjs.com/package/r3d-icons)
 [![license](https://img.shields.io/npm/l/r3d-icons.svg?color=71717a&style=flat-square)](https://github.com/krishnaUIDev/React-3D-Icons/blob/main/LICENSE)
 
-[**✨ Explore Live Interactive Sandbox**](https://react-3d-icons-lab.vercel.app/)
+[**✨ Explore Live Interactive Sandbox**](https://r3d-icons.vercel.app/)
 
 ---
 
@@ -113,6 +113,9 @@ Every icon component accepts the following customizable props:
 ---
 
 ## 📚 Icon Catalog (Over 280+ Premium Icons)
+
+<details>
+<summary><b>📐 Click to Expand Catalog</b></summary>
 
 Icons are categorized into modern, high-fidelity sets:
 
@@ -244,6 +247,8 @@ Icons are categorized into modern, high-fidelity sets:
 ### 🔤 Alphanumerics & Symbols
 *   **Alphabet (A-Z)**: `AIcon` through `ZIcon`
 *   **Digits (0-9)**: `ZeroIcon` through `NineIcon`
+
+</details>
 
 ---
 
