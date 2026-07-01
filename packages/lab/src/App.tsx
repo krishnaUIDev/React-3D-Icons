@@ -19,6 +19,28 @@ function AppContent() {
   });
   const [search, setSearch] = useState("");
   const { route } = useRouter();
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+
+  // Capture PWA browser install prompts
+  useEffect(() => {
+    const handlePrompt = (e: Event) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+    window.addEventListener("beforeinstallprompt", handlePrompt);
+    return () => window.removeEventListener("beforeinstallprompt", handlePrompt);
+  }, []);
+
+  const handleInstallApp = () => {
+    if (!installPrompt) return;
+    installPrompt.prompt();
+    installPrompt.userChoice.then((choiceResult: any) => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("PWA installed successfully by user");
+      }
+      setInstallPrompt(null);
+    });
+  };
 
   // Sync theme class on HTML element & localStorage
   useEffect(() => {
@@ -44,6 +66,8 @@ function AppContent() {
         setTheme={setTheme}
         search={search}
         setSearch={setSearch}
+        installPrompt={installPrompt}
+        onInstall={handleInstallApp}
       />
 
       {/* Dynamic Page Views */}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "../i18n/useTranslation";
 import { useRouter } from "../router/Router";
-import { Sun, Moon, Github, Globe, Search } from "lucide-react";
+import { Sun, Moon, Github, Globe, Search, DownloadCloud } from "lucide-react";
 import { LanguageCode } from "../i18n/translations";
 
 interface HeaderProps {
@@ -9,9 +9,18 @@ interface HeaderProps {
   setTheme: (theme: "light" | "dark") => void;
   search: string;
   setSearch: (search: string) => void;
+  installPrompt?: any;
+  onInstall?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ theme, setTheme, search, setSearch }) => {
+export const Header: React.FC<HeaderProps> = ({
+  theme,
+  setTheme,
+  search,
+  setSearch,
+  installPrompt,
+  onInstall
+}) => {
   const { t, lang, setLang } = useTranslation();
   const { route, navigate } = useRouter();
   const [langOpen, setLangOpen] = useState(false);
@@ -141,6 +150,18 @@ export const Header: React.FC<HeaderProps> = ({ theme, setTheme, search, setSear
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
               <span>Offline</span>
             </div>
+          )}
+
+          {/* PWA Install Button */}
+          {installPrompt && (
+            <button
+              onClick={onInstall}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-md shadow-indigo-600/10 transition hover:scale-[1.02] active:scale-98 cursor-pointer select-none"
+              title="Install Web App for Offline Use"
+            >
+              <DownloadCloud size={14} />
+              <span className="hidden xs:inline">Install App</span>
+            </button>
           )}
 
           {/* Theme Toggler */}
