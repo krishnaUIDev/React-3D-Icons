@@ -40,7 +40,7 @@ function AppContent() {
       {/* Dynamic Page Views */}
       <main className="flex-grow">
         {route === "landing" ? (
-          <Landing theme={theme} search={search} />
+          <Landing theme={theme} search={search} setSearch={setSearch} />
         ) : (
           <Customize theme={theme} />
         )}

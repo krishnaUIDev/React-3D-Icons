@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "../i18n/useTranslation";
 import { Hero } from "../components/Hero";
 import { IconCard } from "../components/IconCard";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle, Search } from "lucide-react";
 import { 
   FacebookIcon,
   ShieldIcon,
@@ -297,6 +297,7 @@ import { TranslationKey } from "../i18n/translations";
 interface LandingProps {
   theme: "light" | "dark";
   search: string;
+  setSearch: (val: string) => void;
 }
 
 const ICONS_REGISTRY = [
@@ -2890,7 +2891,7 @@ const ICONS_REGISTRY = [
 
 const CATEGORIES = ["all", "storage", "systems", "hardware", "networking", "mechanics", "brands", "emojies", "utility", "alphabet"] as const;
 
-export const Landing: React.FC<LandingProps> = ({ theme, search }) => {
+export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) => {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<typeof CATEGORIES[number]>("all");
 
@@ -2930,6 +2931,40 @@ export const Landing: React.FC<LandingProps> = ({ theme, search }) => {
 
       {/* Grid Section */}
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 pb-16">
+
+        {/* Mobile-only Search Input */}
+        <div className="sm:hidden mb-6 relative">
+          <input
+            type="text"
+            placeholder={t("search_placeholder")}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full px-4 py-3 pl-11 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] text-zinc-800 dark:text-zinc-200 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all shadow-sm"
+          />
+          <Search size={16} className="absolute left-4 top-3.5 text-zinc-400 pointer-events-none" />
+        </div>
+
+        {/* Dynamic Search Suggestions / Trending Tags */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6 text-xs text-zinc-500 dark:text-zinc-400">
+          <span className="font-bold">Trending:</span>
+          {["Shield", "Folder", "CreditCard", "Atom", "Rocket", "Calendar"].map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setSearch(tag)}
+              className="px-2.5 py-1 rounded-md border border-zinc-200/60 dark:border-zinc-800 hover:border-indigo-500/30 bg-white dark:bg-[#0a0d14] hover:bg-zinc-50 dark:hover:bg-zinc-850 text-zinc-600 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer select-none font-medium"
+            >
+              {tag}
+            </button>
+          ))}
+          {search && (
+            <button
+              onClick={() => setSearch("")}
+              className="text-red-500 dark:text-red-400 font-bold hover:underline cursor-pointer ml-1.5"
+            >
+              Clear
+            </button>
+          )}
+        </div>
 
         {/* Category Filter Bar */}
         <div className="flex flex-wrap gap-1.5 justify-center mb-6">

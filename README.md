@@ -252,6 +252,39 @@ Icons are categorized into modern, high-fidelity sets:
 
 ---
 
+## 🌐 Server-Side Rendering (SSR) & Next.js Compatibility
+
+Since 3D icons use WebGL under the hood (which requires browser-only objects like `window` and `document` to initialize), server-side rendering in frameworks like **Next.js** or **Remix** can trigger runtime errors.
+
+To use the 3D variant safely, import them dynamically with SSR disabled:
+
+### Next.js (App or Pages Router)
+
+```jsx
+import dynamic from "next/dynamic";
+
+const ShieldIcon = dynamic(
+  () => import("r3d-icons").then((mod) => mod.ShieldIcon),
+  { ssr: false }
+);
+
+export default function Page() {
+  return <ShieldIcon size={120} preset="glass" />;
+}
+```
+
+Alternatively, you can safely render the **2D vector variant** on the server without dynamic imports:
+
+```jsx
+import { ShieldIcon } from "r3d-icons";
+
+export default function Page() {
+  return <ShieldIcon size={120} variant="2d" />;
+}
+```
+
+---
+
 ## 🛠️ Development & Contributions
 
 To run the local developer sandbox dashboard (Vite + React showcase lab):

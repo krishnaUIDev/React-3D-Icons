@@ -651,6 +651,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [copied, setCopied] = useState(false);
   const [copiedSVG, setCopiedSVG] = useState(false);
   const [downloading, setDownloading] = useState(false);
+  const [resetKey, setResetKey] = useState(0);
   const [renderMode, setRenderMode] = useState<"3d" | "2d">("3d");
   const [environment, setEnvironment] = useState<IconEnvironment>("city");
 
@@ -806,6 +807,7 @@ function App() {
     setSpinSpeed(1.0);
     setFloatHeight(1.0);
     setInteractive(true);
+    setResetKey(prev => prev + 1);
     updateCustomizerURL(currentIcon.color, currentIcon.id);
   };
 
@@ -857,6 +859,7 @@ function App() {
             {/* Main Interactive canvas element */}
             <div className="w-full h-full">
               <ActiveComponent
+                key={resetKey}
                 preset={preset}
                 angle={angle}
                 environment={environment}
