@@ -2901,6 +2901,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
   const [requestDetails, setRequestDetails] = useState("");
   const [requestEmail, setRequestEmail] = useState("");
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(60);
 
   // Sync suggestion field with search input
   useEffect(() => {
@@ -2923,6 +2924,36 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
     const matchesCategory = activeCategory === "all" || icon.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
+
+  // Reset visible icons count when filters change
+  useEffect(() => {
+    setVisibleCount(60);
+  }, [search, activeCategory]);
+
+  // Infinite Scroll / Lazy Load Observer for Lighthouse performance optimization
+  useEffect(() => {
+    if (visibleCount >= filteredIcons.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount((prev) => Math.min(prev + 40, filteredIcons.length));
+        }
+      },
+      { rootMargin: "300px" } // Load next batch 300px before reaching viewport bottom
+    );
+
+    const sentinel = document.getElementById("scroll-sentinel");
+    if (sentinel) {
+      observer.observe(sentinel);
+    }
+
+    return () => {
+      if (sentinel) {
+        observer.unobserve(sentinel);
+      }
+    };
+  }, [visibleCount, filteredIcons.length]);
 
   return (
     <div>
@@ -2990,7 +3021,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
 
         {/* Icon Grid */}
         <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3">
-          {filteredIcons.map(icon => (
+          {filteredIcons.slice(0, visibleCount).map(icon => (
             <IconCard
               key={icon.id}
               id={icon.id}
@@ -3001,6 +3032,13 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
               theme={theme}
             />
           ))}
+
+          {/* Sentinel element to trigger loading more icons */}
+          {visibleCount < filteredIcons.length && (
+            <div id="scroll-sentinel" className="col-span-full h-8 flex items-center justify-center text-xs font-semibold text-zinc-400 dark:text-zinc-500 py-4">
+              <span className="animate-pulse">Loading more icons...</span>
+            </div>
+          )}
 
           {filteredIcons.length === 0 && (
             <div className="col-span-full py-12 px-6 flex flex-col items-center justify-center text-center text-zinc-400 dark:text-zinc-500 gap-6 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl bg-zinc-50/50 dark:bg-[#090d16]/30 backdrop-blur-sm max-w-md mx-auto w-full">
