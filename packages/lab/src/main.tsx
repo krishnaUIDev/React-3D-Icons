@@ -17,4 +17,13 @@ if ("serviceWorker" in navigator && (import.meta as any).env?.PROD) {
       .then((reg) => console.log("Service Worker registered successfully:", reg.scope))
       .catch((err) => console.warn("Service Worker registration failed:", err));
   });
+
+  // Automatically refresh the page when a new service worker version activates
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (!refreshing) {
+      refreshing = true;
+      window.location.reload();
+    }
+  });
 }
