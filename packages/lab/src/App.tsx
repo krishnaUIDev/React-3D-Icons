@@ -8,12 +8,21 @@ import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
 
 function AppContent() {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    const saved = localStorage.getItem("r3d-theme");
+    if (saved === "light" || saved === "dark") return saved;
+    // Check user's operating system dark-mode preference
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+      return "light";
+    }
+    return "dark";
+  });
   const [search, setSearch] = useState("");
   const { route } = useRouter();
 
-  // Sync theme class on HTML element
+  // Sync theme class on HTML element & localStorage
   useEffect(() => {
+    localStorage.setItem("r3d-theme", theme);
     const root = window.document.documentElement;
     if (theme === "dark") {
       root.classList.add("dark");
