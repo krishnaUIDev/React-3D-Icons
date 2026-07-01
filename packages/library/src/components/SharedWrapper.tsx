@@ -274,6 +274,7 @@ const IconScene: React.FC<{
 export function SharedWrapper({
   preset = "glass",
   angle = "perspective",
+  environment = "city",
   variant = "3d",
   color,
   accentColor,
@@ -354,7 +355,7 @@ export function SharedWrapper({
         shadows
       >
         <StudioLights theme={theme} />
-        <Environment preset="city" />
+        <Environment preset={environment} />
 
         <IconScene
           preset={preset}

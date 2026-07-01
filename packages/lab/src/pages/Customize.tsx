@@ -110,6 +110,7 @@ import {
   Fallback2D,
   IconPreset,
   IconAngle,
+  IconEnvironment,
   BugIcon,
   FlaskIcon,
   PieChartIcon,
@@ -640,6 +641,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [copied, setCopied] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [renderMode, setRenderMode] = useState<"3d" | "2d">("3d");
+  const [environment, setEnvironment] = useState<IconEnvironment>("city");
 
   // Sync color with URL changes
   useEffect(() => {
@@ -664,6 +666,7 @@ function App() {
       <${currentIcon.name}
         preset="${preset}"
         angle="${angle}"
+        environment="${environment}"
         variant="${renderMode}"
         color="${color}"
         accentColor="${accentColor}"
@@ -815,6 +818,7 @@ function App() {
               <ActiveComponent
                 preset={preset}
                 angle={angle}
+                environment={environment}
                 variant={renderMode}
                 color={color}
                 accentColor={accentColor}
@@ -953,6 +957,33 @@ function App() {
                 })}
               </div>
             </div>
+
+            {/* Environment Selectors */}
+            {renderMode === "3d" && (
+              <div className="space-y-3">
+                <label className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                  Environment Light
+                </label>
+                <div className="grid grid-cols-3 gap-2">
+                  {(["city", "sunset", "studio", "night", "park", "forest", "lobby", "apartment", "warehouse"] as IconEnvironment[]).map((env) => {
+                    const isSelected = environment === env;
+                    return (
+                      <button
+                        key={env}
+                        onClick={() => setEnvironment(env)}
+                        className={`py-2 px-2.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer text-center ${
+                          isSelected
+                            ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                            : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                        }`}
+                      >
+                        {env}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {/* Curated Color Palettes */}
             <div className="space-y-3">

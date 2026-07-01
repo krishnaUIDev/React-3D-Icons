@@ -2,10 +2,12 @@ import { HTMLAttributes } from "react";
 
 export type IconPreset = "glass" | "metal" | "clay" | "hologram" | "gold" | "silver" | "glassmorphism" | "carbon" | "wood";
 export type IconAngle = "front" | "perspective" | "tilted";
+export type IconEnvironment = "apartment" | "city" | "forest" | "lobby" | "night" | "park" | "studio" | "sunset" | "warehouse";
 
 export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" | "children"> {
   preset?: IconPreset;
   angle?: IconAngle;
+  environment?: IconEnvironment;
   variant?: "3d" | "2d";
   color?: string;       // Custom primary hex/rgb color
   accentColor?: string; // Custom accent/glow hex/rgb color
