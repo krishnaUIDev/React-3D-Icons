@@ -305,10 +305,13 @@ export function SharedWrapper({
   }, []);
 
   const use2d = variant === "2d" || !isWebGLAvailable() || !mounted;
+  const fallbackLabel = props["aria-label"] || (iconId ? `${iconId.charAt(0).toUpperCase() + iconId.slice(1)} Icon` : "3D Icon");
 
   if (use2d) {
     return (
       <div
+        role="img"
+        aria-label={fallbackLabel}
         style={{
           ...sizeStyle,
           display: "flex",
@@ -348,7 +351,12 @@ export function SharedWrapper({
   }
 
   return (
-    <div style={{ ...sizeStyle, position: "relative" }} {...props}>
+    <div
+      role="img"
+      aria-label={fallbackLabel}
+      style={{ ...sizeStyle, position: "relative" }}
+      {...props}
+    >
       <Canvas
         camera={{ position: [0, 0, interactive ? 4.5 : 3.0], fov: 45 }}
         gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}

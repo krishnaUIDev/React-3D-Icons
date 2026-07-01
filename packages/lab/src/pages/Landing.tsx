@@ -2937,6 +2937,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
           <input
             type="text"
             placeholder={t("search_placeholder")}
+            aria-label="Search 3D icons"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full px-4 py-3 pl-11 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] text-zinc-800 dark:text-zinc-200 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition-all shadow-sm"

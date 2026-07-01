@@ -50,6 +50,7 @@ export const Header: React.FC<HeaderProps> = ({ theme, setTheme, search, setSear
             <input
               type="text"
               placeholder={t("search_placeholder")}
+              aria-label="Search 3D icons"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full bg-zinc-100 dark:bg-[#0e111a] border border-zinc-200/60 dark:border-zinc-800 focus:border-indigo-500 rounded-xl py-2 pl-9 pr-4 text-xs focus:outline-none text-zinc-900 dark:text-white transition shadow-sm"
