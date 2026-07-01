@@ -31,6 +31,8 @@ A premium, interactive React component library for high-fidelity 3D and 2D vecto
     *   `wood` — Organic textured timber finish.
 *   **🌍 Dynamic Environment Lighting**: Toggle reflection maps (`city`, `sunset`, `studio`, `night`, `park`, etc.) to control specular highlights in real-time.
 *   **⚡ Handcrafted 2D Vector Fallback**: Automatically falls back to lightweight, high-fidelity SVGs if WebGL is disabled or unavailable on the client.
+*   **📶 Installable PWA & Offline Mode**: The showcase dashboard is fully installable as a Progressive Web App (PWA) on mobile and desktop platforms, featuring robust network-first dynamic caching for complete offline functionality.
+*   **♿ WCAG Accessibility Standards**: Out-of-the-box support for screen readers and structural semantic `role="img"` tags with dynamic `aria-label` metadata on both 3D canvases and 2D vector elements (WCAG 1.1.1 compliant).
 *   **📐 Seamless Sizing**: Directly set sizing using a number (e.g. `120` resolves to `120px`) or any valid CSS string (e.g., `6rem`, `10vw`).
 
 ---
