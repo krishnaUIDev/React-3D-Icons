@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "../i18n/useTranslation";
 import { useRouter } from "../router/Router";
 import { Sun, Moon, Github, Globe, Search } from "lucide-react";
@@ -15,6 +15,20 @@ export const Header: React.FC<HeaderProps> = ({ theme, setTheme, search, setSear
   const { t, lang, setLang } = useTranslation();
   const { route, navigate } = useRouter();
   const [langOpen, setLangOpen] = useState(false);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
 
   const languages: { code: LanguageCode; label: string }[] = [
     { code: "en", label: "English" },
@@ -120,6 +134,14 @@ export const Header: React.FC<HeaderProps> = ({ theme, setTheme, search, setSear
               </>
             )}
           </div>
+
+          {/* Offline Status Badge */}
+          {!isOnline && (
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-[10px] font-bold uppercase tracking-wider select-none animate-pulse">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+              <span>Offline</span>
+            </div>
+          )}
 
           {/* Theme Toggler */}
           <button
