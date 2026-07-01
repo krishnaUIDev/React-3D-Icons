@@ -7,6 +7,7 @@ A premium, interactive React component library for high-fidelity 3D and 2D vecto
 [![npm version](https://img.shields.io/npm/v/r3d-icons.svg?color=6366f1&style=flat-square)](https://www.npmjs.com/package/r3d-icons)
 [![npm downloads](https://img.shields.io/npm/dm/r3d-icons.svg?color=ec4899&style=flat-square)](https://www.npmjs.com/package/r3d-icons)
 [![license](https://img.shields.io/npm/l/r3d-icons.svg?color=71717a&style=flat-square)](https://github.com/krishnaUIDev/React-3D-Icons/blob/main/LICENSE)
+[![Figma](https://img.shields.io/badge/Figma-Design_System-F24E1E?logo=figma&style=flat-square)](https://figma.com)
 
 [**✨ Explore Live Interactive Sandbox**](https://r3d-icons.vercel.app/)
 
