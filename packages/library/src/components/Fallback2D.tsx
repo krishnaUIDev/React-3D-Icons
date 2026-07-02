@@ -1171,6 +1171,30 @@ const getRawSVG = (id: string, strokeColor: string, isDark: boolean): React.Reac
           <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.49-11.05 1-11.6 8.56" />
         </svg>
       );
+    case "cloudnetwork":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />
+          <line x1="12" y1="20" x2="12" y2="22" />
+          <line x1="8" y1="20" x2="8" y2="22" />
+          <line x1="16" y1="20" x2="16" y2="22" />
+          <circle cx="8" cy="22" r="0.5" />
+          <circle cx="12" cy="22" r="0.5" />
+          <circle cx="16" cy="22" r="0.5" />
+        </svg>
+      );
+    case "firewall":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+          <line x1="3" y1="9" x2="21" y2="9" />
+          <line x1="3" y1="15" x2="21" y2="15" />
+          <line x1="9" y1="9" x2="9" y2="15" />
+          <line x1="15" y1="3" x2="15" y2="9" />
+          <line x1="15" y1="15" x2="15" y2="21" />
+          <path d="M12 9a4 4 0 0 0-4 4c0 2.2 4 6 4 6s4-3.8 4-6a4 4 0 0 0-4-4z" />
+        </svg>
+      );
     case "package":
       return (
         <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">

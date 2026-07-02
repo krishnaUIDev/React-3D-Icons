@@ -298,6 +298,8 @@ export type { LetterIconProps } from "./components/LetterIcon";
 export { YoutubeIcon } from "./components/YoutubeIcon";
 export { LinkedinIcon } from "./components/LinkedinIcon";
 export { DribbbleIcon } from "./components/DribbbleIcon";
+export { CloudNetworkIcon } from "./components/CloudNetworkIcon";
+export { FirewallIcon } from "./components/FirewallIcon";
 
 export { Fallback2D } from "./components/Fallback2D";
 export * from "./types";

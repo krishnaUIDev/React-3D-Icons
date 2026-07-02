@@ -119,6 +119,8 @@ import {
   YoutubeIcon,
   LinkedinIcon,
   DribbbleIcon,
+  CloudNetworkIcon,
+  FirewallIcon,
   PackageIcon,
   AirplaneIcon,
   BatteryIcon,
@@ -465,6 +467,24 @@ const ICONS_REGISTRY = [
     Component: NetworkIcon,
     color: "#06b6d4",
     accentColor: "#a855f7"
+  },
+  {
+    id: "cloudnetwork",
+    name: "CloudNetworkIcon",
+    category: "networking",
+    description: "Cloud-hosted computing environment connected to multiple dynamic user node systems",
+    Component: CloudNetworkIcon,
+    color: "#3b82f6",
+    accentColor: "#10b981"
+  },
+  {
+    id: "firewall",
+    name: "FirewallIcon",
+    category: "networking",
+    description: "Network protection firewall with brick-red barrier security and glowing fire flames",
+    Component: FirewallIcon,
+    color: "#e11d48",
+    accentColor: "#ea580c"
   },
   {
     id: "cpu",
