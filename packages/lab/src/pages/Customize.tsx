@@ -649,6 +649,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [floatHeight, setFloatHeight] = useState(1.0);
   const [interactive, setInteractive] = useState(true);
   const [copied, setCopied] = useState(false);
+  const [copiedImport, setCopiedImport] = useState(false);
   const [copiedSVG, setCopiedSVG] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [downloadingPNG, setDownloadingPNG] = useState(false);
@@ -696,6 +697,12 @@ function App() {
     navigator.clipboard.writeText(codeString);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleCopyImport = () => {
+    navigator.clipboard.writeText(`import { ${currentIcon.name} } from "r3d-icons";`);
+    setCopiedImport(true);
+    setTimeout(() => setCopiedImport(false), 2000);
   };
 
   const handleDownloadSVG = () => {
@@ -915,6 +922,14 @@ function App() {
               </div>
               
               <div className="flex items-center gap-2">
+                <button
+                  onClick={handleCopyImport}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-600/10 hover:scale-[1.02] transition active:scale-98 cursor-pointer"
+                >
+                  {copiedImport ? <Check size={14} /> : <Copy size={14} />}
+                  <span>{copiedImport ? "Import Copied!" : "Copy Import"}</span>
+                </button>
+
                 <button
                   onClick={handleCopyCode}
                   className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-md shadow-indigo-600/10 hover:scale-[1.02] transition active:scale-98 cursor-pointer"
