@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "../i18n/useTranslation";
 import { useRouter } from "../router/Router";
-import { Sun, Moon, Github, Globe, Search, DownloadCloud, Figma, Twitter, Dribbble, Linkedin, Instagram, Youtube } from "lucide-react";
+import { Sun, Moon, Github, Globe, Search, DownloadCloud } from "lucide-react";
 import { LanguageCode } from "../i18n/translations";
 
 interface HeaderProps {
@@ -164,60 +164,6 @@ export const Header: React.FC<HeaderProps> = ({
               title="GitHub Repository"
             >
               <Github size={16} />
-            </a>
-            <a
-              href="https://figma.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg border border-zinc-200/80 dark:border-zinc-850 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition shadow-sm"
-              title="Figma Files"
-            >
-              <Figma size={16} />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg border border-zinc-200/80 dark:border-zinc-850 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition shadow-sm"
-              title="Twitter Update"
-            >
-              <Twitter size={16} />
-            </a>
-            <a
-              href="https://dribbble.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg border border-zinc-200/80 dark:border-zinc-850 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition shadow-sm"
-              title="Dribbble Portfolio"
-            >
-              <Dribbble size={16} />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg border border-zinc-200/80 dark:border-zinc-850 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition shadow-sm"
-              title="LinkedIn Profile"
-            >
-              <Linkedin size={16} />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg border border-zinc-200/80 dark:border-zinc-850 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition shadow-sm"
-              title="Instagram Page"
-            >
-              <Instagram size={16} />
-            </a>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg border border-zinc-200/80 dark:border-zinc-850 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition shadow-sm"
-              title="YouTube Channel"
-            >
-              <Youtube size={16} />
             </a>
           </div>
         </div>
