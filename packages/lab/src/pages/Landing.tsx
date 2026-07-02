@@ -2903,9 +2903,12 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [visibleCount, setVisibleCount] = useState(60);
 
-  // Sync suggestion field with search input
+  // Sync suggestion field with search input & reset category to 'all' for global search
   useEffect(() => {
     setRequestIconName(search);
+    if (search.trim() !== "") {
+      setActiveCategory("all");
+    }
   }, [search]);
 
   // Handle scroll tracking for Back to Top button
