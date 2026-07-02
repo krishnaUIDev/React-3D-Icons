@@ -14,6 +14,9 @@ export default defineConfig({
     // Force resolving the peer dependencies from the root/monorepo packages to avoid duplicate instances of React or Three.js in runtime
     dedupe: ["react", "react-dom", "three", "@react-three/fiber", "@react-three/drei"]
   },
+  optimizeDeps: {
+    exclude: ["r3d-icons"]
+  },
   build: {
     rollupOptions: {
       output: {

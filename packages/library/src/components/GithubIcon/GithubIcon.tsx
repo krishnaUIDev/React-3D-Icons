@@ -25,40 +25,52 @@ export function GithubIcon(props: GithubIconProps) {
 
           {/* Stylized Cat Head Silhouette */}
           <group position={[0, 0, 0.1]}>
-            {/* Center Head */}
-            <mesh castShadow position={[0, 0, 0]}>
-              <boxGeometry args={[0.56, 0.46, 0.08]} />
+            {/* Center Head (Round) */}
+            <mesh castShadow position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>
+              <cylinderGeometry args={[0.34, 0.34, 0.08, 32]} />
               <meshStandardMaterial
                 roughness={0.15}
                 metalness={0.8}
-                color={props.theme === "dark" ? "#18181b" : "#cbd5e1"}
+                color={props.theme === "dark" ? "#1e1e2f" : "#e4e4e7"}
               />
             </mesh>
 
-            {/* Left Ear */}
-            <mesh castShadow position={[-0.22, 0.28, 0]} rotation={[0, 0, Math.PI / 4]}>
-              <boxGeometry args={[0.18, 0.18, 0.08]} />
+            {/* Left Ear (Triangular pointer) */}
+            <mesh castShadow position={[-0.22, 0.24, 0]} rotation={[Math.PI / 2, 0, Math.PI / 4]}>
+              <cylinderGeometry args={[0.11, 0.11, 0.08, 3]} />
               <meshStandardMaterial
                 roughness={0.15}
                 metalness={0.8}
-                color={props.theme === "dark" ? "#18181b" : "#cbd5e1"}
+                color={props.theme === "dark" ? "#181825" : "#cbd5e1"}
               />
             </mesh>
 
-            {/* Right Ear */}
-            <mesh castShadow position={[0.22, 0.28, 0]} rotation={[0, 0, -Math.PI / 4]}>
-              <boxGeometry args={[0.18, 0.18, 0.08]} />
+            {/* Right Ear (Triangular pointer) */}
+            <mesh castShadow position={[0.22, 0.24, 0]} rotation={[Math.PI / 2, 0, -Math.PI / 4]}>
+              <cylinderGeometry args={[0.11, 0.11, 0.08, 3]} />
               <meshStandardMaterial
                 roughness={0.15}
                 metalness={0.8}
-                color={props.theme === "dark" ? "#18181b" : "#cbd5e1"}
+                color={props.theme === "dark" ? "#181825" : "#cbd5e1"}
               />
             </mesh>
 
-            {/* Tail/Bottom tentacle accents */}
-            <mesh castShadow position={[0, -0.28, 0]} rotation={[0, 0, 0]}>
-              <cylinderGeometry args={[0.06, 0.06, 0.16, 16]} />
-              <meshStandardMaterial roughness={0.2} metalness={0.8} color={props.theme === "dark" ? "#27272a" : "#94a3b8"} />
+            {/* Cheek/Whisker Accents Left */}
+            <mesh castShadow position={[-0.32, -0.06, 0]} rotation={[0, 0, -0.2]}>
+              <boxGeometry args={[0.12, 0.06, 0.08]} />
+              <meshStandardMaterial roughness={0.15} metalness={0.8} color={props.theme === "dark" ? "#1e1e2f" : "#e4e4e7"} />
+            </mesh>
+
+            {/* Cheek/Whisker Accents Right */}
+            <mesh castShadow position={[0.32, -0.06, 0]} rotation={[0, 0, 0.2]}>
+              <boxGeometry args={[0.12, 0.06, 0.08]} />
+              <meshStandardMaterial roughness={0.15} metalness={0.8} color={props.theme === "dark" ? "#1e1e2f" : "#e4e4e7"} />
+            </mesh>
+
+            {/* Tapered Neck/Body */}
+            <mesh castShadow position={[0, -0.32, 0]}>
+              <cylinderGeometry args={[0.18, 0.24, 0.18, 16]} />
+              <meshStandardMaterial roughness={0.15} metalness={0.8} color={props.theme === "dark" ? "#11111b" : "#94a3b8"} />
             </mesh>
           </group>
         </group>
