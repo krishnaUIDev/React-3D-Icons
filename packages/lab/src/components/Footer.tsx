@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "../router/Router";
-import { Heart } from "lucide-react";
+import { Heart, Grid, Package, Github, AlertCircle } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const { navigate } = useRouter();
@@ -31,33 +31,37 @@ export const Footer: React.FC = () => {
         <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
           <button
             onClick={() => navigate("landing")}
-            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
+            className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
           >
-            Catalog
+            <Grid size={12} className="text-zinc-400" />
+            <span>Catalog</span>
           </button>
           <a
             href="https://www.npmjs.com/package/r3d-icons"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition"
+            className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition"
           >
-            NPM
+            <Package size={12} className="text-zinc-400" />
+            <span>NPM</span>
           </a>
           <a
             href="https://github.com/krishnaUIDev/React-3D-Icons"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition"
+            className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition"
           >
-            GitHub
+            <Github size={12} className="text-zinc-400" />
+            <span>GitHub</span>
           </a>
           <a
             href="https://github.com/krishnaUIDev/React-3D-Icons/issues"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-indigo-600 dark:hover:text-indigo-400 transition"
+            className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition"
           >
-            Issues
+            <AlertCircle size={12} className="text-zinc-400" />
+            <span>Issues</span>
           </a>
         </div>
       </div>
