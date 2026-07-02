@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { LanguageProvider } from "./i18n/useTranslation";
 import { RouterProvider, useRouter } from "./router/Router";
 import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 import { Landing } from "./pages/Landing";
 import { Customize } from "./pages/Customize";
 import { Canvas } from "@react-three/fiber";
@@ -82,6 +83,10 @@ function AppContent() {
           </div>
         )}
       </main>
+
+      {/* Footer */}
+      <Footer />
+
       {/* Shared WebGL Canvas Port */}
       <Canvas
         style={{

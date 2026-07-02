@@ -918,9 +918,9 @@ function App() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <button
           onClick={() => navigate("landing")}
-          className="flex items-center gap-2 text-xs font-bold text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition group cursor-pointer"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] text-xs font-bold text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800/80 transition-all duration-150 shadow-sm shadow-zinc-150/10 dark:shadow-none group cursor-pointer"
         >
-          <ArrowLeft size={16} className="group-hover:-translate-x-0.5 transition-transform" />
+          <ArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
           <span>Back to Gallery</span>
         </button>
 
