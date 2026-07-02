@@ -10,6 +10,11 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
   const { t } = useTranslation();
   const [version, setVersion] = useState(pkg.version);
+  const [typedText, setTypedText] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const words = ["3D Icons", "SVG Vectors", "React Icons", "Web Assets"];
 
   useEffect(() => {
     // Dynamically retrieve the latest version from NPM registry
@@ -23,6 +28,32 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
       .catch((err) => console.warn("Failed to fetch latest version from npm registry:", err));
   }, []);
 
+  useEffect(() => {
+    let timer: any;
+    const activeWord = words[wordIndex];
+
+    if (!isDeleting) {
+      if (typedText !== activeWord) {
+        timer = setTimeout(() => {
+          setTypedText(activeWord.substring(0, typedText.length + 1));
+        }, 100);
+      } else {
+        timer = setTimeout(() => setIsDeleting(true), 1600);
+      }
+    } else {
+      if (typedText !== "") {
+        timer = setTimeout(() => {
+          setTypedText(activeWord.substring(0, typedText.length - 1));
+        }, 50);
+      } else {
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % words.length);
+      }
+    }
+
+    return () => clearTimeout(timer);
+  }, [typedText, isDeleting, wordIndex]);
+
   return (
     <div className="relative pt-8 pb-8 text-center max-w-4xl mx-auto px-6 overflow-hidden">
       {/* Decorative background glow circles */}
@@ -35,13 +66,13 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
         <span>Fully Customizable & Procedural</span>
       </div>
 
-      {/* Main Title Heading */}
       <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1] mb-6">
         <span className="bg-gradient-to-r from-zinc-950 via-zinc-800 to-zinc-700 dark:from-white dark:via-zinc-100 dark:to-zinc-400 bg-clip-text text-transparent">
           {t("hero_title").split(" ").slice(0, -2).join(" ")}
         </span>{" "}
-        <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-          {t("hero_title").split(" ").slice(-2).join(" ")}
+        <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent inline-flex items-center">
+          <span>{typedText}</span>
+          <span className="w-[3.5px] h-[0.85em] ml-1.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 animate-pulse rounded" style={{ animationDuration: "0.8s" }} />
         </span>
       </h1>
 
