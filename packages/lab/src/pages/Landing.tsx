@@ -2981,16 +2981,6 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
 
         {/* Dynamic Search Suggestions / Trending Tags */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-6 text-xs text-zinc-500 dark:text-zinc-400">
-          <span className="font-bold">Trending:</span>
-          {["Shield", "Folder", "CreditCard", "Atom", "Rocket", "Calendar"].map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setSearch(tag)}
-              className="px-2.5 py-1 rounded-md border border-zinc-200/60 dark:border-zinc-800 hover:border-indigo-500/30 bg-white dark:bg-[#0a0d14] hover:bg-zinc-50 dark:hover:bg-zinc-850 text-zinc-600 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer select-none font-medium"
-            >
-              {tag}
-            </button>
-          ))}
           {search && (
             <button
               onClick={() => setSearch("")}

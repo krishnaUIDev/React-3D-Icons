@@ -913,7 +913,7 @@ function App() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-6 pb-24 space-y-8">
+    <div className="max-w-7xl mx-auto px-6 py-6  space-y-4">
       {/* Back button and title */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <button
@@ -989,8 +989,8 @@ function App() {
                 <button
                   onClick={() => setActiveConsoleTab("react")}
                   className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer ${activeConsoleTab === "react"
-                      ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm"
-                      : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                    ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm"
+                    : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
                     }`}
                 >
                   React Component
@@ -998,8 +998,8 @@ function App() {
                 <button
                   onClick={() => setActiveConsoleTab("svg")}
                   className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer ${activeConsoleTab === "svg"
-                      ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm"
-                      : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                    ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm"
+                    : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
                     }`}
                 >
                   SVG Markup
@@ -1081,8 +1081,8 @@ function App() {
                       key={m}
                       onClick={() => setRenderMode(m)}
                       className={`py-2 px-3.5 rounded-xl text-xs font-bold uppercase border transition cursor-pointer flex-grow text-center ${isSelected
-                          ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                          : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                        ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                        : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
                         }`}
                     >
                       {m === "3d" ? "3D Render" : "2D Vector"}
@@ -1105,8 +1105,8 @@ function App() {
                       key={p}
                       onClick={() => handlePresetSelect(p)}
                       className={`py-2 px-3.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer flex-grow text-center ${isSelected
-                          ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                          : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                        ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                        : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
                         }`}
                     >
                       {p}
@@ -1130,8 +1130,8 @@ function App() {
                       key={a}
                       onClick={() => setAngle(a)}
                       className={`py-2 px-3.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer flex-grow text-center ${isSelected
-                          ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                          : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                        ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                        : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
                         }`}
                     >
                       {t(translationKey)}
@@ -1155,8 +1155,8 @@ function App() {
                         key={env}
                         onClick={() => setEnvironment(env)}
                         className={`py-2 px-2.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer text-center ${isSelected
-                            ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                            : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                          ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                          : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
                           }`}
                       >
                         {env}
@@ -1186,8 +1186,8 @@ function App() {
                       onClick={() => handlePaletteSelect(p.color, p.accentColor)}
                       title={p.name}
                       className={`relative h-10 rounded-xl overflow-hidden border transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer flex ${isSelected
-                          ? "border-indigo-500 ring-2 ring-indigo-500/20 shadow-md"
-                          : "border-zinc-200 dark:border-zinc-800"
+                        ? "border-indigo-500 ring-2 ring-indigo-500/20 shadow-md"
+                        : "border-zinc-200 dark:border-zinc-800"
                         }`}
                     >
                       <div className="w-1/2 h-full" style={{ backgroundColor: p.color }} />
@@ -1313,8 +1313,8 @@ function App() {
                 key={icon.id}
                 onClick={() => updateCustomizerURL(icon.color.replace("#", ""), icon.id)}
                 className={`flex-shrink-0 w-24 h-24 rounded-2xl border flex flex-col items-center justify-center p-2 transition duration-200 cursor-pointer ${isSelected
-                    ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 shadow-md ring-1 ring-indigo-500/20"
-                    : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 bg-white dark:bg-[#0e111a]"
+                  ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 shadow-md ring-1 ring-indigo-500/20"
+                  : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 bg-white dark:bg-[#0e111a]"
                   }`}
               >
                 <div className="w-16 h-16 pointer-events-none select-none flex items-center justify-center relative">

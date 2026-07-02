@@ -70,9 +70,9 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
         <span className="bg-gradient-to-r from-zinc-950 via-zinc-800 to-zinc-700 dark:from-white dark:via-zinc-100 dark:to-zinc-400 bg-clip-text text-transparent">
           {t("hero_title").split(" ").slice(0, -2).join(" ")}
         </span>{" "}
-        <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent inline-flex items-center">
-          <span>{typedText}</span>
-          <span className="w-[3.5px] h-[0.85em] ml-1.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 animate-pulse rounded" style={{ animationDuration: "0.8s" }} />
+        <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent inline-block min-h-[1.1em] align-bottom">
+          <span>{typedText || "\u00a0"}</span>
+          <span className="inline-block w-[3.5px] h-[0.85em] ml-1.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 animate-pulse rounded align-middle" style={{ animationDuration: "0.8s" }} />
         </span>
       </h1>
 
