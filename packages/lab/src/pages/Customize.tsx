@@ -656,6 +656,8 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [resetKey, setResetKey] = useState(0);
   const [renderMode, setRenderMode] = useState<"3d" | "2d">("3d");
   const [environment, setEnvironment] = useState<IconEnvironment>("city");
+  const [activeConsoleTab, setActiveConsoleTab] = useState<"react" | "svg">("react");
+  const [svgString, setSvgString] = useState("");
 
   // Sync color with URL changes
   useEffect(() => {
@@ -670,6 +672,38 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       setAccentColor(currentIcon.accentColor);
     }
   }, [iconId]);
+
+  // Update dynamic SVG preview string inside sandbox console
+  useEffect(() => {
+    const container = document.createElement("div");
+    container.style.position = "absolute";
+    container.style.left = "-9999px";
+    document.body.appendChild(container);
+
+    const root = createRoot(container);
+    root.render(
+      <Fallback2D
+        id={currentIcon.id}
+        color={color}
+        theme={theme}
+        preset={preset}
+      />
+    );
+
+    const timer = setTimeout(() => {
+      const svgElement = container.querySelector("svg");
+      if (svgElement) {
+        svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        setSvgString(svgElement.outerHTML);
+      }
+      root.unmount();
+      document.body.removeChild(container);
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [currentIcon.id, color, theme, preset]);
 
   // React component usage string
   const codeString = `import { ${currentIcon.name} } from 'r3d-icons';
@@ -913,62 +947,78 @@ function App() {
 
           {/* Dynamic Code generation console block */}
           <div className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] shadow-lg overflow-hidden">
-            <div className="px-6 py-4 border-b border-zinc-200 dark:border-zinc-800 flex items-center justify-between bg-zinc-50/50 dark:bg-[#0a0d14]">
-              <div className="flex items-center gap-2">
-                <Code size={16} className="text-indigo-500" />
-                <span className="text-xs font-extrabold text-zinc-800 dark:text-zinc-200 uppercase tracking-wide">
-                  {t("code_snippet")}
-                </span>
+            <div className="px-6 py-3.5 border-b border-zinc-200 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-4 bg-zinc-50/50 dark:bg-[#0a0d14]">
+              {/* Tab Selector */}
+              <div className="flex items-center gap-1 bg-zinc-200/60 dark:bg-zinc-900/80 p-0.5 rounded-xl">
+                <button
+                  onClick={() => setActiveConsoleTab("react")}
+                  className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer ${
+                    activeConsoleTab === "react"
+                      ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm"
+                      : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                  }`}
+                >
+                  React Component
+                </button>
+                <button
+                  onClick={() => setActiveConsoleTab("svg")}
+                  className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer ${
+                    activeConsoleTab === "svg"
+                      ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm"
+                      : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                  }`}
+                >
+                  SVG Markup
+                </button>
               </div>
               
-              <div className="flex items-center gap-2">
+              {/* Sleek Tool Actions */}
+              <div className="flex items-center gap-1.5">
+                {/* Copy Active Code */}
                 <button
-                  onClick={handleCopyImport}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-600/10 hover:scale-[1.02] transition active:scale-98 cursor-pointer"
+                  onClick={activeConsoleTab === "react" ? handleCopyCode : handleCopySVG}
+                  title={activeConsoleTab === "react" ? "Copy React Component Code" : "Copy SVG Vector Code"}
+                  className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer active:scale-95"
                 >
-                  {copiedImport ? <Check size={14} /> : <Copy size={14} />}
-                  <span>{copiedImport ? "Import Copied!" : "Copy Import"}</span>
+                  {(activeConsoleTab === "react" ? copied : copiedSVG) ? <Check size={14} /> : <Copy size={14} />}
                 </button>
 
-                <button
-                  onClick={handleCopyCode}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-md shadow-indigo-600/10 hover:scale-[1.02] transition active:scale-98 cursor-pointer"
-                >
-                  {copied ? <Check size={14} /> : <Copy size={14} />}
-                  <span>{copied ? t("copied_btn") : t("copy_btn")}</span>
-                </button>
+                {/* Copy Import (only visible on React tab) */}
+                {activeConsoleTab === "react" && (
+                  <button
+                    onClick={handleCopyImport}
+                    title="Copy ES6 Import Statement"
+                    className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-purple-600 dark:hover:text-purple-400 transition cursor-pointer active:scale-95"
+                  >
+                    {copiedImport ? <Check size={14} /> : <Code size={14} />}
+                  </button>
+                )}
 
-                <button
-                  onClick={handleCopySVG}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md shadow-emerald-600/10 hover:scale-[1.02] transition active:scale-98 cursor-pointer"
-                >
-                  {copiedSVG ? <Check size={14} /> : <Copy size={14} />}
-                  <span>{copiedSVG ? "SVG Copied!" : "Copy SVG Code"}</span>
-                </button>
-
+                {/* Download SVG */}
                 <button
                   onClick={handleDownloadSVG}
                   disabled={downloading}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 dark:bg-zinc-700 dark:hover:bg-zinc-600 text-white text-xs font-bold shadow-md shadow-zinc-800/10 hover:scale-[1.02] transition active:scale-98 cursor-pointer disabled:opacity-50"
+                  title="Download SVG Vector Asset"
+                  className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition cursor-pointer active:scale-95 disabled:opacity-50"
                 >
                   <LucideAll.Download size={14} />
-                  <span>{downloading ? "Downloading..." : "Download SVG"}</span>
                 </button>
 
+                {/* Download PNG (only on 3D render) */}
                 {renderMode === "3d" && (
                   <button
                     onClick={handleDownloadPNG}
                     disabled={downloadingPNG}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-xs font-bold shadow-md shadow-violet-600/10 hover:scale-[1.02] transition active:scale-98 cursor-pointer disabled:opacity-50"
+                    title="Download High-Resolution 3D PNG"
+                    className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-violet-600 dark:hover:text-violet-400 transition cursor-pointer active:scale-95 disabled:opacity-50"
                   >
                     <LucideAll.Camera size={14} />
-                    <span>{downloadingPNG ? "Capturing..." : "Download 3D PNG"}</span>
                   </button>
                 )}
               </div>
             </div>
-            <pre className="p-6 text-xs text-zinc-700 dark:text-zinc-300 font-mono overflow-x-auto leading-relaxed bg-zinc-50/20 dark:bg-[#0b0e16] custom-scrollbar">
-              {codeString}
+            <pre className="p-6 text-xs text-zinc-700 dark:text-zinc-300 font-mono overflow-x-auto leading-relaxed bg-zinc-50/20 dark:bg-[#0b0e16] custom-scrollbar max-h-60">
+              {activeConsoleTab === "react" ? codeString : svgString}
             </pre>
           </div>
         </div>
