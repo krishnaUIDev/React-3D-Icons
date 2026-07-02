@@ -658,18 +658,31 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [environment, setEnvironment] = useState<IconEnvironment>("city");
   const [activeConsoleTab, setActiveConsoleTab] = useState<"react" | "svg">("react");
   const [svgString, setSvgString] = useState("");
+  const [primaryInput, setPrimaryInput] = useState(color);
+  const [accentInput, setAccentInput] = useState(accentColor);
 
-  // Sync color with URL changes
+  // Sync color with URL changes & primaryInput
   useEffect(() => {
     if (urlColor) {
       setColor(urlColor);
+      setPrimaryInput(urlColor);
     }
   }, [urlColor]);
+
+  // Sync inputs with parent state updates
+  useEffect(() => {
+    setPrimaryInput(color);
+  }, [color]);
+
+  useEffect(() => {
+    setAccentInput(accentColor);
+  }, [accentColor]);
 
   // Sync accent color when iconId switches
   useEffect(() => {
     if (currentIcon) {
       setAccentColor(currentIcon.accentColor);
+      setAccentInput(currentIcon.accentColor);
     }
   }, [iconId]);
 
@@ -843,6 +856,29 @@ function App() {
   const handleColorChange = (newColor: string) => {
     setColor(newColor);
     updateCustomizerURL(newColor, currentIcon.id);
+  };
+
+  const handlePrimaryTextChange = (val: string) => {
+    setPrimaryInput(val);
+    let clean = val.trim();
+    if (clean.length > 0 && !clean.startsWith("#")) {
+      clean = `#${clean}`;
+    }
+    if (/^#([0-9A-F]{3}){1,2}$/i.test(clean)) {
+      setColor(clean);
+      updateCustomizerURL(clean, currentIcon.id);
+    }
+  };
+
+  const handleAccentTextChange = (val: string) => {
+    setAccentInput(val);
+    let clean = val.trim();
+    if (clean.length > 0 && !clean.startsWith("#")) {
+      clean = `#${clean}`;
+    }
+    if (/^#([0-9A-F]{3}){1,2}$/i.test(clean)) {
+      setAccentColor(clean);
+    }
   };
 
   const handlePresetSelect = (p: IconPreset) => {
@@ -1177,9 +1213,15 @@ function App() {
                       type="color" 
                       value={color}
                       onChange={(e) => handleColorChange(e.target.value)}
-                      className="w-5 h-5 rounded cursor-pointer border-0 p-0 bg-transparent"
+                      className="w-5 h-5 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
                     />
-                    <span className="text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400">{color.toUpperCase()}</span>
+                    <input 
+                      type="text" 
+                      value={primaryInput}
+                      onChange={(e) => handlePrimaryTextChange(e.target.value)}
+                      maxLength={7}
+                      className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400 focus:outline-none focus:text-indigo-500 uppercase p-0"
+                    />
                   </div>
                 </div>
 
@@ -1190,9 +1232,15 @@ function App() {
                       type="color" 
                       value={accentColor}
                       onChange={(e) => setAccentColor(e.target.value)}
-                      className="w-5 h-5 rounded cursor-pointer border-0 p-0 bg-transparent"
+                      className="w-5 h-5 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
                     />
-                    <span className="text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400">{accentColor.toUpperCase()}</span>
+                    <input 
+                      type="text" 
+                      value={accentInput}
+                      onChange={(e) => handleAccentTextChange(e.target.value)}
+                      maxLength={7}
+                      className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400 focus:outline-none focus:text-indigo-500 uppercase p-0"
+                    />
                   </div>
                 </div>
               </div>

@@ -81,26 +81,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         )}
 
-        {/* Desktop Navigation Links */}
-        {route !== "landing" && (
-          <nav className="hidden md:flex items-center gap-6">
-            <button
-              onClick={() => navigate("landing")}
-              className="text-sm font-medium transition cursor-pointer text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
-            >
-              {t("explore_link")}
-            </button>
-            
-            <a
-              href="https://figma.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition flex items-center gap-1"
-            >
-              {t("figma_link")}
-            </a>
-          </nav>
-        )}
+
 
         {/* Action Controls */}
         <div className="flex items-center gap-4 flex-shrink-0">
