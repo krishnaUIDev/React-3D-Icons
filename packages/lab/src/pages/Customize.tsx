@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { useRouter } from "../router/Router";
 import { useTranslation } from "../i18n/useTranslation";
-import { 
-  DatabaseIcon, 
-  CloudIcon, 
-  CpuIcon, 
-  NetworkIcon, 
+import {
+  DatabaseIcon,
+  CloudIcon,
+  CpuIcon,
+  NetworkIcon,
   GearIcon,
   FacebookIcon,
   RocketIcon,
@@ -294,14 +294,14 @@ import {
   ShoppingCartIcon,
   ReceiptIcon
 } from "r3d-icons";
-import { 
-  ArrowLeft, 
-  Copy, 
-  Check, 
-  RotateCw, 
-  Sparkles, 
-  Sliders as LucideSliders, 
-  Palette, 
+import {
+  ArrowLeft,
+  Copy,
+  Check,
+  RotateCw,
+  Sparkles,
+  Sliders as LucideSliders,
+  Palette,
   Code,
   Zap
 } from "lucide-react";
@@ -933,11 +933,11 @@ function App() {
 
       {/* Workspace split layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        
+
         {/* Left Side: 3D Scene Viewport */}
         <div className="lg:col-span-8 flex flex-col gap-6">
           <div className="relative h-[480px] w-full rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] shadow-xl overflow-hidden group">
-            
+
             {/* Overlay indicators */}
             <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
               <span className="px-3 py-1.5 text-xs font-bold rounded-xl bg-zinc-900/90 dark:bg-white/95 text-white dark:text-zinc-950 shadow-sm">
@@ -988,26 +988,24 @@ function App() {
               <div className="flex items-center gap-1 bg-zinc-200/60 dark:bg-zinc-900/80 p-0.5 rounded-xl">
                 <button
                   onClick={() => setActiveConsoleTab("react")}
-                  className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer ${
-                    activeConsoleTab === "react"
+                  className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer ${activeConsoleTab === "react"
                       ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm"
                       : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
-                  }`}
+                    }`}
                 >
                   React Component
                 </button>
                 <button
                   onClick={() => setActiveConsoleTab("svg")}
-                  className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer ${
-                    activeConsoleTab === "svg"
+                  className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer ${activeConsoleTab === "svg"
                       ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm"
                       : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
-                  }`}
+                    }`}
                 >
                   SVG Markup
                 </button>
               </div>
-              
+
               {/* Sleek Tool Actions */}
               <div className="flex items-center gap-1.5">
                 {/* Copy Active Code */}
@@ -1062,7 +1060,7 @@ function App() {
         {/* Right Side: Custom Sidebar Visual Editor (Leva-Free) */}
         <div className="lg:col-span-4 space-y-6">
           <div className="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] shadow-xl space-y-6">
-            
+
             <div className="flex items-center gap-2 border-b border-zinc-100 dark:border-zinc-800/80 pb-4">
               <LucideSliders size={18} className="text-indigo-500" />
               <h2 className="text-sm font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider">
@@ -1082,11 +1080,10 @@ function App() {
                     <button
                       key={m}
                       onClick={() => setRenderMode(m)}
-                      className={`py-2 px-3.5 rounded-xl text-xs font-bold uppercase border transition cursor-pointer flex-grow text-center ${
-                        isSelected
+                      className={`py-2 px-3.5 rounded-xl text-xs font-bold uppercase border transition cursor-pointer flex-grow text-center ${isSelected
                           ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
                           : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                      }`}
+                        }`}
                     >
                       {m === "3d" ? "3D Render" : "2D Vector"}
                     </button>
@@ -1107,11 +1104,10 @@ function App() {
                     <button
                       key={p}
                       onClick={() => handlePresetSelect(p)}
-                      className={`py-2 px-3.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer flex-grow text-center ${
-                        isSelected
+                      className={`py-2 px-3.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer flex-grow text-center ${isSelected
                           ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
                           : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                      }`}
+                        }`}
                     >
                       {p}
                     </button>
@@ -1133,11 +1129,10 @@ function App() {
                     <button
                       key={a}
                       onClick={() => setAngle(a)}
-                      className={`py-2 px-3.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer flex-grow text-center ${
-                        isSelected
+                      className={`py-2 px-3.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer flex-grow text-center ${isSelected
                           ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
                           : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                      }`}
+                        }`}
                     >
                       {t(translationKey)}
                     </button>
@@ -1159,11 +1154,10 @@ function App() {
                       <button
                         key={env}
                         onClick={() => setEnvironment(env)}
-                        className={`py-2 px-2.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer text-center ${
-                          isSelected
+                        className={`py-2 px-2.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer text-center ${isSelected
                             ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
                             : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                        }`}
+                          }`}
                       >
                         {env}
                       </button>
@@ -1191,11 +1185,10 @@ function App() {
                       key={p.name}
                       onClick={() => handlePaletteSelect(p.color, p.accentColor)}
                       title={p.name}
-                      className={`relative h-10 rounded-xl overflow-hidden border transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer flex ${
-                        isSelected 
-                          ? "border-indigo-500 ring-2 ring-indigo-500/20 shadow-md" 
+                      className={`relative h-10 rounded-xl overflow-hidden border transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer flex ${isSelected
+                          ? "border-indigo-500 ring-2 ring-indigo-500/20 shadow-md"
                           : "border-zinc-200 dark:border-zinc-800"
-                      }`}
+                        }`}
                     >
                       <div className="w-1/2 h-full" style={{ backgroundColor: p.color }} />
                       <div className="w-1/2 h-full" style={{ backgroundColor: p.accentColor }} />
@@ -1209,14 +1202,14 @@ function App() {
                 <div className="space-y-1.5">
                   <span className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">Primary Color</span>
                   <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
-                    <input 
-                      type="color" 
+                    <input
+                      type="color"
                       value={color}
                       onChange={(e) => handleColorChange(e.target.value)}
                       className="w-5 h-5 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
                     />
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={primaryInput}
                       onChange={(e) => handlePrimaryTextChange(e.target.value)}
                       maxLength={7}
@@ -1228,14 +1221,14 @@ function App() {
                 <div className="space-y-1.5">
                   <span className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">Accent Glow</span>
                   <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
-                    <input 
-                      type="color" 
+                    <input
+                      type="color"
                       value={accentColor}
                       onChange={(e) => setAccentColor(e.target.value)}
                       className="w-5 h-5 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
                     />
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={accentInput}
                       onChange={(e) => handleAccentTextChange(e.target.value)}
                       maxLength={7}
@@ -1248,7 +1241,7 @@ function App() {
 
             {/* Sliders */}
             <div className="space-y-4 pt-2 border-t border-zinc-100 dark:border-zinc-800/80">
-              
+
               {/* Spin Speed */}
               <div className="space-y-2">
                 <div className="flex justify-between items-center text-xs font-bold text-zinc-400 dark:text-zinc-500">
@@ -1311,7 +1304,7 @@ function App() {
           <Zap size={14} className="text-indigo-500" />
           <span>Similar Icons ({t(`category_${currentIcon.category}` as any)})</span>
         </h3>
-        
+
         <div className="flex gap-4 overflow-x-auto pb-4 pt-1 custom-scrollbar">
           {ICONS_REGISTRY.filter((icon) => icon.category === currentIcon.category).map((icon) => {
             const isSelected = icon.id === iconId;
@@ -1319,15 +1312,14 @@ function App() {
               <button
                 key={icon.id}
                 onClick={() => updateCustomizerURL(icon.color.replace("#", ""), icon.id)}
-                className={`flex-shrink-0 w-24 h-24 rounded-2xl border flex flex-col items-center justify-center p-2 transition duration-200 cursor-pointer ${
-                  isSelected
+                className={`flex-shrink-0 w-24 h-24 rounded-2xl border flex flex-col items-center justify-center p-2 transition duration-200 cursor-pointer ${isSelected
                     ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 shadow-md ring-1 ring-indigo-500/20"
                     : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 bg-white dark:bg-[#0e111a]"
-                }`}
+                  }`}
               >
                 <div className="w-16 h-16 pointer-events-none select-none flex items-center justify-center relative">
                   {/* Soft background glow matching the icon's color */}
-                  <div 
+                  <div
                     className="absolute inset-1 rounded-full blur-lg opacity-10 dark:opacity-15"
                     style={{ backgroundColor: icon.color }}
                   />
