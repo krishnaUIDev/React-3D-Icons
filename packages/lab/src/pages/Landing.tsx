@@ -117,6 +117,8 @@ import {
   TrendingUpIcon,
   InstagramIcon,
   YoutubeIcon,
+  LinkedinIcon,
+  DribbbleIcon,
   PackageIcon,
   AirplaneIcon,
   BatteryIcon,
@@ -1309,6 +1311,24 @@ const ICONS_REGISTRY = [
     Component: YoutubeIcon,
     color: "#ff0000",
     accentColor: "#ef4444"
+  },
+  {
+    id: "linkedin",
+    name: "LinkedinIcon",
+    category: "brands",
+    description: "3D LinkedIn brand mark square badge with extruded letters",
+    Component: LinkedinIcon,
+    color: "#0077b5",
+    accentColor: "#00a0dc"
+  },
+  {
+    id: "dribbble",
+    name: "DribbbleIcon",
+    category: "brands",
+    description: "3D Dribbble brand mark basketball with extruded white lines pattern",
+    Component: DribbbleIcon,
+    color: "#ea4c89",
+    accentColor: "#ff769f"
   },
   {
     id: "package",

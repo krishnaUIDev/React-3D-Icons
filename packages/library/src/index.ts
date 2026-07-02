@@ -296,6 +296,8 @@ export {
 } from "./components/LetterIcon";
 export type { LetterIconProps } from "./components/LetterIcon";
 export { YoutubeIcon } from "./components/YoutubeIcon";
+export { LinkedinIcon } from "./components/LinkedinIcon";
+export { DribbbleIcon } from "./components/DribbbleIcon";
 
 export { Fallback2D } from "./components/Fallback2D";
 export * from "./types";

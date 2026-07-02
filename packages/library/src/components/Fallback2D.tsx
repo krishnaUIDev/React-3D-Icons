@@ -1156,6 +1156,21 @@ const getRawSVG = (id: string, strokeColor: string, isDark: boolean): React.Reac
           <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
         </svg>
       );
+    case "linkedin":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+          <rect x="2" y="9" width="4" height="12" />
+          <circle cx="4" cy="4" r="2" />
+        </svg>
+      );
+    case "dribbble":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.49-11.05 1-11.6 8.56" />
+        </svg>
+      );
     case "package":
       return (
         <svg viewBox="0 0 24 24" fill="none" stroke={strokeColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
