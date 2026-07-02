@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "../router/Router";
-import { Heart, Grid, Package, Github, AlertCircle, Figma, Twitter } from "lucide-react";
+import { Heart, Grid, Package, Github, AlertCircle, Figma, Twitter, Dribbble, Linkedin } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const { navigate } = useRouter();
@@ -71,6 +71,24 @@ export const Footer: React.FC = () => {
           >
             <Twitter size={12} className="text-zinc-400" />
             <span>Twitter</span>
+          </a>
+          <a
+            href="https://dribbble.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition"
+          >
+            <Dribbble size={12} className="text-zinc-400" />
+            <span>Dribbble</span>
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition"
+          >
+            <Linkedin size={12} className="text-zinc-400" />
+            <span>LinkedIn</span>
           </a>
           <a
             href="https://github.com/krishnaUIDev/React-3D-Icons/issues"
