@@ -116,6 +116,7 @@ import {
   GraduationCapIcon,
   TrendingUpIcon,
   InstagramIcon,
+  YoutubeIcon,
   PackageIcon,
   AirplaneIcon,
   BatteryIcon,
@@ -1299,6 +1300,15 @@ const ICONS_REGISTRY = [
     Component: InstagramIcon,
     color: "#e1306c",
     accentColor: "#f77737"
+  },
+  {
+    id: "youtube",
+    name: "YoutubeIcon",
+    category: "brands",
+    description: "3D YouTube brand mark play button with rounded red plate and white play arrow",
+    Component: YoutubeIcon,
+    color: "#ff0000",
+    accentColor: "#ef4444"
   },
   {
     id: "package",

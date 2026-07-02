@@ -295,6 +295,7 @@ export {
   FiveIcon, SixIcon, SevenIcon, EightIcon, NineIcon
 } from "./components/LetterIcon";
 export type { LetterIconProps } from "./components/LetterIcon";
+export { YoutubeIcon } from "./components/YoutubeIcon";
 
 export { Fallback2D } from "./components/Fallback2D";
 export * from "./types";
