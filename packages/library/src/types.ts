@@ -4,6 +4,8 @@ export type IconPreset = "glass" | "metal" | "clay" | "hologram" | "gold" | "sil
 export type IconAngle = "front" | "perspective" | "tilted";
 export type IconEnvironment = "apartment" | "city" | "forest" | "lobby" | "night" | "park" | "studio" | "sunset" | "warehouse";
 
+export type IconAnimationType = "spin" | "wobble" | "breathe" | "wave";
+
 export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" | "children"> {
   preset?: IconPreset;
   angle?: IconAngle;
@@ -18,6 +20,12 @@ export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" 
   size?: number | string; // Size configuration (width & height)
   canvas?: boolean; // If false, skips wrapping in a Canvas context
   customMaterial?: Partial<MaterialConfig>; // Override physical material parameters
+  cameraZoom?: number; // Distance/zoom level of the viewport camera
+  cameraFov?: number;  // Perspective lens Field of View
+  lightIntensity?: number; // Spot lighting rig intensity override
+  lightColor?: string;     // Spot lighting rig color override (hex)
+  tiltIntensity?: number;  // Parallax mouse follow intensity factor
+  animationType?: IconAnimationType; // Physical float animation type
 }
 
 // Internal standard material config interface

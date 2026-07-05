@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Float, Environment } from "@react-three/drei";
 import * as THREE from "three";
-import { IconProps, MaterialConfig, IconPreset, IconAngle } from "../types";
+import { IconProps, MaterialConfig, IconPreset, IconAngle, IconAnimationType } from "../types";
 import { isWebGLAvailable } from "../utils/webgl";
 import { Fallback2D } from "./Fallback2D";
 
@@ -151,7 +151,7 @@ export function getMaterialConfig(
 }
 
 // Lighting component that responds to light/dark themes
-const StudioLights: React.FC<{ theme: "light" | "dark" }> = ({ theme }) => {
+const StudioLights: React.FC<{ theme: "light" | "dark"; intensity?: number; color?: string }> = ({ theme, intensity, color }) => {
   const isDark = theme === "dark";
 
   return (
@@ -179,8 +179,8 @@ const StudioLights: React.FC<{ theme: "light" | "dark" }> = ({ theme }) => {
         position={[0, 15, 2]}
         angle={0.3}
         penumbra={1}
-        intensity={isDark ? 1.0 : 0.6}
-        color={isDark ? "#c084fc" : "#fff"}
+        intensity={intensity ?? (isDark ? 1.0 : 0.6)}
+        color={color ?? (isDark ? "#c084fc" : "#fff")}
       />
     </>
   );
@@ -198,6 +198,8 @@ const IconScene: React.FC<{
   theme: "light" | "dark";
   interactive: boolean;
   customMaterial?: Partial<MaterialConfig>;
+  tiltIntensity?: number;
+  animationType?: IconAnimationType;
 }> = ({
   children,
   preset,
@@ -208,7 +210,9 @@ const IconScene: React.FC<{
   floatHeight,
   theme,
   interactive,
-  customMaterial
+  customMaterial,
+  tiltIntensity = 1.0,
+  animationType = "spin"
 }) => {
     const groupRef = useRef<THREE.Group>(null);
     const meshRef = useRef<THREE.Group>(null);
@@ -223,18 +227,38 @@ const IconScene: React.FC<{
 
       const t = state.clock.getElapsedTime();
 
-      // Constant rotation
-      groupRef.current.rotation.y = t * 0.3 * spinSpeed;
+      // Constant rotation/animation based on type
+      if (animationType === "spin") {
+        groupRef.current.rotation.y = t * 0.3 * spinSpeed;
+        groupRef.current.rotation.x = 0;
+        groupRef.current.position.y = 0;
+      } else if (animationType === "wobble") {
+        groupRef.current.rotation.y = Math.sin(t * 1.0) * 0.25 * spinSpeed;
+        groupRef.current.rotation.x = Math.cos(t * 1.2) * 0.15 * spinSpeed;
+        groupRef.current.position.y = 0;
+      } else if (animationType === "wave") {
+        groupRef.current.rotation.y = 0;
+        groupRef.current.rotation.x = 0;
+        groupRef.current.position.y = Math.sin(t * 2.0) * 0.25 * floatHeight;
+      } else {
+        // "breathe" - slow static angle, pulse scale
+        groupRef.current.rotation.y = 0;
+        groupRef.current.rotation.x = 0;
+        groupRef.current.position.y = 0;
+      }
 
       // Hover scale interpolation (smooth lerping)
-      const targetScale = hovered && interactive ? 1.15 : 1.0;
+      let targetScale = hovered && interactive ? 1.15 : 1.0;
+      if (animationType === "breathe") {
+        targetScale += Math.sin(t * 2.5) * 0.06 * spinSpeed;
+      }
       groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.15);
 
       // Mouse tracking tilt effect (3D parallax)
       if (meshRef.current) {
         if (hovered && interactive) {
-          const targetX = (-state.pointer.y * Math.PI) / 8; // Pitch
-          const targetY = (state.pointer.x * Math.PI) / 8;  // Yaw
+          const targetX = (-state.pointer.y * Math.PI) / 8 * tiltIntensity; // Pitch
+          const targetY = (state.pointer.x * Math.PI) / 8 * tiltIntensity;  // Yaw
           meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, targetX, 0.1);
           meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetY, 0.1);
         } else {
@@ -260,8 +284,8 @@ const IconScene: React.FC<{
           <group rotation={angleRotations[angle]}>
             <Float
               speed={1.5 * spinSpeed}
-              rotationIntensity={0.2}
-              floatIntensity={1.0 * floatHeight}
+              rotationIntensity={animationType === "wobble" ? 0.4 : 0.2}
+              floatIntensity={animationType === "wave" ? 1.5 * floatHeight : 0.8 * floatHeight}
             >
               {children(mergedMatConfig)}
             </Float>
@@ -287,6 +311,12 @@ export function SharedWrapper({
   iconId,
   canvas = true,
   customMaterial,
+  cameraZoom,
+  cameraFov,
+  lightIntensity,
+  lightColor,
+  tiltIntensity,
+  animationType,
   children,
   ...props
 }: IconProps & {
@@ -344,6 +374,8 @@ export function SharedWrapper({
         theme={theme}
         interactive={interactive}
         customMaterial={customMaterial}
+        tiltIntensity={tiltIntensity}
+        animationType={animationType}
       >
         {children}
       </IconScene>
@@ -358,11 +390,11 @@ export function SharedWrapper({
       {...props}
     >
       <Canvas
-        camera={{ position: [0, 0, interactive ? 4.5 : 3.0], fov: 45 }}
+        camera={{ position: [0, 0, cameraZoom ?? (interactive ? 4.5 : 3.0)], fov: cameraFov ?? 45 }}
         gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
         shadows
       >
-        <StudioLights theme={theme} />
+        <StudioLights theme={theme} intensity={lightIntensity} color={lightColor} />
         <Environment preset={environment} />
 
         <IconScene
@@ -375,6 +407,8 @@ export function SharedWrapper({
           theme={theme}
           interactive={interactive}
           customMaterial={customMaterial}
+          tiltIntensity={tiltIntensity}
+          animationType={animationType}
         >
           {children}
         </IconScene>

@@ -302,4 +302,5 @@ export { CloudNetworkIcon } from "./components/CloudNetworkIcon";
 export { FirewallIcon } from "./components/FirewallIcon";
 
 export { Fallback2D } from "./components/Fallback2D";
+export { getMaterialConfig } from "./components/SharedWrapper";
 export * from "./types";

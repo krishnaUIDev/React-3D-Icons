@@ -112,6 +112,27 @@ Every icon component accepts the following customizable props:
 | `floatHeight` | `number` | `1.0` | Amplitude height for the hover floating animation. |
 | `theme` | `"light" \| "dark"` | `"dark"` | Light or dark lighting contrast mode. |
 | `interactive` | `boolean` | `true` | Enables hover parallax tilt and click-and-drag orbit controls. |
+| `cameraZoom` | `number` | `4.5` (interactive) | Distance/zoom level of the viewport camera. |
+| `cameraFov` | `number` | `45` | Perspective lens Field of View (focal skew angle). |
+| `customMaterial` | `Partial<MaterialConfig>` | `undefined` | Fine-grain physics overrides for the 3D material (roughness, metalness, transmission, thickness, clearcoat, clearcoatRoughness, ior, emissiveIntensity). |
+| `lightIntensity` | `number` | `1.0` (dark theme) | Spot lighting rig brightness override multiplier. |
+| `lightColor` | `string` | `"#c084fc"` | Spot lighting rig illumination color override. |
+| `tiltIntensity` | `number` | `1.0` | Parallax mouse follow intensity factor coefficient. |
+| `animationType` | `"spin" \| "wobble" \| "breathe" \| "wave"` | `"spin"` | Physical float/rotation motion animation profile. |
+
+---
+
+## 🧪 Live Customizer Laboratory Sandbox
+
+The monorepo contains a premium visual editor playground (Vite-based Lab App) allowing developers to iterate, design, and share custom styles:
+
+*   **Interactive Material Configurator**: Fine-tune physical settings (Roughness, Metalness, Transmission, Thickness, etc.) in real-time.
+*   **Scene & Camera Controls**: Adjust camera Zoom level, Field of View (FOV), and custom Spotlight illumination brightness or color values.
+*   **Integration Context Switcher**: Preview the customized icon inside mockup layouts like a Dashboard Header/Navbar, Metric Info Card, or marketing Landing Hero section.
+*   **Saved Presets**: Save custom configs locally to `localStorage` and apply them to other assets.
+*   **Grid Comparison Mode**: Split the viewport into a 2x2 grid to preview and configure multiple icons rendering side-by-side with your active material settings.
+*   **Share Playgrounds**: Generate a shareable URL containing the complete serialized workspace state. Loading this link will restore your configurations and clean the URL parameters.
+*   **TSX Code Downloader**: Click the code downloader action to generate and download a self-contained, pre-configured React component file ready for direct workspace import.
 
 ---
 
