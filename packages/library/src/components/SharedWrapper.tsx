@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Float, Environment } from "@react-three/drei";
+import { OrbitControls, Float, Environment, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 import { IconProps, MaterialConfig, IconPreset, IconAngle, IconAnimationType } from "../types";
 import { isWebGLAvailable } from "../utils/webgl";
@@ -151,16 +151,106 @@ export function getMaterialConfig(
 }
 
 // Lighting component that responds to light/dark themes
-const StudioLights: React.FC<{ theme: "light" | "dark"; intensity?: number; color?: string }> = ({ theme, intensity, color }) => {
+const StudioLights: React.FC<{
+  theme: "light" | "dark";
+  intensity?: number;
+  color?: string;
+  preset?: "studio" | "cyber" | "sunset" | "dramatic";
+}> = ({ theme, intensity, color, preset = "studio" }) => {
   const isDark = theme === "dark";
 
+  if (preset === "cyber") {
+    return (
+      <>
+        <ambientLight intensity={isDark ? 0.25 : 0.45} color="#18181b" />
+        <directionalLight
+          position={[5, 10, 5]}
+          intensity={0.8}
+          color="#ffffff"
+          castShadow
+          shadow-mapSize={[1024, 1024]}
+        />
+        {/* Cyan key light */}
+        <pointLight position={[-8, 4, 3]} intensity={isDark ? 3.0 : 1.8} color="#06b6d4" />
+        {/* Magenta fill light */}
+        <pointLight position={[8, 4, 3]} intensity={isDark ? 3.0 : 1.8} color="#ec4899" />
+        {/* Accent spotlight */}
+        <spotLight
+          position={[0, 15, 2]}
+          angle={0.35}
+          penumbra={1}
+          intensity={intensity ?? (isDark ? 1.5 : 0.8)}
+          color={color ?? "#c084fc"}
+        />
+      </>
+    );
+  }
+
+  if (preset === "sunset") {
+    return (
+      <>
+        <ambientLight intensity={isDark ? 0.35 : 0.55} color="#1c1917" />
+        <directionalLight
+          position={[5, 10, 5]}
+          intensity={1.0}
+          color="#fed7aa"
+          castShadow
+          shadow-mapSize={[1024, 1024]}
+        />
+        {/* Warm orange key */}
+        <pointLight position={[6, 5, 6]} intensity={isDark ? 3.5 : 2.2} color="#f59e0b" />
+        {/* Deep blue/purple fill */}
+        <pointLight position={[-6, 2, -6]} intensity={isDark ? 2.5 : 1.5} color="#6366f1" />
+        {/* Highlight spot */}
+        <spotLight
+          position={[0, 15, 2]}
+          angle={0.3}
+          penumbra={1}
+          intensity={intensity ?? (isDark ? 1.0 : 0.6)}
+          color={color ?? "#fdba74"}
+        />
+      </>
+    );
+  }
+
+  if (preset === "dramatic") {
+    return (
+      <>
+        <ambientLight intensity={0.06} color="#000000" />
+        <directionalLight
+          position={[5, 10, 5]}
+          intensity={0.2}
+          color="#ffffff"
+          castShadow
+          shadow-mapSize={[1024, 1024]}
+        />
+        {/* Intense backlight contour silhouette rim */}
+        <spotLight
+          position={[0, 8, -10]}
+          angle={0.6}
+          penumbra={0.6}
+          intensity={isDark ? 6.0 : 4.0}
+          color="#ffffff"
+        />
+        {/* Fill spotlight */}
+        <spotLight
+          position={[0, 15, 5]}
+          angle={0.25}
+          penumbra={1}
+          intensity={intensity ?? (isDark ? 0.8 : 0.4)}
+          color={color ?? "#818cf8"}
+        />
+      </>
+    );
+  }
+
+  // "studio" default setup
   return (
     <>
       <ambientLight
         intensity={isDark ? 0.4 : 0.7}
         color={isDark ? "#3f3f46" : "#ffffff"}
       />
-
       <directionalLight
         position={[5, 10, 5]}
         intensity={isDark ? 1.5 : 1.2}
@@ -168,13 +258,11 @@ const StudioLights: React.FC<{ theme: "light" | "dark"; intensity?: number; colo
         castShadow
         shadow-mapSize={[1024, 1024]}
       />
-
       <pointLight
         position={[-5, 5, -5]}
         intensity={isDark ? 0.8 : 0.4}
         color={isDark ? "#818cf8" : "#d1d5db"}
       />
-
       <spotLight
         position={[0, 15, 2]}
         angle={0.3}
@@ -185,6 +273,81 @@ const StudioLights: React.FC<{ theme: "light" | "dark"; intensity?: number; colo
     </>
   );
 };
+
+function createFrostedTexture(): THREE.CanvasTexture {
+  const canvas = document.createElement("canvas");
+  canvas.width = 128;
+  canvas.height = 128;
+  const ctx = canvas.getContext("2d")!;
+  const imgData = ctx.createImageData(128, 128);
+  for (let i = 0; i < imgData.data.length; i += 4) {
+    const val = Math.floor(Math.random() * 255);
+    imgData.data[i] = val;
+    imgData.data[i+1] = val;
+    imgData.data[i+2] = val;
+    imgData.data[i+3] = 255;
+  }
+  ctx.putImageData(imgData, 0, 0);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(8, 8);
+  return texture;
+}
+
+function createBrushedTexture(): THREE.CanvasTexture {
+  const canvas = document.createElement("canvas");
+  canvas.width = 256;
+  canvas.height = 256;
+  const ctx = canvas.getContext("2d")!;
+  ctx.fillStyle = "#888888";
+  ctx.fillRect(0, 0, 256, 256);
+  for (let i = 0; i < 400; i++) {
+    const y = Math.floor(Math.random() * 256);
+    const h = 1 + Math.floor(Math.random() * 2);
+    const val = 110 + Math.floor(Math.random() * 60);
+    ctx.fillStyle = `rgb(${val}, ${val}, ${val})`;
+    ctx.fillRect(0, y, 256, h);
+  }
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(4, 4);
+  return texture;
+}
+
+function createCarbonTexture(): THREE.CanvasTexture {
+  const canvas = document.createElement("canvas");
+  canvas.width = 16;
+  canvas.height = 16;
+  const ctx = canvas.getContext("2d")!;
+  ctx.fillStyle = "#333333";
+  ctx.fillRect(0, 0, 16, 16);
+  ctx.fillStyle = "#777777";
+  ctx.fillRect(0, 0, 8, 8);
+  ctx.fillRect(8, 8, 8, 8);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(24, 24);
+  return texture;
+}
+
+const textureCache: Record<string, THREE.CanvasTexture> = {};
+
+function getTexture(type: "none" | "frosted" | "brushed" | "carbon") {
+  if (typeof document === "undefined" || type === "none") return null;
+  if (textureCache[type]) return textureCache[type];
+
+  if (type === "frosted") {
+    textureCache[type] = createFrostedTexture();
+  } else if (type === "brushed") {
+    textureCache[type] = createBrushedTexture();
+  } else if (type === "carbon") {
+    textureCache[type] = createCarbonTexture();
+  }
+  return textureCache[type];
+}
 
 // Internal staging mesh handling animations and hovers
 const IconScene: React.FC<{
@@ -200,6 +363,11 @@ const IconScene: React.FC<{
   customMaterial?: Partial<MaterialConfig>;
   tiltIntensity?: number;
   animationType?: IconAnimationType;
+  animationAxis?: "x" | "y" | "z";
+  animationDirection?: "clockwise" | "counter-clockwise";
+  textureType?: "none" | "frosted" | "brushed" | "carbon";
+  emissivePulseSpeed?: number;
+  emissivePulseIntensity?: number;
 }> = ({
   children,
   preset,
@@ -212,7 +380,12 @@ const IconScene: React.FC<{
   interactive,
   customMaterial,
   tiltIntensity = 1.0,
-  animationType = "spin"
+  animationType = "spin",
+  animationAxis = "y",
+  animationDirection = "clockwise",
+  textureType = "none",
+  emissivePulseSpeed = 0,
+  emissivePulseIntensity = 0.5
 }) => {
     const groupRef = useRef<THREE.Group>(null);
     const meshRef = useRef<THREE.Group>(null);
@@ -229,8 +402,20 @@ const IconScene: React.FC<{
 
       // Constant rotation/animation based on type
       if (animationType === "spin") {
-        groupRef.current.rotation.y = t * 0.3 * spinSpeed;
-        groupRef.current.rotation.x = 0;
+        const dirCoeff = animationDirection === "counter-clockwise" ? -1 : 1;
+        if (animationAxis === "x") {
+          groupRef.current.rotation.x = t * 0.3 * spinSpeed * dirCoeff;
+          groupRef.current.rotation.y = 0;
+          groupRef.current.rotation.z = 0;
+        } else if (animationAxis === "z") {
+          groupRef.current.rotation.z = t * 0.3 * spinSpeed * dirCoeff;
+          groupRef.current.rotation.x = 0;
+          groupRef.current.rotation.y = 0;
+        } else {
+          groupRef.current.rotation.y = t * 0.3 * spinSpeed * dirCoeff;
+          groupRef.current.rotation.x = 0;
+          groupRef.current.rotation.z = 0;
+        }
         groupRef.current.position.y = 0;
       } else if (animationType === "wobble") {
         groupRef.current.rotation.y = Math.sin(t * 1.0) * 0.25 * spinSpeed;
@@ -265,6 +450,41 @@ const IconScene: React.FC<{
           meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, 0, 0.1);
           meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, 0, 0.1);
         }
+      }
+
+      // Apply texture and pulsing at runtime on the Three.js hierarchy
+      if (groupRef.current) {
+        const texture = getTexture(textureType);
+        groupRef.current.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            const material = child.material;
+            if (material instanceof THREE.MeshPhysicalMaterial || material instanceof THREE.MeshStandardMaterial) {
+              // 1. Assign bump map
+              if (texture) {
+                if (material.bumpMap !== texture) {
+                  material.bumpMap = texture;
+                  material.bumpScale = 0.08;
+                  material.needsUpdate = true;
+                }
+              } else {
+                if (material.bumpMap) {
+                  material.bumpMap = null;
+                  material.needsUpdate = true;
+                }
+              }
+
+              // 2. Modulate emissive pulsing
+              if (emissivePulseSpeed > 0) {
+                const baseIntensity = mergedMatConfig.emissiveIntensity ?? 0.3;
+                const sinVal = Math.sin(t * emissivePulseSpeed); // -1.0 to 1.0
+                const normVal = (sinVal + 1) / 2; // 0.0 to 1.0
+                material.emissiveIntensity = baseIntensity + (normVal * emissivePulseIntensity * 1.5);
+              } else {
+                material.emissiveIntensity = mergedMatConfig.emissiveIntensity ?? 0.3;
+              }
+            }
+          }
+        });
       }
     });
 
@@ -317,6 +537,14 @@ export function SharedWrapper({
   lightColor,
   tiltIntensity,
   animationType,
+  animationAxis,
+  animationDirection,
+  shadowOpacity,
+  shadowBlur,
+  textureType,
+  emissivePulseSpeed,
+  emissivePulseIntensity,
+  lightingPreset,
   children,
   ...props
 }: IconProps & {
@@ -376,6 +604,11 @@ export function SharedWrapper({
         customMaterial={customMaterial}
         tiltIntensity={tiltIntensity}
         animationType={animationType}
+        animationAxis={animationAxis}
+        animationDirection={animationDirection}
+        textureType={textureType}
+        emissivePulseSpeed={emissivePulseSpeed}
+        emissivePulseIntensity={emissivePulseIntensity}
       >
         {children}
       </IconScene>
@@ -394,8 +627,15 @@ export function SharedWrapper({
         gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
         shadows
       >
-        <StudioLights theme={theme} intensity={lightIntensity} color={lightColor} />
+        <StudioLights theme={theme} intensity={lightIntensity} color={lightColor} preset={lightingPreset} />
         <Environment preset={environment} />
+        <ContactShadows
+          position={[0, -1.5, 0]}
+          opacity={shadowOpacity ?? 0.6}
+          scale={5}
+          blur={shadowBlur ?? 2.5}
+          far={4.5}
+        />
 
         <IconScene
           preset={preset}
@@ -409,6 +649,11 @@ export function SharedWrapper({
           customMaterial={customMaterial}
           tiltIntensity={tiltIntensity}
           animationType={animationType}
+          animationAxis={animationAxis}
+          animationDirection={animationDirection}
+          textureType={textureType}
+          emissivePulseSpeed={emissivePulseSpeed}
+          emissivePulseIntensity={emissivePulseIntensity}
         >
           {children}
         </IconScene>

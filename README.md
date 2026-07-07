@@ -119,6 +119,10 @@ Every icon component accepts the following customizable props:
 | `lightColor` | `string` | `"#c084fc"` | Spot lighting rig illumination color override. |
 | `tiltIntensity` | `number` | `1.0` | Parallax mouse follow intensity factor coefficient. |
 | `animationType` | `"spin" \| "wobble" \| "breathe" \| "wave"` | `"spin"` | Physical float/rotation motion animation profile. |
+| `animationAxis` | `"x" \| "y" \| "z"` | `"y"` | Rotation spin axis (x, y, or z). |
+| `animationDirection` | `"clockwise" \| "counter-clockwise"` | `"clockwise"` | Spin direction for auto-rotation modes. |
+| `shadowOpacity` | `number` | `0.6` | Drop contact shadow opacity (0.0 to 1.0). |
+| `shadowBlur` | `number` | `2.5` | Drop contact shadow blur/softness factor. |
 
 ---
 

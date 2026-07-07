@@ -2944,6 +2944,34 @@ const CATEGORIES = ["all", "storage", "systems", "hardware", "networking", "mech
 export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) => {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<typeof CATEGORIES[number]>("all");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
+  // Pre-calculate category counts for quick search badges
+  const categoryCounts = React.useMemo(() => {
+    const counts: Record<string, number> = { all: ICONS_REGISTRY.length };
+    ICONS_REGISTRY.forEach(icon => {
+      counts[icon.category] = (counts[icon.category] || 0) + 1;
+    });
+    return counts;
+  }, []);
+
+  const [activeColorFilter, setActiveColorFilter] = useState<string>("all");
+
+  const COLOR_PALETTES = [
+    { id: "all", label: "All Colors", value: "all", bg: "bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500" },
+    { id: "slate", label: "Slate / Gray", value: "slate", bg: "bg-slate-500", colors: ["#6b7280", "#475569", "#71717a"] },
+    { id: "blue", label: "Blue / Indigo", value: "blue", bg: "bg-blue-500", colors: ["#3b82f6", "#6366f1", "#4f46e5", "#1877f2", "#0ea5e9", "#06b6d4"] },
+    { id: "emerald", label: "Emerald / Teal", value: "emerald", bg: "bg-emerald-500", colors: ["#10b981", "#0d9488", "#34d399"] },
+    { id: "rose", label: "Red / Pink", value: "rose", bg: "bg-rose-500", colors: ["#ef4444", "#ec4899", "#e11d48", "#f43f5e"] },
+    { id: "amber", label: "Amber / Yellow", value: "amber", bg: "bg-amber-500", colors: ["#f59e0b", "#f97316", "#eab308", "#d4af37", "#b45309", "#fbbf24"] }
+  ];
+
+  const matchesColorFilter = (iconColor: string) => {
+    if (activeColorFilter === "all") return true;
+    const filter = COLOR_PALETTES.find(p => p.id === activeColorFilter);
+    if (!filter || !filter.colors) return true;
+    return filter.colors.some(c => c.toLowerCase() === iconColor.toLowerCase());
+  };
 
   const [requestSubmitted, setRequestSubmitted] = useState(false);
   const [requestIconName, setRequestIconName] = useState(search || "");
@@ -2975,13 +3003,14 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
       icon.name.toLowerCase().includes(search.toLowerCase()) || 
       icon.description.toLowerCase().includes(search.toLowerCase());
     const matchesCategory = activeCategory === "all" || icon.category === activeCategory;
-    return matchesSearch && matchesCategory;
+    const matchesColor = matchesColorFilter(icon.color);
+    return matchesSearch && matchesCategory && matchesColor;
   });
 
   // Reset visible icons count when filters change
   useEffect(() => {
     setVisibleCount(60);
-  }, [search, activeCategory]);
+  }, [search, activeCategory, activeColorFilter]);
 
   // Infinite Scroll / Lazy Load Observer for Lighthouse performance optimization
   useEffect(() => {
@@ -3030,15 +3059,93 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
         </div>
 
         {/* Dynamic Search Suggestions / Trending Tags */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-6 text-xs text-zinc-500 dark:text-zinc-400">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 mb-6 text-[10px] sm:text-xs">
+          <span className="text-zinc-400 dark:text-zinc-555 font-bold uppercase tracking-wider mr-1">Trending:</span>
+          {["React", "Database", "Shield", "Rocket", "Wifi", "Battery", "Mail", "Globe"].map(tag => {
+            const isSelected = search.toLowerCase() === tag.toLowerCase();
+            return (
+              <button
+                key={tag}
+                onClick={() => setSearch(isSelected ? "" : tag)}
+                className={`px-2.5 py-1 rounded-lg font-bold border transition duration-155 cursor-pointer ${
+                  isSelected
+                    ? "bg-indigo-600/10 border-indigo-500 text-indigo-600 dark:text-indigo-400"
+                    : "bg-white dark:bg-[#0e111a] border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-500 dark:text-zinc-400"
+                }`}
+              >
+                {tag}
+              </button>
+            );
+          })}
           {search && (
             <button
               onClick={() => setSearch("")}
-              className="text-red-500 dark:text-red-400 font-bold hover:underline cursor-pointer ml-1.5"
+              className="text-red-500 dark:text-red-400 font-extrabold uppercase tracking-wide hover:underline cursor-pointer ml-1.5"
             >
               Clear
             </button>
           )}
+        </div>
+
+        {/* Controls Toolbar: Brand Color Filter & Grid/List View Switcher */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 p-3 rounded-2xl border border-zinc-200/55 dark:border-zinc-800/50 bg-zinc-50/20 dark:bg-[#0c0f1a]/10 max-w-2xl mx-auto w-full">
+          {/* Brand Color Selector */}
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Filter by Brand Color</span>
+            <div className="flex items-center gap-2">
+              {COLOR_PALETTES.map(palette => {
+                const isSelected = activeColorFilter === palette.id;
+                return (
+                  <button
+                    key={palette.id}
+                    onClick={() => setActiveColorFilter(palette.id)}
+                    title={palette.label}
+                    className={`w-5 h-5 rounded-full ${palette.bg} transition cursor-pointer relative flex items-center justify-center hover:scale-110 active:scale-95 ${
+                      isSelected
+                        ? "ring-2 ring-indigo-500 ring-offset-2 dark:ring-offset-[#07090f] scale-110 shadow-md"
+                        : "opacity-75 hover:opacity-100"
+                    }`}
+                  >
+                    {isSelected && (
+                      <span className="w-1.5 h-1.5 rounded-full bg-white shadow-inner animate-pulse" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Divider line for mobile stack layout */}
+          <div className="sm:hidden w-full h-px bg-zinc-200/40 dark:bg-zinc-800/40" />
+
+          {/* Grid vs List Toggle Switcher */}
+          <div className="flex items-center gap-2">
+            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Layout</span>
+            <div className="flex rounded-lg p-0.5 bg-zinc-100 dark:bg-[#0e111a] border border-zinc-200/40 dark:border-zinc-800/40">
+              <button
+                onClick={() => setViewMode("grid")}
+                className={`p-1.5 rounded-md transition duration-150 cursor-pointer ${
+                  viewMode === "grid"
+                    ? "bg-white dark:bg-[#1a1f30] text-indigo-500 shadow-sm border border-zinc-250/10"
+                    : "text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-350"
+                }`}
+                title="Grid View"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+              </button>
+              <button
+                onClick={() => setViewMode("list")}
+                className={`p-1.5 rounded-md transition duration-150 cursor-pointer ${
+                  viewMode === "list"
+                    ? "bg-white dark:bg-[#1a1f30] text-indigo-500 shadow-sm border border-zinc-250/10"
+                    : "text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-350"
+                }`}
+                title="List View"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Category Filter Bar */}
@@ -3046,24 +3153,35 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
           {CATEGORIES.map(category => {
             const translationKey = `category_${category}` as TranslationKey;
             const isSelected = activeCategory === category;
+            const count = categoryCounts[category] || 0;
             return (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 cursor-pointer ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 cursor-pointer flex items-center gap-1.5 ${
                   isSelected
                     ? "bg-indigo-600 text-white shadow-sm shadow-indigo-600/20"
-                    : "bg-zinc-100 dark:bg-[#0e111a] hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-500 dark:text-zinc-400 border border-zinc-200/80 dark:border-zinc-800"
+                    : "bg-zinc-100 dark:bg-[#0e111a] hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-550 dark:text-zinc-450 border border-zinc-200/80 dark:border-zinc-800"
                 }`}
               >
-                {t(translationKey)}
+                <span>{t(translationKey)}</span>
+                <span className={`px-1.5 py-0.5 rounded-full text-[9px] font-extrabold ${
+                  isSelected
+                    ? "bg-white/20 text-white"
+                    : "bg-zinc-200/60 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-500"
+                }`}>
+                  {count}
+                </span>
               </button>
             );
           })}
         </div>
 
-        {/* Icon Grid */}
-        <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3">
+        {/* Icon Grid/List Catalog */}
+        <div className={viewMode === "grid" 
+          ? "grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3"
+          : "flex flex-col gap-3.5"
+        }>
           {filteredIcons.slice(0, visibleCount).map(icon => (
             <IconCard
               key={icon.id}
@@ -3073,6 +3191,9 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
               color={icon.color}
               accentColor={icon.accentColor}
               theme={theme}
+              category={icon.category}
+              description={icon.description}
+              viewMode={viewMode}
             />
           ))}
 

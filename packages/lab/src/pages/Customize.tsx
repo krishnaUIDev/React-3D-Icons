@@ -311,7 +311,9 @@ import {
   Sliders as LucideSliders,
   Palette,
   Code,
-  Zap
+  Zap,
+  ChevronDown,
+  ChevronRight
 } from "lucide-react";
 import * as LucideAll from "lucide-react";
 
@@ -677,7 +679,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   // PREMIUM STATES
   const [activeSidebarTab, setActiveSidebarTab] = useState<"tuning" | "material" | "scene" | "presets" | "compare">("tuning");
   const [viewportBg, setViewportBg] = useState<"default" | "grid" | "gradient-indigo" | "gradient-sunset" | "gradient-mesh">("default");
-  const [previewContext, setPreviewContext] = useState<"icon" | "navbar" | "card" | "hero">("icon");
+  const [previewContext, setPreviewContext] = useState<"icon" | "navbar" | "card" | "hero" | "pricing" | "mobile" | "testimonial" | "checkout">("icon");
   const [cameraZoom, setCameraZoom] = useState(4.5);
   const [cameraFov, setCameraFov] = useState(45);
   const [shareSuccess, setShareSuccess] = useState(false);
@@ -686,6 +688,31 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [lightColorInput, setLightColorInput] = useState("#c084fc");
   const [tiltIntensity, setTiltIntensity] = useState(1.0);
   const [animationType, setAnimationType] = useState<IconAnimationType>("spin");
+  const [animationAxis, setAnimationAxis] = useState<"x" | "y" | "z">("y");
+  const [animationDirection, setAnimationDirection] = useState<"clockwise" | "counter-clockwise">("clockwise");
+  const [shadowOpacity, setShadowOpacity] = useState(0.6);
+  const [shadowBlur, setShadowBlur] = useState(2.5);
+  const [textureType, setTextureType] = useState<"none" | "frosted" | "brushed" | "carbon">("none");
+  const [emissivePulseSpeed, setEmissivePulseSpeed] = useState(0.0);
+  const [emissivePulseIntensity, setEmissivePulseIntensity] = useState(0.5);
+  const [lightingPreset, setLightingPreset] = useState<"studio" | "cyber" | "sunset" | "dramatic">("studio");
+  const [importStatus, setImportStatus] = useState<"idle" | "success" | "error">("idle");
+  const [presentationMode, setPresentationMode] = useState(false);
+  const [showcaseGridView, setShowcaseGridView] = useState(false);
+  const [viewportFlash, setViewportFlash] = useState(false);
+  const [switcherSearch, setSwitcherSearch] = useState("");
+  const [isSwitcherOpen, setIsSwitcherOpen] = useState(false);
+
+  // ACCORDION EXPANSION STATES
+  const [tuningGeometryOpen, setTuningGeometryOpen] = useState(true);
+  const [tuningColorOpen, setTuningColorOpen] = useState(false);
+  const [tuningMotionOpen, setTuningMotionOpen] = useState(false);
+  const [sceneBgOpen, setSceneBgOpen] = useState(true);
+  const [sceneCameraOpen, setSceneCameraOpen] = useState(false);
+  const [sceneLightsOpen, setSceneLightsOpen] = useState(false);
+  const [materialParamsOpen, setMaterialParamsOpen] = useState(true);
+  const [materialTexturesOpen, setMaterialTexturesOpen] = useState(false);
+  const [materialPulsationOpen, setMaterialPulsationOpen] = useState(false);
 
   // Material physics overrides (initially with defaults of active preset)
   const [materialRoughness, setMaterialRoughness] = useState(0.1);
@@ -767,6 +794,14 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
         }
         if (decoded.tiltIntensity !== undefined) setTiltIntensity(decoded.tiltIntensity);
         if (decoded.animationType) setAnimationType(decoded.animationType);
+        if (decoded.animationAxis) setAnimationAxis(decoded.animationAxis);
+        if (decoded.animationDirection) setAnimationDirection(decoded.animationDirection);
+        if (decoded.shadowOpacity !== undefined) setShadowOpacity(decoded.shadowOpacity);
+        if (decoded.shadowBlur !== undefined) setShadowBlur(decoded.shadowBlur);
+        if (decoded.textureType) setTextureType(decoded.textureType);
+        if (decoded.emissivePulseSpeed !== undefined) setEmissivePulseSpeed(decoded.emissivePulseSpeed);
+        if (decoded.emissivePulseIntensity !== undefined) setEmissivePulseIntensity(decoded.emissivePulseIntensity);
+        if (decoded.lightingPreset) setLightingPreset(decoded.lightingPreset);
         
         if (decoded.customMaterial) {
           const defaults = getMaterialConfig(decoded.preset || "glass", decoded.color || color, theme, decoded.accentColor || accentColor);
@@ -843,6 +878,14 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const lightColorProp = lightColor !== "#c084fc" ? `\n        lightColor="${lightColor}"` : "";
   const tiltIntensityProp = tiltIntensity !== 1.0 ? `\n        tiltIntensity={${tiltIntensity.toFixed(1)}}` : "";
   const animationTypeProp = animationType !== "spin" ? `\n        animationType="${animationType}"` : "";
+  const animationAxisProp = animationAxis !== "y" ? `\n        animationAxis="${animationAxis}"` : "";
+  const animationDirectionProp = animationDirection !== "clockwise" ? `\n        animationDirection="${animationDirection}"` : "";
+  const shadowOpacityProp = shadowOpacity !== 0.6 ? `\n        shadowOpacity={${shadowOpacity.toFixed(2)}}` : "";
+  const shadowBlurProp = shadowBlur !== 2.5 ? `\n        shadowBlur={${shadowBlur.toFixed(2)}}` : "";
+  const textureTypeProp = textureType !== "none" ? `\n        textureType="${textureType}"` : "";
+  const emissivePulseSpeedProp = emissivePulseSpeed > 0 ? `\n        emissivePulseSpeed={${emissivePulseSpeed.toFixed(1)}}` : "";
+  const emissivePulseIntensityProp = emissivePulseSpeed > 0 && emissivePulseIntensity !== 0.5 ? `\n        emissivePulseIntensity={${emissivePulseIntensity.toFixed(2)}}` : "";
+  const lightingPresetProp = lightingPreset !== "studio" ? `\n        lightingPreset="${lightingPreset}"` : "";
 
   // Preset Handlers
   const handleSavePreset = () => {
@@ -857,6 +900,10 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       spinSpeed,
       floatHeight,
       environment,
+      textureType,
+      emissivePulseSpeed,
+      emissivePulseIntensity,
+      lightingPreset,
       customMaterial
     };
     const updated = [...savedPresets, newPreset];
@@ -891,6 +938,14 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
         lightColor,
         tiltIntensity,
         animationType,
+        animationAxis,
+        animationDirection,
+        shadowOpacity,
+        shadowBlur,
+        textureType,
+        emissivePulseSpeed,
+        emissivePulseIntensity,
+        lightingPreset,
         customMaterial
       };
       const serialized = btoa(encodeURIComponent(JSON.stringify(data)));
@@ -904,6 +959,54 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
     }
   };
 
+  const handleExportPresets = () => {
+    try {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(savedPresets, null, 2));
+      const downloadAnchor = document.createElement("a");
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "r3d-custom-presets.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    } catch (e) {
+      console.error("Failed to export presets", e);
+    }
+  };
+
+  const handleImportPresets = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileReader = new FileReader();
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+    
+    fileReader.onload = (event) => {
+      try {
+        const parsed = JSON.parse(event.target?.result as string);
+        if (Array.isArray(parsed)) {
+          const merged = [...savedPresets];
+          parsed.forEach((importedItem) => {
+            if (importedItem.name && importedItem.preset) {
+              if (!merged.some(existing => existing.id === importedItem.id || existing.name === importedItem.name)) {
+                merged.push(importedItem);
+              }
+            }
+          });
+          setSavedPresets(merged);
+          localStorage.setItem("r3d_saved_presets", JSON.stringify(merged));
+          setImportStatus("success");
+          setTimeout(() => setImportStatus("idle"), 2500);
+        } else {
+          setImportStatus("error");
+          setTimeout(() => setImportStatus("idle"), 2500);
+        }
+      } catch (err) {
+        console.error("Failed to parse presets import", err);
+        setImportStatus("error");
+        setTimeout(() => setImportStatus("idle"), 2500);
+      }
+    };
+    fileReader.readAsText(files[0]);
+  };
+
   const handleApplyPreset = (p: any) => {
     if (p.preset) setPreset(p.preset);
     if (p.angle) setAngle(p.angle);
@@ -915,6 +1018,10 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
     if (p.spinSpeed !== undefined) setSpinSpeed(p.spinSpeed);
     if (p.floatHeight !== undefined) setFloatHeight(p.floatHeight);
     if (p.environment) setEnvironment(p.environment);
+    setTextureType(p.textureType || "none");
+    setEmissivePulseSpeed(p.emissivePulseSpeed !== undefined ? p.emissivePulseSpeed : 0.0);
+    setEmissivePulseIntensity(p.emissivePulseIntensity !== undefined ? p.emissivePulseIntensity : 0.5);
+    setLightingPreset(p.lightingPreset || "studio");
     
     // Apply custom material properties
     const defaults = getMaterialConfig(p.preset || "glass", p.color || color, theme, p.accentColor || accentColor);
@@ -977,7 +1084,7 @@ function App() {
         spinSpeed={${spinSpeed.toFixed(1)}}
         floatHeight={${floatHeight.toFixed(1)}}
         theme="${theme}"
-        interactive={${interactive}}${cameraZoomProp}${cameraFovProp}${lightIntensityProp}${lightColorProp}${tiltIntensityProp}${animationTypeProp}${customMaterialProp}
+        interactive={${interactive}}${cameraZoomProp}${cameraFovProp}${lightIntensityProp}${lightColorProp}${tiltIntensityProp}${animationTypeProp}${animationAxisProp}${animationDirectionProp}${shadowOpacityProp}${shadowBlurProp}${textureTypeProp}${emissivePulseSpeedProp}${emissivePulseIntensityProp}${lightingPresetProp}${customMaterialProp}
       />
     </div>
   );
@@ -1024,6 +1131,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
       lightColor="${lightColor}"
       tiltIntensity={${tiltIntensity}}
       animationType="${animationType}"
+      animationAxis="${animationAxis}"
+      animationDirection="${animationDirection}"
+      shadowOpacity={${shadowOpacity}}
+      shadowBlur={${shadowBlur}}
+      textureType="${textureType}"
+      emissivePulseSpeed={${emissivePulseSpeed}}
+      emissivePulseIntensity={${emissivePulseIntensity}}
+      lightingPreset="${lightingPreset}"
       ${Object.keys(customMaterial).length > 0 ? "customMaterial={customMaterial}" : ""}
       {...props}
     />
@@ -1210,6 +1325,16 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     setLightColorInput("#c084fc");
     setTiltIntensity(1.0);
     setAnimationType("spin");
+    setAnimationAxis("y");
+    setAnimationDirection("clockwise");
+    setShadowOpacity(0.6);
+    setShadowBlur(2.5);
+    setTextureType("none");
+    setEmissivePulseSpeed(0.0);
+    setEmissivePulseIntensity(0.5);
+    setLightingPreset("studio");
+    setPresentationMode(false);
+    setShowcaseGridView(false);
     const defaults = getMaterialConfig("glass", currentIcon.color || "#6366f1", theme, currentIcon.accentColor);
     setMaterialRoughness(defaults.roughness);
     setMaterialMetalness(defaults.metalness);
@@ -1219,6 +1344,71 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     setMaterialClearcoatRoughness(defaults.clearcoatRoughness);
     setMaterialIor(defaults.ior);
     setMaterialEmissiveIntensity(defaults.emissiveIntensity);
+  };
+
+  const handleSurpriseMe = () => {
+    setViewportFlash(true);
+    setTimeout(() => setViewportFlash(false), 250);
+
+    const presets: Array<IconPreset> = ["glass", "metal", "clay", "hologram", "gold", "silver", "glassmorphism", "carbon", "wood"];
+    const shuffledPreset = presets[Math.floor(Math.random() * presets.length)];
+    setPreset(shuffledPreset);
+
+    const colorCombos = [
+      { main: "#6366f1", accent: "#ec4899" },
+      { main: "#10b981", accent: "#34d399" },
+      { main: "#ef4444", accent: "#f59e0b" },
+      { main: "#8b5cf6", accent: "#ff007f" },
+      { main: "#0ea5e9", accent: "#00ffff" },
+      { main: "#f43f5e", accent: "#38bdf8" },
+      { main: "#eab308", accent: "#ff4500" },
+      { main: "#0d9488", accent: "#10b981" },
+      { main: "#ec4899", accent: "#8b5cf6" },
+      { main: "#3b82f6", accent: "#fbbf24" }
+    ];
+    const combo = colorCombos[Math.floor(Math.random() * colorCombos.length)];
+    setColor(combo.main);
+    setAccentColor(combo.accent);
+    updateCustomizerURL(combo.main.replace("#", ""), currentIcon.id);
+
+    const defaults = getMaterialConfig(shuffledPreset, combo.main, theme, combo.accent);
+    
+    const roughnessOffset = (Math.random() - 0.5) * 0.15;
+    const metalnessOffset = (Math.random() - 0.5) * 0.2;
+    setMaterialRoughness(Math.max(0.01, Math.min(1.0, defaults.roughness + roughnessOffset)));
+    setMaterialMetalness(Math.max(0.0, Math.min(1.0, defaults.metalness + metalnessOffset)));
+    setMaterialTransmission(defaults.transmission);
+    setMaterialThickness(defaults.thickness);
+    setMaterialClearcoat(defaults.clearcoat);
+    setMaterialClearcoatRoughness(defaults.clearcoatRoughness);
+    setMaterialIor(defaults.ior);
+    setMaterialEmissiveIntensity(defaults.emissiveIntensity);
+
+    const motions: Array<IconAnimationType> = ["spin", "wobble", "breathe", "wave"];
+    const chosenMotion = motions[Math.floor(Math.random() * motions.length)];
+    setAnimationType(chosenMotion);
+
+    const axes: Array<"x" | "y" | "z"> = ["x", "y", "z"];
+    setAnimationAxis(axes[Math.floor(Math.random() * axes.length)]);
+    setAnimationDirection(Math.random() > 0.5 ? "clockwise" : "counter-clockwise");
+    setSpinSpeed(parseFloat((Math.random() * 1.5 + 0.4).toFixed(2)));
+    setFloatHeight(parseFloat((Math.random() * 1.4 + 0.3).toFixed(2)));
+
+    const textures: Array<"none" | "frosted" | "brushed" | "carbon"> = ["none", "frosted", "brushed", "carbon"];
+    setTextureType(textures[Math.floor(Math.random() * textures.length)]);
+
+    setEmissivePulseSpeed(Math.random() > 0.4 ? parseFloat((Math.random() * 2.2).toFixed(2)) : 0.0);
+    setEmissivePulseIntensity(parseFloat((Math.random() * 1.6 + 0.4).toFixed(2)));
+
+    const lightingPresets: Array<"studio" | "cyber" | "sunset" | "dramatic"> = ["studio", "cyber", "sunset", "dramatic"];
+    setLightingPreset(lightingPresets[Math.floor(Math.random() * lightingPresets.length)]);
+
+    const bgs: Array<"default" | "grid" | "gradient-indigo" | "gradient-sunset" | "gradient-mesh"> = [
+      "default", "grid", "gradient-indigo", "gradient-sunset", "gradient-mesh"
+    ];
+    setViewportBg(bgs[Math.floor(Math.random() * bgs.length)]);
+
+    setResetKey(prev => prev + 1);
   };
 
   const getViewportBgClass = () => {
@@ -1248,8 +1438,63 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
           <span>Back to Gallery</span>
         </button>
 
-        <div className="flex items-center gap-2">
-          <span className="px-3 py-1 text-[10px] font-extrabold rounded-full bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/50 uppercase tracking-wide">
+        <div className="flex items-center gap-3 relative z-40">
+          {/* Quick Switcher dropdown select */}
+          <div className="relative">
+            <button
+              onClick={() => {
+                setIsSwitcherOpen(!isSwitcherOpen);
+                setSwitcherSearch("");
+              }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-850/80 text-[10px] font-extrabold uppercase tracking-wide text-zinc-600 dark:text-zinc-350 cursor-pointer shadow-sm active:scale-95 transition-all select-none"
+            >
+              <span>Switch Icon: {currentIcon.name.replace("Icon", "")}</span>
+              <LucideAll.ChevronDown size={11} className={`text-zinc-400 transition-transform duration-200 ${isSwitcherOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {isSwitcherOpen && (
+              <div className="absolute right-0 mt-2 w-60 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-[#0e111a]/95 backdrop-blur-xl shadow-xl p-2.5 space-y-2 animate-page-fade">
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Search icons..."
+                    value={switcherSearch}
+                    onChange={(e) => setSwitcherSearch(e.target.value)}
+                    className="w-full px-3 py-1.5 pl-8 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 text-[10px] font-bold focus:outline-none focus:border-indigo-500 transition-all text-zinc-800 dark:text-zinc-200"
+                  />
+                  <LucideAll.Search size={11} className="absolute left-3 top-2.5 text-zinc-400" />
+                </div>
+                <div className="max-h-48 overflow-y-auto flex flex-col gap-1 custom-scrollbar pr-0.5">
+                  {ICONS_REGISTRY.filter((icon) =>
+                    icon.name.toLowerCase().includes(switcherSearch.toLowerCase())
+                  ).map((icon) => {
+                    const isCurrent = icon.id === currentIcon.id;
+                    return (
+                      <button
+                        key={icon.id}
+                        onClick={() => {
+                          updateCustomizerURL(color.replace("#", ""), icon.id);
+                          setIsSwitcherOpen(false);
+                        }}
+                        className={`w-full px-2.5 py-1.5 rounded-lg text-left text-[9px] font-bold uppercase tracking-wider transition flex items-center justify-between cursor-pointer ${
+                          isCurrent
+                            ? "bg-indigo-600 text-white font-black"
+                            : "text-zinc-650 hover:bg-zinc-50 dark:text-zinc-400 dark:hover:bg-zinc-850"
+                        }`}
+                      >
+                        <span>{icon.name.replace("Icon", "")}</span>
+                        <span className={`text-[7px] px-1 py-0.5 rounded uppercase ${isCurrent ? "bg-white/20 text-white" : "bg-zinc-150 dark:bg-zinc-800 text-zinc-400"}`}>
+                          {icon.category}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <span className="px-3 py-1.5 text-[10px] font-extrabold rounded-full bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/50 uppercase tracking-wide">
             Live Preview Sandbox
           </span>
         </div>
@@ -1259,8 +1504,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
         {/* Left Side: 3D Scene Viewport */}
-        <div className="lg:col-span-8 flex flex-col gap-6">
-          <div className={`relative h-[480px] w-full rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-xl overflow-hidden group transition-all duration-300 ${getViewportBgClass()}`}>
+        <div className={`${presentationMode ? "lg:col-span-12" : "lg:col-span-8"} flex flex-col gap-6 transition-all duration-300`}>
+          <div className={`relative w-full rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-xl overflow-hidden group transition-all duration-300 ${presentationMode ? "h-[600px]" : "h-[480px]"} ${getViewportBgClass()}`}>
+            {/* Viewport Camera Flash Effect overlay */}
+            <div className={`absolute inset-0 bg-white/70 dark:bg-indigo-500/10 pointer-events-none transition-opacity duration-500 z-30 ${
+              viewportFlash ? "opacity-100 duration-75" : "opacity-0"
+            }`} />
 
             {/* Overlay indicators */}
             {activeSidebarTab !== "compare" && (
@@ -1279,15 +1528,43 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
               </div>
             )}
 
-            {/* Reset Button */}
+            {/* Viewport Control Buttons */}
             {activeSidebarTab !== "compare" && (
-              <button
-                onClick={handleReset}
-                title={t("reset_btn")}
-                className="absolute top-4 right-4 z-10 p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm transition active:scale-95 cursor-pointer"
-              >
-                <RotateCw size={16} />
-              </button>
+              <div className="absolute top-4 right-4 z-10 flex gap-2">
+                {presentationMode ? (
+                  <button
+                    onClick={() => setPresentationMode(false)}
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl border border-zinc-250 dark:border-zinc-700 bg-indigo-600 text-white shadow-lg transition active:scale-95 cursor-pointer text-[10px] font-extrabold uppercase tracking-wider animate-pulse hover:bg-indigo-700"
+                  >
+                    <LucideAll.Minimize2 size={12} />
+                    <span>Exit Full View</span>
+                  </button>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => setPresentationMode(true)}
+                      title="Presentation View (Hide Sidebar)"
+                      className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm transition active:scale-95 cursor-pointer"
+                    >
+                      <LucideAll.Maximize2 size={16} />
+                    </button>
+                    <button
+                      onClick={handleReset}
+                      title={t("reset_btn")}
+                      className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm transition active:scale-95 cursor-pointer"
+                    >
+                      <RotateCw size={16} />
+                    </button>
+                    <button
+                      onClick={handleSurpriseMe}
+                      title="Surprise Me (Shuffle Presets 🎲)"
+                      className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-amber-500 shadow-sm transition hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center"
+                    >
+                      <span className="text-sm leading-none block font-mono select-none">🎲</span>
+                    </button>
+                  </>
+                )}
+              </div>
             )}
 
             {/* Viewport Contents */}
@@ -1321,6 +1598,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                           lightColor={lightColor}
                           tiltIntensity={tiltIntensity}
                           animationType={animationType}
+                          animationAxis={animationAxis}
+                          animationDirection={animationDirection}
+                          shadowOpacity={shadowOpacity}
+                          shadowBlur={shadowBlur}
+                          textureType={textureType}
+                          emissivePulseSpeed={emissivePulseSpeed}
+                          emissivePulseIntensity={emissivePulseIntensity}
+                          lightingPreset={lightingPreset}
                           size="100%"
                         />
                       </div>
@@ -1337,9 +1622,223 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                 })}
               </div>
             ) : (
-              /* Single Preview Contexts */
+              /* Single Preview Contexts or Showcase Grid Mode */
               <div className="w-full h-full">
-                {previewContext === "icon" && (
+                {showcaseGridView ? (
+                  <div className="w-full h-full grid grid-cols-2 p-3 gap-3 overflow-y-auto bg-zinc-50/50 dark:bg-[#07090f]/30 custom-scrollbar">
+                    {/* Slot 1: Navbar */}
+                    <div className="rounded-2xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/40 dark:bg-[#0c0f1a]/40 backdrop-blur-md p-3 flex flex-col justify-between h-[210px] overflow-hidden">
+                      <div className="flex items-center justify-between border-b border-zinc-200/10 dark:border-zinc-800/20 pb-1.5">
+                        <div className="flex items-center gap-1">
+                          <div className="w-6 h-6">
+                            <ActiveComponent
+                              preset={preset}
+                              angle="front"
+                              environment={environment}
+                              variant={renderMode}
+                              color={color}
+                              accentColor={accentColor}
+                              spinSpeed={0}
+                              floatHeight={0}
+                              theme={theme}
+                              interactive={false}
+                              customMaterial={customMaterial}
+                              lightingPreset={lightingPreset}
+                              size={20}
+                            />
+                          </div>
+                          <span className="font-extrabold text-[8px] text-zinc-900 dark:text-white uppercase tracking-wider">Navbar</span>
+                        </div>
+                        <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-500 text-[5px] font-extrabold uppercase tracking-wide">Active</span>
+                      </div>
+                      <div className="flex-grow flex flex-col items-center justify-center text-center space-y-1 pt-1">
+                        <div className="w-12 h-12 relative flex items-center justify-center">
+                          <div className="absolute inset-0 rounded-full blur-xl opacity-10 pointer-events-none" style={{ backgroundColor: color }} />
+                          <ActiveComponent
+                            preset={preset}
+                            angle={angle}
+                            environment={environment}
+                            variant={renderMode}
+                            color={color}
+                            accentColor={accentColor}
+                            spinSpeed={spinSpeed}
+                            floatHeight={floatHeight}
+                            theme={theme}
+                            interactive={interactive}
+                            customMaterial={customMaterial}
+                            cameraZoom={cameraZoom}
+                            cameraFov={cameraFov}
+                            lightIntensity={lightIntensity}
+                            lightColor={lightColor}
+                            tiltIntensity={tiltIntensity}
+                            animationType={animationType}
+                            animationAxis={animationAxis}
+                            animationDirection={animationDirection}
+                            shadowOpacity={shadowOpacity}
+                            shadowBlur={shadowBlur}
+                            textureType={textureType}
+                            emissivePulseSpeed={emissivePulseSpeed}
+                            emissivePulseIntensity={emissivePulseIntensity}
+                            lightingPreset={lightingPreset}
+                            size={44}
+                          />
+                        </div>
+                        <p className="text-[7px] text-zinc-400 dark:text-zinc-500 leading-normal max-w-[120px] truncate">
+                          Header emblem integration
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Slot 2: Stats Card */}
+                    <div 
+                      style={{ boxShadow: `0 15px 30px -10px ${color}10` }}
+                      className="rounded-2xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/40 dark:bg-[#0c0f1a]/40 backdrop-blur-md p-3 flex flex-col items-center text-center justify-between h-[210px] overflow-hidden transition duration-300"
+                    >
+                      <div className="w-14 h-14 relative flex items-center justify-center">
+                        <div className="absolute inset-0 rounded-full blur-xl opacity-15 pointer-events-none" style={{ backgroundColor: color }} />
+                        <ActiveComponent
+                          preset={preset}
+                          angle={angle}
+                          environment={environment}
+                          variant={renderMode}
+                          color={color}
+                          accentColor={accentColor}
+                          spinSpeed={spinSpeed}
+                          floatHeight={floatHeight}
+                          theme={theme}
+                          interactive={interactive}
+                          customMaterial={customMaterial}
+                          cameraZoom={cameraZoom}
+                          cameraFov={cameraFov}
+                          lightIntensity={lightIntensity}
+                          lightColor={lightColor}
+                          tiltIntensity={tiltIntensity}
+                          animationType={animationType}
+                          animationAxis={animationAxis}
+                          animationDirection={animationDirection}
+                          shadowOpacity={shadowOpacity}
+                          shadowBlur={shadowBlur}
+                          textureType={textureType}
+                          emissivePulseSpeed={emissivePulseSpeed}
+                          emissivePulseIntensity={emissivePulseIntensity}
+                          lightingPreset={lightingPreset}
+                          size={52}
+                        />
+                      </div>
+                      <div className="space-y-0.5">
+                        <span className="px-1.5 py-0.5 text-[5px] font-extrabold text-indigo-500 bg-indigo-500/10 rounded-full uppercase tracking-wider">
+                          Premium Card
+                        </span>
+                        <h4 className="text-[8px] font-extrabold text-zinc-850 dark:text-white uppercase tracking-wider leading-none pt-0.5">Feature Card</h4>
+                        <p className="text-[7px] text-zinc-400 dark:text-zinc-550 leading-relaxed max-w-[120px] truncate">
+                          Glow visual node
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Slot 3: Customer Review */}
+                    <div 
+                      style={{ boxShadow: `0 15px 30px -10px ${color}10` }}
+                      className="rounded-2xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/40 dark:bg-[#0c0f1a]/40 backdrop-blur-md p-3 flex flex-col justify-between h-[210px] overflow-hidden relative"
+                    >
+                      <span className="absolute -top-1 left-2 text-2xl font-serif text-indigo-500/20 leading-none pointer-events-none select-none">“</span>
+                      <div className="absolute top-2 right-2 w-10 h-10 flex items-center justify-center">
+                        <ActiveComponent
+                          preset={preset}
+                          angle={angle}
+                          environment={environment}
+                          variant={renderMode}
+                          color={color}
+                          accentColor={accentColor}
+                          spinSpeed={spinSpeed}
+                          floatHeight={floatHeight}
+                          theme={theme}
+                          interactive={interactive}
+                          customMaterial={customMaterial}
+                          cameraZoom={cameraZoom}
+                          cameraFov={cameraFov}
+                          lightIntensity={lightIntensity}
+                          lightColor={lightColor}
+                          tiltIntensity={tiltIntensity}
+                          animationType={animationType}
+                          animationAxis={animationAxis}
+                          animationDirection={animationDirection}
+                          shadowOpacity={shadowOpacity}
+                          shadowBlur={shadowBlur}
+                          textureType={textureType}
+                          emissivePulseSpeed={emissivePulseSpeed}
+                          emissivePulseIntensity={emissivePulseIntensity}
+                          lightingPreset={lightingPreset}
+                          size="100%"
+                        />
+                      </div>
+                      <p className="text-[7px] text-zinc-650 dark:text-zinc-400 font-medium italic leading-normal pt-2 max-w-[85px]">
+                        "Interactive sandbox is amazing."
+                      </p>
+                      <div className="w-full h-px bg-zinc-200/10 my-0.5" />
+                      <div className="flex items-center gap-1">
+                        <div className="w-4 h-4 rounded-full bg-zinc-200/30 border border-zinc-200/20 flex items-center justify-center text-[6px] font-extrabold text-zinc-800 dark:text-zinc-255">JD</div>
+                        <div className="flex flex-col">
+                          <span className="text-[7px] font-extrabold text-zinc-900 dark:text-white uppercase leading-none">Jane Doe</span>
+                          <span className="text-[5px] text-zinc-400 dark:text-zinc-550 uppercase tracking-wide">Architect</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Slot 4: Checkout */}
+                    <div 
+                      style={{ boxShadow: `0 15px 30px -10px ${color}10` }}
+                      className="rounded-2xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/40 dark:bg-[#0c0f1a]/40 backdrop-blur-md p-3 flex flex-col justify-between h-[210px] overflow-hidden"
+                    >
+                      <div className="flex justify-between items-center pb-1 border-b border-zinc-200/20">
+                        <span className="text-[5px] font-extrabold uppercase tracking-wide text-zinc-450">Receipt</span>
+                        <span className="text-[6px] font-extrabold text-zinc-900 dark:text-white font-mono">#9082</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 py-1">
+                        <div className="w-8 h-8 rounded-lg border border-zinc-200/10 bg-zinc-250/20 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+                          <div className="absolute inset-1 rounded-full blur-xl opacity-10 pointer-events-none" style={{ backgroundColor: color }} />
+                          <ActiveComponent
+                            preset={preset}
+                            angle={angle}
+                            environment={environment}
+                            variant={renderMode}
+                            color={color}
+                            accentColor={accentColor}
+                            spinSpeed={spinSpeed}
+                            floatHeight={floatHeight}
+                            theme={theme}
+                            interactive={interactive}
+                            customMaterial={customMaterial}
+                            cameraZoom={cameraZoom}
+                            cameraFov={cameraFov}
+                            lightIntensity={lightIntensity}
+                            lightColor={lightColor}
+                            tiltIntensity={tiltIntensity}
+                            animationType={animationType}
+                            animationAxis={animationAxis}
+                            animationDirection={animationDirection}
+                            shadowOpacity={shadowOpacity}
+                            shadowBlur={shadowBlur}
+                            textureType={textureType}
+                            emissivePulseSpeed={emissivePulseSpeed}
+                            emissivePulseIntensity={emissivePulseIntensity}
+                            lightingPreset={lightingPreset}
+                            size="100%"
+                          />
+                        </div>
+                        <span className="text-[7px] font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider truncate max-w-[45px]">Receipt Item</span>
+                      </div>
+                      <button 
+                        style={{ backgroundColor: color }} 
+                        className="w-full py-1 rounded-lg text-white text-[7px] font-extrabold uppercase tracking-wider transition cursor-pointer"
+                      >
+                        Checkout
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    {previewContext === "icon" && (
                   <div className="w-full h-full flex items-center justify-center">
                     <ActiveComponent
                       key={resetKey}
@@ -1360,13 +1859,25 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       lightColor={lightColor}
                       tiltIntensity={tiltIntensity}
                       animationType={animationType}
+                      animationAxis={animationAxis}
+                      animationDirection={animationDirection}
+                      shadowOpacity={shadowOpacity}
+                      shadowBlur={shadowBlur}
+                      textureType={textureType}
+                      emissivePulseSpeed={emissivePulseSpeed}
+                      emissivePulseIntensity={emissivePulseIntensity}
+                      lightingPreset={lightingPreset}
                     />
                   </div>
                 )}
 
                 {previewContext === "navbar" && (
-                  <div className="w-full h-full flex flex-col justify-between p-6">
-                    <div className="w-full rounded-2xl border border-zinc-200/80 dark:border-zinc-850 bg-white/70 dark:bg-zinc-900/60 backdrop-blur-md px-6 py-3 flex items-center justify-between shadow-md">
+                  <div className="w-full h-full flex flex-col justify-between p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
+                    {/* Upgraded Glassmorphic Navbar */}
+                    <div 
+                      style={{ boxShadow: `0 12px 30px -10px ${color}15` }}
+                      className="w-full rounded-2xl border border-zinc-200/40 dark:border-zinc-800/50 bg-white/70 dark:bg-[#0f121e]/80 backdrop-blur-xl px-5 py-2.5 flex items-center justify-between shadow-md transition duration-300"
+                    >
                       <div className="flex items-center gap-2">
                         <div className="w-8 h-8">
                           <ActiveComponent
@@ -1381,25 +1892,30 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             theme={theme}
                             interactive={false}
                             customMaterial={customMaterial}
+                            lightingPreset={lightingPreset}
                             size={32}
                           />
                         </div>
-                        <span className="font-extrabold text-xs text-zinc-900 dark:text-white uppercase tracking-wider">
+                        <span className="font-extrabold text-[10px] text-zinc-900 dark:text-white uppercase tracking-wider">
                           {currentIcon.name.replace("Icon", "")} Portal
                         </span>
                       </div>
-                      <div className="flex gap-4 text-[10px] font-bold text-zinc-500 dark:text-zinc-400">
-                        <span className="hover:text-indigo-500 cursor-pointer">Dashboard</span>
-                        <span className="hover:text-indigo-500 cursor-pointer">Security</span>
-                        <span className="hover:text-indigo-500 cursor-pointer">Settings</span>
+                      <div className="flex gap-4 text-[9px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">
+                        <span className="hover:text-indigo-500 cursor-pointer transition">Dashboard</span>
+                        <span className="hover:text-indigo-500 cursor-pointer transition">Security</span>
+                        <span className="hover:text-indigo-500 cursor-pointer transition">Settings</span>
                       </div>
-                      <button className="px-3.5 py-1.5 rounded-lg bg-indigo-650 hover:bg-indigo-700 text-white text-[10px] font-bold transition">
-                        Launch App
+                      <button 
+                        style={{ backgroundColor: color }}
+                        className="px-3.5 py-1.5 rounded-xl text-white text-[9px] font-extrabold uppercase tracking-wide transition shadow-sm hover:brightness-110 active:scale-95 cursor-pointer"
+                      >
+                        Launch
                       </button>
                     </div>
 
-                    <div className="flex-grow flex flex-col items-center justify-center text-center max-w-md mx-auto space-y-2">
-                      <div className="w-20 h-20">
+                    <div className="flex-grow flex flex-col items-center justify-center text-center max-w-sm mx-auto space-y-2 pt-4">
+                      <div className="w-20 h-20 relative flex items-center justify-center">
+                        <div className="absolute inset-0 rounded-full blur-2xl opacity-15" style={{ backgroundColor: color }} />
                         <ActiveComponent
                           preset={preset}
                           angle={angle}
@@ -1418,22 +1934,33 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                           lightColor={lightColor}
                           tiltIntensity={tiltIntensity}
                           animationType={animationType}
+                          animationAxis={animationAxis}
+                          animationDirection={animationDirection}
+                          shadowOpacity={shadowOpacity}
+                          shadowBlur={shadowBlur}
+                          textureType={textureType}
+                          emissivePulseSpeed={emissivePulseSpeed}
+                          emissivePulseIntensity={emissivePulseIntensity}
+                          lightingPreset={lightingPreset}
                           size={80}
                         />
                       </div>
-                      <h4 className="text-xs font-extrabold text-zinc-850 dark:text-zinc-100 uppercase tracking-wide">Integration Preview</h4>
-                      <p className="text-[10px] text-zinc-400 dark:text-zinc-500 leading-relaxed">
-                        This 3D icon functions flawlessly inside layout elements like header navigation panels or button highlights.
+                      <h4 className="text-[10px] font-extrabold text-zinc-800 dark:text-zinc-100 uppercase tracking-widest pt-2">Logo Header Integration</h4>
+                      <p className="text-[9px] text-zinc-400 dark:text-zinc-500 leading-relaxed">
+                        Features lightweight geometry parameters suitable as structural emblems or navigational visual cues.
                       </p>
                     </div>
                   </div>
                 )}
 
                 {previewContext === "card" && (
-                  <div className="w-full h-full flex items-center justify-center p-6">
-                    <div className="w-72 rounded-3xl border border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-zinc-900/40 backdrop-blur-lg p-6 shadow-xl flex flex-col items-center text-center space-y-4">
+                  <div className="w-full h-full flex items-center justify-center p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
+                    <div 
+                      style={{ boxShadow: `0 30px 60px -15px ${color}20` }}
+                      className="w-64 rounded-3xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/70 dark:bg-[#0f121e]/80 backdrop-blur-xl p-5 flex flex-col items-center text-center space-y-4 transition duration-300"
+                    >
                       <div className="w-28 h-28 relative flex items-center justify-center">
-                        <div className="absolute inset-2 rounded-full blur-xl opacity-20" style={{ backgroundColor: color }} />
+                        <div className="absolute inset-2 rounded-full blur-2xl opacity-20 pointer-events-none" style={{ backgroundColor: color }} />
                         <ActiveComponent
                           preset={preset}
                           angle={angle}
@@ -1452,28 +1979,36 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                           lightColor={lightColor}
                           tiltIntensity={tiltIntensity}
                           animationType={animationType}
+                          animationAxis={animationAxis}
+                          animationDirection={animationDirection}
+                          shadowOpacity={shadowOpacity}
+                          shadowBlur={shadowBlur}
+                          textureType={textureType}
+                          emissivePulseSpeed={emissivePulseSpeed}
+                          emissivePulseIntensity={emissivePulseIntensity}
+                          lightingPreset={lightingPreset}
                           size={112}
                         />
                       </div>
 
                       <div className="space-y-1.5">
-                        <span className="px-2.5 py-0.5 text-[8px] font-extrabold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/40 rounded-full border border-indigo-100 dark:border-indigo-900/50 uppercase tracking-wider">
+                        <span className="px-2 py-0.5 text-[8px] font-extrabold text-indigo-650 dark:text-indigo-400 bg-indigo-500/10 rounded-full uppercase tracking-wider">
                           Premium Asset
                         </span>
-                        <h3 className="text-sm font-extrabold text-zinc-800 dark:text-white capitalize">
+                        <h3 className="text-xs font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider pt-1">
                           {currentIcon.name.replace("Icon", "")} Node
                         </h3>
-                        <p className="text-[10px] text-zinc-400 dark:text-zinc-550 leading-normal max-w-[200px]">
+                        <p className="text-[9px] text-zinc-400 dark:text-zinc-500 leading-relaxed max-w-[190px]">
                           {(currentIcon as any).description || "Deploy state-of-the-art 3D modules into your web application framework."}
                         </p>
                       </div>
 
                       <div className="w-full pt-1 flex gap-2">
-                        <button className="flex-1 py-2 rounded-xl bg-zinc-200/80 dark:bg-zinc-800/80 text-zinc-800 dark:text-zinc-200 text-[10px] font-bold transition hover:bg-zinc-300 dark:hover:bg-zinc-700">
+                        <button className="flex-1 py-1.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 text-[9px] font-extrabold uppercase tracking-wider transition active:scale-95 cursor-pointer">
                           Configure
                         </button>
                         <button 
-                          className="flex-1 py-2 rounded-xl text-white text-[10px] font-bold transition hover:shadow-lg shadow-indigo-500/20"
+                          className="flex-1 py-1.5 rounded-xl text-white text-[9px] font-extrabold uppercase tracking-wider transition hover:brightness-110 active:scale-95 cursor-pointer"
                           style={{ backgroundColor: color }}
                         >
                           Deploy
@@ -1484,7 +2019,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                 )}
 
                 {previewContext === "hero" && (
-                  <div className="w-full h-full grid grid-cols-12 items-center p-8 gap-6 text-left">
+                  <div className="w-full h-full grid grid-cols-12 items-center p-8 gap-6 text-left bg-zinc-50/20 dark:bg-zinc-950/10">
                     <div className="col-span-7 space-y-3">
                       <span className="px-2 py-0.5 text-[8px] font-extrabold text-indigo-500 bg-indigo-500/10 rounded-full uppercase tracking-wider">
                         Next-Gen Visuals
@@ -1493,20 +2028,20 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         Power Up Your <br/>
                         <span className="bg-gradient-to-r from-indigo-500 to-pink-500 bg-clip-text text-transparent">Design System</span>
                       </h1>
-                      <p className="text-[10px] text-zinc-400 dark:text-zinc-500 leading-relaxed max-w-xs">
-                        Elevate user experience with responsive, high-performance physical 3D and 2D vector layout fallbacks.
+                      <p className="text-[9px] text-zinc-400 dark:text-zinc-500 leading-relaxed max-w-xs">
+                        Elevate user experience with responsive, high-performance physical 3D and 2D vector layouts.
                       </p>
                       <div className="flex gap-2 pt-1">
-                        <button className="px-3.5 py-2 rounded-xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-[10px] font-bold shadow-md hover:scale-[1.02] transition">
+                        <button className="px-3.5 py-1.5 rounded-xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-[9px] font-extrabold uppercase tracking-wider shadow-md hover:scale-[1.02] transition cursor-pointer">
                           Get Started
                         </button>
-                        <button className="px-3.5 py-2 rounded-xl border border-zinc-200 dark:border-zinc-850 text-zinc-600 dark:text-zinc-400 text-[10px] font-bold hover:bg-zinc-50 dark:hover:bg-zinc-900/50 transition">
+                        <button className="px-3.5 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-650 dark:text-zinc-450 text-[9px] font-extrabold uppercase tracking-wider hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition cursor-pointer">
                           Docs
                         </button>
                       </div>
                     </div>
                     <div className="col-span-5 flex items-center justify-center relative">
-                      <div className="absolute w-32 h-32 rounded-full blur-3xl opacity-20 pointer-events-none" style={{ backgroundColor: color }} />
+                      <div className="absolute w-44 h-44 rounded-full blur-[70px] opacity-20 pointer-events-none" style={{ backgroundColor: color }} />
                       <div className="w-44 h-44 flex items-center justify-center">
                         <ActiveComponent
                           preset={preset}
@@ -1526,11 +2061,328 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                           lightColor={lightColor}
                           tiltIntensity={tiltIntensity}
                           animationType={animationType}
+                          animationAxis={animationAxis}
+                          animationDirection={animationDirection}
+                          shadowOpacity={shadowOpacity}
+                          shadowBlur={shadowBlur}
+                          textureType={textureType}
+                          emissivePulseSpeed={emissivePulseSpeed}
+                          emissivePulseIntensity={emissivePulseIntensity}
+                          lightingPreset={lightingPreset}
                           size="100%"
                         />
                       </div>
                     </div>
                   </div>
+                )}
+
+                {previewContext === "pricing" && (
+                  <div className="w-full h-full flex items-center justify-center p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
+                    <div 
+                      style={{ boxShadow: `0 30px 60px -15px ${color}20` }}
+                      className="w-64 border border-zinc-200/50 dark:border-zinc-800/60 rounded-3xl p-5 bg-white/70 dark:bg-[#0f121e]/85 backdrop-blur-xl flex flex-col items-center text-center relative overflow-hidden transition duration-300"
+                    >
+                      {/* Gradient border indicator */}
+                      <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-indigo-500 via-pink-500 to-amber-500" />
+                      
+                      {/* Active icon sits beautifully at the top */}
+                      <div className="w-24 h-24 mt-2 flex items-center justify-center relative">
+                        <div className="absolute inset-0 rounded-full blur-2xl opacity-15 pointer-events-none" style={{ backgroundColor: color }} />
+                        <ActiveComponent
+                          preset={preset}
+                          angle={angle}
+                          environment={environment}
+                          variant={renderMode}
+                          color={color}
+                          accentColor={accentColor}
+                          spinSpeed={spinSpeed}
+                          floatHeight={floatHeight}
+                          theme={theme}
+                          interactive={interactive}
+                          customMaterial={customMaterial}
+                          cameraZoom={cameraZoom}
+                          cameraFov={cameraFov}
+                          lightIntensity={lightIntensity}
+                          lightColor={lightColor}
+                          tiltIntensity={tiltIntensity}
+                          animationType={animationType}
+                          animationAxis={animationAxis}
+                          animationDirection={animationDirection}
+                          shadowOpacity={shadowOpacity}
+                          shadowBlur={shadowBlur}
+                          textureType={textureType}
+                          emissivePulseSpeed={emissivePulseSpeed}
+                          emissivePulseIntensity={emissivePulseIntensity}
+                          lightingPreset={lightingPreset}
+                          size="100%"
+                        />
+                      </div>
+                      
+                      {/* Pricing Tier details */}
+                      <div className="space-y-1.5 mt-2">
+                        <span className="text-[8px] font-extrabold text-indigo-500 uppercase tracking-widest">
+                          Enterprise Tier
+                        </span>
+                        <div className="flex items-baseline justify-center gap-0.5">
+                          <span className="text-xl font-extrabold text-zinc-900 dark:text-white">$49</span>
+                          <span className="text-[9px] font-semibold text-zinc-400 dark:text-zinc-500">/ month</span>
+                        </div>
+                        <p className="text-[9px] text-zinc-400 dark:text-zinc-500 max-w-[190px] leading-relaxed">
+                          Deploy high-performance 3D visual assets directly across your product lines.
+                        </p>
+                      </div>
+
+                      {/* Action call */}
+                      <button 
+                        style={{ backgroundColor: color }} 
+                        className="w-full mt-4 py-2 rounded-xl text-white text-[9px] font-extrabold uppercase tracking-wider shadow-md hover:brightness-110 active:scale-95 transition cursor-pointer"
+                      >
+                        Start 14-Day Trial
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {previewContext === "mobile" && (
+                  <div className="w-full h-full flex items-center justify-center p-4 bg-zinc-50/20 dark:bg-zinc-950/10">
+                    {/* Simulated Phone Shell */}
+                    <div className="w-[190px] h-[350px] rounded-[36px] border-[5px] border-zinc-950 dark:border-zinc-800 bg-gradient-to-b from-indigo-950/50 via-zinc-950 to-zinc-950 shadow-2xl relative overflow-hidden flex flex-col">
+                      
+                      {/* Phone Speaker Notch */}
+                      <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-14 h-3 bg-zinc-950 dark:bg-zinc-800 rounded-full z-15 flex items-center justify-center">
+                        <div className="w-6 h-0.5 bg-zinc-800 dark:bg-zinc-700 rounded-full" />
+                      </div>
+
+                      {/* Status Indicators */}
+                      <div className="h-7 px-4 pt-2.5 flex justify-between items-center text-[7px] font-bold text-zinc-450 dark:text-zinc-500 select-none">
+                        <span>9:41</span>
+                        <div className="flex items-center gap-1">
+                          <LucideAll.Wifi size={8} />
+                          <LucideAll.Battery size={8} />
+                        </div>
+                      </div>
+
+                      {/* Mock iOS Dashboard Screen */}
+                      <div className="flex-grow p-2.5 flex flex-col justify-between">
+                        <div className="space-y-0.5">
+                          <h4 className="text-[9px] font-extrabold text-white">
+                            Smart Home Control
+                          </h4>
+                          <span className="text-[6px] text-zinc-500 uppercase tracking-wider block">
+                            Active Integrations
+                          </span>
+                        </div>
+
+                        {/* Central Widget Square Container */}
+                        <div className="w-full aspect-square rounded-2xl border border-white/10 bg-white/10 backdrop-blur-lg p-2.5 flex flex-col justify-between shadow-sm relative group">
+                          {/* Widget Header */}
+                          <div className="flex justify-between items-start">
+                            <span className="text-[6px] font-extrabold uppercase text-white/70 tracking-wider">
+                              3D Sync Link
+                            </span>
+                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                          </div>
+
+                          {/* Active Component centered inside launcher */}
+                          <div className="w-18 h-18 self-center flex items-center justify-center">
+                            <ActiveComponent
+                              preset={preset}
+                              angle={angle}
+                              environment={environment}
+                              variant={renderMode}
+                              color={color}
+                              accentColor={accentColor}
+                              spinSpeed={spinSpeed}
+                              floatHeight={floatHeight}
+                              theme={theme}
+                              interactive={interactive}
+                              customMaterial={customMaterial}
+                              cameraZoom={cameraZoom}
+                              cameraFov={cameraFov}
+                              lightIntensity={lightIntensity}
+                              lightColor={lightColor}
+                              tiltIntensity={tiltIntensity}
+                              animationType={animationType}
+                              animationAxis={animationAxis}
+                              animationDirection={animationDirection}
+                              shadowOpacity={shadowOpacity}
+                              shadowBlur={shadowBlur}
+                              textureType={textureType}
+                              emissivePulseSpeed={emissivePulseSpeed}
+                              emissivePulseIntensity={emissivePulseIntensity}
+                              lightingPreset={lightingPreset}
+                              size="100%"
+                            />
+                          </div>
+
+                          {/* Widget Footer */}
+                          <div className="flex justify-between items-end">
+                            <span className="text-[6px] text-white/60 font-bold uppercase truncate max-w-[70px]">
+                              {currentIcon.name.replace("Icon", "")}
+                            </span>
+                            <span className="text-[6px] font-extrabold text-indigo-400 uppercase tracking-widest">
+                              Active
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Bottom App Dock Icons Mock */}
+                        <div className="h-6 w-full rounded-xl bg-white/5 border border-white/5 backdrop-blur-md flex justify-around items-center px-1">
+                          <div className="w-3.5 h-3.5 rounded bg-white/10" />
+                          <div className="w-3.5 h-3.5 rounded bg-white/10" />
+                          <div className="w-3.5 h-3.5 rounded bg-white/10" />
+                          <div className="w-3.5 h-3.5 rounded bg-white/10" />
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
+
+                {previewContext === "testimonial" && (
+                  <div className="w-full h-full flex items-center justify-center p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
+                    <div 
+                      style={{ boxShadow: `0 35px 70px -15px ${color}20` }}
+                      className="w-72 rounded-3xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/75 dark:bg-[#0f121e]/85 backdrop-blur-xl p-5 flex flex-col relative transition duration-300"
+                    >
+                      {/* Quote Mark */}
+                      <span className="absolute -top-3 left-4 text-5xl font-serif text-indigo-500/25 leading-none pointer-events-none select-none">“</span>
+                      
+                      {/* Floating Active 3D Badge on top right */}
+                      <div className="absolute -top-6 -right-6 w-20 h-20 flex items-center justify-center pointer-events-auto">
+                        <ActiveComponent
+                          preset={preset}
+                          angle={angle}
+                          environment={environment}
+                          variant={renderMode}
+                          color={color}
+                          accentColor={accentColor}
+                          spinSpeed={spinSpeed}
+                          floatHeight={floatHeight}
+                          theme={theme}
+                          interactive={interactive}
+                          customMaterial={customMaterial}
+                          cameraZoom={cameraZoom}
+                          cameraFov={cameraFov}
+                          lightIntensity={lightIntensity}
+                          lightColor={lightColor}
+                          tiltIntensity={tiltIntensity}
+                          animationType={animationType}
+                          animationAxis={animationAxis}
+                          animationDirection={animationDirection}
+                          shadowOpacity={shadowOpacity}
+                          shadowBlur={shadowBlur}
+                          textureType={textureType}
+                          emissivePulseSpeed={emissivePulseSpeed}
+                          emissivePulseIntensity={emissivePulseIntensity}
+                          lightingPreset={lightingPreset}
+                          size="100%"
+                        />
+                      </div>
+
+                      {/* Testimonial speech text */}
+                      <p className="text-[10px] text-zinc-650 dark:text-zinc-400 font-medium italic leading-relaxed pt-2">
+                        "Antigravity has completely transformed how we integrate high-fidelity R3F visual assets. The interactive customizer lets us align presets in seconds!"
+                      </p>
+
+                      {/* Line divider */}
+                      <div className="w-full h-px bg-zinc-150 dark:bg-zinc-800/60 my-3" />
+
+                      {/* User bio */}
+                      <div className="flex items-center gap-2">
+                        <div 
+                          style={{ borderColor: color }}
+                          className="w-7 h-7 rounded-full bg-zinc-100 dark:bg-zinc-850 border flex items-center justify-center text-[9px] font-extrabold text-zinc-700 dark:text-zinc-300"
+                        >
+                          JD
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-[9px] font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider leading-none">Jane Doe</span>
+                          <span className="text-[8px] text-zinc-400 dark:text-zinc-550 uppercase tracking-widest font-semibold pt-0.5">Lead UI Architect</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {previewContext === "checkout" && (
+                  <div className="w-full h-full flex items-center justify-center p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
+                    <div 
+                      style={{ boxShadow: `0 30px 60px -15px ${color}20` }}
+                      className="w-64 border border-zinc-200/50 dark:border-zinc-800/60 rounded-3xl p-5 bg-white/70 dark:bg-[#0f121e]/85 backdrop-blur-xl flex flex-col relative transition duration-300"
+                    >
+                      {/* Receipt Header */}
+                      <div className="flex justify-between items-center pb-3 border-b border-zinc-150 dark:border-zinc-800/60">
+                        <span className="text-[8px] font-extrabold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Order Receipt</span>
+                        <span className="text-[9px] font-extrabold text-zinc-900 dark:text-white font-mono">#9082</span>
+                      </div>
+
+                      {/* Receipt Line Item Detail */}
+                      <div className="flex items-center gap-3 py-3">
+                        <div className="w-14 h-14 rounded-xl border border-zinc-150 dark:border-zinc-800 bg-zinc-50/50 dark:bg-[#111422]/50 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+                          <div className="absolute inset-1 rounded-full blur-xl opacity-10 pointer-events-none" style={{ backgroundColor: color }} />
+                          <ActiveComponent
+                            preset={preset}
+                            angle={angle}
+                            environment={environment}
+                            variant={renderMode}
+                            color={color}
+                            accentColor={accentColor}
+                            spinSpeed={spinSpeed}
+                            floatHeight={floatHeight}
+                            theme={theme}
+                            interactive={interactive}
+                            customMaterial={customMaterial}
+                            cameraZoom={cameraZoom}
+                            cameraFov={cameraFov}
+                            lightIntensity={lightIntensity}
+                            lightColor={lightColor}
+                            tiltIntensity={tiltIntensity}
+                            animationType={animationType}
+                            animationAxis={animationAxis}
+                            animationDirection={animationDirection}
+                            shadowOpacity={shadowOpacity}
+                            shadowBlur={shadowBlur}
+                            textureType={textureType}
+                            emissivePulseSpeed={emissivePulseSpeed}
+                            emissivePulseIntensity={emissivePulseIntensity}
+                            lightingPreset={lightingPreset}
+                            size="100%"
+                          />
+                        </div>
+                        <div className="flex flex-col min-w-0">
+                          <span className="text-[9px] font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider truncate leading-tight">{currentIcon.name.replace("Icon", "")} 3D Package</span>
+                          <span className="text-[8px] text-zinc-450 dark:text-zinc-500 pt-0.5">Commercial License</span>
+                        </div>
+                      </div>
+
+                      {/* Calculations List */}
+                      <div className="space-y-1.5 py-2.5 border-t border-b border-dashed border-zinc-200 dark:border-zinc-800 text-[8px] font-extrabold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                        <div className="flex justify-between">
+                          <span>Subtotal</span>
+                          <span className="text-zinc-700 dark:text-zinc-355 font-mono">$19.00</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Discount (FREE)</span>
+                          <span className="text-emerald-500 font-mono">-$19.00</span>
+                        </div>
+                        <div className="flex justify-between text-zinc-900 dark:text-white pt-1">
+                          <span>Total Cost</span>
+                          <span className="font-mono text-sm leading-none">$0.00</span>
+                        </div>
+                      </div>
+
+                      {/* Check Out button */}
+                      <button 
+                        style={{ backgroundColor: color }} 
+                        className="w-full mt-4 py-2 rounded-xl text-white text-[9px] font-extrabold uppercase tracking-wider shadow-md hover:brightness-110 active:scale-95 transition cursor-pointer"
+                      >
+                        Complete Order
+                      </button>
+                    </div>
+                  </div>
+                )}
+                  </>
                 )}
               </div>
             )}
@@ -1630,8 +2482,8 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
           </div>
         </div>
 
-        {/* Right Side: Custom Sidebar Visual Editor (Leva-Free) */}
-        <div className="lg:col-span-4 space-y-6">
+        {/* Right Side: Custom Sidebar Visual Editor */}
+        <div className={`lg:col-span-4 space-y-6 ${presentationMode ? "hidden" : ""}`}>
           <div className="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] shadow-xl space-y-6">
 
             <div className="flex border-b border-zinc-100 dark:border-zinc-800/80 pb-3 gap-1 overflow-x-auto custom-scrollbar">
@@ -1663,620 +2515,927 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
 
             {/* Tuning Tab */}
             {activeSidebarTab === "tuning" && (
-              <div className="space-y-5 animate-page-fade">
-                {/* Render Mode Selectors */}
-                <div className="space-y-3">
-                  <label className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
-                    Render Mode
-                  </label>
-                  <div className="flex gap-2">
-                    {(["3d", "2d"] as const).map((m) => {
-                      const isSelected = renderMode === m;
-                      return (
-                        <button
-                          key={m}
-                          onClick={() => setRenderMode(m)}
-                          className={`py-2 px-3.5 rounded-xl text-xs font-bold uppercase border transition cursor-pointer flex-grow text-center ${isSelected
-                            ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                            : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                            }`}
-                        >
-                          {m === "3d" ? "3D Render" : "2D Vector"}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Presets Selectors */}
-                <div className="space-y-3">
-                  <label className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
-                    {t("presets_label")}
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    {(["glass", "metal", "clay", "hologram", "gold", "silver", "glassmorphism", "carbon", "wood"] as IconPreset[]).map((p) => {
-                      const isSelected = preset === p;
-                      return (
-                        <button
-                          key={p}
-                          onClick={() => handlePresetSelect(p)}
-                          className={`py-2 px-3.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer flex-grow text-center ${isSelected
-                            ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                            : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                            }`}
-                        >
-                          {p}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Angle Selectors */}
-                <div className="space-y-3">
-                  <label className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
-                    {t("angle_label" as any)}
-                  </label>
-                  <div className="flex gap-2">
-                    {(["front", "perspective", "tilted"] as IconAngle[]).map((a) => {
-                      const isSelected = angle === a;
-                      const translationKey = `angle_${a}` as any;
-                      return (
-                        <button
-                          key={a}
-                          onClick={() => setAngle(a)}
-                          className={`py-2 px-3.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer flex-grow text-center ${isSelected
-                            ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                            : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                            }`}
-                        >
-                          {t(translationKey)}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Environment Selectors */}
-                {renderMode === "3d" && (
-                  <div className="space-y-3">
-                    <label className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
-                      Environment Light
-                    </label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {(["city", "sunset", "studio", "night", "park", "forest", "lobby", "apartment", "warehouse"] as IconEnvironment[]).map((env) => {
-                        const isSelected = environment === env;
-                        return (
-                          <button
-                            key={env}
-                            onClick={() => setEnvironment(env)}
-                            className={`py-2 px-2.5 rounded-xl text-xs font-bold capitalize border transition cursor-pointer text-center ${isSelected
-                              ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                              : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                              }`}
-                          >
-                            {env}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {/* Curated Color Palettes */}
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <label className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider flex items-center gap-1.5">
-                      <Palette size={12} className="text-indigo-500" />
-                      <span>{t("theme_palette")}</span>
-                    </label>
-                  </div>
-
-                  {/* Swatch grid */}
-                  <div className="grid grid-cols-4 gap-2">
-                    {CURATED_PALETTES.map((p) => {
-                      const isSelected = color === p.color && accentColor === p.accentColor;
-                      return (
-                        <button
-                          key={p.name}
-                          onClick={() => handlePaletteSelect(p.color, p.accentColor)}
-                          title={p.name}
-                          className={`relative h-10 rounded-xl overflow-hidden border transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer flex ${isSelected
-                            ? "border-indigo-500 ring-2 ring-indigo-500/20 shadow-md"
-                            : "border-zinc-200 dark:border-zinc-800"
-                            }`}
-                        >
-                          <div className="w-1/2 h-full" style={{ backgroundColor: p.color }} />
-                          <div className="w-1/2 h-full" style={{ backgroundColor: p.accentColor }} />
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  {/* Custom manual color inputs */}
-                  <div className="grid grid-cols-2 gap-3 pt-2">
-                    <div className="space-y-1.5">
-                      <span className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">Primary Color</span>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
-                        <input
-                          type="color"
-                          value={color}
-                          onChange={(e) => handleColorChange(e.target.value)}
-                          className="w-5 h-5 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
-                        />
-                        <input
-                          type="text"
-                          value={primaryInput}
-                          onChange={(e) => handlePrimaryTextChange(e.target.value)}
-                          maxLength={7}
-                          className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400 focus:outline-none focus:text-indigo-500 uppercase p-0"
-                        />
+              <div className="space-y-4 animate-page-fade">
+                {/* 1. Geometry & Presets Group */}
+                <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setTuningGeometryOpen(!tuningGeometryOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Geometry & Angles</span>
+                    {tuningGeometryOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {tuningGeometryOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-850/60 animate-page-fade">
+                      {/* Render Mode Selectors */}
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                          Render Mode
+                        </label>
+                        <div className="flex gap-2">
+                          {(["3d", "2d"] as const).map((m) => {
+                            const isSelected = renderMode === m;
+                            return (
+                              <button
+                                key={m}
+                                onClick={() => setRenderMode(m)}
+                                className={`py-1.5 px-3 rounded-xl text-xs font-bold uppercase border transition cursor-pointer flex-grow text-center ${isSelected
+                                  ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                  : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                                  }`}
+                              >
+                                {m === "3d" ? "3D Render" : "2D Vector"}
+                              </button>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="space-y-1.5">
-                      <span className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">Accent Glow</span>
-                      <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
-                        <input
-                          type="color"
-                          value={accentColor}
-                          onChange={(e) => setAccentColor(e.target.value)}
-                          className="w-5 h-5 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
-                        />
-                        <input
-                          type="text"
-                          value={accentInput}
-                          onChange={(e) => handleAccentTextChange(e.target.value)}
-                          maxLength={7}
-                          className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400 focus:outline-none focus:text-indigo-500 uppercase p-0"
-                        />
+                      {/* Presets Selectors */}
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                          {t("presets_label")}
+                        </label>
+                        <div className="flex flex-wrap gap-1.5">
+                          {(["glass", "metal", "clay", "hologram", "gold", "silver", "glassmorphism", "carbon", "wood"] as IconPreset[]).map((p) => {
+                            const isSelected = preset === p;
+                            return (
+                              <button
+                                key={p}
+                                onClick={() => handlePresetSelect(p)}
+                                className={`py-1.5 px-2.5 rounded-xl text-[10px] font-bold capitalize border transition cursor-pointer flex-grow text-center ${isSelected
+                                  ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                  : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                                  }`}
+                              >
+                                {p}
+                              </button>
+                            );
+                          })}
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>
 
-                {/* Sliders */}
-                <div className="space-y-4 pt-4 border-t border-zinc-100 dark:border-zinc-800/80">
-                  {/* Spin Speed */}
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center text-xs font-bold text-zinc-400 dark:text-zinc-500">
-                      <span className="uppercase tracking-wider">{t("spin_speed")}</span>
-                      <span className="text-zinc-700 dark:text-zinc-300 font-mono">{spinSpeed.toFixed(1)}x</span>
-                    </div>
-                    <input
-                      type="range"
-                      min="0.0"
-                      max="3.0"
-                      step="0.1"
-                      value={spinSpeed}
-                      onChange={(e) => setSpinSpeed(parseFloat(e.target.value))}
-                      className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
-                    />
-                  </div>
-
-                  {/* Float Height */}
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center text-xs font-bold text-zinc-400 dark:text-zinc-500">
-                      <span className="uppercase tracking-wider">{t("float_height")}</span>
-                      <span className="text-zinc-700 dark:text-zinc-300 font-mono">{floatHeight.toFixed(1)}</span>
-                    </div>
-                    <input
-                      type="range"
-                      min="0.0"
-                      max="2.5"
-                      step="0.1"
-                      value={floatHeight}
-                      onChange={(e) => setFloatHeight(parseFloat(e.target.value))}
-                      className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
-                    />
-                  </div>
-
-                  {/* Mouse Parallax Follow Strength */}
-                  {interactive && (
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center text-xs font-bold text-zinc-400 dark:text-zinc-500">
-                        <span className="uppercase tracking-wider">Mouse Follow Tilt</span>
-                        <span className="text-zinc-700 dark:text-zinc-300 font-mono">{tiltIntensity.toFixed(1)}x</span>
+                      {/* Angle Selectors */}
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                          {t("angle_label" as any)}
+                        </label>
+                        <div className="flex gap-2">
+                          {(["front", "perspective", "tilted"] as IconAngle[]).map((a) => {
+                            const isSelected = angle === a;
+                            const translationKey = `angle_${a}` as any;
+                            return (
+                              <button
+                                key={a}
+                                onClick={() => setAngle(a)}
+                                className={`py-1.5 px-3 rounded-xl text-xs font-bold capitalize border transition cursor-pointer flex-grow text-center ${isSelected
+                                  ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                  : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                                  }`}
+                              >
+                                {t(translationKey)}
+                              </button>
+                            );
+                          })}
+                        </div>
                       </div>
-                      <input
-                        type="range"
-                        min="0.0"
-                        max="2.5"
-                        step="0.1"
-                        value={tiltIntensity}
-                        onChange={(e) => setTiltIntensity(parseFloat(e.target.value))}
-                        className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-650"
-                      />
+
+                      {/* Environment Selectors */}
+                      {renderMode === "3d" && (
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                            Environment Light
+                          </label>
+                          <div className="grid grid-cols-3 gap-1.5">
+                            {(["city", "sunset", "studio", "night", "park", "forest", "lobby", "apartment", "warehouse"] as IconEnvironment[]).map((env) => {
+                              const isSelected = environment === env;
+                              return (
+                                <button
+                                  key={env}
+                                  onClick={() => setEnvironment(env)}
+                                  className={`py-1.5 px-2.5 rounded-xl text-[10px] font-bold capitalize border transition cursor-pointer text-center ${isSelected
+                                    ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                    : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-650 dark:text-zinc-450"
+                                    }`}
+                                >
+                                  {env}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
+                </div>
 
-                  {/* Micro-Animation Presets */}
-                  <div className="space-y-3">
-                    <label className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
-                      Motion Preset
-                    </label>
-                    <div className="grid grid-cols-2 gap-2">
-                      {[
-                        { id: "spin", name: "Rotate Spin" },
-                        { id: "wobble", name: "Tilt Wobble" },
-                        { id: "breathe", name: "Pulse Scale" },
-                        { id: "wave", name: "Sine Wave Float" }
-                      ].map((anim) => {
-                        const isSelected = animationType === anim.id;
-                        return (
-                          <button
-                            key={anim.id}
-                            onClick={() => setAnimationType(anim.id as any)}
-                            className={`py-2 px-2.5 rounded-xl text-[11px] font-bold border transition cursor-pointer text-center truncate ${
-                              isSelected
-                                ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                                : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-650 dark:text-zinc-450"
-                            }`}
-                          >
-                            {anim.name}
-                          </button>
-                        );
-                      })}
+                {/* 2. Color System Group */}
+                <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setTuningColorOpen(!tuningColorOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Color & Styling</span>
+                    {tuningColorOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {tuningColorOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-850/60 animate-page-fade">
+                      {/* Curated Color Palettes */}
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider flex items-center gap-1.5">
+                          <Palette size={11} className="text-indigo-500" />
+                          <span>{t("theme_palette")}</span>
+                        </label>
+                        <div className="grid grid-cols-4 gap-1.5">
+                          {CURATED_PALETTES.map((p) => {
+                            const isSelected = color === p.color && accentColor === p.accentColor;
+                            return (
+                              <button
+                                key={p.name}
+                                onClick={() => handlePaletteSelect(p.color, p.accentColor)}
+                                title={p.name}
+                                className={`relative h-8 rounded-xl overflow-hidden border transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer flex ${isSelected
+                                  ? "border-indigo-500 ring-2 ring-indigo-500/20 shadow-md"
+                                  : "border-zinc-200 dark:border-zinc-800"
+                                  }`}
+                              >
+                                <div className="w-1/2 h-full" style={{ backgroundColor: p.color }} />
+                                <div className="w-1/2 h-full" style={{ backgroundColor: p.accentColor }} />
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Custom manual color inputs */}
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="space-y-1">
+                          <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider">Primary Color</span>
+                          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
+                            <input
+                              type="color"
+                              value={color}
+                              onChange={(e) => handleColorChange(e.target.value)}
+                              className="w-4 h-4 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
+                            />
+                            <input
+                              type="text"
+                              value={primaryInput}
+                              onChange={(e) => handlePrimaryTextChange(e.target.value)}
+                              maxLength={7}
+                              className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400 focus:outline-none focus:text-indigo-500 uppercase p-0"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="space-y-1">
+                          <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider">Accent Glow</span>
+                          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
+                            <input
+                              type="color"
+                              value={accentColor}
+                              onChange={(e) => setAccentColor(e.target.value)}
+                              className="w-4 h-4 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
+                            />
+                            <input
+                              type="text"
+                              value={accentInput}
+                              onChange={(e) => handleAccentTextChange(e.target.value)}
+                              maxLength={7}
+                              className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400 focus:outline-none focus:text-indigo-500 uppercase p-0"
+                            />
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  )}
+                </div>
 
-                  {/* Interactive Hover toggle */}
-                  <div className="flex items-center justify-between pt-2">
-                    <span className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">
-                      {t("interactive_label")}
-                    </span>
-                    <label className="relative inline-flex items-center cursor-pointer select-none">
-                      <input
-                        type="checkbox"
-                        checked={interactive}
-                        onChange={(e) => setInteractive(e.target.checked)}
-                        className="sr-only peer"
-                      />
-                      <div className="w-11 h-6 bg-zinc-200 dark:bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-350 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-650" />
-                    </label>
-                  </div>
+                {/* 3. Motion & Animation Group */}
+                <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setTuningMotionOpen(!tuningMotionOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Motion & Physics</span>
+                    {tuningMotionOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {tuningMotionOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-850/60 animate-page-fade">
+                      {/* Spin Speed */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold text-zinc-400 dark:text-zinc-500">
+                          <span className="uppercase tracking-wider">{t("spin_speed")}</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">{spinSpeed.toFixed(1)}x</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="3.0"
+                          step="0.1"
+                          value={spinSpeed}
+                          onChange={(e) => setSpinSpeed(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* Float Height */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold text-zinc-400 dark:text-zinc-500">
+                          <span className="uppercase tracking-wider">{t("float_height")}</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">{floatHeight.toFixed(1)}</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="2.5"
+                          step="0.1"
+                          value={floatHeight}
+                          onChange={(e) => setFloatHeight(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* Mouse Parallax Follow Strength */}
+                      {interactive && (
+                        <div className="space-y-1.5">
+                          <div className="flex justify-between items-center text-[10px] font-bold text-zinc-400 dark:text-zinc-500">
+                            <span className="uppercase tracking-wider">Mouse Follow Tilt</span>
+                            <span className="text-zinc-700 dark:text-zinc-300 font-mono">{tiltIntensity.toFixed(1)}x</span>
+                          </div>
+                          <input
+                            type="range"
+                            min="0.0"
+                            max="2.5"
+                            step="0.1"
+                            value={tiltIntensity}
+                            onChange={(e) => setTiltIntensity(parseFloat(e.target.value))}
+                            className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                          />
+                        </div>
+                      )}
+
+                      {/* Micro-Animation Presets */}
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                          Motion Preset
+                        </label>
+                        <div className="grid grid-cols-2 gap-1.5">
+                          {[
+                            { id: "spin", name: "Rotate Spin" },
+                            { id: "wobble", name: "Tilt Wobble" },
+                            { id: "breathe", name: "Pulse Scale" },
+                            { id: "wave", name: "Sine Wave Float" }
+                          ].map((anim) => {
+                            const isSelected = animationType === anim.id;
+                            return (
+                              <button
+                                key={anim.id}
+                                onClick={() => setAnimationType(anim.id as any)}
+                                className={`py-1.5 px-2 rounded-xl text-[10px] font-bold border transition cursor-pointer text-center truncate ${
+                                  isSelected
+                                    ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                    : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-650 dark:text-zinc-450"
+                                }`}
+                              >
+                                {anim.name}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Axis & Direction - only shown for spin type */}
+                      {animationType === "spin" && (
+                        <div className="space-y-3 pt-1">
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider block">
+                              Spin Rotation Axis
+                            </label>
+                            <div className="flex gap-1.5">
+                              {(["x", "y", "z"] as const).map((ax) => {
+                                const isSelected = animationAxis === ax;
+                                return (
+                                  <button
+                                    key={ax}
+                                    onClick={() => setAnimationAxis(ax)}
+                                    className={`py-1 px-2 rounded-lg text-[9px] font-bold uppercase border transition cursor-pointer flex-grow text-center ${
+                                      isSelected
+                                        ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                        : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                                    }`}
+                                  >
+                                    {ax}-Axis
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+
+                          <div className="space-y-1">
+                            <label className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider block">
+                              Spin Direction
+                            </label>
+                            <div className="flex gap-1.5">
+                              {(["clockwise", "counter-clockwise"] as const).map((dir) => {
+                                const isSelected = animationDirection === dir;
+                                return (
+                                  <button
+                                    key={dir}
+                                    onClick={() => setAnimationDirection(dir)}
+                                    className={`py-1 px-2 rounded-lg text-[9px] font-bold border transition cursor-pointer flex-grow text-center capitalize ${
+                                      isSelected
+                                        ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                        : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-655 dark:text-zinc-455"
+                                    }`}
+                                  >
+                                    {dir === "clockwise" ? "Clockwise" : "Reverse"}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Interactive Hover toggle */}
+                      <div className="flex items-center justify-between pt-1">
+                        <span className="text-[10px] font-bold text-zinc-450 dark:text-zinc-500 uppercase tracking-wider">
+                          {t("interactive_label")}
+                        </span>
+                        <label className="relative inline-flex items-center cursor-pointer select-none">
+                          <input
+                            type="checkbox"
+                            checked={interactive}
+                            onChange={(e) => setInteractive(e.target.checked)}
+                            className="sr-only peer"
+                          />
+                          <div className="w-11 h-6 bg-zinc-200 dark:bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-350 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600" />
+                        </label>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
 
             {/* Material Tab */}
             {activeSidebarTab === "material" && (
-              <div className="space-y-5 animate-page-fade">
-                <div className="flex items-center justify-between border-b border-zinc-100 dark:border-zinc-800 pb-2">
-                  <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Physical Overrides</span>
-                  {customMaterialKeys.length > 0 && (
+              <div className="space-y-4 animate-page-fade">
+                {/* 1. Base Physical Parameters Group */}
+                <div className="border border-zinc-200 dark:border-zinc-855 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <div className="w-full flex items-center justify-between p-3.5 bg-zinc-50/30 dark:bg-[#0b0e16]/30">
                     <button
-                      onClick={() => {
-                        const defaults = getMaterialConfig(preset, color, theme, accentColor);
-                        setMaterialRoughness(defaults.roughness);
-                        setMaterialMetalness(defaults.metalness);
-                        setMaterialTransmission(defaults.transmission);
-                        setMaterialThickness(defaults.thickness);
-                        setMaterialClearcoat(defaults.clearcoat);
-                        setMaterialClearcoatRoughness(defaults.clearcoatRoughness);
-                        setMaterialIor(defaults.ior);
-                        setMaterialEmissiveIntensity(defaults.emissiveIntensity);
-                      }}
-                      className="text-[10px] text-indigo-500 hover:underline font-bold cursor-pointer"
+                      onClick={() => setMaterialParamsOpen(!materialParamsOpen)}
+                      className="flex-grow text-left text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider cursor-pointer focus:outline-none flex items-center justify-between"
                     >
-                      Reset Overrides
+                      <span>Physical Parameters</span>
+                      {materialParamsOpen ? <ChevronDown size={12} className="mr-2" /> : <ChevronRight size={12} className="mr-2" />}
                     </button>
+                    {customMaterialKeys.length > 0 && (
+                      <button
+                        onClick={() => {
+                          const defaults = getMaterialConfig(preset, color, theme, accentColor);
+                          setMaterialRoughness(defaults.roughness);
+                          setMaterialMetalness(defaults.metalness);
+                          setMaterialTransmission(defaults.transmission);
+                          setMaterialThickness(defaults.thickness);
+                          setMaterialClearcoat(defaults.clearcoat);
+                          setMaterialClearcoatRoughness(defaults.clearcoatRoughness);
+                          setMaterialIor(defaults.ior);
+                          setMaterialEmissiveIntensity(defaults.emissiveIntensity);
+                        }}
+                        className="text-[9px] text-indigo-500 hover:underline font-extrabold cursor-pointer"
+                      >
+                        Reset
+                      </button>
+                    )}
+                  </div>
+                  {materialParamsOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-855/60 animate-page-fade">
+                      {/* Roughness */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Roughness</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">
+                            {materialRoughness.toFixed(2)}{materialRoughness === defaultMat.roughness ? " (default)" : " (edited)"}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="1.0"
+                          step="0.01"
+                          value={materialRoughness}
+                          onChange={(e) => setMaterialRoughness(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* Metalness */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Metalness</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">
+                            {materialMetalness.toFixed(2)}{materialMetalness === defaultMat.metalness ? " (default)" : " (edited)"}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="1.0"
+                          step="0.01"
+                          value={materialMetalness}
+                          onChange={(e) => setMaterialMetalness(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* Transmission */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Transmission</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">
+                            {materialTransmission.toFixed(2)}{materialTransmission === defaultMat.transmission ? " (default)" : " (edited)"}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="1.0"
+                          step="0.01"
+                          value={materialTransmission}
+                          onChange={(e) => setMaterialTransmission(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* Thickness */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Thickness</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">
+                            {materialThickness.toFixed(2)}{materialThickness === defaultMat.thickness ? " (default)" : " (edited)"}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="3.0"
+                          step="0.05"
+                          value={materialThickness}
+                          onChange={(e) => setMaterialThickness(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* Clearcoat */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Clearcoat</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">
+                            {materialClearcoat.toFixed(2)}{materialClearcoat === defaultMat.clearcoat ? " (default)" : " (edited)"}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="1.0"
+                          step="0.01"
+                          value={materialClearcoat}
+                          onChange={(e) => setMaterialClearcoat(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* Clearcoat Roughness */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Clearcoat Roughness</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">
+                            {materialClearcoatRoughness.toFixed(2)}{materialClearcoatRoughness === defaultMat.clearcoatRoughness ? " (default)" : " (edited)"}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="1.0"
+                          step="0.01"
+                          value={materialClearcoatRoughness}
+                          onChange={(e) => setMaterialClearcoatRoughness(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* IOR */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Index of Refraction (IOR)</span>
+                          <span className="text-zinc-770 dark:text-zinc-300 font-mono">
+                            {materialIor.toFixed(2)}{materialIor === defaultMat.ior ? " (default)" : " (edited)"}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="1.0"
+                          max="2.5"
+                          step="0.01"
+                          value={materialIor}
+                          onChange={(e) => setMaterialIor(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* Emissive Intensity */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Emissive Intensity</span>
+                          <span className="text-zinc-770 dark:text-zinc-300 font-mono">
+                            {materialEmissiveIntensity.toFixed(2)}{materialEmissiveIntensity === defaultMat.emissiveIntensity ? " (default)" : " (edited)"}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="5.0"
+                          step="0.1"
+                          value={materialEmissiveIntensity}
+                          onChange={(e) => setMaterialEmissiveIntensity(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+                    </div>
                   )}
                 </div>
 
-                {/* Roughness */}
-                <div className="space-y-1.5">
-                  <div className="flex justify-between items-center text-xs font-bold">
-                    <span className="text-zinc-500 uppercase tracking-wider">Roughness</span>
-                    <span className="text-zinc-700 dark:text-zinc-300 font-mono text-[11px]">
-                      {materialRoughness.toFixed(2)}{materialRoughness === defaultMat.roughness ? " (default)" : " (edited)"}
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="0.0"
-                    max="1.0"
-                    step="0.01"
-                    value={materialRoughness}
-                    onChange={(e) => setMaterialRoughness(parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
-                  />
+                {/* 2. Surface Noise Shaders Group */}
+                <div className="border border-zinc-200 dark:border-zinc-855 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setMaterialTexturesOpen(!materialTexturesOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Surface Texturing</span>
+                    {materialTexturesOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {materialTexturesOpen && (
+                    <div className="p-4 space-y-3 border-t border-zinc-200/60 dark:border-zinc-855/60 animate-page-fade">
+                      <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                        Surface Noise Layer
+                      </label>
+                      <div className="grid grid-cols-2 gap-1.5">
+                        {[
+                          { id: "none", name: "Perfect Polish" },
+                          { id: "frosted", name: "Frosted Glass" },
+                          { id: "brushed", name: "Brushed Metal" },
+                          { id: "carbon", name: "Carbon Twill" }
+                        ].map((txt) => {
+                          const isSelected = textureType === txt.id;
+                          return (
+                            <button
+                              key={txt.id}
+                              onClick={() => setTextureType(txt.id as any)}
+                              className={`py-1.5 px-3 rounded-xl text-[10px] font-bold border transition cursor-pointer text-center truncate ${
+                                isSelected
+                                  ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                  : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-650 dark:text-zinc-450"
+                              }`}
+                            >
+                              {txt.name}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                {/* Metalness */}
-                <div className="space-y-1.5">
-                  <div className="flex justify-between items-center text-xs font-bold">
-                    <span className="text-zinc-500 uppercase tracking-wider">Metalness</span>
-                    <span className="text-zinc-700 dark:text-zinc-300 font-mono text-[11px]">
-                      {materialMetalness.toFixed(2)}{materialMetalness === defaultMat.metalness ? " (default)" : " (edited)"}
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="0.0"
-                    max="1.0"
-                    step="0.01"
-                    value={materialMetalness}
-                    onChange={(e) => setMaterialMetalness(parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
-                  />
-                </div>
+                {/* 3. Emissive Pulse Animations Group */}
+                <div className="border border-zinc-200 dark:border-zinc-855 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setMaterialPulsationOpen(!materialPulsationOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Emissive Pulsing</span>
+                    {materialPulsationOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {materialPulsationOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-855/60 animate-page-fade">
+                      {/* Pulse Speed */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Pulse Breathing Speed</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">
+                            {emissivePulseSpeed > 0 ? `${emissivePulseSpeed.toFixed(1)}Hz` : "Off"}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="4.0"
+                          step="0.1"
+                          value={emissivePulseSpeed}
+                          onChange={(e) => setEmissivePulseSpeed(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
 
-                {/* Transmission */}
-                <div className="space-y-1.5">
-                  <div className="flex justify-between items-center text-xs font-bold">
-                    <span className="text-zinc-500 uppercase tracking-wider">Transmission</span>
-                    <span className="text-zinc-700 dark:text-zinc-300 font-mono text-[11px]">
-                      {materialTransmission.toFixed(2)}{materialTransmission === defaultMat.transmission ? " (default)" : " (edited)"}
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="0.0"
-                    max="1.0"
-                    step="0.01"
-                    value={materialTransmission}
-                    onChange={(e) => setMaterialTransmission(parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
-                  />
-                </div>
-
-                {/* Thickness */}
-                <div className="space-y-1.5">
-                  <div className="flex justify-between items-center text-xs font-bold">
-                    <span className="text-zinc-500 uppercase tracking-wider">Thickness</span>
-                    <span className="text-zinc-700 dark:text-zinc-300 font-mono text-[11px]">
-                      {materialThickness.toFixed(2)}{materialThickness === defaultMat.thickness ? " (default)" : " (edited)"}
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="0.0"
-                    max="3.0"
-                    step="0.05"
-                    value={materialThickness}
-                    onChange={(e) => setMaterialThickness(parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
-                  />
-                </div>
-
-                {/* Clearcoat */}
-                <div className="space-y-1.5">
-                  <div className="flex justify-between items-center text-xs font-bold">
-                    <span className="text-zinc-500 uppercase tracking-wider">Clearcoat</span>
-                    <span className="text-zinc-700 dark:text-zinc-300 font-mono text-[11px]">
-                      {materialClearcoat.toFixed(2)}{materialClearcoat === defaultMat.clearcoat ? " (default)" : " (edited)"}
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="0.0"
-                    max="1.0"
-                    step="0.01"
-                    value={materialClearcoat}
-                    onChange={(e) => setMaterialClearcoat(parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
-                  />
-                </div>
-
-                {/* Clearcoat Roughness */}
-                <div className="space-y-1.5">
-                  <div className="flex justify-between items-center text-xs font-bold">
-                    <span className="text-zinc-500 uppercase tracking-wider">Clearcoat Roughness</span>
-                    <span className="text-zinc-700 dark:text-zinc-300 font-mono text-[11px]">
-                      {materialClearcoatRoughness.toFixed(2)}{materialClearcoatRoughness === defaultMat.clearcoatRoughness ? " (default)" : " (edited)"}
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="0.0"
-                    max="1.0"
-                    step="0.01"
-                    value={materialClearcoatRoughness}
-                    onChange={(e) => setMaterialClearcoatRoughness(parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
-                  />
-                </div>
-
-                {/* IOR (Index of Refraction) */}
-                <div className="space-y-1.5">
-                  <div className="flex justify-between items-center text-xs font-bold">
-                    <span className="text-zinc-500 uppercase tracking-wider">Index of Refraction (IOR)</span>
-                    <span className="text-zinc-700 dark:text-zinc-300 font-mono text-[11px]">
-                      {materialIor.toFixed(2)}{materialIor === defaultMat.ior ? " (default)" : " (edited)"}
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="1.0"
-                    max="2.5"
-                    step="0.01"
-                    value={materialIor}
-                    onChange={(e) => setMaterialIor(parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
-                  />
-                </div>
-
-                {/* Emissive Intensity */}
-                <div className="space-y-1.5">
-                  <div className="flex justify-between items-center text-xs font-bold">
-                    <span className="text-zinc-500 uppercase tracking-wider">Emissive Intensity</span>
-                    <span className="text-zinc-700 dark:text-zinc-300 font-mono text-[11px]">
-                      {materialEmissiveIntensity.toFixed(2)}{materialEmissiveIntensity === defaultMat.emissiveIntensity ? " (default)" : " (edited)"}
-                    </span>
-                  </div>
-                  <input
-                    type="range"
-                    min="0.0"
-                    max="5.0"
-                    step="0.1"
-                    value={materialEmissiveIntensity}
-                    onChange={(e) => setMaterialEmissiveIntensity(parseFloat(e.target.value))}
-                    className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
-                  />
+                      {/* Pulse Intensity */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Pulse Depth Amplitude</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">
+                            {(emissivePulseIntensity * 100).toFixed(0)}%
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="1.0"
+                          step="0.05"
+                          value={emissivePulseIntensity}
+                          onChange={(e) => setEmissivePulseIntensity(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
 
             {/* Scene Tab */}
             {activeSidebarTab === "scene" && (
-              <div className="space-y-5 animate-page-fade">
-                {/* Viewport Background choices */}
-                <div className="space-y-3">
-                  <label className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
-                    Viewport Background
-                  </label>
-                  <div className="grid grid-cols-2 gap-2">
-                    {[
-                      { id: "default", name: "Default" },
-                      { id: "grid", name: "Isometric Grid" },
-                      { id: "gradient-indigo", name: "Deep Indigo" },
-                      { id: "gradient-sunset", name: "Sunset Glow" },
-                      { id: "gradient-mesh", name: "Modern Mesh" }
-                    ].map((bg) => {
-                      const isSelected = viewportBg === bg.id;
-                      return (
-                        <button
-                          key={bg.id}
-                          onClick={() => setViewportBg(bg.id as any)}
-                          className={`py-2 px-3 rounded-xl text-[11px] font-bold border transition cursor-pointer text-center truncate ${
-                            isSelected
-                              ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                              : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                          }`}
-                        >
-                          {bg.name}
-                        </button>
-                      );
-                    })}
-                  </div>
+              <div className="space-y-4 animate-page-fade">
+                {/* 1. Viewport & Background Layouts Group */}
+                <div className="border border-zinc-200 dark:border-zinc-855 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setSceneBgOpen(!sceneBgOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Viewport & Contexts</span>
+                    {sceneBgOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {sceneBgOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-855/60 animate-page-fade">
+                      {/* Viewport Background choices */}
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                          Viewport Background
+                        </label>
+                        <div className="grid grid-cols-2 gap-1.5">
+                          {[
+                            { id: "default", name: "Default" },
+                            { id: "grid", name: "Isometric Grid" },
+                            { id: "gradient-indigo", name: "Deep Indigo" },
+                            { id: "gradient-sunset", name: "Sunset Glow" },
+                            { id: "gradient-mesh", name: "Modern Mesh" }
+                          ].map((bg) => {
+                            const isSelected = viewportBg === bg.id;
+                            return (
+                              <button
+                                key={bg.id}
+                                onClick={() => setViewportBg(bg.id as any)}
+                                className={`py-1.5 px-3 rounded-xl text-[10px] font-bold border transition cursor-pointer text-center truncate ${
+                                  isSelected
+                                    ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                    : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                                }`}
+                              >
+                                {bg.name}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Mock UI Context Layouts */}
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center pb-1.5 border-b border-zinc-150 dark:border-zinc-800/60">
+                          <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                            Component Context Layout
+                          </label>
+                          <label className="flex items-center gap-1.5 cursor-pointer select-none">
+                            <span className="text-[9px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-450">Showcase Collage</span>
+                            <div className="relative">
+                              <input
+                                type="checkbox"
+                                checked={showcaseGridView}
+                                onChange={(e) => setShowcaseGridView(e.target.checked)}
+                                className="sr-only peer"
+                              />
+                              <div className="w-7 h-4 bg-zinc-200 dark:bg-zinc-800 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-indigo-600" />
+                            </div>
+                          </label>
+                        </div>
+                        <div className="flex flex-col gap-1.5">
+                          {[
+                            { id: "icon", name: "Isolated Icon", desc: "Full-canvas preview layout" },
+                            { id: "navbar", name: "Navbar Integration", desc: "Mockup navigation header component" },
+                            { id: "card", name: "Feature Stats Card", desc: "Centred inside a glassmorphic dashboard card" },
+                            { id: "hero", name: "Landing Page Hero", desc: "Main marketing graphic of a split landing page" },
+                            { id: "pricing", name: "SaaS Pricing Tier", desc: "Featured pricing plan checkmark card" },
+                            { id: "mobile", name: "iOS Home Screen Widget", desc: "Positioned inside a phone widget layout" },
+                            { id: "testimonial", name: "Customer Review Card", desc: "SaaS user review glass bubble card" },
+                            { id: "checkout", name: "Checkout Receipt", desc: "Order confirmation payment card widget" }
+                          ].map((ctx) => {
+                            const isSelected = !showcaseGridView && previewContext === ctx.id;
+                            return (
+                              <button
+                                key={ctx.id}
+                                onClick={() => setPreviewContext(ctx.id as any)}
+                                disabled={showcaseGridView}
+                                className={`p-2.5 rounded-xl border text-left transition flex flex-col gap-0.5 ${
+                                  isSelected
+                                    ? "border-indigo-500 bg-indigo-50/15 dark:bg-indigo-950/15 text-zinc-950 dark:text-white"
+                                    : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-550 dark:text-zinc-450"
+                                } ${showcaseGridView ? "opacity-40 cursor-not-allowed pointer-events-none" : "cursor-pointer"}`}
+                              >
+                                <span className="text-[10px] font-bold uppercase tracking-wide leading-none">{ctx.name}</span>
+                                <span className="text-[9px] text-zinc-400 dark:text-zinc-500 leading-normal">{ctx.desc}</span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                {/* Mock UI Context Layouts */}
-                <div className="space-y-3 pt-3 border-t border-zinc-100 dark:border-zinc-800/85">
-                  <label className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
-                    Component Context Layout
-                  </label>
-                  <div className="flex flex-col gap-2">
-                    {[
-                      { id: "icon", name: "Isolated Icon (Standard Viewport)", desc: "Full-canvas preview layout" },
-                      { id: "navbar", name: "Navbar Integration Logo", desc: "Positioned in a mockup dashboard navigation bar" },
-                      { id: "card", name: "Feature Stats Card", desc: "Centred inside a modern glassmorphic dashboard card" },
-                      { id: "hero", name: "Landing Page Hero Visual", desc: "Main marketing graphic of a split landing page mockup" }
-                    ].map((ctx) => {
-                      const isSelected = previewContext === ctx.id;
-                      return (
-                        <button
-                          key={ctx.id}
-                          onClick={() => setPreviewContext(ctx.id as any)}
-                          className={`p-3 rounded-xl border text-left transition cursor-pointer flex flex-col gap-0.5 ${
-                            isSelected
-                              ? "border-indigo-500 bg-indigo-50/15 dark:bg-indigo-950/15 text-zinc-950 dark:text-white"
-                              : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-500"
-                          }`}
-                        >
-                          <span className="text-[11px] font-bold uppercase tracking-wide leading-none">{ctx.name}</span>
-                          <span className="text-[10px] text-zinc-400 dark:text-zinc-500 leading-normal">{ctx.desc}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
+                {/* 2. Camera Setup Group */}
+                <div className="border border-zinc-200 dark:border-zinc-855 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setSceneCameraOpen(!sceneCameraOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Camera Settings</span>
+                    {sceneCameraOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {sceneCameraOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-855/60 animate-page-fade">
+                      {/* Camera Zoom */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-500 uppercase tracking-wider">Camera Zoom</span>
+                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">{cameraZoom.toFixed(1)}</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="1.5"
+                          max="8.0"
+                          step="0.1"
+                          value={cameraZoom}
+                          onChange={(e) => setCameraZoom(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* Camera FOV */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-500 uppercase tracking-wider">Field of View (FOV)</span>
+                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">{cameraFov}°</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="15"
+                          max="90"
+                          step="1"
+                          value={cameraFov}
+                          onChange={(e) => setCameraFov(parseInt(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                {/* Camera Configurations */}
-                <div className="space-y-4 pt-4 border-t border-zinc-100 dark:border-zinc-800/85">
-                  <span className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
-                    Camera Setup
-                  </span>
+                {/* 3. Lights & Shadows Group */}
+                <div className="border border-zinc-200 dark:border-zinc-855 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setSceneLightsOpen(!sceneLightsOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Lighting & Shadows</span>
+                    {sceneLightsOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {sceneLightsOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-855/60 animate-page-fade">
+                      {/* Studio Lighting Preset Rig Choice */}
+                      <div className="space-y-2 pb-2 border-b border-zinc-100 dark:border-zinc-800/80">
+                        <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                          Lighting Studio Preset
+                        </label>
+                        <div className="grid grid-cols-2 gap-1.5">
+                          {[
+                            { id: "studio", name: "Studio Daylight" },
+                            { id: "cyber", name: "Cyber Neon" },
+                            { id: "sunset", name: "Sunset Gold" },
+                            { id: "dramatic", name: "Dramatic Rim" }
+                          ].map((l) => {
+                            const isSelected = lightingPreset === l.id;
+                            return (
+                              <button
+                                key={l.id}
+                                onClick={() => setLightingPreset(l.id as any)}
+                                className={`py-1.5 px-3 rounded-xl text-[10px] font-bold border transition cursor-pointer text-center truncate ${
+                                  isSelected
+                                    ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                    : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-650 dark:text-zinc-450"
+                                }`}
+                              >
+                                {l.name}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
 
-                  {/* Camera Zoom */}
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center text-xs font-bold">
-                      <span className="text-zinc-500 uppercase tracking-wider">Camera Zoom</span>
-                      <span className="text-zinc-750 dark:text-zinc-350 font-mono">{cameraZoom.toFixed(1)}</span>
+                      {/* Spotlight Brightness */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-500 uppercase tracking-wider">Spotlight Brightness</span>
+                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">{lightIntensity.toFixed(1)}x</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="4.0"
+                          step="0.1"
+                          value={lightIntensity}
+                          onChange={(e) => setLightIntensity(parseFloat(e.target.value))}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* Spotlight Color */}
+                      <div className="space-y-1.5">
+                        <label className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-500 uppercase tracking-wider">Spotlight Color</span>
+                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">{lightColor}</span>
+                        </label>
+                        <div className="flex gap-1.5">
+                          <input
+                            type="color"
+                            value={lightColor}
+                            onChange={(e) => {
+                              setLightColor(e.target.value);
+                              setLightColorInput(e.target.value);
+                            }}
+                            className="w-8 h-8 rounded-lg border-0 cursor-pointer p-0 bg-transparent flex-shrink-0"
+                          />
+                          <input
+                            type="text"
+                            value={lightColorInput}
+                            onChange={(e) => {
+                              setLightColorInput(e.target.value);
+                              if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                                setLightColor(e.target.value);
+                              }
+                            }}
+                            placeholder="#ffffff"
+                            className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-indigo-500 rounded-xl px-2.5 py-1 text-[10px] focus:outline-none text-zinc-900 dark:text-white transition flex-grow font-mono"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Contact Shadows */}
+                      <div className="space-y-3 pt-2 border-t border-zinc-100 dark:border-zinc-800/80">
+                        {/* Shadow Opacity */}
+                        <div className="space-y-1.5">
+                          <div className="flex justify-between items-center text-[10px] font-bold">
+                            <span className="text-zinc-500 uppercase tracking-wider">Shadow Opacity</span>
+                            <span className="text-zinc-750 dark:text-zinc-350 font-mono">{shadowOpacity.toFixed(2)}</span>
+                          </div>
+                          <input
+                            type="range"
+                            min="0.0"
+                            max="1.0"
+                            step="0.05"
+                            value={shadowOpacity}
+                            onChange={(e) => setShadowOpacity(parseFloat(e.target.value))}
+                            className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                          />
+                        </div>
+
+                        {/* Shadow Blur */}
+                        <div className="space-y-1.5">
+                          <div className="flex justify-between items-center text-[10px] font-bold">
+                            <span className="text-zinc-550 dark:text-zinc-500 uppercase tracking-wider">Shadow Softness</span>
+                            <span className="text-zinc-750 dark:text-zinc-350 font-mono">{shadowBlur.toFixed(1)}</span>
+                          </div>
+                          <input
+                            type="range"
+                            min="0.5"
+                            max="5.0"
+                            step="0.1"
+                            value={shadowBlur}
+                            onChange={(e) => setShadowBlur(parseFloat(e.target.value))}
+                            className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                          />
+                        </div>
+                      </div>
                     </div>
-                    <input
-                      type="range"
-                      min="1.5"
-                      max="8.0"
-                      step="0.1"
-                      value={cameraZoom}
-                      onChange={(e) => setCameraZoom(parseFloat(e.target.value))}
-                      className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-650"
-                    />
-                  </div>
-
-                  {/* Camera FOV */}
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center text-xs font-bold">
-                      <span className="text-zinc-500 uppercase tracking-wider">Field of View (FOV)</span>
-                      <span className="text-zinc-750 dark:text-zinc-350 font-mono">{cameraFov}°</span>
-                    </div>
-                    <input
-                      type="range"
-                      min="15"
-                      max="90"
-                      step="1"
-                      value={cameraFov}
-                      onChange={(e) => setCameraFov(parseInt(e.target.value))}
-                      className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-650"
-                    />
-                  </div>
-                </div>
-
-                {/* Lighting Rig Configurations */}
-                <div className="space-y-4 pt-4 border-t border-zinc-100 dark:border-zinc-800/85">
-                  <span className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
-                    Lighting Rig
-                  </span>
-
-                  {/* Spotlight Brightness */}
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center text-xs font-bold">
-                      <span className="text-zinc-500 uppercase tracking-wider">Spotlight Brightness</span>
-                      <span className="text-zinc-750 dark:text-zinc-350 font-mono">{lightIntensity.toFixed(1)}x</span>
-                    </div>
-                    <input
-                      type="range"
-                      min="0.0"
-                      max="4.0"
-                      step="0.1"
-                      value={lightIntensity}
-                      onChange={(e) => setLightIntensity(parseFloat(e.target.value))}
-                      className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-650"
-                    />
-                  </div>
-
-                  {/* Spotlight Color */}
-                  <div className="space-y-2">
-                    <label className="flex justify-between items-center text-xs font-bold">
-                      <span className="text-zinc-500 uppercase tracking-wider">Spotlight Color</span>
-                      <span className="text-zinc-750 dark:text-zinc-350 font-mono">{lightColor}</span>
-                    </label>
-                    <div className="flex gap-2">
-                      <input
-                        type="color"
-                        value={lightColor}
-                        onChange={(e) => {
-                          setLightColor(e.target.value);
-                          setLightColorInput(e.target.value);
-                        }}
-                        className="w-8 h-8 rounded-lg border-0 cursor-pointer p-0 bg-transparent flex-shrink-0"
-                      />
-                      <input
-                        type="text"
-                        value={lightColorInput}
-                        onChange={(e) => {
-                          setLightColorInput(e.target.value);
-                          if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
-                            setLightColor(e.target.value);
-                          }
-                        }}
-                        placeholder="#ffffff"
-                        className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-indigo-500 rounded-xl px-3 py-1.5 text-xs focus:outline-none text-zinc-900 dark:text-white transition flex-grow font-mono"
-                      />
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             )}
@@ -2307,18 +3466,39 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                   </div>
                 </div>
 
-                {/* Share current config */}
+                {/* Workspace Portability (Share & Backup) */}
                 <div className="space-y-3 pt-3 border-t border-zinc-100 dark:border-zinc-800/85">
                   <label className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
-                    Share Workspace
+                    Workspace Portability
                   </label>
-                  <button
-                    onClick={handleSharePlayground}
-                    className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl py-2 px-4 text-xs font-bold transition active:scale-95 cursor-pointer shadow-md shadow-indigo-500/10 dark:shadow-none"
-                  >
-                    <LucideAll.Share2 size={13} />
-                    <span>{shareSuccess ? "Link Copied!" : "Copy Shareable Link"}</span>
-                  </button>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      onClick={handleSharePlayground}
+                      className="flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl py-2 px-3 text-[10px] font-bold transition active:scale-95 cursor-pointer shadow-md shadow-indigo-500/10 dark:shadow-none"
+                    >
+                      <LucideAll.Share2 size={12} />
+                      <span>{shareSuccess ? "Copied!" : "Share Link"}</span>
+                    </button>
+                    <button
+                      onClick={handleExportPresets}
+                      className="flex items-center justify-center gap-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-xl py-2 px-3 text-[10px] font-bold transition active:scale-95 cursor-pointer border border-zinc-200 dark:border-zinc-700"
+                    >
+                      <LucideAll.Download size={12} />
+                      <span>Backup JSON</span>
+                    </button>
+                  </div>
+                  <div className="pt-0.5">
+                    <label className="w-full flex items-center justify-center gap-1.5 bg-zinc-50 hover:bg-zinc-100 dark:bg-zinc-800/30 dark:hover:bg-zinc-800/60 text-zinc-500 dark:text-zinc-400 rounded-xl py-2 px-3 text-[10px] font-bold transition active:scale-95 cursor-pointer border border-dashed border-zinc-300 dark:border-zinc-700">
+                      <LucideAll.Upload size={12} />
+                      <span>{importStatus === "success" ? "Restore Complete!" : importStatus === "error" ? "Invalid file!" : "Restore Backup"}</span>
+                      <input
+                        type="file"
+                        accept=".json"
+                        onChange={handleImportPresets}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
                 </div>
 
                 {/* Presets List */}

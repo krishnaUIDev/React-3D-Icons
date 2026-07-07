@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "../i18n/useTranslation";
-import { Sparkles, Download } from "lucide-react";
+import { Sparkles, Download, Copy, Check } from "lucide-react";
 import pkg from "../../../library/package.json";
+import { GlassmorphismIcon } from "r3d-icons";
 
 interface HeroProps {
   totalIcons?: number;
@@ -13,6 +14,20 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
   const [typedText, setTypedText] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [pm, setPm] = useState<"npm" | "yarn" | "pnpm">("npm");
+
+  const installCmds = {
+    npm: "npm i r3d-icons",
+    yarn: "yarn add r3d-icons",
+    pnpm: "pnpm add r3d-icons"
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(installCmds[pm]);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const words = ["3D Icons", "SVG Vectors", "React Icons", "Web Assets"];
 
@@ -60,6 +75,21 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
       <div className="absolute top-0 left-1/4 -translate-x-1/2 w-72 h-72 rounded-full bg-indigo-400/10 dark:bg-indigo-500/5 blur-3xl -z-10 pointer-events-none" />
       <div className="absolute top-10 right-1/4 translate-x-1/2 w-80 h-80 rounded-full bg-pink-400/10 dark:bg-pink-500/5 blur-3xl -z-10 pointer-events-none" />
 
+      {/* Interactive 3D Hero Emblem */}
+      <div className="w-28 h-28 mx-auto mb-6 transform hover:scale-105 transition-transform duration-300 relative cursor-grab active:cursor-grabbing">
+        {/* Soft colorful backdrop glow behind the 3D Canvas */}
+        <div className="absolute inset-2 rounded-full bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 blur-xl animate-pulse pointer-events-none" />
+        <GlassmorphismIcon
+          preset="glass"
+          theme="dark"
+          color="#6366f1"
+          accentColor="#ec4899"
+          interactive={true}
+          spinSpeed={0.6}
+          floatHeight={1.2}
+        />
+      </div>
+
       {/* Modern Badge */}
       <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-indigo-200/50 dark:border-indigo-800/40 bg-indigo-50/50 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase tracking-wider mb-6 animate-fade-in shadow-sm">
         <Sparkles size={12} className="animate-pulse" />
@@ -89,6 +119,40 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
         >
           <Download size={16} />
           <span>{t("btn_download_all")} v{version}</span>
+        </button>
+      </div>
+
+      {/* Interactive Installer Command Snippet */}
+      <div className="mt-8 max-w-sm mx-auto rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/50 dark:bg-[#0c0f1a]/30 p-2 flex items-center justify-between gap-3 shadow-inner">
+        <div className="flex gap-1.5 border-r border-zinc-200 dark:border-zinc-800/80 pr-2.5">
+          {(["npm", "yarn", "pnpm"] as const).map((p) => (
+            <button
+              key={p}
+              onClick={() => setPm(p)}
+              className={`px-2 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider transition cursor-pointer ${
+                pm === p
+                  ? "bg-indigo-600 text-white shadow-sm shadow-indigo-600/10"
+                  : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-300"
+              }`}
+            >
+              {p}
+            </button>
+          ))}
+        </div>
+        <code className="text-[10px] sm:text-xs font-mono font-bold text-zinc-700 dark:text-zinc-350 select-all flex-grow text-left pl-1">
+          {installCmds[pm]}
+        </code>
+        <button
+          onClick={copyToClipboard}
+          className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer relative"
+          title="Copy command to clipboard"
+        >
+          {copied ? <Check size={13} className="text-emerald-500" /> : <Copy size={13} />}
+          {copied && (
+            <span className="absolute -top-7 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded bg-zinc-900 dark:bg-zinc-850 text-white text-[8px] font-extrabold uppercase tracking-wider pointer-events-none whitespace-nowrap shadow-md">
+              Copied!
+            </span>
+          )}
         </button>
       </div>
     </div>

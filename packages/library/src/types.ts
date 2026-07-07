@@ -26,6 +26,14 @@ export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" 
   lightColor?: string;     // Spot lighting rig color override (hex)
   tiltIntensity?: number;  // Parallax mouse follow intensity factor
   animationType?: IconAnimationType; // Physical float animation type
+  animationAxis?: "x" | "y" | "z";   // Continuous spin rotation axis
+  animationDirection?: "clockwise" | "counter-clockwise"; // Spin direction
+  shadowOpacity?: number;  // Contact shadow opacity (0.0 to 1.0)
+  shadowBlur?: number;     // Contact shadow blur sharpness factor
+  textureType?: "none" | "frosted" | "brushed" | "carbon"; // Tactile texture style
+  emissivePulseSpeed?: number;     // Pulsing glow speed (0.0 for off)
+  emissivePulseIntensity?: number; // Pulsing glow amplitude depth (0.0 to 1.0)
+  lightingPreset?: "studio" | "cyber" | "sunset" | "dramatic"; // Studio lighting style
 }
 
 // Internal standard material config interface
