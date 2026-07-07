@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "../router/Router";
+import { IconPreset } from "r3d-icons";
 
 interface IconCardProps {
   id: string;
@@ -11,6 +12,7 @@ interface IconCardProps {
   category?: string;
   description?: string;
   viewMode?: "grid" | "list";
+  preset?: IconPreset;
 }
 
 export const IconCard: React.FC<IconCardProps> = ({
@@ -22,7 +24,8 @@ export const IconCard: React.FC<IconCardProps> = ({
   accentColor,
   category = "utility",
   description = "Customizable 3D icon element",
-  viewMode = "grid"
+  viewMode = "grid",
+  preset = "glass"
 }) => {
   const { updateCustomizerURL } = useRouter();
   const [isHovered, setIsHovered] = useState(false);
@@ -85,7 +88,7 @@ export default function IconShowcase() {
             {isHovered ? (
               <div className="w-12 h-12 sm:w-16 sm:h-16 transform scale-105 transition-transform duration-300">
                 <Component
-                  preset="glass"
+                  preset={preset}
                   theme={theme}
                   color={color}
                   accentColor={accentColor}
@@ -98,7 +101,7 @@ export default function IconShowcase() {
               <div className="relative flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16">
                 <Component
                   variant="2d"
-                  preset="glass"
+                  preset={preset}
                   theme={theme}
                   color={color}
                   accentColor={accentColor}
@@ -214,7 +217,7 @@ export default function IconShowcase() {
         {isHovered ? (
           <div className="w-14 h-14 sm:w-16 sm:h-16 transform scale-105 transition-transform duration-300">
             <Component
-              preset="glass"
+              preset={preset}
               theme={theme}
               color={color}
               accentColor={accentColor}
@@ -227,7 +230,7 @@ export default function IconShowcase() {
           <div className="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16">
             <Component
               variant="2d"
-              preset="glass"
+              preset={preset}
               theme={theme}
               color={color}
               accentColor={accentColor}

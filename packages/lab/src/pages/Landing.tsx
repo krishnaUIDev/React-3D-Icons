@@ -294,7 +294,8 @@ import {
   PiggyBankIcon,
   ShoppingBagIcon,
   ShoppingCartIcon,
-  ReceiptIcon
+  ReceiptIcon,
+  IconPreset
 } from "r3d-icons";
 import { TranslationKey } from "../i18n/translations";
 
@@ -2945,6 +2946,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<typeof CATEGORIES[number]>("all");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [activePreset, setActivePreset] = useState<IconPreset>("glass");
 
   // Pre-calculate category counts for quick search badges
   const categoryCounts = React.useMemo(() => {
@@ -3085,13 +3087,11 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
               Clear
             </button>
           )}
-        </div>
-
-        {/* Controls Toolbar: Brand Color Filter & Grid/List View Switcher */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 p-3 rounded-2xl border border-zinc-200/55 dark:border-zinc-800/50 bg-zinc-50/20 dark:bg-[#0c0f1a]/10 max-w-2xl mx-auto w-full">
+        </div>        {/* Controls Toolbar: Brand Color Filter, Preset Switcher & Grid/List View Switcher */}
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 mb-6 p-3 rounded-2xl border border-zinc-200/55 dark:border-zinc-800/50 bg-zinc-50/20 dark:bg-[#0c0f1a]/10 max-w-4xl mx-auto w-full">
           {/* Brand Color Selector */}
           <div className="flex flex-wrap items-center gap-3">
-            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Filter by Brand Color</span>
+            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Filter by Color</span>
             <div className="flex items-center gap-2">
               {COLOR_PALETTES.map(palette => {
                 const isSelected = activeColorFilter === palette.id;
@@ -3116,7 +3116,39 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
           </div>
 
           {/* Divider line for mobile stack layout */}
-          <div className="sm:hidden w-full h-px bg-zinc-200/40 dark:bg-zinc-800/40" />
+          <div className="lg:hidden w-full h-px bg-zinc-200/40 dark:bg-zinc-800/40" />
+
+          {/* Catalog Material Preset Selector Switcher */}
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Material Preset</span>
+            <div className="flex flex-wrap gap-1 rounded-xl p-0.5 bg-zinc-100 dark:bg-[#0e111a] border border-zinc-200/40 dark:border-zinc-800/40">
+              {([
+                { id: "glass", name: "Glass" },
+                { id: "gold", name: "Gold" },
+                { id: "silver", name: "Chrome" },
+                { id: "carbon", name: "Carbon" },
+                { id: "wood", name: "Wood" }
+              ] as const).map(presetItem => {
+                const isSelected = activePreset === presetItem.id;
+                return (
+                  <button
+                    key={presetItem.id}
+                    onClick={() => setActivePreset(presetItem.id)}
+                    className={`px-2 py-1 rounded-lg text-[9px] font-extrabold uppercase tracking-wider transition duration-150 cursor-pointer ${
+                      isSelected
+                        ? "bg-white dark:bg-[#1a1f30] text-indigo-500 shadow-sm border border-zinc-250/10"
+                        : "text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-350"
+                    }`}
+                  >
+                    {presetItem.name}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Divider line for mobile stack layout */}
+          <div className="lg:hidden w-full h-px bg-zinc-200/40 dark:bg-zinc-800/40" />
 
           {/* Grid vs List Toggle Switcher */}
           <div className="flex items-center gap-2">
@@ -3194,6 +3226,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
               category={icon.category}
               description={icon.description}
               viewMode={viewMode}
+              preset={activePreset}
             />
           ))}
 
