@@ -19,6 +19,7 @@
   ],
   "author": "Krishna Kondoju",
   "license": "MIT",
+  "sideEffects": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/krishnaUIDev/React-3D-Icons.git"
