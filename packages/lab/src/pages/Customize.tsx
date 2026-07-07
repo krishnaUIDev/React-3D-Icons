@@ -686,6 +686,10 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [lightIntensity, setLightIntensity] = useState(1.0);
   const [lightColor, setLightColor] = useState("#c084fc");
   const [lightColorInput, setLightColorInput] = useState("#c084fc");
+  const [accentLightColor, setAccentLightColor] = useState("#ec4899");
+  const [accentLightColorInput, setAccentLightColorInput] = useState("#ec4899");
+  const [accentLightIntensity, setAccentLightIntensity] = useState(0.0);
+  const [accentLightAngle, setAccentLightAngle] = useState(135);
   const [tiltIntensity, setTiltIntensity] = useState(1.0);
   const [animationType, setAnimationType] = useState<IconAnimationType>("spin");
   const [animationAxis, setAnimationAxis] = useState<"x" | "y" | "z">("y");
@@ -886,6 +890,9 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const emissivePulseSpeedProp = emissivePulseSpeed > 0 ? `\n        emissivePulseSpeed={${emissivePulseSpeed.toFixed(1)}}` : "";
   const emissivePulseIntensityProp = emissivePulseSpeed > 0 && emissivePulseIntensity !== 0.5 ? `\n        emissivePulseIntensity={${emissivePulseIntensity.toFixed(2)}}` : "";
   const lightingPresetProp = lightingPreset !== "studio" ? `\n        lightingPreset="${lightingPreset}"` : "";
+  const accentLightColorProp = accentLightIntensity > 0 && accentLightColor !== "#ec4899" ? `\n        accentLightColor="${accentLightColor}"` : "";
+  const accentLightIntensityProp = accentLightIntensity > 0 ? `\n        accentLightIntensity={${accentLightIntensity.toFixed(2)}}` : "";
+  const accentLightAngleProp = accentLightIntensity > 0 && accentLightAngle !== 135 ? `\n        accentLightAngle={${accentLightAngle}}` : "";
 
   // Preset Handlers
   const handleSavePreset = () => {
@@ -1084,7 +1091,7 @@ function App() {
         spinSpeed={${spinSpeed.toFixed(1)}}
         floatHeight={${floatHeight.toFixed(1)}}
         theme="${theme}"
-        interactive={${interactive}}${cameraZoomProp}${cameraFovProp}${lightIntensityProp}${lightColorProp}${tiltIntensityProp}${animationTypeProp}${animationAxisProp}${animationDirectionProp}${shadowOpacityProp}${shadowBlurProp}${textureTypeProp}${emissivePulseSpeedProp}${emissivePulseIntensityProp}${lightingPresetProp}${customMaterialProp}
+        interactive={${interactive}}${cameraZoomProp}${cameraFovProp}${lightIntensityProp}${lightColorProp}${tiltIntensityProp}${animationTypeProp}${animationAxisProp}${animationDirectionProp}${shadowOpacityProp}${shadowBlurProp}${textureTypeProp}${emissivePulseSpeedProp}${emissivePulseIntensityProp}${lightingPresetProp}${accentLightColorProp}${accentLightIntensityProp}${accentLightAngleProp}${customMaterialProp}
       />
     </div>
   );
@@ -1139,6 +1146,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
       emissivePulseSpeed={${emissivePulseSpeed}}
       emissivePulseIntensity={${emissivePulseIntensity}}
       lightingPreset="${lightingPreset}"
+      ${accentLightIntensity > 0 ? `accentLightColor="${accentLightColor}"` : ""}
+      ${accentLightIntensity > 0 ? `accentLightIntensity={${accentLightIntensity}}` : ""}
+      ${accentLightIntensity > 0 ? `accentLightAngle={${accentLightAngle}}` : ""}
       ${Object.keys(customMaterial).length > 0 ? "customMaterial={customMaterial}" : ""}
       {...props}
     />
@@ -1203,8 +1213,8 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     setDownloadingPNG(true);
 
     setTimeout(() => {
-      const canvasElement = document.querySelector("canvas");
-      if (canvasElement) {
+      const canvasElement = document.querySelector("#main-viewport canvas") || document.querySelector("canvas");
+      if (canvasElement instanceof HTMLCanvasElement) {
         try {
           const dataUrl = canvasElement.toDataURL("image/png");
           const link = document.createElement("a");
@@ -1323,6 +1333,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     setLightIntensity(1.0);
     setLightColor("#c084fc");
     setLightColorInput("#c084fc");
+    setAccentLightColor("#ec4899");
+    setAccentLightColorInput("#ec4899");
+    setAccentLightIntensity(0.0);
+    setAccentLightAngle(135);
     setTiltIntensity(1.0);
     setAnimationType("spin");
     setAnimationAxis("y");
@@ -1407,6 +1421,13 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
       "default", "grid", "gradient-indigo", "gradient-sunset", "gradient-mesh"
     ];
     setViewportBg(bgs[Math.floor(Math.random() * bgs.length)]);
+
+    const accentColors = ["#ec4899", "#3b82f6", "#10b981", "#ef4444", "#f59e0b", "#8b5cf6", "#0ea5e9", "#eab308"];
+    const randomAccentColor = accentColors[Math.floor(Math.random() * accentColors.length)];
+    setAccentLightColor(randomAccentColor);
+    setAccentLightColorInput(randomAccentColor);
+    setAccentLightIntensity(Math.random() > 0.4 ? parseFloat((Math.random() * 2.5).toFixed(2)) : 0.0);
+    setAccentLightAngle(Math.floor(Math.random() * 360));
 
     setResetKey(prev => prev + 1);
   };
@@ -1839,7 +1860,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                 ) : (
                   <>
                     {previewContext === "icon" && (
-                  <div className="w-full h-full flex items-center justify-center">
+                  <div id="main-viewport" className="w-full h-full flex items-center justify-center">
                     <ActiveComponent
                       key={resetKey}
                       preset={preset}
@@ -1867,6 +1888,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       emissivePulseSpeed={emissivePulseSpeed}
                       emissivePulseIntensity={emissivePulseIntensity}
                       lightingPreset={lightingPreset}
+                      accentLightColor={accentLightColor}
+                      accentLightIntensity={accentLightIntensity}
+                      accentLightAngle={accentLightAngle}
                     />
                   </div>
                 )}
@@ -3396,6 +3420,82 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-indigo-500 rounded-xl px-2.5 py-1 text-[10px] focus:outline-none text-zinc-900 dark:text-white transition flex-grow font-mono"
                           />
                         </div>
+                      </div>
+
+                      {/* Secondary Accent Light Mixer (Tuning rig) */}
+                      <div className="space-y-3 pt-2 border-t border-zinc-100 dark:border-zinc-800/80">
+                        <label className="text-[10px] font-bold text-indigo-500 uppercase tracking-wider block">
+                          Secondary Accent Light
+                        </label>
+
+                        {/* Accent Light Intensity */}
+                        <div className="space-y-1.5">
+                          <div className="flex justify-between items-center text-[10px] font-bold">
+                            <span className="text-zinc-550 dark:text-zinc-450 uppercase tracking-wider">Accent Brightness</span>
+                            <span className="text-zinc-750 dark:text-zinc-350 font-mono">{accentLightIntensity.toFixed(2)}x</span>
+                          </div>
+                          <input
+                            type="range"
+                            min="0.0"
+                            max="4.0"
+                            step="0.05"
+                            value={accentLightIntensity}
+                            onChange={(e) => setAccentLightIntensity(parseFloat(e.target.value))}
+                            className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                          />
+                        </div>
+
+                        {/* Accent Light Angle */}
+                        {accentLightIntensity > 0 && (
+                          <div className="space-y-1.5 animate-page-fade">
+                            <div className="flex justify-between items-center text-[10px] font-bold">
+                              <span className="text-zinc-555 dark:text-zinc-455 uppercase tracking-wider">Rotation Angle</span>
+                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">{accentLightAngle}°</span>
+                            </div>
+                            <input
+                              type="range"
+                              min="0"
+                              max="360"
+                              step="5"
+                              value={accentLightAngle}
+                              onChange={(e) => setAccentLightAngle(parseInt(e.target.value))}
+                              className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            />
+                          </div>
+                        )}
+
+                        {/* Accent Light Color */}
+                        {accentLightIntensity > 0 && (
+                          <div className="space-y-1.5 animate-page-fade">
+                            <label className="flex justify-between items-center text-[10px] font-bold">
+                              <span className="text-zinc-555 dark:text-zinc-455 uppercase tracking-wider">Accent Light Color</span>
+                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">{accentLightColor}</span>
+                            </label>
+                            <div className="flex gap-1.5">
+                              <input
+                                type="color"
+                                value={accentLightColor}
+                                onChange={(e) => {
+                                  setAccentLightColor(e.target.value);
+                                  setAccentLightColorInput(e.target.value);
+                                }}
+                                className="w-8 h-8 rounded-lg border-0 cursor-pointer p-0 bg-transparent flex-shrink-0"
+                              />
+                              <input
+                                type="text"
+                                value={accentLightColorInput}
+                                onChange={(e) => {
+                                  setAccentLightColorInput(e.target.value);
+                                  if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                                    setAccentLightColor(e.target.value);
+                                  }
+                                }}
+                                placeholder="#ec4899"
+                                className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-indigo-500 rounded-xl px-2.5 py-1 text-[10px] focus:outline-none text-zinc-900 dark:text-white transition flex-grow font-mono"
+                              />
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                       {/* Contact Shadows */}

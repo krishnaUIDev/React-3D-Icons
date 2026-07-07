@@ -34,6 +34,9 @@ export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" 
   emissivePulseSpeed?: number;     // Pulsing glow speed (0.0 for off)
   emissivePulseIntensity?: number; // Pulsing glow amplitude depth (0.0 to 1.0)
   lightingPreset?: "studio" | "cyber" | "sunset" | "dramatic"; // Studio lighting style
+  accentLightColor?: string;     // Secondary custom accent light color (hex)
+  accentLightIntensity?: number; // Secondary custom accent light intensity
+  accentLightAngle?: number;     // Secondary custom accent light rotation angle
 }
 
 // Internal standard material config interface

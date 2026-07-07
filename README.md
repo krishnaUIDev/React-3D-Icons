@@ -117,6 +117,9 @@ Every icon component accepts the following customizable props:
 | `customMaterial` | `Partial<MaterialConfig>` | `undefined` | Fine-grain physics overrides for the 3D material (roughness, metalness, transmission, thickness, clearcoat, clearcoatRoughness, ior, emissiveIntensity). |
 | `lightIntensity` | `number` | `1.0` (dark theme) | Spot lighting rig brightness override multiplier. |
 | `lightColor` | `string` | `"#c084fc"` | Spot lighting rig illumination color override. |
+| `accentLightColor` | `string` | `"#ec4899"` | Secondary custom accent lighting rig color override. |
+| `accentLightIntensity` | `number` | `0.0` | Secondary custom accent lighting rig brightness intensity multiplier (set to `0.0` to disable). |
+| `accentLightAngle` | `number` | `135` | Secondary custom accent light rotation angle around the model (in degrees, `0` to `360`). |
 | `tiltIntensity` | `number` | `1.0` | Parallax mouse follow intensity factor coefficient. |
 | `animationType` | `"spin" \| "wobble" \| "breathe" \| "wave"` | `"spin"` | Physical float/rotation motion animation profile. |
 | `animationAxis` | `"x" \| "y" \| "z"` | `"y"` | Rotation spin axis (x, y, or z). |

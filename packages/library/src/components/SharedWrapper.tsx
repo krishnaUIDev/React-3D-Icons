@@ -156,8 +156,23 @@ const StudioLights: React.FC<{
   intensity?: number;
   color?: string;
   preset?: "studio" | "cyber" | "sunset" | "dramatic";
-}> = ({ theme, intensity, color, preset = "studio" }) => {
+  accentColor?: string;
+  accentIntensity?: number;
+  accentAngle?: number;
+}> = ({ theme, intensity, color, preset = "studio", accentColor, accentIntensity, accentAngle }) => {
   const isDark = theme === "dark";
+
+  const angleRad = ((accentAngle ?? 135) * Math.PI) / 180;
+  const accentX = 6 * Math.sin(angleRad);
+  const accentZ = 6 * Math.cos(angleRad);
+
+  const customAccentLight = accentIntensity !== undefined && accentIntensity > 0 && (
+    <pointLight
+      position={[accentX, 3, accentZ]}
+      intensity={accentIntensity}
+      color={accentColor ?? "#ec4899"}
+    />
+  );
 
   if (preset === "cyber") {
     return (
@@ -182,6 +197,7 @@ const StudioLights: React.FC<{
           intensity={intensity ?? (isDark ? 1.5 : 0.8)}
           color={color ?? "#c084fc"}
         />
+        {customAccentLight}
       </>
     );
   }
@@ -209,6 +225,7 @@ const StudioLights: React.FC<{
           intensity={intensity ?? (isDark ? 1.0 : 0.6)}
           color={color ?? "#fdba74"}
         />
+        {customAccentLight}
       </>
     );
   }
@@ -240,6 +257,7 @@ const StudioLights: React.FC<{
           intensity={intensity ?? (isDark ? 0.8 : 0.4)}
           color={color ?? "#818cf8"}
         />
+        {customAccentLight}
       </>
     );
   }
@@ -270,6 +288,7 @@ const StudioLights: React.FC<{
         intensity={intensity ?? (isDark ? 1.0 : 0.6)}
         color={color ?? (isDark ? "#c084fc" : "#fff")}
       />
+      {customAccentLight}
     </>
   );
 };
@@ -545,6 +564,9 @@ export function SharedWrapper({
   emissivePulseSpeed,
   emissivePulseIntensity,
   lightingPreset,
+  accentLightColor,
+  accentLightIntensity,
+  accentLightAngle,
   children,
   ...props
 }: IconProps & {
@@ -627,7 +649,15 @@ export function SharedWrapper({
         gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
         shadows
       >
-        <StudioLights theme={theme} intensity={lightIntensity} color={lightColor} preset={lightingPreset} />
+        <StudioLights
+          theme={theme}
+          intensity={lightIntensity}
+          color={lightColor}
+          preset={lightingPreset}
+          accentColor={accentLightColor}
+          accentIntensity={accentLightIntensity}
+          accentAngle={accentLightAngle}
+        />
         <Environment preset={environment} />
         <ContactShadows
           position={[0, -1.5, 0]}
