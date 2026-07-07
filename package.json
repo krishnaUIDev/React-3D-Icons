@@ -8,6 +8,7 @@
   "scripts": {
     "dev:lab": "npm run dev --workspace=packages/lab",
     "build:lib": "npm run build --workspace=packages/library",
-    "build:lab": "npm run build --workspace=packages/lab"
+    "build:lab": "npm run build --workspace=packages/lab",
+    "test:e2e": "npm run test --workspace=packages/e2e"
   }
 }
