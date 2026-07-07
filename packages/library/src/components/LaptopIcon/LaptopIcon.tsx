@@ -6,7 +6,6 @@ export function LaptopIcon(props: LaptopIconProps) {
     <SharedWrapper iconId="laptop" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.3, 0.05]} position={[0, -0.08, 0]}>
-          
           {/* Main Laptop Bottom Base (Keyboard deck) */}
           <mesh castShadow receiveShadow position={[0, 0, 0.04]}>
             <boxGeometry args={[0.74, 0.028, 0.52]} />
@@ -70,7 +69,6 @@ export function LaptopIcon(props: LaptopIconProps) {
               <meshBasicMaterial color="#1e293b" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

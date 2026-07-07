@@ -52,7 +52,10 @@ export function WrenchIcon(props: WrenchIconProps) {
               {/* Jaw Cutout Block (Creates U-shape) */}
               <mesh position={[0, 0.08, 0.01]}>
                 <boxGeometry args={[0.16, 0.28, 0.13]} />
-                <meshStandardMaterial color={props.theme === "dark" ? "#090d16" : "#ffffff"} roughness={1.0} />
+                <meshStandardMaterial
+                  color={props.theme === "dark" ? "#090d16" : "#ffffff"}
+                  roughness={1.0}
+                />
               </mesh>
             </group>
 
@@ -73,7 +76,11 @@ export function WrenchIcon(props: WrenchIconProps) {
               {/* Decorative inner cylinder for teeth details */}
               <mesh>
                 <cylinderGeometry args={[0.12, 0.12, 0.08, 12, 1, true]} />
-                <meshStandardMaterial roughness={0.3} metalness={0.8} color={props.theme === "dark" ? "#27272a" : "#cbd5e1"} />
+                <meshStandardMaterial
+                  roughness={0.3}
+                  metalness={0.8}
+                  color={props.theme === "dark" ? "#27272a" : "#cbd5e1"}
+                />
               </mesh>
             </group>
           </group>

@@ -6,7 +6,6 @@ export function HeadphonesIcon(props: HeadphonesIconProps) {
     <SharedWrapper iconId="headphones" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.2, 0]} position={[0, 0.1, 0]}>
-          
           {/* Headband Curved Arc (Torus segment) */}
           <mesh castShadow receiveShadow position={[0, 0.08, 0]} rotation={[0, 0, 0]}>
             <torusGeometry args={[0.55, 0.045, 12, 32, Math.PI]} />
@@ -99,7 +98,6 @@ export function HeadphonesIcon(props: HeadphonesIconProps) {
               />
             </mesh>
           ))}
-
         </group>
       )}
     </SharedWrapper>

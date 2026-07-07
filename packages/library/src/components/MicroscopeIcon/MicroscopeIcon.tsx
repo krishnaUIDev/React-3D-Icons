@@ -5,8 +5,11 @@ export function MicroscopeIcon(props: MicroscopeIconProps) {
   return (
     <SharedWrapper iconId="microscope" {...props}>
       {(mat) => (
-        <group rotation={[0.15, -Math.PI / 8, 0.05]} position={[0, -0.02, 0]} scale={[1.4, 1.4, 1.4]}>
-          
+        <group
+          rotation={[0.15, -Math.PI / 8, 0.05]}
+          position={[0, -0.02, 0]}
+          scale={[1.4, 1.4, 1.4]}
+        >
           {/* Base Stand (Preset Material) */}
           <mesh position={[0, -0.19, 0]} castShadow receiveShadow>
             <boxGeometry args={[0.26, 0.03, 0.26]} />
@@ -73,7 +76,6 @@ export function MicroscopeIcon(props: MicroscopeIconProps) {
             <cylinderGeometry args={[0.02, 0.02, 0.04, 10]} />
             <meshStandardMaterial color="#cbd5e1" roughness={0.5} />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

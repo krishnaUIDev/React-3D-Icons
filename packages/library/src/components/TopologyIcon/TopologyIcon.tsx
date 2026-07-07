@@ -6,7 +6,6 @@ export function TopologyIcon(props: TopologyIconProps) {
     <SharedWrapper iconId="topology" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.1]} position={[0, 0, 0]}>
-          
           {/* Central Hub Node (Main system gateway) */}
           <mesh castShadow receiveShadow>
             <sphereGeometry args={[0.32, 32, 32]} />
@@ -61,7 +60,7 @@ export function TopologyIcon(props: TopologyIconProps) {
             [0.55, 0],
             [-0.55, 0],
             [0, 0.55],
-            [0, -0.55],
+            [0, -0.55]
           ].map(([x, y], index) => (
             <mesh key={index} position={[x, y, 0]} castShadow>
               <sphereGeometry args={[0.18, 16, 16]} />
@@ -73,7 +72,6 @@ export function TopologyIcon(props: TopologyIconProps) {
               />
             </mesh>
           ))}
-
         </group>
       )}
     </SharedWrapper>

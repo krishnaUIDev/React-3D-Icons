@@ -42,7 +42,12 @@ export function BoltIcon(props: BoltIconProps) {
 
             {/* Thread Ridges */}
             {threadOffsets.map((yOffset, index) => (
-              <mesh key={index} position={[0, yOffset, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+              <mesh
+                key={index}
+                position={[0, yOffset, 0]}
+                rotation={[Math.PI / 2, 0, 0]}
+                castShadow
+              >
                 <torusGeometry args={[0.28, 0.05, 12, 24]} />
                 <meshStandardMaterial
                   roughness={0.25}

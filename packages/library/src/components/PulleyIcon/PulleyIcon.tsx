@@ -6,7 +6,6 @@ export function PulleyIcon(props: PulleyIconProps) {
     <SharedWrapper iconId="pulley" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main U-Frame Bracket Holder */}
           <group position={[0, 0.08, 0]}>
             {/* Top mounting block */}
@@ -93,7 +92,6 @@ export function PulleyIcon(props: PulleyIconProps) {
             <cylinderGeometry args={[0.016, 0.016, 0.44, 12]} />
             <meshStandardMaterial roughness={0.85} metalness={0.1} color="#d1d5db" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

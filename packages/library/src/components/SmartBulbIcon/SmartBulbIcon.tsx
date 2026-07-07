@@ -8,7 +8,6 @@ export function SmartBulbIcon(props: SmartBulbIconProps) {
     <SharedWrapper iconId="smartbulb" {...props}>
       {(mat) => (
         <group rotation={[0.25, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Bottom Screw Contact Pin (brass button at base) */}
           <mesh position={[0, -0.24, 0]} castShadow>
             <cylinderGeometry args={[0.026, 0.026, 0.016, 12]} />
@@ -70,7 +69,9 @@ export function SmartBulbIcon(props: SmartBulbIconProps) {
                 <cylinderGeometry args={[0.02, 0.02, 0.06, 12]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.5}
                 />
               </mesh>
@@ -78,13 +79,14 @@ export function SmartBulbIcon(props: SmartBulbIconProps) {
                 <sphereGeometry args={[0.024, 12, 12]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.5}
                 />
               </mesh>
             </group>
           )}
-
         </group>
       )}
     </SharedWrapper>

@@ -13,7 +13,6 @@ export function CamshaftIcon(props: CamshaftIconProps) {
     <SharedWrapper iconId="camshaft" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.4, 0.4]} position={[0, 0, 0]}>
-          
           {/* Central Camshaft Rod (Main core shaft) */}
           <mesh rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
             <cylinderGeometry args={[0.024, 0.024, 0.54, 16]} />
@@ -74,13 +73,14 @@ export function CamshaftIcon(props: CamshaftIconProps) {
                 <cylinderGeometry args={[0.006, 0.006, 0.04, 8]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.0}
                 />
               </mesh>
             </group>
           ))}
-
         </group>
       )}
     </SharedWrapper>

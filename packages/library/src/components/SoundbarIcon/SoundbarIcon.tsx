@@ -6,7 +6,6 @@ export function SoundbarIcon(props: SoundbarIconProps) {
     <SharedWrapper iconId="soundbar" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Long Horizontal Soundbar Casing (Primary speaker) */}
           <mesh castShadow receiveShadow position={[0, -0.1, 0.06]}>
             <boxGeometry args={[0.48, 0.046, 0.054]} />
@@ -70,7 +69,9 @@ export function SoundbarIcon(props: SoundbarIconProps) {
                 <torusGeometry args={[0.058, 0.004, 8, 24]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.3}
                 />
               </mesh>
@@ -82,7 +83,6 @@ export function SoundbarIcon(props: SoundbarIconProps) {
               <meshStandardMaterial roughness={0.5} metalness={0.1} color="#000000" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

@@ -6,7 +6,6 @@ export function TornadoIcon(props: TornadoIconProps) {
     <SharedWrapper iconId="tornado" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.1, 0.15]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Central Glowing Core Shaft */}
           <mesh castShadow>
             <cylinderGeometry args={[0.02, 0.01, 0.72, 10]} />
@@ -18,9 +17,14 @@ export function TornadoIcon(props: TornadoIconProps) {
           </mesh>
 
           {/* Tornado Swirl Rings (Stacked layers from bottom to top) */}
-          
+
           {/* Top Layer 1 */}
-          <mesh position={[0.05, 0.3, 0]} rotation={[Math.PI / 2, 0.1, 0.05]} castShadow receiveShadow>
+          <mesh
+            position={[0.05, 0.3, 0]}
+            rotation={[Math.PI / 2, 0.1, 0.05]}
+            castShadow
+            receiveShadow
+          >
             <torusGeometry args={[0.32, 0.04, 10, 32]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -35,7 +39,12 @@ export function TornadoIcon(props: TornadoIconProps) {
           </mesh>
 
           {/* Layer 2 */}
-          <mesh position={[0.025, 0.15, 0]} rotation={[Math.PI / 2, 0.08, 0.03]} castShadow receiveShadow>
+          <mesh
+            position={[0.025, 0.15, 0]}
+            rotation={[Math.PI / 2, 0.08, 0.03]}
+            castShadow
+            receiveShadow
+          >
             <torusGeometry args={[0.24, 0.036, 10, 32]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -59,7 +68,12 @@ export function TornadoIcon(props: TornadoIconProps) {
           </mesh>
 
           {/* Layer 4 */}
-          <mesh position={[-0.025, -0.15, 0]} rotation={[Math.PI / 2, 0.03, -0.03]} castShadow receiveShadow>
+          <mesh
+            position={[-0.025, -0.15, 0]}
+            rotation={[Math.PI / 2, 0.03, -0.03]}
+            castShadow
+            receiveShadow
+          >
             <torusGeometry args={[0.11, 0.026, 10, 24]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -71,7 +85,12 @@ export function TornadoIcon(props: TornadoIconProps) {
           </mesh>
 
           {/* Layer 5 (Bottom Point) */}
-          <mesh position={[-0.05, -0.3, 0]} rotation={[Math.PI / 2, 0, -0.05]} castShadow receiveShadow>
+          <mesh
+            position={[-0.05, -0.3, 0]}
+            rotation={[Math.PI / 2, 0, -0.05]}
+            castShadow
+            receiveShadow
+          >
             <torusGeometry args={[0.05, 0.02, 8, 16]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -81,7 +100,6 @@ export function TornadoIcon(props: TornadoIconProps) {
               color={mat.color}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

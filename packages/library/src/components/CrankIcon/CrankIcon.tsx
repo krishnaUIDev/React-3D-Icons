@@ -6,7 +6,6 @@ export function CrankIcon(props: CrankIconProps) {
     <SharedWrapper iconId="crank" {...props}>
       {(mat) => (
         <group rotation={[0.3, -0.4, 0.1]} position={[0, 0, 0]}>
-          
           {/* Main Central Pivot Axle */}
           <mesh castShadow receiveShadow position={[0, 0, -0.06]} rotation={[0, 0, 0]}>
             <cylinderGeometry args={[0.04, 0.04, 0.12, 16]} />
@@ -82,7 +81,6 @@ export function CrankIcon(props: CrankIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

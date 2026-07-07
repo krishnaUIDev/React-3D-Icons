@@ -84,7 +84,12 @@ export function DolphinIcon(props: DolphinIconProps) {
           </mesh>
 
           {/* Glowing/Accent scale-line along the spine curve */}
-          <mesh position={[0, 0.076, 0]} scale={[1.61, 0.75, 0.63]} rotation={[0, 0, 0.2]} castShadow>
+          <mesh
+            position={[0, 0.076, 0]}
+            scale={[1.61, 0.75, 0.63]}
+            rotation={[0, 0, 0.2]}
+            castShadow
+          >
             <torusGeometry args={[0.14, 0.004, 4, 24, Math.PI]} />
             <meshStandardMaterial
               color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}

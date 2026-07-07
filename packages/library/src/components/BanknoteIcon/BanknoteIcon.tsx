@@ -6,7 +6,6 @@ export function BanknoteIcon(props: BanknoteIconProps) {
     <SharedWrapper iconId="banknote" {...props}>
       {(mat) => (
         <group rotation={[0.25, -Math.PI / 6, 0.12]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Bottom Paper Bill (Slightly rotated green plate) */}
           <mesh position={[-0.02, -0.04, -0.02]} rotation={[0.05, -0.05, -0.04]} castShadow>
             <boxGeometry args={[0.46, 0.26, 0.01]} />
@@ -57,7 +56,6 @@ export function BanknoteIcon(props: BanknoteIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

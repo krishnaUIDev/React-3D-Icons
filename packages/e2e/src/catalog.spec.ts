@@ -20,13 +20,13 @@ test.describe("R3D Icons Catalog Showcase & Customizer Sandbox", () => {
     const searchInput = page.locator("input[placeholder*='Search']:visible").first();
     await searchInput.focus();
     await searchInput.pressSequentially("Gamepad", { delay: 50 });
-    
+
     const clearButton = page.locator("button:has-text('Clear')");
     await expect(clearButton).toBeVisible();
 
     // Wait for the catalog search filter to update the DOM
     await expect(page.locator(".group p:has-text('Gamepad')").first()).toBeVisible();
-    
+
     // Verify non-matching items are filtered out
     await expect(page.locator(".group p:has-text('VRHeadset')").first()).toBeHidden();
   });
@@ -37,7 +37,7 @@ test.describe("R3D Icons Catalog Showcase & Customizer Sandbox", () => {
 
     const listRows = page.locator(".group.flex-col.sm\\:flex-row");
     await expect(listRows.first()).toBeVisible();
-    
+
     await expect(page.locator("button:has-text('Copy SVG')").first()).toBeVisible();
   });
 
@@ -54,7 +54,7 @@ test.describe("R3D Icons Catalog Showcase & Customizer Sandbox", () => {
     await expect(surpriseBtn).toBeVisible();
 
     await surpriseBtn.click();
-    
+
     // Locate the unique flash indicator container (z-30)
     const flashOverlay = page.locator(".z-30");
     await expect(flashOverlay).toBeAttached();
@@ -63,7 +63,7 @@ test.describe("R3D Icons Catalog Showcase & Customizer Sandbox", () => {
   test("should filter by categories on the landing page", async ({ page }) => {
     // Verify initial state shows multiple items from different categories
     await expect(page.locator(".group p:has-text('Gamepad')").first()).toBeVisible();
-    
+
     // Click the "Networking" category button
     const networkingTab = page.locator("button:has-text('Networking')");
     await expect(networkingTab).toBeVisible();
@@ -79,7 +79,7 @@ test.describe("R3D Icons Catalog Showcase & Customizer Sandbox", () => {
     const langBtn = page.locator("button:has(svg.lucide-globe)");
     await expect(langBtn).toBeVisible();
     await langBtn.click();
-    
+
     const esOption = page.locator("button:has-text('Español')");
     await esOption.click();
 
@@ -99,19 +99,19 @@ test.describe("R3D Icons Catalog Showcase & Customizer Sandbox", () => {
 
   test("should display offline badge when browser context goes offline", async ({ page }) => {
     const offlineBadge = page.locator("text=Offline");
-    
+
     // Default should be online (badge not visible)
     await expect(offlineBadge).toBeHidden();
 
     // Go offline
     await page.context().setOffline(true);
-    
+
     // Badge should appear
     await expect(offlineBadge).toBeVisible();
 
     // Go back online
     await page.context().setOffline(false);
-    
+
     // Badge should disappear
     await expect(offlineBadge).toBeHidden();
   });
@@ -122,9 +122,9 @@ test.describe("R3D Icons Catalog Showcase & Customizer Sandbox", () => {
 
     // Toggle the theme and verify the html element has class change
     const isInitiallyDark = await htmlElement.evaluate((el) => el.classList.contains("dark"));
-    
+
     await themeToggleBtn.click();
-    
+
     const isDarkAfterToggle = await htmlElement.evaluate((el) => el.classList.contains("dark"));
     expect(isDarkAfterToggle).not.toBe(isInitiallyDark);
 
@@ -150,7 +150,7 @@ test.describe("R3D Icons Catalog Showcase & Customizer Sandbox", () => {
     // Input preset name and click Save
     const presetNameInput = page.locator("input[placeholder*='Preset Name']");
     await presetNameInput.fill("E2E Test Preset");
-    
+
     const saveBtn = page.locator("button:has-text('Save')");
     await saveBtn.click();
 

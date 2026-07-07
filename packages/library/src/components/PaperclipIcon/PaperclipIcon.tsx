@@ -6,7 +6,6 @@ export function PaperclipIcon(props: PaperclipIconProps) {
     <SharedWrapper iconId="paperclip" {...props}>
       {(mat) => (
         <group rotation={[0.3, -0.3, 0.5]} position={[0, 0, 0]}>
-          
           {/* Wire Straight Segments */}
           <group>
             {/* Outer Left Line */}
@@ -82,7 +81,6 @@ export function PaperclipIcon(props: PaperclipIconProps) {
               emissiveIntensity={1.0}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

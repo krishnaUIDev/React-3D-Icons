@@ -6,7 +6,6 @@ export function SecurityCameraIcon(props: SecurityCameraIconProps) {
     <SharedWrapper iconId="securitycamera" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.25, 0.05]} position={[0, 0, 0]}>
-          
           {/* Wall Mount Base Plate (Disc on the wall) */}
           <mesh rotation={[0, 0, 0]} position={[0, 0, -0.16]} castShadow>
             <cylinderGeometry args={[0.1, 0.1, 0.02, 24]} />
@@ -81,7 +80,12 @@ export function SecurityCameraIcon(props: SecurityCameraIconProps) {
             </mesh>
             <mesh position={[0, 0.106, 0]} castShadow>
               <sphereGeometry args={[0.038, 16, 12]} />
-              <meshPhysicalMaterial roughness={0.02} metalness={0.9} transmission={0.9} color="#0ea5e9" />
+              <meshPhysicalMaterial
+                roughness={0.02}
+                metalness={0.9}
+                transmission={0.9}
+                color="#0ea5e9"
+              />
             </mesh>
 
             {/* Back Cable wire */}
@@ -90,7 +94,6 @@ export function SecurityCameraIcon(props: SecurityCameraIconProps) {
               <meshStandardMaterial roughness={0.4} metalness={0.1} color="#0f172a" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

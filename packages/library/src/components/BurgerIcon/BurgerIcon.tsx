@@ -6,7 +6,6 @@ export function BurgerIcon(props: BurgerIconProps) {
     <SharedWrapper iconId="burger" {...props}>
       {(mat) => (
         <group rotation={[0.15, -Math.PI / 8, 0.05]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Top Bun (Golden Brown / Primary color preset) */}
           <group position={[0, 0.12, 0]}>
             <mesh castShadow receiveShadow>
@@ -132,7 +131,6 @@ export function BurgerIcon(props: BurgerIconProps) {
               color={mat.color}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

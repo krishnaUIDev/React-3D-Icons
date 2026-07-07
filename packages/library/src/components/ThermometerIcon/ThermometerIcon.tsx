@@ -5,8 +5,11 @@ export function ThermometerIcon(props: ThermometerIconProps) {
   return (
     <SharedWrapper iconId="thermometer" {...props}>
       {(mat) => (
-        <group rotation={[0.15, -Math.PI / 8, 0.05]} position={[0, 0.05, 0]} scale={[1.45, 1.45, 1.45]}>
-          
+        <group
+          rotation={[0.15, -Math.PI / 8, 0.05]}
+          position={[0, 0.05, 0]}
+          scale={[1.45, 1.45, 1.45]}
+        >
           {/* Glass Outer Sleeve (Glass/Clear material) */}
           <group>
             {/* Top tube */}
@@ -87,7 +90,6 @@ export function ThermometerIcon(props: ThermometerIconProps) {
               <meshStandardMaterial color="#cbd5e1" roughness={0.4} metalness={0.8} />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

@@ -5,8 +5,11 @@ export function IceCreamIcon(props: IceCreamIconProps) {
   return (
     <SharedWrapper iconId="icecream" {...props}>
       {(mat) => (
-        <group rotation={[0.1, -Math.PI / 10, 0.05]} position={[0, -0.05, 0]} scale={[1.4, 1.4, 1.4]}>
-          
+        <group
+          rotation={[0.1, -Math.PI / 10, 0.05]}
+          position={[0, -0.05, 0]}
+          scale={[1.4, 1.4, 1.4]}
+        >
           {/* Waffle Cone (Points downwards, warm orange/brown clay-matte) */}
           <mesh position={[0, -0.14, 0]} rotation={[Math.PI, 0, 0]} castShadow>
             <coneGeometry args={[0.14, 0.38, 8]} />
@@ -53,7 +56,9 @@ export function IceCreamIcon(props: IceCreamIconProps) {
                 <sphereGeometry args={[0.038, 12, 12]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ef4444"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ef4444"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ef4444"
+                  }
                   emissiveIntensity={1.3}
                 />
               </mesh>
@@ -64,7 +69,6 @@ export function IceCreamIcon(props: IceCreamIconProps) {
               </mesh>
             </group>
           </group>
-
         </group>
       )}
     </SharedWrapper>

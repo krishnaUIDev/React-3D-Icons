@@ -8,7 +8,6 @@ export function SuspensionIcon(props: SuspensionIconProps) {
     <SharedWrapper iconId="suspension" {...props}>
       {(mat) => (
         <group rotation={[0.25, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Upper Double Wishbone Control Arm (V-shaped arm structure) */}
           <group position={[0, 0.08, 0]}>
             {/* Left pivot sleeve */}
@@ -89,8 +88,12 @@ export function SuspensionIcon(props: SuspensionIconProps) {
                   >
                     <torusGeometry args={[0.048, 0.01, 8, 24]} />
                     <meshStandardMaterial
-                      color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                      emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                      color={
+                        mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                      }
+                      emissive={
+                        mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                      }
                       emissiveIntensity={1.0}
                     />
                   </mesh>
@@ -98,7 +101,6 @@ export function SuspensionIcon(props: SuspensionIconProps) {
               })}
             </group>
           </group>
-
         </group>
       )}
     </SharedWrapper>

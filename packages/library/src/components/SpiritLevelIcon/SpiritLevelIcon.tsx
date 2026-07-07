@@ -6,7 +6,6 @@ export function SpiritLevelIcon(props: SpiritLevelIconProps) {
     <SharedWrapper iconId="spiritlevel" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Level Frame (Ruler block with two viewing ports/holes) */}
           <group>
             {/* Main Bar Chassis */}
@@ -81,7 +80,6 @@ export function SpiritLevelIcon(props: SpiritLevelIconProps) {
               <meshStandardMaterial roughness={0.1} metalness={0.9} color="#ffffff" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

@@ -6,7 +6,6 @@ export function ShieldCheckIcon(props: ShieldCheckIconProps) {
     <SharedWrapper iconId="shieldcheck" {...props}>
       {(mat) => (
         <group rotation={[0.1, -0.2, 0.05]} position={[0, 0.1, 0]}>
-
           {/* Shield Base Plate – top rectangle */}
           <mesh castShadow receiveShadow position={[0, 0.1, 0]}>
             <boxGeometry args={[1.06, 0.72, 0.22]} />
@@ -83,7 +82,6 @@ export function ShieldCheckIcon(props: ShieldCheckIconProps) {
               wireframe
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

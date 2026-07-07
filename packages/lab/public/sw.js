@@ -1,10 +1,5 @@
 const CACHE_NAME = "r3d-icons-lab-cache-v1";
-const PRECACHE_ASSETS = [
-  "./",
-  "./index.html",
-  "./manifest.json",
-  "./favicon.svg"
-];
+const PRECACHE_ASSETS = ["./", "./index.html", "./manifest.json", "./favicon.svg"];
 
 // Install: precache primary pages
 self.addEventListener("install", (event) => {

@@ -6,7 +6,6 @@ export function TreeIcon(props: TreeIconProps) {
     <SharedWrapper iconId="tree" {...props}>
       {(mat) => (
         <group rotation={[0.1, -Math.PI / 8, 0]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Base Stand (Terracotta cylindrical pot) */}
           <group position={[0, -0.32, 0]}>
             <mesh castShadow>
@@ -77,7 +76,6 @@ export function TreeIcon(props: TreeIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

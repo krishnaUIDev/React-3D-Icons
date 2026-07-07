@@ -36,34 +36,20 @@ npm install react-3d-icons three @react-three/fiber @react-three/drei
 ## Quick Start
 
 ```jsx
-import React from 'react';
-import { ShieldIcon, CrownIcon } from 'react-3d-icons';
+import React from "react";
+import { ShieldIcon, CrownIcon } from "react-3d-icons";
 
 function App() {
   return (
-    <div style={{ display: 'flex', gap: '20px' }}>
+    <div style={{ display: "flex", gap: "20px" }}>
       {/* 3D Glass Shield Icon */}
-      <ShieldIcon 
-        size={120} 
-        preset="glass" 
-        angle="perspective" 
-        color="#0d9488" 
-      />
+      <ShieldIcon size={120} preset="glass" angle="perspective" color="#0d9488" />
 
       {/* 3D Gold Royal Crown */}
-      <CrownIcon 
-        size={120} 
-        preset="gold" 
-        angle="front" 
-        interactive={true} 
-      />
+      <CrownIcon size={120} preset="gold" angle="front" interactive={true} />
 
       {/* 2D Fallback Vector Emoji */}
-      <ShieldIcon 
-        size={120} 
-        variant="2d" 
-        color="#ef4444" 
-      />
+      <ShieldIcon size={120} variant="2d" color="#ef4444" />
     </div>
   );
 }
@@ -77,24 +63,25 @@ export default App;
 
 Every icon component accepts the following customizable props:
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `size` | `number \| string` | `100%` (fill container) | Scale of the icon viewport (e.g. `120` or `"6rem"`). |
-| `preset` | `"glass" \| "metal" \| "clay" \| "hologram" \| "gold" \| "glassmorphism" \| "carbon" \| "wood"` | `"glass"` | Material skin preset. |
-| `angle` | `"front" \| "perspective" \| "tilted"` | `"perspective"` | Camera preset viewing angle. |
-| `variant` | `"3d" \| "2d"` | `"3d"` | Switch between WebGL 3D Canvas and 2D SVG fallback. |
-| `color` | `string` | *Icon brand default* | Main hexadecimal primary mesh/stroke color. |
-| `accentColor` | `string` | *Icon default accent* | Glow/emissive or detail styling color. |
-| `spinSpeed` | `number` | `1.0` | Coefficient multiplier for rotation and float cycles. |
-| `floatHeight` | `number` | `1.0` | Amplitude height for the hover floating animation. |
-| `theme` | `"light" \| "dark"` | `"dark"` | Active ambient lighting contrast scheme. |
-| `interactive` | `boolean` | `true` | Enables click-and-drag rotation and zoom. |
+| Prop          | Type                                                                                            | Default                 | Description                                           |
+| ------------- | ----------------------------------------------------------------------------------------------- | ----------------------- | ----------------------------------------------------- |
+| `size`        | `number \| string`                                                                              | `100%` (fill container) | Scale of the icon viewport (e.g. `120` or `"6rem"`).  |
+| `preset`      | `"glass" \| "metal" \| "clay" \| "hologram" \| "gold" \| "glassmorphism" \| "carbon" \| "wood"` | `"glass"`               | Material skin preset.                                 |
+| `angle`       | `"front" \| "perspective" \| "tilted"`                                                          | `"perspective"`         | Camera preset viewing angle.                          |
+| `variant`     | `"3d" \| "2d"`                                                                                  | `"3d"`                  | Switch between WebGL 3D Canvas and 2D SVG fallback.   |
+| `color`       | `string`                                                                                        | _Icon brand default_    | Main hexadecimal primary mesh/stroke color.           |
+| `accentColor` | `string`                                                                                        | _Icon default accent_   | Glow/emissive or detail styling color.                |
+| `spinSpeed`   | `number`                                                                                        | `1.0`                   | Coefficient multiplier for rotation and float cycles. |
+| `floatHeight` | `number`                                                                                        | `1.0`                   | Amplitude height for the hover floating animation.    |
+| `theme`       | `"light" \| "dark"`                                                                             | `"dark"`                | Active ambient lighting contrast scheme.              |
+| `interactive` | `boolean`                                                                                       | `true`                  | Enables click-and-drag rotation and zoom.             |
 
 ---
 
 ## Icon Catalog (Over 230+ Premium Icons)
 
 Features a massive library of stylized icons across diverse categories including:
+
 - **Brands**: YouTube, Github, Facebook, Figma, Google, Twitter, etc.
 - **Hardware**: Cpu, Monitor, Keyboard, Mouse, HardDrive, Gamepad, Webcam, RamStick, Motherboard, Gpu.
 - **Storage & Systems**: Database, Cloud, Network, Server, Router, Folder.

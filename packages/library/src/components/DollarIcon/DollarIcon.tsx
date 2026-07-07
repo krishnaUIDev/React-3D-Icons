@@ -6,7 +6,6 @@ export function DollarIcon(props: DollarIconProps) {
     <SharedWrapper iconId="dollar" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.4, 0.15]}>
-          
           {/* Main Gold Coin Body */}
           <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, 0]}>
             <cylinderGeometry args={[0.7, 0.7, 0.15, 32]} />
@@ -27,11 +26,7 @@ export function DollarIcon(props: DollarIconProps) {
           {/* Outer Raised Rim Border */}
           <mesh rotation={[Math.PI / 2, 0, 0]} castShadow>
             <torusGeometry args={[0.66, 0.05, 12, 32]} />
-            <meshStandardMaterial
-              roughness={0.15}
-              metalness={0.9}
-              color={mat.color}
-            />
+            <meshStandardMaterial roughness={0.15} metalness={0.9} color={mat.color} />
           </mesh>
 
           {/* Embossed Dollar Sign ($) - Vertical Strike */}
@@ -69,7 +64,6 @@ export function DollarIcon(props: DollarIconProps) {
             <boxGeometry args={[0.06, 0.17, 0.06]} />
             <meshStandardMaterial roughness={0.2} metalness={0.85} color="#ffffff" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

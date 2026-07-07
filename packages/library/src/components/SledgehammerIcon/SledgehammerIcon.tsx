@@ -6,7 +6,6 @@ export function SledgehammerIcon(props: SledgehammerIconProps) {
     <SharedWrapper iconId="sledgehammer" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, -Math.PI / 6]} position={[0, 0, 0]}>
-          
           {/* Main Heavy Sledgehammer Head */}
           <group position={[0, 0.22, 0]}>
             {/* Hammer Head Block */}
@@ -35,7 +34,7 @@ export function SledgehammerIcon(props: SledgehammerIconProps) {
                 color={props.theme === "dark" ? "#64748b" : "#475569"}
               />
             </mesh>
-            
+
             {/* Beveled Octagonal End Cap Ring (Right face) */}
             <mesh position={[0.17, 0, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
               <cylinderGeometry args={[0.08, 0.08, 0.02, 8]} />
@@ -84,7 +83,6 @@ export function SledgehammerIcon(props: SledgehammerIconProps) {
             <cylinderGeometry args={[0.029, 0.029, 0.18, 16]} />
             <meshStandardMaterial roughness={0.7} metalness={0.1} color="#1e293b" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

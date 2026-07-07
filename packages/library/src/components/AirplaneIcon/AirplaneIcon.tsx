@@ -129,11 +129,7 @@ export function AirplaneIcon(props: AirplaneIconProps) {
           </group>
 
           {/* Vertical Tail Fin */}
-          <mesh
-            castShadow
-            position={[0, 0.17, -0.5]}
-            rotation={[Math.PI / 10, 0, 0]}
-          >
+          <mesh castShadow position={[0, 0.17, -0.5]} rotation={[Math.PI / 10, 0, 0]}>
             <boxGeometry args={[0.025, 0.32, 0.18]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -150,11 +146,7 @@ export function AirplaneIcon(props: AirplaneIconProps) {
           </mesh>
 
           {/* Left Horizontal Stabilizer */}
-          <mesh
-            castShadow
-            position={[-0.18, 0, -0.54]}
-            rotation={[0, -Math.PI / 8, -Math.PI / 24]}
-          >
+          <mesh castShadow position={[-0.18, 0, -0.54]} rotation={[0, -Math.PI / 8, -Math.PI / 24]}>
             <boxGeometry args={[0.3, 0.02, 0.1]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -171,11 +163,7 @@ export function AirplaneIcon(props: AirplaneIconProps) {
           </mesh>
 
           {/* Right Horizontal Stabilizer */}
-          <mesh
-            castShadow
-            position={[0.18, 0, -0.54]}
-            rotation={[0, Math.PI / 8, Math.PI / 24]}
-          >
+          <mesh castShadow position={[0.18, 0, -0.54]} rotation={[0, Math.PI / 8, Math.PI / 24]}>
             <boxGeometry args={[0.3, 0.02, 0.1]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}

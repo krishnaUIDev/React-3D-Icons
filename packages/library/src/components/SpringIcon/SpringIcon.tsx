@@ -10,7 +10,6 @@ export function SpringIcon(props: SpringIconProps) {
     <SharedWrapper iconId="spring" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Spring Helical Coil Body */}
           <group>
             {Array.from({ length: turns }).map((_, index) => {
@@ -68,7 +67,6 @@ export function SpringIcon(props: SpringIconProps) {
               emissiveIntensity={1.2}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

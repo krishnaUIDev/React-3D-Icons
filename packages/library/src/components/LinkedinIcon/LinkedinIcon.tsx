@@ -28,14 +28,14 @@ export function LinkedinIcon(props: LinkedinIconProps) {
           {/* Extruded "in" letters */}
           <group position={[-0.04, 0, 0.15]}>
             {/* i - Dot */}
-            <mesh castShadow position={[-0.18, 0.20, 0]}>
+            <mesh castShadow position={[-0.18, 0.2, 0]}>
               <boxGeometry args={[0.09, 0.09, 0.06]} />
               <meshStandardMaterial roughness={0.15} metalness={0.1} color="#ffffff" />
             </mesh>
 
             {/* i - Stem */}
             <mesh castShadow position={[-0.18, -0.05, 0]}>
-              <boxGeometry args={[0.09, 0.30, 0.06]} />
+              <boxGeometry args={[0.09, 0.3, 0.06]} />
               <meshStandardMaterial roughness={0.15} metalness={0.1} color="#ffffff" />
             </mesh>
 
@@ -52,7 +52,7 @@ export function LinkedinIcon(props: LinkedinIconProps) {
             </mesh>
 
             {/* n - Arch Bridge */}
-            <mesh castShadow position={[0.12, 0.10, 0]}>
+            <mesh castShadow position={[0.12, 0.1, 0]}>
               <boxGeometry args={[0.18, 0.08, 0.06]} />
               <meshStandardMaterial roughness={0.15} metalness={0.1} color="#ffffff" />
             </mesh>

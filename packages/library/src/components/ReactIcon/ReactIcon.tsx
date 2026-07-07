@@ -6,7 +6,7 @@ export function ReactIcon(props: ReactIconProps) {
     <SharedWrapper iconId="react" {...props}>
       {(mat) => {
         const orbitColor = mat.color;
-        const nucleusColor = mat.emissiveIntensity > 0 ? mat.emissive : (props.color || "#61dafb");
+        const nucleusColor = mat.emissiveIntensity > 0 ? mat.emissive : props.color || "#61dafb";
 
         // Each orbital ring: a torus standing upright (in XY plane by default),
         // then rotated around Y-axis by 0°, 60°, and 120° to create the classic
@@ -28,7 +28,6 @@ export function ReactIcon(props: ReactIconProps) {
 
         return (
           <group rotation={[0.2, -0.3, 0.05]}>
-
             {/* Central nucleus sphere */}
             <mesh castShadow position={[0, 0, 0]}>
               <sphereGeometry args={[0.19, 24, 24]} />
@@ -71,7 +70,6 @@ export function ReactIcon(props: ReactIconProps) {
                 {ringMat}
               </mesh>
             </group>
-
           </group>
         );
       }}

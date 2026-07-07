@@ -7,7 +7,6 @@ export function UnlockIcon(props: UnlockIconProps) {
     <SharedWrapper iconId="unlock" {...props}>
       {(mat) => (
         <group rotation={[0.25, -0.2, 0.02]} position={[0, -0.05, 0]}>
-          
           {/* Padlock Shackle Loop - Open & Rotated around Left Stem Pivot */}
           <group position={[-0.28, 0.32, 0]} rotation={[0, -Math.PI / 4, 0]}>
             <group position={[0.28, -0.16, 0]}>
@@ -66,7 +65,6 @@ export function UnlockIcon(props: UnlockIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

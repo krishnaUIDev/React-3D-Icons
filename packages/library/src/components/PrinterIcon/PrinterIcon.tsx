@@ -40,7 +40,11 @@ export function PrinterIcon(props: PrinterIconProps) {
               {/* Paper Support Board */}
               <mesh castShadow>
                 <boxGeometry args={[0.5, 0.36, 0.03]} />
-                <meshStandardMaterial roughness={0.4} metalness={0.8} color={props.theme === "dark" ? "#334155" : "#e2e8f0"} />
+                <meshStandardMaterial
+                  roughness={0.4}
+                  metalness={0.8}
+                  color={props.theme === "dark" ? "#334155" : "#e2e8f0"}
+                />
               </mesh>
               {/* Feeding Sheet of Paper */}
               <mesh position={[0, 0.08, 0.02]}>

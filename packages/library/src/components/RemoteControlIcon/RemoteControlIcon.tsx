@@ -8,7 +8,6 @@ export function RemoteControlIcon(props: RemoteControlIconProps) {
     <SharedWrapper iconId="remotecontrol" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.1]} position={[0, 0, 0]}>
-          
           {/* Main Handheld Remote Casing (Sleek bevel wand) */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.16, 0.44, 0.03]} />
@@ -79,7 +78,6 @@ export function RemoteControlIcon(props: RemoteControlIconProps) {
               );
             })}
           </group>
-
         </group>
       )}
     </SharedWrapper>

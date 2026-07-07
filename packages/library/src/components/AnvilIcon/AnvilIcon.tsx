@@ -6,7 +6,6 @@ export function AnvilIcon(props: AnvilIconProps) {
     <SharedWrapper iconId="anvil" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.35, 0.05]} position={[0, 0.02, 0]}>
-          
           {/* Main Waist Block */}
           <mesh castShadow receiveShadow position={[0, -0.06, 0]}>
             <boxGeometry args={[0.3, 0.24, 0.22]} />
@@ -25,11 +24,7 @@ export function AnvilIcon(props: AnvilIconProps) {
           </mesh>
 
           {/* Left Pointy Horn */}
-          <mesh
-            castShadow
-            position={[-0.26, 0.04, 0]}
-            rotation={[0, 0, Math.PI / 2]}
-          >
+          <mesh castShadow position={[-0.26, 0.04, 0]} rotation={[0, 0, Math.PI / 2]}>
             <coneGeometry args={[0.09, 0.24, 16]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -96,7 +91,6 @@ export function AnvilIcon(props: AnvilIconProps) {
               emissiveIntensity={1.4}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

@@ -6,7 +6,6 @@ export function MagnetIcon(props: MagnetIconProps) {
     <SharedWrapper iconId="magnet" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.15]} position={[0, 0.1, 0]}>
-          
           {/* Horseshoe Curved Top (Half Torus) */}
           <mesh castShadow receiveShadow position={[0, 0.15, 0]} rotation={[0, 0, Math.PI]}>
             <torusGeometry args={[0.5, 0.13, 16, 48, Math.PI]} />
@@ -68,11 +67,7 @@ export function MagnetIcon(props: MagnetIconProps) {
             {/* Blue pole tip */}
             <mesh castShadow position={[0, -0.28, 0]}>
               <cylinderGeometry args={[0.13, 0.13, 0.16, 32]} />
-              <meshStandardMaterial
-                color="#3b82f6"
-                roughness={0.2}
-                metalness={0.6}
-              />
+              <meshStandardMaterial color="#3b82f6" roughness={0.2} metalness={0.6} />
             </mesh>
           </group>
 
@@ -99,7 +94,6 @@ export function MagnetIcon(props: MagnetIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

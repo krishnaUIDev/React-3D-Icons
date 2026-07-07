@@ -6,7 +6,6 @@ export function CheckIcon(props: CheckIconProps) {
     <SharedWrapper iconId="check" {...props}>
       {(mat) => (
         <group rotation={[0.1, -0.2, 0.05]} position={[0, 0.05, 0]}>
-
           {/* Circular backing disc */}
           <mesh castShadow receiveShadow position={[0, 0, -0.1]}>
             <cylinderGeometry args={[0.85, 0.85, 0.12, 48]} />
@@ -37,11 +36,7 @@ export function CheckIcon(props: CheckIconProps) {
           </mesh>
 
           {/* Checkmark – short left leg */}
-          <mesh
-            castShadow
-            position={[-0.22, -0.08, 0.1]}
-            rotation={[0, 0, Math.PI / 4]}
-          >
+          <mesh castShadow position={[-0.22, -0.08, 0.1]} rotation={[0, 0, Math.PI / 4]}>
             <boxGeometry args={[0.13, 0.42, 0.18]} />
             <meshStandardMaterial
               color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
@@ -53,11 +48,7 @@ export function CheckIcon(props: CheckIconProps) {
           </mesh>
 
           {/* Checkmark – long right leg */}
-          <mesh
-            castShadow
-            position={[0.14, 0.12, 0.1]}
-            rotation={[0, 0, -Math.PI / 3.2]}
-          >
+          <mesh castShadow position={[0.14, 0.12, 0.1]} rotation={[0, 0, -Math.PI / 3.2]}>
             <boxGeometry args={[0.13, 0.72, 0.18]} />
             <meshStandardMaterial
               color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
@@ -67,7 +58,6 @@ export function CheckIcon(props: CheckIconProps) {
               metalness={0.2}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

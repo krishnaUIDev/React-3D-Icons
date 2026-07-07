@@ -7,7 +7,6 @@ export function CreditCardIcon(props: CreditCardIconProps) {
     <SharedWrapper iconId="creditcard" {...props}>
       {(mat) => (
         <group rotation={[0.25, -0.35, 0.12]} position={[0, 0, 0]}>
-          
           {/* Card Body Slab */}
           <mesh castShadow receiveShadow>
             <RoundedBox args={[1.2, 0.78, 0.08]} radius={0.05} smoothness={4}>
@@ -36,7 +35,10 @@ export function CreditCardIcon(props: CreditCardIconProps) {
           {/* Holographic/Dark stripe on the front bottom */}
           <mesh position={[0, -0.16, 0.045]} castShadow>
             <boxGeometry args={[1.0, 0.08, 0.01]} />
-            <meshStandardMaterial roughness={0.5} color={props.theme === "dark" ? "#1e293b" : "#e2e8f0"} />
+            <meshStandardMaterial
+              roughness={0.5}
+              color={props.theme === "dark" ? "#1e293b" : "#e2e8f0"}
+            />
           </mesh>
 
           {/* Brand Logo - Circle 1 (Red) */}
@@ -50,7 +52,6 @@ export function CreditCardIcon(props: CreditCardIconProps) {
             <cylinderGeometry args={[0.1, 0.1, 0.01, 24]} />
             <meshStandardMaterial roughness={0.3} color="#f59e0b" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

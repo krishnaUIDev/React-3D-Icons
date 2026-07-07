@@ -6,9 +6,13 @@ export function PizzaIcon(props: PizzaIconProps) {
     <SharedWrapper iconId="pizza" {...props}>
       {(mat) => (
         <group rotation={[0.4, -0.2, 0.1]} position={[0, -0.05, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Pizza Slice Body (Wedge Cylinder - Cheese Layer using primary/mat color) */}
-          <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, -Math.PI / 6]} position={[0, 0, 0.08]}>
+          <mesh
+            castShadow
+            receiveShadow
+            rotation={[Math.PI / 2, 0, -Math.PI / 6]}
+            position={[0, 0, 0.08]}
+          >
             <cylinderGeometry args={[0.48, 0.48, 0.035, 12, 1, false, 0, Math.PI / 3]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -23,7 +27,12 @@ export function PizzaIcon(props: PizzaIconProps) {
           </mesh>
 
           {/* Bottom Dough Crust Layer (Slightly larger, baked brown/orange) */}
-          <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, -Math.PI / 6]} position={[0, -0.012, 0.075]}>
+          <mesh
+            castShadow
+            receiveShadow
+            rotation={[Math.PI / 2, 0, -Math.PI / 6]}
+            position={[0, -0.012, 0.075]}
+          >
             <cylinderGeometry args={[0.5, 0.5, 0.038, 12, 1, false, 0, Math.PI / 3]} />
             <meshStandardMaterial roughness={0.7} color="#d97706" />
           </mesh>
@@ -45,7 +54,7 @@ export function PizzaIcon(props: PizzaIconProps) {
                 emissiveIntensity={1.2}
               />
             </mesh>
-            
+
             {/* Pepperoni 2 */}
             <mesh position={[-0.08, 0.16, 0]} rotation={[Math.PI / 2, 0, 0.3]} castShadow>
               <cylinderGeometry args={[0.045, 0.045, 0.015, 8]} />
@@ -66,7 +75,6 @@ export function PizzaIcon(props: PizzaIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

@@ -6,7 +6,6 @@ export function FolderOpenIcon(props: FolderOpenIconProps) {
     <SharedWrapper iconId="folderopen" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.25, 0.05]} position={[0, 0, 0]}>
-          
           {/* Folder Back Plate */}
           <group position={[0, 0, -0.16]}>
             <mesh castShadow receiveShadow position={[0, 0, 0]}>
@@ -45,7 +44,7 @@ export function FolderOpenIcon(props: FolderOpenIconProps) {
                 roughness={0.6}
               />
             </mesh>
-            
+
             {/* Page 2 (Front page, tilted slightly right) */}
             <mesh position={[0.04, 0.08, 0.03]} rotation={[0.15, 0, -0.03]} castShadow>
               <boxGeometry args={[1.05, 0.85, 0.025]} />
@@ -84,7 +83,6 @@ export function FolderOpenIcon(props: FolderOpenIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

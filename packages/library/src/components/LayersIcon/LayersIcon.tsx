@@ -6,7 +6,6 @@ export function LayersIcon(props: IconProps) {
     <SharedWrapper iconId="layers" {...props}>
       {(mat) => (
         <group rotation={[0.4, -0.5, 0.1]} position={[0, 0, 0]}>
-          
           {/* Bottom Layer */}
           <mesh position={[0, -0.28, -0.16]} castShadow receiveShadow>
             <boxGeometry args={[1.0, 0.05, 1.0]} />
@@ -51,7 +50,6 @@ export function LayersIcon(props: IconProps) {
               emissiveIntensity={mat.emissiveIntensity * 0.4}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

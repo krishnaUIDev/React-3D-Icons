@@ -9,7 +9,6 @@ export function PowerSupplyIcon(props: PowerSupplyIconProps) {
     <SharedWrapper iconId="powersupply" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.35, 0.1]} position={[0, 0, 0]}>
-          
           {/* Main ATX Box Case (Power Supply Chassis) */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.32, 0.32, 0.28]} />
@@ -31,7 +30,12 @@ export function PowerSupplyIcon(props: PowerSupplyIconProps) {
             </mesh>
             {/* Three male brass connection pins */}
             {[-0.02, 0, 0.02].map((zOffset, idx) => (
-              <mesh key={idx} position={[-0.012, idx === 1 ? 0.016 : -0.016, zOffset]} rotation={[0, 0, Math.PI / 2]} castShadow>
+              <mesh
+                key={idx}
+                position={[-0.012, idx === 1 ? 0.016 : -0.016, zOffset]}
+                rotation={[0, 0, Math.PI / 2]}
+                castShadow
+              >
                 <cylinderGeometry args={[0.005, 0.005, 0.02, 8]} />
                 <meshStandardMaterial roughness={0.15} metalness={0.95} color="#eab308" />
               </mesh>
@@ -84,12 +88,7 @@ export function PowerSupplyIcon(props: PowerSupplyIconProps) {
             {Array.from({ length: grilleSpokes }).map((_, index) => {
               const angle = (index * 2 * Math.PI) / grilleSpokes;
               return (
-                <mesh
-                  key={index}
-                  position={[0, 0, 0.004]}
-                  rotation={[0, 0, angle]}
-                  castShadow
-                >
+                <mesh key={index} position={[0, 0, 0.004]} rotation={[0, 0, angle]} castShadow>
                   <mesh position={[0, 0.056, 0]}>
                     <boxGeometry args={[0.006, 0.11, 0.003]} />
                     <meshStandardMaterial roughness={0.15} metalness={0.8} color="#cbd5e1" />
@@ -125,7 +124,6 @@ export function PowerSupplyIcon(props: PowerSupplyIconProps) {
               );
             })}
           </group>
-
         </group>
       )}
     </SharedWrapper>

@@ -11,7 +11,6 @@ export function DNAIcon(props: DNAIconProps) {
     <SharedWrapper iconId="dna" {...props}>
       {(mat) => (
         <group rotation={[0.2, -Math.PI / 6, 0.45]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Central Helical Structure */}
           {levels.map((y, index) => {
             const angle = y * winding;
@@ -24,11 +23,19 @@ export function DNAIcon(props: DNAIconProps) {
             return (
               <group key={index}>
                 {/* Horizontal Base Pair Connector Bar */}
-                <mesh position={[(leftX + rightX) / 2, y, (leftZ + rightZ) / 2]} rotation={[0, -angle, Math.PI / 2]} castShadow>
+                <mesh
+                  position={[(leftX + rightX) / 2, y, (leftZ + rightZ) / 2]}
+                  rotation={[0, -angle, Math.PI / 2]}
+                  castShadow
+                >
                   <cylinderGeometry args={[0.008, 0.008, radius * 2, 8]} />
                   <meshStandardMaterial
-                    color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                    emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                    color={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                    }
+                    emissive={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                    }
                     emissiveIntensity={1.2}
                   />
                 </mesh>
@@ -54,7 +61,6 @@ export function DNAIcon(props: DNAIconProps) {
               </group>
             );
           })}
-
         </group>
       )}
     </SharedWrapper>

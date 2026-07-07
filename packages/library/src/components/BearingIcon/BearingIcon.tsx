@@ -9,7 +9,6 @@ export function BearingIcon(props: BearingIconProps) {
     <SharedWrapper iconId="bearing" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.15, 0.05]} position={[0, 0, 0]}>
-          
           {/* Outer Bearing Ring (Thick boundary collar) */}
           <mesh castShadow receiveShadow>
             <torusGeometry args={[0.31, 0.038, 8, 48]} />
@@ -65,7 +64,6 @@ export function BearingIcon(props: BearingIconProps) {
               );
             })}
           </group>
-
         </group>
       )}
     </SharedWrapper>

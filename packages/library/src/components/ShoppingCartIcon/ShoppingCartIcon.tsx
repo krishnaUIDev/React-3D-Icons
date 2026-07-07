@@ -5,34 +5,67 @@ export function ShoppingCartIcon(props: ShoppingCartIconProps) {
   return (
     <SharedWrapper iconId="shoppingcart" {...props}>
       {(mat) => (
-        <group rotation={[0.15, -Math.PI / 10, 0.05]} position={[0, -0.02, 0]} scale={[1.4, 1.4, 1.4]}>
-          
+        <group
+          rotation={[0.15, -Math.PI / 10, 0.05]}
+          position={[0, -0.02, 0]}
+          scale={[1.4, 1.4, 1.4]}
+        >
           {/* Main Wire Basket Container (Preset Material) */}
           <group position={[0, 0, 0]}>
             {/* Basket Bottom */}
             <mesh position={[0, -0.06, -0.02]} castShadow receiveShadow>
               <boxGeometry args={[0.28, 0.016, 0.26]} />
-              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} color={mat.color} transmission={mat.transmission} thickness={mat.thickness} />
+              <meshPhysicalMaterial
+                roughness={mat.roughness}
+                metalness={mat.metalness}
+                color={mat.color}
+                transmission={mat.transmission}
+                thickness={mat.thickness}
+              />
             </mesh>
             {/* Basket Front */}
             <mesh position={[0, 0.03, 0.11]} castShadow>
               <boxGeometry args={[0.28, 0.18, 0.016]} />
-              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} color={mat.color} transmission={mat.transmission} thickness={mat.thickness} />
+              <meshPhysicalMaterial
+                roughness={mat.roughness}
+                metalness={mat.metalness}
+                color={mat.color}
+                transmission={mat.transmission}
+                thickness={mat.thickness}
+              />
             </mesh>
             {/* Basket Back */}
             <mesh position={[0, 0.05, -0.15]} castShadow>
               <boxGeometry args={[0.28, 0.22, 0.016]} />
-              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} color={mat.color} transmission={mat.transmission} thickness={mat.thickness} />
+              <meshPhysicalMaterial
+                roughness={mat.roughness}
+                metalness={mat.metalness}
+                color={mat.color}
+                transmission={mat.transmission}
+                thickness={mat.thickness}
+              />
             </mesh>
             {/* Basket Left Side */}
             <mesh position={[-0.14, 0.04, -0.02]} castShadow>
               <boxGeometry args={[0.016, 0.2, 0.28]} />
-              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} color={mat.color} transmission={mat.transmission} thickness={mat.thickness} />
+              <meshPhysicalMaterial
+                roughness={mat.roughness}
+                metalness={mat.metalness}
+                color={mat.color}
+                transmission={mat.transmission}
+                thickness={mat.thickness}
+              />
             </mesh>
             {/* Basket Right Side */}
             <mesh position={[0.14, 0.04, -0.02]} castShadow>
               <boxGeometry args={[0.016, 0.2, 0.28]} />
-              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} color={mat.color} transmission={mat.transmission} thickness={mat.thickness} />
+              <meshPhysicalMaterial
+                roughness={mat.roughness}
+                metalness={mat.metalness}
+                color={mat.color}
+                transmission={mat.transmission}
+                thickness={mat.thickness}
+              />
             </mesh>
           </group>
 
@@ -108,7 +141,6 @@ export function ShoppingCartIcon(props: ShoppingCartIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

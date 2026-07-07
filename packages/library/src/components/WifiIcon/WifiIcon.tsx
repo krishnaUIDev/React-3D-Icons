@@ -2,14 +2,13 @@ import { SharedWrapper } from "../SharedWrapper";
 import { WifiIconProps } from "./types";
 
 export function WifiIcon(props: WifiIconProps) {
-  const arcLength = Math.PI * 2 / 3; // 120 degrees arc
-  const zRotation = Math.PI / 6;     // Offset to center it on the Y-axis
+  const arcLength = (Math.PI * 2) / 3; // 120 degrees arc
+  const zRotation = Math.PI / 6; // Offset to center it on the Y-axis
 
   return (
     <SharedWrapper iconId="wifi" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.15, 0]} position={[0, -0.1, 0]}>
-          
           {/* Bottom Center Dot */}
           <mesh position={[0, -0.32, 0]} castShadow receiveShadow>
             <sphereGeometry args={[0.09, 32, 32]} />
@@ -77,7 +76,6 @@ export function WifiIcon(props: WifiIconProps) {
               emissiveIntensity={mat.emissiveIntensity * 0.4}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

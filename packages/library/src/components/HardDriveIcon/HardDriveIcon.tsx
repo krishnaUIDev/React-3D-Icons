@@ -10,7 +10,6 @@ export function HardDriveIcon(props: IconProps) {
     <SharedWrapper iconId="harddrive" {...props}>
       {(mat) => (
         <group rotation={[0.4, -0.3, 0.15]} position={[0, 0, 0]}>
-          
           {/* Main Hard Drive Metal Casing */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.9, 1.3, 0.16]} />
@@ -33,7 +32,7 @@ export function HardDriveIcon(props: IconProps) {
             <boxGeometry args={[0.8, 0.5, 0.04]} />
             <meshStandardMaterial roughness={0.15} metalness={0.95} color="#cbd5e1" />
           </mesh>
-          
+
           {/* Circular Spindle detail on top plate */}
           <mesh position={[0, 0.26, 0.11]} rotation={[Math.PI / 2, 0, 0]} castShadow>
             <cylinderGeometry args={[0.12, 0.12, 0.02, 16]} />
@@ -59,15 +58,24 @@ export function HardDriveIcon(props: IconProps) {
           {/* Status LED 1 (Green) */}
           <mesh position={[-0.26, -0.48, 0.09]} castShadow>
             <sphereGeometry args={[0.035, 12, 12]} />
-            <meshStandardMaterial roughness={0.1} color="#22c55e" emissive="#15803d" emissiveIntensity={1.2} />
+            <meshStandardMaterial
+              roughness={0.1}
+              color="#22c55e"
+              emissive="#15803d"
+              emissiveIntensity={1.2}
+            />
           </mesh>
 
           {/* Status LED 2 (Orange) */}
           <mesh position={[-0.14, -0.48, 0.09]} castShadow>
             <sphereGeometry args={[0.035, 12, 12]} />
-            <meshStandardMaterial roughness={0.1} color="#f97316" emissive="#c2410c" emissiveIntensity={1.0} />
+            <meshStandardMaterial
+              roughness={0.1}
+              color="#f97316"
+              emissive="#c2410c"
+              emissiveIntensity={1.0}
+            />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

@@ -4,8 +4,8 @@ export type AppRoute = "landing" | "explore" | "customize";
 
 interface RouteState {
   route: AppRoute;
-  color: string;       // Hex color parsed from URL (e.g., "#e67951")
-  iconId: string;      // Icon ID parsed from URL (e.g., "locker")
+  color: string; // Hex color parsed from URL (e.g., "#e67951")
+  iconId: string; // Icon ID parsed from URL (e.g., "locker")
 }
 
 interface RouterContextProps extends RouteState {

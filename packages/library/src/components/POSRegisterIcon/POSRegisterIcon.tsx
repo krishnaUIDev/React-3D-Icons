@@ -6,7 +6,6 @@ export function POSRegisterIcon(props: POSRegisterIconProps) {
     <SharedWrapper iconId="posregister" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Bottom Cash Drawer Base (Heavy base unit) */}
           <mesh castShadow receiveShadow position={[0, -0.12, 0]}>
             <boxGeometry args={[0.34, 0.08, 0.3]} />
@@ -97,7 +96,6 @@ export function POSRegisterIcon(props: POSRegisterIconProps) {
               <meshStandardMaterial roughness={0.15} metalness={0.9} color="#0f172a" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

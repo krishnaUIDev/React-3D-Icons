@@ -5,8 +5,11 @@ export function ScaleIcon(props: ScaleIconProps) {
   return (
     <SharedWrapper iconId="scale" {...props}>
       {(mat) => (
-        <group rotation={[0.15, -Math.PI / 8, 0.05]} position={[0, -0.02, 0]} scale={[1.4, 1.4, 1.4]}>
-          
+        <group
+          rotation={[0.15, -Math.PI / 8, 0.05]}
+          position={[0, -0.02, 0]}
+          scale={[1.4, 1.4, 1.4]}
+        >
           {/* Central Post (Vertical Column in Preset Material) */}
           <mesh castShadow receiveShadow position={[0, -0.02, 0]}>
             <cylinderGeometry args={[0.016, 0.016, 0.34, 10]} />
@@ -81,7 +84,6 @@ export function ScaleIcon(props: ScaleIconProps) {
               emissiveIntensity={1.4}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

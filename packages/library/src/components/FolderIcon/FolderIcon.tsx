@@ -6,7 +6,6 @@ export function FolderIcon(props: FolderIconProps) {
     <SharedWrapper iconId="folder" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.4, 0.05]} position={[0, -0.08, 0]}>
-          
           {/* Back Cover Substrate */}
           <mesh position={[0, 0, -0.12]} castShadow receiveShadow>
             <boxGeometry args={[1.3, 0.95, 0.08]} />
@@ -69,7 +68,6 @@ export function FolderIcon(props: FolderIconProps) {
               emissiveIntensity={mat.emissiveIntensity * 0.4}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

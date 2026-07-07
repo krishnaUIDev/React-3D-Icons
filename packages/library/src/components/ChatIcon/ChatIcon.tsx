@@ -29,7 +29,7 @@ export function ChatIcon(props: ChatIconProps) {
     bevelSegments: 5,
     steps: 1,
     bevelSize: 0.06,
-    bevelThickness: 0.06,
+    bevelThickness: 0.06
   };
 
   return (
@@ -56,20 +56,20 @@ export function ChatIcon(props: ChatIconProps) {
           {/* Floating Message Lines for realistic context */}
           <mesh position={[-0.05, 0.1, 0.11]} castShadow>
             <RoundedBox args={[0.55, 0.07, 0.03]} radius={0.03} smoothness={4}>
-              <meshStandardMaterial 
-                roughness={0.4} 
-                metalness={0.1} 
-                color={props.theme === "dark" ? "#f8fafc" : "#1e293b"} 
+              <meshStandardMaterial
+                roughness={0.4}
+                metalness={0.1}
+                color={props.theme === "dark" ? "#f8fafc" : "#1e293b"}
               />
             </RoundedBox>
           </mesh>
 
           <mesh position={[-0.15, -0.08, 0.11]} castShadow>
             <RoundedBox args={[0.35, 0.07, 0.03]} radius={0.03} smoothness={4}>
-              <meshStandardMaterial 
-                roughness={0.4} 
-                metalness={0.1} 
-                color={props.theme === "dark" ? "#f8fafc" : "#1e293b"} 
+              <meshStandardMaterial
+                roughness={0.4}
+                metalness={0.1}
+                color={props.theme === "dark" ? "#f8fafc" : "#1e293b"}
               />
             </RoundedBox>
           </mesh>

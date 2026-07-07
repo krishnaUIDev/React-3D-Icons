@@ -41,7 +41,12 @@ export function FlashIcon(props: FlashIconProps) {
           </mesh>
 
           {/* Bottom Zag (Pointy) */}
-          <mesh position={[-0.2, -0.28, 0]} rotation={[0, 0, -Math.PI / 10]} castShadow receiveShadow>
+          <mesh
+            position={[-0.2, -0.28, 0]}
+            rotation={[0, 0, -Math.PI / 10]}
+            castShadow
+            receiveShadow
+          >
             <boxGeometry args={[0.22, 0.68, 0.28]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}

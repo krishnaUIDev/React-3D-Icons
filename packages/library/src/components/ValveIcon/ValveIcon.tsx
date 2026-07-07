@@ -8,7 +8,6 @@ export function ValveIcon(props: ValveIconProps) {
     <SharedWrapper iconId="valve" {...props}>
       {(mat) => (
         <group rotation={[0.3, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Horizontal Water Pipe (T-junction pipe) */}
           <mesh rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow position={[0, -0.16, 0]}>
             <cylinderGeometry args={[0.06, 0.06, 0.44, 16]} />
@@ -93,7 +92,6 @@ export function ValveIcon(props: ValveIconProps) {
               <meshStandardMaterial roughness={0.15} metalness={0.9} color="#cbd5e1" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

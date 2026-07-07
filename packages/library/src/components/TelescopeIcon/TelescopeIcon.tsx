@@ -5,8 +5,11 @@ export function TelescopeIcon(props: TelescopeIconProps) {
   return (
     <SharedWrapper iconId="telescope" {...props}>
       {(mat) => (
-        <group rotation={[0.15, -Math.PI / 8, 0.05]} position={[0, -0.02, 0]} scale={[1.4, 1.4, 1.4]}>
-          
+        <group
+          rotation={[0.15, -Math.PI / 8, 0.05]}
+          position={[0, -0.02, 0]}
+          scale={[1.4, 1.4, 1.4]}
+        >
           {/* Main Telescope Tube (Preset Material) */}
           <group position={[-0.02, 0.08, 0]} rotation={[0, 0, -0.42]}>
             {/* Outer body tube */}
@@ -71,7 +74,6 @@ export function TelescopeIcon(props: TelescopeIconProps) {
               <meshStandardMaterial color="#64748b" roughness={0.5} />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

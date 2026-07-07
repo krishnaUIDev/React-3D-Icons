@@ -6,7 +6,6 @@ export function BriefcaseIcon(props: IconProps) {
     <SharedWrapper iconId="briefcase" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.05]} position={[0, -0.05, 0]}>
-          
           {/* Main Case Body */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[1.3, 0.9, 0.34]} />
@@ -65,7 +64,6 @@ export function BriefcaseIcon(props: IconProps) {
               color={mat.color}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

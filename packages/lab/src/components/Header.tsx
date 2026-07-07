@@ -81,8 +81,6 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         )}
 
-
-
         {/* Action Controls */}
         <div className="flex items-center gap-4 flex-shrink-0">
           {/* Language Switcher */}
@@ -98,11 +96,8 @@ export const Header: React.FC<HeaderProps> = ({
             {langOpen && (
               <>
                 {/* Click-away backdrop overlay */}
-                <div 
-                  className="fixed inset-0 z-10" 
-                  onClick={() => setLangOpen(false)}
-                />
-                
+                <div className="fixed inset-0 z-10" onClick={() => setLangOpen(false)} />
+
                 <div className="absolute right-0 mt-1.5 w-32 rounded-xl border border-zinc-200/80 dark:border-zinc-850 bg-white dark:bg-[#0e111a] shadow-xl p-1 z-20 animate-in fade-in slide-in-from-top-1 duration-150">
                   {languages.map((l) => (
                     <button

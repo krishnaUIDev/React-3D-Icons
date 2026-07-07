@@ -1,1 +1,2 @@
-import { IconProps } from "../../types"; export type WebhookIconProps = IconProps;
+import { IconProps } from "../../types";
+export type WebhookIconProps = IconProps;

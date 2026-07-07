@@ -45,7 +45,7 @@ export function WheelbarrowIcon(props: WheelbarrowIconProps) {
               <cylinderGeometry args={[0.016, 0.016, 0.6, 12]} />
               <meshStandardMaterial roughness={0.3} metalness={0.8} color="#475569" />
             </mesh>
-            
+
             {/* Left Handle Grip */}
             <mesh position={[-0.1, -0.06, 0.28]} rotation={[0.2, 0, 0]} castShadow>
               <cylinderGeometry args={[0.02, 0.02, 0.1, 12]} />

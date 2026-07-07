@@ -6,7 +6,6 @@ export function WatermelonIcon(props: WatermelonIconProps) {
     <SharedWrapper iconId="watermelon" {...props}>
       {(mat) => (
         <group rotation={[0.2, -Math.PI / 8, 0.1]} position={[0, -0.05, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Semicircular Slice Group (Oriented like a bowl/smile) */}
           <group rotation={[0, 0, -Math.PI / 6]}>
             {/* Outer Green Rind */}
@@ -45,17 +44,21 @@ export function WatermelonIcon(props: WatermelonIconProps) {
                 <sphereGeometry args={[0.02, 8, 8]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#1e293b"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#1e293b"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#1e293b"
+                  }
                   emissiveIntensity={1.2}
                 />
               </mesh>
-              
+
               {/* Seed 2 */}
               <mesh position={[-0.05, -0.15, 0]} castShadow>
                 <sphereGeometry args={[0.02, 8, 8]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#1e293b"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#1e293b"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#1e293b"
+                  }
                   emissiveIntensity={1.2}
                 />
               </mesh>
@@ -65,7 +68,9 @@ export function WatermelonIcon(props: WatermelonIconProps) {
                 <sphereGeometry args={[0.02, 8, 8]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#1e293b"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#1e293b"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#1e293b"
+                  }
                   emissiveIntensity={1.2}
                 />
               </mesh>
@@ -75,13 +80,14 @@ export function WatermelonIcon(props: WatermelonIconProps) {
                 <sphereGeometry args={[0.02, 8, 8]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#1e293b"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#1e293b"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#1e293b"
+                  }
                   emissiveIntensity={1.2}
                 />
               </mesh>
             </group>
           </group>
-
         </group>
       )}
     </SharedWrapper>

@@ -6,7 +6,6 @@ export function LinkIcon(props: IconProps) {
     <SharedWrapper iconId="link" {...props}>
       {(mat) => (
         <group rotation={[0.1, -0.4, 0.4]} position={[0, 0, 0]}>
-          
           {/* First Interlocking Link */}
           <group position={[0, 0.26, 0]} rotation={[Math.PI / 4, 0, Math.PI / 4]}>
             <mesh castShadow receiveShadow>
@@ -44,7 +43,6 @@ export function LinkIcon(props: IconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

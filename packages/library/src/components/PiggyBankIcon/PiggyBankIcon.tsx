@@ -5,8 +5,11 @@ export function PiggyBankIcon(props: PiggyBankIconProps) {
   return (
     <SharedWrapper iconId="piggybank" {...props}>
       {(mat) => (
-        <group rotation={[0.15, -Math.PI / 8, 0.05]} position={[0, -0.02, 0]} scale={[1.4, 1.4, 1.4]}>
-          
+        <group
+          rotation={[0.15, -Math.PI / 8, 0.05]}
+          position={[0, -0.02, 0]}
+          scale={[1.4, 1.4, 1.4]}
+        >
           {/* Main Piggy Body (Oval Sphere in Preset Color) */}
           <mesh castShadow receiveShadow scale={[1.2, 1.0, 1.0]}>
             <sphereGeometry args={[0.2, 32, 32]} />
@@ -27,7 +30,11 @@ export function PiggyBankIcon(props: PiggyBankIconProps) {
           {/* Snout Nose (Cylinder on front) */}
           <mesh position={[0, -0.02, 0.21]} rotation={[Math.PI / 2, 0, 0]} castShadow>
             <cylinderGeometry args={[0.05, 0.05, 0.05, 12]} />
-            <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} color={mat.color} />
+            <meshPhysicalMaterial
+              roughness={mat.roughness}
+              metalness={mat.metalness}
+              color={mat.color}
+            />
           </mesh>
 
           {/* Nostrils (Two tiny dark spots on snout) */}
@@ -95,7 +102,6 @@ export function PiggyBankIcon(props: PiggyBankIconProps) {
               emissiveIntensity={1.4}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

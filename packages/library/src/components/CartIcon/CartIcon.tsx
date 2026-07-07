@@ -14,7 +14,6 @@ export function CartIcon(props: CartIconProps) {
     <SharedWrapper iconId="cart" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.4, 0]} position={[0, 0.05, 0]}>
-          
           {/* Basket Bottom */}
           <mesh position={[0, -0.1, 0]} castShadow receiveShadow>
             <RoundedBox args={[0.55, 0.04, 0.4]} radius={0.02} smoothness={4}>
@@ -126,7 +125,6 @@ export function CartIcon(props: CartIconProps) {
               </mesh>
             </group>
           ))}
-
         </group>
       )}
     </SharedWrapper>

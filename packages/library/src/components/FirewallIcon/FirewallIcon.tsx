@@ -114,19 +114,37 @@ export function FirewallIcon(props: FirewallIconProps) {
             {/* Center Yellow Flame tongue */}
             <mesh castShadow position={[0, 0.06, 0.02]}>
               <cylinderGeometry args={[0.01, 0.14, 0.42, 8]} />
-              <meshStandardMaterial roughness={0.2} metalness={0.1} color="#fcd34d" emissive="#fbbf24" emissiveIntensity={0.8} />
+              <meshStandardMaterial
+                roughness={0.2}
+                metalness={0.1}
+                color="#fcd34d"
+                emissive="#fbbf24"
+                emissiveIntensity={0.8}
+              />
             </mesh>
 
             {/* Left Orange Flame tongue */}
             <mesh castShadow position={[-0.13, 0.01, 0]} rotation={[0, 0, 0.28]}>
-              <cylinderGeometry args={[0.01, 0.10, 0.30, 8]} />
-              <meshStandardMaterial roughness={0.2} metalness={0.1} color="#f97316" emissive="#ea580c" emissiveIntensity={0.6} />
+              <cylinderGeometry args={[0.01, 0.1, 0.3, 8]} />
+              <meshStandardMaterial
+                roughness={0.2}
+                metalness={0.1}
+                color="#f97316"
+                emissive="#ea580c"
+                emissiveIntensity={0.6}
+              />
             </mesh>
 
             {/* Right Red-Orange Flame tongue */}
             <mesh castShadow position={[0.13, 0.01, 0]} rotation={[0, 0, -0.28]}>
-              <cylinderGeometry args={[0.01, 0.10, 0.30, 8]} />
-              <meshStandardMaterial roughness={0.2} metalness={0.1} color="#ef4444" emissive="#dc2626" emissiveIntensity={0.6} />
+              <cylinderGeometry args={[0.01, 0.1, 0.3, 8]} />
+              <meshStandardMaterial
+                roughness={0.2}
+                metalness={0.1}
+                color="#ef4444"
+                emissive="#dc2626"
+                emissiveIntensity={0.6}
+              />
             </mesh>
           </group>
         </group>

@@ -6,7 +6,6 @@ export function TargetIcon(props: IconProps) {
     <SharedWrapper iconId="target" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.4, 0.15]} position={[0, 0, 0]}>
-          
           {/* Target Base / Outer Ring */}
           <mesh rotation={[Math.PI / 2, 0, 0]} castShadow receiveShadow>
             <cylinderGeometry args={[0.7, 0.7, 0.08, 32]} />
@@ -50,7 +49,6 @@ export function TargetIcon(props: IconProps) {
 
           {/* Arrow piercing the target */}
           <group position={[0, 0, 0.05]} rotation={[-0.4, 0.4, 0]}>
-            
             {/* Arrow Shaft */}
             <mesh position={[0, 0, 0.3]} rotation={[Math.PI / 2, 0, 0]} castShadow>
               <cylinderGeometry args={[0.02, 0.02, 1.2, 12]} />
@@ -81,9 +79,7 @@ export function TargetIcon(props: IconProps) {
                 <meshStandardMaterial color="#ffffff" roughness={0.6} />
               </mesh>
             </group>
-
           </group>
-
         </group>
       )}
     </SharedWrapper>

@@ -7,7 +7,6 @@ export function LockIcon(props: LockIconProps) {
     <SharedWrapper iconId="lock" {...props}>
       {(mat) => (
         <group rotation={[0.25, -0.2, 0.02]} position={[0, 0.05, 0]}>
-          
           {/* Padlock Shackle Loop (Shackle arch) */}
           <group position={[0, 0.16, 0]}>
             {/* Curved Arch (Half Torus) */}
@@ -58,7 +57,6 @@ export function LockIcon(props: LockIconProps) {
               <meshStandardMaterial roughness={0.7} color="#0f172a" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

@@ -6,7 +6,6 @@ export function BookIcon(props: IconProps) {
     <SharedWrapper iconId="book" {...props}>
       {(mat) => (
         <group rotation={[0.3, -0.3, 0.1]} position={[0, 0, 0]}>
-          
           {/* Back Cover */}
           <mesh castShadow receiveShadow position={[0, 0, -0.16]}>
             <boxGeometry args={[0.95, 1.35, 0.06]} />
@@ -68,7 +67,6 @@ export function BookIcon(props: IconProps) {
             <boxGeometry args={[0.08, 0.35, 0.02]} />
             <meshStandardMaterial roughness={0.3} metalness={0.2} color={mat.color} />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

@@ -6,7 +6,6 @@ export function FolderCheckIcon(props: FolderCheckIconProps) {
     <SharedWrapper iconId="foldercheck" {...props}>
       {(mat) => (
         <group rotation={[0.22, -Math.PI / 6, 0.05]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Main Folder Back Cover & Tab (Preset Material) */}
           <group position={[0, 0, -0.03]}>
             <mesh castShadow receiveShadow>
@@ -71,7 +70,6 @@ export function FolderCheckIcon(props: FolderCheckIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

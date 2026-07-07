@@ -6,7 +6,6 @@ export function PhoneMobileIcon(props: PhoneMobileIconProps) {
     <SharedWrapper iconId="phonemobile" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Outer Phone Casing Chassis */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.42, 0.78, 0.035]} />
@@ -75,7 +74,6 @@ export function PhoneMobileIcon(props: PhoneMobileIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

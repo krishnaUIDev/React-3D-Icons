@@ -8,7 +8,6 @@ export function RamStickIcon(props: RamStickIconProps) {
     <SharedWrapper iconId="ramstick" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0.1]} position={[0, 0, 0]}>
-          
           {/* Main PCB Memory Module Board */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.74, 0.22, 0.02]} />
@@ -59,7 +58,6 @@ export function RamStickIcon(props: RamStickIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

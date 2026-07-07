@@ -8,7 +8,6 @@ export function HelicopterRotorIcon(props: HelicopterRotorIconProps) {
     <SharedWrapper iconId="rotor" {...props}>
       {(mat) => (
         <group rotation={[0.4, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Vertical Mast/Rotor Shaft */}
           <mesh castShadow receiveShadow position={[0, -0.06, 0]}>
             <cylinderGeometry args={[0.02, 0.02, 0.28, 16]} />
@@ -82,8 +81,12 @@ export function HelicopterRotorIcon(props: HelicopterRotorIconProps) {
                   <mesh position={[0.07, 0.016, 0]} castShadow>
                     <sphereGeometry args={[0.014, 12, 12]} />
                     <meshStandardMaterial
-                      color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                      emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                      color={
+                        mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                      }
+                      emissive={
+                        mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                      }
                       emissiveIntensity={1.3}
                     />
                   </mesh>
@@ -109,7 +112,6 @@ export function HelicopterRotorIcon(props: HelicopterRotorIconProps) {
               );
             })}
           </group>
-
         </group>
       )}
     </SharedWrapper>

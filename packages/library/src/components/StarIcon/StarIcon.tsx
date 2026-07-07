@@ -10,7 +10,7 @@ export function StarIcon(props: StarIconProps) {
     const outerRadius = 0.65;
     const innerRadius = 0.28;
     const step = Math.PI / spikes;
-    
+
     // Start at top point
     let angle = Math.PI / 2;
     shape.moveTo(0, outerRadius);
@@ -38,7 +38,7 @@ export function StarIcon(props: StarIconProps) {
     bevelSegments: 5,
     steps: 1,
     bevelSize: 0.06,
-    bevelThickness: 0.06,
+    bevelThickness: 0.06
   };
 
   return (

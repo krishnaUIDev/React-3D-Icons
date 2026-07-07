@@ -6,7 +6,6 @@ export function DonutIcon(props: DonutIconProps) {
     <SharedWrapper iconId="donut" {...props}>
       {(mat) => (
         <group rotation={[0.5, -Math.PI / 8, 0.1]} position={[0, -0.02, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Main Doughnut Ring (Golden brown baked dough) */}
           <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, 0]}>
             <torusGeometry args={[0.24, 0.1, 16, 32]} />
@@ -67,7 +66,6 @@ export function DonutIcon(props: DonutIconProps) {
 
           {/* Sprinkles (Scattered colorful tiny boxes) */}
           <group position={[0, 0.09, 0]}>
-            
             {/* Sprinkle 1 (White) */}
             <mesh position={[0.18, 0, 0.1]} rotation={[0, 0.5, 0]} castShadow>
               <boxGeometry args={[0.015, 0.015, 0.05]} />
@@ -101,9 +99,7 @@ export function DonutIcon(props: DonutIconProps) {
                 emissiveIntensity={1.3}
               />
             </mesh>
-
           </group>
-
         </group>
       )}
     </SharedWrapper>

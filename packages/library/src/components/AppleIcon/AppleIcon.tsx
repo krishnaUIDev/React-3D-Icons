@@ -5,8 +5,11 @@ export function AppleIcon(props: AppleIconProps) {
   return (
     <SharedWrapper iconId="apple" {...props}>
       {(mat) => (
-        <group rotation={[0.1, -Math.PI / 8, 0.05]} position={[0, -0.02, 0]} scale={[1.4, 1.4, 1.4]}>
-          
+        <group
+          rotation={[0.1, -Math.PI / 8, 0.05]}
+          position={[0, -0.02, 0]}
+          scale={[1.4, 1.4, 1.4]}
+        >
           {/* Main Apple Body (Organic cleft look with two overlapping lobes) */}
           <group position={[0, 0, 0]}>
             {/* Left Lobe */}
@@ -64,7 +67,6 @@ export function AppleIcon(props: AppleIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

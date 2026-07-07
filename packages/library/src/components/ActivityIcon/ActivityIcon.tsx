@@ -6,11 +6,31 @@ export function ActivityIcon(props: ActivityIconProps) {
 
   const segments = [
     { pos: [-0.7, 0, 0] as [number, number, number], len: 0.4, rot: -Math.PI / 2 },
-    { pos: [-0.44, -0.09, 0] as [number, number, number], len: 0.216, rot: Math.atan2(-0.18, 0.12) - Math.PI / 2 },
-    { pos: [-0.26, 0.27, 0] as [number, number, number], len: 0.932, rot: Math.atan2(0.9, 0.24) - Math.PI / 2 },
-    { pos: [-0.02, 0.09, 0] as [number, number, number], len: 1.283, rot: Math.atan2(-1.26, 0.24) - Math.PI / 2 },
-    { pos: [0.22, -0.2, 0] as [number, number, number], len: 0.721, rot: Math.atan2(0.68, 0.24) - Math.PI / 2 },
-    { pos: [0.42, 0.07, 0] as [number, number, number], len: 0.213, rot: Math.atan2(-0.14, 0.16) - Math.PI / 2 },
+    {
+      pos: [-0.44, -0.09, 0] as [number, number, number],
+      len: 0.216,
+      rot: Math.atan2(-0.18, 0.12) - Math.PI / 2
+    },
+    {
+      pos: [-0.26, 0.27, 0] as [number, number, number],
+      len: 0.932,
+      rot: Math.atan2(0.9, 0.24) - Math.PI / 2
+    },
+    {
+      pos: [-0.02, 0.09, 0] as [number, number, number],
+      len: 1.283,
+      rot: Math.atan2(-1.26, 0.24) - Math.PI / 2
+    },
+    {
+      pos: [0.22, -0.2, 0] as [number, number, number],
+      len: 0.721,
+      rot: Math.atan2(0.68, 0.24) - Math.PI / 2
+    },
+    {
+      pos: [0.42, 0.07, 0] as [number, number, number],
+      len: 0.213,
+      rot: Math.atan2(-0.14, 0.16) - Math.PI / 2
+    },
     { pos: [0.7, 0, 0] as [number, number, number], len: 0.4, rot: -Math.PI / 2 }
   ];
 
@@ -29,7 +49,7 @@ export function ActivityIcon(props: ActivityIconProps) {
     <SharedWrapper iconId="activity" {...props}>
       {(mat) => {
         // High glow for pulse lines
-        const ac = mat.emissiveIntensity > 0 ? mat.emissive : (props.accentColor || "#10b981");
+        const ac = mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981";
 
         return (
           <group rotation={[0.08, -0.2, 0.04]}>
@@ -60,11 +80,7 @@ export function ActivityIcon(props: ActivityIconProps) {
 
             {/* Glowing rounded joints */}
             {joints.map((joint, idx) => (
-              <mesh
-                key={`joint-${idx}`}
-                position={joint}
-                castShadow
-              >
+              <mesh key={`joint-${idx}`} position={joint} castShadow>
                 <sphereGeometry args={[radius * 1.05, 12, 12]} />
                 <meshStandardMaterial
                   color={ac}

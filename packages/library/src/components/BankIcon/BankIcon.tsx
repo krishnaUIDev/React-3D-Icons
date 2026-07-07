@@ -5,8 +5,11 @@ export function BankIcon(props: BankIconProps) {
   return (
     <SharedWrapper iconId="bank" {...props}>
       {(mat) => (
-        <group rotation={[0.15, -Math.PI / 8, 0.05]} position={[0, -0.02, 0]} scale={[1.4, 1.4, 1.4]}>
-          
+        <group
+          rotation={[0.15, -Math.PI / 8, 0.05]}
+          position={[0, -0.02, 0]}
+          scale={[1.4, 1.4, 1.4]}
+        >
           {/* Triangular Roof Pediment (Preset Color) */}
           <group position={[0, 0.16, 0]}>
             <mesh castShadow receiveShadow position={[0, 0.04, 0]} rotation={[0, Math.PI / 4, 0]}>
@@ -77,7 +80,6 @@ export function BankIcon(props: BankIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

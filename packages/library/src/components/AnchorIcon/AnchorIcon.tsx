@@ -87,11 +87,7 @@ export function AnchorIcon(props: AnchorIconProps) {
           </mesh>
 
           {/* Left fluke (tip) */}
-          <mesh
-            castShadow
-            position={[-0.35, -0.22, 0]}
-            rotation={[0, 0, Math.PI / 4]}
-          >
+          <mesh castShadow position={[-0.35, -0.22, 0]} rotation={[0, 0, Math.PI / 4]}>
             <coneGeometry args={[0.07, 0.18, 4]} />
             <meshStandardMaterial
               color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ec4899"}
@@ -101,11 +97,7 @@ export function AnchorIcon(props: AnchorIconProps) {
           </mesh>
 
           {/* Right fluke (tip) */}
-          <mesh
-            castShadow
-            position={[0.35, -0.22, 0]}
-            rotation={[0, 0, -Math.PI / 4]}
-          >
+          <mesh castShadow position={[0.35, -0.22, 0]} rotation={[0, 0, -Math.PI / 4]}>
             <coneGeometry args={[0.07, 0.18, 4]} />
             <meshStandardMaterial
               color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ec4899"}

@@ -6,7 +6,6 @@ export function ProjectorIcon(props: ProjectorIconProps) {
     <SharedWrapper iconId="projector" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.25, 0.05]} position={[0, -0.04, 0]}>
-          
           {/* Main Projector Body Cabinet */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.58, 0.22, 0.44]} />
@@ -93,7 +92,6 @@ export function ProjectorIcon(props: ProjectorIconProps) {
               <meshStandardMaterial roughness={0.3} metalness={0.7} color="#94a3b8" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

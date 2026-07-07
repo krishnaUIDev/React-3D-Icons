@@ -67,8 +67,12 @@ export function SlidersIcon(props: SlidersIconProps) {
                 <mesh position={[0, 0, 0.115]}>
                   <boxGeometry args={[0.03, 0.16, 0.02]} />
                   <meshStandardMaterial
-                    color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ec4899"}
-                    emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ec4899"}
+                    color={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ec4899"
+                    }
+                    emissive={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ec4899"
+                    }
                     emissiveIntensity={1.5}
                   />
                 </mesh>

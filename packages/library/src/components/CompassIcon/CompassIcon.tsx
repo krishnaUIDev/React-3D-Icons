@@ -6,7 +6,6 @@ export function CompassIcon(props: IconProps) {
     <SharedWrapper iconId="compass" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Compass Outer Casing Ring */}
           <mesh castShadow receiveShadow>
             <torusGeometry args={[0.7, 0.08, 16, 64]} />
@@ -87,7 +86,6 @@ export function CompassIcon(props: IconProps) {
             <cylinderGeometry args={[0.02, 0.02, 0.08, 8]} />
             <meshStandardMaterial color="#71717a" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

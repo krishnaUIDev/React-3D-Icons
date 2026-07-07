@@ -30,7 +30,11 @@ export function LavenderIcon(props: LavenderIconProps) {
               const yPos = tierIdx * 0.042 - 0.1;
               const scaleFactor = 1.0 - tierIdx * 0.12; // buds taper at the top
               return (
-                <group key={tierIdx} position={[0, yPos, 0]} scale={[scaleFactor, scaleFactor, scaleFactor]}>
+                <group
+                  key={tierIdx}
+                  position={[0, yPos, 0]}
+                  scale={[scaleFactor, scaleFactor, scaleFactor]}
+                >
                   {/* Circular pods in this tier */}
                   {Array.from({ length: 6 }).map((_, podIdx) => {
                     const angle = (podIdx * Math.PI) / 3;
@@ -61,8 +65,12 @@ export function LavenderIcon(props: LavenderIconProps) {
                   <mesh position={[0, 0.006, 0]} castShadow>
                     <sphereGeometry args={[0.009, 8, 8]} />
                     <meshStandardMaterial
-                      color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                      emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                      color={
+                        mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                      }
+                      emissive={
+                        mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                      }
                       emissiveIntensity={1.4}
                     />
                   </mesh>

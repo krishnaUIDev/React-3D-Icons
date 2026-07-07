@@ -6,7 +6,6 @@ export function DownloadIcon(props: IconProps) {
     <SharedWrapper iconId="download" {...props}>
       {(mat) => (
         <group rotation={[0.3, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Bottom Tray Base Plate */}
           <mesh position={[0, -0.42, 0]} castShadow receiveShadow>
             <boxGeometry args={[1.1, 0.08, 0.8]} />
@@ -71,7 +70,6 @@ export function DownloadIcon(props: IconProps) {
             <coneGeometry args={[0.26, 0.26, 4]} />
             <meshStandardMaterial roughness={0.15} metalness={0.9} color="#cbd5e1" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

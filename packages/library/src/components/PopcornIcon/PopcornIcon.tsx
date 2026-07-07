@@ -5,8 +5,11 @@ export function PopcornIcon(props: PopcornIconProps) {
   return (
     <SharedWrapper iconId="popcorn" {...props}>
       {(mat) => (
-        <group rotation={[0.15, -Math.PI / 8, 0.05]} position={[0, -0.02, 0]} scale={[1.4, 1.4, 1.4]}>
-          
+        <group
+          rotation={[0.15, -Math.PI / 8, 0.05]}
+          position={[0, -0.02, 0]}
+          scale={[1.4, 1.4, 1.4]}
+        >
           {/* Popcorn Tub Container (Tapered 4-sided cylinder in preset material) */}
           <group position={[0, -0.08, 0]} rotation={[0, Math.PI / 4, 0]}>
             <mesh castShadow receiveShadow>
@@ -80,7 +83,6 @@ export function PopcornIcon(props: PopcornIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

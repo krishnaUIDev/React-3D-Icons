@@ -6,7 +6,6 @@ export function SendIcon(props: IconProps) {
     <SharedWrapper iconId="send" {...props}>
       {(mat) => (
         <group rotation={[0.4, -0.4, 0.2]} position={[0, 0, 0]}>
-          
           {/* Central spine/keel of the paper plane */}
           <mesh castShadow receiveShadow position={[0, -0.1, 0]} rotation={[0, 0, 0]}>
             <boxGeometry args={[0.08, 0.3, 1.2]} />
@@ -25,11 +24,7 @@ export function SendIcon(props: IconProps) {
           </mesh>
 
           {/* Left Wing Main Face (slanted outwards and up) */}
-          <mesh 
-            position={[-0.32, 0.08, -0.1]} 
-            rotation={[0.1, -0.15, -0.2]} 
-            castShadow
-          >
+          <mesh position={[-0.32, 0.08, -0.1]} rotation={[0.1, -0.15, -0.2]} castShadow>
             <boxGeometry args={[0.6, 0.04, 1.0]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -41,11 +36,7 @@ export function SendIcon(props: IconProps) {
           </mesh>
 
           {/* Right Wing Main Face (slanted outwards and up) */}
-          <mesh 
-            position={[0.32, 0.08, -0.1]} 
-            rotation={[0.1, 0.15, 0.2]} 
-            castShadow
-          >
+          <mesh position={[0.32, 0.08, -0.1]} rotation={[0.1, 0.15, 0.2]} castShadow>
             <boxGeometry args={[0.6, 0.04, 1.0]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -57,11 +48,7 @@ export function SendIcon(props: IconProps) {
           </mesh>
 
           {/* Inner Wing Folds (forming the creased look) */}
-          <mesh 
-            position={[-0.1, -0.02, -0.05]} 
-            rotation={[0, 0, -0.5]} 
-            castShadow
-          >
+          <mesh position={[-0.1, -0.02, -0.05]} rotation={[0, 0, -0.5]} castShadow>
             <boxGeometry args={[0.2, 0.03, 0.95]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -72,11 +59,7 @@ export function SendIcon(props: IconProps) {
             />
           </mesh>
 
-          <mesh 
-            position={[0.1, -0.02, -0.05]} 
-            rotation={[0, 0, 0.5]} 
-            castShadow
-          >
+          <mesh position={[0.1, -0.02, -0.05]} rotation={[0, 0, 0.5]} castShadow>
             <boxGeometry args={[0.2, 0.03, 0.95]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -98,7 +81,6 @@ export function SendIcon(props: IconProps) {
               color={mat.color}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

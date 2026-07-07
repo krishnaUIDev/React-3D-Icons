@@ -4,7 +4,7 @@ import { RefreshIconProps } from "./types";
 export function RefreshIcon(props: RefreshIconProps) {
   const R = 0.48; // Torus Radius
   const arcLength = Math.PI * 0.8; // Arc covers 144 degrees
-  
+
   // End of arc coordinates: [R * cos(144°), R * sin(144°), 0]
   // cos(144°) = -0.809, sin(144°) = 0.588
   // x = 0.48 * -0.809 = -0.388 => -0.39

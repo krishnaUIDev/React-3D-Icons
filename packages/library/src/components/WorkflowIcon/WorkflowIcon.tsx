@@ -6,7 +6,6 @@ export function WorkflowIcon(props: WorkflowIconProps) {
     <SharedWrapper iconId="workflow" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Top Root Node Box */}
           <mesh castShadow receiveShadow position={[0, 0.48, 0]}>
             <boxGeometry args={[0.56, 0.38, 0.16]} />
@@ -131,7 +130,6 @@ export function WorkflowIcon(props: WorkflowIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

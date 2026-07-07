@@ -24,24 +24,24 @@ export function HammerIcon(props: HammerIconProps) {
                 emissiveIntensity={mat.emissiveIntensity}
               />
             </mesh>
-            
+
             {/* Handle Grip rubber sleeve (bottom half) */}
             <mesh position={[0, -0.4, 0]}>
               <cylinderGeometry args={[0.09, 0.09, 0.5, 16]} />
-              <meshStandardMaterial 
-                roughness={0.8} 
-                metalness={0.1} 
-                color={props.theme === "dark" ? "#1e293b" : "#64748b"} 
+              <meshStandardMaterial
+                roughness={0.8}
+                metalness={0.1}
+                color={props.theme === "dark" ? "#1e293b" : "#64748b"}
               />
             </mesh>
-            
+
             {/* Metal collar connector */}
             <mesh position={[0, 0.32, 0]}>
               <cylinderGeometry args={[0.085, 0.085, 0.08, 16]} />
-              <meshStandardMaterial 
-                roughness={0.2} 
-                metalness={0.9} 
-                color={props.theme === "dark" ? "#cbd5e1" : "#475569"} 
+              <meshStandardMaterial
+                roughness={0.2}
+                metalness={0.9}
+                color={props.theme === "dark" ? "#cbd5e1" : "#475569"}
               />
             </mesh>
 

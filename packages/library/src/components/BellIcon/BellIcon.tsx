@@ -6,7 +6,6 @@ export function BellIcon(props: BellIconProps) {
     <SharedWrapper iconId="bell" {...props}>
       {(mat) => (
         <group rotation={[0.25, -0.15, -0.05]} position={[0, 0, 0]}>
-          
           {/* Top Loop / Crown hanger */}
           <mesh position={[0, 0.42, 0]} rotation={[0, Math.PI / 2, 0]} castShadow>
             <torusGeometry args={[0.11, 0.032, 8, 32]} />
@@ -80,7 +79,6 @@ export function BellIcon(props: BellIconProps) {
             <sphereGeometry args={[0.11, 24, 24]} />
             <meshStandardMaterial roughness={0.15} metalness={0.9} color="#e2e8f0" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

@@ -22,7 +22,12 @@ export function WireStripperIcon(props: WireStripperIconProps) {
               </mesh>
               {/* Notches (overlapping cylinders for details) */}
               {[0.06, 0.09, 0.12, 0.15].map((y, idx) => (
-                <mesh key={idx} position={[0.002, y, 0.008]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+                <mesh
+                  key={idx}
+                  position={[0.002, y, 0.008]}
+                  rotation={[Math.PI / 2, 0, 0]}
+                  castShadow
+                >
                   <cylinderGeometry args={[0.008 - idx * 0.001, 0.008 - idx * 0.001, 0.018, 12]} />
                   <meshStandardMaterial roughness={0.3} metalness={0.8} color="#475569" />
                 </mesh>
@@ -37,7 +42,12 @@ export function WireStripperIcon(props: WireStripperIconProps) {
               </mesh>
               {/* Notches */}
               {[0.06, 0.09, 0.12, 0.15].map((y, idx) => (
-                <mesh key={idx} position={[-0.002, y, -0.008]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+                <mesh
+                  key={idx}
+                  position={[-0.002, y, -0.008]}
+                  rotation={[Math.PI / 2, 0, 0]}
+                  castShadow
+                >
                   <cylinderGeometry args={[0.008 - idx * 0.001, 0.008 - idx * 0.001, 0.018, 12]} />
                   <meshStandardMaterial roughness={0.3} metalness={0.8} color="#334155" />
                 </mesh>

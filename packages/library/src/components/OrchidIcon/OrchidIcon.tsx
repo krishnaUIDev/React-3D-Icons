@@ -30,7 +30,12 @@ export function OrchidIcon(props: OrchidIconProps) {
           {/* 2 Lateral Petals (flared to the sides, slightly forward) */}
           <group position={[0, 0, 0.01]}>
             {/* Left lateral petal */}
-            <mesh position={[-0.09, 0.04, 0]} rotation={[0.1, -0.2, 0.8]} scale={[1.4, 1.1, 0.12]} castShadow>
+            <mesh
+              position={[-0.09, 0.04, 0]}
+              rotation={[0.1, -0.2, 0.8]}
+              scale={[1.4, 1.1, 0.12]}
+              castShadow
+            >
               <sphereGeometry args={[0.07, 16, 16]} />
               <meshPhysicalMaterial
                 roughness={mat.roughness}
@@ -41,7 +46,12 @@ export function OrchidIcon(props: OrchidIconProps) {
               />
             </mesh>
             {/* Right lateral petal */}
-            <mesh position={[0.09, 0.04, 0]} rotation={[0.1, 0.2, -0.8]} scale={[1.4, 1.1, 0.12]} castShadow>
+            <mesh
+              position={[0.09, 0.04, 0]}
+              rotation={[0.1, 0.2, -0.8]}
+              scale={[1.4, 1.1, 0.12]}
+              castShadow
+            >
               <sphereGeometry args={[0.07, 16, 16]} />
               <meshPhysicalMaterial
                 roughness={mat.roughness}
@@ -54,7 +64,12 @@ export function OrchidIcon(props: OrchidIconProps) {
           </group>
 
           {/* Lower Lip (labellum) - scoop/hood shape */}
-          <mesh position={[0, -0.06, 0.025]} scale={[1.2, 1.1, 0.7]} rotation={[0.3, 0, 0]} castShadow>
+          <mesh
+            position={[0, -0.06, 0.025]}
+            scale={[1.2, 1.1, 0.7]}
+            rotation={[0.3, 0, 0]}
+            castShadow
+          >
             <sphereGeometry args={[0.05, 16, 16, 0, Math.PI * 2, 0, Math.PI / 1.8]} />
             <meshPhysicalMaterial
               roughness={mat.roughness + 0.1}

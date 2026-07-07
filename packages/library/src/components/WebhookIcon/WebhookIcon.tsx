@@ -78,7 +78,11 @@ export function WebhookIcon(props: WebhookIconProps) {
           {/* Junction Core Sphere (Center block) */}
           <mesh position={[0, 0.25, 0]}>
             <sphereGeometry args={[0.075, 16, 16]} />
-            <meshStandardMaterial roughness={0.3} metalness={0.8} color={props.theme === "dark" ? "#27272a" : "#cbd5e1"} />
+            <meshStandardMaterial
+              roughness={0.3}
+              metalness={0.8}
+              color={props.theme === "dark" ? "#27272a" : "#cbd5e1"}
+            />
           </mesh>
 
           {/* Glowing Status Accent Bulbs on each node */}

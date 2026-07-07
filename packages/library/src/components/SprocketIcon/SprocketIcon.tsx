@@ -9,7 +9,6 @@ export function SprocketIcon(props: SprocketIconProps) {
     <SharedWrapper iconId="sprocket" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Sprocket Disk Wheel */}
           <mesh rotation={[Math.PI / 2, 0, 0]} castShadow receiveShadow>
             <cylinderGeometry args={[0.26, 0.26, 0.04, 32]} />
@@ -68,7 +67,6 @@ export function SprocketIcon(props: SprocketIconProps) {
               );
             })}
           </group>
-
         </group>
       )}
     </SharedWrapper>

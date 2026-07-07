@@ -6,7 +6,6 @@ export function EarbudsIcon(props: EarbudsIconProps) {
     <SharedWrapper iconId="earbuds" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.25, 0.05]} position={[0, 0, 0]}>
-          
           {/* Charging Case Lower Base Body */}
           <mesh castShadow receiveShadow position={[0, -0.06, 0]}>
             <boxGeometry args={[0.24, 0.18, 0.16]} />
@@ -54,7 +53,7 @@ export function EarbudsIcon(props: EarbudsIconProps) {
           </mesh>
 
           {/* Twin Earbuds (Left & Right nested inside charging slots) */}
-          
+
           {/* Left Earbud */}
           <group position={[-0.05, 0.04, 0.01]}>
             {/* Cylindrical stem pointing downwards inside case */}
@@ -100,7 +99,6 @@ export function EarbudsIcon(props: EarbudsIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

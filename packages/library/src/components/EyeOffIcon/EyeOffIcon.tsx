@@ -6,7 +6,6 @@ export function EyeOffIcon(props: EyeOffIconProps) {
     <SharedWrapper iconId="eyeoff" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0]} position={[0, 0, 0]}>
-          
           {/* Eyeball (White Sphere) */}
           <mesh castShadow receiveShadow position={[0, 0, 0]}>
             <sphereGeometry args={[0.44, 32, 32]} />
@@ -74,7 +73,6 @@ export function EyeOffIcon(props: EyeOffIconProps) {
               emissiveIntensity={1.4}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

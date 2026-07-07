@@ -6,7 +6,6 @@ export function ChiselIcon(props: ChiselIconProps) {
     <SharedWrapper iconId="chisel" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.25, -Math.PI / 6]} position={[0, 0, 0]}>
-          
           {/* Wooden/Plastic Handle */}
           <mesh castShadow receiveShadow position={[0, 0.16, 0]}>
             <cylinderGeometry args={[0.038, 0.038, 0.28, 8]} />
@@ -65,7 +64,6 @@ export function ChiselIcon(props: ChiselIconProps) {
               <meshStandardMaterial roughness={0.08} metalness={0.95} color="#94a3b8" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

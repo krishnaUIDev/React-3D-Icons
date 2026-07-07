@@ -6,7 +6,6 @@ export function CoinIcon(props: CoinIconProps) {
     <SharedWrapper iconId="coin" {...props}>
       {(mat) => (
         <group rotation={[0.3, -Math.PI / 6, 0.1]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Main Gold/Metallic Disc (Preset material) */}
           <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, 0]}>
             <cylinderGeometry args={[0.3, 0.3, 0.05, 24]} />
@@ -41,7 +40,7 @@ export function CoinIcon(props: CoinIconProps) {
                 emissiveIntensity={1.3}
               />
             </mesh>
-            
+
             {/* Top Loop Horizontal Segment */}
             <mesh position={[0, 0.06, 0]} castShadow>
               <boxGeometry args={[0.1, 0.018, 0.01]} />
@@ -90,7 +89,6 @@ export function CoinIcon(props: CoinIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

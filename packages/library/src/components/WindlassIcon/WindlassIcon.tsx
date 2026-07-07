@@ -8,7 +8,6 @@ export function WindlassIcon(props: WindlassIconProps) {
     <SharedWrapper iconId="windlass" {...props}>
       {(mat) => (
         <group rotation={[0.25, -0.35, 0.1]} position={[0, 0, 0]}>
-          
           {/* Heavy Base Ground Frame Plate */}
           <mesh castShadow position={[0, -0.18, 0]}>
             <boxGeometry args={[0.34, 0.03, 0.22]} />
@@ -95,7 +94,6 @@ export function WindlassIcon(props: WindlassIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

@@ -8,7 +8,6 @@ export function SmartRingIcon(props: SmartRingIconProps) {
     <SharedWrapper iconId="smartring" {...props}>
       {(mat) => (
         <group rotation={[0.4, -0.3, 0.15]} position={[0, 0, 0]}>
-          
           {/* Main Ring Outer Band (High Gloss Metal/Glassmorphism) */}
           <mesh castShadow receiveShadow>
             <torusGeometry args={[0.22, 0.046, 12, 48]} />
@@ -50,15 +49,18 @@ export function SmartRingIcon(props: SmartRingIconProps) {
                 <mesh key={idx} position={[xPos, yPos, 0]} castShadow>
                   <sphereGeometry args={[0.012, 8, 8]} />
                   <meshStandardMaterial
-                    color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                    emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                    color={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                    }
+                    emissive={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                    }
                     emissiveIntensity={1.5}
                   />
                 </mesh>
               );
             })}
           </group>
-
         </group>
       )}
     </SharedWrapper>

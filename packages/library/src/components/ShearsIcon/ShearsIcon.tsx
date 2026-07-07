@@ -78,7 +78,9 @@ export function ShearsIcon(props: ShearsIconProps) {
                 <cylinderGeometry args={[0.024, 0.024, 0.18, 12]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.2}
                 />
               </mesh>

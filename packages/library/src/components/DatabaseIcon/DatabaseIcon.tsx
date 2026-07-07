@@ -25,7 +25,7 @@ export function DatabaseIcon(props: DatabaseIconProps) {
                   emissiveIntensity={mat.emissiveIntensity * 0.3}
                 />
               </mesh>
-              
+
               {/* Accent status bulb */}
               <mesh position={[0, 0, 0.92]}>
                 <sphereGeometry args={[0.07, 16, 16]} />

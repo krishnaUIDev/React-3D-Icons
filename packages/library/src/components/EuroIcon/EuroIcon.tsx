@@ -6,7 +6,6 @@ export function EuroIcon(props: EuroIconProps) {
     <SharedWrapper iconId="euro" {...props}>
       {(mat) => (
         <group rotation={[0.25, -Math.PI / 6, 0.08]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Main Gold/Metallic Disc (Preset material) */}
           <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, 0]}>
             <cylinderGeometry args={[0.3, 0.3, 0.05, 24]} />
@@ -62,7 +61,6 @@ export function EuroIcon(props: EuroIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

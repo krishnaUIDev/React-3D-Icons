@@ -6,7 +6,6 @@ export function PowerBankIcon(props: PowerBankIconProps) {
     <SharedWrapper iconId="powerbank" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.25, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Power Bank Charger Brick */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.34, 0.6, 0.07]} />
@@ -79,7 +78,6 @@ export function PowerBankIcon(props: PowerBankIconProps) {
               <meshStandardMaterial roughness={0.5} metalness={0.2} color="#475569" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

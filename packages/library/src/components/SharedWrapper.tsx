@@ -16,13 +16,13 @@ export function getMaterialConfig(
   const defaultColors: Record<IconPreset, string> = {
     glass: "#6366f1",
     metal: "#cbd5e1", // Silver
-    clay: "#f43f5e",  // Rose
+    clay: "#f43f5e", // Rose
     hologram: "#a855f7", // Violet
-    gold: "#d4af37",   // Gold
+    gold: "#d4af37", // Gold
     silver: "#e2e8f0", // Silver
     glassmorphism: theme === "dark" ? "#ffffff" : "#64748b", // Frosted Glass
     carbon: "#27272a", // Carbon slate
-    wood: "#d97706"   // Wood
+    wood: "#d97706" // Wood
   };
 
   const color = baseColor || defaultColors[preset];
@@ -159,7 +159,15 @@ const StudioLights: React.FC<{
   accentColor?: string;
   accentIntensity?: number;
   accentAngle?: number;
-}> = ({ theme, intensity, color, preset = "studio", accentColor, accentIntensity, accentAngle }) => {
+}> = ({
+  theme,
+  intensity,
+  color,
+  preset = "studio",
+  accentColor,
+  accentIntensity,
+  accentAngle
+}) => {
   const isDark = theme === "dark";
 
   const angleRad = ((accentAngle ?? 135) * Math.PI) / 180;
@@ -265,10 +273,7 @@ const StudioLights: React.FC<{
   // "studio" default setup
   return (
     <>
-      <ambientLight
-        intensity={isDark ? 0.4 : 0.7}
-        color={isDark ? "#3f3f46" : "#ffffff"}
-      />
+      <ambientLight intensity={isDark ? 0.4 : 0.7} color={isDark ? "#3f3f46" : "#ffffff"} />
       <directionalLight
         position={[5, 10, 5]}
         intensity={isDark ? 1.5 : 1.2}
@@ -302,9 +307,9 @@ function createFrostedTexture(): THREE.CanvasTexture {
   for (let i = 0; i < imgData.data.length; i += 4) {
     const val = Math.floor(Math.random() * 255);
     imgData.data[i] = val;
-    imgData.data[i+1] = val;
-    imgData.data[i+2] = val;
-    imgData.data[i+3] = 255;
+    imgData.data[i + 1] = val;
+    imgData.data[i + 2] = val;
+    imgData.data[i + 3] = 255;
   }
   ctx.putImageData(imgData, 0, 0);
   const texture = new THREE.CanvasTexture(canvas);
@@ -406,133 +411,136 @@ const IconScene: React.FC<{
   emissivePulseSpeed = 0,
   emissivePulseIntensity = 0.5
 }) => {
-    const groupRef = useRef<THREE.Group>(null);
-    const meshRef = useRef<THREE.Group>(null);
-    const [hovered, setHovered] = useState(false);
+  const groupRef = useRef<THREE.Group>(null);
+  const meshRef = useRef<THREE.Group>(null);
+  const [hovered, setHovered] = useState(false);
 
-    // Compute material configs
-    const matConfig = getMaterialConfig(preset, color, theme, accentColor);
-    const mergedMatConfig = { ...matConfig, ...customMaterial };
+  // Compute material configs
+  const matConfig = getMaterialConfig(preset, color, theme, accentColor);
+  const mergedMatConfig = { ...matConfig, ...customMaterial };
 
-    useFrame((state) => {
-      if (!groupRef.current) return;
+  useFrame((state) => {
+    if (!groupRef.current) return;
 
-      const t = state.clock.getElapsedTime();
+    const t = state.clock.getElapsedTime();
 
-      // Constant rotation/animation based on type
-      if (animationType === "spin") {
-        const dirCoeff = animationDirection === "counter-clockwise" ? -1 : 1;
-        if (animationAxis === "x") {
-          groupRef.current.rotation.x = t * 0.3 * spinSpeed * dirCoeff;
-          groupRef.current.rotation.y = 0;
-          groupRef.current.rotation.z = 0;
-        } else if (animationAxis === "z") {
-          groupRef.current.rotation.z = t * 0.3 * spinSpeed * dirCoeff;
-          groupRef.current.rotation.x = 0;
-          groupRef.current.rotation.y = 0;
-        } else {
-          groupRef.current.rotation.y = t * 0.3 * spinSpeed * dirCoeff;
-          groupRef.current.rotation.x = 0;
-          groupRef.current.rotation.z = 0;
-        }
-        groupRef.current.position.y = 0;
-      } else if (animationType === "wobble") {
-        groupRef.current.rotation.y = Math.sin(t * 1.0) * 0.25 * spinSpeed;
-        groupRef.current.rotation.x = Math.cos(t * 1.2) * 0.15 * spinSpeed;
-        groupRef.current.position.y = 0;
-      } else if (animationType === "wave") {
+    // Constant rotation/animation based on type
+    if (animationType === "spin") {
+      const dirCoeff = animationDirection === "counter-clockwise" ? -1 : 1;
+      if (animationAxis === "x") {
+        groupRef.current.rotation.x = t * 0.3 * spinSpeed * dirCoeff;
         groupRef.current.rotation.y = 0;
+        groupRef.current.rotation.z = 0;
+      } else if (animationAxis === "z") {
+        groupRef.current.rotation.z = t * 0.3 * spinSpeed * dirCoeff;
         groupRef.current.rotation.x = 0;
-        groupRef.current.position.y = Math.sin(t * 2.0) * 0.25 * floatHeight;
+        groupRef.current.rotation.y = 0;
       } else {
-        // "breathe" - slow static angle, pulse scale
-        groupRef.current.rotation.y = 0;
+        groupRef.current.rotation.y = t * 0.3 * spinSpeed * dirCoeff;
         groupRef.current.rotation.x = 0;
-        groupRef.current.position.y = 0;
+        groupRef.current.rotation.z = 0;
       }
+      groupRef.current.position.y = 0;
+    } else if (animationType === "wobble") {
+      groupRef.current.rotation.y = Math.sin(t * 1.0) * 0.25 * spinSpeed;
+      groupRef.current.rotation.x = Math.cos(t * 1.2) * 0.15 * spinSpeed;
+      groupRef.current.position.y = 0;
+    } else if (animationType === "wave") {
+      groupRef.current.rotation.y = 0;
+      groupRef.current.rotation.x = 0;
+      groupRef.current.position.y = Math.sin(t * 2.0) * 0.25 * floatHeight;
+    } else {
+      // "breathe" - slow static angle, pulse scale
+      groupRef.current.rotation.y = 0;
+      groupRef.current.rotation.x = 0;
+      groupRef.current.position.y = 0;
+    }
 
-      // Hover scale interpolation (smooth lerping)
-      let targetScale = hovered && interactive ? 1.15 : 1.0;
-      if (animationType === "breathe") {
-        targetScale += Math.sin(t * 2.5) * 0.06 * spinSpeed;
+    // Hover scale interpolation (smooth lerping)
+    let targetScale = hovered && interactive ? 1.15 : 1.0;
+    if (animationType === "breathe") {
+      targetScale += Math.sin(t * 2.5) * 0.06 * spinSpeed;
+    }
+    groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.15);
+
+    // Mouse tracking tilt effect (3D parallax)
+    if (meshRef.current) {
+      if (hovered && interactive) {
+        const targetX = ((-state.pointer.y * Math.PI) / 8) * tiltIntensity; // Pitch
+        const targetY = ((state.pointer.x * Math.PI) / 8) * tiltIntensity; // Yaw
+        meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, targetX, 0.1);
+        meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetY, 0.1);
+      } else {
+        meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, 0, 0.1);
+        meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, 0, 0.1);
       }
-      groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.15);
+    }
 
-      // Mouse tracking tilt effect (3D parallax)
-      if (meshRef.current) {
-        if (hovered && interactive) {
-          const targetX = (-state.pointer.y * Math.PI) / 8 * tiltIntensity; // Pitch
-          const targetY = (state.pointer.x * Math.PI) / 8 * tiltIntensity;  // Yaw
-          meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, targetX, 0.1);
-          meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, targetY, 0.1);
-        } else {
-          meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, 0, 0.1);
-          meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, 0, 0.1);
-        }
-      }
-
-      // Apply texture and pulsing at runtime on the Three.js hierarchy
-      if (groupRef.current) {
-        const texture = getTexture(textureType);
-        groupRef.current.traverse((child) => {
-          if (child instanceof THREE.Mesh) {
-            const material = child.material;
-            if (material instanceof THREE.MeshPhysicalMaterial || material instanceof THREE.MeshStandardMaterial) {
-              // 1. Assign bump map
-              if (texture) {
-                if (material.bumpMap !== texture) {
-                  material.bumpMap = texture;
-                  material.bumpScale = 0.08;
-                  material.needsUpdate = true;
-                }
-              } else {
-                if (material.bumpMap) {
-                  material.bumpMap = null;
-                  material.needsUpdate = true;
-                }
+    // Apply texture and pulsing at runtime on the Three.js hierarchy
+    if (groupRef.current) {
+      const texture = getTexture(textureType);
+      groupRef.current.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          const material = child.material;
+          if (
+            material instanceof THREE.MeshPhysicalMaterial ||
+            material instanceof THREE.MeshStandardMaterial
+          ) {
+            // 1. Assign bump map
+            if (texture) {
+              if (material.bumpMap !== texture) {
+                material.bumpMap = texture;
+                material.bumpScale = 0.08;
+                material.needsUpdate = true;
               }
-
-              // 2. Modulate emissive pulsing
-              if (emissivePulseSpeed > 0) {
-                const baseIntensity = mergedMatConfig.emissiveIntensity ?? 0.3;
-                const sinVal = Math.sin(t * emissivePulseSpeed); // -1.0 to 1.0
-                const normVal = (sinVal + 1) / 2; // 0.0 to 1.0
-                material.emissiveIntensity = baseIntensity + (normVal * emissivePulseIntensity * 1.5);
-              } else {
-                material.emissiveIntensity = mergedMatConfig.emissiveIntensity ?? 0.3;
+            } else {
+              if (material.bumpMap) {
+                material.bumpMap = null;
+                material.needsUpdate = true;
               }
             }
+
+            // 2. Modulate emissive pulsing
+            if (emissivePulseSpeed > 0) {
+              const baseIntensity = mergedMatConfig.emissiveIntensity ?? 0.3;
+              const sinVal = Math.sin(t * emissivePulseSpeed); // -1.0 to 1.0
+              const normVal = (sinVal + 1) / 2; // 0.0 to 1.0
+              material.emissiveIntensity = baseIntensity + normVal * emissivePulseIntensity * 1.5;
+            } else {
+              material.emissiveIntensity = mergedMatConfig.emissiveIntensity ?? 0.3;
+            }
           }
-        });
-      }
-    });
+        }
+      });
+    }
+  });
 
-    const angleRotations: Record<IconAngle, [number, number, number]> = {
-      front: [0, 0, 0],
-      perspective: [0.25, -0.35, 0],
-      tilted: [0.25, -0.25, 0.25]
-    };
+  const angleRotations: Record<IconAngle, [number, number, number]> = {
+    front: [0, 0, 0],
+    perspective: [0.25, -0.35, 0],
+    tilted: [0.25, -0.25, 0.25]
+  };
 
-    return (
-      <group
-        ref={groupRef}
-        onPointerOver={() => interactive && setHovered(true)}
-        onPointerOut={() => interactive && setHovered(false)}
-      >
-        <group ref={meshRef}>
-          <group rotation={angleRotations[angle]}>
-            <Float
-              speed={1.5 * spinSpeed}
-              rotationIntensity={animationType === "wobble" ? 0.4 : 0.2}
-              floatIntensity={animationType === "wave" ? 1.5 * floatHeight : 0.8 * floatHeight}
-            >
-              {children(mergedMatConfig)}
-            </Float>
-          </group>
+  return (
+    <group
+      ref={groupRef}
+      onPointerOver={() => interactive && setHovered(true)}
+      onPointerOut={() => interactive && setHovered(false)}
+    >
+      <group ref={meshRef}>
+        <group rotation={angleRotations[angle]}>
+          <Float
+            speed={1.5 * spinSpeed}
+            rotationIntensity={animationType === "wobble" ? 0.4 : 0.2}
+            floatIntensity={animationType === "wave" ? 1.5 * floatHeight : 0.8 * floatHeight}
+          >
+            {children(mergedMatConfig)}
+          </Float>
         </group>
       </group>
-    );
-  };
+    </group>
+  );
+};
 
 export function SharedWrapper({
   preset = "glass",
@@ -575,9 +583,13 @@ export function SharedWrapper({
   customMaterial?: Partial<MaterialConfig>;
   children: (mat: MaterialConfig) => React.ReactNode;
 }) {
-  const sizeStyle = size !== undefined
-    ? { width: typeof size === "number" ? `${size}px` : size, height: typeof size === "number" ? `${size}px` : size }
-    : { width: "100%", height: "100%" };
+  const sizeStyle =
+    size !== undefined
+      ? {
+          width: typeof size === "number" ? `${size}px` : size,
+          height: typeof size === "number" ? `${size}px` : size
+        }
+      : { width: "100%", height: "100%" };
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -585,7 +597,9 @@ export function SharedWrapper({
   }, []);
 
   const use2d = variant === "2d" || !isWebGLAvailable() || !mounted;
-  const fallbackLabel = props["aria-label"] || (iconId ? `${iconId.charAt(0).toUpperCase() + iconId.slice(1)} Icon` : "3D Icon");
+  const fallbackLabel =
+    props["aria-label"] ||
+    (iconId ? `${iconId.charAt(0).toUpperCase() + iconId.slice(1)} Icon` : "3D Icon");
 
   if (use2d) {
     return (
@@ -601,12 +615,23 @@ export function SharedWrapper({
         }}
         {...props}
       >
-        <div style={{ width: "85%", height: "85%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-          {fallback2d || (iconId ? (
-            <Fallback2D id={iconId} color={color} theme={theme} preset={preset} />
-          ) : (
-            <div style={{ color: color || "#6366f1", fontStyle: "italic", fontSize: "11px" }}>3D Icon</div>
-          ))}
+        <div
+          style={{
+            width: "85%",
+            height: "85%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          {fallback2d ||
+            (iconId ? (
+              <Fallback2D id={iconId} color={color} theme={theme} preset={preset} />
+            ) : (
+              <div style={{ color: color || "#6366f1", fontStyle: "italic", fontSize: "11px" }}>
+                3D Icon
+              </div>
+            ))}
         </div>
       </div>
     );
@@ -688,11 +713,7 @@ export function SharedWrapper({
           {children}
         </IconScene>
 
-        <OrbitControls
-          enableZoom={false}
-          enablePan={false}
-          makeDefault
-        />
+        <OrbitControls enableZoom={false} enablePan={false} makeDefault />
       </Canvas>
     </div>
   );

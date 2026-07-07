@@ -39,7 +39,11 @@ export function SpeakerIcon(props: SpeakerIconProps) {
               {/* Outer rim */}
               <mesh castShadow>
                 <torusGeometry args={[0.09, 0.02, 8, 24]} />
-                <meshStandardMaterial roughness={0.3} metalness={0.8} color={props.theme === "dark" ? "#cbd5e1" : "#64748b"} />
+                <meshStandardMaterial
+                  roughness={0.3}
+                  metalness={0.8}
+                  color={props.theme === "dark" ? "#cbd5e1" : "#64748b"}
+                />
               </mesh>
               {/* Central dust cap cone */}
               <mesh position={[0, 0.015, 0]}>
@@ -53,17 +57,27 @@ export function SpeakerIcon(props: SpeakerIconProps) {
               {/* Outer rim */}
               <mesh castShadow>
                 <torusGeometry args={[0.16, 0.03, 8, 24]} />
-                <meshStandardMaterial roughness={0.3} metalness={0.8} color={props.theme === "dark" ? "#cbd5e1" : "#64748b"} />
+                <meshStandardMaterial
+                  roughness={0.3}
+                  metalness={0.8}
+                  color={props.theme === "dark" ? "#cbd5e1" : "#64748b"}
+                />
               </mesh>
               {/* Cone suspension surround */}
               <mesh position={[0, -0.01, 0]}>
                 <cylinderGeometry args={[0.13, 0.08, 0.04, 24, 1, true]} />
-                <meshStandardMaterial roughness={0.9} color={props.theme === "dark" ? "#1e293b" : "#475569"} />
+                <meshStandardMaterial
+                  roughness={0.9}
+                  color={props.theme === "dark" ? "#1e293b" : "#475569"}
+                />
               </mesh>
               {/* Central dust cap dome */}
               <mesh position={[0, 0.015, 0]}>
                 <sphereGeometry args={[0.07, 16, 16, 0, Math.PI * 2, 0, Math.PI / 2]} />
-                <meshStandardMaterial roughness={0.7} color={props.theme === "dark" ? "#0f172a" : "#090d16"} />
+                <meshStandardMaterial
+                  roughness={0.7}
+                  color={props.theme === "dark" ? "#0f172a" : "#090d16"}
+                />
               </mesh>
             </group>
 
@@ -79,7 +93,11 @@ export function SpeakerIcon(props: SpeakerIconProps) {
                 {/* Thin torus rings fading outward */}
                 <mesh position={[0, 0, 0.08 + i * 0.04]} rotation={[Math.PI / 2, 0, 0]}>
                   <torusGeometry args={[0.22 + i * 0.1, 0.008, 6, 24, Math.PI]} />
-                  <meshBasicMaterial color={props.theme === "dark" ? "#818cf8" : "#6366f1"} transparent opacity={0.4 - i * 0.15} />
+                  <meshBasicMaterial
+                    color={props.theme === "dark" ? "#818cf8" : "#6366f1"}
+                    transparent
+                    opacity={0.4 - i * 0.15}
+                  />
                 </mesh>
               </group>
             ))}

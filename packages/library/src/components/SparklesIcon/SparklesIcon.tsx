@@ -11,7 +11,7 @@ function ProceduralStar({ mat, scale = 1.0, position = [0, 0, 0] }: StarProps) {
   // A 4-pointed beveled star is formed by 4 cones pointing outwards from center
   const r = 0.1 * scale;
   const h = 0.45 * scale;
-  
+
   return (
     <group position={position}>
       {/* North spike */}
@@ -43,7 +43,6 @@ export function SparklesIcon(props: IconProps) {
     <SharedWrapper iconId="sparkles" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.15]} position={[0, 0, 0]}>
-          
           {/* Main Star (Center Left) */}
           <ProceduralStar mat={mat} scale={1.1} position={[-0.15, 0.05, 0]} />
 
@@ -52,7 +51,6 @@ export function SparklesIcon(props: IconProps) {
 
           {/* Small Star (Top Right) */}
           <ProceduralStar mat={mat} scale={0.48} position={[0.4, 0.44, -0.1]} />
-
         </group>
       )}
     </SharedWrapper>

@@ -3,17 +3,28 @@ import { CalculatorIconProps } from "./types";
 
 export function CalculatorIcon(props: CalculatorIconProps) {
   const buttonGrid = [
-    { r: 0, c: 0, color: "#cbd5e1" }, { r: 0, c: 1, color: "#cbd5e1" }, { r: 0, c: 2, color: "#cbd5e1" }, { r: 0, c: 3, color: "#94a3b8" },
-    { r: 1, c: 0, color: "#f87171" }, { r: 1, c: 1, color: "#f87171" }, { r: 1, c: 2, color: "#f87171" }, { r: 1, c: 3, color: "#94a3b8" },
-    { r: 2, c: 0, color: "#f87171" }, { r: 2, c: 1, color: "#f87171" }, { r: 2, c: 2, color: "#f87171" }, { r: 2, c: 3, color: "#94a3b8" },
-    { r: 3, c: 0, color: "#f87171" }, { r: 3, c: 1, color: "#f87171" }, { r: 3, c: 2, color: "#eab308" }, { r: 3, c: 3, color: "#38bdf8" }
+    { r: 0, c: 0, color: "#cbd5e1" },
+    { r: 0, c: 1, color: "#cbd5e1" },
+    { r: 0, c: 2, color: "#cbd5e1" },
+    { r: 0, c: 3, color: "#94a3b8" },
+    { r: 1, c: 0, color: "#f87171" },
+    { r: 1, c: 1, color: "#f87171" },
+    { r: 1, c: 2, color: "#f87171" },
+    { r: 1, c: 3, color: "#94a3b8" },
+    { r: 2, c: 0, color: "#f87171" },
+    { r: 2, c: 1, color: "#f87171" },
+    { r: 2, c: 2, color: "#f87171" },
+    { r: 2, c: 3, color: "#94a3b8" },
+    { r: 3, c: 0, color: "#f87171" },
+    { r: 3, c: 1, color: "#f87171" },
+    { r: 3, c: 2, color: "#eab308" },
+    { r: 3, c: 3, color: "#38bdf8" }
   ];
 
   return (
     <SharedWrapper iconId="calculator" {...props}>
       {(mat) => (
         <group rotation={[0.25, -0.3, 0.1]} position={[0, 0, 0]}>
-          
           {/* Main Pocket Calculator Shell Casing */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.26, 0.38, 0.024]} />
@@ -75,7 +86,6 @@ export function CalculatorIcon(props: CalculatorIconProps) {
             <boxGeometry args={[0.1, 0.018, 0.004]} />
             <meshStandardMaterial roughness={0.1} metalness={0.9} color="#7c2d12" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

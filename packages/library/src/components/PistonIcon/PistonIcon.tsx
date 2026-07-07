@@ -6,7 +6,6 @@ export function PistonIcon(props: PistonIconProps) {
     <SharedWrapper iconId="piston" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.1]} position={[0, 0, 0]}>
-          
           {/* Main Piston Head / Skirt */}
           <group position={[0, 0.22, 0]}>
             <mesh castShadow receiveShadow>
@@ -79,7 +78,7 @@ export function PistonIcon(props: PistonIconProps) {
                 color={props.theme === "dark" ? "#cbd5e1" : "#475569"}
               />
             </mesh>
-            
+
             {/* Small Connecting Bolt Details */}
             <mesh position={[-0.1, 0, 0]} castShadow>
               <cylinderGeometry args={[0.02, 0.02, 0.06, 8]} />
@@ -90,7 +89,6 @@ export function PistonIcon(props: PistonIconProps) {
               <meshStandardMaterial roughness={0.1} metalness={0.9} color="#94a3b8" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

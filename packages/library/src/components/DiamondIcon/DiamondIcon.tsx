@@ -25,12 +25,7 @@ export function DiamondIcon(props: DiamondIconProps) {
           </mesh>
 
           {/* Lower Pavilion: Cone pointing down */}
-          <mesh
-            castShadow
-            receiveShadow
-            position={[0, -0.375, 0]}
-            rotation={[Math.PI, 0, 0]}
-          >
+          <mesh castShadow receiveShadow position={[0, -0.375, 0]} rotation={[Math.PI, 0, 0]}>
             <coneGeometry args={[0.75, 0.75, 8]} />
             <meshPhysicalMaterial
               roughness={mat.roughness * 0.5}

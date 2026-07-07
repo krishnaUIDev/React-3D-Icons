@@ -6,7 +6,6 @@ export function PliersIcon(props: PliersIconProps) {
     <SharedWrapper iconId="pliers" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Central Pivot Pin (Cylinder) */}
           <mesh castShadow receiveShadow position={[0, 0.05, 0]} rotation={[Math.PI / 2, 0, 0]}>
             <cylinderGeometry args={[0.06, 0.06, 0.14, 16]} />
@@ -94,7 +93,6 @@ export function PliersIcon(props: PliersIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

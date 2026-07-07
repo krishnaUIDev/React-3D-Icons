@@ -102,7 +102,10 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
         </span>{" "}
         <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent inline-block min-h-[1.1em] align-bottom">
           <span>{typedText || "\u00a0"}</span>
-          <span className="inline-block w-[3.5px] h-[0.85em] ml-1.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 animate-pulse rounded align-middle" style={{ animationDuration: "0.8s" }} />
+          <span
+            className="inline-block w-[3.5px] h-[0.85em] ml-1.5 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 animate-pulse rounded align-middle"
+            style={{ animationDuration: "0.8s" }}
+          />
         </span>
       </h1>
 
@@ -118,7 +121,9 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
           className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-sm font-bold shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30 hover:scale-[1.02] transition active:scale-98 cursor-pointer"
         >
           <Download size={16} />
-          <span>{t("btn_download_all")} v{version}</span>
+          <span>
+            {t("btn_download_all")} v{version}
+          </span>
         </button>
       </div>
 

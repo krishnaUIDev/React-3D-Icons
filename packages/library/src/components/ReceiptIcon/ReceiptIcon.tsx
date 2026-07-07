@@ -6,7 +6,6 @@ export function ReceiptIcon(props: ReceiptIconProps) {
     <SharedWrapper iconId="receipt" {...props}>
       {(mat) => (
         <group rotation={[0.2, -Math.PI / 8, 0.05]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Top Paper Roll Scroll (Preset Material) */}
           <mesh position={[0, 0.16, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
             <cylinderGeometry args={[0.04, 0.04, 0.28, 16]} />
@@ -96,7 +95,6 @@ export function ReceiptIcon(props: ReceiptIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

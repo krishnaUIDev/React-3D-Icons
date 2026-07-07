@@ -6,7 +6,6 @@ export function GameConsoleIcon(props: GameConsoleIconProps) {
     <SharedWrapper iconId="gameconsole" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Core Tower Structure (Upright) */}
           <mesh castShadow receiveShadow position={[0, 0.04, 0]}>
             <boxGeometry args={[0.12, 0.68, 0.4]} />
@@ -65,7 +64,6 @@ export function GameConsoleIcon(props: GameConsoleIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

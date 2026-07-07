@@ -9,7 +9,6 @@ export function GpuIcon(props: GpuIconProps) {
     <SharedWrapper iconId="gpu" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.15]} position={[0, 0, 0]}>
-          
           {/* Main Shroud Outer Cover (Premium Matte Case) */}
           <mesh castShadow receiveShadow position={[0, 0.02, 0]}>
             <boxGeometry args={[0.48, 0.24, 0.076]} />
@@ -73,7 +72,9 @@ export function GpuIcon(props: GpuIconProps) {
                 <cylinderGeometry args={[0.012, 0.012, 0.002, 16]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.0}
                 />
               </mesh>
@@ -99,7 +100,6 @@ export function GpuIcon(props: GpuIconProps) {
               </group>
             </group>
           ))}
-
         </group>
       )}
     </SharedWrapper>

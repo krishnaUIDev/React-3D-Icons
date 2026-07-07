@@ -6,7 +6,6 @@ export function SafeIcon(props: SafeIconProps) {
     <SharedWrapper iconId="safe" {...props}>
       {(mat) => (
         <group rotation={[0.2, -Math.PI / 8, 0.05]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Main Safe Box Body (Preset Material) */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.38, 0.38, 0.34]} />
@@ -36,7 +35,7 @@ export function SafeIcon(props: SafeIconProps) {
               <torusGeometry args={[0.07, 0.014, 8, 20]} />
               <meshStandardMaterial color="#94a3b8" metalness={0.8} roughness={0.2} />
             </mesh>
-            
+
             {/* Dial spokes */}
             <mesh rotation={[0, 0, Math.PI / 4]}>
               <boxGeometry args={[0.13, 0.014, 0.008]} />
@@ -81,7 +80,6 @@ export function SafeIcon(props: SafeIconProps) {
               <meshStandardMaterial color="#475569" metalness={0.6} />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

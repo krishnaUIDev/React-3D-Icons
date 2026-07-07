@@ -17,7 +17,6 @@ export function FigmaIcon(props: FigmaIconProps) {
           <group>
             {/* Angled to show thickness in 3D */}
             <group rotation={[Math.PI / 10, -Math.PI / 8, 0]}>
-              
               {/* --- TOP ROW --- */}
               {/* Top-Left: Rounded Left, Flat Right */}
               <group position={[-0.15, 0.3, 0]}>
@@ -61,7 +60,9 @@ export function FigmaIcon(props: FigmaIconProps) {
               <group position={[-0.15, -0.3, 0]}>
                 {/* Rounded half */}
                 <mesh castShadow rotation={[Math.PI / 2, 0, 0]}>
-                  <cylinderGeometry args={[0.15, 0.15, 0.08, 16, 1, false, -Math.PI / 2, Math.PI]} />
+                  <cylinderGeometry
+                    args={[0.15, 0.15, 0.08, 16, 1, false, -Math.PI / 2, Math.PI]}
+                  />
                   <meshPhysicalMaterial {...mat} color={cBotLeft} />
                 </mesh>
                 {/* Extending block */}
@@ -75,7 +76,6 @@ export function FigmaIcon(props: FigmaIconProps) {
                   <meshPhysicalMaterial {...mat} color={cBotLeft} />
                 </mesh>
               </group>
-
             </group>
           </group>
         );

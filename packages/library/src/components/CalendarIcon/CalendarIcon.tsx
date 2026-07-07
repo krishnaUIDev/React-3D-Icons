@@ -11,7 +11,6 @@ export function CalendarIcon(props: CalendarIconProps) {
     <SharedWrapper iconId="calendar" {...props}>
       {(mat) => (
         <group rotation={[0.3, -0.3, 0.05]} position={[0, -0.05, 0]}>
-          
           {/* Main Calendar Backing Board */}
           <mesh castShadow receiveShadow>
             <RoundedBox args={[1.2, 1.2, 0.16]} radius={0.12} smoothness={8}>
@@ -56,27 +55,22 @@ export function CalendarIcon(props: CalendarIconProps) {
           {/* Day Grid Squares */}
           {rowOffsets.map((y, rowIdx) =>
             dayOffsets.map((x, colIdx) => (
-              <mesh 
-                key={`${rowIdx}-${colIdx}`} 
-                position={[x, y, 0.095]} 
-                castShadow
-              >
+              <mesh key={`${rowIdx}-${colIdx}`} position={[x, y, 0.095]} castShadow>
                 <boxGeometry args={[0.16, 0.16, 0.03]} />
-                <meshStandardMaterial 
-                  roughness={0.8} 
-                  metalness={0.1} 
+                <meshStandardMaterial
+                  roughness={0.8}
+                  metalness={0.1}
                   color={
                     rowIdx === 1 && colIdx === 1
                       ? "#3b82f6" // Current day marked blue
-                      : props.theme === "dark" 
-                      ? "#1e293b" 
-                      : "#cbd5e1"
-                  } 
+                      : props.theme === "dark"
+                        ? "#1e293b"
+                        : "#cbd5e1"
+                  }
                 />
               </mesh>
             ))
           )}
-
         </group>
       )}
     </SharedWrapper>

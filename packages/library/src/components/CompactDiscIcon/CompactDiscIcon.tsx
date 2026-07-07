@@ -50,7 +50,13 @@ export function CompactDiscIcon(props: CompactDiscIconProps) {
           {/* Inner Clear Plastic Hub area */}
           <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0.002]} castShadow>
             <cylinderGeometry args={[0.056, 0.056, 0.012, 24]} />
-            <meshStandardMaterial roughness={0.1} metalness={0.2} color="#f8fafc" opacity={0.6} transparent />
+            <meshStandardMaterial
+              roughness={0.1}
+              metalness={0.2}
+              color="#f8fafc"
+              opacity={0.6}
+              transparent
+            />
           </mesh>
 
           {/* Center Hole Void (Dark back cylinder) */}

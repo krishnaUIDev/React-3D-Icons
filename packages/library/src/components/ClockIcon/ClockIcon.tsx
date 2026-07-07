@@ -6,7 +6,6 @@ export function ClockIcon(props: ClockIconProps) {
     <SharedWrapper iconId="clock" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0.05]} position={[0, 0.05, 0]}>
-          
           {/* Main Case (Outer Drum) */}
           <mesh rotation={[Math.PI / 2, 0, 0]} castShadow receiveShadow>
             <cylinderGeometry args={[0.54, 0.54, 0.2, 32]} />
@@ -52,7 +51,10 @@ export function ClockIcon(props: ClockIconProps) {
           <group position={[-0.11, 0.13, 0.11]} rotation={[0, 0, 0.7]}>
             <mesh castShadow>
               <boxGeometry args={[0.024, 0.32, 0.02]} />
-              <meshStandardMaterial roughness={0.5} color={props.theme === "dark" ? "#cbd5e1" : "#0f172a"} />
+              <meshStandardMaterial
+                roughness={0.5}
+                color={props.theme === "dark" ? "#cbd5e1" : "#0f172a"}
+              />
             </mesh>
           </group>
 
@@ -115,7 +117,6 @@ export function ClockIcon(props: ClockIconProps) {
             <cylinderGeometry args={[0.04, 0.03, 0.16, 16]} />
             <meshStandardMaterial roughness={0.2} metalness={0.8} color="#cbd5e1" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

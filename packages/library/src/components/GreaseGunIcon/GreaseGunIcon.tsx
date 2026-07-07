@@ -6,7 +6,6 @@ export function GreaseGunIcon(props: GreaseGunIconProps) {
     <SharedWrapper iconId="greasegun" {...props}>
       {(mat) => (
         <group rotation={[0.4, -0.25, -Math.PI / 6]} position={[0, 0, 0]}>
-          
           {/* Main Grease Canister Cylinder (Cartridge tube) */}
           <mesh castShadow receiveShadow position={[0, -0.04, 0]}>
             <cylinderGeometry args={[0.046, 0.046, 0.28, 16]} />
@@ -99,7 +98,6 @@ export function GreaseGunIcon(props: GreaseGunIconProps) {
               <meshStandardMaterial roughness={0.2} metalness={0.85} color="#475569" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

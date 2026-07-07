@@ -6,7 +6,6 @@ export function ShieldIcon(props: ShieldIconProps) {
     <SharedWrapper iconId="shield" {...props}>
       {(mat) => (
         <group rotation={[0.1, -0.2, 0.05]} position={[0, 0.1, 0]}>
-          
           {/* Shield Base Plate */}
           <group>
             {/* Top curved main body */}

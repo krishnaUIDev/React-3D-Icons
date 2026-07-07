@@ -6,7 +6,6 @@ export function SunMoonIcon(props: SunMoonIconProps) {
     <SharedWrapper iconId="sunmoon" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.3, 0.1]} position={[0, 0, 0]}>
-          
           {/* Sun Half-Sphere (Left Side) */}
           <group position={[-0.15, 0, 0]}>
             <mesh castShadow receiveShadow>
@@ -30,11 +29,7 @@ export function SunMoonIcon(props: SunMoonIconProps) {
               <group key={i} rotation={[0, 0, angle + Math.PI]}>
                 <mesh position={[0, 0.44, 0]} castShadow>
                   <cylinderGeometry args={[0.016, 0.016, 0.16, 8]} />
-                  <meshStandardMaterial
-                    roughness={0.2}
-                    metalness={0.7}
-                    color={mat.color}
-                  />
+                  <meshStandardMaterial roughness={0.2} metalness={0.7} color={mat.color} />
                 </mesh>
               </group>
             ))}
@@ -61,11 +56,19 @@ export function SunMoonIcon(props: SunMoonIconProps) {
             {/* Smooth beveled tips */}
             <mesh position={[0.36, 0.01, 0]}>
               <sphereGeometry args={[0.11, 16, 16]} />
-              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} color={mat.color} />
+              <meshPhysicalMaterial
+                roughness={mat.roughness}
+                metalness={mat.metalness}
+                color={mat.color}
+              />
             </mesh>
             <mesh position={[-0.18, 0.31, 0]}>
               <sphereGeometry args={[0.11, 16, 16]} />
-              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} color={mat.color} />
+              <meshPhysicalMaterial
+                roughness={mat.roughness}
+                metalness={mat.metalness}
+                color={mat.color}
+              />
             </mesh>
           </group>
 
@@ -80,7 +83,7 @@ export function SunMoonIcon(props: SunMoonIconProps) {
                 emissiveIntensity={1.2}
               />
             </mesh>
-            
+
             {/* Bottom Star */}
             <mesh position={[0.02, -0.16, 0]} castShadow>
               <sphereGeometry args={[0.03, 8, 8]} />
@@ -91,7 +94,6 @@ export function SunMoonIcon(props: SunMoonIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

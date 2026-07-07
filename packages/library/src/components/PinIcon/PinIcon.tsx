@@ -6,7 +6,6 @@ export function PinIcon(props: IconProps) {
     <SharedWrapper iconId="pin" {...props}>
       {(mat) => (
         <group rotation={[0.4, -0.2, 0.4]} position={[0, 0.1, 0]}>
-          
           {/* Metal Pin Needle (extending down from bottom of handle) */}
           <mesh castShadow position={[0, -0.62, 0]}>
             <cylinderGeometry args={[0.02, 0.02, 0.6, 12]} />
@@ -59,7 +58,6 @@ export function PinIcon(props: IconProps) {
               color={mat.color}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

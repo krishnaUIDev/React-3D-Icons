@@ -1,1 +1,2 @@
-import { IconProps } from "../../types"; export type PipelineIconProps = IconProps;
+import { IconProps } from "../../types";
+export type PipelineIconProps = IconProps;

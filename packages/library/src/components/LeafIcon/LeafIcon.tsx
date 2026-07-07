@@ -6,7 +6,6 @@ export function LeafIcon(props: LeafIconProps) {
     <SharedWrapper iconId="leaf" {...props}>
       {(mat) => (
         <group rotation={[0.2, -Math.PI / 6, 0.1]} position={[0, -0.05, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Stem (Cylinder at the bottom base) */}
           <mesh position={[-0.08, -0.22, 0]} rotation={[0, 0, Math.PI / 6]} castShadow>
             <cylinderGeometry args={[0.015, 0.018, 0.22, 10]} />
@@ -76,7 +75,6 @@ export function LeafIcon(props: LeafIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

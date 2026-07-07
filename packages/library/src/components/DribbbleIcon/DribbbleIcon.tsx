@@ -46,7 +46,7 @@ export function DribbbleIcon(props: DribbbleIconProps) {
             </mesh>
 
             {/* Curved Right/Bottom Rib Arc */}
-            <mesh castShadow position={[0.14, -0.14, 0]} rotation={[0, 0, -Math.PI / 4 * 3]}>
+            <mesh castShadow position={[0.14, -0.14, 0]} rotation={[0, 0, (-Math.PI / 4) * 3]}>
               <torusGeometry args={[0.26, 0.02, 12, 48, Math.PI * 0.85]} />
               <meshStandardMaterial roughness={0.15} metalness={0.1} color="#ffffff" />
             </mesh>

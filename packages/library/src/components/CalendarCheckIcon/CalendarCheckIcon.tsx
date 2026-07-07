@@ -6,7 +6,6 @@ export function CalendarCheckIcon(props: CalendarCheckIconProps) {
     <SharedWrapper iconId="calendarcheck" {...props}>
       {(mat) => (
         <group rotation={[0.22, -Math.PI / 6, 0.05]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Calendar Plate Body (Preset Material) */}
           <mesh castShadow receiveShadow position={[0, -0.02, 0]}>
             <boxGeometry args={[0.34, 0.3, 0.02]} />
@@ -90,7 +89,6 @@ export function CalendarCheckIcon(props: CalendarCheckIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

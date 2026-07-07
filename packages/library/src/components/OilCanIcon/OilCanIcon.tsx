@@ -6,7 +6,6 @@ export function OilCanIcon(props: OilCanIconProps) {
     <SharedWrapper iconId="oilcan" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.3, 0.05]} position={[0, -0.02, 0]}>
-          
           {/* Main Can Oil Reservoir Body */}
           <group position={[0, -0.06, 0]}>
             <mesh castShadow receiveShadow>
@@ -80,7 +79,6 @@ export function OilCanIcon(props: OilCanIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

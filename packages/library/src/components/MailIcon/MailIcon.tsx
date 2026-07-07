@@ -6,7 +6,6 @@ export function MailIcon(props: MailIconProps) {
     <SharedWrapper iconId="mail" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.05]} position={[0, -0.05, 0]}>
-          
           {/* Main Envelope Body */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[1.4, 0.95, 0.16]} />
@@ -25,11 +24,7 @@ export function MailIcon(props: MailIconProps) {
           </mesh>
 
           {/* Top Flap (Pointed Flap angled down) */}
-          <mesh 
-            position={[0, 0.22, 0.09]} 
-            rotation={[-0.1, 0, Math.PI / 4]} 
-            castShadow
-          >
+          <mesh position={[0, 0.22, 0.09]} rotation={[-0.1, 0, Math.PI / 4]} castShadow>
             <boxGeometry args={[0.66, 0.66, 0.02]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -63,7 +58,6 @@ export function MailIcon(props: MailIconProps) {
               emissiveIntensity={0.2}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

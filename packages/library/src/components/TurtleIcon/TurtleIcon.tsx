@@ -30,7 +30,12 @@ export function TurtleIcon(props: TurtleIconProps) {
           </mesh>
 
           {/* Glowing Shell Rim Collar */}
-          <mesh position={[0, 0.005, 0]} scale={[1.29, 0.8, 1.49]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+          <mesh
+            position={[0, 0.005, 0]}
+            scale={[1.29, 0.8, 1.49]}
+            rotation={[Math.PI / 2, 0, 0]}
+            castShadow
+          >
             <torusGeometry args={[0.16, 0.008, 6, 24]} />
             <meshStandardMaterial
               color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}

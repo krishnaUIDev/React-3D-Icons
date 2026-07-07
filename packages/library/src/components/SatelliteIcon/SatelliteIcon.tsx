@@ -28,7 +28,11 @@ export function SatelliteIcon(props: SatelliteIconProps) {
             {/* Left Connector Bar */}
             <mesh position={[-0.24, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
               <cylinderGeometry args={[0.02, 0.02, 0.18, 8]} />
-              <meshStandardMaterial roughness={0.3} metalness={0.8} color={props.theme === "dark" ? "#cbd5e1" : "#475569"} />
+              <meshStandardMaterial
+                roughness={0.3}
+                metalness={0.8}
+                color={props.theme === "dark" ? "#cbd5e1" : "#475569"}
+              />
             </mesh>
             {/* Left Solar Panel wing */}
             <group position={[-0.45, 0, 0]}>
@@ -50,7 +54,11 @@ export function SatelliteIcon(props: SatelliteIconProps) {
             {/* Right Connector Bar */}
             <mesh position={[0.24, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
               <cylinderGeometry args={[0.02, 0.02, 0.18, 8]} />
-              <meshStandardMaterial roughness={0.3} metalness={0.8} color={props.theme === "dark" ? "#cbd5e1" : "#475569"} />
+              <meshStandardMaterial
+                roughness={0.3}
+                metalness={0.8}
+                color={props.theme === "dark" ? "#cbd5e1" : "#475569"}
+              />
             </mesh>
             {/* Right Solar Panel wing */}
             <group position={[0.45, 0, 0]}>
@@ -74,7 +82,11 @@ export function SatelliteIcon(props: SatelliteIconProps) {
               {/* Dish support stem */}
               <mesh position={[0, 0.08, -0.06]} rotation={[-Math.PI / 6, 0, 0]}>
                 <cylinderGeometry args={[0.02, 0.02, 0.12, 8]} />
-                <meshStandardMaterial roughness={0.3} metalness={0.8} color={props.theme === "dark" ? "#94a3b8" : "#cbd5e1"} />
+                <meshStandardMaterial
+                  roughness={0.3}
+                  metalness={0.8}
+                  color={props.theme === "dark" ? "#94a3b8" : "#cbd5e1"}
+                />
               </mesh>
               {/* Dish main bowl */}
               <mesh castShadow position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]}>

@@ -44,11 +44,7 @@ function Letter3DScene({ letter, fontUrl, mat }: Letter3DSceneProps) {
   );
 }
 
-export function LetterIcon({
-  letter = "A",
-  fontUrl = DEFAULT_FONT,
-  ...props
-}: LetterIconProps) {
+export function LetterIcon({ letter = "A", fontUrl = DEFAULT_FONT, ...props }: LetterIconProps) {
   return (
     <SharedWrapper iconId={`letter-${letter.toLowerCase()}`} {...props}>
       {(mat) => (

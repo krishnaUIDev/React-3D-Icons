@@ -10,7 +10,6 @@ export function KeyboardIcon(props: IconProps) {
     <SharedWrapper iconId="keyboard" {...props}>
       {(mat) => (
         <group rotation={[0.45, -0.25, 0.1]} position={[0, 0, 0]}>
-          
           {/* Main Board Base Frame */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[1.3, 0.58, 0.08]} />
@@ -47,7 +46,6 @@ export function KeyboardIcon(props: IconProps) {
             <boxGeometry args={[0.62, 0.06, 0.04]} />
             <meshStandardMaterial roughness={0.4} metalness={0.1} color="#cbd5e1" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

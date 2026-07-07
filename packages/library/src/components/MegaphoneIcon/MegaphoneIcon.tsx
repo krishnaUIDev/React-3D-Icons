@@ -6,7 +6,6 @@ export function MegaphoneIcon(props: IconProps) {
     <SharedWrapper iconId="megaphone" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.5, 0.2]} position={[-0.05, 0.05, 0]}>
-          
           {/* Main Cone Horn Body */}
           <group position={[0.08, 0.08, 0]} rotation={[0, 0, -Math.PI / 2]}>
             <mesh castShadow receiveShadow>
@@ -70,7 +69,6 @@ export function MegaphoneIcon(props: IconProps) {
             <torusGeometry args={[0.34, 0.02, 8, 24, Math.PI / 2]} />
             <meshStandardMaterial roughness={0.3} metalness={0.1} color="#e4e4e7" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

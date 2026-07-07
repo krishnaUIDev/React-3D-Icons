@@ -6,7 +6,6 @@ export function AtomIcon(props: AtomIconProps) {
     <SharedWrapper iconId="atom" {...props}>
       {(mat) => (
         <group rotation={[0.15, -Math.PI / 8, 0.05]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Central Nucleus Cluster (Preset Material) */}
           <group position={[0, 0, 0]}>
             {/* Center Proton */}
@@ -90,7 +89,6 @@ export function AtomIcon(props: AtomIconProps) {
               emissiveIntensity={1.4}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

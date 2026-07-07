@@ -27,7 +27,12 @@ export function LilyIcon(props: LilyIconProps) {
               return (
                 <group key={i} rotation={[0.05, 0, angle]}>
                   {/* Flared outward petal */}
-                  <mesh position={[0, 0.09, 0.04]} rotation={[0.45, 0, 0]} scale={[1.1, 1.8, 0.12]} castShadow>
+                  <mesh
+                    position={[0, 0.09, 0.04]}
+                    rotation={[0.45, 0, 0]}
+                    scale={[1.1, 1.8, 0.12]}
+                    castShadow
+                  >
                     <sphereGeometry args={[0.075, 16, 16, 0, Math.PI * 2, 0, Math.PI / 1.8]} />
                     <meshPhysicalMaterial
                       roughness={mat.roughness}
@@ -66,11 +71,20 @@ export function LilyIcon(props: LilyIconProps) {
                     <meshStandardMaterial color="#bbf7d0" />
                   </mesh>
                   {/* Glowing Anther Tip */}
-                  <mesh position={[0, 0.15, 0.025]} rotation={[0.2, 0, Math.PI / 2]} scale={[2, 1, 1]} castShadow>
+                  <mesh
+                    position={[0, 0.15, 0.025]}
+                    rotation={[0.2, 0, Math.PI / 2]}
+                    scale={[2, 1, 1]}
+                    castShadow
+                  >
                     <sphereGeometry args={[0.008, 8, 8]} />
                     <meshStandardMaterial
-                      color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                      emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                      color={
+                        mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                      }
+                      emissive={
+                        mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                      }
                       emissiveIntensity={1.4}
                     />
                   </mesh>

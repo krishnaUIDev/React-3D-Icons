@@ -7,7 +7,6 @@ export function CameraIcon(props: CameraIconProps) {
     <SharedWrapper iconId="camera" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0]} position={[0, 0, 0]}>
-          
           {/* Camera Body */}
           <mesh castShadow receiveShadow>
             <RoundedBox args={[1.0, 0.65, 0.38]} radius={0.1} smoothness={4}>
@@ -50,7 +49,13 @@ export function CameraIcon(props: CameraIconProps) {
           </mesh>
           <mesh position={[0, -0.05, 0.3]} rotation={[Math.PI / 2, 0, 0]}>
             <cylinderGeometry args={[0.12, 0.12, 0.02, 24]} />
-            <meshStandardMaterial roughness={0.1} metalness={0.1} color="#38bdf8" transparent opacity={0.6} />
+            <meshStandardMaterial
+              roughness={0.1}
+              metalness={0.1}
+              color="#38bdf8"
+              transparent
+              opacity={0.6}
+            />
           </mesh>
 
           {/* Flash Panel on Top-Left */}
@@ -61,7 +66,13 @@ export function CameraIcon(props: CameraIconProps) {
           </mesh>
           <mesh position={[-0.26, 0.38, 0.14]} castShadow>
             <boxGeometry args={[0.16, 0.08, 0.02]} />
-            <meshStandardMaterial roughness={0.1} metalness={0.1} color="#f8fafc" emissive="#ffffff" emissiveIntensity={1.5} />
+            <meshStandardMaterial
+              roughness={0.1}
+              metalness={0.1}
+              color="#f8fafc"
+              emissive="#ffffff"
+              emissiveIntensity={1.5}
+            />
           </mesh>
 
           {/* Shutter Button on Top-Right */}
@@ -75,7 +86,6 @@ export function CameraIcon(props: CameraIconProps) {
             <cylinderGeometry args={[0.11, 0.11, 0.06, 24]} />
             <meshStandardMaterial roughness={0.5} metalness={0.8} color="#475569" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

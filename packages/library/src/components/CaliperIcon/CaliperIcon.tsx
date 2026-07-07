@@ -6,7 +6,6 @@ export function CaliperIcon(props: CaliperIconProps) {
     <SharedWrapper iconId="caliper" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0.15]} position={[0, 0, 0]}>
-          
           {/* Main Caliper Beam Scale (Horizontal Ruler) */}
           <mesh castShadow receiveShadow position={[0, 0, 0]}>
             <boxGeometry args={[0.74, 0.05, 0.02]} />
@@ -85,7 +84,6 @@ export function CaliperIcon(props: CaliperIconProps) {
             <cylinderGeometry args={[0.008, 0.008, 0.12, 8]} />
             <meshStandardMaterial roughness={0.1} metalness={0.95} color="#94a3b8" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

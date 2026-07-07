@@ -6,7 +6,6 @@ export function FlagIcon(props: IconProps) {
     <SharedWrapper iconId="flag" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.05]} position={[-0.2, 0, 0]}>
-          
           {/* Flagpole (Steel silver pole) */}
           <mesh castShadow receiveShadow position={[0, 0, 0]}>
             <cylinderGeometry args={[0.022, 0.022, 1.4, 12]} />
@@ -16,7 +15,8 @@ export function FlagIcon(props: IconProps) {
           {/* Flagpole Top Ball */}
           <mesh castShadow position={[0, 0.72, 0]}>
             <sphereGeometry args={[0.05, 16, 16]} />
-            <meshStandardMaterial roughness={0.1} metalness={0.9} color="#d4af37" /> {/* Gold top ball */}
+            <meshStandardMaterial roughness={0.1} metalness={0.9} color="#d4af37" />{" "}
+            {/* Gold top ball */}
           </mesh>
 
           {/* Flagpole Bottom Collar */}
@@ -65,7 +65,6 @@ export function FlagIcon(props: IconProps) {
               color={mat.color}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

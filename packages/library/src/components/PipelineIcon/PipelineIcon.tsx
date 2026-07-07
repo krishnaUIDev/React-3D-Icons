@@ -84,12 +84,20 @@ export function PipelineIcon(props: PipelineIconProps) {
           {/* End flanges/connectors (metallic rims) */}
           <mesh position={[-0.7, -0.2, 0]} rotation={[0, 0, Math.PI / 2]}>
             <cylinderGeometry args={[0.09, 0.09, 0.04, 16]} />
-            <meshStandardMaterial roughness={0.3} metalness={0.8} color={props.theme === "dark" ? "#27272a" : "#e4e4e7"} />
+            <meshStandardMaterial
+              roughness={0.3}
+              metalness={0.8}
+              color={props.theme === "dark" ? "#27272a" : "#e4e4e7"}
+            />
           </mesh>
 
           <mesh position={[0.6, 0.2, 0]} rotation={[0, 0, Math.PI / 2]}>
             <cylinderGeometry args={[0.09, 0.09, 0.04, 16]} />
-            <meshStandardMaterial roughness={0.3} metalness={0.8} color={props.theme === "dark" ? "#27272a" : "#e4e4e7"} />
+            <meshStandardMaterial
+              roughness={0.3}
+              metalness={0.8}
+              color={props.theme === "dark" ? "#27272a" : "#e4e4e7"}
+            />
           </mesh>
 
           {/* Valve Control Wheel */}
@@ -97,7 +105,11 @@ export function PipelineIcon(props: PipelineIconProps) {
             {/* Valve Central Node */}
             <mesh>
               <cylinderGeometry args={[0.03, 0.03, 0.08, 16]} />
-              <meshStandardMaterial roughness={0.3} metalness={0.8} color={props.theme === "dark" ? "#27272a" : "#e4e4e7"} />
+              <meshStandardMaterial
+                roughness={0.3}
+                metalness={0.8}
+                color={props.theme === "dark" ? "#27272a" : "#e4e4e7"}
+              />
             </mesh>
             {/* Valve Outer Wheel Ring */}
             <mesh castShadow>
@@ -114,7 +126,11 @@ export function PipelineIcon(props: PipelineIconProps) {
             {[0, Math.PI / 3, (2 * Math.PI) / 3].map((angle, index) => (
               <mesh key={index} rotation={[0, angle, 0]}>
                 <boxGeometry args={[0.26, 0.02, 0.02]} />
-                <meshStandardMaterial color={props.accentColor || "#10b981"} roughness={0.3} metalness={0.6} />
+                <meshStandardMaterial
+                  color={props.accentColor || "#10b981"}
+                  roughness={0.3}
+                  metalness={0.6}
+                />
               </mesh>
             ))}
           </group>

@@ -6,7 +6,6 @@ export function BarcodeScannerIcon(props: BarcodeScannerIconProps) {
     <SharedWrapper iconId="barcodescanner" {...props}>
       {(mat) => (
         <group rotation={[0.2, -Math.PI / 6, 0.2]} position={[0, 0, 0]}>
-          
           {/* Main Pistol Grip Handle (Matte plastic) */}
           <mesh castShadow receiveShadow position={[-0.04, -0.1, 0]} rotation={[0, 0, -0.28]}>
             <boxGeometry args={[0.046, 0.18, 0.046]} />
@@ -80,7 +79,6 @@ export function BarcodeScannerIcon(props: BarcodeScannerIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

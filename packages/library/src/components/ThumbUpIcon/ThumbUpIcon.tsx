@@ -9,7 +9,6 @@ export function ThumbUpIcon(props: ThumbUpIconProps) {
     <SharedWrapper iconId="thumbup" {...props}>
       {(mat) => (
         <group rotation={[0.05, -0.35, 0.05]} position={[-0.05, 0.05, 0]}>
-          
           {/* Sleeve Cuff (Wrist wrapper) */}
           <mesh position={[-0.45, -0.15, 0]} castShadow receiveShadow>
             <boxGeometry args={[0.3, 0.65, 0.5]} />
@@ -86,12 +85,7 @@ export function ThumbUpIcon(props: ThumbUpIconProps) {
 
           {/* Curled Fingers (Four horizontal rounded capsules sticking out on front-right) */}
           {fingerOffsets.map((yOffset, i) => (
-            <mesh 
-              key={i} 
-              position={[0.32, yOffset, 0.20]} 
-              rotation={[0, Math.PI / 2, 0]}
-              castShadow
-            >
+            <mesh key={i} position={[0.32, yOffset, 0.2]} rotation={[0, Math.PI / 2, 0]} castShadow>
               <capsuleGeometry args={[0.08, 0.24, 8, 16]} />
               <meshPhysicalMaterial
                 roughness={mat.roughness}
@@ -102,7 +96,6 @@ export function ThumbUpIcon(props: ThumbUpIconProps) {
               />
             </mesh>
           ))}
-
         </group>
       )}
     </SharedWrapper>

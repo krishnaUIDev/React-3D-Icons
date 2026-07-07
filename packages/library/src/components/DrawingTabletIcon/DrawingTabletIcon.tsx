@@ -6,7 +6,6 @@ export function DrawingTabletIcon(props: DrawingTabletIconProps) {
     <SharedWrapper iconId="drawingtablet" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.1]} position={[0, 0, 0]}>
-          
           {/* Tablet Matte Bezel Chassis (Black outer frame) */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.46, 0.32, 0.024]} />
@@ -77,7 +76,6 @@ export function DrawingTabletIcon(props: DrawingTabletIconProps) {
               <meshStandardMaterial roughness={0.2} metalness={0.7} color="#cbd5e1" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

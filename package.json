@@ -9,6 +9,16 @@
     "dev:lab": "npm run dev --workspace=packages/lab",
     "build:lib": "npm run build --workspace=packages/library",
     "build:lab": "npm run build --workspace=packages/lab",
-    "test:e2e": "npm run test --workspace=packages/e2e"
+    "test:e2e": "npm run test --workspace=packages/e2e",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.63.0",
+    "@typescript-eslint/parser": "^8.63.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "prettier": "^3.9.4"
   }
 }

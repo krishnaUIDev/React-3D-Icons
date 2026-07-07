@@ -24,7 +24,13 @@ export function LotusIcon(props: LotusIconProps) {
             {Array.from({ length: 8 }).map((_, i) => {
               const angle = (i * Math.PI) / 4;
               return (
-                <mesh key={i} position={[Math.sin(angle) * 0.06, 0.04, Math.cos(angle) * 0.06]} rotation={[0.4, angle, 0]} castShadow scale={[1, 1.2, 0.5]}>
+                <mesh
+                  key={i}
+                  position={[Math.sin(angle) * 0.06, 0.04, Math.cos(angle) * 0.06]}
+                  rotation={[0.4, angle, 0]}
+                  castShadow
+                  scale={[1, 1.2, 0.5]}
+                >
                   <sphereGeometry args={[0.07, 12, 12, 0, Math.PI * 2, 0, Math.PI / 2]} />
                   <meshPhysicalMaterial
                     roughness={mat.roughness}
@@ -41,7 +47,13 @@ export function LotusIcon(props: LotusIconProps) {
             {Array.from({ length: 6 }).map((_, i) => {
               const angle = (i * Math.PI) / 3;
               return (
-                <mesh key={i} position={[Math.sin(angle) * 0.03, 0.08, Math.cos(angle) * 0.03]} rotation={[0.2, angle, 0]} castShadow scale={[0.8, 1.2, 0.4]}>
+                <mesh
+                  key={i}
+                  position={[Math.sin(angle) * 0.03, 0.08, Math.cos(angle) * 0.03]}
+                  rotation={[0.2, angle, 0]}
+                  castShadow
+                  scale={[0.8, 1.2, 0.4]}
+                >
                   <sphereGeometry args={[0.06, 12, 12, 0, Math.PI * 2, 0, Math.PI / 2]} />
                   <meshPhysicalMaterial
                     roughness={mat.roughness}

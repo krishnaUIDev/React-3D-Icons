@@ -6,7 +6,6 @@ export function WindIcon(props: WindIconProps) {
     <SharedWrapper iconId="wind" {...props}>
       {(mat) => (
         <group rotation={[0.1, -0.3, 0.05]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Top Wind Trail */}
           <group position={[-0.1, 0.16, 0]}>
             {/* Main horizontal line */}
@@ -85,7 +84,6 @@ export function WindIcon(props: WindIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

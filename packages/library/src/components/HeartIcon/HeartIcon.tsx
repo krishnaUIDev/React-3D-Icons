@@ -23,7 +23,7 @@ export function HeartIcon(props: HeartIconProps) {
     bevelSegments: 6,
     steps: 1,
     bevelSize: 0.08,
-    bevelThickness: 0.08,
+    bevelThickness: 0.08
   };
 
   return (

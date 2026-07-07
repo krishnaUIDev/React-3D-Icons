@@ -8,7 +8,6 @@ export function NetworkSwitchIcon(props: NetworkSwitchIconProps) {
     <SharedWrapper iconId="networkswitch" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.35, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main 1U Rack Casing */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.46, 0.12, 0.28]} />
@@ -30,7 +29,12 @@ export function NetworkSwitchIcon(props: NetworkSwitchIconProps) {
               </mesh>
               {/* Bolt mounting holes details */}
               {[-0.04, 0.04].map((yOffset, bIdx) => (
-                <mesh key={bIdx} position={[xOffset < 0 ? -0.006 : 0.006, yOffset, 0]} rotation={[0, Math.PI / 2, 0]} castShadow>
+                <mesh
+                  key={bIdx}
+                  position={[xOffset < 0 ? -0.006 : 0.006, yOffset, 0]}
+                  rotation={[0, Math.PI / 2, 0]}
+                  castShadow
+                >
                   <cylinderGeometry args={[0.006, 0.006, 0.004, 8]} />
                   <meshStandardMaterial roughness={0.3} metalness={0.9} color="#1e293b" />
                 </mesh>
@@ -100,7 +104,6 @@ export function NetworkSwitchIcon(props: NetworkSwitchIconProps) {
               </group>
             ))}
           </group>
-
         </group>
       )}
     </SharedWrapper>

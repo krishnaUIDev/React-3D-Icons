@@ -6,7 +6,6 @@ export function MapPinIcon(props: MapPinIconProps) {
     <SharedWrapper iconId="mappin" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0]} position={[0, 0.05, 0]}>
-          
           {/* Main Pin Balloon Ring */}
           <mesh position={[0, 0.2, 0]} castShadow receiveShadow>
             <torusGeometry args={[0.26, 0.14, 16, 64]} />
@@ -44,9 +43,11 @@ export function MapPinIcon(props: MapPinIconProps) {
           {/* Base shadow/plate indicator (Dark ground ring) */}
           <mesh position={[0, -0.42, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow>
             <torusGeometry args={[0.18, 0.03, 8, 32]} />
-            <meshStandardMaterial roughness={0.6} color={props.theme === "dark" ? "#1e293b" : "#64748b"} />
+            <meshStandardMaterial
+              roughness={0.6}
+              color={props.theme === "dark" ? "#1e293b" : "#64748b"}
+            />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

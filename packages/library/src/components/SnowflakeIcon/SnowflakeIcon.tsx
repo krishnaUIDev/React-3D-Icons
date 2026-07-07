@@ -6,7 +6,6 @@ export function SnowflakeIcon(props: SnowflakeIconProps) {
     <SharedWrapper iconId="snowflake" {...props}>
       {(mat) => (
         <group rotation={[0, 0, 0]} position={[0, 0, 0]} scale={[1.45, 1.45, 1.45]}>
-          
           {/* Central Glowing Core Sphere */}
           <mesh castShadow>
             <sphereGeometry args={[0.07, 16, 16]} />
@@ -22,7 +21,6 @@ export function SnowflakeIcon(props: SnowflakeIconProps) {
             const angle = (i * Math.PI) / 3;
             return (
               <group key={i} rotation={[0, 0, angle]}>
-                
                 {/* Main Branch Shaft (lies along Y axis initially, pointing UP) */}
                 <mesh position={[0, 0.19, 0]} castShadow>
                   <cylinderGeometry args={[0.014, 0.014, 0.38, 8]} />
@@ -94,16 +92,18 @@ export function SnowflakeIcon(props: SnowflakeIconProps) {
                 <mesh position={[0, 0.38, 0]} castShadow>
                   <sphereGeometry args={[0.02, 8, 8]} />
                   <meshStandardMaterial
-                    color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#38bdf8"}
-                    emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#38bdf8"}
+                    color={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#38bdf8"
+                    }
+                    emissive={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#38bdf8"
+                    }
                     emissiveIntensity={1.2}
                   />
                 </mesh>
-
               </group>
             );
           })}
-
         </group>
       )}
     </SharedWrapper>

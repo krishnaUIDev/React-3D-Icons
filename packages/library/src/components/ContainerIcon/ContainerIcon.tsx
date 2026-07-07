@@ -6,7 +6,6 @@ export function ContainerIcon(props: ContainerIconProps) {
     <SharedWrapper iconId="container" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.35, 0.05]}>
-
           {/* Main container body */}
           <mesh castShadow receiveShadow position={[0, 0, 0]}>
             <boxGeometry args={[1.6, 0.9, 0.75]} />
@@ -87,7 +86,6 @@ export function ContainerIcon(props: ContainerIconProps) {
               metalness={0.8}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

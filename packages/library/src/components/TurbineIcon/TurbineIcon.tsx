@@ -8,7 +8,6 @@ export function TurbineIcon(props: TurbineIconProps) {
     <SharedWrapper iconId="turbine" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Outer Protective Shroud Ring */}
           <mesh castShadow receiveShadow>
             <torusGeometry args={[0.35, 0.024, 8, 48]} />
@@ -79,23 +78,23 @@ export function TurbineIcon(props: TurbineIconProps) {
                     color={mat.color}
                   />
                 </mesh>
-                
+
                 {/* Thin blade tip accents (glow) */}
-                <mesh
-                  position={[0, 0.31, 0.01]}
-                  rotation={[0, 0.45, 0]}
-                >
+                <mesh position={[0, 0.31, 0.01]} rotation={[0, 0.45, 0]}>
                   <boxGeometry args={[0.065, 0.02, 0.018]} />
                   <meshStandardMaterial
-                    color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#06b6d4"}
-                    emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#06b6d4"}
+                    color={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#06b6d4"
+                    }
+                    emissive={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#06b6d4"
+                    }
                     emissiveIntensity={1.1}
                   />
                 </mesh>
               </group>
             );
           })}
-
         </group>
       )}
     </SharedWrapper>

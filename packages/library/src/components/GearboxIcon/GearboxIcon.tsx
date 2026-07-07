@@ -6,7 +6,6 @@ export function GearboxIcon(props: GearboxIconProps) {
     <SharedWrapper iconId="gearbox" {...props}>
       {(mat) => (
         <group rotation={[0.25, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Gearbox Cast Enclosure (Base casing bracket) */}
           <mesh castShadow position={[0, -0.16, 0]}>
             <boxGeometry args={[0.38, 0.04, 0.22]} />
@@ -37,7 +36,7 @@ export function GearboxIcon(props: GearboxIconProps) {
           </mesh>
 
           {/* Three Intermeshing Transmission Gears */}
-          
+
           {/* Left Input Shaft & Gear (Small Cog) */}
           <group position={[-0.08, 0, 0]}>
             {/* Input axle shaft */}
@@ -85,15 +84,14 @@ export function GearboxIcon(props: GearboxIconProps) {
           </group>
 
           {/* Casing Mounting Bolts detail */}
-          {[-0.14, 0.14].map((xOffset, idx) => (
+          {[-0.14, 0.14].map((xOffset, idx) =>
             [-0.08, 0.08].map((zOffset, bIdx) => (
               <mesh key={`${idx}-${bIdx}`} position={[xOffset, -0.13, zOffset]} castShadow>
                 <cylinderGeometry args={[0.012, 0.012, 0.016, 8]} />
                 <meshStandardMaterial roughness={0.2} metalness={0.85} color="#cbd5e1" />
               </mesh>
             ))
-          ))}
-
+          )}
         </group>
       )}
     </SharedWrapper>

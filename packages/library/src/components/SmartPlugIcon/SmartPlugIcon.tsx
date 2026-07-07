@@ -6,7 +6,6 @@ export function SmartPlugIcon(props: SmartPlugIconProps) {
     <SharedWrapper iconId="smartplug" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Adapter Body (Rounded Capsule block) */}
           <mesh castShadow receiveShadow>
             <cylinderGeometry args={[0.13, 0.13, 0.16, 24]} />
@@ -80,7 +79,6 @@ export function SmartPlugIcon(props: SmartPlugIconProps) {
               <meshStandardMaterial roughness={0.1} metalness={0.95} color="#cbd5e1" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

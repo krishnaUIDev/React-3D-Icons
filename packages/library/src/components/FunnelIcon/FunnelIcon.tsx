@@ -6,7 +6,6 @@ export function FunnelIcon(props: FunnelIconProps) {
     <SharedWrapper iconId="funnel" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.25, 0.05]} position={[0, 0.05, 0]}>
-          
           {/* Main Upper Funnel Cone (Hollowed cone style representation) */}
           <group position={[0, 0.1, 0]}>
             {/* Outer Cone */}
@@ -75,7 +74,6 @@ export function FunnelIcon(props: FunnelIconProps) {
             <torusGeometry args={[0.03, 0.008, 6, 12]} />
             <meshStandardMaterial roughness={0.1} metalness={0.9} color="#94a3b8" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

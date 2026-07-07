@@ -64,29 +64,17 @@ export function GraduationCapIcon(props: GraduationCapIconProps) {
             {/* Center Button */}
             <mesh castShadow position={[0, 0.18, 0]}>
               <cylinderGeometry args={[0.07, 0.07, 0.04, 12]} />
-              <meshStandardMaterial
-                color={ac}
-                roughness={0.2}
-                metalness={0.6}
-              />
+              <meshStandardMaterial color={ac} roughness={0.2} metalness={0.6} />
             </mesh>
 
             {/* Tassel String Part 1 (Draped to the side edge) */}
-            <mesh
-              castShadow
-              position={[0.26, 0.18, 0.26]}
-              rotation={[0.05, -Math.PI / 4, -0.05]}
-            >
+            <mesh castShadow position={[0.26, 0.18, 0.26]} rotation={[0.05, -Math.PI / 4, -0.05]}>
               <cylinderGeometry args={[0.015, 0.015, 0.72, 8]} />
               <meshStandardMaterial color={ac} roughness={0.3} metalness={0.4} />
             </mesh>
 
             {/* Tassel String Part 2 (Hanging down) */}
-            <mesh
-              castShadow
-              position={[0.52, 0.04, 0.52]}
-              rotation={[0.1, 0, -0.1]}
-            >
+            <mesh castShadow position={[0.52, 0.04, 0.52]} rotation={[0.1, 0, -0.1]}>
               <cylinderGeometry args={[0.015, 0.015, 0.28, 8]} />
               <meshStandardMaterial color={ac} roughness={0.3} metalness={0.4} />
             </mesh>

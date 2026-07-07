@@ -1,1 +1,2 @@
-import { IconProps } from "../../types"; export type DownloadIconProps = IconProps;
+import { IconProps } from "../../types";
+export type DownloadIconProps = IconProps;

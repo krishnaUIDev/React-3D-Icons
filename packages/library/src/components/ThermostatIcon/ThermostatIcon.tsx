@@ -8,7 +8,6 @@ export function ThermostatIcon(props: ThermostatIconProps) {
     <SharedWrapper iconId="thermostat" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.25, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Thermostat Wall Backplate */}
           <mesh position={[0, 0, -0.04]} castShadow>
             <cylinderGeometry args={[0.22, 0.22, 0.02, 32]} />
@@ -49,12 +48,7 @@ export function ThermostatIcon(props: ThermostatIconProps) {
             // Leave a gap at the bottom for standard thermostat look
             if (idx > 4 && idx < 20) {
               return (
-                <mesh
-                  key={idx}
-                  position={[0, 0, 0.056]}
-                  rotation={[0, 0, angle]}
-                  castShadow
-                >
+                <mesh key={idx} position={[0, 0, 0.056]} rotation={[0, 0, angle]} castShadow>
                   <mesh position={[0, 0.144, 0]}>
                     <boxGeometry args={[0.005, 0.016, 0.002]} />
                     <meshStandardMaterial roughness={0.2} metalness={0.8} color="#cbd5e1" />
@@ -73,7 +67,9 @@ export function ThermostatIcon(props: ThermostatIconProps) {
                 <boxGeometry args={[0.038, 0.008, 0.003]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.0}
                 />
               </mesh>
@@ -81,7 +77,9 @@ export function ThermostatIcon(props: ThermostatIconProps) {
                 <boxGeometry args={[0.008, 0.046, 0.003]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.0}
                 />
               </mesh>
@@ -94,7 +92,9 @@ export function ThermostatIcon(props: ThermostatIconProps) {
                 <boxGeometry args={[0.034, 0.008, 0.003]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.0}
                 />
               </mesh>
@@ -103,7 +103,9 @@ export function ThermostatIcon(props: ThermostatIconProps) {
                 <boxGeometry args={[0.008, 0.018, 0.003]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.0}
                 />
               </mesh>
@@ -112,7 +114,9 @@ export function ThermostatIcon(props: ThermostatIconProps) {
                 <boxGeometry args={[0.034, 0.008, 0.003]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.0}
                 />
               </mesh>
@@ -121,7 +125,9 @@ export function ThermostatIcon(props: ThermostatIconProps) {
                 <boxGeometry args={[0.008, 0.018, 0.003]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.0}
                 />
               </mesh>
@@ -130,7 +136,9 @@ export function ThermostatIcon(props: ThermostatIconProps) {
                 <boxGeometry args={[0.034, 0.008, 0.003]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.0}
                 />
               </mesh>
@@ -146,7 +154,6 @@ export function ThermostatIcon(props: ThermostatIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

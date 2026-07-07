@@ -6,7 +6,6 @@ export function DriveShaftIcon(props: DriveShaftIconProps) {
     <SharedWrapper iconId="driveshaft" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.4, 0.4]} position={[0, 0, 0]}>
-          
           {/* Main Central Tube (Drive shaft tube) */}
           <mesh rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
             <cylinderGeometry args={[0.038, 0.038, 0.38, 24]} />
@@ -28,7 +27,7 @@ export function DriveShaftIcon(props: DriveShaftIconProps) {
           ))}
 
           {/* Double Universal Joints (U-Joints) */}
-          
+
           {/* Left U-Joint Assembly */}
           <group position={[-0.24, 0, 0]}>
             {/* Yoke Bracket A (attached to shaft) */}
@@ -50,7 +49,9 @@ export function DriveShaftIcon(props: DriveShaftIconProps) {
                 <cylinderGeometry args={[0.01, 0.01, 0.076, 8]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.3}
                 />
               </mesh>
@@ -59,7 +60,9 @@ export function DriveShaftIcon(props: DriveShaftIconProps) {
                 <cylinderGeometry args={[0.01, 0.01, 0.076, 8]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.3}
                 />
               </mesh>
@@ -105,7 +108,9 @@ export function DriveShaftIcon(props: DriveShaftIconProps) {
                 <cylinderGeometry args={[0.01, 0.01, 0.076, 8]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.3}
                 />
               </mesh>
@@ -114,7 +119,9 @@ export function DriveShaftIcon(props: DriveShaftIconProps) {
                 <cylinderGeometry args={[0.01, 0.01, 0.076, 8]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.3}
                 />
               </mesh>
@@ -138,7 +145,6 @@ export function DriveShaftIcon(props: DriveShaftIconProps) {
               <meshStandardMaterial roughness={0.1} metalness={0.9} color="#475569" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

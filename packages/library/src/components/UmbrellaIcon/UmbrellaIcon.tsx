@@ -36,7 +36,11 @@ export function UmbrellaIcon(props: UmbrellaIconProps) {
 
           {/* Spoke Tips (Beads at the edge of the canopy) */}
           {spokeTips.map((tip, idx) => (
-            <mesh key={`tip-${idx}`} position={[tip.x, 0.15 - canopyRadius * Math.sin(Math.PI * 0.08), tip.z]} castShadow>
+            <mesh
+              key={`tip-${idx}`}
+              position={[tip.x, 0.15 - canopyRadius * Math.sin(Math.PI * 0.08), tip.z]}
+              castShadow
+            >
               <sphereGeometry args={[0.022, 12, 12]} />
               <meshStandardMaterial
                 roughness={0.2}

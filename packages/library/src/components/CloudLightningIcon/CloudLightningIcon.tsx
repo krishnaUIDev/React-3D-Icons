@@ -6,7 +6,6 @@ export function CloudLightningIcon(props: CloudLightningIconProps) {
     <SharedWrapper iconId="cloudlightning" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.2, 0.05]} position={[0, 0.1, 0]}>
-          
           {/* Cloud Body (Overlapping physical spheres) */}
           <group position={[0, 0.1, 0]}>
             {/* Center Sphere */}
@@ -80,7 +79,7 @@ export function CloudLightningIcon(props: CloudLightningIconProps) {
                 emissiveIntensity={1.3}
               />
             </mesh>
-            
+
             {/* Middle horizontal-skewed segment */}
             <mesh position={[-0.04, -0.28, 0]} rotation={[0, 0, 0.32]} castShadow>
               <boxGeometry args={[0.08, 0.26, 0.06]} />
@@ -101,7 +100,6 @@ export function CloudLightningIcon(props: CloudLightningIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

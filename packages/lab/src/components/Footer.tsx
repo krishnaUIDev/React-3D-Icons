@@ -23,7 +23,20 @@ export const Footer: React.FC = () => {
           </button>
           <span className="text-zinc-300 dark:text-zinc-800 hidden xs:inline">|</span>
           <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400">
-            &copy; {new Date().getFullYear()} MIT Licensed. Built with <Heart size={10} className="inline text-red-500 fill-current animate-pulse align-middle -mt-0.5" /> by <a href="https://github.com/krishnaUIDev" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline">Krishna Kondoju</a>
+            &copy; {new Date().getFullYear()} MIT Licensed. Built with{" "}
+            <Heart
+              size={10}
+              className="inline text-red-500 fill-current animate-pulse align-middle -mt-0.5"
+            />{" "}
+            by{" "}
+            <a
+              href="https://github.com/krishnaUIDev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-indigo-600 dark:hover:text-indigo-400 hover:underline"
+            >
+              Krishna Kondoju
+            </a>
           </span>
         </div>
 

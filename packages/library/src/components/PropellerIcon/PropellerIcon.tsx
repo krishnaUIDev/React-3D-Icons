@@ -8,7 +8,6 @@ export function PropellerIcon(props: PropellerIconProps) {
     <SharedWrapper iconId="propeller" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Rear Drive Shaft Adapter (Steel sleeve) */}
           <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0, -0.1]} castShadow>
             <cylinderGeometry args={[0.046, 0.046, 0.16, 16]} />
@@ -62,15 +61,15 @@ export function PropellerIcon(props: PropellerIconProps) {
                     />
                   </mesh>
                   {/* Blade reinforce spine (accent colored root support) */}
-                  <mesh
-                    position={[0, 0.09, -0.01]}
-                    rotation={[0, 0, 0]}
-                    castShadow
-                  >
+                  <mesh position={[0, 0.09, -0.01]} rotation={[0, 0, 0]} castShadow>
                     <boxGeometry args={[0.038, 0.08, 0.012]} />
                     <meshStandardMaterial
-                      color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                      emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                      color={
+                        mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                      }
+                      emissive={
+                        mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                      }
                       emissiveIntensity={0.5}
                     />
                   </mesh>
@@ -78,7 +77,6 @@ export function PropellerIcon(props: PropellerIconProps) {
               );
             })}
           </group>
-
         </group>
       )}
     </SharedWrapper>

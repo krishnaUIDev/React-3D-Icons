@@ -6,7 +6,6 @@ export function HydraulicJackIcon(props: HydraulicJackIconProps) {
     <SharedWrapper iconId="hydraulicjack" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Heavy Rectangular Base Plate */}
           <mesh castShadow position={[0, -0.22, 0]}>
             <boxGeometry args={[0.24, 0.04, 0.2]} />
@@ -82,7 +81,6 @@ export function HydraulicJackIcon(props: HydraulicJackIconProps) {
             <cylinderGeometry args={[0.022, 0.022, 0.014, 12]} />
             <meshStandardMaterial roughness={0.2} metalness={0.8} color="#cbd5e1" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

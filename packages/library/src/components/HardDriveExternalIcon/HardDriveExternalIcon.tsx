@@ -6,7 +6,6 @@ export function HardDriveExternalIcon(props: HardDriveExternalIconProps) {
     <SharedWrapper iconId="harddriveexternal" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.25, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Portable Hard Drive Case */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.38, 0.58, 0.07]} />
@@ -65,7 +64,6 @@ export function HardDriveExternalIcon(props: HardDriveExternalIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

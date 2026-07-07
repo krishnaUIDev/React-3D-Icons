@@ -37,12 +37,7 @@ export function NetworkIcon(props: NetworkIconProps) {
           {/* Interconnecting wireframe lattice cage */}
           <mesh castShadow>
             <icosahedronGeometry args={[0.8, 1]} />
-            <meshBasicMaterial
-              wireframe
-              color={mat.color}
-              transparent
-              opacity={0.3}
-            />
+            <meshBasicMaterial wireframe color={mat.color} transparent opacity={0.3} />
           </mesh>
 
           {/* Node hubs on major vertices */}
@@ -62,9 +57,7 @@ export function NetworkIcon(props: NetworkIconProps) {
               {/* Emissive core dot */}
               <mesh position={[0, 0, 0]}>
                 <sphereGeometry args={[0.05, 8, 8]} />
-                <meshBasicMaterial
-                  color={mat.emissiveIntensity > 0 ? mat.emissive : "#10b981"}
-                />
+                <meshBasicMaterial color={mat.emissiveIntensity > 0 ? mat.emissive : "#10b981"} />
               </mesh>
             </group>
           ))}

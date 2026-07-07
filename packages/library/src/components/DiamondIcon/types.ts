@@ -1,1 +1,2 @@
-import { IconProps } from "../../types"; export type DiamondIconProps = IconProps;
+import { IconProps } from "../../types";
+export type DiamondIconProps = IconProps;

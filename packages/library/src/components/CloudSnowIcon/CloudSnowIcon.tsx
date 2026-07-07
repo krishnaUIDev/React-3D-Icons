@@ -6,7 +6,6 @@ export function CloudSnowIcon(props: CloudSnowIconProps) {
     <SharedWrapper iconId="cloudsnow" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.2, 0.05]} position={[0, 0.1, 0]}>
-          
           {/* Cloud Body */}
           <group position={[0, 0.1, 0]}>
             {/* Center Sphere */}
@@ -80,7 +79,7 @@ export function CloudSnowIcon(props: CloudSnowIconProps) {
                 emissiveIntensity={1.2}
               />
             </mesh>
-            
+
             {/* Center snowflake sphere */}
             <mesh position={[0.02, -0.08, 0.02]} castShadow>
               <sphereGeometry args={[0.045, 12, 12]} />
@@ -101,7 +100,6 @@ export function CloudSnowIcon(props: CloudSnowIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

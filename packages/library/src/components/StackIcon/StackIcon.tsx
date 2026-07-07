@@ -6,7 +6,6 @@ export function StackIcon(props: StackIconProps) {
     <SharedWrapper iconId="stack" {...props}>
       {(mat) => (
         <group rotation={[0.3, -0.4, 0.1]} position={[0, 0, 0]}>
-          
           {/* Stack Layers (Three horizontal beveled database plates) */}
           {[-0.45, 0, 0.45].map((yOffset, index) => (
             <group key={index} position={[0, yOffset, 0]}>
@@ -52,7 +51,7 @@ export function StackIcon(props: StackIconProps) {
             [-0.56, -0.56],
             [-0.56, 0.56],
             [0.56, -0.56],
-            [0.56, 0.56],
+            [0.56, 0.56]
           ].map(([x, z], i) => (
             <mesh key={i} position={[x, 0, z]} castShadow>
               <cylinderGeometry args={[0.02, 0.02, 1.1, 8]} />
@@ -77,7 +76,6 @@ export function StackIcon(props: StackIconProps) {
               />
             </mesh>
           ))}
-
         </group>
       )}
     </SharedWrapper>

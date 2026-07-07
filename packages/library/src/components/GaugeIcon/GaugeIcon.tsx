@@ -6,7 +6,6 @@ export function GaugeIcon(props: GaugeIconProps) {
     <SharedWrapper iconId="gauge" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0]} position={[0, 0, 0]}>
-          
           {/* Base Dial Cylinder */}
           <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, 0]}>
             <cylinderGeometry args={[0.85, 0.85, 0.14, 32]} />
@@ -40,9 +39,7 @@ export function GaugeIcon(props: GaugeIconProps) {
               <group key={i} rotation={[0, 0, angle]}>
                 <mesh position={[0, 0.68, 0]}>
                   <boxGeometry args={[0.03, 0.12, 0.02]} />
-                  <meshStandardMaterial
-                    color={props.theme === "dark" ? "#64748b" : "#94a3b8"}
-                  />
+                  <meshStandardMaterial color={props.theme === "dark" ? "#64748b" : "#94a3b8"} />
                 </mesh>
               </group>
             ))}
@@ -70,7 +67,6 @@ export function GaugeIcon(props: GaugeIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

@@ -6,7 +6,6 @@ export function BananaIcon(props: BananaIconProps) {
     <SharedWrapper iconId="banana" {...props}>
       {(mat) => (
         <group rotation={[0.1, -Math.PI / 8, 0.2]} position={[0, -0.05, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Main Exposed Banana Core (Soft Matte Cream color) */}
           <group position={[0, 0, 0]}>
             <mesh castShadow>
@@ -32,7 +31,7 @@ export function BananaIcon(props: BananaIconProps) {
                 color={mat.color}
               />
             </mesh>
-            
+
             {/* Bottom Dark Tip Stem */}
             <mesh position={[0.01, -0.11, 0]} rotation={[0, 0, -Math.PI / 10]} castShadow>
               <cylinderGeometry args={[0.02, 0.03, 0.06, 6]} />
@@ -91,7 +90,6 @@ export function BananaIcon(props: BananaIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

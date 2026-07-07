@@ -78,7 +78,9 @@ export function MapIcon(props: MapIconProps) {
                 <sphereGeometry args={[0.085, 24, 24]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ec4899"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ec4899"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ec4899"
+                  }
                   emissiveIntensity={1.4}
                 />
               </mesh>

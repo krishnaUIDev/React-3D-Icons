@@ -6,7 +6,6 @@ export function WalletIcon(props: WalletIconProps) {
     <SharedWrapper iconId="wallet" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.05]} position={[0, -0.05, 0]}>
-          
           {/* Back Wallet Cover */}
           <mesh position={[0, 0, -0.06]} castShadow receiveShadow>
             <boxGeometry args={[1.3, 0.82, 0.1]} />
@@ -72,7 +71,6 @@ export function WalletIcon(props: WalletIconProps) {
               color="#d4af37" // Metallic Gold
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

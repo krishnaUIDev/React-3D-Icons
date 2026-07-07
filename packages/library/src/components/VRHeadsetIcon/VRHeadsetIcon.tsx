@@ -6,7 +6,6 @@ export function VRHeadsetIcon(props: VRHeadsetIconProps) {
     <SharedWrapper iconId="vrheadset" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Front Visor Goggles Box */}
           <mesh castShadow receiveShadow position={[0, 0, 0.08]}>
             <boxGeometry args={[0.52, 0.28, 0.22]} />
@@ -68,7 +67,6 @@ export function VRHeadsetIcon(props: VRHeadsetIconProps) {
               <meshStandardMaterial roughness={0.7} metalness={0.2} color="#334155" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

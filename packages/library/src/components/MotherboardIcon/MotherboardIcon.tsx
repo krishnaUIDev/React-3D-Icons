@@ -6,7 +6,6 @@ export function MotherboardIcon(props: MotherboardIconProps) {
     <SharedWrapper iconId="motherboard" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.25, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main PCB Substrate Plate */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.68, 0.68, 0.024]} />
@@ -90,7 +89,6 @@ export function MotherboardIcon(props: MotherboardIconProps) {
             <boxGeometry args={[0.12, 0.12, 0.035]} />
             <meshStandardMaterial roughness={0.2} metalness={0.8} color="#1e293b" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

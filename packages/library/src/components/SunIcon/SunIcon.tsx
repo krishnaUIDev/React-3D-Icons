@@ -10,7 +10,6 @@ export function SunIcon(props: SunIconProps) {
     <SharedWrapper iconId="sun" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.15, 0.05]}>
-          
           {/* Central Sun Sphere */}
           <mesh castShadow receiveShadow>
             <sphereGeometry args={[0.42, 32, 32]} />
@@ -59,7 +58,6 @@ export function SunIcon(props: SunIconProps) {
               </mesh>
             );
           })}
-
         </group>
       )}
     </SharedWrapper>

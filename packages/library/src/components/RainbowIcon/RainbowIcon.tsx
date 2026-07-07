@@ -6,7 +6,6 @@ export function RainbowIcon(props: RainbowIconProps) {
     <SharedWrapper iconId="rainbow" {...props}>
       {(mat) => (
         <group rotation={[0.1, -Math.PI / 8, 0]} position={[0, -0.1, 0]} scale={[1.35, 1.35, 1.35]}>
-          
           {/* Concentric Rainbow Arches */}
           <group position={[0, -0.05, 0]}>
             {/* Outer Arch (Red/Primary Color) */}
@@ -76,7 +75,6 @@ export function RainbowIcon(props: RainbowIconProps) {
               <meshStandardMaterial roughness={0.7} metalness={0.1} color="#f1f5f9" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

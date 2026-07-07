@@ -6,7 +6,6 @@ export function DifferentialIcon(props: DifferentialIconProps) {
     <SharedWrapper iconId="differential" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.4, 0.2]} position={[0, 0, 0]}>
-          
           {/* Left/Right Axle Tubes (Outer steel sleeves) */}
           <mesh rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
             <cylinderGeometry args={[0.028, 0.028, 0.48, 16]} />
@@ -67,7 +66,6 @@ export function DifferentialIcon(props: DifferentialIconProps) {
               <meshStandardMaterial roughness={0.15} metalness={0.9} color="#cbd5e1" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

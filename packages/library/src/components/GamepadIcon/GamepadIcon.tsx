@@ -7,7 +7,6 @@ export function GamepadIcon(props: GamepadIconProps) {
     <SharedWrapper iconId="gamepad" {...props}>
       {(mat) => (
         <group rotation={[0.3, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Left Grip Handle */}
           <mesh position={[-0.42, -0.12, 0.02]} rotation={[0, 0, 0.5]} castShadow receiveShadow>
             <RoundedBox args={[0.22, 0.54, 0.16]} radius={0.08} smoothness={4}>
@@ -125,7 +124,6 @@ export function GamepadIcon(props: GamepadIconProps) {
               <meshStandardMaterial roughness={0.6} color="#334155" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

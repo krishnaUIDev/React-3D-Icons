@@ -5,8 +5,11 @@ export function GoldBarsIcon(props: GoldBarsIconProps) {
   return (
     <SharedWrapper iconId="goldbars" {...props}>
       {(mat) => (
-        <group rotation={[0.2, -Math.PI / 6, 0.05]} position={[0, -0.02, 0]} scale={[1.4, 1.4, 1.4]}>
-          
+        <group
+          rotation={[0.2, -Math.PI / 6, 0.05]}
+          position={[0, -0.02, 0]}
+          scale={[1.4, 1.4, 1.4]}
+        >
           {/* Bottom Left Gold Bar (Matte Metallic Gold) */}
           <mesh castShadow position={[-0.09, -0.06, 0]} rotation={[Math.PI / 2, Math.PI / 4, 0]}>
             <cylinderGeometry args={[0.07, 0.09, 0.32, 4]} />
@@ -20,7 +23,12 @@ export function GoldBarsIcon(props: GoldBarsIconProps) {
           </mesh>
 
           {/* Top Center Gold Bar (Preset material - e.g. glowing/glass or metallic gold) */}
-          <mesh castShadow receiveShadow position={[0, 0.06, 0.02]} rotation={[Math.PI / 2, Math.PI / 4, 0]}>
+          <mesh
+            castShadow
+            receiveShadow
+            position={[0, 0.06, 0.02]}
+            rotation={[Math.PI / 2, Math.PI / 4, 0]}
+          >
             <cylinderGeometry args={[0.075, 0.095, 0.32, 4]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -47,7 +55,6 @@ export function GoldBarsIcon(props: GoldBarsIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

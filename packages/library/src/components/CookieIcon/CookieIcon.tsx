@@ -6,7 +6,6 @@ export function CookieIcon(props: CookieIconProps) {
     <SharedWrapper iconId="cookie" {...props}>
       {(mat) => (
         <group rotation={[0.4, -Math.PI / 8, 0.1]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Main Cookie Disc (Preset Color - e.g. baked cookie gold/clay, with 1.7*PI sector for a bite mark) */}
           <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, 0.4]}>
             <cylinderGeometry args={[0.3, 0.3, 0.05, 20, 1, false, 0, Math.PI * 1.65]} />
@@ -72,7 +71,6 @@ export function CookieIcon(props: CookieIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

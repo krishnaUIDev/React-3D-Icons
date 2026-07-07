@@ -44,7 +44,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsup",
+    "generate:exports": "node scripts/generate-exports.js",
+    "build": "npm run generate:exports && tsup",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {

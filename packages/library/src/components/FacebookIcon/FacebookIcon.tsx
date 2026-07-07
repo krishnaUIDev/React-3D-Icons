@@ -28,41 +28,25 @@ export function FacebookIcon(props: FacebookIconProps) {
           {/* Letter "f" - Vertical Stem */}
           <mesh position={[0.1, -0.15, 0.165]} castShadow>
             <boxGeometry args={[0.18, 0.85, 0.1]} />
-            <meshStandardMaterial
-              roughness={0.2}
-              metalness={0.1}
-              color="#ffffff"
-            />
+            <meshStandardMaterial roughness={0.2} metalness={0.1} color="#ffffff" />
           </mesh>
 
           {/* Letter "f" - Horizontal Crossbar */}
           <mesh position={[-0.02, 0.12, 0.165]} castShadow>
             <boxGeometry args={[0.42, 0.16, 0.1]} />
-            <meshStandardMaterial
-              roughness={0.2}
-              metalness={0.1}
-              color="#ffffff"
-            />
+            <meshStandardMaterial roughness={0.2} metalness={0.1} color="#ffffff" />
           </mesh>
 
           {/* Letter "f" - Top Hook Right Turn */}
           <mesh position={[0.22, 0.28, 0.165]} castShadow>
             <boxGeometry args={[0.3, 0.16, 0.1]} />
-            <meshStandardMaterial
-              roughness={0.2}
-              metalness={0.1}
-              color="#ffffff"
-            />
+            <meshStandardMaterial roughness={0.2} metalness={0.1} color="#ffffff" />
           </mesh>
 
           {/* Letter "f" - Top Hook Connecting Corner */}
           <mesh position={[0.19, 0.2, 0.165]} castShadow>
             <boxGeometry args={[0.18, 0.16, 0.1]} />
-            <meshStandardMaterial
-              roughness={0.2}
-              metalness={0.1}
-              color="#ffffff"
-            />
+            <meshStandardMaterial roughness={0.2} metalness={0.1} color="#ffffff" />
           </mesh>
         </group>
       )}

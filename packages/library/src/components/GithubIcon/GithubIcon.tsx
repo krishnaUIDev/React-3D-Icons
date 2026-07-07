@@ -58,19 +58,31 @@ export function GithubIcon(props: GithubIconProps) {
             {/* Cheek/Whisker Accents Left */}
             <mesh castShadow position={[-0.32, -0.06, 0]} rotation={[0, 0, -0.2]}>
               <boxGeometry args={[0.12, 0.06, 0.08]} />
-              <meshStandardMaterial roughness={0.15} metalness={0.8} color={props.theme === "dark" ? "#1e1e2f" : "#e4e4e7"} />
+              <meshStandardMaterial
+                roughness={0.15}
+                metalness={0.8}
+                color={props.theme === "dark" ? "#1e1e2f" : "#e4e4e7"}
+              />
             </mesh>
 
             {/* Cheek/Whisker Accents Right */}
             <mesh castShadow position={[0.32, -0.06, 0]} rotation={[0, 0, 0.2]}>
               <boxGeometry args={[0.12, 0.06, 0.08]} />
-              <meshStandardMaterial roughness={0.15} metalness={0.8} color={props.theme === "dark" ? "#1e1e2f" : "#e4e4e7"} />
+              <meshStandardMaterial
+                roughness={0.15}
+                metalness={0.8}
+                color={props.theme === "dark" ? "#1e1e2f" : "#e4e4e7"}
+              />
             </mesh>
 
             {/* Tapered Neck/Body */}
             <mesh castShadow position={[0, -0.32, 0]}>
               <cylinderGeometry args={[0.18, 0.24, 0.18, 16]} />
-              <meshStandardMaterial roughness={0.15} metalness={0.8} color={props.theme === "dark" ? "#11111b" : "#94a3b8"} />
+              <meshStandardMaterial
+                roughness={0.15}
+                metalness={0.8}
+                color={props.theme === "dark" ? "#11111b" : "#94a3b8"}
+              />
             </mesh>
           </group>
         </group>

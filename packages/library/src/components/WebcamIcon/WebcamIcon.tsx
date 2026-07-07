@@ -6,7 +6,6 @@ export function WebcamIcon(props: WebcamIconProps) {
     <SharedWrapper iconId="webcam" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Spherical Camera Head */}
           <mesh castShadow receiveShadow position={[0, 0.1, 0]}>
             <sphereGeometry args={[0.22, 32, 32]} />
@@ -69,7 +68,6 @@ export function WebcamIcon(props: WebcamIconProps) {
               emissiveIntensity={1.4}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

@@ -84,7 +84,10 @@ export default function IconShowcase() {
         <div className="flex flex-col sm:flex-row items-center gap-4 flex-grow w-full">
           {/* Left: 3D Preview Canvas */}
           <div className="w-16 h-16 sm:w-20 sm:h-20 bg-zinc-50/50 dark:bg-[#090b14]/50 rounded-2xl border border-zinc-150/40 dark:border-zinc-850/40 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
-            <div className="absolute inset-2 rounded-full blur-xl opacity-10 pointer-events-none" style={{ backgroundColor: color }} />
+            <div
+              className="absolute inset-2 rounded-full blur-xl opacity-10 pointer-events-none"
+              style={{ backgroundColor: color }}
+            />
             {isHovered ? (
               <div className="w-12 h-12 sm:w-16 sm:h-16 transform scale-105 transition-transform duration-300">
                 <Component
@@ -115,7 +118,9 @@ export default function IconShowcase() {
           {/* Center Info */}
           <div className="flex flex-col text-center sm:text-left gap-1 flex-grow">
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
-              <h3 className="text-xs sm:text-sm font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider">{displayName}</h3>
+              <h3 className="text-xs sm:text-sm font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider">
+                {displayName}
+              </h3>
               <span className="px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider bg-indigo-500/10 text-indigo-500 border border-indigo-500/20">
                 {category}
               </span>
@@ -134,9 +139,32 @@ export default function IconShowcase() {
             title="Copy 2D SVG code"
           >
             {copiedSVG ? (
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 text-emerald-500"><path d="M20 6 9 17l-5-5"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-3 h-3 text-emerald-500"
+              >
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-3 h-3"
+              >
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+              </svg>
             )}
             <span>Copy SVG</span>
             {copiedSVG && (
@@ -152,9 +180,32 @@ export default function IconShowcase() {
             title="Copy React TSX code"
           >
             {copiedTSX ? (
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 text-emerald-500"><path d="M20 6 9 17l-5-5"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-3 h-3 text-emerald-500"
+              >
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-3 h-3"
+              >
+                <polyline points="16 18 22 12 16 6" />
+                <polyline points="8 6 2 12 8 18" />
+              </svg>
             )}
             <span>Copy TSX</span>
             {copiedTSX && (
@@ -183,9 +234,32 @@ export default function IconShowcase() {
           title="Copy 2D SVG code"
         >
           {copiedSVG ? (
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 text-emerald-500"><path d="M20 6 9 17l-5-5"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-3 h-3 text-emerald-500"
+            >
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-3 h-3"
+            >
+              <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+              <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+            </svg>
           )}
           {copiedSVG && (
             <span className="absolute -top-7 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded bg-zinc-900 dark:bg-zinc-850 text-white text-[8px] font-extrabold uppercase tracking-wider pointer-events-none whitespace-nowrap shadow-md">
@@ -200,9 +274,32 @@ export default function IconShowcase() {
           title="Copy React TSX code"
         >
           {copiedTSX ? (
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3 text-emerald-500"><path d="M20 6 9 17l-5-5"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-3 h-3 text-emerald-500"
+            >
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
           ) : (
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-3 h-3"
+            >
+              <polyline points="16 18 22 12 16 6" />
+              <polyline points="8 6 2 12 8 18" />
+            </svg>
           )}
           {copiedTSX && (
             <span className="absolute -top-7 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded bg-zinc-900 dark:bg-zinc-850 text-white text-[8px] font-extrabold uppercase tracking-wider pointer-events-none whitespace-nowrap shadow-md">

@@ -35,7 +35,12 @@ export function TulipIcon(props: TulipIconProps) {
           {/* Tulip Closed Chalice Petals */}
           <group position={[0, 0.1, 0]}>
             {/* Front Left Petal (ellipsoid segment) */}
-            <mesh position={[-0.04, 0, 0.02]} scale={[0.8, 1.2, 0.8]} rotation={[0.1, 0.4, 0.1]} castShadow>
+            <mesh
+              position={[-0.04, 0, 0.02]}
+              scale={[0.8, 1.2, 0.8]}
+              rotation={[0.1, 0.4, 0.1]}
+              castShadow
+            >
               <sphereGeometry args={[0.07, 16, 16, 0, Math.PI, 0, Math.PI / 1.6]} />
               <meshPhysicalMaterial
                 roughness={mat.roughness}
@@ -47,7 +52,12 @@ export function TulipIcon(props: TulipIconProps) {
             </mesh>
 
             {/* Front Right Petal */}
-            <mesh position={[0.04, 0, 0.02]} scale={[0.8, 1.2, 0.8]} rotation={[0.1, -0.4, -0.1]} castShadow>
+            <mesh
+              position={[0.04, 0, 0.02]}
+              scale={[0.8, 1.2, 0.8]}
+              rotation={[0.1, -0.4, -0.1]}
+              castShadow
+            >
               <sphereGeometry args={[0.07, 16, 16, 0, Math.PI, 0, Math.PI / 1.6]} />
               <meshPhysicalMaterial
                 roughness={mat.roughness}
@@ -59,7 +69,12 @@ export function TulipIcon(props: TulipIconProps) {
             </mesh>
 
             {/* Back Petal */}
-            <mesh position={[0, 0.01, -0.04]} scale={[0.9, 1.2, 0.7]} rotation={[-0.2, 0, 0]} castShadow>
+            <mesh
+              position={[0, 0.01, -0.04]}
+              scale={[0.9, 1.2, 0.7]}
+              rotation={[-0.2, 0, 0]}
+              castShadow
+            >
               <sphereGeometry args={[0.075, 16, 16]} />
               <meshPhysicalMaterial
                 roughness={mat.roughness}

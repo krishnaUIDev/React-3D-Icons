@@ -6,7 +6,6 @@ export function DrillIcon(props: DrillIconProps) {
     <SharedWrapper iconId="drill" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Horizontal Motor Housing Barrel */}
           <mesh castShadow receiveShadow position={[-0.08, 0.16, 0]} rotation={[0, 0, Math.PI / 2]}>
             <cylinderGeometry args={[0.13, 0.11, 0.38, 16]} />
@@ -82,7 +81,6 @@ export function DrillIcon(props: DrillIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

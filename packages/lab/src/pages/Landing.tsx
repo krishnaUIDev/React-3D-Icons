@@ -3,14 +3,14 @@ import { useTranslation } from "../i18n/useTranslation";
 import { Hero } from "../components/Hero";
 import { IconCard } from "../components/IconCard";
 import { HelpCircle, Search } from "lucide-react";
-import { 
+import {
   FacebookIcon,
   ShieldIcon,
   RocketIcon,
-  DatabaseIcon, 
-  CloudIcon, 
-  CpuIcon, 
-  NetworkIcon, 
+  DatabaseIcon,
+  CloudIcon,
+  CpuIcon,
+  NetworkIcon,
   GearIcon,
   FlashIcon,
   FolderIcon,
@@ -299,7 +299,6 @@ import {
 } from "r3d-icons";
 import { TranslationKey } from "../i18n/translations";
 
-
 interface LandingProps {
   theme: "light" | "dark";
   search: string;
@@ -473,7 +472,8 @@ const ICONS_REGISTRY = [
     id: "cloudnetwork",
     name: "CloudNetworkIcon",
     category: "networking",
-    description: "Cloud-hosted computing environment connected to multiple dynamic user node systems",
+    description:
+      "Cloud-hosted computing environment connected to multiple dynamic user node systems",
     Component: CloudNetworkIcon,
     color: "#3b82f6",
     accentColor: "#10b981"
@@ -482,7 +482,8 @@ const ICONS_REGISTRY = [
     id: "firewall",
     name: "FirewallIcon",
     category: "networking",
-    description: "Network protection firewall with brick-red barrier security and glowing fire flames",
+    description:
+      "Network protection firewall with brick-red barrier security and glowing fire flames",
     Component: FirewallIcon,
     color: "#e11d48",
     accentColor: "#ea580c"
@@ -1112,7 +1113,8 @@ const ICONS_REGISTRY = [
     id: "ethernet",
     name: "EthernetIcon",
     category: "networking",
-    description: "Extruded transparent RJ45 plug connector with detailed gold contact pins and locking lever",
+    description:
+      "Extruded transparent RJ45 plug connector with detailed gold contact pins and locking lever",
     Component: EthernetIcon,
     color: "#3b82f6",
     accentColor: "#d4af37"
@@ -1121,7 +1123,8 @@ const ICONS_REGISTRY = [
     id: "satellite",
     name: "SatelliteIcon",
     category: "networking",
-    description: "Central communications satellite body featuring solar panel wings and antenna dish",
+    description:
+      "Central communications satellite body featuring solar panel wings and antenna dish",
     Component: SatelliteIcon,
     color: "#06b6d4",
     accentColor: "#4f46e5"
@@ -1229,7 +1232,8 @@ const ICONS_REGISTRY = [
     id: "shieldcheck",
     name: "ShieldCheckIcon",
     category: "utility",
-    description: "Security shield with embedded verified checkmark for trusted payment and security UIs",
+    description:
+      "Security shield with embedded verified checkmark for trusted payment and security UIs",
     Component: ShieldCheckIcon,
     color: "#0d9488",
     accentColor: "#10b981"
@@ -1364,7 +1368,8 @@ const ICONS_REGISTRY = [
     id: "airplane",
     name: "AirplaneIcon",
     category: "utility",
-    description: "Sleek 3D aircraft with swept-back wings, dual underwing engines, and detailed tail fins",
+    description:
+      "Sleek 3D aircraft with swept-back wings, dual underwing engines, and detailed tail fins",
     Component: AirplaneIcon,
     color: "#0ea5e9",
     accentColor: "#f43f5e"
@@ -1373,7 +1378,8 @@ const ICONS_REGISTRY = [
     id: "battery",
     name: "BatteryIcon",
     category: "hardware",
-    description: "3D battery cylinder featuring transparent outer casing and glowing green energy charge indicator cells",
+    description:
+      "3D battery cylinder featuring transparent outer casing and glowing green energy charge indicator cells",
     Component: BatteryIcon,
     color: "#10b981",
     accentColor: "#34d399"
@@ -1382,7 +1388,8 @@ const ICONS_REGISTRY = [
     id: "video",
     name: "VideoIcon",
     category: "utility",
-    description: "3D cinema video camera with physical casing, concentric focus lens, and side-mounted display panel",
+    description:
+      "3D cinema video camera with physical casing, concentric focus lens, and side-mounted display panel",
     Component: VideoIcon,
     color: "#8b5cf6",
     accentColor: "#ec4899"
@@ -1400,7 +1407,8 @@ const ICONS_REGISTRY = [
     id: "sliders",
     name: "SlidersIcon",
     category: "utility",
-    description: "3D control dashboard sliders showing vertical track rods and slider level nodes with glowing indicators",
+    description:
+      "3D control dashboard sliders showing vertical track rods and slider level nodes with glowing indicators",
     Component: SlidersIcon,
     color: "#6366f1",
     accentColor: "#f59e0b"
@@ -1472,7 +1480,8 @@ const ICONS_REGISTRY = [
     id: "userplus",
     name: "UserPlusIcon",
     category: "utility",
-    description: "3D user body profile alongside a floating plus sign badge representing user addition",
+    description:
+      "3D user body profile alongside a floating plus sign badge representing user addition",
     Component: UserPlusIcon,
     color: "#3b82f6",
     accentColor: "#10b981"
@@ -1706,7 +1715,8 @@ const ICONS_REGISTRY = [
     id: "tapemeasure",
     name: "TapeMeasureIcon",
     category: "mechanics",
-    description: "3D pocket tape measure with bumper guard casing, extended steel blade, and lock switch",
+    description:
+      "3D pocket tape measure with bumper guard casing, extended steel blade, and lock switch",
     Component: TapeMeasureIcon,
     color: "#1e293b",
     accentColor: "#10b981"
@@ -1760,7 +1770,8 @@ const ICONS_REGISTRY = [
     id: "laptop",
     name: "LaptopIcon",
     category: "hardware",
-    description: "3D open laptop deck with raised keyboard rows, trackpad, and angled display screen",
+    description:
+      "3D open laptop deck with raised keyboard rows, trackpad, and angled display screen",
     Component: LaptopIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -1787,7 +1798,8 @@ const ICONS_REGISTRY = [
     id: "serverrack",
     name: "ServerRackIcon",
     category: "hardware",
-    description: "3D enterprise datacenter server cabinet with stacked server drawers and LED indicators",
+    description:
+      "3D enterprise datacenter server cabinet with stacked server drawers and LED indicators",
     Component: ServerRackIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -1805,7 +1817,8 @@ const ICONS_REGISTRY = [
     id: "webcam",
     name: "WebcamIcon",
     category: "hardware",
-    description: "3D spherical desktop webcam with lens bezel, aperture glass, and mounting stand clamp",
+    description:
+      "3D spherical desktop webcam with lens bezel, aperture glass, and mounting stand clamp",
     Component: WebcamIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -1814,7 +1827,8 @@ const ICONS_REGISTRY = [
     id: "chisel",
     name: "ChiselIcon",
     category: "mechanics",
-    description: "3D octagonal wood chisel tool with beveled steel tip, metal tang, and glowing accent bolster",
+    description:
+      "3D octagonal wood chisel tool with beveled steel tip, metal tang, and glowing accent bolster",
     Component: ChiselIcon,
     color: "#78350f",
     accentColor: "#10b981"
@@ -1823,7 +1837,8 @@ const ICONS_REGISTRY = [
     id: "crowbar",
     name: "CrowbarIcon",
     category: "mechanics",
-    description: "3D bent steel crowbar pry rod with split claw head, wedge tip, and glowing accent split",
+    description:
+      "3D bent steel crowbar pry rod with split claw head, wedge tip, and glowing accent split",
     Component: CrowbarIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -1832,7 +1847,8 @@ const ICONS_REGISTRY = [
     id: "funnel",
     name: "FunnelIcon",
     category: "mechanics",
-    description: "3D conical fluid funnel with narrow outlet spout, rim loop, and a glowing suspended droplet",
+    description:
+      "3D conical fluid funnel with narrow outlet spout, rim loop, and a glowing suspended droplet",
     Component: FunnelIcon,
     color: "#0f766e",
     accentColor: "#10b981"
@@ -1841,7 +1857,8 @@ const ICONS_REGISTRY = [
     id: "oilcan",
     name: "OilCanIcon",
     category: "mechanics",
-    description: "3D thumb-pump oil can canister with slanted spout, trigger lever, and glowing fluid drop",
+    description:
+      "3D thumb-pump oil can canister with slanted spout, trigger lever, and glowing fluid drop",
     Component: OilCanIcon,
     color: "#b45309",
     accentColor: "#10b981"
@@ -1850,7 +1867,8 @@ const ICONS_REGISTRY = [
     id: "bearing",
     name: "BearingIcon",
     category: "mechanics",
-    description: "3D ball bearing cage assembly with concentric inner/outer rings and spherical steel balls",
+    description:
+      "3D ball bearing cage assembly with concentric inner/outer rings and spherical steel balls",
     Component: BearingIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -1859,7 +1877,8 @@ const ICONS_REGISTRY = [
     id: "pulley",
     name: "PulleyIcon",
     category: "mechanics",
-    description: "3D mechanical pulley block with U-bracket frame, grooved wheel, and guiding wire rope",
+    description:
+      "3D mechanical pulley block with U-bracket frame, grooved wheel, and guiding wire rope",
     Component: PulleyIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -1868,7 +1887,8 @@ const ICONS_REGISTRY = [
     id: "sprocket",
     name: "SprocketIcon",
     category: "mechanics",
-    description: "3D drive sprocket wheel with beveled teeth, central shaft hole, and glowing concentric tracks",
+    description:
+      "3D drive sprocket wheel with beveled teeth, central shaft hole, and glowing concentric tracks",
     Component: SprocketIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -1877,7 +1897,8 @@ const ICONS_REGISTRY = [
     id: "projector",
     name: "ProjectorIcon",
     category: "hardware",
-    description: "3D table presentation projector with concentric lens, controls pad, and glowing focus ring",
+    description:
+      "3D table presentation projector with concentric lens, controls pad, and glowing focus ring",
     Component: ProjectorIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -1886,7 +1907,8 @@ const ICONS_REGISTRY = [
     id: "gameconsole",
     name: "GameConsoleIcon",
     category: "hardware",
-    description: "3D slim home console stand with side panels, vertical base, and glowing status stripe",
+    description:
+      "3D slim home console stand with side panels, vertical base, and glowing status stripe",
     Component: GameConsoleIcon,
     color: "#1e293b",
     accentColor: "#10b981"
@@ -1895,7 +1917,8 @@ const ICONS_REGISTRY = [
     id: "vrheadset",
     name: "VRHeadsetIcon",
     category: "hardware",
-    description: "3D virtual reality goggle headset with front glass shield visor and glowing indicator strip",
+    description:
+      "3D virtual reality goggle headset with front glass shield visor and glowing indicator strip",
     Component: VRHeadsetIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -1904,7 +1927,8 @@ const ICONS_REGISTRY = [
     id: "smartspeaker",
     name: "SmartSpeakerIcon",
     category: "hardware",
-    description: "3D assistant smart speaker cylinder with control deck and glowing voice response ring",
+    description:
+      "3D assistant smart speaker cylinder with control deck and glowing voice response ring",
     Component: SmartSpeakerIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -1913,7 +1937,8 @@ const ICONS_REGISTRY = [
     id: "powerbank",
     name: "PowerBankIcon",
     category: "hardware",
-    description: "3D backup power bank battery brick with USB port slots and glowing status level LEDs",
+    description:
+      "3D backup power bank battery brick with USB port slots and glowing status level LEDs",
     Component: PowerBankIcon,
     color: "#1e293b",
     accentColor: "#10b981"
@@ -1922,7 +1947,8 @@ const ICONS_REGISTRY = [
     id: "usbdrive",
     name: "UsbDriveIcon",
     category: "hardware",
-    description: "3D flash thumb drive memory key with metal connector plug and glowing keyring loop",
+    description:
+      "3D flash thumb drive memory key with metal connector plug and glowing keyring loop",
     Component: UsbDriveIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -1931,7 +1957,8 @@ const ICONS_REGISTRY = [
     id: "motherboard",
     name: "MotherboardIcon",
     category: "hardware",
-    description: "3D green circuit motherboard board with CPU socket frame, RAM slots, and glowing core",
+    description:
+      "3D green circuit motherboard board with CPU socket frame, RAM slots, and glowing core",
     Component: MotherboardIcon,
     color: "#065f46",
     accentColor: "#10b981"
@@ -1940,7 +1967,8 @@ const ICONS_REGISTRY = [
     id: "ramstick",
     name: "RamStickIcon",
     category: "hardware",
-    description: "3D desktop memory RAM stick module with golden pin edge and glowing top RGB light diffuser",
+    description:
+      "3D desktop memory RAM stick module with golden pin edge and glowing top RGB light diffuser",
     Component: RamStickIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -1949,7 +1977,8 @@ const ICONS_REGISTRY = [
     id: "crank",
     name: "CrankIcon",
     category: "mechanics",
-    description: "3D offset manual crank arm handle with a pivot sleeve, counterweight, and glowing accent cap",
+    description:
+      "3D offset manual crank arm handle with a pivot sleeve, counterweight, and glowing accent cap",
     Component: CrankIcon,
     color: "#71717a",
     accentColor: "#10b981"
@@ -1958,7 +1987,8 @@ const ICONS_REGISTRY = [
     id: "camshaft",
     name: "CamshaftIcon",
     category: "mechanics",
-    description: "3D engine camshaft shaft populated with eccentric cam lobes, journals, and a glowing accent gear",
+    description:
+      "3D engine camshaft shaft populated with eccentric cam lobes, journals, and a glowing accent gear",
     Component: CamshaftIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -1967,7 +1997,8 @@ const ICONS_REGISTRY = [
     id: "driveshaft",
     name: "DriveShaftIcon",
     category: "mechanics",
-    description: "3D torqued driveshaft rod with double universal joints, weld yokes, and a glowing spider cross",
+    description:
+      "3D torqued driveshaft rod with double universal joints, weld yokes, and a glowing spider cross",
     Component: DriveShaftIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -1976,7 +2007,8 @@ const ICONS_REGISTRY = [
     id: "valve",
     name: "ValveIcon",
     category: "mechanics",
-    description: "3D pipeline fluid control gate valve wheel with a threaded stem and glowing accent ring",
+    description:
+      "3D pipeline fluid control gate valve wheel with a threaded stem and glowing accent ring",
     Component: ValveIcon,
     color: "#4b5563",
     accentColor: "#10b981"
@@ -1985,7 +2017,8 @@ const ICONS_REGISTRY = [
     id: "propeller",
     name: "PropellerIcon",
     category: "mechanics",
-    description: "3D marine propeller hub containing three twisted blades, adapter shaft, and glowing nose cap",
+    description:
+      "3D marine propeller hub containing three twisted blades, adapter shaft, and glowing nose cap",
     Component: PropellerIcon,
     color: "#78350f",
     accentColor: "#10b981"
@@ -1994,7 +2027,8 @@ const ICONS_REGISTRY = [
     id: "rotor",
     name: "HelicopterRotorIcon",
     category: "mechanics",
-    description: "3D multi-blade helicopter rotor hub with control rods, swashplate, and glowing control ring",
+    description:
+      "3D multi-blade helicopter rotor hub with control rods, swashplate, and glowing control ring",
     Component: HelicopterRotorIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -2003,7 +2037,8 @@ const ICONS_REGISTRY = [
     id: "hydraulicjack",
     name: "HydraulicJackIcon",
     category: "mechanics",
-    description: "3D heavy hydraulic bottle jack cylinder lifting jack with a base plate and glowing accent collar",
+    description:
+      "3D heavy hydraulic bottle jack cylinder lifting jack with a base plate and glowing accent collar",
     Component: HydraulicJackIcon,
     color: "#ef4444",
     accentColor: "#10b981"
@@ -2012,7 +2047,8 @@ const ICONS_REGISTRY = [
     id: "gpu",
     name: "GpuIcon",
     category: "hardware",
-    description: "3D high-end desktop GPU graphics card with triple active fan spinner blades and top RGB glowing strip",
+    description:
+      "3D high-end desktop GPU graphics card with triple active fan spinner blades and top RGB glowing strip",
     Component: GpuIcon,
     color: "#1e293b",
     accentColor: "#10b981"
@@ -2021,7 +2057,8 @@ const ICONS_REGISTRY = [
     id: "powersupply",
     name: "PowerSupplyIcon",
     category: "hardware",
-    description: "3D boxy ATX power unit with a round fan cooling grille, braided cables, and glowing indicator red switch",
+    description:
+      "3D boxy ATX power unit with a round fan cooling grille, braided cables, and glowing indicator red switch",
     Component: PowerSupplyIcon,
     color: "#1e293b",
     accentColor: "#10b981"
@@ -2030,7 +2067,8 @@ const ICONS_REGISTRY = [
     id: "networkswitch",
     name: "NetworkSwitchIcon",
     category: "hardware",
-    description: "3D rack unit populated with dual rows of RJ45 ports, mount brackets, and glowing status LED panel",
+    description:
+      "3D rack unit populated with dual rows of RJ45 ports, mount brackets, and glowing status LED panel",
     Component: NetworkSwitchIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -2039,7 +2077,8 @@ const ICONS_REGISTRY = [
     id: "smartplug",
     name: "SmartPlugIcon",
     category: "hardware",
-    description: "3D smart wall outlet adapter plug with US receptacle holes and a glowing status power button",
+    description:
+      "3D smart wall outlet adapter plug with US receptacle holes and a glowing status power button",
     Component: SmartPlugIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
@@ -2048,7 +2087,8 @@ const ICONS_REGISTRY = [
     id: "smartbulb",
     name: "SmartBulbIcon",
     category: "hardware",
-    description: "3D smart RGB LED lightbulb containing a wifi accent ring and glowing inner LED tower",
+    description:
+      "3D smart RGB LED lightbulb containing a wifi accent ring and glowing inner LED tower",
     Component: SmartBulbIcon,
     color: "#eab308",
     accentColor: "#10b981"
@@ -2057,7 +2097,8 @@ const ICONS_REGISTRY = [
     id: "securitycamera",
     name: "SecurityCameraIcon",
     category: "hardware",
-    description: "3D spherical dome security surveillance lens camera with mount bracket and glowing status LED ring",
+    description:
+      "3D spherical dome security surveillance lens camera with mount bracket and glowing status LED ring",
     Component: SecurityCameraIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
@@ -2066,7 +2107,8 @@ const ICONS_REGISTRY = [
     id: "smartlock",
     name: "SmartLockIcon",
     category: "hardware",
-    description: "3D heavy mechanical cylinder door smart lock with electronic touchpad and glowing status ring",
+    description:
+      "3D heavy mechanical cylinder door smart lock with electronic touchpad and glowing status ring",
     Component: SmartLockIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -2075,7 +2117,8 @@ const ICONS_REGISTRY = [
     id: "thermostat",
     name: "ThermostatIcon",
     category: "hardware",
-    description: "3D circular smart home climate thermostat dials with digital number readout and glowing accent scale",
+    description:
+      "3D circular smart home climate thermostat dials with digital number readout and glowing accent scale",
     Component: ThermostatIcon,
     color: "#0f172a",
     accentColor: "#10b981"
@@ -2084,7 +2127,8 @@ const ICONS_REGISTRY = [
     id: "gclamp",
     name: "GClampIcon",
     category: "mechanics",
-    description: "3D heavy threaded G-clamp frame with a rotatable clamping screw rod and glowing collar guide",
+    description:
+      "3D heavy threaded G-clamp frame with a rotatable clamping screw rod and glowing collar guide",
     Component: GClampIcon,
     color: "#4b5563",
     accentColor: "#10b981"
@@ -2093,7 +2137,8 @@ const ICONS_REGISTRY = [
     id: "vice",
     name: "ViceIcon",
     category: "mechanics",
-    description: "3D heavy duty workbench jaws vice tool with sliding track guide and glowing hub dial",
+    description:
+      "3D heavy duty workbench jaws vice tool with sliding track guide and glowing hub dial",
     Component: ViceIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -2102,7 +2147,8 @@ const ICONS_REGISTRY = [
     id: "greasegun",
     name: "GreaseGunIcon",
     category: "mechanics",
-    description: "3D hand-lever grease injector gun canister with high pressure extension pipe and glowing accent sleeve",
+    description:
+      "3D hand-lever grease injector gun canister with high pressure extension pipe and glowing accent sleeve",
     Component: GreaseGunIcon,
     color: "#64748b",
     accentColor: "#10b981"
@@ -2111,7 +2157,8 @@ const ICONS_REGISTRY = [
     id: "gearbox",
     name: "GearboxIcon",
     category: "mechanics",
-    description: "3D mechanical gearbox casing enclosure showing meshed cogs and a glowing center indicator",
+    description:
+      "3D mechanical gearbox casing enclosure showing meshed cogs and a glowing center indicator",
     Component: GearboxIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -2120,7 +2167,8 @@ const ICONS_REGISTRY = [
     id: "differential",
     name: "DifferentialIcon",
     category: "mechanics",
-    description: "3D automotive differential pumpkin gear casing with axle tubes and a glowing perimeter flange",
+    description:
+      "3D automotive differential pumpkin gear casing with axle tubes and a glowing perimeter flange",
     Component: DifferentialIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -2129,7 +2177,8 @@ const ICONS_REGISTRY = [
     id: "suspension",
     name: "SuspensionIcon",
     category: "mechanics",
-    description: "3D wishbone frame car suspension arm with shock absorber strut and glowing spiral spring coils",
+    description:
+      "3D wishbone frame car suspension arm with shock absorber strut and glowing spiral spring coils",
     Component: SuspensionIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -2138,7 +2187,8 @@ const ICONS_REGISTRY = [
     id: "windlass",
     name: "WindlassIcon",
     category: "mechanics",
-    description: "3D cable winch windlass drum cylinder with a hand crank, support brackets, and glowing end flange",
+    description:
+      "3D cable winch windlass drum cylinder with a hand crank, support brackets, and glowing end flange",
     Component: WindlassIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -2147,7 +2197,8 @@ const ICONS_REGISTRY = [
     id: "earbuds",
     name: "EarbudsIcon",
     category: "hardware",
-    description: "3D open wireless charging earbuds case with twin nested buds and glowing battery status LED",
+    description:
+      "3D open wireless charging earbuds case with twin nested buds and glowing battery status LED",
     Component: EarbudsIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
@@ -2156,7 +2207,8 @@ const ICONS_REGISTRY = [
     id: "smartring",
     name: "SmartRingIcon",
     category: "hardware",
-    description: "3D high gloss titanium smart health tracker ring with glowing exterior sensor crown line",
+    description:
+      "3D high gloss titanium smart health tracker ring with glowing exterior sensor crown line",
     Component: SmartRingIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -2165,7 +2217,8 @@ const ICONS_REGISTRY = [
     id: "drawingtablet",
     name: "DrawingTabletIcon",
     category: "hardware",
-    description: "3D graphics drawing tablet bezel frame and active canvas screen with a hovering stylus pen",
+    description:
+      "3D graphics drawing tablet bezel frame and active canvas screen with a hovering stylus pen",
     Component: DrawingTabletIcon,
     color: "#1e293b",
     accentColor: "#10b981"
@@ -2174,7 +2227,8 @@ const ICONS_REGISTRY = [
     id: "barcodescanner",
     name: "BarcodeScannerIcon",
     category: "hardware",
-    description: "3D pistol-trigger barcode laser scanner handle with top rubber guard and red glowing laser window",
+    description:
+      "3D pistol-trigger barcode laser scanner handle with top rubber guard and red glowing laser window",
     Component: BarcodeScannerIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
@@ -2183,7 +2237,8 @@ const ICONS_REGISTRY = [
     id: "posregister",
     name: "POSRegisterIcon",
     category: "hardware",
-    description: "3D cashier register terminal display with cash drawer base, printer paper sheet, and pole LCD screen",
+    description:
+      "3D cashier register terminal display with cash drawer base, printer paper sheet, and pole LCD screen",
     Component: POSRegisterIcon,
     color: "#1e293b",
     accentColor: "#10b981"
@@ -2192,7 +2247,8 @@ const ICONS_REGISTRY = [
     id: "calculator",
     name: "CalculatorIcon",
     category: "hardware",
-    description: "3D pocket calculator casing with 4x4 keypad grid, solar strip, and glowing display matrix",
+    description:
+      "3D pocket calculator casing with 4x4 keypad grid, solar strip, and glowing display matrix",
     Component: CalculatorIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
@@ -2201,7 +2257,8 @@ const ICONS_REGISTRY = [
     id: "remotecontrol",
     name: "RemoteControlIcon",
     category: "hardware",
-    description: "3D TV remote control wand with navigation D-pad disk, number keys, and glowing power switch",
+    description:
+      "3D TV remote control wand with navigation D-pad disk, number keys, and glowing power switch",
     Component: RemoteControlIcon,
     color: "#1e293b",
     accentColor: "#10b981"
@@ -2210,7 +2267,8 @@ const ICONS_REGISTRY = [
     id: "soundbar",
     name: "SoundbarIcon",
     category: "hardware",
-    description: "3D slim audio soundbar horizontal cabinet with front fabric mesh and standing companion subwoofer",
+    description:
+      "3D slim audio soundbar horizontal cabinet with front fabric mesh and standing companion subwoofer",
     Component: SoundbarIcon,
     color: "#1e293b",
     accentColor: "#10b981"
@@ -2219,7 +2277,8 @@ const ICONS_REGISTRY = [
     id: "jackhammer",
     name: "JackhammerIcon",
     category: "mechanics",
-    description: "3D pneumatic demolition jackhammer with T-handle grip, shock absorber spring, and steel chisel bit",
+    description:
+      "3D pneumatic demolition jackhammer with T-handle grip, shock absorber spring, and steel chisel bit",
     Component: JackhammerIcon,
     color: "#e2e8f0",
     accentColor: "#10b981"
@@ -2228,7 +2287,8 @@ const ICONS_REGISTRY = [
     id: "solderingiron",
     name: "SolderingIronIcon",
     category: "mechanics",
-    description: "3D pen-style high-temperature soldering iron with grip collar, connection cable, and fine copper tip",
+    description:
+      "3D pen-style high-temperature soldering iron with grip collar, connection cable, and fine copper tip",
     Component: SolderingIronIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
@@ -2237,7 +2297,8 @@ const ICONS_REGISTRY = [
     id: "blowtorch",
     name: "BlowtorchIcon",
     category: "mechanics",
-    description: "3D portable welding gas torch cylinder with brass valve knob, angled neck, and glowing jet nozzle",
+    description:
+      "3D portable welding gas torch cylinder with brass valve knob, angled neck, and glowing jet nozzle",
     Component: BlowtorchIcon,
     color: "#0284c7",
     accentColor: "#10b981"
@@ -2246,7 +2307,8 @@ const ICONS_REGISTRY = [
     id: "wheelbarrow",
     name: "WheelbarrowIcon",
     category: "mechanics",
-    description: "3D heavy construction hand push wheelbarrow with deep container tray, support legs, and front rubber wheel",
+    description:
+      "3D heavy construction hand push wheelbarrow with deep container tray, support legs, and front rubber wheel",
     Component: WheelbarrowIcon,
     color: "#ea580c",
     accentColor: "#10b981"
@@ -2255,7 +2317,8 @@ const ICONS_REGISTRY = [
     id: "plumbbob",
     name: "PlumbBobIcon",
     category: "mechanics",
-    description: "3D suspended conical plumb bob alignment weight with brass cap collar and thin hanging wire",
+    description:
+      "3D suspended conical plumb bob alignment weight with brass cap collar and thin hanging wire",
     Component: PlumbBobIcon,
     color: "#d97706",
     accentColor: "#10b981"
@@ -2264,7 +2327,8 @@ const ICONS_REGISTRY = [
     id: "shears",
     name: "ShearsIcon",
     category: "mechanics",
-    description: "3D sheet metal hand shears with double pivot hinge and curved rubber-coated handle loops",
+    description:
+      "3D sheet metal hand shears with double pivot hinge and curved rubber-coated handle loops",
     Component: ShearsIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -2273,7 +2337,8 @@ const ICONS_REGISTRY = [
     id: "wirestripper",
     name: "WireStripperIcon",
     category: "mechanics",
-    description: "3D spring-loaded wire insulation stripper plier jaws with metric sizing notches and rubber handle sleeve",
+    description:
+      "3D spring-loaded wire insulation stripper plier jaws with metric sizing notches and rubber handle sleeve",
     Component: WireStripperIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -2282,7 +2347,8 @@ const ICONS_REGISTRY = [
     id: "pipewrench",
     name: "PipeWrenchIcon",
     category: "mechanics",
-    description: "3D plumber heavy pipe wrench with adjustable hook jaw, thread turn ring, and steel grip handle",
+    description:
+      "3D plumber heavy pipe wrench with adjustable hook jaw, thread turn ring, and steel grip handle",
     Component: PipeWrenchIcon,
     color: "#dc2626",
     accentColor: "#10b981"
@@ -2291,7 +2357,8 @@ const ICONS_REGISTRY = [
     id: "floppy",
     name: "FloppyDiskIcon",
     category: "storage",
-    description: "3D vintage 3.5 inch floppy diskette with metal sliding shutter casing, write-protect tab, and paper label",
+    description:
+      "3D vintage 3.5 inch floppy diskette with metal sliding shutter casing, write-protect tab, and paper label",
     Component: FloppyDiskIcon,
     color: "#1e293b",
     accentColor: "#10b981"
@@ -2300,7 +2367,8 @@ const ICONS_REGISTRY = [
     id: "tapecassette",
     name: "TapeCassetteIcon",
     category: "storage",
-    description: "3D retro audio tape cassette shell case with central sprocket holes and magnetic tape reel spool packs",
+    description:
+      "3D retro audio tape cassette shell case with central sprocket holes and magnetic tape reel spool packs",
     Component: TapeCassetteIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -2309,7 +2377,8 @@ const ICONS_REGISTRY = [
     id: "cd",
     name: "CompactDiscIcon",
     category: "storage",
-    description: "3D optical compact disc showing shiny iridescent colors, clear central hub ring, and spindle hole",
+    description:
+      "3D optical compact disc showing shiny iridescent colors, clear central hub ring, and spindle hole",
     Component: CompactDiscIcon,
     color: "#f1f5f9",
     accentColor: "#10b981"
@@ -2318,7 +2387,8 @@ const ICONS_REGISTRY = [
     id: "tv",
     name: "TvIcon",
     category: "hardware",
-    description: "3D flat widescreen television display screen resting on a central column stand and rectangular base",
+    description:
+      "3D flat widescreen television display screen resting on a central column stand and rectangular base",
     Component: TvIcon,
     color: "#1e293b",
     accentColor: "#10b981"
@@ -2327,7 +2397,8 @@ const ICONS_REGISTRY = [
     id: "radio",
     name: "RadioIcon",
     category: "hardware",
-    description: "3D retro transistor radio cabinet showing left speaker fabric mesh, horizontal tuning bar, and dials",
+    description:
+      "3D retro transistor radio cabinet showing left speaker fabric mesh, horizontal tuning bar, and dials",
     Component: RadioIcon,
     color: "#7c2d12",
     accentColor: "#10b981"
@@ -2336,7 +2407,8 @@ const ICONS_REGISTRY = [
     id: "walkietalkie",
     name: "WalkieTalkieIcon",
     category: "hardware",
-    description: "3D wireless handheld walkie-talkie handset with flexible top antenna, volume knob, and side PTT button",
+    description:
+      "3D wireless handheld walkie-talkie handset with flexible top antenna, volume knob, and side PTT button",
     Component: WalkieTalkieIcon,
     color: "#19222f",
     accentColor: "#10b981"
@@ -2345,7 +2417,8 @@ const ICONS_REGISTRY = [
     id: "headset",
     name: "HeadsetIcon",
     category: "hardware",
-    description: "3D call center headset with padded overhead band, left/right earmuff cushions, and a boom microphone",
+    description:
+      "3D call center headset with padded overhead band, left/right earmuff cushions, and a boom microphone",
     Component: HeadsetIcon,
     color: "#1e293b",
     accentColor: "#10b981"
@@ -2354,7 +2427,8 @@ const ICONS_REGISTRY = [
     id: "fish",
     name: "FishIcon",
     category: "emojies",
-    description: "3D stylized swimming fish with curved dorsal fins, tail fins, and a glowing scale-band",
+    description:
+      "3D stylized swimming fish with curved dorsal fins, tail fins, and a glowing scale-band",
     Component: FishIcon,
     color: "#0ea5e9",
     accentColor: "#10b981"
@@ -2363,7 +2437,8 @@ const ICONS_REGISTRY = [
     id: "butterfly",
     name: "ButterflyIcon",
     category: "emojies",
-    description: "3D symmetrical butterfly with upper and lower glass wings, antennae, and glowing inner wing slots",
+    description:
+      "3D symmetrical butterfly with upper and lower glass wings, antennae, and glowing inner wing slots",
     Component: ButterflyIcon,
     color: "#d946ef",
     accentColor: "#10b981"
@@ -2372,7 +2447,8 @@ const ICONS_REGISTRY = [
     id: "bird",
     name: "BirdIcon",
     category: "emojies",
-    description: "3D aerodynamic flying bird in upstroke wing pose, with glowing beak and wing tip highlights",
+    description:
+      "3D aerodynamic flying bird in upstroke wing pose, with glowing beak and wing tip highlights",
     Component: BirdIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
@@ -2381,7 +2457,8 @@ const ICONS_REGISTRY = [
     id: "cat",
     name: "CatIcon",
     category: "emojies",
-    description: "3D round feline head with pointed ears, whiskers, glowing eyes, and a collar band",
+    description:
+      "3D round feline head with pointed ears, whiskers, glowing eyes, and a collar band",
     Component: CatIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -2390,7 +2467,8 @@ const ICONS_REGISTRY = [
     id: "dog",
     name: "DogIcon",
     category: "emojies",
-    description: "3D canine head showing floppy ears, protruding snout, round glowing eyes, and a collar tag",
+    description:
+      "3D canine head showing floppy ears, protruding snout, round glowing eyes, and a collar tag",
     Component: DogIcon,
     color: "#e2e8f0",
     accentColor: "#10b981"
@@ -2399,7 +2477,8 @@ const ICONS_REGISTRY = [
     id: "rabbit",
     name: "RabbitIcon",
     category: "emojies",
-    description: "3D cute rabbit head with long vertical ears, glowing inner ear canals, and a tiny nose snout",
+    description:
+      "3D cute rabbit head with long vertical ears, glowing inner ear canals, and a tiny nose snout",
     Component: RabbitIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
@@ -2408,7 +2487,8 @@ const ICONS_REGISTRY = [
     id: "elephant",
     name: "ElephantIcon",
     category: "emojies",
-    description: "3D stately elephant profile showing raised trunk, large ear plates, and glowing tusks",
+    description:
+      "3D stately elephant profile showing raised trunk, large ear plates, and glowing tusks",
     Component: ElephantIcon,
     color: "#334155",
     accentColor: "#10b981"
@@ -2417,7 +2497,8 @@ const ICONS_REGISTRY = [
     id: "owl",
     name: "OwlIcon",
     category: "emojies",
-    description: "3D owl head showing top tufts, large concentric eye rings with glowing pupils, and beak",
+    description:
+      "3D owl head showing top tufts, large concentric eye rings with glowing pupils, and beak",
     Component: OwlIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -2426,7 +2507,8 @@ const ICONS_REGISTRY = [
     id: "turtle",
     name: "TurtleIcon",
     category: "emojies",
-    description: "3D domed sea turtle shell wrapped in a glowing collar rim, with four flippers and head",
+    description:
+      "3D domed sea turtle shell wrapped in a glowing collar rim, with four flippers and head",
     Component: TurtleIcon,
     color: "#16a34a",
     accentColor: "#10b981"
@@ -2435,7 +2517,8 @@ const ICONS_REGISTRY = [
     id: "dolphin",
     name: "DolphinIcon",
     category: "emojies",
-    description: "3D curved dolphin body leaping forward, featuring dorsal fin, tail fluke, and glowing snout tip",
+    description:
+      "3D curved dolphin body leaping forward, featuring dorsal fin, tail fluke, and glowing snout tip",
     Component: DolphinIcon,
     color: "#0ea5e9",
     accentColor: "#10b981"
@@ -2453,7 +2536,8 @@ const ICONS_REGISTRY = [
     id: "sunflower",
     name: "SunflowerIcon",
     category: "emojies",
-    description: "3D circular array of yellow pointed petals with a dark seed disc and glowing grid seeds",
+    description:
+      "3D circular array of yellow pointed petals with a dark seed disc and glowing grid seeds",
     Component: SunflowerIcon,
     color: "#eab308",
     accentColor: "#10b981"
@@ -2480,7 +2564,8 @@ const ICONS_REGISTRY = [
     id: "daisy",
     name: "DaisyIcon",
     category: "emojies",
-    description: "3D flat yellow center button with radiating white capsule petals and glowing stamen dots",
+    description:
+      "3D flat yellow center button with radiating white capsule petals and glowing stamen dots",
     Component: DaisyIcon,
     color: "#eab308",
     accentColor: "#10b981"
@@ -2489,7 +2574,8 @@ const ICONS_REGISTRY = [
     id: "hibiscus",
     name: "HibiscusIcon",
     category: "emojies",
-    description: "3D flared hibiscus petals with a curved central style tube and glowing pollen tips",
+    description:
+      "3D flared hibiscus petals with a curved central style tube and glowing pollen tips",
     Component: HibiscusIcon,
     color: "#ec4899",
     accentColor: "#10b981"
@@ -2516,7 +2602,8 @@ const ICONS_REGISTRY = [
     id: "cactus",
     name: "CactusIcon",
     category: "emojies",
-    description: "3D Saguaro cactus silhouette with ribbed trunk, side branches, and glowing spine pins",
+    description:
+      "3D Saguaro cactus silhouette with ribbed trunk, side branches, and glowing spine pins",
     Component: CactusIcon,
     color: "#16a34a",
     accentColor: "#10b981"
@@ -2525,7 +2612,8 @@ const ICONS_REGISTRY = [
     id: "lavender",
     name: "LavenderIcon",
     category: "emojies",
-    description: "3D thin green stem with vertically stacked purple flower pod tiers and glowing centers",
+    description:
+      "3D thin green stem with vertically stacked purple flower pod tiers and glowing centers",
     Component: LavenderIcon,
     color: "#a855f7",
     accentColor: "#10b981"
@@ -2624,7 +2712,8 @@ const ICONS_REGISTRY = [
     id: "burger",
     name: "BurgerIcon",
     category: "emojies",
-    description: "3D stacked burger with buns, sesame seeds, meat patty, cheese, and green lettuce layers",
+    description:
+      "3D stacked burger with buns, sesame seeds, meat patty, cheese, and green lettuce layers",
     Component: BurgerIcon,
     color: "#d97706",
     accentColor: "#eab308"
@@ -2633,7 +2722,8 @@ const ICONS_REGISTRY = [
     id: "pizza",
     name: "PizzaIcon",
     category: "emojies",
-    description: "3D triangular pizza slice with cheese, base crust, and glowing red pepperoni discs",
+    description:
+      "3D triangular pizza slice with cheese, base crust, and glowing red pepperoni discs",
     Component: PizzaIcon,
     color: "#f59e0b",
     accentColor: "#ef4444"
@@ -2642,7 +2732,8 @@ const ICONS_REGISTRY = [
     id: "apple",
     name: "AppleIcon",
     category: "emojies",
-    description: "3D cleft apple body with top indentation, vertical stem, green leaf, and glowing core seed",
+    description:
+      "3D cleft apple body with top indentation, vertical stem, green leaf, and glowing core seed",
     Component: AppleIcon,
     color: "#ef4444",
     accentColor: "#eab308"
@@ -2660,7 +2751,8 @@ const ICONS_REGISTRY = [
     id: "cake",
     name: "CakeIcon",
     category: "emojies",
-    description: "3D dual-layer celebration cake with white frosting, rim whipped cream, and glowing candle",
+    description:
+      "3D dual-layer celebration cake with white frosting, rim whipped cream, and glowing candle",
     Component: CakeIcon,
     color: "#ec4899",
     accentColor: "#f59e0b"
@@ -2669,7 +2761,8 @@ const ICONS_REGISTRY = [
     id: "icecream",
     name: "IceCreamIcon",
     category: "emojies",
-    description: "3D waffle cone containing a scoop of ice cream with whipped cream and glowing cherry on top",
+    description:
+      "3D waffle cone containing a scoop of ice cream with whipped cream and glowing cherry on top",
     Component: IceCreamIcon,
     color: "#f472b6",
     accentColor: "#ef4444"
@@ -2678,7 +2771,8 @@ const ICONS_REGISTRY = [
     id: "donut",
     name: "DonutIcon",
     category: "emojies",
-    description: "3D baked ring donut with thick colored frosting glaze and scattered multi-color sprinkles",
+    description:
+      "3D baked ring donut with thick colored frosting glaze and scattered multi-color sprinkles",
     Component: DonutIcon,
     color: "#db2777",
     accentColor: "#eab308"
@@ -2687,7 +2781,8 @@ const ICONS_REGISTRY = [
     id: "popcorn",
     name: "PopcornIcon",
     category: "emojies",
-    description: "3D striped popcorn tub overflowing with white and buttery glowing yellow popcorn kernels",
+    description:
+      "3D striped popcorn tub overflowing with white and buttery glowing yellow popcorn kernels",
     Component: PopcornIcon,
     color: "#ef4444",
     accentColor: "#eab308"
@@ -2696,7 +2791,8 @@ const ICONS_REGISTRY = [
     id: "watermelon",
     name: "WatermelonIcon",
     category: "emojies",
-    description: "3D triangular watermelon wedge showing green rind, white outline, red flesh, and black seeds",
+    description:
+      "3D triangular watermelon wedge showing green rind, white outline, red flesh, and black seeds",
     Component: WatermelonIcon,
     color: "#ef4444",
     accentColor: "#1e293b"
@@ -2705,7 +2801,8 @@ const ICONS_REGISTRY = [
     id: "cookie",
     name: "CookieIcon",
     category: "emojies",
-    description: "3D circular baked cookie disc with dark chocolate chips and a central glowing accent chip",
+    description:
+      "3D circular baked cookie disc with dark chocolate chips and a central glowing accent chip",
     Component: CookieIcon,
     color: "#ca8a04",
     accentColor: "#10b981"
@@ -2714,7 +2811,8 @@ const ICONS_REGISTRY = [
     id: "safe",
     name: "SafeIcon",
     category: "utility",
-    description: "3D steel combination vault safe box with circular combination dial, lever handle, and a glowing node",
+    description:
+      "3D steel combination vault safe box with circular combination dial, lever handle, and a glowing node",
     Component: SafeIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -2723,7 +2821,8 @@ const ICONS_REGISTRY = [
     id: "goldbars",
     name: "GoldBarsIcon",
     category: "utility",
-    description: "3D stacked gold bars showing trapezoidal shape contours, polished finish, and a glowing end stamp",
+    description:
+      "3D stacked gold bars showing trapezoidal shape contours, polished finish, and a glowing end stamp",
     Component: GoldBarsIcon,
     color: "#eab308",
     accentColor: "#10b981"
@@ -2732,7 +2831,8 @@ const ICONS_REGISTRY = [
     id: "bank",
     name: "BankIcon",
     category: "utility",
-    description: "3D classical temple bank building with vertical pillars, foundation steps, and a glowing portal",
+    description:
+      "3D classical temple bank building with vertical pillars, foundation steps, and a glowing portal",
     Component: BankIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -2741,7 +2841,8 @@ const ICONS_REGISTRY = [
     id: "coin",
     name: "CoinIcon",
     category: "utility",
-    description: "3D ridged gold coin showing raised outer borders and a glowing central currency dollar symbol",
+    description:
+      "3D ridged gold coin showing raised outer borders and a glowing central currency dollar symbol",
     Component: CoinIcon,
     color: "#eab308",
     accentColor: "#10b981"
@@ -2759,7 +2860,8 @@ const ICONS_REGISTRY = [
     id: "shoppingbag",
     name: "ShoppingBagIcon",
     category: "utility",
-    description: "3D paper shopping bag with rope handles, side crease folds, and a glowing star label badge",
+    description:
+      "3D paper shopping bag with rope handles, side crease folds, and a glowing star label badge",
     Component: ShoppingBagIcon,
     color: "#ca8a04",
     accentColor: "#eab308"
@@ -2768,7 +2870,8 @@ const ICONS_REGISTRY = [
     id: "shoppingcart",
     name: "ShoppingCartIcon",
     category: "utility",
-    description: "3D metallic shopping cart with support frames, moving wheels, and a glowing gift item inside",
+    description:
+      "3D metallic shopping cart with support frames, moving wheels, and a glowing gift item inside",
     Component: ShoppingCartIcon,
     color: "#94a3b8",
     accentColor: "#10b981"
@@ -2777,7 +2880,8 @@ const ICONS_REGISTRY = [
     id: "scale",
     name: "ScaleIcon",
     category: "utility",
-    description: "3D justice balance scale showing central stand column, balance crossbeam, hanging pans, and glowing pivot",
+    description:
+      "3D justice balance scale showing central stand column, balance crossbeam, hanging pans, and glowing pivot",
     Component: ScaleIcon,
     color: "#94a3b8",
     accentColor: "#10b981"
@@ -2786,7 +2890,8 @@ const ICONS_REGISTRY = [
     id: "receipt",
     name: "ReceiptIcon",
     category: "utility",
-    description: "3D curved transaction receipt slip with jagged cut edges, printed lines, and a glowing checkmark",
+    description:
+      "3D curved transaction receipt slip with jagged cut edges, printed lines, and a glowing checkmark",
     Component: ReceiptIcon,
     color: "#f8fafc",
     accentColor: "#10b981"
@@ -2795,7 +2900,8 @@ const ICONS_REGISTRY = [
     id: "banknote",
     name: "BanknoteIcon",
     category: "utility",
-    description: "3D paper banknote bills stacked together with center strap collar and a glowing coin badge in center",
+    description:
+      "3D paper banknote bills stacked together with center strap collar and a glowing coin badge in center",
     Component: BanknoteIcon,
     color: "#16a34a",
     accentColor: "#eab308"
@@ -2804,7 +2910,8 @@ const ICONS_REGISTRY = [
     id: "euro",
     name: "EuroIcon",
     category: "utility",
-    description: "3D ridged gold coin showing raised outer borders and a glowing central currency euro symbol",
+    description:
+      "3D ridged gold coin showing raised outer borders and a glowing central currency euro symbol",
     Component: EuroIcon,
     color: "#eab308",
     accentColor: "#10b981"
@@ -2813,7 +2920,8 @@ const ICONS_REGISTRY = [
     id: "yen",
     name: "YenIcon",
     category: "utility",
-    description: "3D ridged gold coin showing raised outer borders and a glowing central currency yen symbol",
+    description:
+      "3D ridged gold coin showing raised outer borders and a glowing central currency yen symbol",
     Component: YenIcon,
     color: "#eab308",
     accentColor: "#10b981"
@@ -2822,7 +2930,8 @@ const ICONS_REGISTRY = [
     id: "pound",
     name: "PoundIcon",
     category: "utility",
-    description: "3D ridged gold coin showing raised outer borders and a glowing central currency pound symbol",
+    description:
+      "3D ridged gold coin showing raised outer borders and a glowing central currency pound symbol",
     Component: PoundIcon,
     color: "#eab308",
     accentColor: "#10b981"
@@ -2849,7 +2958,8 @@ const ICONS_REGISTRY = [
     id: "microscope",
     name: "MicroscopeIcon",
     category: "utility",
-    description: "3D laboratory microscope featuring adjustable focus knobs and a specimen platform",
+    description:
+      "3D laboratory microscope featuring adjustable focus knobs and a specimen platform",
     Component: MicroscopeIcon,
     color: "#475569",
     accentColor: "#10b981"
@@ -2903,7 +3013,8 @@ const ICONS_REGISTRY = [
     id: "calendarplus",
     name: "CalendarPlusIcon",
     category: "utility",
-    description: "3D calendar grids plate with a raised glowing green plus sign on the front corner",
+    description:
+      "3D calendar grids plate with a raised glowing green plus sign on the front corner",
     Component: CalendarPlusIcon,
     color: "#6366f1",
     accentColor: "#10b981"
@@ -2912,7 +3023,8 @@ const ICONS_REGISTRY = [
     id: "calendarcheck",
     name: "CalendarCheckIcon",
     category: "utility",
-    description: "3D calendar grids plate with a raised glowing green checkmark on the front corner",
+    description:
+      "3D calendar grids plate with a raised glowing green checkmark on the front corner",
     Component: CalendarCheckIcon,
     color: "#6366f1",
     accentColor: "#10b981"
@@ -2920,15 +3032,34 @@ const ICONS_REGISTRY = [
   // Alphabet icons – generated dynamically A-Z
   ...(() => {
     const LETTER_COLORS: Record<string, string> = {
-      A: "#f43f5e", B: "#f97316", C: "#eab308", D: "#84cc16",
-      E: "#22c55e", F: "#10b981", G: "#14b8a6", H: "#06b6d4",
-      I: "#0ea5e9", J: "#3b82f6", K: "#6366f1", L: "#8b5cf6",
-      M: "#a855f7", N: "#d946ef", O: "#ec4899", P: "#f43f5e",
-      Q: "#ef4444", R: "#f97316", S: "#f59e0b", T: "#10b981",
-      U: "#06b6d4", V: "#3b82f6", W: "#6366f1", X: "#8b5cf6",
-      Y: "#a855f7", Z: "#d946ef"
+      A: "#f43f5e",
+      B: "#f97316",
+      C: "#eab308",
+      D: "#84cc16",
+      E: "#22c55e",
+      F: "#10b981",
+      G: "#14b8a6",
+      H: "#06b6d4",
+      I: "#0ea5e9",
+      J: "#3b82f6",
+      K: "#6366f1",
+      L: "#8b5cf6",
+      M: "#a855f7",
+      N: "#d946ef",
+      O: "#ec4899",
+      P: "#f43f5e",
+      Q: "#ef4444",
+      R: "#f97316",
+      S: "#f59e0b",
+      T: "#10b981",
+      U: "#06b6d4",
+      V: "#3b82f6",
+      W: "#6366f1",
+      X: "#8b5cf6",
+      Y: "#a855f7",
+      Z: "#d946ef"
     };
-    return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(l => ({
+    return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((l) => ({
       id: `letter-${l.toLowerCase()}`,
       name: `${l}Icon`,
       category: "alphabet" as const,
@@ -2940,18 +3071,29 @@ const ICONS_REGISTRY = [
   })()
 ];
 
-const CATEGORIES = ["all", "storage", "systems", "hardware", "networking", "mechanics", "brands", "emojies", "utility", "alphabet"] as const;
+const CATEGORIES = [
+  "all",
+  "storage",
+  "systems",
+  "hardware",
+  "networking",
+  "mechanics",
+  "brands",
+  "emojies",
+  "utility",
+  "alphabet"
+] as const;
 
 export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) => {
   const { t } = useTranslation();
-  const [activeCategory, setActiveCategory] = useState<typeof CATEGORIES[number]>("all");
+  const [activeCategory, setActiveCategory] = useState<(typeof CATEGORIES)[number]>("all");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [activePreset, setActivePreset] = useState<IconPreset>("glass");
 
   // Pre-calculate category counts for quick search badges
   const categoryCounts = React.useMemo(() => {
     const counts: Record<string, number> = { all: ICONS_REGISTRY.length };
-    ICONS_REGISTRY.forEach(icon => {
+    ICONS_REGISTRY.forEach((icon) => {
       counts[icon.category] = (counts[icon.category] || 0) + 1;
     });
     return counts;
@@ -2960,19 +3102,54 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
   const [activeColorFilter, setActiveColorFilter] = useState<string>("all");
 
   const COLOR_PALETTES = [
-    { id: "all", label: "All Colors", value: "all", bg: "bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500" },
-    { id: "slate", label: "Slate / Gray", value: "slate", bg: "bg-slate-500", colors: ["#6b7280", "#475569", "#71717a"] },
-    { id: "blue", label: "Blue / Indigo", value: "blue", bg: "bg-blue-500", colors: ["#3b82f6", "#6366f1", "#4f46e5", "#1877f2", "#0ea5e9", "#06b6d4"] },
-    { id: "emerald", label: "Emerald / Teal", value: "emerald", bg: "bg-emerald-500", colors: ["#10b981", "#0d9488", "#34d399"] },
-    { id: "rose", label: "Red / Pink", value: "rose", bg: "bg-rose-500", colors: ["#ef4444", "#ec4899", "#e11d48", "#f43f5e"] },
-    { id: "amber", label: "Amber / Yellow", value: "amber", bg: "bg-amber-500", colors: ["#f59e0b", "#f97316", "#eab308", "#d4af37", "#b45309", "#fbbf24"] }
+    {
+      id: "all",
+      label: "All Colors",
+      value: "all",
+      bg: "bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"
+    },
+    {
+      id: "slate",
+      label: "Slate / Gray",
+      value: "slate",
+      bg: "bg-slate-500",
+      colors: ["#6b7280", "#475569", "#71717a"]
+    },
+    {
+      id: "blue",
+      label: "Blue / Indigo",
+      value: "blue",
+      bg: "bg-blue-500",
+      colors: ["#3b82f6", "#6366f1", "#4f46e5", "#1877f2", "#0ea5e9", "#06b6d4"]
+    },
+    {
+      id: "emerald",
+      label: "Emerald / Teal",
+      value: "emerald",
+      bg: "bg-emerald-500",
+      colors: ["#10b981", "#0d9488", "#34d399"]
+    },
+    {
+      id: "rose",
+      label: "Red / Pink",
+      value: "rose",
+      bg: "bg-rose-500",
+      colors: ["#ef4444", "#ec4899", "#e11d48", "#f43f5e"]
+    },
+    {
+      id: "amber",
+      label: "Amber / Yellow",
+      value: "amber",
+      bg: "bg-amber-500",
+      colors: ["#f59e0b", "#f97316", "#eab308", "#d4af37", "#b45309", "#fbbf24"]
+    }
   ];
 
   const matchesColorFilter = (iconColor: string) => {
     if (activeColorFilter === "all") return true;
-    const filter = COLOR_PALETTES.find(p => p.id === activeColorFilter);
+    const filter = COLOR_PALETTES.find((p) => p.id === activeColorFilter);
     if (!filter || !filter.colors) return true;
-    return filter.colors.some(c => c.toLowerCase() === iconColor.toLowerCase());
+    return filter.colors.some((c) => c.toLowerCase() === iconColor.toLowerCase());
   };
 
   const [requestSubmitted, setRequestSubmitted] = useState(false);
@@ -3000,9 +3177,9 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const filteredIcons = ICONS_REGISTRY.filter(icon => {
-    const matchesSearch = 
-      icon.name.toLowerCase().includes(search.toLowerCase()) || 
+  const filteredIcons = ICONS_REGISTRY.filter((icon) => {
+    const matchesSearch =
+      icon.name.toLowerCase().includes(search.toLowerCase()) ||
       icon.description.toLowerCase().includes(search.toLowerCase());
     const matchesCategory = activeCategory === "all" || icon.category === activeCategory;
     const matchesColor = matchesColorFilter(icon.color);
@@ -3046,7 +3223,6 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
 
       {/* Grid Section */}
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 pb-16">
-
         {/* Mobile-only Search Input */}
         <div className="sm:hidden mb-6 relative">
           <input
@@ -3059,26 +3235,29 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
           />
           <Search size={16} className="absolute left-4 top-3.5 text-zinc-400 pointer-events-none" />
         </div>
-
         {/* Dynamic Search Suggestions / Trending Tags */}
         <div className="flex flex-wrap items-center justify-center gap-1.5 mb-6 text-[10px] sm:text-xs">
-          <span className="text-zinc-400 dark:text-zinc-555 font-bold uppercase tracking-wider mr-1">Trending:</span>
-          {["React", "Database", "Shield", "Rocket", "Wifi", "Battery", "Mail", "Globe"].map(tag => {
-            const isSelected = search.toLowerCase() === tag.toLowerCase();
-            return (
-              <button
-                key={tag}
-                onClick={() => setSearch(isSelected ? "" : tag)}
-                className={`px-2.5 py-1 rounded-lg font-bold border transition duration-155 cursor-pointer ${
-                  isSelected
-                    ? "bg-indigo-600/10 border-indigo-500 text-indigo-600 dark:text-indigo-400"
-                    : "bg-white dark:bg-[#0e111a] border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-500 dark:text-zinc-400"
-                }`}
-              >
-                {tag}
-              </button>
-            );
-          })}
+          <span className="text-zinc-400 dark:text-zinc-555 font-bold uppercase tracking-wider mr-1">
+            Trending:
+          </span>
+          {["React", "Database", "Shield", "Rocket", "Wifi", "Battery", "Mail", "Globe"].map(
+            (tag) => {
+              const isSelected = search.toLowerCase() === tag.toLowerCase();
+              return (
+                <button
+                  key={tag}
+                  onClick={() => setSearch(isSelected ? "" : tag)}
+                  className={`px-2.5 py-1 rounded-lg font-bold border transition duration-155 cursor-pointer ${
+                    isSelected
+                      ? "bg-indigo-600/10 border-indigo-500 text-indigo-600 dark:text-indigo-400"
+                      : "bg-white dark:bg-[#0e111a] border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-500 dark:text-zinc-400"
+                  }`}
+                >
+                  {tag}
+                </button>
+              );
+            }
+          )}
           {search && (
             <button
               onClick={() => setSearch("")}
@@ -3087,13 +3266,16 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
               Clear
             </button>
           )}
-        </div>        {/* Controls Toolbar: Brand Color Filter, Preset Switcher & Grid/List View Switcher */}
+        </div>{" "}
+        {/* Controls Toolbar: Brand Color Filter, Preset Switcher & Grid/List View Switcher */}
         <div className="flex flex-col lg:flex-row items-center justify-between gap-4 mb-6 p-3 rounded-2xl border border-zinc-200/55 dark:border-zinc-800/50 bg-zinc-50/20 dark:bg-[#0c0f1a]/10 max-w-4xl mx-auto w-full">
           {/* Brand Color Selector */}
           <div className="flex flex-wrap items-center gap-3">
-            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Filter by Color</span>
+            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+              Filter by Color
+            </span>
             <div className="flex items-center gap-2">
-              {COLOR_PALETTES.map(palette => {
+              {COLOR_PALETTES.map((palette) => {
                 const isSelected = activeColorFilter === palette.id;
                 return (
                   <button
@@ -3120,15 +3302,19 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
 
           {/* Catalog Material Preset Selector Switcher */}
           <div className="flex flex-wrap items-center gap-3">
-            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Material Preset</span>
+            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+              Material Preset
+            </span>
             <div className="flex flex-wrap gap-1 rounded-xl p-0.5 bg-zinc-100 dark:bg-[#0e111a] border border-zinc-200/40 dark:border-zinc-800/40">
-              {([
-                { id: "glass", name: "Glass" },
-                { id: "gold", name: "Gold" },
-                { id: "silver", name: "Chrome" },
-                { id: "carbon", name: "Carbon" },
-                { id: "wood", name: "Wood" }
-              ] as const).map(presetItem => {
+              {(
+                [
+                  { id: "glass", name: "Glass" },
+                  { id: "gold", name: "Gold" },
+                  { id: "silver", name: "Chrome" },
+                  { id: "carbon", name: "Carbon" },
+                  { id: "wood", name: "Wood" }
+                ] as const
+              ).map((presetItem) => {
                 const isSelected = activePreset === presetItem.id;
                 return (
                   <button
@@ -3152,7 +3338,9 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
 
           {/* Grid vs List Toggle Switcher */}
           <div className="flex items-center gap-2">
-            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">Layout</span>
+            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+              Layout
+            </span>
             <div className="flex rounded-lg p-0.5 bg-zinc-100 dark:bg-[#0e111a] border border-zinc-200/40 dark:border-zinc-800/40">
               <button
                 onClick={() => setViewMode("grid")}
@@ -3163,7 +3351,21 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                 }`}
                 title="Grid View"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-3.5 h-3.5"
+                >
+                  <rect width="7" height="7" x="3" y="3" rx="1" />
+                  <rect width="7" height="7" x="14" y="3" rx="1" />
+                  <rect width="7" height="7" x="14" y="14" rx="1" />
+                  <rect width="7" height="7" x="3" y="14" rx="1" />
+                </svg>
               </button>
               <button
                 onClick={() => setViewMode("list")}
@@ -3174,15 +3376,27 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                 }`}
                 title="List View"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-3.5 h-3.5"
+                >
+                  <line x1="3" x2="21" y1="6" y2="6" />
+                  <line x1="3" x2="21" y1="12" y2="12" />
+                  <line x1="3" x2="21" y1="18" y2="18" />
+                </svg>
               </button>
             </div>
           </div>
         </div>
-
         {/* Category Filter Bar */}
         <div className="flex flex-wrap gap-1.5 justify-center mb-6">
-          {CATEGORIES.map(category => {
+          {CATEGORIES.map((category) => {
             const translationKey = `category_${category}` as TranslationKey;
             const isSelected = activeCategory === category;
             const count = categoryCounts[category] || 0;
@@ -3197,24 +3411,28 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                 }`}
               >
                 <span>{t(translationKey)}</span>
-                <span className={`px-1.5 py-0.5 rounded-full text-[9px] font-extrabold ${
-                  isSelected
-                    ? "bg-white/20 text-white"
-                    : "bg-zinc-200/60 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-500"
-                }`}>
+                <span
+                  className={`px-1.5 py-0.5 rounded-full text-[9px] font-extrabold ${
+                    isSelected
+                      ? "bg-white/20 text-white"
+                      : "bg-zinc-200/60 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-500"
+                  }`}
+                >
                   {count}
                 </span>
               </button>
             );
           })}
         </div>
-
         {/* Icon Grid/List Catalog */}
-        <div className={viewMode === "grid" 
-          ? "grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3"
-          : "flex flex-col gap-3.5"
-        }>
-          {filteredIcons.slice(0, visibleCount).map(icon => (
+        <div
+          className={
+            viewMode === "grid"
+              ? "grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3"
+              : "flex flex-col gap-3.5"
+          }
+        >
+          {filteredIcons.slice(0, visibleCount).map((icon) => (
             <IconCard
               key={icon.id}
               id={icon.id}
@@ -3232,7 +3450,10 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
 
           {/* Sentinel element to trigger loading more icons */}
           {visibleCount < filteredIcons.length && (
-            <div id="scroll-sentinel" className="col-span-full h-8 flex items-center justify-center text-xs font-semibold text-zinc-400 dark:text-zinc-500 py-4">
+            <div
+              id="scroll-sentinel"
+              className="col-span-full h-8 flex items-center justify-center text-xs font-semibold text-zinc-400 dark:text-zinc-500 py-4"
+            >
               <span className="animate-pulse">Loading more icons...</span>
             </div>
           )}
@@ -3269,7 +3490,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                   </button>
                 </div>
               ) : (
-                <form 
+                <form
                   onSubmit={(e) => {
                     e.preventDefault();
                     setRequestSubmitted(true);
@@ -3281,8 +3502,8 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                     <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
                       Suggested Icon Name
                     </label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       required
                       value={requestIconName}
                       onChange={(e) => setRequestIconName(e.target.value)}
@@ -3331,8 +3552,8 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                     <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
                       Your Email (optional)
                     </label>
-                    <input 
-                      type="email" 
+                    <input
+                      type="email"
                       value={requestEmail}
                       onChange={(e) => setRequestEmail(e.target.value)}
                       placeholder="you@example.com"
@@ -3358,7 +3579,9 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className={`fixed bottom-6 right-6 z-50 flex items-center justify-center p-3 rounded-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500/90 dark:hover:bg-indigo-600 text-white shadow-xl shadow-indigo-600/20 hover:shadow-indigo-600/30 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer backdrop-blur-md ${
-          showScrollTop ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-4 scale-90 pointer-events-none"
+          showScrollTop
+            ? "opacity-100 translate-y-0 scale-100"
+            : "opacity-0 translate-y-4 scale-90 pointer-events-none"
         }`}
         aria-label="Back to Top"
       >

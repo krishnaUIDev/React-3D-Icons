@@ -6,7 +6,6 @@ export function HacksawIcon(props: HacksawIconProps) {
     <SharedWrapper iconId="hacksaw" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0.08]} position={[0, 0, 0]}>
-          
           {/* Main Hacksaw U-Frame (Segmented Steel Rods) */}
           <group>
             {/* Top Frame Rod */}
@@ -67,7 +66,7 @@ export function HacksawIcon(props: HacksawIconProps) {
                 color={mat.color}
               />
             </mesh>
-            
+
             {/* Rubber inner grip inlay (glowing accent) */}
             <mesh position={[0.02, 0, 0]}>
               <boxGeometry args={[0.02, 0.18, 0.066]} />
@@ -88,7 +87,6 @@ export function HacksawIcon(props: HacksawIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

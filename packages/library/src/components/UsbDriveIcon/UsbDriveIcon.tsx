@@ -6,7 +6,6 @@ export function UsbDriveIcon(props: UsbDriveIconProps) {
     <SharedWrapper iconId="usbdrive" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.2, 0.1]} position={[0, -0.04, 0]}>
-          
           {/* Main Flash Drive Plastic Body Case */}
           <mesh castShadow receiveShadow position={[0, -0.06, 0]}>
             <boxGeometry args={[0.2, 0.42, 0.08]} />
@@ -63,7 +62,6 @@ export function UsbDriveIcon(props: UsbDriveIconProps) {
             <sphereGeometry args={[0.012, 8, 8]} />
             <meshStandardMaterial color="#cbd5e1" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

@@ -6,8 +6,16 @@ export function TrendingUpIcon(props: TrendingUpIconProps) {
 
   const segments = [
     { pos: [-0.5, -0.4, 0] as [number, number, number], len: 0.6, rot: -Math.PI / 2 },
-    { pos: [0, -0.15, 0] as [number, number, number], len: 0.64, rot: Math.atan2(0.5, 0.4) - Math.PI / 2 },
-    { pos: [0.45, 0.3, 0] as [number, number, number], len: 0.64, rot: Math.atan2(0.4, 0.5) - Math.PI / 2 }
+    {
+      pos: [0, -0.15, 0] as [number, number, number],
+      len: 0.64,
+      rot: Math.atan2(0.5, 0.4) - Math.PI / 2
+    },
+    {
+      pos: [0.45, 0.3, 0] as [number, number, number],
+      len: 0.64,
+      rot: Math.atan2(0.4, 0.5) - Math.PI / 2
+    }
   ];
 
   const joints = [
@@ -24,7 +32,7 @@ export function TrendingUpIcon(props: TrendingUpIconProps) {
   return (
     <SharedWrapper iconId="trendingup" {...props}>
       {(mat) => {
-        const ac = mat.emissiveIntensity > 0 ? mat.emissive : (props.accentColor || "#10b981");
+        const ac = mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981";
 
         return (
           <group rotation={[0.1, -0.2, 0.05]}>
@@ -55,11 +63,7 @@ export function TrendingUpIcon(props: TrendingUpIconProps) {
 
             {/* Glowing joints */}
             {joints.map((joint, idx) => (
-              <mesh
-                key={`joint-${idx}`}
-                position={joint}
-                castShadow
-              >
+              <mesh key={`joint-${idx}`} position={joint} castShadow>
                 <sphereGeometry args={[radius * 1.05, 12, 12]} />
                 <meshStandardMaterial
                   color={ac}
@@ -72,11 +76,7 @@ export function TrendingUpIcon(props: TrendingUpIconProps) {
             ))}
 
             {/* Arrow Head */}
-            <mesh
-              position={headPos}
-              rotation={headRot}
-              castShadow
-            >
+            <mesh position={headPos} rotation={headRot} castShadow>
               <coneGeometry args={[0.13, 0.22, 16]} />
               <meshStandardMaterial
                 color={ac}

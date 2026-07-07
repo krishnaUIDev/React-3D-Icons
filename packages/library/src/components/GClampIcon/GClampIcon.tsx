@@ -6,7 +6,6 @@ export function GClampIcon(props: GClampIconProps) {
     <SharedWrapper iconId="gclamp" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.1]} position={[0, 0, 0]}>
-          
           {/* Main G-Clamp Frame (C-shaped heavy metal structure) */}
           <group>
             {/* Back long spine */}
@@ -89,13 +88,14 @@ export function GClampIcon(props: GClampIconProps) {
                 <sphereGeometry args={[0.012, 12, 12]} />
                 <meshStandardMaterial
                   color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                  emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                  emissive={
+                    mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                  }
                   emissiveIntensity={1.0}
                 />
               </mesh>
             ))}
           </group>
-
         </group>
       )}
     </SharedWrapper>

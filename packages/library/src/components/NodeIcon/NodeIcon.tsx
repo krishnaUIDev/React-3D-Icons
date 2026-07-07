@@ -5,13 +5,13 @@ export function NodeIcon(props: NodeIconProps) {
   return (
     <SharedWrapper iconId="node" {...props}>
       {(mat) => {
-        const accentCol = mat.emissiveIntensity > 0 ? mat.emissive : (props.accentColor || "#3c873a");
+        const accentCol = mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#3c873a";
         const faceZ = 0.22;
 
         // Leg geometry
         const legHeight = 0.72;
-        const legHalfH = legHeight / 2;   // 0.36
-        const legX = 0.25;                 // x distance from center to each leg
+        const legHalfH = legHeight / 2; // 0.36
+        const legX = 0.25; // x distance from center to each leg
 
         // Diagonal: must go from top of LEFT leg (-0.25, +0.36)
         //           to bottom of RIGHT leg (+0.25, -0.36)
@@ -32,7 +32,6 @@ export function NodeIcon(props: NodeIconProps) {
 
         return (
           <group rotation={[0.1, -0.3, 0.05]}>
-
             {/* Hexagonal shield body – rotated so flat face points forward */}
             <mesh castShadow receiveShadow rotation={[Math.PI / 2, 0, 0]}>
               <cylinderGeometry args={[0.82, 0.82, 0.42, 6, 1]} />
@@ -86,7 +85,6 @@ export function NodeIcon(props: NodeIconProps) {
               <boxGeometry args={[0.11, diagLength, 0.1]} />
               {legMat}
             </mesh>
-
           </group>
         );
       }}

@@ -5,8 +5,11 @@ export function CakeIcon(props: CakeIconProps) {
   return (
     <SharedWrapper iconId="cake" {...props}>
       {(mat) => (
-        <group rotation={[0.15, -Math.PI / 8, 0.05]} position={[0, -0.02, 0]} scale={[1.4, 1.4, 1.4]}>
-          
+        <group
+          rotation={[0.15, -Math.PI / 8, 0.05]}
+          position={[0, -0.02, 0]}
+          scale={[1.4, 1.4, 1.4]}
+        >
           {/* Plate / Base Stand (Silver/Grey) */}
           <mesh position={[0, -0.22, 0]} castShadow>
             <cylinderGeometry args={[0.38, 0.4, 0.02, 24]} />
@@ -94,7 +97,7 @@ export function CakeIcon(props: CakeIconProps) {
               <cylinderGeometry args={[0.015, 0.015, 0.12, 8]} />
               <meshStandardMaterial color="#3b82f6" roughness={0.4} />
             </mesh>
-            
+
             {/* Candle Wick */}
             <mesh position={[0, 0.15, 0]} castShadow>
               <cylinderGeometry args={[0.003, 0.003, 0.02, 4]} />
@@ -111,7 +114,6 @@ export function CakeIcon(props: CakeIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

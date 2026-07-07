@@ -46,19 +46,31 @@ export function GitIcon(props: GitIconProps) {
               {/* Bottom Trunk Node Sphere */}
               <mesh position={[-0.14, -0.24, 0]}>
                 <sphereGeometry args={[0.065, 16, 16]} />
-                <meshStandardMaterial roughness={0.2} metalness={0.9} color={props.accentColor || "#f43f5e"} />
+                <meshStandardMaterial
+                  roughness={0.2}
+                  metalness={0.9}
+                  color={props.accentColor || "#f43f5e"}
+                />
               </mesh>
 
               {/* Top Trunk Node Sphere */}
               <mesh position={[-0.14, 0.24, 0]}>
                 <sphereGeometry args={[0.065, 16, 16]} />
-                <meshStandardMaterial roughness={0.2} metalness={0.9} color={props.accentColor || "#f43f5e"} />
+                <meshStandardMaterial
+                  roughness={0.2}
+                  metalness={0.9}
+                  color={props.accentColor || "#f43f5e"}
+                />
               </mesh>
 
               {/* Branch Node Sphere */}
               <mesh position={[0.08, 0.19, 0]}>
                 <sphereGeometry args={[0.065, 16, 16]} />
-                <meshStandardMaterial roughness={0.2} metalness={0.9} color={props.accentColor || "#f43f5e"} />
+                <meshStandardMaterial
+                  roughness={0.2}
+                  metalness={0.9}
+                  color={props.accentColor || "#f43f5e"}
+                />
               </mesh>
             </group>
           </group>

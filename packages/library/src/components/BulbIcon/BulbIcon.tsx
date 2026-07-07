@@ -6,7 +6,6 @@ export function BulbIcon(props: BulbIconProps) {
     <SharedWrapper iconId="bulb" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0]} position={[0, 0.05, 0]}>
-          
           {/* Main Top Glass Sphere */}
           <mesh position={[0, 0.22, 0]} castShadow receiveShadow>
             <sphereGeometry args={[0.44, 32, 32]} />
@@ -45,15 +44,33 @@ export function BulbIcon(props: BulbIconProps) {
           <group position={[0, 0.15, 0]}>
             <mesh castShadow>
               <torusGeometry args={[0.11, 0.02, 8, 32, Math.PI]} />
-              <meshStandardMaterial roughness={0.1} metalness={0.2} color="#f59e0b" emissive="#fbbf24" emissiveIntensity={2.0} />
+              <meshStandardMaterial
+                roughness={0.1}
+                metalness={0.2}
+                color="#f59e0b"
+                emissive="#fbbf24"
+                emissiveIntensity={2.0}
+              />
             </mesh>
             <mesh position={[-0.11, -0.1, 0]} castShadow>
               <cylinderGeometry args={[0.015, 0.015, 0.2, 16]} />
-              <meshStandardMaterial roughness={0.1} metalness={0.2} color="#f59e0b" emissive="#fbbf24" emissiveIntensity={1.0} />
+              <meshStandardMaterial
+                roughness={0.1}
+                metalness={0.2}
+                color="#f59e0b"
+                emissive="#fbbf24"
+                emissiveIntensity={1.0}
+              />
             </mesh>
             <mesh position={[0.11, -0.1, 0]} castShadow>
               <cylinderGeometry args={[0.015, 0.015, 0.2, 16]} />
-              <meshStandardMaterial roughness={0.1} metalness={0.2} color="#f59e0b" emissive="#fbbf24" emissiveIntensity={1.0} />
+              <meshStandardMaterial
+                roughness={0.1}
+                metalness={0.2}
+                color="#f59e0b"
+                emissive="#fbbf24"
+                emissiveIntensity={1.0}
+              />
             </mesh>
           </group>
 
@@ -82,7 +99,6 @@ export function BulbIcon(props: BulbIconProps) {
               <meshStandardMaterial roughness={0.9} color="#334155" />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

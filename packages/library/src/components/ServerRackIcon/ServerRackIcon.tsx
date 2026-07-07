@@ -8,7 +8,6 @@ export function ServerRackIcon(props: ServerRackIconProps) {
     <SharedWrapper iconId="serverrack" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Server Cabinet Chassis */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.54, 0.74, 0.44]} />
@@ -64,31 +63,42 @@ export function ServerRackIcon(props: ServerRackIconProps) {
                 <mesh position={[-0.04, 0, 0]}>
                   <sphereGeometry args={[0.012, 8, 8]} />
                   <meshStandardMaterial
-                    color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                    emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                    color={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                    }
+                    emissive={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                    }
                     emissiveIntensity={1.4}
                   />
                 </mesh>
                 <mesh position={[0, 0, 0]}>
                   <sphereGeometry args={[0.012, 8, 8]} />
                   <meshStandardMaterial
-                    color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                    emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                    color={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                    }
+                    emissive={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                    }
                     emissiveIntensity={1.4}
                   />
                 </mesh>
                 <mesh position={[0.04, 0, 0]}>
                   <sphereGeometry args={[0.012, 8, 8]} />
                   <meshStandardMaterial
-                    color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                    emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                    color={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                    }
+                    emissive={
+                      mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                    }
                     emissiveIntensity={1.4}
                   />
                 </mesh>
               </group>
             </group>
           ))}
-
         </group>
       )}
     </SharedWrapper>

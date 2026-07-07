@@ -6,7 +6,6 @@ export function TabletIcon(props: TabletIconProps) {
     <SharedWrapper iconId="tablet" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.15, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Tablet Bezel Casing */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.72, 0.54, 0.03]} />
@@ -51,7 +50,7 @@ export function TabletIcon(props: TabletIconProps) {
                 emissiveIntensity={1.3}
               />
             </mesh>
-            
+
             {/* Widget 2 */}
             <mesh position={[0.16, 0.1, 0]} castShadow>
               <boxGeometry args={[0.24, 0.04, 0.002]} />
@@ -72,7 +71,6 @@ export function TabletIcon(props: TabletIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

@@ -6,7 +6,6 @@ export function MusicIcon(props: MusicIconProps) {
     <SharedWrapper iconId="music" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0]} position={[0, -0.05, 0]}>
-          
           {/* Left Note Head (Rotated Egg Shape) */}
           <group position={[-0.22, -0.3, 0]} rotation={[0.3, 0, 0.5]}>
             <mesh castShadow receiveShadow>
@@ -97,7 +96,6 @@ export function MusicIcon(props: MusicIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

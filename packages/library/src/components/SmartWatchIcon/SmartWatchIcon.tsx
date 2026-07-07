@@ -6,7 +6,6 @@ export function SmartWatchIcon(props: SmartWatchIconProps) {
     <SharedWrapper iconId="smartwatch" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Watch Body Case (Metal bezel) */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.36, 0.42, 0.07]} />
@@ -80,7 +79,6 @@ export function SmartWatchIcon(props: SmartWatchIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

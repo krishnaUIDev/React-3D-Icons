@@ -6,7 +6,6 @@ export function PhoneIcon(props: IconProps) {
     <SharedWrapper iconId="phone" {...props}>
       {(mat) => (
         <group rotation={[0.3, -0.4, 0.4]} position={[0, 0, 0]}>
-          
           {/* Main Curved Handle - Middle Section */}
           <mesh castShadow receiveShadow position={[0, 0, 0]} rotation={[0, 0, 0]}>
             <cylinderGeometry args={[0.08, 0.08, 1.0, 16]} />
@@ -49,7 +48,8 @@ export function PhoneIcon(props: IconProps) {
           </mesh>
           <mesh position={[0.12, 0.55, 0.12]} rotation={[-0.4, 0, 0]}>
             <cylinderGeometry args={[0.2, 0.2, 0.02, 24]} />
-            <meshStandardMaterial roughness={0.1} metalness={0.9} color="#cbd5e1" /> {/* Metallic plate */}
+            <meshStandardMaterial roughness={0.1} metalness={0.9} color="#cbd5e1" />{" "}
+            {/* Metallic plate */}
           </mesh>
 
           {/* Bottom Microphone Cup Joiner (rotated towards mouth) */}
@@ -77,9 +77,9 @@ export function PhoneIcon(props: IconProps) {
           </mesh>
           <mesh position={[0.12, -0.55, 0.12]} rotation={[0.4, 0, 0]}>
             <cylinderGeometry args={[0.2, 0.2, 0.02, 24]} />
-            <meshStandardMaterial roughness={0.1} metalness={0.9} color="#cbd5e1" /> {/* Metallic plate */}
+            <meshStandardMaterial roughness={0.1} metalness={0.9} color="#cbd5e1" />{" "}
+            {/* Metallic plate */}
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

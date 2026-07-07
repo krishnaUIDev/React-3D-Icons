@@ -6,7 +6,6 @@ export function FileIcon(props: FileIconProps) {
     <SharedWrapper iconId="file" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.25, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Paper Sheet Card */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.85, 1.15, 0.08]} />
@@ -64,7 +63,6 @@ export function FileIcon(props: FileIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

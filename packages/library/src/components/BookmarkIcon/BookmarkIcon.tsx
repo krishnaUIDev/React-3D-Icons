@@ -6,7 +6,6 @@ export function BookmarkIcon(props: BookmarkIconProps) {
     <SharedWrapper iconId="bookmark" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Ribbon Tab Body */}
           <mesh castShadow receiveShadow position={[0, -0.1, 0]}>
             <boxGeometry args={[0.54, 0.95, 0.06]} />
@@ -53,7 +52,6 @@ export function BookmarkIcon(props: BookmarkIconProps) {
               color={props.theme === "dark" ? "#cbd5e1" : "#475569"}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

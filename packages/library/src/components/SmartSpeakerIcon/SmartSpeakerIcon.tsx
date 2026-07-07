@@ -6,7 +6,6 @@ export function SmartSpeakerIcon(props: SmartSpeakerIconProps) {
     <SharedWrapper iconId="smartspeaker" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.2, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Speaker Mesh Cabinet (Cylinder) */}
           <mesh castShadow receiveShadow>
             <cylinderGeometry args={[0.2, 0.2, 0.46, 24]} />
@@ -55,7 +54,6 @@ export function SmartSpeakerIcon(props: SmartSpeakerIconProps) {
             <sphereGeometry args={[0.018, 12, 12]} />
             <meshStandardMaterial roughness={0.1} metalness={0.9} color="#cbd5e1" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

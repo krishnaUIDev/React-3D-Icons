@@ -51,11 +51,7 @@ export function ServerIcon(props: ServerIconProps) {
               {/* Status LED Lights (Power / Disk Activity) */}
               <mesh position={[-0.28, 0.05, 0.03]}>
                 <sphereGeometry args={[0.035, 12, 12]} />
-                <meshStandardMaterial
-                  color="#10b981"
-                  emissive="#10b981"
-                  emissiveIntensity={1.5}
-                />
+                <meshStandardMaterial color="#10b981" emissive="#10b981" emissiveIntensity={1.5} />
               </mesh>
               <mesh position={[-0.28, -0.05, 0.03]}>
                 <sphereGeometry args={[0.035, 12, 12]} />

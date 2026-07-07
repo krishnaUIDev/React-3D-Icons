@@ -6,7 +6,6 @@ export function SmartLockIcon(props: SmartLockIconProps) {
     <SharedWrapper iconId="smartlock" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Heavy Backplate Disc */}
           <mesh castShadow position={[0, 0, -0.04]}>
             <cylinderGeometry args={[0.18, 0.18, 0.03, 32]} />
@@ -72,7 +71,6 @@ export function SmartLockIcon(props: SmartLockIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

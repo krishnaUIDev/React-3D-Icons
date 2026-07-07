@@ -13,7 +13,12 @@ export function HibiscusIcon(props: HibiscusIconProps) {
               return (
                 <group key={i} rotation={[0, 0, angle]}>
                   {/* Flared and tilted petal */}
-                  <mesh position={[0, 0.1, 0.02]} rotation={[0.4, 0, 0]} scale={[1.3, 1.8, 0.15]} castShadow>
+                  <mesh
+                    position={[0, 0.1, 0.02]}
+                    rotation={[0.4, 0, 0]}
+                    scale={[1.3, 1.8, 0.15]}
+                    castShadow
+                  >
                     <sphereGeometry args={[0.08, 16, 16]} />
                     <meshPhysicalMaterial
                       roughness={mat.roughness}
@@ -45,8 +50,12 @@ export function HibiscusIcon(props: HibiscusIconProps) {
                   <mesh key={i} position={[x, 0.01, z]} castShadow>
                     <sphereGeometry args={[0.009, 8, 8]} />
                     <meshStandardMaterial
-                      color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
-                      emissive={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
+                      color={
+                        mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                      }
+                      emissive={
+                        mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"
+                      }
                       emissiveIntensity={1.4}
                     />
                   </mesh>

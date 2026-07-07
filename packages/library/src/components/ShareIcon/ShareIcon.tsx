@@ -10,7 +10,6 @@ export function ShareIcon(props: IconProps) {
     <SharedWrapper iconId="share" {...props}>
       {(mat) => (
         <group rotation={[0.1, -0.3, 0]} position={[0, 0, 0]}>
-          
           {/* Connecting Rod 1 (Top diagonal) */}
           <mesh position={[0, 0.225, 0]} rotation={[0, 0, -angle]} castShadow>
             <cylinderGeometry args={[0.04, 0.04, rodLength, 12]} />
@@ -63,7 +62,6 @@ export function ShareIcon(props: IconProps) {
               color={mat.color}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

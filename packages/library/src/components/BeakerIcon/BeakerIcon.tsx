@@ -5,8 +5,11 @@ export function BeakerIcon(props: BeakerIconProps) {
   return (
     <SharedWrapper iconId="beaker" {...props}>
       {(mat) => (
-        <group rotation={[0.15, -Math.PI / 8, 0.05]} position={[0, -0.02, 0]} scale={[1.4, 1.4, 1.4]}>
-          
+        <group
+          rotation={[0.15, -Math.PI / 8, 0.05]}
+          position={[0, -0.02, 0]}
+          scale={[1.4, 1.4, 1.4]}
+        >
           {/* Beaker Glass Cup Body (Preset Material) */}
           <mesh castShadow receiveShadow>
             <cylinderGeometry args={[0.18, 0.18, 0.36, 16, 1, true]} />
@@ -27,13 +30,23 @@ export function BeakerIcon(props: BeakerIconProps) {
           {/* Beaker Base Glass Plate (solid bottom cap) */}
           <mesh position={[0, -0.175, 0]} castShadow>
             <cylinderGeometry args={[0.18, 0.18, 0.01, 16]} />
-            <meshPhysicalMaterial roughness={mat.roughness} color={mat.color} transparent opacity={0.7} />
+            <meshPhysicalMaterial
+              roughness={mat.roughness}
+              color={mat.color}
+              transparent
+              opacity={0.7}
+            />
           </mesh>
 
           {/* Beaker Top Flange Rim Ring */}
           <mesh position={[0, 0.18, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow>
             <torusGeometry args={[0.18, 0.012, 8, 16]} />
-            <meshPhysicalMaterial roughness={mat.roughness} color={mat.color} transparent opacity={0.7} />
+            <meshPhysicalMaterial
+              roughness={mat.roughness}
+              color={mat.color}
+              transparent
+              opacity={0.7}
+            />
           </mesh>
 
           {/* Liquid Inside Beaker (Emissive Accent Color) */}
@@ -111,7 +124,6 @@ export function BeakerIcon(props: BeakerIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

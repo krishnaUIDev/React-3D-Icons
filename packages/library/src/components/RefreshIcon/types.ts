@@ -1,1 +1,2 @@
-import { IconProps } from "../../types"; export type RefreshIconProps = IconProps;
+import { IconProps } from "../../types";
+export type RefreshIconProps = IconProps;

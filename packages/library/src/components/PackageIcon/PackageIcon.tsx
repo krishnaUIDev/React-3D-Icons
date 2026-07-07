@@ -67,12 +67,24 @@ export function PackageIcon(props: PackageIconProps) {
             {/* Left side flap groove */}
             <mesh position={[-0.455, 0.1, 0]}>
               <boxGeometry args={[0.01, 0.02, 0.91]} />
-              <meshStandardMaterial color={mat.color} roughness={0.9} metalness={0.1} opacity={0.4} transparent />
+              <meshStandardMaterial
+                color={mat.color}
+                roughness={0.9}
+                metalness={0.1}
+                opacity={0.4}
+                transparent
+              />
             </mesh>
             {/* Right side flap groove */}
             <mesh position={[0.455, 0.1, 0]}>
               <boxGeometry args={[0.01, 0.02, 0.91]} />
-              <meshStandardMaterial color={mat.color} roughness={0.9} metalness={0.1} opacity={0.4} transparent />
+              <meshStandardMaterial
+                color={mat.color}
+                roughness={0.9}
+                metalness={0.1}
+                opacity={0.4}
+                transparent
+              />
             </mesh>
           </group>
         );

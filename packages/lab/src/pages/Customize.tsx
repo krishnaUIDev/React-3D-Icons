@@ -319,308 +319,2357 @@ import * as LucideAll from "lucide-react";
 
 // List of all procedural components with descriptions and unique default colors
 const ICONS_REGISTRY = [
-  { id: "plus", name: "PlusIcon", category: "utility", Component: PlusIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "minus", name: "MinusIcon", category: "utility", Component: MinusIcon, color: "#6b7280", accentColor: "#9ca3af" },
-  { id: "close", name: "CloseIcon", category: "utility", Component: CloseIcon, color: "#ef4444", accentColor: "#f87171" },
-  { id: "info", name: "InfoIcon", category: "utility", Component: InfoIcon, color: "#3b82f6", accentColor: "#60a5fa" },
-  { id: "alertcircle", name: "AlertCircleIcon", category: "utility", Component: AlertCircleIcon, color: "#f59e0b", accentColor: "#fbbf24" },
-  { id: "anchor", name: "AnchorIcon", category: "utility", Component: AnchorIcon, color: "#475569", accentColor: "#f43f5e" },
-  { id: "diamond", name: "DiamondIcon", category: "utility", Component: DiamondIcon, color: "#0ea5e9", accentColor: "#10b981" },
-  { id: "filter", name: "FilterIcon", category: "utility", Component: FilterIcon, color: "#f43f5e", accentColor: "#38bdf8" },
-  { id: "pipeline", name: "PipelineIcon", category: "networking", Component: PipelineIcon, color: "#0d9488", accentColor: "#10b981" },
-  { id: "refresh", name: "RefreshIcon", category: "utility", Component: RefreshIcon, color: "#8b5cf6", accentColor: "#ec4899" },
-  { id: "webhook", name: "WebhookIcon", category: "networking", Component: WebhookIcon, color: "#6366f1", accentColor: "#10b981" },
-  { id: "facebook", name: "FacebookIcon", category: "brands", Component: FacebookIcon, color: "#1877f2", accentColor: "#3b82f6" },
-  { id: "shield", name: "ShieldIcon", category: "utility", Component: ShieldIcon, color: "#0d9488", accentColor: "#34d399" },
-  { id: "rocket", name: "RocketIcon", category: "mechanics", Component: RocketIcon, color: "#ef4444", accentColor: "#f59e0b" },
-  { id: "database", name: "DatabaseIcon", category: "storage", Component: DatabaseIcon, color: "#4f46e5", accentColor: "#ec4899" },
-  { id: "folder", name: "FolderIcon", category: "storage", Component: FolderIcon, color: "#f59e0b", accentColor: "#eab308" },
-  { id: "cloud", name: "CloudIcon", category: "systems", Component: CloudIcon, color: "#0ea5e9", accentColor: "#38bdf8" },
-  { id: "network", name: "NetworkIcon", category: "networking", Component: NetworkIcon, color: "#06b6d4", accentColor: "#a855f7" },
-  { id: "cloudnetwork", name: "CloudNetworkIcon", category: "networking", Component: CloudNetworkIcon, color: "#3b82f6", accentColor: "#10b981" },
-  { id: "firewall", name: "FirewallIcon", category: "networking", Component: FirewallIcon, color: "#e11d48", accentColor: "#ea580c" },
-  { id: "cpu", name: "CpuIcon", category: "hardware", Component: CpuIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "gear", name: "GearIcon", category: "mechanics", Component: GearIcon, color: "#71717a", accentColor: "#b45309" },
-  { id: "mail", name: "MailIcon", category: "utility", Component: MailIcon, color: "#e11d48", accentColor: "#ec4899" },
-  { id: "calendar", name: "CalendarIcon", category: "utility", Component: CalendarIcon, color: "#6366f1", accentColor: "#ef4444" },
-  { id: "wallet", name: "WalletIcon", category: "utility", Component: WalletIcon, color: "#b45309", accentColor: "#d97706" },
-  { id: "dollar", name: "DollarIcon", category: "utility", Component: DollarIcon, color: "#eab308", accentColor: "#f59e0b" },
-  { id: "thumbup", name: "ThumbUpIcon", category: "utility", Component: ThumbUpIcon, color: "#f43f5e", accentColor: "#fb7185" },
-  { id: "flash", name: "FlashIcon", category: "utility", Component: FlashIcon, color: "#eab308", accentColor: "#f97316" },
-  { id: "heart", name: "HeartIcon", category: "utility", Component: HeartIcon, color: "#ec4899", accentColor: "#f43f5e" },
-  { id: "chat", name: "ChatIcon", category: "utility", Component: ChatIcon, color: "#8b5cf6", accentColor: "#a78bfa" },
-  { id: "key", name: "KeyIcon", category: "utility", Component: KeyIcon, color: "#f59e0b", accentColor: "#fbbf24" },
-  { id: "star", name: "StarIcon", category: "utility", Component: StarIcon, color: "#fbbf24", accentColor: "#f59e0b" },
-  { id: "cart", name: "CartIcon", category: "utility", Component: CartIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "music", name: "MusicIcon", category: "utility", Component: MusicIcon, color: "#ec4899", accentColor: "#f43f5e" },
-  { id: "gamepad", name: "GamepadIcon", category: "hardware", Component: GamepadIcon, color: "#6366f1", accentColor: "#8b5cf6" },
-  { id: "bell", name: "BellIcon", category: "utility", Component: BellIcon, color: "#f59e0b", accentColor: "#d97706" },
-  { id: "sun", name: "SunIcon", category: "systems", Component: SunIcon, color: "#f97316", accentColor: "#eab308" },
-  { id: "bulb", name: "BulbIcon", category: "utility", Component: BulbIcon, color: "#fbbf24", accentColor: "#f59e0b" },
-  { id: "camera", name: "CameraIcon", category: "hardware", Component: CameraIcon, color: "#06b6d4", accentColor: "#3b82f6" },
-  { id: "clock", name: "ClockIcon", category: "utility", Component: ClockIcon, color: "#ef4444", accentColor: "#cbd5e1" },
-  { id: "trophy", name: "TrophyIcon", category: "utility", Component: TrophyIcon, color: "#eab308", accentColor: "#f59e0b" },
-  { id: "lock", name: "LockIcon", category: "utility", Component: LockIcon, color: "#6366f1", accentColor: "#8b5cf6" },
-  { id: "mappin", name: "MapPinIcon", category: "utility", Component: MapPinIcon, color: "#ef4444", accentColor: "#f43f5e" },
-  { id: "creditcard", name: "CreditCardIcon", category: "utility", Component: CreditCardIcon, color: "#4f46e5", accentColor: "#0ea5e9" },
-  { id: "wifi", name: "WifiIcon", category: "networking", Component: WifiIcon, color: "#0ea5e9", accentColor: "#38bdf8" },
-  { id: "search", name: "SearchIcon", category: "utility", Component: SearchIcon, color: "#3b82f6", accentColor: "#38bdf8" },
-  { id: "home", name: "HomeIcon", category: "utility", Component: HomeIcon, color: "#10b981", accentColor: "#f43f5e" },
-  { id: "trash", name: "TrashIcon", category: "utility", Component: TrashIcon, color: "#71717a", accentColor: "#ef4444" },
-  { id: "user", name: "UserIcon", category: "utility", Component: UserIcon, color: "#6366f1", accentColor: "#10b981" },
-  { id: "play", name: "PlayIcon", category: "utility", Component: PlayIcon, color: "#10b981", accentColor: "#38bdf8" },
-  { id: "gift", name: "GiftIcon", category: "utility", Component: GiftIcon, color: "#f43f5e", accentColor: "#ef4444" },
-  { id: "globe", name: "GlobeIcon", category: "systems", Component: GlobeIcon, color: "#0ea5e9", accentColor: "#3b82f6" },
-  { id: "bag", name: "BagIcon", category: "utility", Component: BagIcon, color: "#f59e0b", accentColor: "#38bdf8" },
-  { id: "compass", name: "CompassIcon", category: "utility", Component: CompassIcon, color: "#d4af37", accentColor: "#ef4444" },
-  { id: "send", name: "SendIcon", category: "utility", Component: SendIcon, color: "#6366f1", accentColor: "#3b82f6" },
-  { id: "target", name: "TargetIcon", category: "utility", Component: TargetIcon, color: "#ef4444", accentColor: "#f59e0b" },
-  { id: "edit", name: "EditIcon", category: "utility", Component: EditIcon, color: "#eab308", accentColor: "#fed7aa" },
-  { id: "phone", name: "PhoneIcon", category: "utility", Component: PhoneIcon, color: "#10b981", accentColor: "#cbd5e1" },
-  { id: "book", name: "BookIcon", category: "utility", Component: BookIcon, color: "#e11d48", accentColor: "#fda4af" },
-  { id: "link", name: "LinkIcon", category: "utility", Component: LinkIcon, color: "#71717a", accentColor: "#cbd5e1" },
-  { id: "crown", name: "CrownIcon", category: "utility", Component: CrownIcon, color: "#d4af37", accentColor: "#fbbf24" },
-  { id: "pin", name: "PinIcon", category: "utility", Component: PinIcon, color: "#ef4444", accentColor: "#fb7185" },
-  { id: "flag", name: "FlagIcon", category: "utility", Component: FlagIcon, color: "#8b5cf6", accentColor: "#a78bfa" },
-  { id: "briefcase", name: "BriefcaseIcon", category: "utility", Component: BriefcaseIcon, color: "#b45309", accentColor: "#f59e0b" },
-  { id: "eye", name: "EyeIcon", category: "utility", Component: EyeIcon, color: "#0ea5e9", accentColor: "#a855f7" },
-  { id: "tag", name: "TagIcon", category: "utility", Component: TagIcon, color: "#ec4899", accentColor: "#fb7185" },
-  { id: "coffee", name: "CoffeeIcon", category: "utility", Component: CoffeeIcon, color: "#ea580c", accentColor: "#fed7aa" },
-  { id: "share", name: "ShareIcon", category: "utility", Component: ShareIcon, color: "#6366f1", accentColor: "#818cf8" },
-  { id: "layers", name: "LayersIcon", category: "storage", Component: LayersIcon, color: "#0ea5e9", accentColor: "#38bdf8" },
-  { id: "sparkles", name: "SparklesIcon", category: "utility", Component: SparklesIcon, color: "#eab308", accentColor: "#fbbf24" },
-  { id: "megaphone", name: "MegaphoneIcon", category: "utility", Component: MegaphoneIcon, color: "#ef4444", accentColor: "#f43f5e" },
-  { id: "download", name: "DownloadIcon", category: "utility", Component: DownloadIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "upload", name: "UploadIcon", category: "utility", Component: UploadIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "monitor", name: "MonitorIcon", category: "hardware", Component: MonitorIcon, color: "#06b6d4", accentColor: "#3b82f6" },
-  { id: "keyboard", name: "KeyboardIcon", category: "hardware", Component: KeyboardIcon, color: "#6366f1", accentColor: "#a855f7" },
-  { id: "mouse", name: "MouseIcon", category: "hardware", Component: MouseIcon, color: "#10b981", accentColor: "#cbd5e1" },
-  { id: "harddrive", name: "HardDriveIcon", category: "hardware", Component: HardDriveIcon, color: "#71717a", accentColor: "#94a3b8" },
-  { id: "printer", name: "PrinterIcon", category: "hardware", Component: PrinterIcon, color: "#64748b", accentColor: "#cbd5e1" },
-  { id: "speaker", name: "SpeakerIcon", category: "hardware", Component: SpeakerIcon, color: "#71717a", accentColor: "#818cf8" },
-  { id: "glassmorphism", name: "GlassmorphismIcon", category: "utility", Component: GlassmorphismIcon, color: "#ffffff", accentColor: "#ec4899" },
-  { id: "github", name: "GithubIcon", category: "brands", Component: GithubIcon, color: "#24292e", accentColor: "#6e5494" },
-  { id: "twitter", name: "TwitterIcon", category: "brands", Component: TwitterIcon, color: "#1da1f2", accentColor: "#0f1419" },
-  { id: "google", name: "GoogleIcon", category: "brands", Component: GoogleIcon, color: "#4285f4", accentColor: "#ea4335" },
-  { id: "router", name: "RouterIcon", category: "networking", Component: RouterIcon, color: "#06b6d4", accentColor: "#10b981" },
-  { id: "server", name: "ServerIcon", category: "networking", Component: ServerIcon, color: "#3b82f6", accentColor: "#10b981" },
-  { id: "ethernet", name: "EthernetIcon", category: "networking", Component: EthernetIcon, color: "#3b82f6", accentColor: "#d4af37" },
-  { id: "satellite", name: "SatelliteIcon", category: "networking", Component: SatelliteIcon, color: "#06b6d4", accentColor: "#4f46e5" },
-  { id: "wrench", name: "WrenchIcon", category: "mechanics", Component: WrenchIcon, color: "#94a3b8", accentColor: "#475569" },
-  { id: "bolt", name: "BoltIcon", category: "mechanics", Component: BoltIcon, color: "#71717a", accentColor: "#cbd5e1" },
-  { id: "hammer", name: "HammerIcon", category: "mechanics", Component: HammerIcon, color: "#cbd5e1", accentColor: "#f59e0b" },
-  { id: "screwdriver", name: "ScrewdriverIcon", category: "mechanics", Component: ScrewdriverIcon, color: "#cbd5e1", accentColor: "#6366f1" },
-  { id: "nut", name: "NutIcon", category: "mechanics", Component: NutIcon, color: "#94a3b8", accentColor: "#475569" },
-  { id: "smile", name: "SmileIcon", category: "emojies", Component: SmileIcon, color: "#f59e0b", accentColor: "#f43f5e" },
-  { id: "frown", name: "FrownIcon", category: "emojies", Component: FrownIcon, color: "#f59e0b", accentColor: "#f43f5e" },
-  { id: "hearteyes", name: "HeartEyesIcon", category: "emojies", Component: HeartEyesIcon, color: "#f59e0b", accentColor: "#ef4444" },
-  { id: "code", name: "CodeIcon", category: "utility", Component: CodeIcon, color: "#6366f1", accentColor: "#ec4899" },
-  { id: "terminal", name: "TerminalIcon", category: "utility", Component: TerminalIcon, color: "#10b981", accentColor: "#020617" },
-  { id: "git", name: "GitIcon", category: "utility", Component: GitIcon, color: "#f43f5e", accentColor: "#ffffff" },
-  { id: "figma", name: "FigmaIcon", category: "brands", Component: FigmaIcon, color: "#f24e1e", accentColor: "#a259ff" },
-  { id: "barchart", name: "BarChartIcon", category: "utility", Component: BarChartIcon, color: "#6366f1", accentColor: "#ec4899" },
-  { id: "check", name: "CheckIcon", category: "utility", Component: CheckIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "container", name: "ContainerIcon", category: "systems", Component: ContainerIcon, color: "#2496ed", accentColor: "#f59e0b" },
-  { id: "shieldcheck", name: "ShieldCheckIcon", category: "utility", Component: ShieldCheckIcon, color: "#0d9488", accentColor: "#10b981" },
-  { id: "react", name: "ReactIcon", category: "brands", Component: ReactIcon, color: "#61dafb", accentColor: "#20232a" },
-  { id: "node", name: "NodeIcon", category: "brands", Component: NodeIcon, color: "#68a063", accentColor: "#3c873a" },
-  { id: "bug", name: "BugIcon", category: "utility", Component: BugIcon, color: "#475569", accentColor: "#ef4444" },
-  { id: "flask", name: "FlaskIcon", category: "utility", Component: FlaskIcon, color: "#4f46e5", accentColor: "#a855f7" },
-  { id: "piechart", name: "PieChartIcon", category: "utility", Component: PieChartIcon, color: "#6366f1", accentColor: "#ec4899" },
-  { id: "flame", name: "FlameIcon", category: "utility", Component: FlameIcon, color: "#f97316", accentColor: "#ef4444" },
-  { id: "activity", name: "ActivityIcon", category: "systems", Component: ActivityIcon, color: "#0d9488", accentColor: "#10b981" },
-  { id: "graduationcap", name: "GraduationCapIcon", category: "utility", Component: GraduationCapIcon, color: "#3f3f46", accentColor: "#eab308" },
-  { id: "trendingup", name: "TrendingUpIcon", category: "utility", Component: TrendingUpIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "instagram", name: "InstagramIcon", category: "brands", Component: InstagramIcon, color: "#e1306c", accentColor: "#f77737" },
-  { id: "youtube", name: "YoutubeIcon", category: "brands", Component: YoutubeIcon, color: "#ff0000", accentColor: "#ef4444" },
-  { id: "linkedin", name: "LinkedinIcon", category: "brands", Component: LinkedinIcon, color: "#0077b5", accentColor: "#00a0dc" },
-  { id: "dribbble", name: "DribbbleIcon", category: "brands", Component: DribbbleIcon, color: "#ea4c89", accentColor: "#ff769f" },
-  { id: "package", name: "PackageIcon", category: "storage", Component: PackageIcon, color: "#b45309", accentColor: "#38bdf8" },
-  { id: "airplane", name: "AirplaneIcon", category: "utility", Component: AirplaneIcon, color: "#0ea5e9", accentColor: "#f43f5e" },
-  { id: "battery", name: "BatteryIcon", category: "hardware", Component: BatteryIcon, color: "#10b981", accentColor: "#34d399" },
-  { id: "video", name: "VideoIcon", category: "utility", Component: VideoIcon, color: "#8b5cf6", accentColor: "#ec4899" },
-  { id: "microphone", name: "MicrophoneIcon", category: "utility", Component: MicrophoneIcon, color: "#ec4899", accentColor: "#3b82f6" },
-  { id: "sliders", name: "SlidersIcon", category: "utility", Component: SlidersIcon, color: "#6366f1", accentColor: "#f59e0b" },
-  { id: "map", name: "MapIcon", category: "utility", Component: MapIcon, color: "#10b981", accentColor: "#f43f5e" },
-  { id: "umbrella", name: "UmbrellaIcon", category: "utility", Component: UmbrellaIcon, color: "#0ea5e9", accentColor: "#ec4899" },
-  { id: "scissors", name: "ScissorsIcon", category: "utility", Component: ScissorsIcon, color: "#f59e0b", accentColor: "#3b82f6" },
-  { id: "unlock", name: "UnlockIcon", category: "utility", Component: UnlockIcon, color: "#eab308", accentColor: "#22c55e" },
-  { id: "archive", name: "ArchiveIcon", category: "storage", Component: ArchiveIcon, color: "#a855f7", accentColor: "#ec4899" },
-  { id: "shieldalert", name: "ShieldAlertIcon", category: "utility", Component: ShieldAlertIcon, color: "#475569", accentColor: "#ef4444" },
-  { id: "eyeoff", name: "EyeOffIcon", category: "utility", Component: EyeOffIcon, color: "#6366f1", accentColor: "#ef4444" },
-  { id: "userplus", name: "UserPlusIcon", category: "utility", Component: UserPlusIcon, color: "#3b82f6", accentColor: "#10b981" },
-  { id: "trendingdown", name: "TrendingDownIcon", category: "utility", Component: TrendingDownIcon, color: "#ef4444", accentColor: "#fb7185" },
-  { id: "copy", name: "CopyIcon", category: "utility", Component: CopyIcon, color: "#06b6d4", accentColor: "#22d3ee" },
-  { id: "gauge", name: "GaugeIcon", category: "mechanics", Component: GaugeIcon, color: "#64748b", accentColor: "#ef4444" },
-  { id: "magnet", name: "MagnetIcon", category: "mechanics", Component: MagnetIcon, color: "#71717a", accentColor: "#ef4444" },
-  { id: "stack", name: "StackIcon", category: "systems", Component: StackIcon, color: "#4f46e5", accentColor: "#10b981" },
-  { id: "workflow", name: "WorkflowIcon", category: "systems", Component: WorkflowIcon, color: "#0ea5e9", accentColor: "#10b981" },
-  { id: "topology", name: "TopologyIcon", category: "systems", Component: TopologyIcon, color: "#06b6d4", accentColor: "#10b981" },
-  { id: "file", name: "FileIcon", category: "utility", Component: FileIcon, color: "#64748b", accentColor: "#ef4444" },
-  { id: "headphones", name: "HeadphonesIcon", category: "utility", Component: HeadphonesIcon, color: "#4f46e5", accentColor: "#3b82f6" },
-  { id: "moon", name: "MoonIcon", category: "utility", Component: MoonIcon, color: "#a855f7", accentColor: "#f59e0b" },
-  { id: "paperclip", name: "PaperclipIcon", category: "utility", Component: PaperclipIcon, color: "#94a3b8", accentColor: "#ef4444" },
-  { id: "bookmark", name: "BookmarkIcon", category: "utility", Component: BookmarkIcon, color: "#e11d48", accentColor: "#ef4444" },
-  { id: "cloudlightning", name: "CloudLightningIcon", category: "systems", Component: CloudLightningIcon, color: "#0ea5e9", accentColor: "#fbbf24" },
-  { id: "folderopen", name: "FolderOpenIcon", category: "storage", Component: FolderOpenIcon, color: "#f59e0b", accentColor: "#10b981" },
-  { id: "volume", name: "VolumeIcon", category: "hardware", Component: VolumeIcon, color: "#6366f1", accentColor: "#3b82f6" },
-  { id: "belloff", name: "BellOffIcon", category: "utility", Component: BellOffIcon, color: "#f59e0b", accentColor: "#ef4444" },
-  { id: "sunmoon", name: "SunMoonIcon", category: "systems", Component: SunMoonIcon, color: "#6366f1", accentColor: "#f59e0b" },
-  { id: "piston", name: "PistonIcon", category: "mechanics", Component: PistonIcon, color: "#71717a", accentColor: "#10b981" },
-  { id: "spring", name: "SpringIcon", category: "mechanics", Component: SpringIcon, color: "#64748b", accentColor: "#10b981" },
-  { id: "anvil", name: "AnvilIcon", category: "mechanics", Component: AnvilIcon, color: "#4b5563", accentColor: "#f97316" },
-  { id: "hook", name: "HookIcon", category: "mechanics", Component: HookIcon, color: "#475569", accentColor: "#f59e0b" },
-  { id: "turbine", name: "TurbineIcon", category: "mechanics", Component: TurbineIcon, color: "#64748b", accentColor: "#06b6d4" },
-  { id: "pliers", name: "PliersIcon", category: "mechanics", Component: PliersIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "drill", name: "DrillIcon", category: "mechanics", Component: DrillIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "hacksaw", name: "HacksawIcon", category: "mechanics", Component: HacksawIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "tapemeasure", name: "TapeMeasureIcon", category: "mechanics", Component: TapeMeasureIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "caliper", name: "CaliperIcon", category: "mechanics", Component: CaliperIcon, color: "#94a3b8", accentColor: "#10b981" },
-  { id: "spiritlevel", name: "SpiritLevelIcon", category: "mechanics", Component: SpiritLevelIcon, color: "#64748b", accentColor: "#22c55e" },
-  { id: "sledgehammer", name: "SledgehammerIcon", category: "mechanics", Component: SledgehammerIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "phonemobile", name: "PhoneMobileIcon", category: "hardware", Component: PhoneMobileIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "tablet", name: "TabletIcon", category: "hardware", Component: TabletIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "laptop", name: "LaptopIcon", category: "hardware", Component: LaptopIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "smartwatch", name: "SmartWatchIcon", category: "hardware", Component: SmartWatchIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "routerwifi", name: "RouterWifiIcon", category: "hardware", Component: RouterWifiIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "serverrack", name: "ServerRackIcon", category: "hardware", Component: ServerRackIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "harddriveexternal", name: "HardDriveExternalIcon", category: "hardware", Component: HardDriveExternalIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "webcam", name: "WebcamIcon", category: "hardware", Component: WebcamIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "chisel", name: "ChiselIcon", category: "mechanics", Component: ChiselIcon, color: "#78350f", accentColor: "#10b981" },
-  { id: "crowbar", name: "CrowbarIcon", category: "mechanics", Component: CrowbarIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "funnel", name: "FunnelIcon", category: "mechanics", Component: FunnelIcon, color: "#0f766e", accentColor: "#10b981" },
-  { id: "oilcan", name: "OilCanIcon", category: "mechanics", Component: OilCanIcon, color: "#b45309", accentColor: "#10b981" },
-  { id: "bearing", name: "BearingIcon", category: "mechanics", Component: BearingIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "pulley", name: "PulleyIcon", category: "mechanics", Component: PulleyIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "sprocket", name: "SprocketIcon", category: "mechanics", Component: SprocketIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "projector", name: "ProjectorIcon", category: "hardware", Component: ProjectorIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "gameconsole", name: "GameConsoleIcon", category: "hardware", Component: GameConsoleIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "vrheadset", name: "VRHeadsetIcon", category: "hardware", Component: VRHeadsetIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "smartspeaker", name: "SmartSpeakerIcon", category: "hardware", Component: SmartSpeakerIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "powerbank", name: "PowerBankIcon", category: "hardware", Component: PowerBankIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "usbdrive", name: "UsbDriveIcon", category: "hardware", Component: UsbDriveIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "motherboard", name: "MotherboardIcon", category: "hardware", Component: MotherboardIcon, color: "#065f46", accentColor: "#10b981" },
-  { id: "ramstick", name: "RamStickIcon", category: "hardware", Component: RamStickIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "crank", name: "CrankIcon", category: "mechanics", Component: CrankIcon, color: "#71717a", accentColor: "#10b981" },
-  { id: "camshaft", name: "CamshaftIcon", category: "mechanics", Component: CamshaftIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "driveshaft", name: "DriveShaftIcon", category: "mechanics", Component: DriveShaftIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "valve", name: "ValveIcon", category: "mechanics", Component: ValveIcon, color: "#4b5563", accentColor: "#10b981" },
-  { id: "propeller", name: "PropellerIcon", category: "mechanics", Component: PropellerIcon, color: "#78350f", accentColor: "#10b981" },
-  { id: "rotor", name: "HelicopterRotorIcon", category: "mechanics", Component: HelicopterRotorIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "hydraulicjack", name: "HydraulicJackIcon", category: "mechanics", Component: HydraulicJackIcon, color: "#ef4444", accentColor: "#10b981" },
-  { id: "gpu", name: "GpuIcon", category: "hardware", Component: GpuIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "powersupply", name: "PowerSupplyIcon", category: "hardware", Component: PowerSupplyIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "networkswitch", name: "NetworkSwitchIcon", category: "hardware", Component: NetworkSwitchIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "smartplug", name: "SmartPlugIcon", category: "hardware", Component: SmartPlugIcon, color: "#cbd5e1", accentColor: "#10b981" },
-  { id: "smartbulb", name: "SmartBulbIcon", category: "hardware", Component: SmartBulbIcon, color: "#eab308", accentColor: "#10b981" },
-  { id: "securitycamera", name: "SecurityCameraIcon", category: "hardware", Component: SecurityCameraIcon, color: "#cbd5e1", accentColor: "#10b981" },
-  { id: "smartlock", name: "SmartLockIcon", category: "hardware", Component: SmartLockIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "thermostat", name: "ThermostatIcon", category: "hardware", Component: ThermostatIcon, color: "#0f172a", accentColor: "#10b981" },
-  { id: "gclamp", name: "GClampIcon", category: "mechanics", Component: GClampIcon, color: "#4b5563", accentColor: "#10b981" },
-  { id: "vice", name: "ViceIcon", category: "mechanics", Component: ViceIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "greasegun", name: "GreaseGunIcon", category: "mechanics", Component: GreaseGunIcon, color: "#64748b", accentColor: "#10b981" },
-  { id: "gearbox", name: "GearboxIcon", category: "mechanics", Component: GearboxIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "differential", name: "DifferentialIcon", category: "mechanics", Component: DifferentialIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "suspension", name: "SuspensionIcon", category: "mechanics", Component: SuspensionIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "windlass", name: "WindlassIcon", category: "mechanics", Component: WindlassIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "earbuds", name: "EarbudsIcon", category: "hardware", Component: EarbudsIcon, color: "#cbd5e1", accentColor: "#10b981" },
-  { id: "smartring", name: "SmartRingIcon", category: "hardware", Component: SmartRingIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "drawingtablet", name: "DrawingTabletIcon", category: "hardware", Component: DrawingTabletIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "barcodescanner", name: "BarcodeScannerIcon", category: "hardware", Component: BarcodeScannerIcon, color: "#cbd5e1", accentColor: "#10b981" },
-  { id: "posregister", name: "POSRegisterIcon", category: "hardware", Component: POSRegisterIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "calculator", name: "CalculatorIcon", category: "hardware", Component: CalculatorIcon, color: "#cbd5e1", accentColor: "#10b981" },
-  { id: "remotecontrol", name: "RemoteControlIcon", category: "hardware", Component: RemoteControlIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "soundbar", name: "SoundbarIcon", category: "hardware", Component: SoundbarIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "jackhammer", name: "JackhammerIcon", category: "mechanics", Component: JackhammerIcon, color: "#e2e8f0", accentColor: "#10b981" },
-  { id: "solderingiron", name: "SolderingIronIcon", category: "mechanics", Component: SolderingIronIcon, color: "#cbd5e1", accentColor: "#10b981" },
-  { id: "blowtorch", name: "BlowtorchIcon", category: "mechanics", Component: BlowtorchIcon, color: "#0284c7", accentColor: "#10b981" },
-  { id: "wheelbarrow", name: "WheelbarrowIcon", category: "mechanics", Component: WheelbarrowIcon, color: "#ea580c", accentColor: "#10b981" },
-  { id: "plumbbob", name: "PlumbBobIcon", category: "mechanics", Component: PlumbBobIcon, color: "#d97706", accentColor: "#10b981" },
-  { id: "shears", name: "ShearsIcon", category: "mechanics", Component: ShearsIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "wirestripper", name: "WireStripperIcon", category: "mechanics", Component: WireStripperIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "pipewrench", name: "PipeWrenchIcon", category: "mechanics", Component: PipeWrenchIcon, color: "#dc2626", accentColor: "#10b981" },
-  { id: "floppy", name: "FloppyDiskIcon", category: "storage", Component: FloppyDiskIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "tapecassette", name: "TapeCassetteIcon", category: "storage", Component: TapeCassetteIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "cd", name: "CompactDiscIcon", category: "storage", Component: CompactDiscIcon, color: "#f1f5f9", accentColor: "#10b981" },
-  { id: "tv", name: "TvIcon", category: "hardware", Component: TvIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "radio", name: "RadioIcon", category: "hardware", Component: RadioIcon, color: "#7c2d12", accentColor: "#10b981" },
-  { id: "walkietalkie", name: "WalkieTalkieIcon", category: "hardware", Component: WalkieTalkieIcon, color: "#19222f", accentColor: "#10b981" },
-  { id: "headset", name: "HeadsetIcon", category: "hardware", Component: HeadsetIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "fish", name: "FishIcon", category: "emojies", Component: FishIcon, color: "#0ea5e9", accentColor: "#10b981" },
-  { id: "butterfly", name: "ButterflyIcon", category: "emojies", Component: ButterflyIcon, color: "#d946ef", accentColor: "#10b981" },
-  { id: "bird", name: "BirdIcon", category: "emojies", Component: BirdIcon, color: "#cbd5e1", accentColor: "#10b981" },
-  { id: "cat", name: "CatIcon", category: "emojies", Component: CatIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "dog", name: "DogIcon", category: "emojies", Component: DogIcon, color: "#e2e8f0", accentColor: "#10b981" },
-  { id: "rabbit", name: "RabbitIcon", category: "emojies", Component: RabbitIcon, color: "#cbd5e1", accentColor: "#10b981" },
-  { id: "elephant", name: "ElephantIcon", category: "emojies", Component: ElephantIcon, color: "#334155", accentColor: "#10b981" },
-  { id: "owl", name: "OwlIcon", category: "emojies", Component: OwlIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "turtle", name: "TurtleIcon", category: "emojies", Component: TurtleIcon, color: "#16a34a", accentColor: "#10b981" },
-  { id: "dolphin", name: "DolphinIcon", category: "emojies", Component: DolphinIcon, color: "#0ea5e9", accentColor: "#10b981" },
-  { id: "rose", name: "RoseIcon", category: "emojies", Component: RoseIcon, color: "#ec4899", accentColor: "#10b981" },
-  { id: "sunflower", name: "SunflowerIcon", category: "emojies", Component: SunflowerIcon, color: "#eab308", accentColor: "#10b981" },
-  { id: "tulip", name: "TulipIcon", category: "emojies", Component: TulipIcon, color: "#f43f5e", accentColor: "#10b981" },
-  { id: "lotus", name: "LotusIcon", category: "emojies", Component: LotusIcon, color: "#f472b6", accentColor: "#10b981" },
-  { id: "daisy", name: "DaisyIcon", category: "emojies", Component: DaisyIcon, color: "#eab308", accentColor: "#10b981" },
-  { id: "hibiscus", name: "HibiscusIcon", category: "emojies", Component: HibiscusIcon, color: "#ec4899", accentColor: "#10b981" },
-  { id: "orchid", name: "OrchidIcon", category: "emojies", Component: OrchidIcon, color: "#d946ef", accentColor: "#10b981" },
-  { id: "lily", name: "LilyIcon", category: "emojies", Component: LilyIcon, color: "#fdf2f8", accentColor: "#10b981" },
-  { id: "cactus", name: "CactusIcon", category: "emojies", Component: CactusIcon, color: "#16a34a", accentColor: "#10b981" },
-  { id: "lavender", name: "LavenderIcon", category: "emojies", Component: LavenderIcon, color: "#a855f7", accentColor: "#10b981" },
-  { id: "cloudrain", name: "CloudRainIcon", category: "systems", Component: CloudRainIcon, color: "#0ea5e9", accentColor: "#38bdf8" },
-  { id: "cloudsnow", name: "CloudSnowIcon", category: "systems", Component: CloudSnowIcon, color: "#0ea5e9", accentColor: "#e2e8f0" },
-  { id: "wind", name: "WindIcon", category: "systems", Component: WindIcon, color: "#64748b", accentColor: "#10b981" },
-  { id: "tornado", name: "TornadoIcon", category: "systems", Component: TornadoIcon, color: "#475569", accentColor: "#0ea5e9" },
-  { id: "snowflake", name: "SnowflakeIcon", category: "systems", Component: SnowflakeIcon, color: "#38bdf8", accentColor: "#e2e8f0" },
-  { id: "rainbow", name: "RainbowIcon", category: "systems", Component: RainbowIcon, color: "#ef4444", accentColor: "#06b6d4" },
-  { id: "thermometer", name: "ThermometerIcon", category: "utility", Component: ThermometerIcon, color: "#cbd5e1", accentColor: "#ef4444" },
-  { id: "leaf", name: "LeafIcon", category: "emojies", Component: LeafIcon, color: "#16a34a", accentColor: "#0ea5e9" },
-  { id: "tree", name: "TreeIcon", category: "emojies", Component: TreeIcon, color: "#15803d", accentColor: "#10b981" },
-  { id: "hurricane", name: "HurricaneIcon", category: "systems", Component: HurricaneIcon, color: "#0284c7", accentColor: "#0ea5e9" },
-  { id: "burger", name: "BurgerIcon", category: "emojies", Component: BurgerIcon, color: "#d97706", accentColor: "#eab308" },
-  { id: "pizza", name: "PizzaIcon", category: "emojies", Component: PizzaIcon, color: "#f59e0b", accentColor: "#ef4444" },
-  { id: "apple", name: "AppleIcon", category: "emojies", Component: AppleIcon, color: "#ef4444", accentColor: "#eab308" },
-  { id: "banana", name: "BananaIcon", category: "emojies", Component: BananaIcon, color: "#eab308", accentColor: "#10b981" },
-  { id: "cake", name: "CakeIcon", category: "emojies", Component: CakeIcon, color: "#ec4899", accentColor: "#f59e0b" },
-  { id: "icecream", name: "IceCreamIcon", category: "emojies", Component: IceCreamIcon, color: "#f472b6", accentColor: "#ef4444" },
-  { id: "donut", name: "DonutIcon", category: "emojies", Component: DonutIcon, color: "#db2777", accentColor: "#eab308" },
-  { id: "popcorn", name: "PopcornIcon", category: "emojies", Component: PopcornIcon, color: "#ef4444", accentColor: "#eab308" },
-  { id: "watermelon", name: "WatermelonIcon", category: "emojies", Component: WatermelonIcon, color: "#ef4444", accentColor: "#1e293b" },
-  { id: "cookie", name: "CookieIcon", category: "emojies", Component: CookieIcon, color: "#ca8a04", accentColor: "#10b981" },
-  { id: "safe", name: "SafeIcon", category: "utility", Component: SafeIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "goldbars", name: "GoldBarsIcon", category: "utility", Component: GoldBarsIcon, color: "#eab308", accentColor: "#10b981" },
-  { id: "bank", name: "BankIcon", category: "utility", Component: BankIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "coin", name: "CoinIcon", category: "utility", Component: CoinIcon, color: "#eab308", accentColor: "#10b981" },
-  { id: "piggybank", name: "PiggyBankIcon", category: "utility", Component: PiggyBankIcon, color: "#f472b6", accentColor: "#eab308" },
-  { id: "shoppingbag", name: "ShoppingBagIcon", category: "utility", Component: ShoppingBagIcon, color: "#ca8a04", accentColor: "#eab308" },
-  { id: "shoppingcart", name: "ShoppingCartIcon", category: "utility", Component: ShoppingCartIcon, color: "#94a3b8", accentColor: "#10b981" },
-  { id: "scale", name: "ScaleIcon", category: "utility", Component: ScaleIcon, color: "#94a3b8", accentColor: "#10b981" },
-  { id: "receipt", name: "ReceiptIcon", category: "utility", Component: ReceiptIcon, color: "#f8fafc", accentColor: "#10b981" },
-  { id: "banknote", name: "BanknoteIcon", category: "utility", Component: BanknoteIcon, color: "#16a34a", accentColor: "#eab308" },
-  { id: "euro", name: "EuroIcon", category: "utility", Component: EuroIcon, color: "#eab308", accentColor: "#10b981" },
-  { id: "yen", name: "YenIcon", category: "utility", Component: YenIcon, color: "#eab308", accentColor: "#10b981" },
-  { id: "pound", name: "PoundIcon", category: "utility", Component: PoundIcon, color: "#eab308", accentColor: "#10b981" },
-  { id: "atom", name: "AtomIcon", category: "utility", Component: AtomIcon, color: "#6366f1", accentColor: "#10b981" },
-  { id: "dna", name: "DNAIcon", category: "utility", Component: DNAIcon, color: "#3b82f6", accentColor: "#10b981" },
-  { id: "microscope", name: "MicroscopeIcon", category: "utility", Component: MicroscopeIcon, color: "#475569", accentColor: "#10b981" },
-  { id: "telescope", name: "TelescopeIcon", category: "utility", Component: TelescopeIcon, color: "#1e293b", accentColor: "#10b981" },
-  { id: "beaker", name: "BeakerIcon", category: "utility", Component: BeakerIcon, color: "#cbd5e1", accentColor: "#10b981" },
-  { id: "folderplus", name: "FolderPlusIcon", category: "storage", Component: FolderPlusIcon, color: "#f59e0b", accentColor: "#10b981" },
-  { id: "folderminus", name: "FolderMinusIcon", category: "storage", Component: FolderMinusIcon, color: "#f59e0b", accentColor: "#ef4444" },
-  { id: "foldercheck", name: "FolderCheckIcon", category: "storage", Component: FolderCheckIcon, color: "#f59e0b", accentColor: "#10b981" },
-  { id: "calendarplus", name: "CalendarPlusIcon", category: "utility", Component: CalendarPlusIcon, color: "#6366f1", accentColor: "#10b981" },
-  { id: "calendarcheck", name: "CalendarCheckIcon", category: "utility", Component: CalendarCheckIcon, color: "#6366f1", accentColor: "#10b981" },
+  {
+    id: "plus",
+    name: "PlusIcon",
+    category: "utility",
+    Component: PlusIcon,
+    color: "#10b981",
+    accentColor: "#34d399"
+  },
+  {
+    id: "minus",
+    name: "MinusIcon",
+    category: "utility",
+    Component: MinusIcon,
+    color: "#6b7280",
+    accentColor: "#9ca3af"
+  },
+  {
+    id: "close",
+    name: "CloseIcon",
+    category: "utility",
+    Component: CloseIcon,
+    color: "#ef4444",
+    accentColor: "#f87171"
+  },
+  {
+    id: "info",
+    name: "InfoIcon",
+    category: "utility",
+    Component: InfoIcon,
+    color: "#3b82f6",
+    accentColor: "#60a5fa"
+  },
+  {
+    id: "alertcircle",
+    name: "AlertCircleIcon",
+    category: "utility",
+    Component: AlertCircleIcon,
+    color: "#f59e0b",
+    accentColor: "#fbbf24"
+  },
+  {
+    id: "anchor",
+    name: "AnchorIcon",
+    category: "utility",
+    Component: AnchorIcon,
+    color: "#475569",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "diamond",
+    name: "DiamondIcon",
+    category: "utility",
+    Component: DiamondIcon,
+    color: "#0ea5e9",
+    accentColor: "#10b981"
+  },
+  {
+    id: "filter",
+    name: "FilterIcon",
+    category: "utility",
+    Component: FilterIcon,
+    color: "#f43f5e",
+    accentColor: "#38bdf8"
+  },
+  {
+    id: "pipeline",
+    name: "PipelineIcon",
+    category: "networking",
+    Component: PipelineIcon,
+    color: "#0d9488",
+    accentColor: "#10b981"
+  },
+  {
+    id: "refresh",
+    name: "RefreshIcon",
+    category: "utility",
+    Component: RefreshIcon,
+    color: "#8b5cf6",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "webhook",
+    name: "WebhookIcon",
+    category: "networking",
+    Component: WebhookIcon,
+    color: "#6366f1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "facebook",
+    name: "FacebookIcon",
+    category: "brands",
+    Component: FacebookIcon,
+    color: "#1877f2",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "shield",
+    name: "ShieldIcon",
+    category: "utility",
+    Component: ShieldIcon,
+    color: "#0d9488",
+    accentColor: "#34d399"
+  },
+  {
+    id: "rocket",
+    name: "RocketIcon",
+    category: "mechanics",
+    Component: RocketIcon,
+    color: "#ef4444",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "database",
+    name: "DatabaseIcon",
+    category: "storage",
+    Component: DatabaseIcon,
+    color: "#4f46e5",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "folder",
+    name: "FolderIcon",
+    category: "storage",
+    Component: FolderIcon,
+    color: "#f59e0b",
+    accentColor: "#eab308"
+  },
+  {
+    id: "cloud",
+    name: "CloudIcon",
+    category: "systems",
+    Component: CloudIcon,
+    color: "#0ea5e9",
+    accentColor: "#38bdf8"
+  },
+  {
+    id: "network",
+    name: "NetworkIcon",
+    category: "networking",
+    Component: NetworkIcon,
+    color: "#06b6d4",
+    accentColor: "#a855f7"
+  },
+  {
+    id: "cloudnetwork",
+    name: "CloudNetworkIcon",
+    category: "networking",
+    Component: CloudNetworkIcon,
+    color: "#3b82f6",
+    accentColor: "#10b981"
+  },
+  {
+    id: "firewall",
+    name: "FirewallIcon",
+    category: "networking",
+    Component: FirewallIcon,
+    color: "#e11d48",
+    accentColor: "#ea580c"
+  },
+  {
+    id: "cpu",
+    name: "CpuIcon",
+    category: "hardware",
+    Component: CpuIcon,
+    color: "#10b981",
+    accentColor: "#34d399"
+  },
+  {
+    id: "gear",
+    name: "GearIcon",
+    category: "mechanics",
+    Component: GearIcon,
+    color: "#71717a",
+    accentColor: "#b45309"
+  },
+  {
+    id: "mail",
+    name: "MailIcon",
+    category: "utility",
+    Component: MailIcon,
+    color: "#e11d48",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "calendar",
+    name: "CalendarIcon",
+    category: "utility",
+    Component: CalendarIcon,
+    color: "#6366f1",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "wallet",
+    name: "WalletIcon",
+    category: "utility",
+    Component: WalletIcon,
+    color: "#b45309",
+    accentColor: "#d97706"
+  },
+  {
+    id: "dollar",
+    name: "DollarIcon",
+    category: "utility",
+    Component: DollarIcon,
+    color: "#eab308",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "thumbup",
+    name: "ThumbUpIcon",
+    category: "utility",
+    Component: ThumbUpIcon,
+    color: "#f43f5e",
+    accentColor: "#fb7185"
+  },
+  {
+    id: "flash",
+    name: "FlashIcon",
+    category: "utility",
+    Component: FlashIcon,
+    color: "#eab308",
+    accentColor: "#f97316"
+  },
+  {
+    id: "heart",
+    name: "HeartIcon",
+    category: "utility",
+    Component: HeartIcon,
+    color: "#ec4899",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "chat",
+    name: "ChatIcon",
+    category: "utility",
+    Component: ChatIcon,
+    color: "#8b5cf6",
+    accentColor: "#a78bfa"
+  },
+  {
+    id: "key",
+    name: "KeyIcon",
+    category: "utility",
+    Component: KeyIcon,
+    color: "#f59e0b",
+    accentColor: "#fbbf24"
+  },
+  {
+    id: "star",
+    name: "StarIcon",
+    category: "utility",
+    Component: StarIcon,
+    color: "#fbbf24",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "cart",
+    name: "CartIcon",
+    category: "utility",
+    Component: CartIcon,
+    color: "#10b981",
+    accentColor: "#34d399"
+  },
+  {
+    id: "music",
+    name: "MusicIcon",
+    category: "utility",
+    Component: MusicIcon,
+    color: "#ec4899",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "gamepad",
+    name: "GamepadIcon",
+    category: "hardware",
+    Component: GamepadIcon,
+    color: "#6366f1",
+    accentColor: "#8b5cf6"
+  },
+  {
+    id: "bell",
+    name: "BellIcon",
+    category: "utility",
+    Component: BellIcon,
+    color: "#f59e0b",
+    accentColor: "#d97706"
+  },
+  {
+    id: "sun",
+    name: "SunIcon",
+    category: "systems",
+    Component: SunIcon,
+    color: "#f97316",
+    accentColor: "#eab308"
+  },
+  {
+    id: "bulb",
+    name: "BulbIcon",
+    category: "utility",
+    Component: BulbIcon,
+    color: "#fbbf24",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "camera",
+    name: "CameraIcon",
+    category: "hardware",
+    Component: CameraIcon,
+    color: "#06b6d4",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "clock",
+    name: "ClockIcon",
+    category: "utility",
+    Component: ClockIcon,
+    color: "#ef4444",
+    accentColor: "#cbd5e1"
+  },
+  {
+    id: "trophy",
+    name: "TrophyIcon",
+    category: "utility",
+    Component: TrophyIcon,
+    color: "#eab308",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "lock",
+    name: "LockIcon",
+    category: "utility",
+    Component: LockIcon,
+    color: "#6366f1",
+    accentColor: "#8b5cf6"
+  },
+  {
+    id: "mappin",
+    name: "MapPinIcon",
+    category: "utility",
+    Component: MapPinIcon,
+    color: "#ef4444",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "creditcard",
+    name: "CreditCardIcon",
+    category: "utility",
+    Component: CreditCardIcon,
+    color: "#4f46e5",
+    accentColor: "#0ea5e9"
+  },
+  {
+    id: "wifi",
+    name: "WifiIcon",
+    category: "networking",
+    Component: WifiIcon,
+    color: "#0ea5e9",
+    accentColor: "#38bdf8"
+  },
+  {
+    id: "search",
+    name: "SearchIcon",
+    category: "utility",
+    Component: SearchIcon,
+    color: "#3b82f6",
+    accentColor: "#38bdf8"
+  },
+  {
+    id: "home",
+    name: "HomeIcon",
+    category: "utility",
+    Component: HomeIcon,
+    color: "#10b981",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "trash",
+    name: "TrashIcon",
+    category: "utility",
+    Component: TrashIcon,
+    color: "#71717a",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "user",
+    name: "UserIcon",
+    category: "utility",
+    Component: UserIcon,
+    color: "#6366f1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "play",
+    name: "PlayIcon",
+    category: "utility",
+    Component: PlayIcon,
+    color: "#10b981",
+    accentColor: "#38bdf8"
+  },
+  {
+    id: "gift",
+    name: "GiftIcon",
+    category: "utility",
+    Component: GiftIcon,
+    color: "#f43f5e",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "globe",
+    name: "GlobeIcon",
+    category: "systems",
+    Component: GlobeIcon,
+    color: "#0ea5e9",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "bag",
+    name: "BagIcon",
+    category: "utility",
+    Component: BagIcon,
+    color: "#f59e0b",
+    accentColor: "#38bdf8"
+  },
+  {
+    id: "compass",
+    name: "CompassIcon",
+    category: "utility",
+    Component: CompassIcon,
+    color: "#d4af37",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "send",
+    name: "SendIcon",
+    category: "utility",
+    Component: SendIcon,
+    color: "#6366f1",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "target",
+    name: "TargetIcon",
+    category: "utility",
+    Component: TargetIcon,
+    color: "#ef4444",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "edit",
+    name: "EditIcon",
+    category: "utility",
+    Component: EditIcon,
+    color: "#eab308",
+    accentColor: "#fed7aa"
+  },
+  {
+    id: "phone",
+    name: "PhoneIcon",
+    category: "utility",
+    Component: PhoneIcon,
+    color: "#10b981",
+    accentColor: "#cbd5e1"
+  },
+  {
+    id: "book",
+    name: "BookIcon",
+    category: "utility",
+    Component: BookIcon,
+    color: "#e11d48",
+    accentColor: "#fda4af"
+  },
+  {
+    id: "link",
+    name: "LinkIcon",
+    category: "utility",
+    Component: LinkIcon,
+    color: "#71717a",
+    accentColor: "#cbd5e1"
+  },
+  {
+    id: "crown",
+    name: "CrownIcon",
+    category: "utility",
+    Component: CrownIcon,
+    color: "#d4af37",
+    accentColor: "#fbbf24"
+  },
+  {
+    id: "pin",
+    name: "PinIcon",
+    category: "utility",
+    Component: PinIcon,
+    color: "#ef4444",
+    accentColor: "#fb7185"
+  },
+  {
+    id: "flag",
+    name: "FlagIcon",
+    category: "utility",
+    Component: FlagIcon,
+    color: "#8b5cf6",
+    accentColor: "#a78bfa"
+  },
+  {
+    id: "briefcase",
+    name: "BriefcaseIcon",
+    category: "utility",
+    Component: BriefcaseIcon,
+    color: "#b45309",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "eye",
+    name: "EyeIcon",
+    category: "utility",
+    Component: EyeIcon,
+    color: "#0ea5e9",
+    accentColor: "#a855f7"
+  },
+  {
+    id: "tag",
+    name: "TagIcon",
+    category: "utility",
+    Component: TagIcon,
+    color: "#ec4899",
+    accentColor: "#fb7185"
+  },
+  {
+    id: "coffee",
+    name: "CoffeeIcon",
+    category: "utility",
+    Component: CoffeeIcon,
+    color: "#ea580c",
+    accentColor: "#fed7aa"
+  },
+  {
+    id: "share",
+    name: "ShareIcon",
+    category: "utility",
+    Component: ShareIcon,
+    color: "#6366f1",
+    accentColor: "#818cf8"
+  },
+  {
+    id: "layers",
+    name: "LayersIcon",
+    category: "storage",
+    Component: LayersIcon,
+    color: "#0ea5e9",
+    accentColor: "#38bdf8"
+  },
+  {
+    id: "sparkles",
+    name: "SparklesIcon",
+    category: "utility",
+    Component: SparklesIcon,
+    color: "#eab308",
+    accentColor: "#fbbf24"
+  },
+  {
+    id: "megaphone",
+    name: "MegaphoneIcon",
+    category: "utility",
+    Component: MegaphoneIcon,
+    color: "#ef4444",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "download",
+    name: "DownloadIcon",
+    category: "utility",
+    Component: DownloadIcon,
+    color: "#10b981",
+    accentColor: "#34d399"
+  },
+  {
+    id: "upload",
+    name: "UploadIcon",
+    category: "utility",
+    Component: UploadIcon,
+    color: "#10b981",
+    accentColor: "#34d399"
+  },
+  {
+    id: "monitor",
+    name: "MonitorIcon",
+    category: "hardware",
+    Component: MonitorIcon,
+    color: "#06b6d4",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "keyboard",
+    name: "KeyboardIcon",
+    category: "hardware",
+    Component: KeyboardIcon,
+    color: "#6366f1",
+    accentColor: "#a855f7"
+  },
+  {
+    id: "mouse",
+    name: "MouseIcon",
+    category: "hardware",
+    Component: MouseIcon,
+    color: "#10b981",
+    accentColor: "#cbd5e1"
+  },
+  {
+    id: "harddrive",
+    name: "HardDriveIcon",
+    category: "hardware",
+    Component: HardDriveIcon,
+    color: "#71717a",
+    accentColor: "#94a3b8"
+  },
+  {
+    id: "printer",
+    name: "PrinterIcon",
+    category: "hardware",
+    Component: PrinterIcon,
+    color: "#64748b",
+    accentColor: "#cbd5e1"
+  },
+  {
+    id: "speaker",
+    name: "SpeakerIcon",
+    category: "hardware",
+    Component: SpeakerIcon,
+    color: "#71717a",
+    accentColor: "#818cf8"
+  },
+  {
+    id: "glassmorphism",
+    name: "GlassmorphismIcon",
+    category: "utility",
+    Component: GlassmorphismIcon,
+    color: "#ffffff",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "github",
+    name: "GithubIcon",
+    category: "brands",
+    Component: GithubIcon,
+    color: "#24292e",
+    accentColor: "#6e5494"
+  },
+  {
+    id: "twitter",
+    name: "TwitterIcon",
+    category: "brands",
+    Component: TwitterIcon,
+    color: "#1da1f2",
+    accentColor: "#0f1419"
+  },
+  {
+    id: "google",
+    name: "GoogleIcon",
+    category: "brands",
+    Component: GoogleIcon,
+    color: "#4285f4",
+    accentColor: "#ea4335"
+  },
+  {
+    id: "router",
+    name: "RouterIcon",
+    category: "networking",
+    Component: RouterIcon,
+    color: "#06b6d4",
+    accentColor: "#10b981"
+  },
+  {
+    id: "server",
+    name: "ServerIcon",
+    category: "networking",
+    Component: ServerIcon,
+    color: "#3b82f6",
+    accentColor: "#10b981"
+  },
+  {
+    id: "ethernet",
+    name: "EthernetIcon",
+    category: "networking",
+    Component: EthernetIcon,
+    color: "#3b82f6",
+    accentColor: "#d4af37"
+  },
+  {
+    id: "satellite",
+    name: "SatelliteIcon",
+    category: "networking",
+    Component: SatelliteIcon,
+    color: "#06b6d4",
+    accentColor: "#4f46e5"
+  },
+  {
+    id: "wrench",
+    name: "WrenchIcon",
+    category: "mechanics",
+    Component: WrenchIcon,
+    color: "#94a3b8",
+    accentColor: "#475569"
+  },
+  {
+    id: "bolt",
+    name: "BoltIcon",
+    category: "mechanics",
+    Component: BoltIcon,
+    color: "#71717a",
+    accentColor: "#cbd5e1"
+  },
+  {
+    id: "hammer",
+    name: "HammerIcon",
+    category: "mechanics",
+    Component: HammerIcon,
+    color: "#cbd5e1",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "screwdriver",
+    name: "ScrewdriverIcon",
+    category: "mechanics",
+    Component: ScrewdriverIcon,
+    color: "#cbd5e1",
+    accentColor: "#6366f1"
+  },
+  {
+    id: "nut",
+    name: "NutIcon",
+    category: "mechanics",
+    Component: NutIcon,
+    color: "#94a3b8",
+    accentColor: "#475569"
+  },
+  {
+    id: "smile",
+    name: "SmileIcon",
+    category: "emojies",
+    Component: SmileIcon,
+    color: "#f59e0b",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "frown",
+    name: "FrownIcon",
+    category: "emojies",
+    Component: FrownIcon,
+    color: "#f59e0b",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "hearteyes",
+    name: "HeartEyesIcon",
+    category: "emojies",
+    Component: HeartEyesIcon,
+    color: "#f59e0b",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "code",
+    name: "CodeIcon",
+    category: "utility",
+    Component: CodeIcon,
+    color: "#6366f1",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "terminal",
+    name: "TerminalIcon",
+    category: "utility",
+    Component: TerminalIcon,
+    color: "#10b981",
+    accentColor: "#020617"
+  },
+  {
+    id: "git",
+    name: "GitIcon",
+    category: "utility",
+    Component: GitIcon,
+    color: "#f43f5e",
+    accentColor: "#ffffff"
+  },
+  {
+    id: "figma",
+    name: "FigmaIcon",
+    category: "brands",
+    Component: FigmaIcon,
+    color: "#f24e1e",
+    accentColor: "#a259ff"
+  },
+  {
+    id: "barchart",
+    name: "BarChartIcon",
+    category: "utility",
+    Component: BarChartIcon,
+    color: "#6366f1",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "check",
+    name: "CheckIcon",
+    category: "utility",
+    Component: CheckIcon,
+    color: "#10b981",
+    accentColor: "#34d399"
+  },
+  {
+    id: "container",
+    name: "ContainerIcon",
+    category: "systems",
+    Component: ContainerIcon,
+    color: "#2496ed",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "shieldcheck",
+    name: "ShieldCheckIcon",
+    category: "utility",
+    Component: ShieldCheckIcon,
+    color: "#0d9488",
+    accentColor: "#10b981"
+  },
+  {
+    id: "react",
+    name: "ReactIcon",
+    category: "brands",
+    Component: ReactIcon,
+    color: "#61dafb",
+    accentColor: "#20232a"
+  },
+  {
+    id: "node",
+    name: "NodeIcon",
+    category: "brands",
+    Component: NodeIcon,
+    color: "#68a063",
+    accentColor: "#3c873a"
+  },
+  {
+    id: "bug",
+    name: "BugIcon",
+    category: "utility",
+    Component: BugIcon,
+    color: "#475569",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "flask",
+    name: "FlaskIcon",
+    category: "utility",
+    Component: FlaskIcon,
+    color: "#4f46e5",
+    accentColor: "#a855f7"
+  },
+  {
+    id: "piechart",
+    name: "PieChartIcon",
+    category: "utility",
+    Component: PieChartIcon,
+    color: "#6366f1",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "flame",
+    name: "FlameIcon",
+    category: "utility",
+    Component: FlameIcon,
+    color: "#f97316",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "activity",
+    name: "ActivityIcon",
+    category: "systems",
+    Component: ActivityIcon,
+    color: "#0d9488",
+    accentColor: "#10b981"
+  },
+  {
+    id: "graduationcap",
+    name: "GraduationCapIcon",
+    category: "utility",
+    Component: GraduationCapIcon,
+    color: "#3f3f46",
+    accentColor: "#eab308"
+  },
+  {
+    id: "trendingup",
+    name: "TrendingUpIcon",
+    category: "utility",
+    Component: TrendingUpIcon,
+    color: "#10b981",
+    accentColor: "#34d399"
+  },
+  {
+    id: "instagram",
+    name: "InstagramIcon",
+    category: "brands",
+    Component: InstagramIcon,
+    color: "#e1306c",
+    accentColor: "#f77737"
+  },
+  {
+    id: "youtube",
+    name: "YoutubeIcon",
+    category: "brands",
+    Component: YoutubeIcon,
+    color: "#ff0000",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "linkedin",
+    name: "LinkedinIcon",
+    category: "brands",
+    Component: LinkedinIcon,
+    color: "#0077b5",
+    accentColor: "#00a0dc"
+  },
+  {
+    id: "dribbble",
+    name: "DribbbleIcon",
+    category: "brands",
+    Component: DribbbleIcon,
+    color: "#ea4c89",
+    accentColor: "#ff769f"
+  },
+  {
+    id: "package",
+    name: "PackageIcon",
+    category: "storage",
+    Component: PackageIcon,
+    color: "#b45309",
+    accentColor: "#38bdf8"
+  },
+  {
+    id: "airplane",
+    name: "AirplaneIcon",
+    category: "utility",
+    Component: AirplaneIcon,
+    color: "#0ea5e9",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "battery",
+    name: "BatteryIcon",
+    category: "hardware",
+    Component: BatteryIcon,
+    color: "#10b981",
+    accentColor: "#34d399"
+  },
+  {
+    id: "video",
+    name: "VideoIcon",
+    category: "utility",
+    Component: VideoIcon,
+    color: "#8b5cf6",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "microphone",
+    name: "MicrophoneIcon",
+    category: "utility",
+    Component: MicrophoneIcon,
+    color: "#ec4899",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "sliders",
+    name: "SlidersIcon",
+    category: "utility",
+    Component: SlidersIcon,
+    color: "#6366f1",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "map",
+    name: "MapIcon",
+    category: "utility",
+    Component: MapIcon,
+    color: "#10b981",
+    accentColor: "#f43f5e"
+  },
+  {
+    id: "umbrella",
+    name: "UmbrellaIcon",
+    category: "utility",
+    Component: UmbrellaIcon,
+    color: "#0ea5e9",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "scissors",
+    name: "ScissorsIcon",
+    category: "utility",
+    Component: ScissorsIcon,
+    color: "#f59e0b",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "unlock",
+    name: "UnlockIcon",
+    category: "utility",
+    Component: UnlockIcon,
+    color: "#eab308",
+    accentColor: "#22c55e"
+  },
+  {
+    id: "archive",
+    name: "ArchiveIcon",
+    category: "storage",
+    Component: ArchiveIcon,
+    color: "#a855f7",
+    accentColor: "#ec4899"
+  },
+  {
+    id: "shieldalert",
+    name: "ShieldAlertIcon",
+    category: "utility",
+    Component: ShieldAlertIcon,
+    color: "#475569",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "eyeoff",
+    name: "EyeOffIcon",
+    category: "utility",
+    Component: EyeOffIcon,
+    color: "#6366f1",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "userplus",
+    name: "UserPlusIcon",
+    category: "utility",
+    Component: UserPlusIcon,
+    color: "#3b82f6",
+    accentColor: "#10b981"
+  },
+  {
+    id: "trendingdown",
+    name: "TrendingDownIcon",
+    category: "utility",
+    Component: TrendingDownIcon,
+    color: "#ef4444",
+    accentColor: "#fb7185"
+  },
+  {
+    id: "copy",
+    name: "CopyIcon",
+    category: "utility",
+    Component: CopyIcon,
+    color: "#06b6d4",
+    accentColor: "#22d3ee"
+  },
+  {
+    id: "gauge",
+    name: "GaugeIcon",
+    category: "mechanics",
+    Component: GaugeIcon,
+    color: "#64748b",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "magnet",
+    name: "MagnetIcon",
+    category: "mechanics",
+    Component: MagnetIcon,
+    color: "#71717a",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "stack",
+    name: "StackIcon",
+    category: "systems",
+    Component: StackIcon,
+    color: "#4f46e5",
+    accentColor: "#10b981"
+  },
+  {
+    id: "workflow",
+    name: "WorkflowIcon",
+    category: "systems",
+    Component: WorkflowIcon,
+    color: "#0ea5e9",
+    accentColor: "#10b981"
+  },
+  {
+    id: "topology",
+    name: "TopologyIcon",
+    category: "systems",
+    Component: TopologyIcon,
+    color: "#06b6d4",
+    accentColor: "#10b981"
+  },
+  {
+    id: "file",
+    name: "FileIcon",
+    category: "utility",
+    Component: FileIcon,
+    color: "#64748b",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "headphones",
+    name: "HeadphonesIcon",
+    category: "utility",
+    Component: HeadphonesIcon,
+    color: "#4f46e5",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "moon",
+    name: "MoonIcon",
+    category: "utility",
+    Component: MoonIcon,
+    color: "#a855f7",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "paperclip",
+    name: "PaperclipIcon",
+    category: "utility",
+    Component: PaperclipIcon,
+    color: "#94a3b8",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "bookmark",
+    name: "BookmarkIcon",
+    category: "utility",
+    Component: BookmarkIcon,
+    color: "#e11d48",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "cloudlightning",
+    name: "CloudLightningIcon",
+    category: "systems",
+    Component: CloudLightningIcon,
+    color: "#0ea5e9",
+    accentColor: "#fbbf24"
+  },
+  {
+    id: "folderopen",
+    name: "FolderOpenIcon",
+    category: "storage",
+    Component: FolderOpenIcon,
+    color: "#f59e0b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "volume",
+    name: "VolumeIcon",
+    category: "hardware",
+    Component: VolumeIcon,
+    color: "#6366f1",
+    accentColor: "#3b82f6"
+  },
+  {
+    id: "belloff",
+    name: "BellOffIcon",
+    category: "utility",
+    Component: BellOffIcon,
+    color: "#f59e0b",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "sunmoon",
+    name: "SunMoonIcon",
+    category: "systems",
+    Component: SunMoonIcon,
+    color: "#6366f1",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "piston",
+    name: "PistonIcon",
+    category: "mechanics",
+    Component: PistonIcon,
+    color: "#71717a",
+    accentColor: "#10b981"
+  },
+  {
+    id: "spring",
+    name: "SpringIcon",
+    category: "mechanics",
+    Component: SpringIcon,
+    color: "#64748b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "anvil",
+    name: "AnvilIcon",
+    category: "mechanics",
+    Component: AnvilIcon,
+    color: "#4b5563",
+    accentColor: "#f97316"
+  },
+  {
+    id: "hook",
+    name: "HookIcon",
+    category: "mechanics",
+    Component: HookIcon,
+    color: "#475569",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "turbine",
+    name: "TurbineIcon",
+    category: "mechanics",
+    Component: TurbineIcon,
+    color: "#64748b",
+    accentColor: "#06b6d4"
+  },
+  {
+    id: "pliers",
+    name: "PliersIcon",
+    category: "mechanics",
+    Component: PliersIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "drill",
+    name: "DrillIcon",
+    category: "mechanics",
+    Component: DrillIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "hacksaw",
+    name: "HacksawIcon",
+    category: "mechanics",
+    Component: HacksawIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "tapemeasure",
+    name: "TapeMeasureIcon",
+    category: "mechanics",
+    Component: TapeMeasureIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "caliper",
+    name: "CaliperIcon",
+    category: "mechanics",
+    Component: CaliperIcon,
+    color: "#94a3b8",
+    accentColor: "#10b981"
+  },
+  {
+    id: "spiritlevel",
+    name: "SpiritLevelIcon",
+    category: "mechanics",
+    Component: SpiritLevelIcon,
+    color: "#64748b",
+    accentColor: "#22c55e"
+  },
+  {
+    id: "sledgehammer",
+    name: "SledgehammerIcon",
+    category: "mechanics",
+    Component: SledgehammerIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "phonemobile",
+    name: "PhoneMobileIcon",
+    category: "hardware",
+    Component: PhoneMobileIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "tablet",
+    name: "TabletIcon",
+    category: "hardware",
+    Component: TabletIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "laptop",
+    name: "LaptopIcon",
+    category: "hardware",
+    Component: LaptopIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "smartwatch",
+    name: "SmartWatchIcon",
+    category: "hardware",
+    Component: SmartWatchIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "routerwifi",
+    name: "RouterWifiIcon",
+    category: "hardware",
+    Component: RouterWifiIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "serverrack",
+    name: "ServerRackIcon",
+    category: "hardware",
+    Component: ServerRackIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "harddriveexternal",
+    name: "HardDriveExternalIcon",
+    category: "hardware",
+    Component: HardDriveExternalIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "webcam",
+    name: "WebcamIcon",
+    category: "hardware",
+    Component: WebcamIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "chisel",
+    name: "ChiselIcon",
+    category: "mechanics",
+    Component: ChiselIcon,
+    color: "#78350f",
+    accentColor: "#10b981"
+  },
+  {
+    id: "crowbar",
+    name: "CrowbarIcon",
+    category: "mechanics",
+    Component: CrowbarIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "funnel",
+    name: "FunnelIcon",
+    category: "mechanics",
+    Component: FunnelIcon,
+    color: "#0f766e",
+    accentColor: "#10b981"
+  },
+  {
+    id: "oilcan",
+    name: "OilCanIcon",
+    category: "mechanics",
+    Component: OilCanIcon,
+    color: "#b45309",
+    accentColor: "#10b981"
+  },
+  {
+    id: "bearing",
+    name: "BearingIcon",
+    category: "mechanics",
+    Component: BearingIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "pulley",
+    name: "PulleyIcon",
+    category: "mechanics",
+    Component: PulleyIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "sprocket",
+    name: "SprocketIcon",
+    category: "mechanics",
+    Component: SprocketIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "projector",
+    name: "ProjectorIcon",
+    category: "hardware",
+    Component: ProjectorIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "gameconsole",
+    name: "GameConsoleIcon",
+    category: "hardware",
+    Component: GameConsoleIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "vrheadset",
+    name: "VRHeadsetIcon",
+    category: "hardware",
+    Component: VRHeadsetIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "smartspeaker",
+    name: "SmartSpeakerIcon",
+    category: "hardware",
+    Component: SmartSpeakerIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "powerbank",
+    name: "PowerBankIcon",
+    category: "hardware",
+    Component: PowerBankIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "usbdrive",
+    name: "UsbDriveIcon",
+    category: "hardware",
+    Component: UsbDriveIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "motherboard",
+    name: "MotherboardIcon",
+    category: "hardware",
+    Component: MotherboardIcon,
+    color: "#065f46",
+    accentColor: "#10b981"
+  },
+  {
+    id: "ramstick",
+    name: "RamStickIcon",
+    category: "hardware",
+    Component: RamStickIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "crank",
+    name: "CrankIcon",
+    category: "mechanics",
+    Component: CrankIcon,
+    color: "#71717a",
+    accentColor: "#10b981"
+  },
+  {
+    id: "camshaft",
+    name: "CamshaftIcon",
+    category: "mechanics",
+    Component: CamshaftIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "driveshaft",
+    name: "DriveShaftIcon",
+    category: "mechanics",
+    Component: DriveShaftIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "valve",
+    name: "ValveIcon",
+    category: "mechanics",
+    Component: ValveIcon,
+    color: "#4b5563",
+    accentColor: "#10b981"
+  },
+  {
+    id: "propeller",
+    name: "PropellerIcon",
+    category: "mechanics",
+    Component: PropellerIcon,
+    color: "#78350f",
+    accentColor: "#10b981"
+  },
+  {
+    id: "rotor",
+    name: "HelicopterRotorIcon",
+    category: "mechanics",
+    Component: HelicopterRotorIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "hydraulicjack",
+    name: "HydraulicJackIcon",
+    category: "mechanics",
+    Component: HydraulicJackIcon,
+    color: "#ef4444",
+    accentColor: "#10b981"
+  },
+  {
+    id: "gpu",
+    name: "GpuIcon",
+    category: "hardware",
+    Component: GpuIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "powersupply",
+    name: "PowerSupplyIcon",
+    category: "hardware",
+    Component: PowerSupplyIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "networkswitch",
+    name: "NetworkSwitchIcon",
+    category: "hardware",
+    Component: NetworkSwitchIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "smartplug",
+    name: "SmartPlugIcon",
+    category: "hardware",
+    Component: SmartPlugIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "smartbulb",
+    name: "SmartBulbIcon",
+    category: "hardware",
+    Component: SmartBulbIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "securitycamera",
+    name: "SecurityCameraIcon",
+    category: "hardware",
+    Component: SecurityCameraIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "smartlock",
+    name: "SmartLockIcon",
+    category: "hardware",
+    Component: SmartLockIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "thermostat",
+    name: "ThermostatIcon",
+    category: "hardware",
+    Component: ThermostatIcon,
+    color: "#0f172a",
+    accentColor: "#10b981"
+  },
+  {
+    id: "gclamp",
+    name: "GClampIcon",
+    category: "mechanics",
+    Component: GClampIcon,
+    color: "#4b5563",
+    accentColor: "#10b981"
+  },
+  {
+    id: "vice",
+    name: "ViceIcon",
+    category: "mechanics",
+    Component: ViceIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "greasegun",
+    name: "GreaseGunIcon",
+    category: "mechanics",
+    Component: GreaseGunIcon,
+    color: "#64748b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "gearbox",
+    name: "GearboxIcon",
+    category: "mechanics",
+    Component: GearboxIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "differential",
+    name: "DifferentialIcon",
+    category: "mechanics",
+    Component: DifferentialIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "suspension",
+    name: "SuspensionIcon",
+    category: "mechanics",
+    Component: SuspensionIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "windlass",
+    name: "WindlassIcon",
+    category: "mechanics",
+    Component: WindlassIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "earbuds",
+    name: "EarbudsIcon",
+    category: "hardware",
+    Component: EarbudsIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "smartring",
+    name: "SmartRingIcon",
+    category: "hardware",
+    Component: SmartRingIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "drawingtablet",
+    name: "DrawingTabletIcon",
+    category: "hardware",
+    Component: DrawingTabletIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "barcodescanner",
+    name: "BarcodeScannerIcon",
+    category: "hardware",
+    Component: BarcodeScannerIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "posregister",
+    name: "POSRegisterIcon",
+    category: "hardware",
+    Component: POSRegisterIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "calculator",
+    name: "CalculatorIcon",
+    category: "hardware",
+    Component: CalculatorIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "remotecontrol",
+    name: "RemoteControlIcon",
+    category: "hardware",
+    Component: RemoteControlIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "soundbar",
+    name: "SoundbarIcon",
+    category: "hardware",
+    Component: SoundbarIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "jackhammer",
+    name: "JackhammerIcon",
+    category: "mechanics",
+    Component: JackhammerIcon,
+    color: "#e2e8f0",
+    accentColor: "#10b981"
+  },
+  {
+    id: "solderingiron",
+    name: "SolderingIronIcon",
+    category: "mechanics",
+    Component: SolderingIronIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "blowtorch",
+    name: "BlowtorchIcon",
+    category: "mechanics",
+    Component: BlowtorchIcon,
+    color: "#0284c7",
+    accentColor: "#10b981"
+  },
+  {
+    id: "wheelbarrow",
+    name: "WheelbarrowIcon",
+    category: "mechanics",
+    Component: WheelbarrowIcon,
+    color: "#ea580c",
+    accentColor: "#10b981"
+  },
+  {
+    id: "plumbbob",
+    name: "PlumbBobIcon",
+    category: "mechanics",
+    Component: PlumbBobIcon,
+    color: "#d97706",
+    accentColor: "#10b981"
+  },
+  {
+    id: "shears",
+    name: "ShearsIcon",
+    category: "mechanics",
+    Component: ShearsIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "wirestripper",
+    name: "WireStripperIcon",
+    category: "mechanics",
+    Component: WireStripperIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "pipewrench",
+    name: "PipeWrenchIcon",
+    category: "mechanics",
+    Component: PipeWrenchIcon,
+    color: "#dc2626",
+    accentColor: "#10b981"
+  },
+  {
+    id: "floppy",
+    name: "FloppyDiskIcon",
+    category: "storage",
+    Component: FloppyDiskIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "tapecassette",
+    name: "TapeCassetteIcon",
+    category: "storage",
+    Component: TapeCassetteIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "cd",
+    name: "CompactDiscIcon",
+    category: "storage",
+    Component: CompactDiscIcon,
+    color: "#f1f5f9",
+    accentColor: "#10b981"
+  },
+  {
+    id: "tv",
+    name: "TvIcon",
+    category: "hardware",
+    Component: TvIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "radio",
+    name: "RadioIcon",
+    category: "hardware",
+    Component: RadioIcon,
+    color: "#7c2d12",
+    accentColor: "#10b981"
+  },
+  {
+    id: "walkietalkie",
+    name: "WalkieTalkieIcon",
+    category: "hardware",
+    Component: WalkieTalkieIcon,
+    color: "#19222f",
+    accentColor: "#10b981"
+  },
+  {
+    id: "headset",
+    name: "HeadsetIcon",
+    category: "hardware",
+    Component: HeadsetIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "fish",
+    name: "FishIcon",
+    category: "emojies",
+    Component: FishIcon,
+    color: "#0ea5e9",
+    accentColor: "#10b981"
+  },
+  {
+    id: "butterfly",
+    name: "ButterflyIcon",
+    category: "emojies",
+    Component: ButterflyIcon,
+    color: "#d946ef",
+    accentColor: "#10b981"
+  },
+  {
+    id: "bird",
+    name: "BirdIcon",
+    category: "emojies",
+    Component: BirdIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "cat",
+    name: "CatIcon",
+    category: "emojies",
+    Component: CatIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "dog",
+    name: "DogIcon",
+    category: "emojies",
+    Component: DogIcon,
+    color: "#e2e8f0",
+    accentColor: "#10b981"
+  },
+  {
+    id: "rabbit",
+    name: "RabbitIcon",
+    category: "emojies",
+    Component: RabbitIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "elephant",
+    name: "ElephantIcon",
+    category: "emojies",
+    Component: ElephantIcon,
+    color: "#334155",
+    accentColor: "#10b981"
+  },
+  {
+    id: "owl",
+    name: "OwlIcon",
+    category: "emojies",
+    Component: OwlIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "turtle",
+    name: "TurtleIcon",
+    category: "emojies",
+    Component: TurtleIcon,
+    color: "#16a34a",
+    accentColor: "#10b981"
+  },
+  {
+    id: "dolphin",
+    name: "DolphinIcon",
+    category: "emojies",
+    Component: DolphinIcon,
+    color: "#0ea5e9",
+    accentColor: "#10b981"
+  },
+  {
+    id: "rose",
+    name: "RoseIcon",
+    category: "emojies",
+    Component: RoseIcon,
+    color: "#ec4899",
+    accentColor: "#10b981"
+  },
+  {
+    id: "sunflower",
+    name: "SunflowerIcon",
+    category: "emojies",
+    Component: SunflowerIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "tulip",
+    name: "TulipIcon",
+    category: "emojies",
+    Component: TulipIcon,
+    color: "#f43f5e",
+    accentColor: "#10b981"
+  },
+  {
+    id: "lotus",
+    name: "LotusIcon",
+    category: "emojies",
+    Component: LotusIcon,
+    color: "#f472b6",
+    accentColor: "#10b981"
+  },
+  {
+    id: "daisy",
+    name: "DaisyIcon",
+    category: "emojies",
+    Component: DaisyIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "hibiscus",
+    name: "HibiscusIcon",
+    category: "emojies",
+    Component: HibiscusIcon,
+    color: "#ec4899",
+    accentColor: "#10b981"
+  },
+  {
+    id: "orchid",
+    name: "OrchidIcon",
+    category: "emojies",
+    Component: OrchidIcon,
+    color: "#d946ef",
+    accentColor: "#10b981"
+  },
+  {
+    id: "lily",
+    name: "LilyIcon",
+    category: "emojies",
+    Component: LilyIcon,
+    color: "#fdf2f8",
+    accentColor: "#10b981"
+  },
+  {
+    id: "cactus",
+    name: "CactusIcon",
+    category: "emojies",
+    Component: CactusIcon,
+    color: "#16a34a",
+    accentColor: "#10b981"
+  },
+  {
+    id: "lavender",
+    name: "LavenderIcon",
+    category: "emojies",
+    Component: LavenderIcon,
+    color: "#a855f7",
+    accentColor: "#10b981"
+  },
+  {
+    id: "cloudrain",
+    name: "CloudRainIcon",
+    category: "systems",
+    Component: CloudRainIcon,
+    color: "#0ea5e9",
+    accentColor: "#38bdf8"
+  },
+  {
+    id: "cloudsnow",
+    name: "CloudSnowIcon",
+    category: "systems",
+    Component: CloudSnowIcon,
+    color: "#0ea5e9",
+    accentColor: "#e2e8f0"
+  },
+  {
+    id: "wind",
+    name: "WindIcon",
+    category: "systems",
+    Component: WindIcon,
+    color: "#64748b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "tornado",
+    name: "TornadoIcon",
+    category: "systems",
+    Component: TornadoIcon,
+    color: "#475569",
+    accentColor: "#0ea5e9"
+  },
+  {
+    id: "snowflake",
+    name: "SnowflakeIcon",
+    category: "systems",
+    Component: SnowflakeIcon,
+    color: "#38bdf8",
+    accentColor: "#e2e8f0"
+  },
+  {
+    id: "rainbow",
+    name: "RainbowIcon",
+    category: "systems",
+    Component: RainbowIcon,
+    color: "#ef4444",
+    accentColor: "#06b6d4"
+  },
+  {
+    id: "thermometer",
+    name: "ThermometerIcon",
+    category: "utility",
+    Component: ThermometerIcon,
+    color: "#cbd5e1",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "leaf",
+    name: "LeafIcon",
+    category: "emojies",
+    Component: LeafIcon,
+    color: "#16a34a",
+    accentColor: "#0ea5e9"
+  },
+  {
+    id: "tree",
+    name: "TreeIcon",
+    category: "emojies",
+    Component: TreeIcon,
+    color: "#15803d",
+    accentColor: "#10b981"
+  },
+  {
+    id: "hurricane",
+    name: "HurricaneIcon",
+    category: "systems",
+    Component: HurricaneIcon,
+    color: "#0284c7",
+    accentColor: "#0ea5e9"
+  },
+  {
+    id: "burger",
+    name: "BurgerIcon",
+    category: "emojies",
+    Component: BurgerIcon,
+    color: "#d97706",
+    accentColor: "#eab308"
+  },
+  {
+    id: "pizza",
+    name: "PizzaIcon",
+    category: "emojies",
+    Component: PizzaIcon,
+    color: "#f59e0b",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "apple",
+    name: "AppleIcon",
+    category: "emojies",
+    Component: AppleIcon,
+    color: "#ef4444",
+    accentColor: "#eab308"
+  },
+  {
+    id: "banana",
+    name: "BananaIcon",
+    category: "emojies",
+    Component: BananaIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "cake",
+    name: "CakeIcon",
+    category: "emojies",
+    Component: CakeIcon,
+    color: "#ec4899",
+    accentColor: "#f59e0b"
+  },
+  {
+    id: "icecream",
+    name: "IceCreamIcon",
+    category: "emojies",
+    Component: IceCreamIcon,
+    color: "#f472b6",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "donut",
+    name: "DonutIcon",
+    category: "emojies",
+    Component: DonutIcon,
+    color: "#db2777",
+    accentColor: "#eab308"
+  },
+  {
+    id: "popcorn",
+    name: "PopcornIcon",
+    category: "emojies",
+    Component: PopcornIcon,
+    color: "#ef4444",
+    accentColor: "#eab308"
+  },
+  {
+    id: "watermelon",
+    name: "WatermelonIcon",
+    category: "emojies",
+    Component: WatermelonIcon,
+    color: "#ef4444",
+    accentColor: "#1e293b"
+  },
+  {
+    id: "cookie",
+    name: "CookieIcon",
+    category: "emojies",
+    Component: CookieIcon,
+    color: "#ca8a04",
+    accentColor: "#10b981"
+  },
+  {
+    id: "safe",
+    name: "SafeIcon",
+    category: "utility",
+    Component: SafeIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "goldbars",
+    name: "GoldBarsIcon",
+    category: "utility",
+    Component: GoldBarsIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "bank",
+    name: "BankIcon",
+    category: "utility",
+    Component: BankIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "coin",
+    name: "CoinIcon",
+    category: "utility",
+    Component: CoinIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "piggybank",
+    name: "PiggyBankIcon",
+    category: "utility",
+    Component: PiggyBankIcon,
+    color: "#f472b6",
+    accentColor: "#eab308"
+  },
+  {
+    id: "shoppingbag",
+    name: "ShoppingBagIcon",
+    category: "utility",
+    Component: ShoppingBagIcon,
+    color: "#ca8a04",
+    accentColor: "#eab308"
+  },
+  {
+    id: "shoppingcart",
+    name: "ShoppingCartIcon",
+    category: "utility",
+    Component: ShoppingCartIcon,
+    color: "#94a3b8",
+    accentColor: "#10b981"
+  },
+  {
+    id: "scale",
+    name: "ScaleIcon",
+    category: "utility",
+    Component: ScaleIcon,
+    color: "#94a3b8",
+    accentColor: "#10b981"
+  },
+  {
+    id: "receipt",
+    name: "ReceiptIcon",
+    category: "utility",
+    Component: ReceiptIcon,
+    color: "#f8fafc",
+    accentColor: "#10b981"
+  },
+  {
+    id: "banknote",
+    name: "BanknoteIcon",
+    category: "utility",
+    Component: BanknoteIcon,
+    color: "#16a34a",
+    accentColor: "#eab308"
+  },
+  {
+    id: "euro",
+    name: "EuroIcon",
+    category: "utility",
+    Component: EuroIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "yen",
+    name: "YenIcon",
+    category: "utility",
+    Component: YenIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "pound",
+    name: "PoundIcon",
+    category: "utility",
+    Component: PoundIcon,
+    color: "#eab308",
+    accentColor: "#10b981"
+  },
+  {
+    id: "atom",
+    name: "AtomIcon",
+    category: "utility",
+    Component: AtomIcon,
+    color: "#6366f1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "dna",
+    name: "DNAIcon",
+    category: "utility",
+    Component: DNAIcon,
+    color: "#3b82f6",
+    accentColor: "#10b981"
+  },
+  {
+    id: "microscope",
+    name: "MicroscopeIcon",
+    category: "utility",
+    Component: MicroscopeIcon,
+    color: "#475569",
+    accentColor: "#10b981"
+  },
+  {
+    id: "telescope",
+    name: "TelescopeIcon",
+    category: "utility",
+    Component: TelescopeIcon,
+    color: "#1e293b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "beaker",
+    name: "BeakerIcon",
+    category: "utility",
+    Component: BeakerIcon,
+    color: "#cbd5e1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "folderplus",
+    name: "FolderPlusIcon",
+    category: "storage",
+    Component: FolderPlusIcon,
+    color: "#f59e0b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "folderminus",
+    name: "FolderMinusIcon",
+    category: "storage",
+    Component: FolderMinusIcon,
+    color: "#f59e0b",
+    accentColor: "#ef4444"
+  },
+  {
+    id: "foldercheck",
+    name: "FolderCheckIcon",
+    category: "storage",
+    Component: FolderCheckIcon,
+    color: "#f59e0b",
+    accentColor: "#10b981"
+  },
+  {
+    id: "calendarplus",
+    name: "CalendarPlusIcon",
+    category: "utility",
+    Component: CalendarPlusIcon,
+    color: "#6366f1",
+    accentColor: "#10b981"
+  },
+  {
+    id: "calendarcheck",
+    name: "CalendarCheckIcon",
+    category: "utility",
+    Component: CalendarCheckIcon,
+    color: "#6366f1",
+    accentColor: "#10b981"
+  },
   // Alphabet icons A-Z
   ...(() => {
     const LETTER_COLORS: Record<string, string> = {
-      A: "#f43f5e", B: "#f97316", C: "#eab308", D: "#84cc16",
-      E: "#22c55e", F: "#10b981", G: "#14b8a6", H: "#06b6d4",
-      I: "#0ea5e9", J: "#3b82f6", K: "#6366f1", L: "#8b5cf6",
-      M: "#a855f7", N: "#d946ef", O: "#ec4899", P: "#f43f5e",
-      Q: "#ef4444", R: "#f97316", S: "#f59e0b", T: "#10b981",
-      U: "#06b6d4", V: "#3b82f6", W: "#6366f1", X: "#8b5cf6",
-      Y: "#a855f7", Z: "#d946ef"
+      A: "#f43f5e",
+      B: "#f97316",
+      C: "#eab308",
+      D: "#84cc16",
+      E: "#22c55e",
+      F: "#10b981",
+      G: "#14b8a6",
+      H: "#06b6d4",
+      I: "#0ea5e9",
+      J: "#3b82f6",
+      K: "#6366f1",
+      L: "#8b5cf6",
+      M: "#a855f7",
+      N: "#d946ef",
+      O: "#ec4899",
+      P: "#f43f5e",
+      Q: "#ef4444",
+      R: "#f97316",
+      S: "#f59e0b",
+      T: "#10b981",
+      U: "#06b6d4",
+      V: "#3b82f6",
+      W: "#6366f1",
+      X: "#8b5cf6",
+      Y: "#a855f7",
+      Z: "#d946ef"
     };
-    return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(l => ({
+    return "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((l) => ({
       id: `letter-${l.toLowerCase()}`,
       name: `${l}Icon`,
       category: "alphabet",
@@ -652,7 +2701,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const { color: urlColor, iconId, navigate, updateCustomizerURL } = useRouter();
 
   // Find current icon component
-  const currentIcon = ICONS_REGISTRY.find(item => item.id === iconId) || ICONS_REGISTRY[0];
+  const currentIcon = ICONS_REGISTRY.find((item) => item.id === iconId) || ICONS_REGISTRY[0];
   const ActiveComponent = currentIcon.Component;
 
   // Local parameter states
@@ -677,9 +2726,15 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [accentInput, setAccentInput] = useState(accentColor);
 
   // PREMIUM STATES
-  const [activeSidebarTab, setActiveSidebarTab] = useState<"tuning" | "material" | "scene" | "presets" | "compare">("tuning");
-  const [viewportBg, setViewportBg] = useState<"default" | "grid" | "gradient-indigo" | "gradient-sunset" | "gradient-mesh">("default");
-  const [previewContext, setPreviewContext] = useState<"icon" | "navbar" | "card" | "hero" | "pricing" | "mobile" | "testimonial" | "checkout">("icon");
+  const [activeSidebarTab, setActiveSidebarTab] = useState<
+    "tuning" | "material" | "scene" | "presets" | "compare"
+  >("tuning");
+  const [viewportBg, setViewportBg] = useState<
+    "default" | "grid" | "gradient-indigo" | "gradient-sunset" | "gradient-mesh"
+  >("default");
+  const [previewContext, setPreviewContext] = useState<
+    "icon" | "navbar" | "card" | "hero" | "pricing" | "mobile" | "testimonial" | "checkout"
+  >("icon");
   const [cameraZoom, setCameraZoom] = useState(4.5);
   const [cameraFov, setCameraFov] = useState(45);
   const [shareSuccess, setShareSuccess] = useState(false);
@@ -693,13 +2748,17 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [tiltIntensity, setTiltIntensity] = useState(1.0);
   const [animationType, setAnimationType] = useState<IconAnimationType>("spin");
   const [animationAxis, setAnimationAxis] = useState<"x" | "y" | "z">("y");
-  const [animationDirection, setAnimationDirection] = useState<"clockwise" | "counter-clockwise">("clockwise");
+  const [animationDirection, setAnimationDirection] = useState<"clockwise" | "counter-clockwise">(
+    "clockwise"
+  );
   const [shadowOpacity, setShadowOpacity] = useState(0.6);
   const [shadowBlur, setShadowBlur] = useState(2.5);
   const [textureType, setTextureType] = useState<"none" | "frosted" | "brushed" | "carbon">("none");
   const [emissivePulseSpeed, setEmissivePulseSpeed] = useState(0.0);
   const [emissivePulseIntensity, setEmissivePulseIntensity] = useState(0.5);
-  const [lightingPreset, setLightingPreset] = useState<"studio" | "cyber" | "sunset" | "dramatic">("studio");
+  const [lightingPreset, setLightingPreset] = useState<"studio" | "cyber" | "sunset" | "dramatic">(
+    "studio"
+  );
   const [importStatus, setImportStatus] = useState<"idle" | "success" | "error">("idle");
   const [presentationMode, setPresentationMode] = useState(false);
   const [showcaseGridView, setShowcaseGridView] = useState(false);
@@ -803,12 +2862,19 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
         if (decoded.shadowOpacity !== undefined) setShadowOpacity(decoded.shadowOpacity);
         if (decoded.shadowBlur !== undefined) setShadowBlur(decoded.shadowBlur);
         if (decoded.textureType) setTextureType(decoded.textureType);
-        if (decoded.emissivePulseSpeed !== undefined) setEmissivePulseSpeed(decoded.emissivePulseSpeed);
-        if (decoded.emissivePulseIntensity !== undefined) setEmissivePulseIntensity(decoded.emissivePulseIntensity);
+        if (decoded.emissivePulseSpeed !== undefined)
+          setEmissivePulseSpeed(decoded.emissivePulseSpeed);
+        if (decoded.emissivePulseIntensity !== undefined)
+          setEmissivePulseIntensity(decoded.emissivePulseIntensity);
         if (decoded.lightingPreset) setLightingPreset(decoded.lightingPreset);
-        
+
         if (decoded.customMaterial) {
-          const defaults = getMaterialConfig(decoded.preset || "glass", decoded.color || color, theme, decoded.accentColor || accentColor);
+          const defaults = getMaterialConfig(
+            decoded.preset || "glass",
+            decoded.color || color,
+            theme,
+            decoded.accentColor || accentColor
+          );
           const mat = { ...defaults, ...decoded.customMaterial };
           setMaterialRoughness(mat.roughness);
           setMaterialMetalness(mat.metalness);
@@ -819,7 +2885,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
           setMaterialIor(mat.ior);
           setMaterialEmissiveIntensity(mat.emissiveIntensity);
         }
-        
+
         // Clear share parameter from URL history silently
         const cleanUrl = window.location.origin + window.location.pathname + window.location.hash;
         window.history.replaceState(null, "", cleanUrl);
@@ -832,12 +2898,14 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   // Sync compare list default icons when active icon changes
   useEffect(() => {
     const list = [currentIcon.id];
-    const categoryMatches = ICONS_REGISTRY.filter(icon => icon.id !== currentIcon.id && icon.category === currentIcon.category);
-    categoryMatches.forEach(icon => {
+    const categoryMatches = ICONS_REGISTRY.filter(
+      (icon) => icon.id !== currentIcon.id && icon.category === currentIcon.category
+    );
+    categoryMatches.forEach((icon) => {
       if (list.length < 4) list.push(icon.id);
     });
     if (list.length < 4) {
-      ICONS_REGISTRY.forEach(icon => {
+      ICONS_REGISTRY.forEach((icon) => {
         if (list.length < 4 && !list.includes(icon.id)) {
           list.push(icon.id);
         }
@@ -862,37 +2930,69 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   // Compute active customized material overrides
   const defaultMat = getMaterialConfig(preset, color, theme, accentColor);
   const customMaterial: Partial<MaterialConfig> = {};
-  if (materialRoughness !== defaultMat.roughness) customMaterial.roughness = Number(materialRoughness.toFixed(2));
-  if (materialMetalness !== defaultMat.metalness) customMaterial.metalness = Number(materialMetalness.toFixed(2));
-  if (materialTransmission !== defaultMat.transmission) customMaterial.transmission = Number(materialTransmission.toFixed(2));
-  if (materialThickness !== defaultMat.thickness) customMaterial.thickness = Number(materialThickness.toFixed(2));
-  if (materialClearcoat !== defaultMat.clearcoat) customMaterial.clearcoat = Number(materialClearcoat.toFixed(2));
-  if (materialClearcoatRoughness !== defaultMat.clearcoatRoughness) customMaterial.clearcoatRoughness = Number(materialClearcoatRoughness.toFixed(2));
+  if (materialRoughness !== defaultMat.roughness)
+    customMaterial.roughness = Number(materialRoughness.toFixed(2));
+  if (materialMetalness !== defaultMat.metalness)
+    customMaterial.metalness = Number(materialMetalness.toFixed(2));
+  if (materialTransmission !== defaultMat.transmission)
+    customMaterial.transmission = Number(materialTransmission.toFixed(2));
+  if (materialThickness !== defaultMat.thickness)
+    customMaterial.thickness = Number(materialThickness.toFixed(2));
+  if (materialClearcoat !== defaultMat.clearcoat)
+    customMaterial.clearcoat = Number(materialClearcoat.toFixed(2));
+  if (materialClearcoatRoughness !== defaultMat.clearcoatRoughness)
+    customMaterial.clearcoatRoughness = Number(materialClearcoatRoughness.toFixed(2));
   if (materialIor !== defaultMat.ior) customMaterial.ior = Number(materialIor.toFixed(2));
-  if (materialEmissiveIntensity !== defaultMat.emissiveIntensity) customMaterial.emissiveIntensity = Number(materialEmissiveIntensity.toFixed(2));
+  if (materialEmissiveIntensity !== defaultMat.emissiveIntensity)
+    customMaterial.emissiveIntensity = Number(materialEmissiveIntensity.toFixed(2));
 
   const customMaterialKeys = Object.keys(customMaterial);
-  const customMaterialProp = customMaterialKeys.length > 0
-    ? `\n        customMaterial={{ ${customMaterialKeys.map(k => `${k}: ${customMaterial[k as keyof typeof customMaterial]}`).join(', ')} }}`
-    : '';
+  const customMaterialProp =
+    customMaterialKeys.length > 0
+      ? `\n        customMaterial={{ ${customMaterialKeys.map((k) => `${k}: ${customMaterial[k as keyof typeof customMaterial]}`).join(", ")} }}`
+      : "";
 
-  const cameraZoomProp = cameraZoom !== 4.5 ? `\n        cameraZoom={${cameraZoom.toFixed(1)}}` : "";
+  const cameraZoomProp =
+    cameraZoom !== 4.5 ? `\n        cameraZoom={${cameraZoom.toFixed(1)}}` : "";
   const cameraFovProp = cameraFov !== 45 ? `\n        cameraFov={${cameraFov}}` : "";
-  const lightIntensityProp = lightIntensity !== 1.0 ? `\n        lightIntensity={${lightIntensity.toFixed(1)}}` : "";
+  const lightIntensityProp =
+    lightIntensity !== 1.0 ? `\n        lightIntensity={${lightIntensity.toFixed(1)}}` : "";
   const lightColorProp = lightColor !== "#c084fc" ? `\n        lightColor="${lightColor}"` : "";
-  const tiltIntensityProp = tiltIntensity !== 1.0 ? `\n        tiltIntensity={${tiltIntensity.toFixed(1)}}` : "";
-  const animationTypeProp = animationType !== "spin" ? `\n        animationType="${animationType}"` : "";
-  const animationAxisProp = animationAxis !== "y" ? `\n        animationAxis="${animationAxis}"` : "";
-  const animationDirectionProp = animationDirection !== "clockwise" ? `\n        animationDirection="${animationDirection}"` : "";
-  const shadowOpacityProp = shadowOpacity !== 0.6 ? `\n        shadowOpacity={${shadowOpacity.toFixed(2)}}` : "";
-  const shadowBlurProp = shadowBlur !== 2.5 ? `\n        shadowBlur={${shadowBlur.toFixed(2)}}` : "";
+  const tiltIntensityProp =
+    tiltIntensity !== 1.0 ? `\n        tiltIntensity={${tiltIntensity.toFixed(1)}}` : "";
+  const animationTypeProp =
+    animationType !== "spin" ? `\n        animationType="${animationType}"` : "";
+  const animationAxisProp =
+    animationAxis !== "y" ? `\n        animationAxis="${animationAxis}"` : "";
+  const animationDirectionProp =
+    animationDirection !== "clockwise"
+      ? `\n        animationDirection="${animationDirection}"`
+      : "";
+  const shadowOpacityProp =
+    shadowOpacity !== 0.6 ? `\n        shadowOpacity={${shadowOpacity.toFixed(2)}}` : "";
+  const shadowBlurProp =
+    shadowBlur !== 2.5 ? `\n        shadowBlur={${shadowBlur.toFixed(2)}}` : "";
   const textureTypeProp = textureType !== "none" ? `\n        textureType="${textureType}"` : "";
-  const emissivePulseSpeedProp = emissivePulseSpeed > 0 ? `\n        emissivePulseSpeed={${emissivePulseSpeed.toFixed(1)}}` : "";
-  const emissivePulseIntensityProp = emissivePulseSpeed > 0 && emissivePulseIntensity !== 0.5 ? `\n        emissivePulseIntensity={${emissivePulseIntensity.toFixed(2)}}` : "";
-  const lightingPresetProp = lightingPreset !== "studio" ? `\n        lightingPreset="${lightingPreset}"` : "";
-  const accentLightColorProp = accentLightIntensity > 0 && accentLightColor !== "#ec4899" ? `\n        accentLightColor="${accentLightColor}"` : "";
-  const accentLightIntensityProp = accentLightIntensity > 0 ? `\n        accentLightIntensity={${accentLightIntensity.toFixed(2)}}` : "";
-  const accentLightAngleProp = accentLightIntensity > 0 && accentLightAngle !== 135 ? `\n        accentLightAngle={${accentLightAngle}}` : "";
+  const emissivePulseSpeedProp =
+    emissivePulseSpeed > 0 ? `\n        emissivePulseSpeed={${emissivePulseSpeed.toFixed(1)}}` : "";
+  const emissivePulseIntensityProp =
+    emissivePulseSpeed > 0 && emissivePulseIntensity !== 0.5
+      ? `\n        emissivePulseIntensity={${emissivePulseIntensity.toFixed(2)}}`
+      : "";
+  const lightingPresetProp =
+    lightingPreset !== "studio" ? `\n        lightingPreset="${lightingPreset}"` : "";
+  const accentLightColorProp =
+    accentLightIntensity > 0 && accentLightColor !== "#ec4899"
+      ? `\n        accentLightColor="${accentLightColor}"`
+      : "";
+  const accentLightIntensityProp =
+    accentLightIntensity > 0
+      ? `\n        accentLightIntensity={${accentLightIntensity.toFixed(2)}}`
+      : "";
+  const accentLightAngleProp =
+    accentLightIntensity > 0 && accentLightAngle !== 135
+      ? `\n        accentLightAngle={${accentLightAngle}}`
+      : "";
 
   // Preset Handlers
   const handleSavePreset = () => {
@@ -920,7 +3020,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   };
 
   const handleDeletePreset = (id: string) => {
-    const updated = savedPresets.filter(p => p.id !== id);
+    const updated = savedPresets.filter((p) => p.id !== id);
     setSavedPresets(updated);
     localStorage.setItem("r3d_saved_presets", JSON.stringify(updated));
   };
@@ -957,7 +3057,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       };
       const serialized = btoa(encodeURIComponent(JSON.stringify(data)));
       const shareUrl = `${window.location.origin}${window.location.pathname}?share=${serialized}#/icons/${color.replace("#", "")}-${iconId}`;
-      
+
       navigator.clipboard.writeText(shareUrl);
       setShareSuccess(true);
       setTimeout(() => setShareSuccess(false), 2000);
@@ -968,7 +3068,8 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
 
   const handleExportPresets = () => {
     try {
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(savedPresets, null, 2));
+      const dataStr =
+        "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(savedPresets, null, 2));
       const downloadAnchor = document.createElement("a");
       downloadAnchor.setAttribute("href", dataStr);
       downloadAnchor.setAttribute("download", "r3d-custom-presets.json");
@@ -984,7 +3085,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
     const fileReader = new FileReader();
     const files = e.target.files;
     if (!files || files.length === 0) return;
-    
+
     fileReader.onload = (event) => {
       try {
         const parsed = JSON.parse(event.target?.result as string);
@@ -992,7 +3093,12 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
           const merged = [...savedPresets];
           parsed.forEach((importedItem) => {
             if (importedItem.name && importedItem.preset) {
-              if (!merged.some(existing => existing.id === importedItem.id || existing.name === importedItem.name)) {
+              if (
+                !merged.some(
+                  (existing) =>
+                    existing.id === importedItem.id || existing.name === importedItem.name
+                )
+              ) {
                 merged.push(importedItem);
               }
             }
@@ -1027,11 +3133,18 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
     if (p.environment) setEnvironment(p.environment);
     setTextureType(p.textureType || "none");
     setEmissivePulseSpeed(p.emissivePulseSpeed !== undefined ? p.emissivePulseSpeed : 0.0);
-    setEmissivePulseIntensity(p.emissivePulseIntensity !== undefined ? p.emissivePulseIntensity : 0.5);
+    setEmissivePulseIntensity(
+      p.emissivePulseIntensity !== undefined ? p.emissivePulseIntensity : 0.5
+    );
     setLightingPreset(p.lightingPreset || "studio");
-    
+
     // Apply custom material properties
-    const defaults = getMaterialConfig(p.preset || "glass", p.color || color, theme, p.accentColor || accentColor);
+    const defaults = getMaterialConfig(
+      p.preset || "glass",
+      p.color || color,
+      theme,
+      p.accentColor || accentColor
+    );
     const mat = { ...defaults, ...p.customMaterial };
     setMaterialRoughness(mat.roughness);
     setMaterialMetalness(mat.metalness);
@@ -1051,14 +3164,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
     document.body.appendChild(container);
 
     const root = createRoot(container);
-    root.render(
-      <Fallback2D
-        id={currentIcon.id}
-        color={color}
-        theme={theme}
-        preset={preset}
-      />
-    );
+    root.render(<Fallback2D id={currentIcon.id} color={color} theme={theme} preset={preset} />);
 
     const timer = setTimeout(() => {
       const svgElement = container.querySelector("svg");
@@ -1112,10 +3218,11 @@ function App() {
   const handleDownloadTSX = () => {
     const filename = `Custom${currentIcon.name.replace("Icon", "")}.tsx`;
     const componentName = `Custom${currentIcon.name.replace("Icon", "")}`;
-    const customMatStr = Object.keys(customMaterial).length > 0 
-      ? `const customMaterial = ${JSON.stringify(customMaterial, null, 2).replace(/"([^"]+)":/g, '$1:')};\n\n  ` 
-      : "";
-    
+    const customMatStr =
+      Object.keys(customMaterial).length > 0
+        ? `const customMaterial = ${JSON.stringify(customMaterial, null, 2).replace(/"([^"]+)":/g, "$1:")};\n\n  `
+        : "";
+
     const fileContent = `import React from "react";
 import { ${currentIcon.name} } from "r3d-icons";
 
@@ -1176,14 +3283,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     document.body.appendChild(container);
 
     const root = createRoot(container);
-    root.render(
-      <Fallback2D
-        id={currentIcon.id}
-        color={color}
-        theme={theme}
-        preset={preset}
-      />
-    );
+    root.render(<Fallback2D id={currentIcon.id} color={color} theme={theme} preset={preset} />);
 
     setTimeout(() => {
       const svgElement = container.querySelector("svg");
@@ -1213,7 +3313,8 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     setDownloadingPNG(true);
 
     setTimeout(() => {
-      const canvasElement = document.querySelector("#main-viewport canvas") || document.querySelector("canvas");
+      const canvasElement =
+        document.querySelector("#main-viewport canvas") || document.querySelector("canvas");
       if (canvasElement instanceof HTMLCanvasElement) {
         try {
           const dataUrl = canvasElement.toDataURL("image/png");
@@ -1238,14 +3339,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     document.body.appendChild(container);
 
     const root = createRoot(container);
-    root.render(
-      <Fallback2D
-        id={currentIcon.id}
-        color={color}
-        theme={theme}
-        preset={preset}
-      />
-    );
+    root.render(<Fallback2D id={currentIcon.id} color={color} theme={theme} preset={preset} />);
 
     setTimeout(() => {
       const svgElement = container.querySelector("svg");
@@ -1322,7 +3416,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     setSpinSpeed(1.0);
     setFloatHeight(1.0);
     setInteractive(true);
-    setResetKey(prev => prev + 1);
+    setResetKey((prev) => prev + 1);
     updateCustomizerURL(currentIcon.color, currentIcon.id);
 
     // Premium states reset
@@ -1349,7 +3443,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     setLightingPreset("studio");
     setPresentationMode(false);
     setShowcaseGridView(false);
-    const defaults = getMaterialConfig("glass", currentIcon.color || "#6366f1", theme, currentIcon.accentColor);
+    const defaults = getMaterialConfig(
+      "glass",
+      currentIcon.color || "#6366f1",
+      theme,
+      currentIcon.accentColor
+    );
     setMaterialRoughness(defaults.roughness);
     setMaterialMetalness(defaults.metalness);
     setMaterialTransmission(defaults.transmission);
@@ -1364,7 +3463,17 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     setViewportFlash(true);
     setTimeout(() => setViewportFlash(false), 250);
 
-    const presets: Array<IconPreset> = ["glass", "metal", "clay", "hologram", "gold", "silver", "glassmorphism", "carbon", "wood"];
+    const presets: Array<IconPreset> = [
+      "glass",
+      "metal",
+      "clay",
+      "hologram",
+      "gold",
+      "silver",
+      "glassmorphism",
+      "carbon",
+      "wood"
+    ];
     const shuffledPreset = presets[Math.floor(Math.random() * presets.length)];
     setPreset(shuffledPreset);
 
@@ -1386,7 +3495,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     updateCustomizerURL(combo.main.replace("#", ""), currentIcon.id);
 
     const defaults = getMaterialConfig(shuffledPreset, combo.main, theme, combo.accent);
-    
+
     const roughnessOffset = (Math.random() - 0.5) * 0.15;
     const metalnessOffset = (Math.random() - 0.5) * 0.2;
     setMaterialRoughness(Math.max(0.01, Math.min(1.0, defaults.roughness + roughnessOffset)));
@@ -1408,28 +3517,48 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     setSpinSpeed(parseFloat((Math.random() * 1.5 + 0.4).toFixed(2)));
     setFloatHeight(parseFloat((Math.random() * 1.4 + 0.3).toFixed(2)));
 
-    const textures: Array<"none" | "frosted" | "brushed" | "carbon"> = ["none", "frosted", "brushed", "carbon"];
+    const textures: Array<"none" | "frosted" | "brushed" | "carbon"> = [
+      "none",
+      "frosted",
+      "brushed",
+      "carbon"
+    ];
     setTextureType(textures[Math.floor(Math.random() * textures.length)]);
 
     setEmissivePulseSpeed(Math.random() > 0.4 ? parseFloat((Math.random() * 2.2).toFixed(2)) : 0.0);
     setEmissivePulseIntensity(parseFloat((Math.random() * 1.6 + 0.4).toFixed(2)));
 
-    const lightingPresets: Array<"studio" | "cyber" | "sunset" | "dramatic"> = ["studio", "cyber", "sunset", "dramatic"];
+    const lightingPresets: Array<"studio" | "cyber" | "sunset" | "dramatic"> = [
+      "studio",
+      "cyber",
+      "sunset",
+      "dramatic"
+    ];
     setLightingPreset(lightingPresets[Math.floor(Math.random() * lightingPresets.length)]);
 
-    const bgs: Array<"default" | "grid" | "gradient-indigo" | "gradient-sunset" | "gradient-mesh"> = [
-      "default", "grid", "gradient-indigo", "gradient-sunset", "gradient-mesh"
-    ];
+    const bgs: Array<"default" | "grid" | "gradient-indigo" | "gradient-sunset" | "gradient-mesh"> =
+      ["default", "grid", "gradient-indigo", "gradient-sunset", "gradient-mesh"];
     setViewportBg(bgs[Math.floor(Math.random() * bgs.length)]);
 
-    const accentColors = ["#ec4899", "#3b82f6", "#10b981", "#ef4444", "#f59e0b", "#8b5cf6", "#0ea5e9", "#eab308"];
+    const accentColors = [
+      "#ec4899",
+      "#3b82f6",
+      "#10b981",
+      "#ef4444",
+      "#f59e0b",
+      "#8b5cf6",
+      "#0ea5e9",
+      "#eab308"
+    ];
     const randomAccentColor = accentColors[Math.floor(Math.random() * accentColors.length)];
     setAccentLightColor(randomAccentColor);
     setAccentLightColorInput(randomAccentColor);
-    setAccentLightIntensity(Math.random() > 0.4 ? parseFloat((Math.random() * 2.5).toFixed(2)) : 0.0);
+    setAccentLightIntensity(
+      Math.random() > 0.4 ? parseFloat((Math.random() * 2.5).toFixed(2)) : 0.0
+    );
     setAccentLightAngle(Math.floor(Math.random() * 360));
 
-    setResetKey(prev => prev + 1);
+    setResetKey((prev) => prev + 1);
   };
 
   const getViewportBgClass = () => {
@@ -1470,7 +3599,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-850/80 text-[10px] font-extrabold uppercase tracking-wide text-zinc-600 dark:text-zinc-350 cursor-pointer shadow-sm active:scale-95 transition-all select-none"
             >
               <span>Switch Icon: {currentIcon.name.replace("Icon", "")}</span>
-              <LucideAll.ChevronDown size={11} className={`text-zinc-400 transition-transform duration-200 ${isSwitcherOpen ? "rotate-180" : ""}`} />
+              <LucideAll.ChevronDown
+                size={11}
+                className={`text-zinc-400 transition-transform duration-200 ${isSwitcherOpen ? "rotate-180" : ""}`}
+              />
             </button>
 
             {isSwitcherOpen && (
@@ -1504,7 +3636,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         }`}
                       >
                         <span>{icon.name.replace("Icon", "")}</span>
-                        <span className={`text-[7px] px-1 py-0.5 rounded uppercase ${isCurrent ? "bg-white/20 text-white" : "bg-zinc-150 dark:bg-zinc-800 text-zinc-400"}`}>
+                        <span
+                          className={`text-[7px] px-1 py-0.5 rounded uppercase ${isCurrent ? "bg-white/20 text-white" : "bg-zinc-150 dark:bg-zinc-800 text-zinc-400"}`}
+                        >
                           {icon.category}
                         </span>
                       </button>
@@ -1523,14 +3657,19 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
 
       {/* Workspace split layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-
         {/* Left Side: 3D Scene Viewport */}
-        <div className={`${presentationMode ? "lg:col-span-12" : "lg:col-span-8"} flex flex-col gap-6 transition-all duration-300`}>
-          <div className={`relative w-full rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-xl overflow-hidden group transition-all duration-300 ${presentationMode ? "h-[600px]" : "h-[480px]"} ${getViewportBgClass()}`}>
+        <div
+          className={`${presentationMode ? "lg:col-span-12" : "lg:col-span-8"} flex flex-col gap-6 transition-all duration-300`}
+        >
+          <div
+            className={`relative w-full rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-xl overflow-hidden group transition-all duration-300 ${presentationMode ? "h-[600px]" : "h-[480px]"} ${getViewportBgClass()}`}
+          >
             {/* Viewport Camera Flash Effect overlay */}
-            <div className={`absolute inset-0 bg-white/70 dark:bg-indigo-500/10 pointer-events-none transition-opacity duration-500 z-30 ${
-              viewportFlash ? "opacity-100 duration-75" : "opacity-0"
-            }`} />
+            <div
+              className={`absolute inset-0 bg-white/70 dark:bg-indigo-500/10 pointer-events-none transition-opacity duration-500 z-30 ${
+                viewportFlash ? "opacity-100 duration-75" : "opacity-0"
+              }`}
+            />
 
             {/* Overlay indicators */}
             {activeSidebarTab !== "compare" && (
@@ -1593,7 +3732,8 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
               /* Compare Mode: 2x2 grid side-by-side rendering */
               <div className="w-full h-full grid grid-cols-2 grid-rows-2 p-4 gap-4 bg-zinc-50/50 dark:bg-[#07090f]/30">
                 {compareList.map((selectedId, idx) => {
-                  const iconObj = ICONS_REGISTRY.find(item => item.id === selectedId) || currentIcon;
+                  const iconObj =
+                    ICONS_REGISTRY.find((item) => item.id === selectedId) || currentIcon;
                   const CompareComponent = iconObj.Component;
                   return (
                     <div
@@ -1668,13 +3808,20 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                               size={20}
                             />
                           </div>
-                          <span className="font-extrabold text-[8px] text-zinc-900 dark:text-white uppercase tracking-wider">Navbar</span>
+                          <span className="font-extrabold text-[8px] text-zinc-900 dark:text-white uppercase tracking-wider">
+                            Navbar
+                          </span>
                         </div>
-                        <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-500 text-[5px] font-extrabold uppercase tracking-wide">Active</span>
+                        <span className="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-500 text-[5px] font-extrabold uppercase tracking-wide">
+                          Active
+                        </span>
                       </div>
                       <div className="flex-grow flex flex-col items-center justify-center text-center space-y-1 pt-1">
                         <div className="w-12 h-12 relative flex items-center justify-center">
-                          <div className="absolute inset-0 rounded-full blur-xl opacity-10 pointer-events-none" style={{ backgroundColor: color }} />
+                          <div
+                            className="absolute inset-0 rounded-full blur-xl opacity-10 pointer-events-none"
+                            style={{ backgroundColor: color }}
+                          />
                           <ActiveComponent
                             preset={preset}
                             angle={angle}
@@ -1711,12 +3858,15 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                     </div>
 
                     {/* Slot 2: Stats Card */}
-                    <div 
+                    <div
                       style={{ boxShadow: `0 15px 30px -10px ${color}10` }}
                       className="rounded-2xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/40 dark:bg-[#0c0f1a]/40 backdrop-blur-md p-3 flex flex-col items-center text-center justify-between h-[210px] overflow-hidden transition duration-300"
                     >
                       <div className="w-14 h-14 relative flex items-center justify-center">
-                        <div className="absolute inset-0 rounded-full blur-xl opacity-15 pointer-events-none" style={{ backgroundColor: color }} />
+                        <div
+                          className="absolute inset-0 rounded-full blur-xl opacity-15 pointer-events-none"
+                          style={{ backgroundColor: color }}
+                        />
                         <ActiveComponent
                           preset={preset}
                           angle={angle}
@@ -1750,7 +3900,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         <span className="px-1.5 py-0.5 text-[5px] font-extrabold text-indigo-500 bg-indigo-500/10 rounded-full uppercase tracking-wider">
                           Premium Card
                         </span>
-                        <h4 className="text-[8px] font-extrabold text-zinc-850 dark:text-white uppercase tracking-wider leading-none pt-0.5">Feature Card</h4>
+                        <h4 className="text-[8px] font-extrabold text-zinc-850 dark:text-white uppercase tracking-wider leading-none pt-0.5">
+                          Feature Card
+                        </h4>
                         <p className="text-[7px] text-zinc-400 dark:text-zinc-550 leading-relaxed max-w-[120px] truncate">
                           Glow visual node
                         </p>
@@ -1758,11 +3910,13 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                     </div>
 
                     {/* Slot 3: Customer Review */}
-                    <div 
+                    <div
                       style={{ boxShadow: `0 15px 30px -10px ${color}10` }}
                       className="rounded-2xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/40 dark:bg-[#0c0f1a]/40 backdrop-blur-md p-3 flex flex-col justify-between h-[210px] overflow-hidden relative"
                     >
-                      <span className="absolute -top-1 left-2 text-2xl font-serif text-indigo-500/20 leading-none pointer-events-none select-none">“</span>
+                      <span className="absolute -top-1 left-2 text-2xl font-serif text-indigo-500/20 leading-none pointer-events-none select-none">
+                        “
+                      </span>
                       <div className="absolute top-2 right-2 w-10 h-10 flex items-center justify-center">
                         <ActiveComponent
                           preset={preset}
@@ -1798,26 +3952,39 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       </p>
                       <div className="w-full h-px bg-zinc-200/10 my-0.5" />
                       <div className="flex items-center gap-1">
-                        <div className="w-4 h-4 rounded-full bg-zinc-200/30 border border-zinc-200/20 flex items-center justify-center text-[6px] font-extrabold text-zinc-800 dark:text-zinc-255">JD</div>
+                        <div className="w-4 h-4 rounded-full bg-zinc-200/30 border border-zinc-200/20 flex items-center justify-center text-[6px] font-extrabold text-zinc-800 dark:text-zinc-255">
+                          JD
+                        </div>
                         <div className="flex flex-col">
-                          <span className="text-[7px] font-extrabold text-zinc-900 dark:text-white uppercase leading-none">Jane Doe</span>
-                          <span className="text-[5px] text-zinc-400 dark:text-zinc-550 uppercase tracking-wide">Architect</span>
+                          <span className="text-[7px] font-extrabold text-zinc-900 dark:text-white uppercase leading-none">
+                            Jane Doe
+                          </span>
+                          <span className="text-[5px] text-zinc-400 dark:text-zinc-550 uppercase tracking-wide">
+                            Architect
+                          </span>
                         </div>
                       </div>
                     </div>
 
                     {/* Slot 4: Checkout */}
-                    <div 
+                    <div
                       style={{ boxShadow: `0 15px 30px -10px ${color}10` }}
                       className="rounded-2xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/40 dark:bg-[#0c0f1a]/40 backdrop-blur-md p-3 flex flex-col justify-between h-[210px] overflow-hidden"
                     >
                       <div className="flex justify-between items-center pb-1 border-b border-zinc-200/20">
-                        <span className="text-[5px] font-extrabold uppercase tracking-wide text-zinc-450">Receipt</span>
-                        <span className="text-[6px] font-extrabold text-zinc-900 dark:text-white font-mono">#9082</span>
+                        <span className="text-[5px] font-extrabold uppercase tracking-wide text-zinc-450">
+                          Receipt
+                        </span>
+                        <span className="text-[6px] font-extrabold text-zinc-900 dark:text-white font-mono">
+                          #9082
+                        </span>
                       </div>
                       <div className="flex items-center gap-1.5 py-1">
                         <div className="w-8 h-8 rounded-lg border border-zinc-200/10 bg-zinc-250/20 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
-                          <div className="absolute inset-1 rounded-full blur-xl opacity-10 pointer-events-none" style={{ backgroundColor: color }} />
+                          <div
+                            className="absolute inset-1 rounded-full blur-xl opacity-10 pointer-events-none"
+                            style={{ backgroundColor: color }}
+                          />
                           <ActiveComponent
                             preset={preset}
                             angle={angle}
@@ -1847,10 +4014,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             size="100%"
                           />
                         </div>
-                        <span className="text-[7px] font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider truncate max-w-[45px]">Receipt Item</span>
+                        <span className="text-[7px] font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider truncate max-w-[45px]">
+                          Receipt Item
+                        </span>
                       </div>
-                      <button 
-                        style={{ backgroundColor: color }} 
+                      <button
+                        style={{ backgroundColor: color }}
                         className="w-full py-1 rounded-lg text-white text-[7px] font-extrabold uppercase tracking-wider transition cursor-pointer"
                       >
                         Checkout
@@ -1860,87 +4029,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                 ) : (
                   <>
                     {previewContext === "icon" && (
-                  <div id="main-viewport" className="w-full h-full flex items-center justify-center">
-                    <ActiveComponent
-                      key={resetKey}
-                      preset={preset}
-                      angle={angle}
-                      environment={environment}
-                      variant={renderMode}
-                      color={color}
-                      accentColor={accentColor}
-                      spinSpeed={spinSpeed}
-                      floatHeight={floatHeight}
-                      theme={theme}
-                      interactive={interactive}
-                      customMaterial={customMaterial}
-                      cameraZoom={cameraZoom}
-                      cameraFov={cameraFov}
-                      lightIntensity={lightIntensity}
-                      lightColor={lightColor}
-                      tiltIntensity={tiltIntensity}
-                      animationType={animationType}
-                      animationAxis={animationAxis}
-                      animationDirection={animationDirection}
-                      shadowOpacity={shadowOpacity}
-                      shadowBlur={shadowBlur}
-                      textureType={textureType}
-                      emissivePulseSpeed={emissivePulseSpeed}
-                      emissivePulseIntensity={emissivePulseIntensity}
-                      lightingPreset={lightingPreset}
-                      accentLightColor={accentLightColor}
-                      accentLightIntensity={accentLightIntensity}
-                      accentLightAngle={accentLightAngle}
-                    />
-                  </div>
-                )}
-
-                {previewContext === "navbar" && (
-                  <div className="w-full h-full flex flex-col justify-between p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
-                    {/* Upgraded Glassmorphic Navbar */}
-                    <div 
-                      style={{ boxShadow: `0 12px 30px -10px ${color}15` }}
-                      className="w-full rounded-2xl border border-zinc-200/40 dark:border-zinc-800/50 bg-white/70 dark:bg-[#0f121e]/80 backdrop-blur-xl px-5 py-2.5 flex items-center justify-between shadow-md transition duration-300"
-                    >
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8">
-                          <ActiveComponent
-                            preset={preset}
-                            angle="front"
-                            environment={environment}
-                            variant={renderMode}
-                            color={color}
-                            accentColor={accentColor}
-                            spinSpeed={0}
-                            floatHeight={0}
-                            theme={theme}
-                            interactive={false}
-                            customMaterial={customMaterial}
-                            lightingPreset={lightingPreset}
-                            size={32}
-                          />
-                        </div>
-                        <span className="font-extrabold text-[10px] text-zinc-900 dark:text-white uppercase tracking-wider">
-                          {currentIcon.name.replace("Icon", "")} Portal
-                        </span>
-                      </div>
-                      <div className="flex gap-4 text-[9px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">
-                        <span className="hover:text-indigo-500 cursor-pointer transition">Dashboard</span>
-                        <span className="hover:text-indigo-500 cursor-pointer transition">Security</span>
-                        <span className="hover:text-indigo-500 cursor-pointer transition">Settings</span>
-                      </div>
-                      <button 
-                        style={{ backgroundColor: color }}
-                        className="px-3.5 py-1.5 rounded-xl text-white text-[9px] font-extrabold uppercase tracking-wide transition shadow-sm hover:brightness-110 active:scale-95 cursor-pointer"
+                      <div
+                        id="main-viewport"
+                        className="w-full h-full flex items-center justify-center"
                       >
-                        Launch
-                      </button>
-                    </div>
-
-                    <div className="flex-grow flex flex-col items-center justify-center text-center max-w-sm mx-auto space-y-2 pt-4">
-                      <div className="w-20 h-20 relative flex items-center justify-center">
-                        <div className="absolute inset-0 rounded-full blur-2xl opacity-15" style={{ backgroundColor: color }} />
                         <ActiveComponent
+                          key={resetKey}
                           preset={preset}
                           angle={angle}
                           environment={environment}
@@ -1966,249 +4060,255 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                           emissivePulseSpeed={emissivePulseSpeed}
                           emissivePulseIntensity={emissivePulseIntensity}
                           lightingPreset={lightingPreset}
-                          size={80}
+                          accentLightColor={accentLightColor}
+                          accentLightIntensity={accentLightIntensity}
+                          accentLightAngle={accentLightAngle}
                         />
                       </div>
-                      <h4 className="text-[10px] font-extrabold text-zinc-800 dark:text-zinc-100 uppercase tracking-widest pt-2">Logo Header Integration</h4>
-                      <p className="text-[9px] text-zinc-400 dark:text-zinc-500 leading-relaxed">
-                        Features lightweight geometry parameters suitable as structural emblems or navigational visual cues.
-                      </p>
-                    </div>
-                  </div>
-                )}
+                    )}
 
-                {previewContext === "card" && (
-                  <div className="w-full h-full flex items-center justify-center p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
-                    <div 
-                      style={{ boxShadow: `0 30px 60px -15px ${color}20` }}
-                      className="w-64 rounded-3xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/70 dark:bg-[#0f121e]/80 backdrop-blur-xl p-5 flex flex-col items-center text-center space-y-4 transition duration-300"
-                    >
-                      <div className="w-28 h-28 relative flex items-center justify-center">
-                        <div className="absolute inset-2 rounded-full blur-2xl opacity-20 pointer-events-none" style={{ backgroundColor: color }} />
-                        <ActiveComponent
-                          preset={preset}
-                          angle={angle}
-                          environment={environment}
-                          variant={renderMode}
-                          color={color}
-                          accentColor={accentColor}
-                          spinSpeed={spinSpeed}
-                          floatHeight={floatHeight}
-                          theme={theme}
-                          interactive={interactive}
-                          customMaterial={customMaterial}
-                          cameraZoom={cameraZoom}
-                          cameraFov={cameraFov}
-                          lightIntensity={lightIntensity}
-                          lightColor={lightColor}
-                          tiltIntensity={tiltIntensity}
-                          animationType={animationType}
-                          animationAxis={animationAxis}
-                          animationDirection={animationDirection}
-                          shadowOpacity={shadowOpacity}
-                          shadowBlur={shadowBlur}
-                          textureType={textureType}
-                          emissivePulseSpeed={emissivePulseSpeed}
-                          emissivePulseIntensity={emissivePulseIntensity}
-                          lightingPreset={lightingPreset}
-                          size={112}
-                        />
-                      </div>
-
-                      <div className="space-y-1.5">
-                        <span className="px-2 py-0.5 text-[8px] font-extrabold text-indigo-650 dark:text-indigo-400 bg-indigo-500/10 rounded-full uppercase tracking-wider">
-                          Premium Asset
-                        </span>
-                        <h3 className="text-xs font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider pt-1">
-                          {currentIcon.name.replace("Icon", "")} Node
-                        </h3>
-                        <p className="text-[9px] text-zinc-400 dark:text-zinc-500 leading-relaxed max-w-[190px]">
-                          {(currentIcon as any).description || "Deploy state-of-the-art 3D modules into your web application framework."}
-                        </p>
-                      </div>
-
-                      <div className="w-full pt-1 flex gap-2">
-                        <button className="flex-1 py-1.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 text-[9px] font-extrabold uppercase tracking-wider transition active:scale-95 cursor-pointer">
-                          Configure
-                        </button>
-                        <button 
-                          className="flex-1 py-1.5 rounded-xl text-white text-[9px] font-extrabold uppercase tracking-wider transition hover:brightness-110 active:scale-95 cursor-pointer"
-                          style={{ backgroundColor: color }}
+                    {previewContext === "navbar" && (
+                      <div className="w-full h-full flex flex-col justify-between p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
+                        {/* Upgraded Glassmorphic Navbar */}
+                        <div
+                          style={{ boxShadow: `0 12px 30px -10px ${color}15` }}
+                          className="w-full rounded-2xl border border-zinc-200/40 dark:border-zinc-800/50 bg-white/70 dark:bg-[#0f121e]/80 backdrop-blur-xl px-5 py-2.5 flex items-center justify-between shadow-md transition duration-300"
                         >
-                          Deploy
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {previewContext === "hero" && (
-                  <div className="w-full h-full grid grid-cols-12 items-center p-8 gap-6 text-left bg-zinc-50/20 dark:bg-zinc-950/10">
-                    <div className="col-span-7 space-y-3">
-                      <span className="px-2 py-0.5 text-[8px] font-extrabold text-indigo-500 bg-indigo-500/10 rounded-full uppercase tracking-wider">
-                        Next-Gen Visuals
-                      </span>
-                      <h1 className="text-xl sm:text-2xl font-extrabold leading-tight text-zinc-900 dark:text-white tracking-tight">
-                        Power Up Your <br/>
-                        <span className="bg-gradient-to-r from-indigo-500 to-pink-500 bg-clip-text text-transparent">Design System</span>
-                      </h1>
-                      <p className="text-[9px] text-zinc-400 dark:text-zinc-500 leading-relaxed max-w-xs">
-                        Elevate user experience with responsive, high-performance physical 3D and 2D vector layouts.
-                      </p>
-                      <div className="flex gap-2 pt-1">
-                        <button className="px-3.5 py-1.5 rounded-xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-[9px] font-extrabold uppercase tracking-wider shadow-md hover:scale-[1.02] transition cursor-pointer">
-                          Get Started
-                        </button>
-                        <button className="px-3.5 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-650 dark:text-zinc-450 text-[9px] font-extrabold uppercase tracking-wider hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition cursor-pointer">
-                          Docs
-                        </button>
-                      </div>
-                    </div>
-                    <div className="col-span-5 flex items-center justify-center relative">
-                      <div className="absolute w-44 h-44 rounded-full blur-[70px] opacity-20 pointer-events-none" style={{ backgroundColor: color }} />
-                      <div className="w-44 h-44 flex items-center justify-center">
-                        <ActiveComponent
-                          preset={preset}
-                          angle={angle}
-                          environment={environment}
-                          variant={renderMode}
-                          color={color}
-                          accentColor={accentColor}
-                          spinSpeed={spinSpeed}
-                          floatHeight={floatHeight}
-                          theme={theme}
-                          interactive={interactive}
-                          customMaterial={customMaterial}
-                          cameraZoom={cameraZoom}
-                          cameraFov={cameraFov}
-                          lightIntensity={lightIntensity}
-                          lightColor={lightColor}
-                          tiltIntensity={tiltIntensity}
-                          animationType={animationType}
-                          animationAxis={animationAxis}
-                          animationDirection={animationDirection}
-                          shadowOpacity={shadowOpacity}
-                          shadowBlur={shadowBlur}
-                          textureType={textureType}
-                          emissivePulseSpeed={emissivePulseSpeed}
-                          emissivePulseIntensity={emissivePulseIntensity}
-                          lightingPreset={lightingPreset}
-                          size="100%"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {previewContext === "pricing" && (
-                  <div className="w-full h-full flex items-center justify-center p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
-                    <div 
-                      style={{ boxShadow: `0 30px 60px -15px ${color}20` }}
-                      className="w-64 border border-zinc-200/50 dark:border-zinc-800/60 rounded-3xl p-5 bg-white/70 dark:bg-[#0f121e]/85 backdrop-blur-xl flex flex-col items-center text-center relative overflow-hidden transition duration-300"
-                    >
-                      {/* Gradient border indicator */}
-                      <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-indigo-500 via-pink-500 to-amber-500" />
-                      
-                      {/* Active icon sits beautifully at the top */}
-                      <div className="w-24 h-24 mt-2 flex items-center justify-center relative">
-                        <div className="absolute inset-0 rounded-full blur-2xl opacity-15 pointer-events-none" style={{ backgroundColor: color }} />
-                        <ActiveComponent
-                          preset={preset}
-                          angle={angle}
-                          environment={environment}
-                          variant={renderMode}
-                          color={color}
-                          accentColor={accentColor}
-                          spinSpeed={spinSpeed}
-                          floatHeight={floatHeight}
-                          theme={theme}
-                          interactive={interactive}
-                          customMaterial={customMaterial}
-                          cameraZoom={cameraZoom}
-                          cameraFov={cameraFov}
-                          lightIntensity={lightIntensity}
-                          lightColor={lightColor}
-                          tiltIntensity={tiltIntensity}
-                          animationType={animationType}
-                          animationAxis={animationAxis}
-                          animationDirection={animationDirection}
-                          shadowOpacity={shadowOpacity}
-                          shadowBlur={shadowBlur}
-                          textureType={textureType}
-                          emissivePulseSpeed={emissivePulseSpeed}
-                          emissivePulseIntensity={emissivePulseIntensity}
-                          lightingPreset={lightingPreset}
-                          size="100%"
-                        />
-                      </div>
-                      
-                      {/* Pricing Tier details */}
-                      <div className="space-y-1.5 mt-2">
-                        <span className="text-[8px] font-extrabold text-indigo-500 uppercase tracking-widest">
-                          Enterprise Tier
-                        </span>
-                        <div className="flex items-baseline justify-center gap-0.5">
-                          <span className="text-xl font-extrabold text-zinc-900 dark:text-white">$49</span>
-                          <span className="text-[9px] font-semibold text-zinc-400 dark:text-zinc-500">/ month</span>
-                        </div>
-                        <p className="text-[9px] text-zinc-400 dark:text-zinc-500 max-w-[190px] leading-relaxed">
-                          Deploy high-performance 3D visual assets directly across your product lines.
-                        </p>
-                      </div>
-
-                      {/* Action call */}
-                      <button 
-                        style={{ backgroundColor: color }} 
-                        className="w-full mt-4 py-2 rounded-xl text-white text-[9px] font-extrabold uppercase tracking-wider shadow-md hover:brightness-110 active:scale-95 transition cursor-pointer"
-                      >
-                        Start 14-Day Trial
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {previewContext === "mobile" && (
-                  <div className="w-full h-full flex items-center justify-center p-4 bg-zinc-50/20 dark:bg-zinc-950/10">
-                    {/* Simulated Phone Shell */}
-                    <div className="w-[190px] h-[350px] rounded-[36px] border-[5px] border-zinc-950 dark:border-zinc-800 bg-gradient-to-b from-indigo-950/50 via-zinc-950 to-zinc-950 shadow-2xl relative overflow-hidden flex flex-col">
-                      
-                      {/* Phone Speaker Notch */}
-                      <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-14 h-3 bg-zinc-950 dark:bg-zinc-800 rounded-full z-15 flex items-center justify-center">
-                        <div className="w-6 h-0.5 bg-zinc-800 dark:bg-zinc-700 rounded-full" />
-                      </div>
-
-                      {/* Status Indicators */}
-                      <div className="h-7 px-4 pt-2.5 flex justify-between items-center text-[7px] font-bold text-zinc-450 dark:text-zinc-500 select-none">
-                        <span>9:41</span>
-                        <div className="flex items-center gap-1">
-                          <LucideAll.Wifi size={8} />
-                          <LucideAll.Battery size={8} />
-                        </div>
-                      </div>
-
-                      {/* Mock iOS Dashboard Screen */}
-                      <div className="flex-grow p-2.5 flex flex-col justify-between">
-                        <div className="space-y-0.5">
-                          <h4 className="text-[9px] font-extrabold text-white">
-                            Smart Home Control
-                          </h4>
-                          <span className="text-[6px] text-zinc-500 uppercase tracking-wider block">
-                            Active Integrations
-                          </span>
-                        </div>
-
-                        {/* Central Widget Square Container */}
-                        <div className="w-full aspect-square rounded-2xl border border-white/10 bg-white/10 backdrop-blur-lg p-2.5 flex flex-col justify-between shadow-sm relative group">
-                          {/* Widget Header */}
-                          <div className="flex justify-between items-start">
-                            <span className="text-[6px] font-extrabold uppercase text-white/70 tracking-wider">
-                              3D Sync Link
+                          <div className="flex items-center gap-2">
+                            <div className="w-8 h-8">
+                              <ActiveComponent
+                                preset={preset}
+                                angle="front"
+                                environment={environment}
+                                variant={renderMode}
+                                color={color}
+                                accentColor={accentColor}
+                                spinSpeed={0}
+                                floatHeight={0}
+                                theme={theme}
+                                interactive={false}
+                                customMaterial={customMaterial}
+                                lightingPreset={lightingPreset}
+                                size={32}
+                              />
+                            </div>
+                            <span className="font-extrabold text-[10px] text-zinc-900 dark:text-white uppercase tracking-wider">
+                              {currentIcon.name.replace("Icon", "")} Portal
                             </span>
-                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                          </div>
+                          <div className="flex gap-4 text-[9px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">
+                            <span className="hover:text-indigo-500 cursor-pointer transition">
+                              Dashboard
+                            </span>
+                            <span className="hover:text-indigo-500 cursor-pointer transition">
+                              Security
+                            </span>
+                            <span className="hover:text-indigo-500 cursor-pointer transition">
+                              Settings
+                            </span>
+                          </div>
+                          <button
+                            style={{ backgroundColor: color }}
+                            className="px-3.5 py-1.5 rounded-xl text-white text-[9px] font-extrabold uppercase tracking-wide transition shadow-sm hover:brightness-110 active:scale-95 cursor-pointer"
+                          >
+                            Launch
+                          </button>
+                        </div>
+
+                        <div className="flex-grow flex flex-col items-center justify-center text-center max-w-sm mx-auto space-y-2 pt-4">
+                          <div className="w-20 h-20 relative flex items-center justify-center">
+                            <div
+                              className="absolute inset-0 rounded-full blur-2xl opacity-15"
+                              style={{ backgroundColor: color }}
+                            />
+                            <ActiveComponent
+                              preset={preset}
+                              angle={angle}
+                              environment={environment}
+                              variant={renderMode}
+                              color={color}
+                              accentColor={accentColor}
+                              spinSpeed={spinSpeed}
+                              floatHeight={floatHeight}
+                              theme={theme}
+                              interactive={interactive}
+                              customMaterial={customMaterial}
+                              cameraZoom={cameraZoom}
+                              cameraFov={cameraFov}
+                              lightIntensity={lightIntensity}
+                              lightColor={lightColor}
+                              tiltIntensity={tiltIntensity}
+                              animationType={animationType}
+                              animationAxis={animationAxis}
+                              animationDirection={animationDirection}
+                              shadowOpacity={shadowOpacity}
+                              shadowBlur={shadowBlur}
+                              textureType={textureType}
+                              emissivePulseSpeed={emissivePulseSpeed}
+                              emissivePulseIntensity={emissivePulseIntensity}
+                              lightingPreset={lightingPreset}
+                              size={80}
+                            />
+                          </div>
+                          <h4 className="text-[10px] font-extrabold text-zinc-800 dark:text-zinc-100 uppercase tracking-widest pt-2">
+                            Logo Header Integration
+                          </h4>
+                          <p className="text-[9px] text-zinc-400 dark:text-zinc-500 leading-relaxed">
+                            Features lightweight geometry parameters suitable as structural emblems
+                            or navigational visual cues.
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {previewContext === "card" && (
+                      <div className="w-full h-full flex items-center justify-center p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
+                        <div
+                          style={{ boxShadow: `0 30px 60px -15px ${color}20` }}
+                          className="w-64 rounded-3xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/70 dark:bg-[#0f121e]/80 backdrop-blur-xl p-5 flex flex-col items-center text-center space-y-4 transition duration-300"
+                        >
+                          <div className="w-28 h-28 relative flex items-center justify-center">
+                            <div
+                              className="absolute inset-2 rounded-full blur-2xl opacity-20 pointer-events-none"
+                              style={{ backgroundColor: color }}
+                            />
+                            <ActiveComponent
+                              preset={preset}
+                              angle={angle}
+                              environment={environment}
+                              variant={renderMode}
+                              color={color}
+                              accentColor={accentColor}
+                              spinSpeed={spinSpeed}
+                              floatHeight={floatHeight}
+                              theme={theme}
+                              interactive={interactive}
+                              customMaterial={customMaterial}
+                              cameraZoom={cameraZoom}
+                              cameraFov={cameraFov}
+                              lightIntensity={lightIntensity}
+                              lightColor={lightColor}
+                              tiltIntensity={tiltIntensity}
+                              animationType={animationType}
+                              animationAxis={animationAxis}
+                              animationDirection={animationDirection}
+                              shadowOpacity={shadowOpacity}
+                              shadowBlur={shadowBlur}
+                              textureType={textureType}
+                              emissivePulseSpeed={emissivePulseSpeed}
+                              emissivePulseIntensity={emissivePulseIntensity}
+                              lightingPreset={lightingPreset}
+                              size={112}
+                            />
                           </div>
 
-                          {/* Active Component centered inside launcher */}
-                          <div className="w-18 h-18 self-center flex items-center justify-center">
+                          <div className="space-y-1.5">
+                            <span className="px-2 py-0.5 text-[8px] font-extrabold text-indigo-650 dark:text-indigo-400 bg-indigo-500/10 rounded-full uppercase tracking-wider">
+                              Premium Asset
+                            </span>
+                            <h3 className="text-xs font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider pt-1">
+                              {currentIcon.name.replace("Icon", "")} Node
+                            </h3>
+                            <p className="text-[9px] text-zinc-400 dark:text-zinc-500 leading-relaxed max-w-[190px]">
+                              {(currentIcon as any).description ||
+                                "Deploy state-of-the-art 3D modules into your web application framework."}
+                            </p>
+                          </div>
+
+                          <div className="w-full pt-1 flex gap-2">
+                            <button className="flex-1 py-1.5 rounded-xl bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 text-[9px] font-extrabold uppercase tracking-wider transition active:scale-95 cursor-pointer">
+                              Configure
+                            </button>
+                            <button
+                              className="flex-1 py-1.5 rounded-xl text-white text-[9px] font-extrabold uppercase tracking-wider transition hover:brightness-110 active:scale-95 cursor-pointer"
+                              style={{ backgroundColor: color }}
+                            >
+                              Deploy
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {previewContext === "hero" && (
+                      <div className="w-full h-full grid grid-cols-12 items-center p-8 gap-6 text-left bg-zinc-50/20 dark:bg-zinc-950/10">
+                        <div className="col-span-7 space-y-3">
+                          <span className="px-2 py-0.5 text-[8px] font-extrabold text-indigo-500 bg-indigo-500/10 rounded-full uppercase tracking-wider">
+                            Next-Gen Visuals
+                          </span>
+                          <h1 className="text-xl sm:text-2xl font-extrabold leading-tight text-zinc-900 dark:text-white tracking-tight">
+                            Power Up Your <br />
+                            <span className="bg-gradient-to-r from-indigo-500 to-pink-500 bg-clip-text text-transparent">
+                              Design System
+                            </span>
+                          </h1>
+                          <p className="text-[9px] text-zinc-400 dark:text-zinc-500 leading-relaxed max-w-xs">
+                            Elevate user experience with responsive, high-performance physical 3D
+                            and 2D vector layouts.
+                          </p>
+                          <div className="flex gap-2 pt-1">
+                            <button className="px-3.5 py-1.5 rounded-xl bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 text-[9px] font-extrabold uppercase tracking-wider shadow-md hover:scale-[1.02] transition cursor-pointer">
+                              Get Started
+                            </button>
+                            <button className="px-3.5 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-650 dark:text-zinc-450 text-[9px] font-extrabold uppercase tracking-wider hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition cursor-pointer">
+                              Docs
+                            </button>
+                          </div>
+                        </div>
+                        <div className="col-span-5 flex items-center justify-center relative">
+                          <div
+                            className="absolute w-44 h-44 rounded-full blur-[70px] opacity-20 pointer-events-none"
+                            style={{ backgroundColor: color }}
+                          />
+                          <div className="w-44 h-44 flex items-center justify-center">
+                            <ActiveComponent
+                              preset={preset}
+                              angle={angle}
+                              environment={environment}
+                              variant={renderMode}
+                              color={color}
+                              accentColor={accentColor}
+                              spinSpeed={spinSpeed}
+                              floatHeight={floatHeight}
+                              theme={theme}
+                              interactive={interactive}
+                              customMaterial={customMaterial}
+                              cameraZoom={cameraZoom}
+                              cameraFov={cameraFov}
+                              lightIntensity={lightIntensity}
+                              lightColor={lightColor}
+                              tiltIntensity={tiltIntensity}
+                              animationType={animationType}
+                              animationAxis={animationAxis}
+                              animationDirection={animationDirection}
+                              shadowOpacity={shadowOpacity}
+                              shadowBlur={shadowBlur}
+                              textureType={textureType}
+                              emissivePulseSpeed={emissivePulseSpeed}
+                              emissivePulseIntensity={emissivePulseIntensity}
+                              lightingPreset={lightingPreset}
+                              size="100%"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {previewContext === "pricing" && (
+                      <div className="w-full h-full flex items-center justify-center p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
+                        <div
+                          style={{ boxShadow: `0 30px 60px -15px ${color}20` }}
+                          className="w-64 border border-zinc-200/50 dark:border-zinc-800/60 rounded-3xl p-5 bg-white/70 dark:bg-[#0f121e]/85 backdrop-blur-xl flex flex-col items-center text-center relative overflow-hidden transition duration-300"
+                        >
+                          {/* Gradient border indicator */}
+                          <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-indigo-500 via-pink-500 to-amber-500" />
+
+                          {/* Active icon sits beautifully at the top */}
+                          <div className="w-24 h-24 mt-2 flex items-center justify-center relative">
+                            <div
+                              className="absolute inset-0 rounded-full blur-2xl opacity-15 pointer-events-none"
+                              style={{ backgroundColor: color }}
+                            />
                             <ActiveComponent
                               preset={preset}
                               angle={angle}
@@ -2239,173 +4339,294 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             />
                           </div>
 
-                          {/* Widget Footer */}
-                          <div className="flex justify-between items-end">
-                            <span className="text-[6px] text-white/60 font-bold uppercase truncate max-w-[70px]">
-                              {currentIcon.name.replace("Icon", "")}
+                          {/* Pricing Tier details */}
+                          <div className="space-y-1.5 mt-2">
+                            <span className="text-[8px] font-extrabold text-indigo-500 uppercase tracking-widest">
+                              Enterprise Tier
                             </span>
-                            <span className="text-[6px] font-extrabold text-indigo-400 uppercase tracking-widest">
-                              Active
-                            </span>
+                            <div className="flex items-baseline justify-center gap-0.5">
+                              <span className="text-xl font-extrabold text-zinc-900 dark:text-white">
+                                $49
+                              </span>
+                              <span className="text-[9px] font-semibold text-zinc-400 dark:text-zinc-500">
+                                / month
+                              </span>
+                            </div>
+                            <p className="text-[9px] text-zinc-400 dark:text-zinc-500 max-w-[190px] leading-relaxed">
+                              Deploy high-performance 3D visual assets directly across your product
+                              lines.
+                            </p>
+                          </div>
+
+                          {/* Action call */}
+                          <button
+                            style={{ backgroundColor: color }}
+                            className="w-full mt-4 py-2 rounded-xl text-white text-[9px] font-extrabold uppercase tracking-wider shadow-md hover:brightness-110 active:scale-95 transition cursor-pointer"
+                          >
+                            Start 14-Day Trial
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {previewContext === "mobile" && (
+                      <div className="w-full h-full flex items-center justify-center p-4 bg-zinc-50/20 dark:bg-zinc-950/10">
+                        {/* Simulated Phone Shell */}
+                        <div className="w-[190px] h-[350px] rounded-[36px] border-[5px] border-zinc-950 dark:border-zinc-800 bg-gradient-to-b from-indigo-950/50 via-zinc-950 to-zinc-950 shadow-2xl relative overflow-hidden flex flex-col">
+                          {/* Phone Speaker Notch */}
+                          <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-14 h-3 bg-zinc-950 dark:bg-zinc-800 rounded-full z-15 flex items-center justify-center">
+                            <div className="w-6 h-0.5 bg-zinc-800 dark:bg-zinc-700 rounded-full" />
+                          </div>
+
+                          {/* Status Indicators */}
+                          <div className="h-7 px-4 pt-2.5 flex justify-between items-center text-[7px] font-bold text-zinc-450 dark:text-zinc-500 select-none">
+                            <span>9:41</span>
+                            <div className="flex items-center gap-1">
+                              <LucideAll.Wifi size={8} />
+                              <LucideAll.Battery size={8} />
+                            </div>
+                          </div>
+
+                          {/* Mock iOS Dashboard Screen */}
+                          <div className="flex-grow p-2.5 flex flex-col justify-between">
+                            <div className="space-y-0.5">
+                              <h4 className="text-[9px] font-extrabold text-white">
+                                Smart Home Control
+                              </h4>
+                              <span className="text-[6px] text-zinc-500 uppercase tracking-wider block">
+                                Active Integrations
+                              </span>
+                            </div>
+
+                            {/* Central Widget Square Container */}
+                            <div className="w-full aspect-square rounded-2xl border border-white/10 bg-white/10 backdrop-blur-lg p-2.5 flex flex-col justify-between shadow-sm relative group">
+                              {/* Widget Header */}
+                              <div className="flex justify-between items-start">
+                                <span className="text-[6px] font-extrabold uppercase text-white/70 tracking-wider">
+                                  3D Sync Link
+                                </span>
+                                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                              </div>
+
+                              {/* Active Component centered inside launcher */}
+                              <div className="w-18 h-18 self-center flex items-center justify-center">
+                                <ActiveComponent
+                                  preset={preset}
+                                  angle={angle}
+                                  environment={environment}
+                                  variant={renderMode}
+                                  color={color}
+                                  accentColor={accentColor}
+                                  spinSpeed={spinSpeed}
+                                  floatHeight={floatHeight}
+                                  theme={theme}
+                                  interactive={interactive}
+                                  customMaterial={customMaterial}
+                                  cameraZoom={cameraZoom}
+                                  cameraFov={cameraFov}
+                                  lightIntensity={lightIntensity}
+                                  lightColor={lightColor}
+                                  tiltIntensity={tiltIntensity}
+                                  animationType={animationType}
+                                  animationAxis={animationAxis}
+                                  animationDirection={animationDirection}
+                                  shadowOpacity={shadowOpacity}
+                                  shadowBlur={shadowBlur}
+                                  textureType={textureType}
+                                  emissivePulseSpeed={emissivePulseSpeed}
+                                  emissivePulseIntensity={emissivePulseIntensity}
+                                  lightingPreset={lightingPreset}
+                                  size="100%"
+                                />
+                              </div>
+
+                              {/* Widget Footer */}
+                              <div className="flex justify-between items-end">
+                                <span className="text-[6px] text-white/60 font-bold uppercase truncate max-w-[70px]">
+                                  {currentIcon.name.replace("Icon", "")}
+                                </span>
+                                <span className="text-[6px] font-extrabold text-indigo-400 uppercase tracking-widest">
+                                  Active
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Bottom App Dock Icons Mock */}
+                            <div className="h-6 w-full rounded-xl bg-white/5 border border-white/5 backdrop-blur-md flex justify-around items-center px-1">
+                              <div className="w-3.5 h-3.5 rounded bg-white/10" />
+                              <div className="w-3.5 h-3.5 rounded bg-white/10" />
+                              <div className="w-3.5 h-3.5 rounded bg-white/10" />
+                              <div className="w-3.5 h-3.5 rounded bg-white/10" />
+                            </div>
                           </div>
                         </div>
-
-                        {/* Bottom App Dock Icons Mock */}
-                        <div className="h-6 w-full rounded-xl bg-white/5 border border-white/5 backdrop-blur-md flex justify-around items-center px-1">
-                          <div className="w-3.5 h-3.5 rounded bg-white/10" />
-                          <div className="w-3.5 h-3.5 rounded bg-white/10" />
-                          <div className="w-3.5 h-3.5 rounded bg-white/10" />
-                          <div className="w-3.5 h-3.5 rounded bg-white/10" />
-                        </div>
                       </div>
+                    )}
 
-                    </div>
-                  </div>
-                )}
-
-                {previewContext === "testimonial" && (
-                  <div className="w-full h-full flex items-center justify-center p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
-                    <div 
-                      style={{ boxShadow: `0 35px 70px -15px ${color}20` }}
-                      className="w-72 rounded-3xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/75 dark:bg-[#0f121e]/85 backdrop-blur-xl p-5 flex flex-col relative transition duration-300"
-                    >
-                      {/* Quote Mark */}
-                      <span className="absolute -top-3 left-4 text-5xl font-serif text-indigo-500/25 leading-none pointer-events-none select-none">“</span>
-                      
-                      {/* Floating Active 3D Badge on top right */}
-                      <div className="absolute -top-6 -right-6 w-20 h-20 flex items-center justify-center pointer-events-auto">
-                        <ActiveComponent
-                          preset={preset}
-                          angle={angle}
-                          environment={environment}
-                          variant={renderMode}
-                          color={color}
-                          accentColor={accentColor}
-                          spinSpeed={spinSpeed}
-                          floatHeight={floatHeight}
-                          theme={theme}
-                          interactive={interactive}
-                          customMaterial={customMaterial}
-                          cameraZoom={cameraZoom}
-                          cameraFov={cameraFov}
-                          lightIntensity={lightIntensity}
-                          lightColor={lightColor}
-                          tiltIntensity={tiltIntensity}
-                          animationType={animationType}
-                          animationAxis={animationAxis}
-                          animationDirection={animationDirection}
-                          shadowOpacity={shadowOpacity}
-                          shadowBlur={shadowBlur}
-                          textureType={textureType}
-                          emissivePulseSpeed={emissivePulseSpeed}
-                          emissivePulseIntensity={emissivePulseIntensity}
-                          lightingPreset={lightingPreset}
-                          size="100%"
-                        />
-                      </div>
-
-                      {/* Testimonial speech text */}
-                      <p className="text-[10px] text-zinc-650 dark:text-zinc-400 font-medium italic leading-relaxed pt-2">
-                        "Antigravity has completely transformed how we integrate high-fidelity R3F visual assets. The interactive customizer lets us align presets in seconds!"
-                      </p>
-
-                      {/* Line divider */}
-                      <div className="w-full h-px bg-zinc-150 dark:bg-zinc-800/60 my-3" />
-
-                      {/* User bio */}
-                      <div className="flex items-center gap-2">
-                        <div 
-                          style={{ borderColor: color }}
-                          className="w-7 h-7 rounded-full bg-zinc-100 dark:bg-zinc-850 border flex items-center justify-center text-[9px] font-extrabold text-zinc-700 dark:text-zinc-300"
+                    {previewContext === "testimonial" && (
+                      <div className="w-full h-full flex items-center justify-center p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
+                        <div
+                          style={{ boxShadow: `0 35px 70px -15px ${color}20` }}
+                          className="w-72 rounded-3xl border border-zinc-200/50 dark:border-zinc-800/60 bg-white/75 dark:bg-[#0f121e]/85 backdrop-blur-xl p-5 flex flex-col relative transition duration-300"
                         >
-                          JD
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-[9px] font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider leading-none">Jane Doe</span>
-                          <span className="text-[8px] text-zinc-400 dark:text-zinc-550 uppercase tracking-widest font-semibold pt-0.5">Lead UI Architect</span>
+                          {/* Quote Mark */}
+                          <span className="absolute -top-3 left-4 text-5xl font-serif text-indigo-500/25 leading-none pointer-events-none select-none">
+                            “
+                          </span>
+
+                          {/* Floating Active 3D Badge on top right */}
+                          <div className="absolute -top-6 -right-6 w-20 h-20 flex items-center justify-center pointer-events-auto">
+                            <ActiveComponent
+                              preset={preset}
+                              angle={angle}
+                              environment={environment}
+                              variant={renderMode}
+                              color={color}
+                              accentColor={accentColor}
+                              spinSpeed={spinSpeed}
+                              floatHeight={floatHeight}
+                              theme={theme}
+                              interactive={interactive}
+                              customMaterial={customMaterial}
+                              cameraZoom={cameraZoom}
+                              cameraFov={cameraFov}
+                              lightIntensity={lightIntensity}
+                              lightColor={lightColor}
+                              tiltIntensity={tiltIntensity}
+                              animationType={animationType}
+                              animationAxis={animationAxis}
+                              animationDirection={animationDirection}
+                              shadowOpacity={shadowOpacity}
+                              shadowBlur={shadowBlur}
+                              textureType={textureType}
+                              emissivePulseSpeed={emissivePulseSpeed}
+                              emissivePulseIntensity={emissivePulseIntensity}
+                              lightingPreset={lightingPreset}
+                              size="100%"
+                            />
+                          </div>
+
+                          {/* Testimonial speech text */}
+                          <p className="text-[10px] text-zinc-650 dark:text-zinc-400 font-medium italic leading-relaxed pt-2">
+                            "Antigravity has completely transformed how we integrate high-fidelity
+                            R3F visual assets. The interactive customizer lets us align presets in
+                            seconds!"
+                          </p>
+
+                          {/* Line divider */}
+                          <div className="w-full h-px bg-zinc-150 dark:bg-zinc-800/60 my-3" />
+
+                          {/* User bio */}
+                          <div className="flex items-center gap-2">
+                            <div
+                              style={{ borderColor: color }}
+                              className="w-7 h-7 rounded-full bg-zinc-100 dark:bg-zinc-850 border flex items-center justify-center text-[9px] font-extrabold text-zinc-700 dark:text-zinc-300"
+                            >
+                              JD
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-[9px] font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider leading-none">
+                                Jane Doe
+                              </span>
+                              <span className="text-[8px] text-zinc-400 dark:text-zinc-550 uppercase tracking-widest font-semibold pt-0.5">
+                                Lead UI Architect
+                              </span>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                )}
+                    )}
 
-                {previewContext === "checkout" && (
-                  <div className="w-full h-full flex items-center justify-center p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
-                    <div 
-                      style={{ boxShadow: `0 30px 60px -15px ${color}20` }}
-                      className="w-64 border border-zinc-200/50 dark:border-zinc-800/60 rounded-3xl p-5 bg-white/70 dark:bg-[#0f121e]/85 backdrop-blur-xl flex flex-col relative transition duration-300"
-                    >
-                      {/* Receipt Header */}
-                      <div className="flex justify-between items-center pb-3 border-b border-zinc-150 dark:border-zinc-800/60">
-                        <span className="text-[8px] font-extrabold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">Order Receipt</span>
-                        <span className="text-[9px] font-extrabold text-zinc-900 dark:text-white font-mono">#9082</span>
+                    {previewContext === "checkout" && (
+                      <div className="w-full h-full flex items-center justify-center p-6 bg-zinc-50/20 dark:bg-zinc-950/10">
+                        <div
+                          style={{ boxShadow: `0 30px 60px -15px ${color}20` }}
+                          className="w-64 border border-zinc-200/50 dark:border-zinc-800/60 rounded-3xl p-5 bg-white/70 dark:bg-[#0f121e]/85 backdrop-blur-xl flex flex-col relative transition duration-300"
+                        >
+                          {/* Receipt Header */}
+                          <div className="flex justify-between items-center pb-3 border-b border-zinc-150 dark:border-zinc-800/60">
+                            <span className="text-[8px] font-extrabold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+                              Order Receipt
+                            </span>
+                            <span className="text-[9px] font-extrabold text-zinc-900 dark:text-white font-mono">
+                              #9082
+                            </span>
+                          </div>
+
+                          {/* Receipt Line Item Detail */}
+                          <div className="flex items-center gap-3 py-3">
+                            <div className="w-14 h-14 rounded-xl border border-zinc-150 dark:border-zinc-800 bg-zinc-50/50 dark:bg-[#111422]/50 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
+                              <div
+                                className="absolute inset-1 rounded-full blur-xl opacity-10 pointer-events-none"
+                                style={{ backgroundColor: color }}
+                              />
+                              <ActiveComponent
+                                preset={preset}
+                                angle={angle}
+                                environment={environment}
+                                variant={renderMode}
+                                color={color}
+                                accentColor={accentColor}
+                                spinSpeed={spinSpeed}
+                                floatHeight={floatHeight}
+                                theme={theme}
+                                interactive={interactive}
+                                customMaterial={customMaterial}
+                                cameraZoom={cameraZoom}
+                                cameraFov={cameraFov}
+                                lightIntensity={lightIntensity}
+                                lightColor={lightColor}
+                                tiltIntensity={tiltIntensity}
+                                animationType={animationType}
+                                animationAxis={animationAxis}
+                                animationDirection={animationDirection}
+                                shadowOpacity={shadowOpacity}
+                                shadowBlur={shadowBlur}
+                                textureType={textureType}
+                                emissivePulseSpeed={emissivePulseSpeed}
+                                emissivePulseIntensity={emissivePulseIntensity}
+                                lightingPreset={lightingPreset}
+                                size="100%"
+                              />
+                            </div>
+                            <div className="flex flex-col min-w-0">
+                              <span className="text-[9px] font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider truncate leading-tight">
+                                {currentIcon.name.replace("Icon", "")} 3D Package
+                              </span>
+                              <span className="text-[8px] text-zinc-450 dark:text-zinc-500 pt-0.5">
+                                Commercial License
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Calculations List */}
+                          <div className="space-y-1.5 py-2.5 border-t border-b border-dashed border-zinc-200 dark:border-zinc-800 text-[8px] font-extrabold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                            <div className="flex justify-between">
+                              <span>Subtotal</span>
+                              <span className="text-zinc-700 dark:text-zinc-355 font-mono">
+                                $19.00
+                              </span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span>Discount (FREE)</span>
+                              <span className="text-emerald-500 font-mono">-$19.00</span>
+                            </div>
+                            <div className="flex justify-between text-zinc-900 dark:text-white pt-1">
+                              <span>Total Cost</span>
+                              <span className="font-mono text-sm leading-none">$0.00</span>
+                            </div>
+                          </div>
+
+                          {/* Check Out button */}
+                          <button
+                            style={{ backgroundColor: color }}
+                            className="w-full mt-4 py-2 rounded-xl text-white text-[9px] font-extrabold uppercase tracking-wider shadow-md hover:brightness-110 active:scale-95 transition cursor-pointer"
+                          >
+                            Complete Order
+                          </button>
+                        </div>
                       </div>
-
-                      {/* Receipt Line Item Detail */}
-                      <div className="flex items-center gap-3 py-3">
-                        <div className="w-14 h-14 rounded-xl border border-zinc-150 dark:border-zinc-800 bg-zinc-50/50 dark:bg-[#111422]/50 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
-                          <div className="absolute inset-1 rounded-full blur-xl opacity-10 pointer-events-none" style={{ backgroundColor: color }} />
-                          <ActiveComponent
-                            preset={preset}
-                            angle={angle}
-                            environment={environment}
-                            variant={renderMode}
-                            color={color}
-                            accentColor={accentColor}
-                            spinSpeed={spinSpeed}
-                            floatHeight={floatHeight}
-                            theme={theme}
-                            interactive={interactive}
-                            customMaterial={customMaterial}
-                            cameraZoom={cameraZoom}
-                            cameraFov={cameraFov}
-                            lightIntensity={lightIntensity}
-                            lightColor={lightColor}
-                            tiltIntensity={tiltIntensity}
-                            animationType={animationType}
-                            animationAxis={animationAxis}
-                            animationDirection={animationDirection}
-                            shadowOpacity={shadowOpacity}
-                            shadowBlur={shadowBlur}
-                            textureType={textureType}
-                            emissivePulseSpeed={emissivePulseSpeed}
-                            emissivePulseIntensity={emissivePulseIntensity}
-                            lightingPreset={lightingPreset}
-                            size="100%"
-                          />
-                        </div>
-                        <div className="flex flex-col min-w-0">
-                          <span className="text-[9px] font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider truncate leading-tight">{currentIcon.name.replace("Icon", "")} 3D Package</span>
-                          <span className="text-[8px] text-zinc-450 dark:text-zinc-500 pt-0.5">Commercial License</span>
-                        </div>
-                      </div>
-
-                      {/* Calculations List */}
-                      <div className="space-y-1.5 py-2.5 border-t border-b border-dashed border-zinc-200 dark:border-zinc-800 text-[8px] font-extrabold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
-                        <div className="flex justify-between">
-                          <span>Subtotal</span>
-                          <span className="text-zinc-700 dark:text-zinc-355 font-mono">$19.00</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>Discount (FREE)</span>
-                          <span className="text-emerald-500 font-mono">-$19.00</span>
-                        </div>
-                        <div className="flex justify-between text-zinc-900 dark:text-white pt-1">
-                          <span>Total Cost</span>
-                          <span className="font-mono text-sm leading-none">$0.00</span>
-                        </div>
-                      </div>
-
-                      {/* Check Out button */}
-                      <button 
-                        style={{ backgroundColor: color }} 
-                        className="w-full mt-4 py-2 rounded-xl text-white text-[9px] font-extrabold uppercase tracking-wider shadow-md hover:brightness-110 active:scale-95 transition cursor-pointer"
-                      >
-                        Complete Order
-                      </button>
-                    </div>
-                  </div>
-                )}
+                    )}
                   </>
                 )}
               </div>
@@ -2420,25 +4641,27 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
             )}
           </div>
 
-        <div className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] shadow-lg overflow-hidden">
-          <div className="px-6 py-3.5 border-b border-zinc-200 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-4 bg-zinc-50/50 dark:bg-[#0a0d14]">
-            {/* Tab Selector */}
+          <div className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] shadow-lg overflow-hidden">
+            <div className="px-6 py-3.5 border-b border-zinc-200 dark:border-zinc-800 flex flex-wrap items-center justify-between gap-4 bg-zinc-50/50 dark:bg-[#0a0d14]">
+              {/* Tab Selector */}
               <div className="flex items-center gap-1 bg-zinc-200/60 dark:bg-zinc-900/80 p-0.5 rounded-xl">
                 <button
                   onClick={() => setActiveConsoleTab("react")}
-                  className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer ${activeConsoleTab === "react"
-                    ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm"
-                    : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
-                    }`}
+                  className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer ${
+                    activeConsoleTab === "react"
+                      ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm"
+                      : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                  }`}
                 >
                   React Component
                 </button>
                 <button
                   onClick={() => setActiveConsoleTab("svg")}
-                  className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer ${activeConsoleTab === "svg"
-                    ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm"
-                    : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
-                    }`}
+                  className={`px-3 py-1.5 rounded-lg text-[11px] font-extrabold transition cursor-pointer ${
+                    activeConsoleTab === "svg"
+                      ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-sm"
+                      : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                  }`}
                 >
                   SVG Markup
                 </button>
@@ -2449,10 +4672,18 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                 {/* Copy Active Code */}
                 <button
                   onClick={activeConsoleTab === "react" ? handleCopyCode : handleCopySVG}
-                  title={activeConsoleTab === "react" ? "Copy React Component Code" : "Copy SVG Vector Code"}
+                  title={
+                    activeConsoleTab === "react"
+                      ? "Copy React Component Code"
+                      : "Copy SVG Vector Code"
+                  }
                   className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer active:scale-95"
                 >
-                  {(activeConsoleTab === "react" ? copied : copiedSVG) ? <Check size={14} /> : <Copy size={14} />}
+                  {(activeConsoleTab === "react" ? copied : copiedSVG) ? (
+                    <Check size={14} />
+                  ) : (
+                    <Copy size={14} />
+                  )}
                 </button>
 
                 {/* Copy Import (only visible on React tab) */}
@@ -2509,7 +4740,6 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
         {/* Right Side: Custom Sidebar Visual Editor */}
         <div className={`lg:col-span-4 space-y-6 ${presentationMode ? "hidden" : ""}`}>
           <div className="p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] shadow-xl space-y-6">
-
             <div className="flex border-b border-zinc-100 dark:border-zinc-800/80 pb-3 gap-1 overflow-x-auto custom-scrollbar">
               {(["tuning", "material", "scene", "presets", "compare"] as const).map((tab) => {
                 const isSelected = activeSidebarTab === tab;
@@ -2563,10 +4793,11 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                               <button
                                 key={m}
                                 onClick={() => setRenderMode(m)}
-                                className={`py-1.5 px-3 rounded-xl text-xs font-bold uppercase border transition cursor-pointer flex-grow text-center ${isSelected
-                                  ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                                  : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                                  }`}
+                                className={`py-1.5 px-3 rounded-xl text-xs font-bold uppercase border transition cursor-pointer flex-grow text-center ${
+                                  isSelected
+                                    ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                    : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                                }`}
                               >
                                 {m === "3d" ? "3D Render" : "2D Vector"}
                               </button>
@@ -2581,16 +4812,29 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                           {t("presets_label")}
                         </label>
                         <div className="flex flex-wrap gap-1.5">
-                          {(["glass", "metal", "clay", "hologram", "gold", "silver", "glassmorphism", "carbon", "wood"] as IconPreset[]).map((p) => {
+                          {(
+                            [
+                              "glass",
+                              "metal",
+                              "clay",
+                              "hologram",
+                              "gold",
+                              "silver",
+                              "glassmorphism",
+                              "carbon",
+                              "wood"
+                            ] as IconPreset[]
+                          ).map((p) => {
                             const isSelected = preset === p;
                             return (
                               <button
                                 key={p}
                                 onClick={() => handlePresetSelect(p)}
-                                className={`py-1.5 px-2.5 rounded-xl text-[10px] font-bold capitalize border transition cursor-pointer flex-grow text-center ${isSelected
-                                  ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                                  : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                                  }`}
+                                className={`py-1.5 px-2.5 rounded-xl text-[10px] font-bold capitalize border transition cursor-pointer flex-grow text-center ${
+                                  isSelected
+                                    ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                    : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                                }`}
                               >
                                 {p}
                               </button>
@@ -2612,10 +4856,11 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                               <button
                                 key={a}
                                 onClick={() => setAngle(a)}
-                                className={`py-1.5 px-3 rounded-xl text-xs font-bold capitalize border transition cursor-pointer flex-grow text-center ${isSelected
-                                  ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                                  : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
-                                  }`}
+                                className={`py-1.5 px-3 rounded-xl text-xs font-bold capitalize border transition cursor-pointer flex-grow text-center ${
+                                  isSelected
+                                    ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                    : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-600 dark:text-zinc-400"
+                                }`}
                               >
                                 {t(translationKey)}
                               </button>
@@ -2631,16 +4876,29 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             Environment Light
                           </label>
                           <div className="grid grid-cols-3 gap-1.5">
-                            {(["city", "sunset", "studio", "night", "park", "forest", "lobby", "apartment", "warehouse"] as IconEnvironment[]).map((env) => {
+                            {(
+                              [
+                                "city",
+                                "sunset",
+                                "studio",
+                                "night",
+                                "park",
+                                "forest",
+                                "lobby",
+                                "apartment",
+                                "warehouse"
+                              ] as IconEnvironment[]
+                            ).map((env) => {
                               const isSelected = environment === env;
                               return (
                                 <button
                                   key={env}
                                   onClick={() => setEnvironment(env)}
-                                  className={`py-1.5 px-2.5 rounded-xl text-[10px] font-bold capitalize border transition cursor-pointer text-center ${isSelected
-                                    ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
-                                    : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-650 dark:text-zinc-450"
-                                    }`}
+                                  className={`py-1.5 px-2.5 rounded-xl text-[10px] font-bold capitalize border transition cursor-pointer text-center ${
+                                    isSelected
+                                      ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                      : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-650 dark:text-zinc-450"
+                                  }`}
                                 >
                                   {env}
                                 </button>
@@ -2678,13 +4936,20 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                                 key={p.name}
                                 onClick={() => handlePaletteSelect(p.color, p.accentColor)}
                                 title={p.name}
-                                className={`relative h-8 rounded-xl overflow-hidden border transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer flex ${isSelected
-                                  ? "border-indigo-500 ring-2 ring-indigo-500/20 shadow-md"
-                                  : "border-zinc-200 dark:border-zinc-800"
-                                  }`}
+                                className={`relative h-8 rounded-xl overflow-hidden border transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer flex ${
+                                  isSelected
+                                    ? "border-indigo-500 ring-2 ring-indigo-500/20 shadow-md"
+                                    : "border-zinc-200 dark:border-zinc-800"
+                                }`}
                               >
-                                <div className="w-1/2 h-full" style={{ backgroundColor: p.color }} />
-                                <div className="w-1/2 h-full" style={{ backgroundColor: p.accentColor }} />
+                                <div
+                                  className="w-1/2 h-full"
+                                  style={{ backgroundColor: p.color }}
+                                />
+                                <div
+                                  className="w-1/2 h-full"
+                                  style={{ backgroundColor: p.accentColor }}
+                                />
                               </button>
                             );
                           })}
@@ -2694,7 +4959,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Custom manual color inputs */}
                       <div className="grid grid-cols-2 gap-3">
                         <div className="space-y-1">
-                          <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider">Primary Color</span>
+                          <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider">
+                            Primary Color
+                          </span>
                           <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
                             <input
                               type="color"
@@ -2713,7 +4980,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         </div>
 
                         <div className="space-y-1">
-                          <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider">Accent Glow</span>
+                          <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider">
+                            Accent Glow
+                          </span>
                           <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
                             <input
                               type="color"
@@ -2750,7 +5019,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold text-zinc-400 dark:text-zinc-500">
                           <span className="uppercase tracking-wider">{t("spin_speed")}</span>
-                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">{spinSpeed.toFixed(1)}x</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">
+                            {spinSpeed.toFixed(1)}x
+                          </span>
                         </div>
                         <input
                           type="range"
@@ -2767,7 +5038,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold text-zinc-400 dark:text-zinc-500">
                           <span className="uppercase tracking-wider">{t("float_height")}</span>
-                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">{floatHeight.toFixed(1)}</span>
+                          <span className="text-zinc-700 dark:text-zinc-300 font-mono">
+                            {floatHeight.toFixed(1)}
+                          </span>
                         </div>
                         <input
                           type="range"
@@ -2785,7 +5058,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         <div className="space-y-1.5">
                           <div className="flex justify-between items-center text-[10px] font-bold text-zinc-400 dark:text-zinc-500">
                             <span className="uppercase tracking-wider">Mouse Follow Tilt</span>
-                            <span className="text-zinc-700 dark:text-zinc-300 font-mono">{tiltIntensity.toFixed(1)}x</span>
+                            <span className="text-zinc-700 dark:text-zinc-300 font-mono">
+                              {tiltIntensity.toFixed(1)}x
+                            </span>
                           </div>
                           <input
                             type="range"
@@ -2914,7 +5189,11 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       className="flex-grow text-left text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider cursor-pointer focus:outline-none flex items-center justify-between"
                     >
                       <span>Physical Parameters</span>
-                      {materialParamsOpen ? <ChevronDown size={12} className="mr-2" /> : <ChevronRight size={12} className="mr-2" />}
+                      {materialParamsOpen ? (
+                        <ChevronDown size={12} className="mr-2" />
+                      ) : (
+                        <ChevronRight size={12} className="mr-2" />
+                      )}
                     </button>
                     {customMaterialKeys.length > 0 && (
                       <button
@@ -2940,9 +5219,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Roughness */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Roughness</span>
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                            Roughness
+                          </span>
                           <span className="text-zinc-700 dark:text-zinc-300 font-mono">
-                            {materialRoughness.toFixed(2)}{materialRoughness === defaultMat.roughness ? " (default)" : " (edited)"}
+                            {materialRoughness.toFixed(2)}
+                            {materialRoughness === defaultMat.roughness
+                              ? " (default)"
+                              : " (edited)"}
                           </span>
                         </div>
                         <input
@@ -2959,9 +5243,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Metalness */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Metalness</span>
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                            Metalness
+                          </span>
                           <span className="text-zinc-700 dark:text-zinc-300 font-mono">
-                            {materialMetalness.toFixed(2)}{materialMetalness === defaultMat.metalness ? " (default)" : " (edited)"}
+                            {materialMetalness.toFixed(2)}
+                            {materialMetalness === defaultMat.metalness
+                              ? " (default)"
+                              : " (edited)"}
                           </span>
                         </div>
                         <input
@@ -2978,9 +5267,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Transmission */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Transmission</span>
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                            Transmission
+                          </span>
                           <span className="text-zinc-700 dark:text-zinc-300 font-mono">
-                            {materialTransmission.toFixed(2)}{materialTransmission === defaultMat.transmission ? " (default)" : " (edited)"}
+                            {materialTransmission.toFixed(2)}
+                            {materialTransmission === defaultMat.transmission
+                              ? " (default)"
+                              : " (edited)"}
                           </span>
                         </div>
                         <input
@@ -2997,9 +5291,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Thickness */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Thickness</span>
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                            Thickness
+                          </span>
                           <span className="text-zinc-700 dark:text-zinc-300 font-mono">
-                            {materialThickness.toFixed(2)}{materialThickness === defaultMat.thickness ? " (default)" : " (edited)"}
+                            {materialThickness.toFixed(2)}
+                            {materialThickness === defaultMat.thickness
+                              ? " (default)"
+                              : " (edited)"}
                           </span>
                         </div>
                         <input
@@ -3016,9 +5315,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Clearcoat */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Clearcoat</span>
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                            Clearcoat
+                          </span>
                           <span className="text-zinc-700 dark:text-zinc-300 font-mono">
-                            {materialClearcoat.toFixed(2)}{materialClearcoat === defaultMat.clearcoat ? " (default)" : " (edited)"}
+                            {materialClearcoat.toFixed(2)}
+                            {materialClearcoat === defaultMat.clearcoat
+                              ? " (default)"
+                              : " (edited)"}
                           </span>
                         </div>
                         <input
@@ -3035,9 +5339,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Clearcoat Roughness */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Clearcoat Roughness</span>
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                            Clearcoat Roughness
+                          </span>
                           <span className="text-zinc-700 dark:text-zinc-300 font-mono">
-                            {materialClearcoatRoughness.toFixed(2)}{materialClearcoatRoughness === defaultMat.clearcoatRoughness ? " (default)" : " (edited)"}
+                            {materialClearcoatRoughness.toFixed(2)}
+                            {materialClearcoatRoughness === defaultMat.clearcoatRoughness
+                              ? " (default)"
+                              : " (edited)"}
                           </span>
                         </div>
                         <input
@@ -3046,7 +5355,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                           max="1.0"
                           step="0.01"
                           value={materialClearcoatRoughness}
-                          onChange={(e) => setMaterialClearcoatRoughness(parseFloat(e.target.value))}
+                          onChange={(e) =>
+                            setMaterialClearcoatRoughness(parseFloat(e.target.value))
+                          }
                           className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
                         />
                       </div>
@@ -3054,9 +5365,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* IOR */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Index of Refraction (IOR)</span>
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                            Index of Refraction (IOR)
+                          </span>
                           <span className="text-zinc-770 dark:text-zinc-300 font-mono">
-                            {materialIor.toFixed(2)}{materialIor === defaultMat.ior ? " (default)" : " (edited)"}
+                            {materialIor.toFixed(2)}
+                            {materialIor === defaultMat.ior ? " (default)" : " (edited)"}
                           </span>
                         </div>
                         <input
@@ -3073,9 +5387,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Emissive Intensity */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Emissive Intensity</span>
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                            Emissive Intensity
+                          </span>
                           <span className="text-zinc-770 dark:text-zinc-300 font-mono">
-                            {materialEmissiveIntensity.toFixed(2)}{materialEmissiveIntensity === defaultMat.emissiveIntensity ? " (default)" : " (edited)"}
+                            {materialEmissiveIntensity.toFixed(2)}
+                            {materialEmissiveIntensity === defaultMat.emissiveIntensity
+                              ? " (default)"
+                              : " (edited)"}
                           </span>
                         </div>
                         <input
@@ -3147,7 +5466,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Pulse Speed */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Pulse Breathing Speed</span>
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                            Pulse Breathing Speed
+                          </span>
                           <span className="text-zinc-700 dark:text-zinc-300 font-mono">
                             {emissivePulseSpeed > 0 ? `${emissivePulseSpeed.toFixed(1)}Hz` : "Off"}
                           </span>
@@ -3166,7 +5487,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Pulse Intensity */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">Pulse Depth Amplitude</span>
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                            Pulse Depth Amplitude
+                          </span>
                           <span className="text-zinc-700 dark:text-zinc-300 font-mono">
                             {(emissivePulseIntensity * 100).toFixed(0)}%
                           </span>
@@ -3239,7 +5562,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             Component Context Layout
                           </label>
                           <label className="flex items-center gap-1.5 cursor-pointer select-none">
-                            <span className="text-[9px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-450">Showcase Collage</span>
+                            <span className="text-[9px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-450">
+                              Showcase Collage
+                            </span>
                             <div className="relative">
                               <input
                                 type="checkbox"
@@ -3253,14 +5578,46 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         </div>
                         <div className="flex flex-col gap-1.5">
                           {[
-                            { id: "icon", name: "Isolated Icon", desc: "Full-canvas preview layout" },
-                            { id: "navbar", name: "Navbar Integration", desc: "Mockup navigation header component" },
-                            { id: "card", name: "Feature Stats Card", desc: "Centred inside a glassmorphic dashboard card" },
-                            { id: "hero", name: "Landing Page Hero", desc: "Main marketing graphic of a split landing page" },
-                            { id: "pricing", name: "SaaS Pricing Tier", desc: "Featured pricing plan checkmark card" },
-                            { id: "mobile", name: "iOS Home Screen Widget", desc: "Positioned inside a phone widget layout" },
-                            { id: "testimonial", name: "Customer Review Card", desc: "SaaS user review glass bubble card" },
-                            { id: "checkout", name: "Checkout Receipt", desc: "Order confirmation payment card widget" }
+                            {
+                              id: "icon",
+                              name: "Isolated Icon",
+                              desc: "Full-canvas preview layout"
+                            },
+                            {
+                              id: "navbar",
+                              name: "Navbar Integration",
+                              desc: "Mockup navigation header component"
+                            },
+                            {
+                              id: "card",
+                              name: "Feature Stats Card",
+                              desc: "Centred inside a glassmorphic dashboard card"
+                            },
+                            {
+                              id: "hero",
+                              name: "Landing Page Hero",
+                              desc: "Main marketing graphic of a split landing page"
+                            },
+                            {
+                              id: "pricing",
+                              name: "SaaS Pricing Tier",
+                              desc: "Featured pricing plan checkmark card"
+                            },
+                            {
+                              id: "mobile",
+                              name: "iOS Home Screen Widget",
+                              desc: "Positioned inside a phone widget layout"
+                            },
+                            {
+                              id: "testimonial",
+                              name: "Customer Review Card",
+                              desc: "SaaS user review glass bubble card"
+                            },
+                            {
+                              id: "checkout",
+                              name: "Checkout Receipt",
+                              desc: "Order confirmation payment card widget"
+                            }
                           ].map((ctx) => {
                             const isSelected = !showcaseGridView && previewContext === ctx.id;
                             return (
@@ -3274,8 +5631,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                                     : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-550 dark:text-zinc-450"
                                 } ${showcaseGridView ? "opacity-40 cursor-not-allowed pointer-events-none" : "cursor-pointer"}`}
                               >
-                                <span className="text-[10px] font-bold uppercase tracking-wide leading-none">{ctx.name}</span>
-                                <span className="text-[9px] text-zinc-400 dark:text-zinc-500 leading-normal">{ctx.desc}</span>
+                                <span className="text-[10px] font-bold uppercase tracking-wide leading-none">
+                                  {ctx.name}
+                                </span>
+                                <span className="text-[9px] text-zinc-400 dark:text-zinc-500 leading-normal">
+                                  {ctx.desc}
+                                </span>
                               </button>
                             );
                           })}
@@ -3299,8 +5660,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Camera Zoom */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-500 uppercase tracking-wider">Camera Zoom</span>
-                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">{cameraZoom.toFixed(1)}</span>
+                          <span className="text-zinc-500 uppercase tracking-wider">
+                            Camera Zoom
+                          </span>
+                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                            {cameraZoom.toFixed(1)}
+                          </span>
                         </div>
                         <input
                           type="range"
@@ -3316,8 +5681,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Camera FOV */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-500 uppercase tracking-wider">Field of View (FOV)</span>
-                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">{cameraFov}°</span>
+                          <span className="text-zinc-500 uppercase tracking-wider">
+                            Field of View (FOV)
+                          </span>
+                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                            {cameraFov}°
+                          </span>
                         </div>
                         <input
                           type="range"
@@ -3377,8 +5746,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Spotlight Brightness */}
                       <div className="space-y-1.5">
                         <div className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-500 uppercase tracking-wider">Spotlight Brightness</span>
-                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">{lightIntensity.toFixed(1)}x</span>
+                          <span className="text-zinc-500 uppercase tracking-wider">
+                            Spotlight Brightness
+                          </span>
+                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                            {lightIntensity.toFixed(1)}x
+                          </span>
                         </div>
                         <input
                           type="range"
@@ -3394,8 +5767,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       {/* Spotlight Color */}
                       <div className="space-y-1.5">
                         <label className="flex justify-between items-center text-[10px] font-bold">
-                          <span className="text-zinc-500 uppercase tracking-wider">Spotlight Color</span>
-                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">{lightColor}</span>
+                          <span className="text-zinc-500 uppercase tracking-wider">
+                            Spotlight Color
+                          </span>
+                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                            {lightColor}
+                          </span>
                         </label>
                         <div className="flex gap-1.5">
                           <input
@@ -3431,8 +5808,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         {/* Accent Light Intensity */}
                         <div className="space-y-1.5">
                           <div className="flex justify-between items-center text-[10px] font-bold">
-                            <span className="text-zinc-550 dark:text-zinc-450 uppercase tracking-wider">Accent Brightness</span>
-                            <span className="text-zinc-750 dark:text-zinc-350 font-mono">{accentLightIntensity.toFixed(2)}x</span>
+                            <span className="text-zinc-550 dark:text-zinc-450 uppercase tracking-wider">
+                              Accent Brightness
+                            </span>
+                            <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                              {accentLightIntensity.toFixed(2)}x
+                            </span>
                           </div>
                           <input
                             type="range"
@@ -3449,8 +5830,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         {accentLightIntensity > 0 && (
                           <div className="space-y-1.5 animate-page-fade">
                             <div className="flex justify-between items-center text-[10px] font-bold">
-                              <span className="text-zinc-555 dark:text-zinc-455 uppercase tracking-wider">Rotation Angle</span>
-                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">{accentLightAngle}°</span>
+                              <span className="text-zinc-555 dark:text-zinc-455 uppercase tracking-wider">
+                                Rotation Angle
+                              </span>
+                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                                {accentLightAngle}°
+                              </span>
                             </div>
                             <input
                               type="range"
@@ -3468,8 +5853,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         {accentLightIntensity > 0 && (
                           <div className="space-y-1.5 animate-page-fade">
                             <label className="flex justify-between items-center text-[10px] font-bold">
-                              <span className="text-zinc-555 dark:text-zinc-455 uppercase tracking-wider">Accent Light Color</span>
-                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">{accentLightColor}</span>
+                              <span className="text-zinc-555 dark:text-zinc-455 uppercase tracking-wider">
+                                Accent Light Color
+                              </span>
+                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                                {accentLightColor}
+                              </span>
                             </label>
                             <div className="flex gap-1.5">
                               <input
@@ -3503,8 +5892,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         {/* Shadow Opacity */}
                         <div className="space-y-1.5">
                           <div className="flex justify-between items-center text-[10px] font-bold">
-                            <span className="text-zinc-500 uppercase tracking-wider">Shadow Opacity</span>
-                            <span className="text-zinc-750 dark:text-zinc-350 font-mono">{shadowOpacity.toFixed(2)}</span>
+                            <span className="text-zinc-500 uppercase tracking-wider">
+                              Shadow Opacity
+                            </span>
+                            <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                              {shadowOpacity.toFixed(2)}
+                            </span>
                           </div>
                           <input
                             type="range"
@@ -3520,8 +5913,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         {/* Shadow Blur */}
                         <div className="space-y-1.5">
                           <div className="flex justify-between items-center text-[10px] font-bold">
-                            <span className="text-zinc-550 dark:text-zinc-500 uppercase tracking-wider">Shadow Softness</span>
-                            <span className="text-zinc-750 dark:text-zinc-350 font-mono">{shadowBlur.toFixed(1)}</span>
+                            <span className="text-zinc-550 dark:text-zinc-500 uppercase tracking-wider">
+                              Shadow Softness
+                            </span>
+                            <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                              {shadowBlur.toFixed(1)}
+                            </span>
                           </div>
                           <input
                             type="range"
@@ -3590,7 +5987,13 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                   <div className="pt-0.5">
                     <label className="w-full flex items-center justify-center gap-1.5 bg-zinc-50 hover:bg-zinc-100 dark:bg-zinc-800/30 dark:hover:bg-zinc-800/60 text-zinc-500 dark:text-zinc-400 rounded-xl py-2 px-3 text-[10px] font-bold transition active:scale-95 cursor-pointer border border-dashed border-zinc-300 dark:border-zinc-700">
                       <LucideAll.Upload size={12} />
-                      <span>{importStatus === "success" ? "Restore Complete!" : importStatus === "error" ? "Invalid file!" : "Restore Backup"}</span>
+                      <span>
+                        {importStatus === "success"
+                          ? "Restore Complete!"
+                          : importStatus === "error"
+                            ? "Invalid file!"
+                            : "Restore Backup"}
+                      </span>
                       <input
                         type="file"
                         accept=".json"
@@ -3618,7 +6021,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                           className="flex items-center justify-between p-3 rounded-xl border border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/30"
                         >
                           <div className="flex flex-col gap-0.5 min-w-0">
-                            <span className="text-[11px] font-bold text-zinc-800 dark:text-zinc-100 truncate">{p.name}</span>
+                            <span className="text-[11px] font-bold text-zinc-800 dark:text-zinc-100 truncate">
+                              {p.name}
+                            </span>
                             <span className="text-[9px] text-zinc-400 dark:text-zinc-500 uppercase font-semibold">
                               {p.preset} • {p.environment}
                             </span>
@@ -3649,7 +6054,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
             {activeSidebarTab === "compare" && (
               <div className="space-y-5 animate-page-fade">
                 <div className="p-3 bg-indigo-500/10 rounded-xl border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 text-[11px] leading-relaxed">
-                  <strong>Compare Mode</strong>: Splitting the layout into a 2x2 grid. All slots render with your customized physics overrides, colors, angles, and lighting environment.
+                  <strong>Compare Mode</strong>: Splitting the layout into a 2x2 grid. All slots
+                  render with your customized physics overrides, colors, angles, and lighting
+                  environment.
                 </div>
 
                 <div className="space-y-3">
@@ -3659,7 +6066,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                   <div className="space-y-2">
                     {compareList.map((selectedId, idx) => {
                       return (
-                        <div key={idx} className="flex flex-col gap-1.5 p-2.5 rounded-xl border border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/30">
+                        <div
+                          key={idx}
+                          className="flex flex-col gap-1.5 p-2.5 rounded-xl border border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/30"
+                        >
                           <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                             Slot {idx + 1} {idx === 0 && "(Active)"}
                           </span>
@@ -3686,7 +6096,6 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                 </div>
               </div>
             )}
-
           </div>
         </div>
       </div>
@@ -3705,10 +6114,11 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
               <button
                 key={icon.id}
                 onClick={() => updateCustomizerURL(icon.color.replace("#", ""), icon.id)}
-                className={`flex-shrink-0 w-24 h-24 rounded-2xl border flex flex-col items-center justify-center p-2 transition duration-200 cursor-pointer ${isSelected
-                  ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 shadow-md ring-1 ring-indigo-500/20"
-                  : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 bg-white dark:bg-[#0e111a]"
-                  }`}
+                className={`flex-shrink-0 w-24 h-24 rounded-2xl border flex flex-col items-center justify-center p-2 transition duration-200 cursor-pointer ${
+                  isSelected
+                    ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 shadow-md ring-1 ring-indigo-500/20"
+                    : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 bg-white dark:bg-[#0e111a]"
+                }`}
               >
                 <div className="w-16 h-16 pointer-events-none select-none flex items-center justify-center relative">
                   {/* Soft background glow matching the icon's color */}
@@ -3734,7 +6144,6 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
           })}
         </div>
       </div>
-
     </div>
   );
 };

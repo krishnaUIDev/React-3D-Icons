@@ -6,7 +6,6 @@ export function HurricaneIcon(props: HurricaneIconProps) {
     <SharedWrapper iconId="hurricane" {...props}>
       {(mat) => (
         <group rotation={[0.2, -Math.PI / 12, 0]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Central Eye Ring (Eye wall) */}
           <mesh castShadow receiveShadow>
             <torusGeometry args={[0.16, 0.04, 12, 32]} />
@@ -101,7 +100,6 @@ export function HurricaneIcon(props: HurricaneIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

@@ -6,7 +6,6 @@ export function EyeIcon(props: IconProps) {
     <SharedWrapper iconId="eye" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.3, 0]} position={[0, 0, 0]}>
-          
           {/* Eyeball (White Sphere) */}
           <mesh castShadow receiveShadow position={[0, 0, 0]}>
             <sphereGeometry args={[0.44, 32, 32]} />
@@ -64,7 +63,6 @@ export function EyeIcon(props: IconProps) {
               emissiveIntensity={mat.emissiveIntensity * 0.4}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

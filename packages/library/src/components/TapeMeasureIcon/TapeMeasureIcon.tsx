@@ -6,7 +6,6 @@ export function TapeMeasureIcon(props: TapeMeasureIconProps) {
     <SharedWrapper iconId="tapemeasure" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.25, 0.05]} position={[0, 0, 0]}>
-          
           {/* Main Tape Measure Outer Case */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.48, 0.48, 0.26]} />
@@ -91,7 +90,6 @@ export function TapeMeasureIcon(props: TapeMeasureIconProps) {
             <torusGeometry args={[0.08, 0.015, 8, 16, Math.PI]} />
             <meshStandardMaterial roughness={0.8} metalness={0.1} color="#475569" />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

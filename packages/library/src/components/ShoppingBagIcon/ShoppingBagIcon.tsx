@@ -6,7 +6,6 @@ export function ShoppingBagIcon(props: ShoppingBagIconProps) {
     <SharedWrapper iconId="shoppingbag" {...props}>
       {(mat) => (
         <group rotation={[0.15, -Math.PI / 8, 0.05]} position={[0, 0, 0]} scale={[1.4, 1.4, 1.4]}>
-          
           {/* Main Paper Bag Body (Preset material, e.g. glass or clay container) */}
           <mesh castShadow receiveShadow position={[0, -0.04, 0]}>
             <boxGeometry args={[0.34, 0.44, 0.18]} />
@@ -57,7 +56,6 @@ export function ShoppingBagIcon(props: ShoppingBagIconProps) {
               emissiveIntensity={1.3}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

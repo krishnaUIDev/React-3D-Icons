@@ -148,7 +148,12 @@ export function CactusIcon(props: CactusIconProps) {
           {/* Glowing Spine Pins */}
           <group>
             {/* Left branch spine */}
-            <mesh position={[-0.105, 0.06, 0]} rotation={[0, 0, Math.PI / 2]} scale={[0.1, 1, 0.1]} castShadow>
+            <mesh
+              position={[-0.105, 0.06, 0]}
+              rotation={[0, 0, Math.PI / 2]}
+              scale={[0.1, 1, 0.1]}
+              castShadow
+            >
               <coneGeometry args={[0.015, 0.04, 4]} />
               <meshStandardMaterial
                 color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
@@ -157,7 +162,12 @@ export function CactusIcon(props: CactusIconProps) {
               />
             </mesh>
             {/* Right branch spine */}
-            <mesh position={[0.105, 0.14, 0]} rotation={[0, 0, -Math.PI / 2]} scale={[0.1, 1, 0.1]} castShadow>
+            <mesh
+              position={[0.105, 0.14, 0]}
+              rotation={[0, 0, -Math.PI / 2]}
+              scale={[0.1, 1, 0.1]}
+              castShadow
+            >
               <coneGeometry args={[0.015, 0.04, 4]} />
               <meshStandardMaterial
                 color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}
@@ -175,7 +185,12 @@ export function CactusIcon(props: CactusIconProps) {
               />
             </mesh>
             {/* Trunk mid spine (pointing forward) */}
-            <mesh position={[0, 0.08, 0.05]} rotation={[Math.PI / 2, 0, 0]} scale={[0.1, 1, 0.1]} castShadow>
+            <mesh
+              position={[0, 0.08, 0.05]}
+              rotation={[Math.PI / 2, 0, 0]}
+              scale={[0.1, 1, 0.1]}
+              castShadow
+            >
               <coneGeometry args={[0.015, 0.04, 4]} />
               <meshStandardMaterial
                 color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#10b981"}

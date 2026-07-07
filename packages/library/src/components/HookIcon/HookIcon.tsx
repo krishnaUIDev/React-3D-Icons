@@ -6,7 +6,6 @@ export function HookIcon(props: HookIconProps) {
     <SharedWrapper iconId="hook" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.15, 0.05]} position={[0, 0.02, 0]}>
-          
           {/* Top Cable Pulley Box Block */}
           <group position={[0, 0.28, 0]}>
             <mesh castShadow receiveShadow>
@@ -68,11 +67,7 @@ export function HookIcon(props: HookIconProps) {
 
           {/* Heavy Lifting Crane Hook */}
           {/* Curved Hook Body (using 3/4 circle torus) */}
-          <mesh
-            castShadow
-            position={[-0.075, -0.15, 0]}
-            rotation={[0, 0, -Math.PI / 5]}
-          >
+          <mesh castShadow position={[-0.075, -0.15, 0]} rotation={[0, 0, -Math.PI / 5]}>
             <torusGeometry args={[0.15, 0.038, 12, 32, Math.PI * 1.35]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -84,11 +79,7 @@ export function HookIcon(props: HookIconProps) {
           </mesh>
 
           {/* Pointed Hook Tip (cone at the end of the torus arc) */}
-          <mesh
-            castShadow
-            position={[0.13, -0.19, 0]}
-            rotation={[0, 0, Math.PI / 3]}
-          >
+          <mesh castShadow position={[0.13, -0.19, 0]} rotation={[0, 0, Math.PI / 3]}>
             <coneGeometry args={[0.037, 0.09, 12]} />
             <meshPhysicalMaterial
               roughness={mat.roughness}
@@ -100,11 +91,7 @@ export function HookIcon(props: HookIconProps) {
           </mesh>
 
           {/* Hook Suspension Ring (connecting to swivel shank) */}
-          <mesh
-            castShadow
-            position={[0, 0.03, 0]}
-            rotation={[Math.PI / 2, 0, 0]}
-          >
+          <mesh castShadow position={[0, 0.03, 0]} rotation={[Math.PI / 2, 0, 0]}>
             <torusGeometry args={[0.065, 0.02, 8, 16]} />
             <meshStandardMaterial
               roughness={0.1}
@@ -112,7 +99,6 @@ export function HookIcon(props: HookIconProps) {
               color={props.theme === "dark" ? "#cbd5e1" : "#475569"}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

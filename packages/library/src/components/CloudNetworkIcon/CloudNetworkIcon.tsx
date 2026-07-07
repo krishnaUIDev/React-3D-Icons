@@ -10,8 +10,8 @@ export function CloudNetworkIcon(props: CloudNetworkIconProps) {
           {/* Main Cloud Body */}
           <group position={[0, 0.16, 0]}>
             {/* Center Main Cloud Sphere */}
-            <mesh castShadow position={[0, 0.10, 0]}>
-              <sphereGeometry args={[0.30, 32, 32]} />
+            <mesh castShadow position={[0, 0.1, 0]}>
+              <sphereGeometry args={[0.3, 32, 32]} />
               <meshPhysicalMaterial
                 roughness={mat.roughness}
                 metalness={mat.metalness}
@@ -27,7 +27,7 @@ export function CloudNetworkIcon(props: CloudNetworkIconProps) {
             </mesh>
 
             {/* Left Cloud Sphere */}
-            <mesh castShadow position={[-0.20, 0.02, 0]}>
+            <mesh castShadow position={[-0.2, 0.02, 0]}>
               <sphereGeometry args={[0.22, 24, 24]} />
               <meshPhysicalMaterial
                 roughness={mat.roughness}
@@ -44,7 +44,7 @@ export function CloudNetworkIcon(props: CloudNetworkIconProps) {
             </mesh>
 
             {/* Right Cloud Sphere */}
-            <mesh castShadow position={[0.20, 0.02, 0]}>
+            <mesh castShadow position={[0.2, 0.02, 0]}>
               <sphereGeometry args={[0.22, 24, 24]} />
               <meshPhysicalMaterial
                 roughness={mat.roughness}
@@ -88,13 +88,13 @@ export function CloudNetworkIcon(props: CloudNetworkIconProps) {
             </mesh>
 
             {/* Left Vertical Pipe */}
-            <mesh castShadow position={[-0.20, -0.16, 0.02]}>
+            <mesh castShadow position={[-0.2, -0.16, 0.02]}>
               <cylinderGeometry args={[0.022, 0.022, 0.24, 8]} />
               <meshStandardMaterial roughness={0.2} metalness={0.8} color="#cbd5e1" />
             </mesh>
 
             {/* Right Vertical Pipe */}
-            <mesh castShadow position={[0.20, -0.16, 0.02]}>
+            <mesh castShadow position={[0.2, -0.16, 0.02]}>
               <cylinderGeometry args={[0.022, 0.022, 0.24, 8]} />
               <meshStandardMaterial roughness={0.2} metalness={0.8} color="#cbd5e1" />
             </mesh>
@@ -106,13 +106,13 @@ export function CloudNetworkIcon(props: CloudNetworkIconProps) {
             </mesh>
 
             {/* Left Spherical Client Node */}
-            <mesh castShadow position={[-0.20, -0.32, 0.02]}>
+            <mesh castShadow position={[-0.2, -0.32, 0.02]}>
               <sphereGeometry args={[0.08, 16, 16]} />
               <meshStandardMaterial roughness={0.15} metalness={0.9} color="#3b82f6" />
             </mesh>
 
             {/* Right Spherical Client Node */}
-            <mesh castShadow position={[0.20, -0.32, 0.02]}>
+            <mesh castShadow position={[0.2, -0.32, 0.02]}>
               <sphereGeometry args={[0.08, 16, 16]} />
               <meshStandardMaterial roughness={0.15} metalness={0.9} color="#ea4c89" />
             </mesh>

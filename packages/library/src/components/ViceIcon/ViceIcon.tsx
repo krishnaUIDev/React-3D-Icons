@@ -6,7 +6,6 @@ export function ViceIcon(props: ViceIconProps) {
     <SharedWrapper iconId="vice" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.35, 0.1]} position={[0, 0, 0]}>
-          
           {/* Main Heavy Mount Base Block */}
           <mesh castShadow position={[0, -0.16, 0]}>
             <boxGeometry args={[0.22, 0.04, 0.24]} />
@@ -91,7 +90,6 @@ export function ViceIcon(props: ViceIconProps) {
               );
             })}
           </group>
-
         </group>
       )}
     </SharedWrapper>

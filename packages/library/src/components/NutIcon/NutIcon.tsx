@@ -28,11 +28,19 @@ export function NutIcon(props: NutIconProps) {
             {/* Chamfered edge lines (torus around the top and bottom faces to give beveled look) */}
             <mesh position={[0, 0.16, 0]} rotation={[Math.PI / 2, 0, 0]}>
               <torusGeometry args={[0.48, 0.03, 8, 24]} />
-              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} color={mat.color} />
+              <meshPhysicalMaterial
+                roughness={mat.roughness}
+                metalness={mat.metalness}
+                color={mat.color}
+              />
             </mesh>
             <mesh position={[0, -0.16, 0]} rotation={[Math.PI / 2, 0, 0]}>
               <torusGeometry args={[0.48, 0.03, 8, 24]} />
-              <meshPhysicalMaterial roughness={mat.roughness} metalness={mat.metalness} color={mat.color} />
+              <meshPhysicalMaterial
+                roughness={mat.roughness}
+                metalness={mat.metalness}
+                color={mat.color}
+              />
             </mesh>
 
             {/* Threaded hole center (contrasting core) */}

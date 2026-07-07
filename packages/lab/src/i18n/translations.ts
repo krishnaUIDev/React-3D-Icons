@@ -1,7 +1,8 @@
 export const translations = {
   en: {
     hero_title: "Beautifully Crafted open source & premium 3D Icons",
-    hero_subtitle: "More than {count}+ hand made Open Source, Free & Premium 3d icons renders for ready to use",
+    hero_subtitle:
+      "More than {count}+ hand made Open Source, Free & Premium 3d icons renders for ready to use",
     search_placeholder: "Search 3d icons...",
     btn_download_all: "Download all",
     btn_donate: "Donate & support",
@@ -40,7 +41,8 @@ export const translations = {
   },
   es: {
     hero_title: "Iconos 3D premium y de código abierto bellamente diseñados",
-    hero_subtitle: "Más de {count}+ renders de iconos 3D hechos a mano, gratuitos y premium listos para usar",
+    hero_subtitle:
+      "Más de {count}+ renders de iconos 3D hechos a mano, gratuitos y premium listos para usar",
     search_placeholder: "Buscar iconos 3D...",
     btn_download_all: "Descargar todo",
     btn_donate: "Donar y apoyar",
@@ -79,7 +81,8 @@ export const translations = {
   },
   de: {
     hero_title: "Wunderschön gestaltete Open-Source- und Premium-3D-Icons",
-    hero_subtitle: "Mehr als {count}+ handgefertigte Open-Source-, kostenlose und Premium-3D-Icons, bereit für den Einsatz",
+    hero_subtitle:
+      "Mehr als {count}+ handgefertigte Open-Source-, kostenlose und Premium-3D-Icons, bereit für den Einsatz",
     search_placeholder: "3D-Icons suchen...",
     btn_download_all: "Alle herunterladen",
     btn_donate: "Spenden & unterstützen",

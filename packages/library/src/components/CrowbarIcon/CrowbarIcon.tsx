@@ -6,7 +6,6 @@ export function CrowbarIcon(props: CrowbarIconProps) {
     <SharedWrapper iconId="crowbar" {...props}>
       {(mat) => (
         <group rotation={[0.2, -0.2, -Math.PI / 8]} position={[0, 0, 0]}>
-          
           {/* Main Hexagonal Steel Shaft */}
           <mesh castShadow receiveShadow position={[-0.04, -0.04, 0]}>
             <cylinderGeometry args={[0.018, 0.018, 0.54, 6]} />
@@ -57,7 +56,6 @@ export function CrowbarIcon(props: CrowbarIconProps) {
               color={props.theme === "dark" ? "#cbd5e1" : "#475569"}
             />
           </mesh>
-
         </group>
       )}
     </SharedWrapper>

@@ -20,19 +20,25 @@ This repository is set up as a monorepo containing two main packages under the `
 To get started, make sure you have [Node.js](https://nodejs.org/) (v18+) installed.
 
 ### 1. Install Dependencies
+
 Run the following command at the repository root to install all workspaces dependencies:
+
 ```bash
 npm install
 ```
 
 ### 2. Run the Development Server
+
 Launch the local showcase lab application:
+
 ```bash
 npm run dev:lab
 ```
+
 This runs the lab site on `http://localhost:5173/` with hot reloading enabled for both the laboratory application and any modifications you make to the library package.
 
 ### 3. Build Commands
+
 - **Build the Library Package**:
   ```bash
   npm run build:lib
@@ -49,6 +55,7 @@ This runs the lab site on `http://localhost:5173/` with hot reloading enabled fo
 Adding a new premium icon requires registering it in both the library bundle and the showcase catalog. Follow this step-by-step workflow:
 
 ### Step 1: Create the 3D Component
+
 Create a new folder under `packages/library/src/components/YourNameIcon/`.
 Inside this directory, implement two files:
 
@@ -56,12 +63,14 @@ Inside this directory, implement two files:
 2. `YourNameIcon.tsx`: The actual 3D React component.
 
 Every icon must follow these standards:
+
 - Utilize the `SharedWrapper` component to handle canvas setup, rendering mode toggles, animations (spin/float), sizing (`size` prop), and theme-based lighting settings.
 - Implement clear, premium 3D mesh geometries using standard Three.js primitives (`<boxGeometry>`, `<cylinderGeometry>`, `<torusGeometry>`, etc.).
 - Maintain light/dark theme compatibility. Adjust physical materials, roughness, colors, and emissive properties so that they remain highly visible in both contrast schemes.
 - Support all custom preset materials (`glass`, `metal`, `clay`, `hologram`, `gold`, `glassmorphism`, `carbon`, `wood`).
 
 Example component structure:
+
 ```tsx
 import React from "react";
 import { SharedWrapper } from "../SharedWrapper";
@@ -84,17 +93,22 @@ export const YourNameIcon: React.FC<IconProps> = (props) => {
 ```
 
 ### Step 2: Add the 2D Vector Fallback
+
 Open [Fallback2D.tsx](file:///Users/krishnakondoju/projects/agents/react-3d-icons/packages/library/src/components/Fallback2D.tsx) and add a custom, clean SVG case under the switch statement matching your icon's lowercase identifier.
+
 - Maintain sizing proportions (SVGs must fit within standard bounding boxes).
 - Ensure stroke values dynamically read the `strokeColor` computed from the active theme.
 
 ### Step 3: Export from Library
+
 Open [index.ts](file:///Users/krishnakondoju/projects/agents/react-3d-icons/packages/library/src/index.ts) and export your new icon:
+
 ```typescript
 export { YourNameIcon } from "./components/YourNameIcon";
 ```
 
 ### Step 4: Register in Showcase Pages
+
 To make your icon discoverable inside the Lab sandbox application, register it in the following places:
 
 1. **Homepage Gallery ([Landing.tsx](file:///Users/krishnakondoju/projects/agents/react-3d-icons/packages/lab/src/pages/Landing.tsx))**:
@@ -108,6 +122,7 @@ To make your icon discoverable inside the Lab sandbox application, register it i
    - Add its lowercase key mapping in `LUCIDE_FALLBACKS` (matching `Customize.tsx`).
 
 ### Step 5: Update the README Catalog
+
 1. Open [README.md](file:///Users/krishnakondoju/projects/agents/react-3d-icons/README.md).
 2. Increment the total count in the **Icon Catalog** section header.
 3. List your new `YourNameIcon` under the appropriate category.

@@ -6,7 +6,6 @@ export function RouterWifiIcon(props: RouterWifiIconProps) {
     <SharedWrapper iconId="routerwifi" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.25, 0.05]} position={[0, -0.06, 0]}>
-          
           {/* Main Router Casing Base */}
           <mesh castShadow receiveShadow>
             <boxGeometry args={[0.62, 0.09, 0.36]} />
@@ -93,7 +92,6 @@ export function RouterWifiIcon(props: RouterWifiIconProps) {
               <meshStandardMaterial color="#f97316" emissive="#f97316" emissiveIntensity={1.1} />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

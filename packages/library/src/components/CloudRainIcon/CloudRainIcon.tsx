@@ -6,7 +6,6 @@ export function CloudRainIcon(props: CloudRainIconProps) {
     <SharedWrapper iconId="cloudrain" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.2, 0.05]} position={[0, 0.1, 0]}>
-          
           {/* Cloud Body (Overlapping physical spheres) */}
           <group position={[0, 0.1, 0]}>
             {/* Center Sphere */}
@@ -80,7 +79,7 @@ export function CloudRainIcon(props: CloudRainIconProps) {
                 emissiveIntensity={1.2}
               />
             </mesh>
-            
+
             {/* Center drop (slightly lower) */}
             <mesh position={[0, -0.08, 0]} rotation={[0.1, 0, -0.15]} castShadow>
               <cylinderGeometry args={[0.02, 0.02, 0.15, 8]} />
@@ -101,7 +100,6 @@ export function CloudRainIcon(props: CloudRainIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>

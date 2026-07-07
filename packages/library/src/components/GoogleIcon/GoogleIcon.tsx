@@ -31,30 +31,50 @@ export function GoogleIcon(props: GoogleIconProps) {
             {/* Red Upper Arc */}
             <mesh castShadow position={[0, 0, 0]} rotation={[0, 0, Math.PI / 4]}>
               <torusGeometry args={[0.46, 0.12, 16, 32, Math.PI]} />
-              <meshStandardMaterial roughness={0.15} metalness={0.2} color={props.color ? primaryColor : "#ea4335"} />
+              <meshStandardMaterial
+                roughness={0.15}
+                metalness={0.2}
+                color={props.color ? primaryColor : "#ea4335"}
+              />
             </mesh>
 
             {/* Green Lower Arc */}
             <mesh castShadow position={[0, 0, 0]} rotation={[0, 0, -Math.PI * 0.75]}>
               <torusGeometry args={[0.46, 0.12, 16, 32, Math.PI * 0.7]} />
-              <meshStandardMaterial roughness={0.15} metalness={0.2} color={props.color ? primaryColor : "#34a853"} />
+              <meshStandardMaterial
+                roughness={0.15}
+                metalness={0.2}
+                color={props.color ? primaryColor : "#34a853"}
+              />
             </mesh>
 
             {/* Yellow Left Arc */}
             <mesh castShadow position={[0, 0, 0]} rotation={[0, 0, Math.PI * 0.8]}>
               <torusGeometry args={[0.46, 0.12, 16, 32, Math.PI * 0.4]} />
-              <meshStandardMaterial roughness={0.15} metalness={0.2} color={props.color ? primaryColor : "#fbbc05"} />
+              <meshStandardMaterial
+                roughness={0.15}
+                metalness={0.2}
+                color={props.color ? primaryColor : "#fbbc05"}
+              />
             </mesh>
 
             {/* Blue Horizontal Bar & Right Arc */}
             <group rotation={[0, 0, 0]}>
               <mesh castShadow position={[0.22, -0.04, 0]}>
                 <boxGeometry args={[0.44, 0.12, 0.08]} />
-                <meshStandardMaterial roughness={0.15} metalness={0.2} color={props.color ? primaryColor : "#4285f4"} />
+                <meshStandardMaterial
+                  roughness={0.15}
+                  metalness={0.2}
+                  color={props.color ? primaryColor : "#4285f4"}
+                />
               </mesh>
               <mesh castShadow position={[0, 0, 0]} rotation={[0, 0, -Math.PI / 4]}>
                 <torusGeometry args={[0.46, 0.12, 16, 32, Math.PI * 0.3]} />
-                <meshStandardMaterial roughness={0.15} metalness={0.2} color={props.color ? primaryColor : "#4285f4"} />
+                <meshStandardMaterial
+                  roughness={0.15}
+                  metalness={0.2}
+                  color={props.color ? primaryColor : "#4285f4"}
+                />
               </mesh>
             </group>
           </group>

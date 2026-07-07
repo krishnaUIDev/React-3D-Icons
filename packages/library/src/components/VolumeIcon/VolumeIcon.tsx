@@ -6,7 +6,6 @@ export function VolumeIcon(props: VolumeIconProps) {
     <SharedWrapper iconId="volume" {...props}>
       {(mat) => (
         <group rotation={[0.15, -0.3, 0.05]} position={[0, 0, 0]}>
-          
           {/* Speaker Casing Base (Rectangular plate) */}
           <mesh castShadow receiveShadow position={[-0.45, 0, 0]}>
             <boxGeometry args={[0.32, 0.44, 0.44]} />
@@ -68,7 +67,6 @@ export function VolumeIcon(props: VolumeIconProps) {
               />
             </mesh>
           </group>
-
         </group>
       )}
     </SharedWrapper>
