@@ -1,12 +1,31 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { LanguageProvider } from "./i18n/useTranslation";
 import { RouterProvider, useRouter } from "./router/Router";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import { Landing } from "./pages/Landing";
-import { Customize } from "./pages/Customize";
 import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
+
+const Landing = React.lazy(() => import("./pages/Landing").then((m) => ({ default: m.Landing })));
+const Customize = React.lazy(() =>
+  import("./pages/Customize").then((m) => ({ default: m.Customize }))
+);
+
+function LoadingFallback() {
+  return (
+    <div className="flex items-center justify-center min-h-[60vh] w-full">
+      <div className="flex flex-col items-center gap-4">
+        <div className="relative w-10 h-10">
+          <div className="absolute inset-0 rounded-full border-4 border-zinc-200 dark:border-zinc-800 opacity-20" />
+          <div className="absolute inset-0 rounded-full border-4 border-t-indigo-600 dark:border-t-indigo-500 animate-spin" />
+        </div>
+        <span className="text-[10px] font-extrabold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 animate-pulse">
+          Loading visual modules...
+        </span>
+      </div>
+    </div>
+  );
+}
 
 function AppContent() {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -73,15 +92,17 @@ function AppContent() {
 
       {/* Dynamic Page Views */}
       <main className="flex-grow">
-        {route === "landing" ? (
-          <div key="landing" className="animate-page-fade">
-            <Landing theme={theme} search={search} setSearch={setSearch} />
-          </div>
-        ) : (
-          <div key="customize" className="animate-page-fade">
-            <Customize theme={theme} />
-          </div>
-        )}
+        <Suspense fallback={<LoadingFallback />}>
+          {route === "landing" ? (
+            <div key="landing" className="animate-page-fade">
+              <Landing theme={theme} search={search} setSearch={setSearch} />
+            </div>
+          ) : (
+            <div key="customize" className="animate-page-fade">
+              <Customize theme={theme} />
+            </div>
+          )}
+        </Suspense>
       </main>
 
       {/* Footer */}
