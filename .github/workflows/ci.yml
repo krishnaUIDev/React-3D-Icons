@@ -1,0 +1,48 @@
+name: CI (Build & E2E Tests)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Run Build & E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci || npm install
+
+      - name: Build Library
+        run: npm run build:lib
+
+      - name: Build Lab Sandbox (Verify Types & Compilation)
+        run: npm run build:lab
+
+      - name: Install Playwright Browsers & System Deps
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E Tests
+        run: npm run test:e2e
+        env:
+          CI: true
+
+      - name: Upload Playwright Test Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: packages/e2e/playwright-report/
+          retention-days: 30

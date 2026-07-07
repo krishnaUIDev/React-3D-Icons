@@ -8,6 +8,8 @@
     "test:ui": "playwright test --ui"
   },
   "devDependencies": {
-    "@playwright/test": "^1.45.0"
+    "@playwright/test": "^1.45.0",
+    "@types/node": "^20.14.9",
+    "typescript": "^5.4.5"
   }
 }
