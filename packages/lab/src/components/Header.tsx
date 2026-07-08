@@ -49,25 +49,47 @@ export const Header: React.FC<HeaderProps> = ({
     <header className="sticky top-0 z-50 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-zinc-50/80 dark:bg-[#090b11]/80 backdrop-blur-md transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
         {/* Logo and Name */}
-        <button
-          onClick={() => navigate("landing")}
-          className="flex items-center gap-3 cursor-pointer group text-left flex-shrink-0"
-        >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 shadow-lg shadow-indigo-500/20 flex items-center justify-center font-extrabold text-white text-sm transition group-hover:scale-105">
-            3D
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold text-base tracking-tight bg-gradient-to-r from-zinc-950 to-zinc-700 dark:from-white dark:to-zinc-300 bg-clip-text text-transparent leading-none">
-              React 3D Icons
-            </span>
-            <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-semibold uppercase tracking-wider mt-0.5">
-              Lab & Sandbox
-            </span>
-          </div>
-        </button>
+        <div className="flex items-center gap-6 flex-shrink-0">
+          <button
+            onClick={() => navigate("catalog")}
+            className="flex items-center gap-3 cursor-pointer group text-left"
+          >
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 shadow-lg shadow-indigo-500/20 flex items-center justify-center font-extrabold text-white text-sm transition group-hover:scale-105">
+              3D
+            </div>
+            <div className="flex flex-col">
+              <span className="font-bold text-base tracking-tight bg-gradient-to-r from-zinc-950 to-zinc-700 dark:from-white dark:to-zinc-300 bg-clip-text text-transparent leading-none">
+                React 3D Icons
+              </span>
+              <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-semibold uppercase tracking-wider mt-0.5">
+                Lab & Sandbox
+              </span>
+            </div>
+          </button>
 
-        {/* Centered Search Bar on Landing Screen */}
-        {route === "landing" && (
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-center gap-5 text-[10px] font-black uppercase tracking-wider text-zinc-500 dark:text-zinc-400 border-l border-zinc-200/80 dark:border-zinc-800/80 pl-6 h-6">
+            <button
+              onClick={() => navigate("catalog")}
+              className={`transition cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 ${
+                route === "catalog" ? "text-indigo-600 dark:text-indigo-400" : ""
+              }`}
+            >
+              Catalog
+            </button>
+            <button
+              onClick={() => navigate("info")}
+              className={`transition cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 ${
+                route === "info" ? "text-indigo-600 dark:text-indigo-400" : ""
+              }`}
+            >
+              Info
+            </button>
+          </nav>
+        </div>
+
+        {/* Centered Search Bar on Catalog Screen */}
+        {route === "catalog" && (
           <div className="relative flex-grow max-w-xs md:max-w-sm hidden sm:block">
             <Search size={14} className="absolute top-2.5 left-3 text-zinc-400" />
             <input

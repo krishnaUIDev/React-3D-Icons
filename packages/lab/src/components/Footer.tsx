@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
         {/* Left: Branding */}
         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
           <button
-            onClick={() => navigate("landing")}
+            onClick={() => navigate("catalog")}
             className="flex items-center gap-2 cursor-pointer group text-left"
           >
             <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 shadow-md flex items-center justify-center font-extrabold text-white text-[10px] transition group-hover:scale-105">
@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
         {/* Right: Inline Links */}
         <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
           <button
-            onClick={() => navigate("landing")}
+            onClick={() => navigate("catalog")}
             className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
           >
             <Grid size={12} className="text-zinc-400" />

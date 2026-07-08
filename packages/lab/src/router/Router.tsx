@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-export type AppRoute = "landing" | "explore" | "customize";
+export type AppRoute = "catalog" | "customize" | "info";
 
 interface RouteState {
   route: AppRoute;
@@ -29,17 +29,25 @@ function parseHash(hash: string): RouteState {
     };
   }
 
-  if (cleanHash === "explore") {
+  if (cleanHash === "info") {
     return {
-      route: "explore",
-      color: "#6366f1", // default
+      route: "info",
+      color: "#6366f1",
       iconId: "database"
     };
   }
 
-  // Default to Landing page
+  if (cleanHash === "catalog") {
+    return {
+      route: "catalog",
+      color: "#6366f1",
+      iconId: "database"
+    };
+  }
+
+  // Default to Catalog page
   return {
-    route: "landing",
+    route: "catalog",
     color: "#6366f1",
     iconId: "database"
   };

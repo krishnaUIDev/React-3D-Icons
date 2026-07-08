@@ -10,6 +10,7 @@ const Landing = React.lazy(() => import("./pages/Landing").then((m) => ({ defaul
 const Customize = React.lazy(() =>
   import("./pages/Customize").then((m) => ({ default: m.Customize }))
 );
+const Info = React.lazy(() => import("./pages/Info").then((m) => ({ default: m.Info })));
 
 function LoadingFallback() {
   return (
@@ -93,13 +94,19 @@ function AppContent() {
       {/* Dynamic Page Views */}
       <main className="flex-grow">
         <Suspense fallback={<LoadingFallback />}>
-          {route === "landing" ? (
-            <div key="landing" className="animate-page-fade">
+          {route === "catalog" && (
+            <div key="catalog" className="animate-page-fade">
               <Landing theme={theme} search={search} setSearch={setSearch} />
             </div>
-          ) : (
+          )}
+          {route === "customize" && (
             <div key="customize" className="animate-page-fade">
               <Customize theme={theme} />
+            </div>
+          )}
+          {route === "info" && (
+            <div key="info" className="animate-page-fade">
+              <Info />
             </div>
           )}
         </Suspense>
