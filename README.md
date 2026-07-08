@@ -56,14 +56,14 @@ import { ShieldIcon, CrownIcon, AtomIcon } from "r3d-icons";
 function App() {
   return (
     <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
-      {/* 3D Glass Shield Icon */}
-      <ShieldIcon size={120} preset="glass" angle="perspective" color="#0d9488" />
+      {/* 3D Glass Shield Icon (auto-spinning and floating) */}
+      <ShieldIcon size={120} preset="glass" color="#0d9488" spinSpeed={0.8} floatHeight={0.5} />
 
-      {/* 3D Gold Royal Crown */}
+      {/* 3D Gold Royal Crown (drag to rotate, custom environment lighting) */}
       <CrownIcon size={120} preset="gold" angle="front" environment="sunset" interactive={true} />
 
-      {/* 3D Glowing Holographic Atom */}
-      <AtomIcon size={120} preset="hologram" accentColor="#10b981" />
+      {/* 3D Glowing Holographic Atom (faster idle spin) */}
+      <AtomIcon size={120} preset="hologram" accentColor="#10b981" spinSpeed={1.5} />
 
       {/* 2D Fallback Vector SVG */}
       <ShieldIcon size={120} variant="2d" color="#ef4444" />
