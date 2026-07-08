@@ -22,13 +22,41 @@ export function getMaterialConfig(
     silver: "#e2e8f0", // Silver
     glassmorphism: theme === "dark" ? "#ffffff" : "#64748b", // Frosted Glass
     carbon: "#27272a", // Carbon slate
-    wood: "#d97706" // Wood
+    wood: "#d97706", // Wood
+    "neon-glow": "#06b6d4", // Neon Cyan
+    "liquid-metal": "#38bdf8" // Liquid Blue
   };
 
   const color = baseColor || defaultColors[preset];
   const accent = accentColor || "#ec4899"; // Default pink glow
 
   switch (preset) {
+    case "neon-glow":
+      return {
+        roughness: 0.15,
+        metalness: 0.2,
+        transmission: 0.3,
+        thickness: 0.8,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.1,
+        ior: 1.6,
+        color,
+        emissive: accent,
+        emissiveIntensity: theme === "dark" ? 2.5 : 1.2
+      };
+    case "liquid-metal":
+      return {
+        roughness: 0.02,
+        metalness: 0.98,
+        transmission: 0,
+        thickness: 0,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.01,
+        ior: 2.5,
+        color,
+        emissive: theme === "dark" ? "#110022" : "#000000",
+        emissiveIntensity: theme === "dark" ? 0.35 : 0
+      };
     case "glassmorphism":
       return {
         roughness: 0.05,
@@ -441,27 +469,59 @@ const IconScene: React.FC<{
         groupRef.current.rotation.z = 0;
       }
       groupRef.current.position.y = 0;
+      groupRef.current.position.x = 0;
     } else if (animationType === "wobble") {
       groupRef.current.rotation.y = Math.sin(t * 1.0) * 0.25 * spinSpeed;
       groupRef.current.rotation.x = Math.cos(t * 1.2) * 0.15 * spinSpeed;
       groupRef.current.position.y = 0;
+      groupRef.current.position.x = 0;
     } else if (animationType === "wave") {
       groupRef.current.rotation.y = 0;
       groupRef.current.rotation.x = 0;
       groupRef.current.position.y = Math.sin(t * 2.0) * 0.25 * floatHeight;
+      groupRef.current.position.x = 0;
+    } else if (animationType === "bounce") {
+      groupRef.current.rotation.y = 0;
+      groupRef.current.rotation.x = 0;
+      groupRef.current.rotation.z = 0;
+      const bounceVal = Math.abs(Math.sin(t * 2.5 * spinSpeed));
+      groupRef.current.position.y = bounceVal * 0.45 * floatHeight;
+      groupRef.current.position.x = 0;
+    } else if (animationType === "orbit") {
+      groupRef.current.rotation.y = 0;
+      groupRef.current.rotation.x = 0;
+      groupRef.current.rotation.z = Math.sin(t * 1.5 * spinSpeed) * 0.18;
+      groupRef.current.position.x = Math.sin(t * 1.5 * spinSpeed) * 0.22 * floatHeight;
+      groupRef.current.position.y = 0;
     } else {
       // "breathe" - slow static angle, pulse scale
       groupRef.current.rotation.y = 0;
       groupRef.current.rotation.x = 0;
+      groupRef.current.rotation.z = 0;
       groupRef.current.position.y = 0;
+      groupRef.current.position.x = 0;
     }
 
     // Hover scale interpolation (smooth lerping)
-    let targetScale = hovered && interactive ? 1.15 : 1.0;
+    let targetScaleX = hovered && interactive ? 1.15 : 1.0;
+    let targetScaleY = hovered && interactive ? 1.15 : 1.0;
+    let targetScaleZ = hovered && interactive ? 1.15 : 1.0;
+
     if (animationType === "breathe") {
-      targetScale += Math.sin(t * 2.5) * 0.06 * spinSpeed;
+      const pulse = Math.sin(t * 2.5 * spinSpeed) * 0.06;
+      targetScaleX += pulse;
+      targetScaleY += pulse;
+      targetScaleZ += pulse;
+    } else if (animationType === "bounce") {
+      const bounceVal = Math.abs(Math.sin(t * 2.5 * spinSpeed));
+      if (bounceVal < 0.15) {
+        const squashFactor = (0.15 - bounceVal) * 0.6; // max 0.09 squash
+        targetScaleY -= squashFactor;
+        targetScaleX += squashFactor * 0.5;
+        targetScaleZ += squashFactor * 0.5;
+      }
     }
-    groupRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.15);
+    groupRef.current.scale.lerp(new THREE.Vector3(targetScaleX, targetScaleY, targetScaleZ), 0.15);
 
     // Mouse tracking tilt effect (3D parallax)
     if (meshRef.current) {

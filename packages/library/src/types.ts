@@ -1,12 +1,22 @@
 import { HTMLAttributes } from "react";
 
 export type IconPreset =
-  "glass" | "metal" | "clay" | "hologram" | "gold" | "silver" | "glassmorphism" | "carbon" | "wood";
+  | "glass"
+  | "metal"
+  | "clay"
+  | "hologram"
+  | "gold"
+  | "silver"
+  | "glassmorphism"
+  | "carbon"
+  | "wood"
+  | "neon-glow"
+  | "liquid-metal";
 export type IconAngle = "front" | "perspective" | "tilted";
 export type IconEnvironment =
   "apartment" | "city" | "forest" | "lobby" | "night" | "park" | "studio" | "sunset" | "warehouse";
 
-export type IconAnimationType = "spin" | "wobble" | "breathe" | "wave";
+export type IconAnimationType = "spin" | "wobble" | "breathe" | "wave" | "bounce" | "orbit";
 
 export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" | "children"> {
   preset?: IconPreset;

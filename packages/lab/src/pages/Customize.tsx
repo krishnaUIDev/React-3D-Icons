@@ -318,7 +318,7 @@ import {
 import * as LucideAll from "lucide-react";
 
 // List of all procedural components with descriptions and unique default colors
-const ICONS_REGISTRY = [
+export const ICONS_REGISTRY = [
   {
     id: "plus",
     name: "PlusIcon",
@@ -2715,6 +2715,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [copied, setCopied] = useState(false);
   const [copiedImport, setCopiedImport] = useState(false);
   const [copiedSVG, setCopiedSVG] = useState(false);
+  const [copiedTSXWrapper, setCopiedTSXWrapper] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [downloadingPNG, setDownloadingPNG] = useState(false);
   const [resetKey, setResetKey] = useState(0);
@@ -3000,6 +3001,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
     const newPreset = {
       id: Date.now().toString(),
       name: newPresetName.trim(),
+      iconId: currentIcon.id, // Save the icon ID so we can render it in the saved presets page!
       preset,
       angle,
       color,
@@ -3181,6 +3183,29 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
     };
   }, [currentIcon.id, color, theme, preset]);
 
+  // Update browser favicon dynamically when customizing!
+  useEffect(() => {
+    if (svgString) {
+      let link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+      if (!link) {
+        link = document.createElement("link");
+        link.rel = "icon";
+        document.getElementsByTagName("head")[0].appendChild(link);
+      }
+      link.href = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+    }
+  }, [svgString]);
+
+  // Reset favicon when leaving Customizer
+  useEffect(() => {
+    return () => {
+      let link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+      if (link) {
+        link.href = "./favicon.svg";
+      }
+    };
+  }, []);
+
   // React component usage string
   const codeString = `import { ${currentIcon.name} } from 'r3d-icons';
 
@@ -3215,15 +3240,14 @@ function App() {
     setTimeout(() => setCopiedImport(false), 2000);
   };
 
-  const handleDownloadTSX = () => {
-    const filename = `Custom${currentIcon.name.replace("Icon", "")}.tsx`;
+  const getTSXWrapperContent = () => {
     const componentName = `Custom${currentIcon.name.replace("Icon", "")}`;
     const customMatStr =
       Object.keys(customMaterial).length > 0
         ? `const customMaterial = ${JSON.stringify(customMaterial, null, 2).replace(/"([^"]+)":/g, "$1:")};\n\n  `
         : "";
 
-    const fileContent = `import React from "react";
+    return `import React from "react";
 import { ${currentIcon.name} } from "r3d-icons";
 
 export function ${componentName}(props: React.ComponentProps<typeof ${currentIcon.name}>) {
@@ -3262,6 +3286,11 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
   );
 }
 `;
+  };
+
+  const handleDownloadTSX = () => {
+    const filename = `Custom${currentIcon.name.replace("Icon", "")}.tsx`;
+    const fileContent = getTSXWrapperContent();
     const blob = new Blob([fileContent], { type: "text/typescript" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -3271,6 +3300,13 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+  };
+
+  const handleCopyTSXWrapper = () => {
+    const fileContent = getTSXWrapperContent();
+    navigator.clipboard.writeText(fileContent);
+    setCopiedTSXWrapper(true);
+    setTimeout(() => setCopiedTSXWrapper(false), 2000);
   };
 
   const handleDownloadSVG = () => {
@@ -3400,7 +3436,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
       silver: "#e2e8f0",
       glassmorphism: theme === "dark" ? "#ffffff" : "#64748b",
       carbon: "#27272a",
-      wood: "#d97706"
+      wood: "#d97706",
+      "neon-glow": "#06b6d4",
+      "liquid-metal": "#38bdf8"
     };
     const newColor = defaultColors[p];
     setColor(newColor);
@@ -3472,7 +3510,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
       "silver",
       "glassmorphism",
       "carbon",
-      "wood"
+      "wood",
+      "neon-glow",
+      "liquid-metal"
     ];
     const shuffledPreset = presets[Math.floor(Math.random() * presets.length)];
     setPreset(shuffledPreset);
@@ -3507,7 +3547,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     setMaterialIor(defaults.ior);
     setMaterialEmissiveIntensity(defaults.emissiveIntensity);
 
-    const motions: Array<IconAnimationType> = ["spin", "wobble", "breathe", "wave"];
+    const motions: Array<IconAnimationType> = [
+      "spin",
+      "wobble",
+      "breathe",
+      "wave",
+      "bounce",
+      "orbit"
+    ];
     const chosenMotion = motions[Math.floor(Math.random() * motions.length)];
     setAnimationType(chosenMotion);
 
@@ -4729,6 +4776,19 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                     <LucideAll.FileCode size={14} />
                   </button>
                 )}
+
+                {/* Copy TSX Component Wrapper to clipboard (only visible on React tab) */}
+                {activeConsoleTab === "react" && (
+                  <button
+                    onClick={handleCopyTSXWrapper}
+                    title={
+                      copiedTSXWrapper ? "Copied!" : "Copy Customized React TSX Component Code"
+                    }
+                    className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-amber-600 dark:hover:text-amber-400 transition cursor-pointer active:scale-95 flex items-center justify-center"
+                  >
+                    {copiedTSXWrapper ? <Check size={14} /> : <Copy size={14} />}
+                  </button>
+                )}
               </div>
             </div>
             <pre className="p-6 text-xs text-zinc-700 dark:text-zinc-300 font-mono overflow-x-auto leading-relaxed bg-zinc-50/20 dark:bg-[#0b0e16] custom-scrollbar max-h-60">
@@ -4822,7 +4882,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                               "silver",
                               "glassmorphism",
                               "carbon",
-                              "wood"
+                              "wood",
+                              "neon-glow",
+                              "liquid-metal"
                             ] as IconPreset[]
                           ).map((p) => {
                             const isSelected = preset === p;
@@ -5084,7 +5146,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             { id: "spin", name: "Rotate Spin" },
                             { id: "wobble", name: "Tilt Wobble" },
                             { id: "breathe", name: "Pulse Scale" },
-                            { id: "wave", name: "Sine Wave Float" }
+                            { id: "wave", name: "Sine Wave Float" },
+                            { id: "bounce", name: "Elastic Bounce" },
+                            { id: "orbit", name: "Pendulum Swing" }
                           ].map((anim) => {
                             const isSelected = animationType === anim.id;
                             return (

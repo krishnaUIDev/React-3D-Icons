@@ -56,6 +56,13 @@ export const Footer: React.FC = () => {
             <HelpCircle size={12} className="text-zinc-400" />
             <span>Info</span>
           </button>
+          <button
+            onClick={() => navigate("saved")}
+            className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
+          >
+            <Heart size={12} className="text-zinc-400" />
+            <span>Saved</span>
+          </button>
           <a
             href="https://www.npmjs.com/package/r3d-icons"
             target="_blank"

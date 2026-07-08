@@ -85,6 +85,14 @@ export const Header: React.FC<HeaderProps> = ({
             >
               Info
             </button>
+            <button
+              onClick={() => navigate("saved")}
+              className={`transition cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 ${
+                route === "saved" ? "text-indigo-600 dark:text-indigo-400" : ""
+              }`}
+            >
+              Saved Presets
+            </button>
           </nav>
         </div>
 

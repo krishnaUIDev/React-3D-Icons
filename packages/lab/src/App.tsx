@@ -11,6 +11,7 @@ const Customize = React.lazy(() =>
   import("./pages/Customize").then((m) => ({ default: m.Customize }))
 );
 const Info = React.lazy(() => import("./pages/Info").then((m) => ({ default: m.Info })));
+const Saved = React.lazy(() => import("./pages/Saved").then((m) => ({ default: m.Saved })));
 
 function LoadingFallback() {
   return (
@@ -107,6 +108,11 @@ function AppContent() {
           {route === "info" && (
             <div key="info" className="animate-page-fade">
               <Info />
+            </div>
+          )}
+          {route === "saved" && (
+            <div key="saved" className="animate-page-fade">
+              <Saved theme={theme} />
             </div>
           )}
         </Suspense>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "../router/Router";
 import { IconPreset } from "r3d-icons";
+import { Heart } from "lucide-react";
 
 interface IconCardProps {
   id: string;
@@ -13,6 +14,8 @@ interface IconCardProps {
   description?: string;
   viewMode?: "grid" | "list";
   preset?: IconPreset;
+  isFavorite?: boolean;
+  onToggleFavorite?: (id: string, e: React.MouseEvent) => void;
 }
 
 export const IconCard: React.FC<IconCardProps> = ({
@@ -25,7 +28,9 @@ export const IconCard: React.FC<IconCardProps> = ({
   category = "utility",
   description = "Customizable 3D icon element",
   viewMode = "grid",
-  preset = "glass"
+  preset = "glass",
+  isFavorite = false,
+  onToggleFavorite
 }) => {
   const { updateCustomizerURL } = useRouter();
   const [isHovered, setIsHovered] = useState(false);
@@ -134,6 +139,22 @@ export default function IconShowcase() {
         {/* Right side: persistent buttons overlay */}
         <div className="flex items-center gap-2 flex-shrink-0 z-10 w-full sm:w-auto justify-center sm:justify-end border-t sm:border-t-0 border-zinc-100 dark:border-zinc-800/80 pt-3 sm:pt-0">
           <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleFavorite?.(id, e);
+            }}
+            className={`px-3 py-1.5 rounded-xl border text-[9px] font-extrabold uppercase tracking-wider transition cursor-pointer flex items-center gap-1.5 shadow-sm ${
+              isFavorite
+                ? "border-rose-200 dark:border-rose-950 bg-rose-50/50 dark:bg-rose-950/20 text-rose-600 dark:text-rose-455 hover:bg-rose-100/50"
+                : "border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-[#0e111a] hover:bg-zinc-50 hover:text-rose-500 text-zinc-500"
+            }`}
+            title={isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+          >
+            <Heart size={10} className={isFavorite ? "fill-current text-rose-500" : ""} />
+            <span>{isFavorite ? "Favorited" : "Favorite"}</span>
+          </button>
+
+          <button
             onClick={handleCopySVG}
             className="px-3 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-[#0e111a] hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 text-zinc-500 transition relative flex items-center gap-1.5 text-[9px] font-extrabold uppercase tracking-wider cursor-pointer shadow-sm"
             title="Copy 2D SVG code"
@@ -230,6 +251,22 @@ export default function IconShowcase() {
         boxShadow: isHovered ? `0 10px 20px -5px ${color}15, 0 8px 10px -6px ${color}15` : undefined
       }}
     >
+      {/* Favorite Button (Top-Left overlay) */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          onToggleFavorite?.(id, e);
+        }}
+        className={`absolute top-2.5 left-2.5 p-1.5 rounded-lg border transition shadow-sm cursor-pointer z-10 ${
+          isFavorite
+            ? "border-rose-200 dark:border-rose-900 bg-rose-50/90 dark:bg-rose-950/90 text-rose-600 dark:text-rose-450 opacity-100 scale-100"
+            : "border-zinc-200/50 dark:border-zinc-800 bg-white/90 dark:bg-[#0e111a]/90 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-450 opacity-0 group-hover:opacity-100 hover:text-rose-500 scale-95 hover:scale-100"
+        } transition-all duration-300`}
+        title={isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+      >
+        <Heart size={12} className={isFavorite ? "fill-current" : ""} />
+      </button>
+
       {/* Quick Action Overlay Buttons */}
       <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto z-10">
         <button

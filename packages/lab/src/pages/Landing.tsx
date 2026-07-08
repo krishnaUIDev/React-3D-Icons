@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "../i18n/useTranslation";
 import { Hero } from "../components/Hero";
 import { IconCard } from "../components/IconCard";
-import { HelpCircle, Search } from "lucide-react";
+import { HelpCircle, Search, Heart } from "lucide-react";
 import {
   FacebookIcon,
   ShieldIcon,
@@ -3086,9 +3086,34 @@ const CATEGORIES = [
 
 export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) => {
   const { t } = useTranslation();
-  const [activeCategory, setActiveCategory] = useState<(typeof CATEGORIES)[number]>("all");
+  const [activeCategory, setActiveCategory] = useState<string>("all");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [activePreset, setActivePreset] = useState<IconPreset>("glass");
+  const [favoriteIconIds, setFavoriteIconIds] = useState<string[]>([]);
+
+  // Load favorites on mount
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("r3d_favorite_icons");
+      if (stored) {
+        setFavoriteIconIds(JSON.parse(stored));
+      }
+    } catch (e) {
+      console.error("Failed to load favorites", e);
+    }
+  }, []);
+
+  const handleToggleFavorite = (id: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    let updated: string[];
+    if (favoriteIconIds.includes(id)) {
+      updated = favoriteIconIds.filter((favId) => favId !== id);
+    } else {
+      updated = [...favoriteIconIds, id];
+    }
+    setFavoriteIconIds(updated);
+    localStorage.setItem("r3d_favorite_icons", JSON.stringify(updated));
+  };
 
   // Pre-calculate category counts for quick search badges
   const categoryCounts = React.useMemo(() => {
@@ -3194,7 +3219,12 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
     const matchesSearch =
       icon.name.toLowerCase().includes(search.toLowerCase()) ||
       icon.description.toLowerCase().includes(search.toLowerCase());
-    const matchesCategory = activeCategory === "all" || icon.category === activeCategory;
+    const matchesCategory =
+      activeCategory === "all"
+        ? true
+        : activeCategory === "favorites"
+          ? favoriteIconIds.includes(icon.id)
+          : icon.category === activeCategory;
     const matchesColor = matchesColorFilter(icon.color);
     return matchesSearch && matchesCategory && matchesColor;
   });
@@ -3422,6 +3452,33 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
         </div>
         {/* Category Filter Bar */}
         <div className="flex flex-wrap gap-1.5 justify-center mb-6">
+          {/* Favorites filter tab button */}
+          <button
+            onClick={() => setActiveCategory("favorites")}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-155 cursor-pointer flex items-center gap-1.5 ${
+              activeCategory === "favorites"
+                ? "bg-rose-600 text-white shadow-sm shadow-rose-600/20"
+                : "bg-zinc-100 dark:bg-[#0e111a] hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-550 dark:text-zinc-455 border border-zinc-200/80 dark:border-zinc-800"
+            }`}
+          >
+            <Heart
+              size={12}
+              className={
+                activeCategory === "favorites" ? "fill-current text-white" : "text-zinc-400"
+              }
+            />
+            <span>Favorites</span>
+            <span
+              className={`px-1.5 py-0.5 rounded-full text-[9px] font-extrabold ${
+                activeCategory === "favorites"
+                  ? "bg-white/20 text-white"
+                  : "bg-zinc-200/60 dark:bg-zinc-850/80 text-zinc-600 dark:text-zinc-500"
+              }`}
+            >
+              {favoriteIconIds.length}
+            </span>
+          </button>
+
           {CATEGORIES.map((category) => {
             const translationKey = `category_${category}` as TranslationKey;
             const isSelected = activeCategory === category;
@@ -3472,6 +3529,8 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
               description={icon.description}
               viewMode={viewMode}
               preset={activePreset}
+              isFavorite={favoriteIconIds.includes(icon.id)}
+              onToggleFavorite={handleToggleFavorite}
             />
           ))}
 
