@@ -224,7 +224,11 @@ export default function IconShowcase() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleCustomize}
-      className="group relative flex flex-col items-center gap-2 p-3 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:border-indigo-500/50 dark:hover:border-indigo-400/50 hover:shadow-lg hover:shadow-indigo-500/5 hover:-translate-y-0.5 transition-all duration-300 cursor-pointer select-none"
+      className="group relative flex flex-col items-center gap-2 p-3 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer select-none"
+      style={{
+        borderColor: isHovered ? `${color}40` : undefined,
+        boxShadow: isHovered ? `0 10px 20px -5px ${color}15, 0 8px 10px -6px ${color}15` : undefined
+      }}
     >
       {/* Quick Action Overlay Buttons */}
       <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto z-10">
@@ -310,7 +314,15 @@ export default function IconShowcase() {
       </div>
 
       {/* 3D Icon Preview or 2D Fallback */}
-      <div className="w-full flex items-center justify-center pointer-events-none min-h-[64px]">
+      <div className="w-full flex items-center justify-center pointer-events-none min-h-[64px] relative overflow-hidden">
+        {/* Soft colorful backdrop glow behind the 2D/3D icon */}
+        <div
+          className="absolute w-12 h-12 rounded-full blur-xl transition-opacity duration-300 pointer-events-none"
+          style={{
+            backgroundColor: color,
+            opacity: isHovered ? 0.18 : 0.06
+          }}
+        />
         {isHovered ? (
           <div className="w-14 h-14 sm:w-16 sm:h-16 transform scale-105 transition-transform duration-300">
             <Component

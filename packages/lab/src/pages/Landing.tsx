@@ -3160,6 +3160,19 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [visibleCount, setVisibleCount] = useState(60);
 
+  const hasActiveFilters =
+    search !== "" ||
+    activeCategory !== "all" ||
+    activeColorFilter !== "all" ||
+    activePreset !== "glass";
+
+  const handleResetFilters = () => {
+    setSearch("");
+    setActiveCategory("all");
+    setActiveColorFilter("all");
+    setActivePreset("glass");
+  };
+
   // Sync suggestion field with search input & reset category to 'all' for global search
   useEffect(() => {
     setRequestIconName(search);
@@ -3281,13 +3294,16 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                   <button
                     key={palette.id}
                     onClick={() => setActiveColorFilter(palette.id)}
-                    title={palette.label}
-                    className={`w-5 h-5 rounded-full ${palette.bg} transition cursor-pointer relative flex items-center justify-center hover:scale-110 active:scale-95 ${
+                    className={`group/color w-5 h-5 rounded-full ${palette.bg} transition cursor-pointer relative flex items-center justify-center hover:scale-110 active:scale-95 ${
                       isSelected
                         ? "ring-2 ring-indigo-500 ring-offset-2 dark:ring-offset-[#07090f] scale-110 shadow-md"
                         : "opacity-75 hover:opacity-100"
                     }`}
                   >
+                    {/* Tooltip label */}
+                    <span className="absolute bottom-7 scale-0 group-hover/color:scale-100 transition-all duration-150 origin-bottom bg-zinc-950/90 dark:bg-zinc-800/95 text-white text-[8px] font-extrabold uppercase tracking-wider py-1 px-2 rounded-lg pointer-events-none whitespace-nowrap shadow-md z-20">
+                      {palette.label}
+                    </span>
                     {isSelected && (
                       <span className="w-1.5 h-1.5 rounded-full bg-white shadow-inner animate-pulse" />
                     )}
@@ -3337,60 +3353,70 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
           <div className="lg:hidden w-full h-px bg-zinc-200/40 dark:bg-zinc-800/40" />
 
           {/* Grid vs List Toggle Switcher */}
-          <div className="flex items-center gap-2">
-            <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
-              Layout
-            </span>
-            <div className="flex rounded-lg p-0.5 bg-zinc-100 dark:bg-[#0e111a] border border-zinc-200/40 dark:border-zinc-800/40">
+          <div className="flex items-center gap-3">
+            {hasActiveFilters && (
               <button
-                onClick={() => setViewMode("grid")}
-                className={`p-1.5 rounded-md transition duration-150 cursor-pointer ${
-                  viewMode === "grid"
-                    ? "bg-white dark:bg-[#1a1f30] text-indigo-500 shadow-sm border border-zinc-250/10"
-                    : "text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-350"
-                }`}
-                title="Grid View"
+                onClick={handleResetFilters}
+                className="px-2.5 py-1.5 rounded-xl border border-red-200 dark:border-red-950/40 bg-red-500/10 hover:bg-red-500/15 text-red-600 dark:text-red-400 text-[9px] font-black uppercase tracking-wider transition active:scale-95 cursor-pointer shadow-sm animate-page-fade"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="w-3.5 h-3.5"
-                >
-                  <rect width="7" height="7" x="3" y="3" rx="1" />
-                  <rect width="7" height="7" x="14" y="3" rx="1" />
-                  <rect width="7" height="7" x="14" y="14" rx="1" />
-                  <rect width="7" height="7" x="3" y="14" rx="1" />
-                </svg>
+                Reset Filters
               </button>
-              <button
-                onClick={() => setViewMode("list")}
-                className={`p-1.5 rounded-md transition duration-150 cursor-pointer ${
-                  viewMode === "list"
-                    ? "bg-white dark:bg-[#1a1f30] text-indigo-500 shadow-sm border border-zinc-250/10"
-                    : "text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-350"
-                }`}
-                title="List View"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="w-3.5 h-3.5"
+            )}
+            <div className="flex items-center gap-2">
+              <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+                Layout
+              </span>
+              <div className="flex rounded-lg p-0.5 bg-zinc-100 dark:bg-[#0e111a] border border-zinc-200/40 dark:border-zinc-800/40">
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className={`p-1.5 rounded-md transition duration-150 cursor-pointer ${
+                    viewMode === "grid"
+                      ? "bg-white dark:bg-[#1a1f30] text-indigo-500 shadow-sm border border-zinc-250/10"
+                      : "text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-350"
+                  }`}
+                  title="Grid View"
                 >
-                  <line x1="3" x2="21" y1="6" y2="6" />
-                  <line x1="3" x2="21" y1="12" y2="12" />
-                  <line x1="3" x2="21" y1="18" y2="18" />
-                </svg>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-3.5 h-3.5"
+                  >
+                    <rect width="7" height="7" x="3" y="3" rx="1" />
+                    <rect width="7" height="7" x="14" y="3" rx="1" />
+                    <rect width="7" height="7" x="14" y="14" rx="1" />
+                    <rect width="7" height="7" x="3" y="14" rx="1" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => setViewMode("list")}
+                  className={`p-1.5 rounded-md transition duration-150 cursor-pointer ${
+                    viewMode === "list"
+                      ? "bg-white dark:bg-[#1a1f30] text-indigo-500 shadow-sm border border-zinc-250/10"
+                      : "text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-350"
+                  }`}
+                  title="List View"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-3.5 h-3.5"
+                  >
+                    <line x1="3" x2="21" y1="6" y2="6" />
+                    <line x1="3" x2="21" y1="12" y2="12" />
+                    <line x1="3" x2="21" y1="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -3426,11 +3452,12 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
         </div>
         {/* Icon Grid/List Catalog */}
         <div
-          className={
+          key={`${activeCategory}-${activeColorFilter}-${activePreset}-${search}`}
+          className={`${
             viewMode === "grid"
               ? "grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3"
               : "flex flex-col gap-3.5"
-          }
+          } animate-page-fade`}
         >
           {filteredIcons.slice(0, visibleCount).map((icon) => (
             <IconCard
@@ -3460,14 +3487,21 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
 
           {filteredIcons.length === 0 && (
             <div className="col-span-full py-12 px-6 flex flex-col items-center justify-center text-center text-zinc-400 dark:text-zinc-500 gap-6 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-3xl bg-zinc-50/50 dark:bg-[#090d16]/30 backdrop-blur-sm max-w-md mx-auto w-full">
-              <div className="flex flex-col items-center gap-1.5">
+              <div className="flex flex-col items-center gap-2">
                 <HelpCircle size={40} className="stroke-1 text-indigo-500 animate-pulse" />
                 <h3 className="text-sm font-extrabold text-zinc-800 dark:text-zinc-200 uppercase tracking-wide">
-                  Can't find the icon you need?
+                  No matching 3D icons found
                 </h3>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">
-                  Submit a request and our modeling team will design it!
+                <p className="text-xs text-zinc-500 dark:text-zinc-400 max-w-xs leading-relaxed">
+                  Try clearing active filters, or submit a request and our modeling team will design
+                  it!
                 </p>
+                <button
+                  onClick={handleResetFilters}
+                  className="mt-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition active:scale-95 cursor-pointer shadow-md shadow-indigo-600/10 border-0"
+                >
+                  Clear All Active Filters
+                </button>
               </div>
 
               {requestSubmitted ? (
