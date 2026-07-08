@@ -1,5 +1,6 @@
 import React from "react";
-import { Sparkles, Code, Layers, Settings, Heart } from "lucide-react";
+import { Sparkles, Heart } from "lucide-react";
+import { LayersIcon, GearIcon, CodeIcon } from "r3d-icons";
 
 export const Info: React.FC = () => {
   const codeString = `import { DatabaseIcon } from "r3d-icons";
@@ -40,8 +41,8 @@ export default function App() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         {/* Core Features */}
         <div className="p-5 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] space-y-3">
-          <div className="w-8 h-8 rounded-xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center">
-            <Layers size={16} />
+          <div className="w-8 h-8 rounded-xl bg-indigo-500/10 flex items-center justify-center">
+            <LayersIcon variant="2d" size={20} color="#6366f1" />
           </div>
           <h3 className="text-xs font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-200">
             Fully Tree-Shakeable
@@ -53,8 +54,8 @@ export default function App() {
         </div>
 
         <div className="p-5 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] space-y-3">
-          <div className="w-8 h-8 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center">
-            <Settings size={16} />
+          <div className="w-8 h-8 rounded-xl bg-purple-500/10 flex items-center justify-center">
+            <GearIcon variant="2d" size={20} color="#8b5cf6" />
           </div>
           <h3 className="text-xs font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-200">
             Highly Customizable
@@ -66,8 +67,8 @@ export default function App() {
         </div>
 
         <div className="p-5 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] space-y-3">
-          <div className="w-8 h-8 rounded-xl bg-pink-500/10 text-pink-500 flex items-center justify-center">
-            <Code size={16} />
+          <div className="w-8 h-8 rounded-xl bg-pink-500/10 flex items-center justify-center">
+            <CodeIcon variant="2d" size={20} color="#ec4899" />
           </div>
           <h3 className="text-xs font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-200">
             Dual Build Support
