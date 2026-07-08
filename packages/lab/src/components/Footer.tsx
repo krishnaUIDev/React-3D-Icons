@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "../router/Router";
-import { Heart, Grid, Package, Github, AlertCircle } from "lucide-react";
+import { Heart, Grid, Package, Github, AlertCircle, HelpCircle } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const { navigate } = useRouter();
@@ -41,13 +41,20 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Right: Inline Links */}
-        <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+        <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-wider text-zinc-550 dark:text-zinc-450">
           <button
             onClick={() => navigate("catalog")}
             className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
           >
             <Grid size={12} className="text-zinc-400" />
             <span>Catalog</span>
+          </button>
+          <button
+            onClick={() => navigate("info")}
+            className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
+          >
+            <HelpCircle size={12} className="text-zinc-400" />
+            <span>Info</span>
           </button>
           <a
             href="https://www.npmjs.com/package/r3d-icons"
