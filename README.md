@@ -305,13 +305,17 @@ export default function Page() {
 
 ## 🛠️ Development & Contributions
 
+### Local Development Setup
+
 To run the local developer sandbox dashboard (Vite + React showcase lab):
 
 ```bash
 npm run dev:lab
 ```
 
-To build the library package assets:
+### Build Pipeline
+
+To compile the library package assets (which automatically runs the dynamic icon exports generator before bundling):
 
 ```bash
 npm run build:lib
@@ -321,4 +325,30 @@ To compile the production bundles for the showcase site:
 
 ```bash
 npm run build:lab
+```
+
+### Quality Assurance & Automation
+
+#### 1. Code Style & Linters
+
+We enforce uniform formatting and code style across the monorepo:
+
+```bash
+# Run ESLint check
+npm run lint
+
+# Automatically format code using Prettier
+npm run format
+```
+
+#### 2. Pre-commit Git Hooks
+
+We utilize **Husky** and **lint-staged** to automate code style quality checks. When committing changes via `git commit`, ESLint and Prettier checks will run automatically on your staged files to fix formatting and lint errors before the commit is finalized.
+
+#### 3. End-to-End Testing
+
+We use **Playwright** to run end-to-end integration tests (covering user customization workflows, category selections, translations, theme selections, offline mode, and preset serialization):
+
+```bash
+npm run test:e2e
 ```
