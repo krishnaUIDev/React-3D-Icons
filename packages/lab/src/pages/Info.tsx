@@ -41,8 +41,16 @@ export default function App() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         {/* Core Features */}
         <div className="p-5 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] space-y-3">
-          <div className="w-8 h-8 rounded-xl bg-indigo-500/10 flex items-center justify-center">
-            <LayersIcon variant="2d" size={20} color="#6366f1" />
+          <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 dark:bg-indigo-500/5 flex items-center justify-center relative overflow-hidden mb-1">
+            <LayersIcon
+              size="100%"
+              color="#6366f1"
+              preset="glass"
+              interactive={false}
+              spinSpeed={0.8}
+              floatHeight={0.4}
+              theme="dark"
+            />
           </div>
           <h3 className="text-xs font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-200">
             Fully Tree-Shakeable
@@ -54,8 +62,16 @@ export default function App() {
         </div>
 
         <div className="p-5 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] space-y-3">
-          <div className="w-8 h-8 rounded-xl bg-purple-500/10 flex items-center justify-center">
-            <GearIcon variant="2d" size={20} color="#8b5cf6" />
+          <div className="w-14 h-14 rounded-2xl bg-purple-500/10 dark:bg-purple-500/5 flex items-center justify-center relative overflow-hidden mb-1">
+            <GearIcon
+              size="100%"
+              color="#8b5cf6"
+              preset="glass"
+              interactive={false}
+              spinSpeed={0.8}
+              floatHeight={0.4}
+              theme="dark"
+            />
           </div>
           <h3 className="text-xs font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-200">
             Highly Customizable
@@ -67,8 +83,16 @@ export default function App() {
         </div>
 
         <div className="p-5 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] space-y-3">
-          <div className="w-8 h-8 rounded-xl bg-pink-500/10 flex items-center justify-center">
-            <CodeIcon variant="2d" size={20} color="#ec4899" />
+          <div className="w-14 h-14 rounded-2xl bg-pink-500/10 dark:bg-pink-500/5 flex items-center justify-center relative overflow-hidden mb-1">
+            <CodeIcon
+              size="100%"
+              color="#ec4899"
+              preset="glass"
+              interactive={false}
+              spinSpeed={0.8}
+              floatHeight={0.4}
+              theme="dark"
+            />
           </div>
           <h3 className="text-xs font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-200">
             Dual Build Support
