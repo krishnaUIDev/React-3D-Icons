@@ -91,7 +91,7 @@ export const Header: React.FC<HeaderProps> = ({
                 route === "saved" ? "text-indigo-600 dark:text-indigo-400" : ""
               }`}
             >
-              Saved Presets
+              {t("saved_presets_nav" as any)}
             </button>
           </nav>
         </div>

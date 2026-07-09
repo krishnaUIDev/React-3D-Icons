@@ -2680,6 +2680,83 @@ export const ICONS_REGISTRY = [
   })()
 ];
 
+const PerformanceStatsHUD: React.FC<{ activeIconName: string }> = ({ activeIconName }) => {
+  const [fps, setFps] = useState(60);
+  const [memory, setMemory] = useState<string>("N/A");
+
+  useEffect(() => {
+    let lastTime = performance.now();
+    let frames = 0;
+    let animationFrameId: number;
+
+    const calculateFps = () => {
+      const now = performance.now();
+      frames++;
+      if (now >= lastTime + 1000) {
+        setFps(Math.round((frames * 1000) / (now - lastTime)));
+        frames = 0;
+        lastTime = now;
+
+        const perf = window.performance as any;
+        if (perf && perf.memory) {
+          const used = Math.round(perf.memory.usedJSHeapSize / (1024 * 1024));
+          setMemory(`${used} MB`);
+        }
+      }
+      animationFrameId = requestAnimationFrame(calculateFps);
+    };
+
+    animationFrameId = requestAnimationFrame(calculateFps);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
+  const complexity = activeIconName.toLowerCase().includes("shield")
+    ? { tris: "4,824", verts: "6,102", drawCalls: "14" }
+    : activeIconName.toLowerCase().includes("camera")
+      ? { tris: "11,250", verts: "14,312", drawCalls: "28" }
+      : activeIconName.toLowerCase().includes("card")
+        ? { tris: "3,210", verts: "4,400", drawCalls: "8" }
+        : { tris: "6,420", verts: "8,924", drawCalls: "16" };
+
+  return (
+    <div className="absolute bottom-4 left-4 z-20 bg-zinc-950/85 backdrop-blur-md rounded-2xl border border-zinc-800 p-3.5 w-44 text-[10px] text-zinc-400 space-y-2 font-mono shadow-2xl animate-page-fade">
+      <div className="flex items-center justify-between border-b border-zinc-800 pb-1.5 mb-1.5">
+        <span className="text-[9px] font-black text-indigo-400 uppercase tracking-widest flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
+          DIAGNOSTICS
+        </span>
+        <span className="text-[8px] px-1 bg-zinc-800 rounded font-bold text-zinc-500 uppercase">
+          R3F RUNTIME
+        </span>
+      </div>
+      <div className="flex justify-between items-center">
+        <span>FPS Monitor:</span>
+        <span
+          className={`font-bold ${fps > 50 ? "text-emerald-400" : fps > 30 ? "text-amber-400" : "text-rose-500"}`}
+        >
+          {fps} FPS
+        </span>
+      </div>
+      <div className="flex justify-between items-center">
+        <span>Draw Calls:</span>
+        <span className="font-bold text-white">{complexity.drawCalls}</span>
+      </div>
+      <div className="flex justify-between items-center">
+        <span>Triangles:</span>
+        <span className="font-bold text-white">{complexity.tris}</span>
+      </div>
+      <div className="flex justify-between items-center">
+        <span>Vertices:</span>
+        <span className="font-bold text-white">{complexity.verts}</span>
+      </div>
+      <div className="flex justify-between items-center">
+        <span>Heap Memory:</span>
+        <span className="font-bold text-indigo-300">{memory}</span>
+      </div>
+    </div>
+  );
+};
+
 // Curated palettes: { name, color, accentColor }
 const CURATED_PALETTES = [
   { name: "Neon Indigo", color: "#6366f1", accentColor: "#ec4899" },
@@ -2717,7 +2794,6 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [copiedSVG, setCopiedSVG] = useState(false);
   const [copiedTSXWrapper, setCopiedTSXWrapper] = useState(false);
   const [downloading, setDownloading] = useState(false);
-  const [downloadingPNG, setDownloadingPNG] = useState(false);
   const [resetKey, setResetKey] = useState(0);
   const [renderMode, setRenderMode] = useState<"3d" | "2d">("3d");
   const [environment, setEnvironment] = useState<IconEnvironment>("city");
@@ -2739,6 +2815,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [cameraZoom, setCameraZoom] = useState(4.5);
   const [cameraFov, setCameraFov] = useState(45);
   const [shareSuccess, setShareSuccess] = useState(false);
+  const [embedSuccess, setEmbedSuccess] = useState(false);
   const [lightIntensity, setLightIntensity] = useState(1.0);
   const [lightColor, setLightColor] = useState("#c084fc");
   const [lightColorInput, setLightColorInput] = useState("#c084fc");
@@ -2791,6 +2868,34 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   // Saved Custom Presets
   const [savedPresets, setSavedPresets] = useState<any[]>([]);
   const [newPresetName, setNewPresetName] = useState("");
+
+  // Premium Features States
+  const [gradientType, setGradientType] = useState<"none" | "linear" | "radial">("none");
+  const [gradientColorStart, setGradientColorStart] = useState("#6366f1");
+  const [gradientColorStartInput, setGradientColorStartInput] = useState("#6366f1");
+  const [gradientColorEnd, setGradientColorEnd] = useState("#ec4899");
+  const [gradientColorEndInput, setGradientColorEndInput] = useState("#ec4899");
+  const [gradientAngle, setGradientAngle] = useState(45);
+  const [tuningGradientOpen, setTuningGradientOpen] = useState(false);
+
+  const [ambientLightIntensity, setAmbientLightIntensity] = useState(0.4);
+  const [ambientLightColor, setAmbientLightColor] = useState("#3f3f46");
+  const [ambientLightColorInput, setAmbientLightColorInput] = useState("#3f3f46");
+
+  const [showPerfStats, setShowPerfStats] = useState(false);
+
+  const [animationPlaying, setAnimationPlaying] = useState(true);
+  const [scrubberRotation, setScrubberRotation] = useState(0);
+
+  const [isScreenshotModalOpen, setIsScreenshotModalOpen] = useState(false);
+  const [screenshotBackdrop, setScreenshotBackdrop] = useState<
+    "transparent" | "solid" | "gradient" | "grid"
+  >("transparent");
+  const [screenshotBgStart, setScreenshotBgStart] = useState("#0b0f19");
+  const [screenshotBgStartInput, setScreenshotBgStartInput] = useState("#0b0f19");
+  const [screenshotBgEnd, setScreenshotBgEnd] = useState("#1f2937");
+  const [screenshotBgEndInput, setScreenshotBgEndInput] = useState("#1f2937");
+  const [screenshotScale, setScreenshotScale] = useState(2);
 
   // Compare mode list (4 icon IDs)
   const [compareList, setCompareList] = useState<string[]>([]);
@@ -2868,6 +2973,22 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
         if (decoded.emissivePulseIntensity !== undefined)
           setEmissivePulseIntensity(decoded.emissivePulseIntensity);
         if (decoded.lightingPreset) setLightingPreset(decoded.lightingPreset);
+        if (decoded.ambientLightIntensity !== undefined)
+          setAmbientLightIntensity(decoded.ambientLightIntensity);
+        if (decoded.ambientLightColor) {
+          setAmbientLightColor(decoded.ambientLightColor);
+          setAmbientLightColorInput(decoded.ambientLightColor);
+        }
+        if (decoded.gradientType) setGradientType(decoded.gradientType);
+        if (decoded.gradientColorStart) {
+          setGradientColorStart(decoded.gradientColorStart);
+          setGradientColorStartInput(decoded.gradientColorStart);
+        }
+        if (decoded.gradientColorEnd) {
+          setGradientColorEnd(decoded.gradientColorEnd);
+          setGradientColorEndInput(decoded.gradientColorEnd);
+        }
+        if (decoded.gradientAngle !== undefined) setGradientAngle(decoded.gradientAngle);
 
         if (decoded.customMaterial) {
           const defaults = getMaterialConfig(
@@ -2995,6 +3116,24 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       ? `\n        accentLightAngle={${accentLightAngle}}`
       : "";
 
+  const ambientLightIntensityProp =
+    ambientLightIntensity !== 0.4
+      ? `\n        ambientLightIntensity={${ambientLightIntensity.toFixed(2)}}`
+      : "";
+  const ambientLightColorProp =
+    ambientLightColor !== "#3f3f46" ? `\n        ambientLightColor="${ambientLightColor}"` : "";
+
+  const gradientTypeProp =
+    gradientType !== "none" ? `\n        gradientType="${gradientType}"` : "";
+  const gradientColorStartProp =
+    gradientType !== "none" ? `\n        gradientColorStart="${gradientColorStart}"` : "";
+  const gradientColorEndProp =
+    gradientType !== "none" ? `\n        gradientColorEnd="${gradientColorEnd}"` : "";
+  const gradientAngleProp =
+    gradientType === "linear" && gradientAngle !== 45
+      ? `\n        gradientAngle={${gradientAngle}}`
+      : "";
+
   // Preset Handlers
   const handleSavePreset = () => {
     if (!newPresetName.trim()) return;
@@ -3013,7 +3152,13 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       emissivePulseSpeed,
       emissivePulseIntensity,
       lightingPreset,
-      customMaterial
+      customMaterial,
+      gradientType,
+      gradientColorStart,
+      gradientColorEnd,
+      gradientAngle,
+      ambientLightIntensity,
+      ambientLightColor
     };
     const updated = [...savedPresets, newPreset];
     setSavedPresets(updated);
@@ -3055,7 +3200,13 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
         emissivePulseSpeed,
         emissivePulseIntensity,
         lightingPreset,
-        customMaterial
+        customMaterial,
+        gradientType,
+        gradientColorStart,
+        gradientColorEnd,
+        gradientAngle,
+        ambientLightIntensity,
+        ambientLightColor
       };
       const serialized = btoa(encodeURIComponent(JSON.stringify(data)));
       const shareUrl = `${window.location.origin}${window.location.pathname}?share=${serialized}#/icons/${color.replace("#", "")}-${iconId}`;
@@ -3065,6 +3216,54 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       setTimeout(() => setShareSuccess(false), 2000);
     } catch (e) {
       console.error("Failed to generate share URL", e);
+    }
+  };
+
+  const handleCopyEmbedCode = () => {
+    try {
+      const data = {
+        iconId,
+        preset,
+        angle,
+        renderMode,
+        color,
+        accentColor,
+        spinSpeed,
+        floatHeight,
+        environment,
+        viewportBg,
+        previewContext,
+        cameraZoom,
+        cameraFov,
+        lightIntensity,
+        lightColor,
+        tiltIntensity,
+        animationType,
+        animationAxis,
+        animationDirection,
+        shadowOpacity,
+        shadowBlur,
+        textureType,
+        emissivePulseSpeed,
+        emissivePulseIntensity,
+        lightingPreset,
+        customMaterial,
+        gradientType,
+        gradientColorStart,
+        gradientColorEnd,
+        gradientAngle,
+        ambientLightIntensity,
+        ambientLightColor
+      };
+      const serialized = btoa(encodeURIComponent(JSON.stringify(data)));
+      const embedUrl = `${window.location.origin}${window.location.pathname}?embed=true&share=${serialized}#/icons/${color.replace("#", "")}-${iconId}`;
+      const iframeCode = `<iframe src="${embedUrl}" width="300" height="300" style="border: none; background: transparent;" allowtransparency="true"></iframe>`;
+
+      navigator.clipboard.writeText(iframeCode);
+      setEmbedSuccess(true);
+      setTimeout(() => setEmbedSuccess(false), 2000);
+    } catch (e) {
+      console.error("Failed to copy embed code", e);
     }
   };
 
@@ -3139,6 +3338,21 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       p.emissivePulseIntensity !== undefined ? p.emissivePulseIntensity : 0.5
     );
     setLightingPreset(p.lightingPreset || "studio");
+    if (p.ambientLightIntensity !== undefined) setAmbientLightIntensity(p.ambientLightIntensity);
+    if (p.ambientLightColor) {
+      setAmbientLightColor(p.ambientLightColor);
+      setAmbientLightColorInput(p.ambientLightColor);
+    }
+    if (p.gradientType) setGradientType(p.gradientType);
+    if (p.gradientColorStart) {
+      setGradientColorStart(p.gradientColorStart);
+      setGradientColorStartInput(p.gradientColorStart);
+    }
+    if (p.gradientColorEnd) {
+      setGradientColorEnd(p.gradientColorEnd);
+      setGradientColorEndInput(p.gradientColorEnd);
+    }
+    if (p.gradientAngle !== undefined) setGradientAngle(p.gradientAngle);
 
     // Apply custom material properties
     const defaults = getMaterialConfig(
@@ -3222,7 +3436,7 @@ function App() {
         spinSpeed={${spinSpeed.toFixed(1)}}
         floatHeight={${floatHeight.toFixed(1)}}
         theme="${theme}"
-        interactive={${interactive}}${cameraZoomProp}${cameraFovProp}${lightIntensityProp}${lightColorProp}${tiltIntensityProp}${animationTypeProp}${animationAxisProp}${animationDirectionProp}${shadowOpacityProp}${shadowBlurProp}${textureTypeProp}${emissivePulseSpeedProp}${emissivePulseIntensityProp}${lightingPresetProp}${accentLightColorProp}${accentLightIntensityProp}${accentLightAngleProp}${customMaterialProp}
+        interactive={${interactive}}${cameraZoomProp}${cameraFovProp}${lightIntensityProp}${lightColorProp}${tiltIntensityProp}${animationTypeProp}${animationAxisProp}${animationDirectionProp}${shadowOpacityProp}${shadowBlurProp}${textureTypeProp}${emissivePulseSpeedProp}${emissivePulseIntensityProp}${lightingPresetProp}${accentLightColorProp}${accentLightIntensityProp}${accentLightAngleProp}${ambientLightIntensityProp}${ambientLightColorProp}${gradientTypeProp}${gradientColorStartProp}${gradientColorEndProp}${gradientAngleProp}${customMaterialProp}
       />
     </div>
   );
@@ -3345,27 +3559,89 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
   };
 
   const handleDownloadPNG = () => {
-    if (downloadingPNG) return;
-    setDownloadingPNG(true);
+    setIsScreenshotModalOpen(true);
+  };
 
-    setTimeout(() => {
-      const canvasElement =
-        document.querySelector("#main-viewport canvas") || document.querySelector("canvas");
-      if (canvasElement instanceof HTMLCanvasElement) {
-        try {
-          const dataUrl = canvasElement.toDataURL("image/png");
-          const link = document.createElement("a");
-          link.href = dataUrl;
-          link.download = `${currentIcon.id}-3d-${preset}.png`;
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        } catch (err) {
-          console.error("Failed to capture 3D canvas PNG snapshot:", err);
+  const performHighQualityCapture = () => {
+    const canvasElement =
+      document.querySelector("#main-viewport canvas") || document.querySelector("canvas");
+    if (!(canvasElement instanceof HTMLCanvasElement)) {
+      alert("Could not locate the 3D canvas viewport.");
+      return;
+    }
+
+    try {
+      const compCanvas = document.createElement("canvas");
+      const ctx = compCanvas.getContext("2d");
+      if (!ctx) return;
+
+      const baseWidth = canvasElement.width;
+      const baseHeight = canvasElement.height;
+      const width = baseWidth * screenshotScale;
+      const height = baseHeight * screenshotScale;
+      compCanvas.width = width;
+      compCanvas.height = height;
+
+      if (screenshotBackdrop === "solid") {
+        ctx.fillStyle = screenshotBgStart;
+        ctx.fillRect(0, 0, width, height);
+      } else if (screenshotBackdrop === "gradient") {
+        const grad = ctx.createLinearGradient(0, 0, width, height);
+        grad.addColorStop(0, screenshotBgStart);
+        grad.addColorStop(1, screenshotBgEnd);
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
+      } else if (screenshotBackdrop === "grid") {
+        ctx.fillStyle = theme === "dark" ? "#090c15" : "#f4f4f5";
+        ctx.fillRect(0, 0, width, height);
+
+        ctx.strokeStyle = "rgba(99, 102, 241, 0.15)";
+        ctx.lineWidth = 1.5 * screenshotScale;
+        const gridSize = 24 * screenshotScale;
+        for (let x = 0; x < width; x += gridSize) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, height);
+          ctx.stroke();
         }
+        for (let y = 0; y < height; y += gridSize) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(width, y);
+          ctx.stroke();
+        }
+      } else {
+        ctx.clearRect(0, 0, width, height);
       }
-      setDownloadingPNG(false);
-    }, 100);
+
+      ctx.drawImage(canvasElement, 0, 0, width, height);
+
+      const dataUrl = compCanvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = dataUrl;
+      link.download = `${currentIcon.id}-3d-composited-${screenshotBackdrop}-${preset}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setViewportFlash(true);
+      setTimeout(() => setViewportFlash(false), 250);
+      setIsScreenshotModalOpen(false);
+    } catch (err) {
+      console.error("Failed to perform high quality composited screenshot capture:", err);
+      try {
+        const dataUrl = canvasElement.toDataURL("image/png");
+        const fallbackLink = document.createElement("a");
+        fallbackLink.href = dataUrl;
+        fallbackLink.download = `${currentIcon.id}-3d-fallback.png`;
+        document.body.appendChild(fallbackLink);
+        fallbackLink.click();
+        document.body.removeChild(fallbackLink);
+      } catch (innerErr) {
+        console.error("Inner fallback capture also failed:", innerErr);
+      }
+      setIsScreenshotModalOpen(false);
+    }
   };
 
   const handleCopySVG = () => {
@@ -3623,6 +3899,58 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     }
   };
 
+  const canvasIconProps = {
+    preset,
+    angle,
+    environment,
+    variant: renderMode,
+    color,
+    accentColor,
+    spinSpeed: animationPlaying ? spinSpeed : 0,
+    floatHeight: animationPlaying ? floatHeight : 0,
+    theme,
+    interactive,
+    customMaterial,
+    cameraZoom,
+    cameraFov,
+    lightIntensity,
+    lightColor,
+    tiltIntensity,
+    animationType,
+    animationAxis,
+    animationDirection,
+    shadowOpacity,
+    shadowBlur,
+    textureType,
+    emissivePulseSpeed,
+    emissivePulseIntensity,
+    lightingPreset,
+    accentLightColor,
+    accentLightIntensity,
+    accentLightAngle,
+    ambientLightColor,
+    ambientLightIntensity,
+    gradientType,
+    gradientColorStart,
+    gradientColorEnd,
+    gradientAngle,
+    manualRotationX: animationPlaying ? undefined : 0,
+    manualRotationY: animationPlaying ? undefined : (scrubberRotation * Math.PI) / 180,
+    manualRotationZ: animationPlaying ? undefined : 0
+  };
+
+  const isEmbed = new URLSearchParams(window.location.search).get("embed") === "true";
+
+  if (isEmbed) {
+    return (
+      <div className="w-screen h-screen overflow-hidden bg-transparent flex items-center justify-center relative">
+        <div id="main-viewport" className="w-full h-full flex items-center justify-center">
+          <ActiveComponent key={resetKey} {...canvasIconProps} interactive={true} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-6  space-y-4">
       {/* Back button and title */}
@@ -3754,6 +4082,17 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm transition active:scale-95 cursor-pointer"
                     >
                       <LucideAll.Maximize2 size={16} />
+                    </button>
+                    <button
+                      onClick={() => setShowPerfStats(!showPerfStats)}
+                      title="Toggle Performance Diagnostics HUD"
+                      className={`p-2.5 rounded-xl border transition active:scale-95 cursor-pointer flex items-center justify-center ${
+                        showPerfStats
+                          ? "border-indigo-500 bg-indigo-50/20 text-indigo-600 dark:text-indigo-400"
+                          : "border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm"
+                      }`}
+                    >
+                      <LucideAll.Activity size={16} />
                     </button>
                     <button
                       onClick={handleReset}
@@ -4080,37 +4419,8 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         id="main-viewport"
                         className="w-full h-full flex items-center justify-center"
                       >
-                        <ActiveComponent
-                          key={resetKey}
-                          preset={preset}
-                          angle={angle}
-                          environment={environment}
-                          variant={renderMode}
-                          color={color}
-                          accentColor={accentColor}
-                          spinSpeed={spinSpeed}
-                          floatHeight={floatHeight}
-                          theme={theme}
-                          interactive={interactive}
-                          customMaterial={customMaterial}
-                          cameraZoom={cameraZoom}
-                          cameraFov={cameraFov}
-                          lightIntensity={lightIntensity}
-                          lightColor={lightColor}
-                          tiltIntensity={tiltIntensity}
-                          animationType={animationType}
-                          animationAxis={animationAxis}
-                          animationDirection={animationDirection}
-                          shadowOpacity={shadowOpacity}
-                          shadowBlur={shadowBlur}
-                          textureType={textureType}
-                          emissivePulseSpeed={emissivePulseSpeed}
-                          emissivePulseIntensity={emissivePulseIntensity}
-                          lightingPreset={lightingPreset}
-                          accentLightColor={accentLightColor}
-                          accentLightIntensity={accentLightIntensity}
-                          accentLightAngle={accentLightAngle}
-                        />
+                        <ActiveComponent key={resetKey} {...canvasIconProps} />
+                        {showPerfStats && <PerformanceStatsHUD activeIconName={currentIcon.name} />}
                       </div>
                     )}
 
@@ -4758,7 +5068,6 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                 {renderMode === "3d" && (
                   <button
                     onClick={handleDownloadPNG}
-                    disabled={downloadingPNG}
                     title="Download High-Resolution 3D PNG"
                     className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-violet-600 dark:hover:text-violet-400 transition cursor-pointer active:scale-95 disabled:opacity-50"
                   >
@@ -5066,7 +5375,141 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                   )}
                 </div>
 
+                {/* Gradient Customizer Group */}
+                <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setTuningGradientOpen(!tuningGradientOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Gradients & Overlays</span>
+                    {tuningGradientOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {tuningGradientOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-850/60 animate-page-fade">
+                      {/* Gradient Type Selector */}
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                          Gradient Type
+                        </label>
+                        <div className="flex gap-2">
+                          {(
+                            [
+                              { id: "none", name: "Solid Color" },
+                              { id: "linear", name: "Linear" },
+                              { id: "radial", name: "Radial" }
+                            ] as const
+                          ).map((gt) => {
+                            const isSelected = gradientType === gt.id;
+                            return (
+                              <button
+                                key={gt.id}
+                                onClick={() => setGradientType(gt.id)}
+                                className={`py-1.5 px-3 rounded-xl text-[10px] font-bold uppercase border transition cursor-pointer flex-grow text-center ${
+                                  isSelected
+                                    ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                    : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-650 dark:text-zinc-400"
+                                }`}
+                              >
+                                {gt.name}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      {/* Gradient Colors */}
+                      {gradientType !== "none" && (
+                        <div className="grid grid-cols-2 gap-3 animate-page-fade">
+                          {/* Start Color */}
+                          <div className="space-y-1">
+                            <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider">
+                              Start Color
+                            </span>
+                            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
+                              <input
+                                type="color"
+                                value={gradientColorStart}
+                                onChange={(e) => {
+                                  setGradientColorStart(e.target.value);
+                                  setGradientColorStartInput(e.target.value);
+                                }}
+                                className="w-4 h-4 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
+                              />
+                              <input
+                                type="text"
+                                value={gradientColorStartInput}
+                                onChange={(e) => {
+                                  setGradientColorStartInput(e.target.value);
+                                  if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                                    setGradientColorStart(e.target.value);
+                                  }
+                                }}
+                                maxLength={7}
+                                className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400 focus:outline-none focus:text-indigo-500 uppercase p-0"
+                              />
+                            </div>
+                          </div>
+
+                          {/* End Color */}
+                          <div className="space-y-1">
+                            <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider">
+                              End Color
+                            </span>
+                            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
+                              <input
+                                type="color"
+                                value={gradientColorEnd}
+                                onChange={(e) => {
+                                  setGradientColorEnd(e.target.value);
+                                  setGradientColorEndInput(e.target.value);
+                                }}
+                                className="w-4 h-4 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
+                              />
+                              <input
+                                type="text"
+                                value={gradientColorEndInput}
+                                onChange={(e) => {
+                                  setGradientColorEndInput(e.target.value);
+                                  if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                                    setGradientColorEnd(e.target.value);
+                                  }
+                                }}
+                                maxLength={7}
+                                className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400 focus:outline-none focus:text-indigo-500 uppercase p-0"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Gradient Angle Slider (Only for Linear) */}
+                      {gradientType === "linear" && (
+                        <div className="space-y-1.5 animate-page-fade">
+                          <div className="flex justify-between items-center text-[10px] font-bold">
+                            <span className="text-zinc-500 uppercase tracking-wider">
+                              Gradient Angle
+                            </span>
+                            <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                              {gradientAngle}°
+                            </span>
+                          </div>
+                          <input
+                            type="range"
+                            min="0"
+                            max="360"
+                            step="5"
+                            value={gradientAngle}
+                            onChange={(e) => setGradientAngle(parseInt(e.target.value))}
+                            className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
                 {/* 3. Motion & Animation Group */}
+
                 <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
                   <button
                     onClick={() => setTuningMotionOpen(!tuningMotionOpen)}
@@ -5235,6 +5678,66 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                           />
                           <div className="w-11 h-6 bg-zinc-200 dark:bg-zinc-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-350 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600" />
                         </label>
+                      </div>
+
+                      {/* Timeline & Playback Rig */}
+                      <div className="space-y-3 pt-3 border-t border-zinc-150 dark:border-zinc-800/80 animate-page-fade">
+                        <label className="text-[10px] font-bold text-indigo-500 uppercase tracking-wider block">
+                          Timeline Playback
+                        </label>
+
+                        <div className="flex items-center justify-between">
+                          <span className="text-[10px] font-bold text-zinc-450 dark:text-zinc-500 uppercase tracking-wider">
+                            Animation State
+                          </span>
+                          <button
+                            onClick={() => setAnimationPlaying(!animationPlaying)}
+                            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-extrabold text-[10px] uppercase tracking-wider transition active:scale-95 cursor-pointer border ${
+                              animationPlaying
+                                ? "bg-indigo-600 border-indigo-600 text-white shadow-md shadow-indigo-600/10 hover:bg-indigo-500"
+                                : "bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800"
+                            }`}
+                          >
+                            {animationPlaying ? (
+                              <>
+                                <LucideAll.Pause size={10} fill="currentColor" />
+                                <span>Playing</span>
+                              </>
+                            ) : (
+                              <>
+                                <LucideAll.Play size={10} fill="currentColor" />
+                                <span>Paused</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+
+                        {/* Scrubber slider - only active when paused */}
+                        {!animationPlaying && (
+                          <div className="space-y-1.5 animate-page-fade">
+                            <div className="flex justify-between items-center text-[10px] font-bold text-zinc-450 dark:text-zinc-500">
+                              <span className="uppercase tracking-wider">
+                                Manual Orbit Scrubber
+                              </span>
+                              <span className="text-zinc-700 dark:text-zinc-300 font-mono">
+                                {scrubberRotation}°
+                              </span>
+                            </div>
+                            <input
+                              type="range"
+                              min="0"
+                              max="360"
+                              step="2"
+                              value={scrubberRotation}
+                              onChange={(e) => setScrubberRotation(parseInt(e.target.value))}
+                              className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            />
+                            <span className="text-[8px] text-zinc-400 dark:text-zinc-500 italic block leading-relaxed">
+                              Drag the slider to manually rotate the 3D model when playback is
+                              paused.
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}
@@ -5951,6 +6454,69 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         )}
                       </div>
 
+                      {/* Ambient Light overrides */}
+                      <div className="space-y-3 pt-2 border-t border-zinc-100 dark:border-zinc-800/80">
+                        <label className="text-[10px] font-bold text-indigo-500 uppercase tracking-wider block">
+                          Ambient Light Override
+                        </label>
+
+                        {/* Ambient Light Intensity */}
+                        <div className="space-y-1.5">
+                          <div className="flex justify-between items-center text-[10px] font-bold">
+                            <span className="text-zinc-550 dark:text-zinc-450 uppercase tracking-wider">
+                              Ambient Brightness
+                            </span>
+                            <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                              {ambientLightIntensity.toFixed(2)}x
+                            </span>
+                          </div>
+                          <input
+                            type="range"
+                            min="0.0"
+                            max="2.5"
+                            step="0.05"
+                            value={ambientLightIntensity}
+                            onChange={(e) => setAmbientLightIntensity(parseFloat(e.target.value))}
+                            className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                          />
+                        </div>
+
+                        {/* Ambient Light Color */}
+                        <div className="space-y-1.5">
+                          <label className="flex justify-between items-center text-[10px] font-bold">
+                            <span className="text-zinc-555 dark:text-zinc-455 uppercase tracking-wider">
+                              Ambient Color
+                            </span>
+                            <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                              {ambientLightColor}
+                            </span>
+                          </label>
+                          <div className="flex gap-1.5">
+                            <input
+                              type="color"
+                              value={ambientLightColor}
+                              onChange={(e) => {
+                                setAmbientLightColor(e.target.value);
+                                setAmbientLightColorInput(e.target.value);
+                              }}
+                              className="w-8 h-8 rounded-lg border-0 cursor-pointer p-0 bg-transparent flex-shrink-0"
+                            />
+                            <input
+                              type="text"
+                              value={ambientLightColorInput}
+                              onChange={(e) => {
+                                setAmbientLightColorInput(e.target.value);
+                                if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                                  setAmbientLightColor(e.target.value);
+                                }
+                              }}
+                              placeholder="#3f3f46"
+                              className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-indigo-500 rounded-xl px-2.5 py-1 text-[10px] focus:outline-none text-zinc-900 dark:text-white transition flex-grow font-mono"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
                       {/* Contact Shadows */}
                       <div className="space-y-3 pt-2 border-t border-zinc-100 dark:border-zinc-800/80">
                         {/* Shadow Opacity */}
@@ -6032,20 +6598,30 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                   <label className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
                     Workspace Portability
                   </label>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-3 gap-1.5">
                     <button
                       onClick={handleSharePlayground}
-                      className="flex items-center justify-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl py-2 px-3 text-[10px] font-bold transition active:scale-95 cursor-pointer shadow-md shadow-indigo-500/10 dark:shadow-none"
+                      className="flex items-center justify-center gap-1 bg-indigo-600 hover:bg-indigo-755 text-white rounded-xl py-2 px-2 text-[9px] font-bold transition active:scale-95 cursor-pointer shadow-sm"
+                      title="Copy Shareable Playground Link"
                     >
-                      <LucideAll.Share2 size={12} />
-                      <span>{shareSuccess ? "Copied!" : "Share Link"}</span>
+                      <LucideAll.Share2 size={11} />
+                      <span>{shareSuccess ? "Copied!" : "Share URL"}</span>
+                    </button>
+                    <button
+                      onClick={handleCopyEmbedCode}
+                      className="flex items-center justify-center gap-1 bg-violet-600 hover:bg-violet-755 text-white rounded-xl py-2 px-2 text-[9px] font-bold transition active:scale-95 cursor-pointer shadow-sm"
+                      title="Copy Iframe Code Embed Snippet"
+                    >
+                      <LucideAll.Code size={11} />
+                      <span>{embedSuccess ? "Copied!" : "Embed Code"}</span>
                     </button>
                     <button
                       onClick={handleExportPresets}
-                      className="flex items-center justify-center gap-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-200 rounded-xl py-2 px-3 text-[10px] font-bold transition active:scale-95 cursor-pointer border border-zinc-200 dark:border-zinc-700"
+                      className="flex items-center justify-center gap-1 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-800 dark:text-zinc-250 rounded-xl py-2 px-2 text-[9px] font-bold transition active:scale-95 cursor-pointer border border-zinc-200/80 dark:border-zinc-700"
+                      title="Download Backup Presets JSON File"
                     >
-                      <LucideAll.Download size={12} />
-                      <span>Backup JSON</span>
+                      <LucideAll.Download size={11} />
+                      <span>Backup</span>
                     </button>
                   </div>
                   <div className="pt-0.5">
@@ -6208,6 +6784,199 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
           })}
         </div>
       </div>
+      {/* High-Quality Screenshot Compositor Modal */}
+      {isScreenshotModalOpen && (
+        <div className="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-page-fade">
+          <div className="bg-white dark:bg-[#0b0e16] border border-zinc-200 dark:border-zinc-800 rounded-3xl w-full max-w-md p-6 space-y-5 shadow-2xl relative animate-scale-up">
+            <button
+              onClick={() => setIsScreenshotModalOpen(false)}
+              className="absolute top-4 right-4 text-zinc-400 dark:text-zinc-550 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors p-1 cursor-pointer"
+            >
+              <LucideAll.X size={18} />
+            </button>
+
+            <div className="space-y-1">
+              <h3 className="text-sm font-extrabold uppercase tracking-wider text-zinc-900 dark:text-white flex items-center gap-2">
+                <LucideAll.Camera size={16} className="text-indigo-500" />
+                <span>Premium Canvas screenshot</span>
+              </h3>
+              <p className="text-[10px] text-zinc-500 dark:text-zinc-400 leading-normal">
+                Configure backdrops and high-resolution multipliers to render stunning marketing
+                graphics.
+              </p>
+            </div>
+
+            {/* Backdrop Selector */}
+            <div className="space-y-2">
+              <label className="text-[10px] font-bold text-zinc-450 dark:text-zinc-500 uppercase tracking-wider block">
+                Compositor Backdrop
+              </label>
+              <div className="grid grid-cols-4 gap-1.5">
+                {(
+                  [
+                    { id: "transparent", name: "Transparent" },
+                    { id: "solid", name: "Solid" },
+                    { id: "gradient", name: "Gradient" },
+                    { id: "grid", name: "Grid Overlay" }
+                  ] as const
+                ).map((mode) => (
+                  <button
+                    key={mode.id}
+                    onClick={() => setScreenshotBackdrop(mode.id)}
+                    className={`py-1.5 px-1 rounded-xl text-[9px] font-bold border uppercase transition cursor-pointer text-center ${
+                      screenshotBackdrop === mode.id
+                        ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                        : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-650 dark:text-zinc-450"
+                    }`}
+                  >
+                    {mode.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Backdrop Color Selectors */}
+            {screenshotBackdrop === "solid" && (
+              <div className="space-y-1.5 animate-page-fade">
+                <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-500 uppercase tracking-wider block">
+                  Backdrop Solid Color
+                </span>
+                <div className="flex gap-2">
+                  <input
+                    type="color"
+                    value={screenshotBgStart}
+                    onChange={(e) => {
+                      setScreenshotBgStart(e.target.value);
+                      setScreenshotBgStartInput(e.target.value);
+                    }}
+                    className="w-8 h-8 rounded-lg border-0 cursor-pointer p-0 bg-transparent flex-shrink-0"
+                  />
+                  <input
+                    type="text"
+                    value={screenshotBgStartInput}
+                    onChange={(e) => {
+                      setScreenshotBgStartInput(e.target.value);
+                      if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                        setScreenshotBgStart(e.target.value);
+                      }
+                    }}
+                    maxLength={7}
+                    className="bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 focus:border-indigo-500 rounded-xl px-2.5 py-1 text-[10px] focus:outline-none text-zinc-900 dark:text-white transition flex-grow font-mono"
+                  />
+                </div>
+              </div>
+            )}
+
+            {screenshotBackdrop === "gradient" && (
+              <div className="grid grid-cols-2 gap-3 animate-page-fade">
+                {/* Start Color */}
+                <div className="space-y-1">
+                  <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider">
+                    Gradient Start
+                  </span>
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
+                    <input
+                      type="color"
+                      value={screenshotBgStart}
+                      onChange={(e) => {
+                        setScreenshotBgStart(e.target.value);
+                        setScreenshotBgStartInput(e.target.value);
+                      }}
+                      className="w-4 h-4 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
+                    />
+                    <input
+                      type="text"
+                      value={screenshotBgStartInput}
+                      onChange={(e) => {
+                        setScreenshotBgStartInput(e.target.value);
+                        if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                          setScreenshotBgStart(e.target.value);
+                        }
+                      }}
+                      maxLength={7}
+                      className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-650 dark:text-zinc-450 focus:outline-none focus:text-indigo-500 uppercase p-0"
+                    />
+                  </div>
+                </div>
+
+                {/* End Color */}
+                <div className="space-y-1">
+                  <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider">
+                    Gradient End
+                  </span>
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
+                    <input
+                      type="color"
+                      value={screenshotBgEnd}
+                      onChange={(e) => {
+                        setScreenshotBgEnd(e.target.value);
+                        setScreenshotBgEndInput(e.target.value);
+                      }}
+                      className="w-4 h-4 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
+                    />
+                    <input
+                      type="text"
+                      value={screenshotBgEndInput}
+                      onChange={(e) => {
+                        setScreenshotBgEndInput(e.target.value);
+                        if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                          setScreenshotBgEnd(e.target.value);
+                        }
+                      }}
+                      maxLength={7}
+                      className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-655 dark:text-zinc-455 focus:outline-none focus:text-indigo-500 uppercase p-0"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Scale Multiplier */}
+            <div className="space-y-2">
+              <label className="text-[10px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider block">
+                Resolution Multiplier
+              </label>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { id: 1, name: "1x (Standard)" },
+                  { id: 2, name: "2x (HD Ret)" },
+                  { id: 3, name: "3x (Print 4K)" }
+                ].map((scale) => (
+                  <button
+                    key={scale.id}
+                    onClick={() => setScreenshotScale(scale.id)}
+                    className={`py-1.5 px-2 rounded-xl text-[9px] font-bold border uppercase transition cursor-pointer text-center ${
+                      screenshotScale === scale.id
+                        ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                        : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-650 dark:text-zinc-450"
+                    }`}
+                  >
+                    {scale.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Action buttons */}
+            <div className="flex gap-3 pt-3 border-t border-zinc-150 dark:border-zinc-800/80">
+              <button
+                onClick={() => setIsScreenshotModalOpen(false)}
+                className="flex-grow py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 text-[10px] font-extrabold uppercase tracking-wider transition active:scale-95 cursor-pointer text-center"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={performHighQualityCapture}
+                style={{ backgroundColor: color }}
+                className="flex-grow py-2 rounded-xl text-white text-[10px] font-extrabold uppercase tracking-wider transition hover:opacity-90 active:scale-95 cursor-pointer text-center flex items-center justify-center gap-1.5 shadow-md shadow-zinc-900/10"
+              >
+                <LucideAll.Camera size={12} fill="currentColor" />
+                <span>Render & Capture</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

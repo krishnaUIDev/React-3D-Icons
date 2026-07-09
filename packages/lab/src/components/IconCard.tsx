@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useRouter } from "../router/Router";
 import { IconPreset } from "r3d-icons";
 import { Heart } from "lucide-react";
+import { useTranslation } from "../i18n/useTranslation";
+import { TranslationKey } from "../i18n/translations";
 
 interface IconCardProps {
   id: string;
@@ -33,6 +35,7 @@ export const IconCard: React.FC<IconCardProps> = ({
   onToggleFavorite
 }) => {
   const { updateCustomizerURL } = useRouter();
+  const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
   const [copiedSVG, setCopiedSVG] = useState(false);
   const [copiedTSX, setCopiedTSX] = useState(false);
@@ -127,7 +130,7 @@ export default function IconShowcase() {
                 {displayName}
               </h3>
               <span className="px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider bg-indigo-500/10 text-indigo-500 border border-indigo-500/20">
-                {category}
+                {t(`category_${category}` as TranslationKey)}
               </span>
             </div>
             <p className="text-[10px] sm:text-[11px] text-zinc-500 dark:text-zinc-400 font-medium leading-relaxed max-w-lg">

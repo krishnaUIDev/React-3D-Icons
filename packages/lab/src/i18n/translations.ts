@@ -37,7 +37,17 @@ export const translations = {
     category_brands: "Brands",
     category_utility: "Utility",
     category_emojies: "Emojis",
-    category_alphabet: "Alphabet"
+    category_alphabet: "Alphabet",
+    category_favorites: "Favorites",
+    saved_presets_title: "My Saved Presets",
+    saved_presets_desc:
+      "Manage, share, and export the custom 3D physical material configurations you created in the Customizer laboratory.",
+    saved_presets_empty: "No Saved Presets Yet",
+    saved_presets_empty_desc:
+      'Jump into the Customizer laboratory, tweak material attributes, lighting parameters, and click "Save Preset" under the sidebar tab.',
+    saved_presets_open_btn: "Open Customizer",
+    saved_presets_nav: "Saved Presets",
+    saved_presets_footer: "Saved"
   },
   es: {
     hero_title: "Iconos 3D premium y de código abierto bellamente diseñados",
@@ -77,7 +87,17 @@ export const translations = {
     category_brands: "Marcas",
     category_utility: "Utilidad",
     category_emojies: "Emojis",
-    category_alphabet: "Alfabeto"
+    category_alphabet: "Alfabeto",
+    category_favorites: "Favoritos",
+    saved_presets_title: "Mis Ajustes Guardados",
+    saved_presets_desc:
+      "Administre, comparta y exporte las configuraciones de material físico 3D personalizadas creadas en el laboratorio de personalización.",
+    saved_presets_empty: "Aún no hay ajustes guardados",
+    saved_presets_empty_desc:
+      'Ingrese al laboratorio de personalización, modifique los atributos de material, los parámetros de iluminación y haga clic en "Guardar Ajuste" en la barra lateral.',
+    saved_presets_open_btn: "Abrir Personalizador",
+    saved_presets_nav: "Ajustes Guardados",
+    saved_presets_footer: "Guardados"
   },
   de: {
     hero_title: "Wunderschön gestaltete Open-Source- und Premium-3D-Icons",
@@ -117,7 +137,17 @@ export const translations = {
     category_brands: "Marken",
     category_utility: "Hilfsmittel",
     category_emojies: "Emojis",
-    category_alphabet: "Alphabet"
+    category_alphabet: "Alphabet",
+    category_favorites: "Favoriten",
+    saved_presets_title: "Meine Gespeicherten Vorlagen",
+    saved_presets_desc:
+      "Verwalten, teilen und exportieren Sie die benutzerdefinierten physikalischen 3D-Materialkonfigurationen, die Sie im Customizer-Labor erstellt haben.",
+    saved_presets_empty: "Noch keine Vorlagen gespeichert",
+    saved_presets_empty_desc:
+      'Wechseln Sie in das Customizer-Labor, passen Sie Materialattribute sowie Beleuchtungsparameter an und klicken Sie in der Seitenleiste auf "Vorlage speichern".',
+    saved_presets_open_btn: "Customizer Öffnen",
+    saved_presets_nav: "Vorlagen",
+    saved_presets_footer: "Gespeichert"
   }
 } as const;
 

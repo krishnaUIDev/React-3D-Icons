@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Float, Environment, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
@@ -187,6 +187,8 @@ const StudioLights: React.FC<{
   accentColor?: string;
   accentIntensity?: number;
   accentAngle?: number;
+  ambientColor?: string;
+  ambientIntensity?: number;
 }> = ({
   theme,
   intensity,
@@ -194,7 +196,9 @@ const StudioLights: React.FC<{
   preset = "studio",
   accentColor,
   accentIntensity,
-  accentAngle
+  accentAngle,
+  ambientColor,
+  ambientIntensity
 }) => {
   const isDark = theme === "dark";
 
@@ -210,10 +214,37 @@ const StudioLights: React.FC<{
     />
   );
 
+  const finalAmbientIntensity =
+    ambientIntensity ??
+    (preset === "cyber"
+      ? isDark
+        ? 0.25
+        : 0.45
+      : preset === "sunset"
+        ? isDark
+          ? 0.35
+          : 0.55
+        : preset === "dramatic"
+          ? 0.06
+          : isDark
+            ? 0.4
+            : 0.7);
+  const finalAmbientColor =
+    ambientColor ??
+    (preset === "cyber"
+      ? "#18181b"
+      : preset === "sunset"
+        ? "#1c1917"
+        : preset === "dramatic"
+          ? "#000000"
+          : isDark
+            ? "#3f3f46"
+            : "#ffffff");
+
   if (preset === "cyber") {
     return (
       <>
-        <ambientLight intensity={isDark ? 0.25 : 0.45} color="#18181b" />
+        <ambientLight intensity={finalAmbientIntensity} color={finalAmbientColor} />
         <directionalLight
           position={[5, 10, 5]}
           intensity={0.8}
@@ -241,7 +272,7 @@ const StudioLights: React.FC<{
   if (preset === "sunset") {
     return (
       <>
-        <ambientLight intensity={isDark ? 0.35 : 0.55} color="#1c1917" />
+        <ambientLight intensity={finalAmbientIntensity} color={finalAmbientColor} />
         <directionalLight
           position={[5, 10, 5]}
           intensity={1.0}
@@ -269,7 +300,7 @@ const StudioLights: React.FC<{
   if (preset === "dramatic") {
     return (
       <>
-        <ambientLight intensity={0.06} color="#000000" />
+        <ambientLight intensity={finalAmbientIntensity} color={finalAmbientColor} />
         <directionalLight
           position={[5, 10, 5]}
           intensity={0.2}
@@ -301,7 +332,7 @@ const StudioLights: React.FC<{
   // "studio" default setup
   return (
     <>
-      <ambientLight intensity={isDark ? 0.4 : 0.7} color={isDark ? "#3f3f46" : "#ffffff"} />
+      <ambientLight intensity={finalAmbientIntensity} color={finalAmbientColor} />
       <directionalLight
         position={[5, 10, 5]}
         intensity={isDark ? 1.5 : 1.2}
@@ -417,9 +448,16 @@ const IconScene: React.FC<{
   animationType?: IconAnimationType;
   animationAxis?: "x" | "y" | "z";
   animationDirection?: "clockwise" | "counter-clockwise";
+  gradientAngle?: number;
+  manualRotationX?: number;
+  manualRotationY?: number;
+  manualRotationZ?: number;
   textureType?: "none" | "frosted" | "brushed" | "carbon";
   emissivePulseSpeed?: number;
   emissivePulseIntensity?: number;
+  gradientType?: "none" | "linear" | "radial";
+  gradientColorStart?: string;
+  gradientColorEnd?: string;
 }> = ({
   children,
   preset,
@@ -437,11 +475,58 @@ const IconScene: React.FC<{
   animationDirection = "clockwise",
   textureType = "none",
   emissivePulseSpeed = 0,
-  emissivePulseIntensity = 0.5
+  emissivePulseIntensity = 0.5,
+  gradientType = "none",
+  gradientColorStart,
+  gradientColorEnd,
+  gradientAngle = 45,
+  manualRotationX,
+  manualRotationY,
+  manualRotationZ
 }) => {
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
+
+  // Generate procedural gradient texture dynamically
+  const gradientTexture = useMemo(() => {
+    if (!gradientType || gradientType === "none" || !gradientColorStart || !gradientColorEnd) {
+      return null;
+    }
+    try {
+      const canvas = document.createElement("canvas");
+      canvas.width = 256;
+      canvas.height = 256;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return null;
+
+      let grad: CanvasGradient;
+      if (gradientType === "linear") {
+        const rad = ((gradientAngle || 0) * Math.PI) / 180;
+        const halfW = 128;
+        const halfH = 128;
+        const x1 = halfW - Math.cos(rad) * halfW;
+        const y1 = halfH - Math.sin(rad) * halfH;
+        const x2 = halfW + Math.cos(rad) * halfW;
+        const y2 = halfH + Math.sin(rad) * halfH;
+        grad = ctx.createLinearGradient(x1, y1, x2, y2);
+      } else {
+        grad = ctx.createRadialGradient(128, 128, 0, 128, 128, 181);
+      }
+
+      grad.addColorStop(0, gradientColorStart);
+      grad.addColorStop(1, gradientColorEnd);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, 256, 256);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      return texture;
+    } catch (e) {
+      console.error("Failed to generate custom gradient texture", e);
+      return null;
+    }
+  }, [gradientType, gradientColorStart, gradientColorEnd, gradientAngle]);
 
   // Compute material configs
   const matConfig = getMaterialConfig(preset, color, theme, accentColor);
@@ -501,6 +586,11 @@ const IconScene: React.FC<{
       groupRef.current.position.y = 0;
       groupRef.current.position.x = 0;
     }
+
+    // Apply manual rotation overrides if provided
+    if (manualRotationX !== undefined) groupRef.current.rotation.x = manualRotationX;
+    if (manualRotationY !== undefined) groupRef.current.rotation.y = manualRotationY;
+    if (manualRotationZ !== undefined) groupRef.current.rotation.z = manualRotationZ;
 
     // Hover scale interpolation (smooth lerping)
     let targetScaleX = hovered && interactive ? 1.15 : 1.0;
@@ -569,6 +659,21 @@ const IconScene: React.FC<{
             } else {
               material.emissiveIntensity = mergedMatConfig.emissiveIntensity ?? 0.3;
             }
+
+            // 3. Assign gradient texture map
+            if (gradientTexture) {
+              if (material.map !== gradientTexture) {
+                material.map = gradientTexture;
+                material.color.set("#ffffff");
+                material.needsUpdate = true;
+              }
+            } else {
+              if (material.map) {
+                material.map = null;
+                material.color.set(mergedMatConfig.color);
+                material.needsUpdate = true;
+              }
+            }
           }
         }
       });
@@ -609,6 +714,13 @@ export function SharedWrapper({
   variant = "3d",
   color,
   accentColor,
+  gradientType = "none",
+  gradientColorStart,
+  gradientColorEnd,
+  gradientAngle = 45,
+  manualRotationX,
+  manualRotationY,
+  manualRotationZ,
   spinSpeed = 1.0,
   floatHeight = 1.0,
   theme = "dark",
@@ -635,6 +747,8 @@ export function SharedWrapper({
   accentLightColor,
   accentLightIntensity,
   accentLightAngle,
+  ambientLightColor,
+  ambientLightIntensity,
   children,
   ...props
 }: IconProps & {
@@ -686,7 +800,16 @@ export function SharedWrapper({
         >
           {fallback2d ||
             (iconId ? (
-              <Fallback2D id={iconId} color={color} theme={theme} preset={preset} />
+              <Fallback2D
+                id={iconId}
+                color={color}
+                theme={theme}
+                preset={preset}
+                gradientType={gradientType}
+                gradientColorStart={gradientColorStart}
+                gradientColorEnd={gradientColorEnd}
+                gradientAngle={gradientAngle}
+              />
             ) : (
               <div style={{ color: color || "#6366f1", fontStyle: "italic", fontSize: "11px" }}>
                 3D Icon
@@ -716,6 +839,13 @@ export function SharedWrapper({
         textureType={textureType}
         emissivePulseSpeed={emissivePulseSpeed}
         emissivePulseIntensity={emissivePulseIntensity}
+        gradientType={gradientType}
+        gradientColorStart={gradientColorStart}
+        gradientColorEnd={gradientColorEnd}
+        gradientAngle={gradientAngle}
+        manualRotationX={manualRotationX}
+        manualRotationY={manualRotationY}
+        manualRotationZ={manualRotationZ}
       >
         {children}
       </IconScene>
@@ -742,6 +872,8 @@ export function SharedWrapper({
           accentColor={accentLightColor}
           accentIntensity={accentLightIntensity}
           accentAngle={accentLightAngle}
+          ambientColor={ambientLightColor}
+          ambientIntensity={ambientLightIntensity}
         />
         <Environment preset={environment} />
         <ContactShadows
@@ -769,6 +901,13 @@ export function SharedWrapper({
           textureType={textureType}
           emissivePulseSpeed={emissivePulseSpeed}
           emissivePulseIntensity={emissivePulseIntensity}
+          gradientType={gradientType}
+          gradientColorStart={gradientColorStart}
+          gradientColorEnd={gradientColorEnd}
+          gradientAngle={gradientAngle}
+          manualRotationX={manualRotationX}
+          manualRotationY={manualRotationY}
+          manualRotationZ={manualRotationZ}
         >
           {children}
         </IconScene>

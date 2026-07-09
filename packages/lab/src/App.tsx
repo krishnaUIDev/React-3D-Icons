@@ -11,7 +11,7 @@ const Customize = React.lazy(() =>
   import("./pages/Customize").then((m) => ({ default: m.Customize }))
 );
 const Info = React.lazy(() => import("./pages/Info").then((m) => ({ default: m.Info })));
-const Saved = React.lazy(() => import("./pages/Saved").then((m) => ({ default: m.Saved })));
+const Saved = React.lazy(() => import("./pages/Saved.tsx")); // lazy-loaded saved page
 
 function LoadingFallback() {
   return (
@@ -80,20 +80,26 @@ function AppContent() {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [route]);
 
+  const isEmbed = new URLSearchParams(window.location.search).get("embed") === "true";
+
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-[#090b11] text-zinc-900 dark:text-zinc-100 transition-colors duration-300 flex flex-col">
+    <div
+      className={`min-h-screen ${isEmbed ? "bg-transparent" : "bg-zinc-50 dark:bg-[#090b11] text-zinc-900 dark:text-zinc-100 transition-colors duration-300"} flex flex-col`}
+    >
       {/* Header with Navigation and Toggles */}
-      <Header
-        theme={theme}
-        setTheme={setTheme}
-        search={search}
-        setSearch={setSearch}
-        installPrompt={installPrompt}
-        onInstall={handleInstallApp}
-      />
+      {!isEmbed && (
+        <Header
+          theme={theme}
+          setTheme={setTheme}
+          search={search}
+          setSearch={setSearch}
+          installPrompt={installPrompt}
+          onInstall={handleInstallApp}
+        />
+      )}
 
       {/* Dynamic Page Views */}
-      <main className="flex-grow">
+      <main className={isEmbed ? "w-screen h-screen overflow-hidden" : "flex-grow"}>
         <Suspense fallback={<LoadingFallback />}>
           {route === "catalog" && (
             <div key="catalog" className="animate-page-fade">
@@ -101,7 +107,7 @@ function AppContent() {
             </div>
           )}
           {route === "customize" && (
-            <div key="customize" className="animate-page-fade">
+            <div key="customize" className="animate-page-fade w-full h-full">
               <Customize theme={theme} />
             </div>
           )}
@@ -119,7 +125,7 @@ function AppContent() {
       </main>
 
       {/* Footer */}
-      <Footer />
+      {!isEmbed && <Footer />}
 
       {/* Shared WebGL Canvas Port */}
       <Canvas

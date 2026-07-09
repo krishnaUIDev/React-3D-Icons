@@ -25,6 +25,13 @@ export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" 
   variant?: "3d" | "2d";
   color?: string; // Custom primary hex/rgb color
   accentColor?: string; // Custom accent/glow hex/rgb color
+  gradientType?: "none" | "linear" | "radial"; // Custom gradient type ("none" | "linear" | "radial")
+  gradientColorStart?: string; // Starting gradient color (hex)
+  gradientColorEnd?: string; // Ending gradient color (hex)
+  gradientAngle?: number; // Linear gradient angle (degrees)
+  manualRotationX?: number; // Manual override rotation X (radians)
+  manualRotationY?: number; // Manual override rotation Y (radians)
+  manualRotationZ?: number; // Manual override rotation Z (radians)
   spinSpeed?: number; // Rotation speed coefficient (default: 1.0)
   floatHeight?: number; // Floating bounce offset coefficient (default: 1.0)
   theme?: "light" | "dark";
@@ -49,6 +56,8 @@ export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" 
   accentLightColor?: string; // Secondary custom accent light color (hex)
   accentLightIntensity?: number; // Secondary custom accent light intensity
   accentLightAngle?: number; // Secondary custom accent light rotation angle
+  ambientLightColor?: string; // Custom ambient light color (hex)
+  ambientLightIntensity?: number; // Custom ambient light intensity
 }
 
 // Internal standard material config interface

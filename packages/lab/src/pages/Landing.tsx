@@ -3467,7 +3467,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                 activeCategory === "favorites" ? "fill-current text-white" : "text-zinc-400"
               }
             />
-            <span>Favorites</span>
+            <span>{t("category_favorites" as any)}</span>
             <span
               className={`px-1.5 py-0.5 rounded-full text-[9px] font-extrabold ${
                 activeCategory === "favorites"

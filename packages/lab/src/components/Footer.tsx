@@ -1,9 +1,11 @@
 import React from "react";
 import { useRouter } from "../router/Router";
 import { Heart, Grid, Package, Github, AlertCircle, HelpCircle } from "lucide-react";
+import { useTranslation } from "../i18n/useTranslation";
 
 export const Footer: React.FC = () => {
   const { navigate } = useRouter();
+  const { t } = useTranslation();
 
   return (
     <footer className="border-t border-zinc-200/80 dark:border-zinc-900 bg-white dark:bg-[#07090f] text-zinc-500 py-6 transition-colors duration-300 mt-auto">
@@ -47,7 +49,7 @@ export const Footer: React.FC = () => {
             className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
           >
             <Grid size={12} className="text-zinc-400" />
-            <span>Catalog</span>
+            <span>{t("explore_link" as any)}</span>
           </button>
           <button
             onClick={() => navigate("info")}
@@ -61,7 +63,7 @@ export const Footer: React.FC = () => {
             className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
           >
             <Heart size={12} className="text-zinc-400" />
-            <span>Saved</span>
+            <span>{t("saved_presets_footer" as any)}</span>
           </button>
           <a
             href="https://www.npmjs.com/package/r3d-icons"
