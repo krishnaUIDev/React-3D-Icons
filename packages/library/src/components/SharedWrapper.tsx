@@ -432,6 +432,267 @@ function getTexture(type: "none" | "frosted" | "brushed" | "carbon") {
   return textureCache[type];
 }
 
+// Procedural Grayscale Heightmaps converted to Sobel Tangent Space Normal Maps
+function createNoiseNormalMap(): THREE.CanvasTexture {
+  const size = 256;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return new THREE.CanvasTexture(canvas);
+
+  const imgData = ctx.createImageData(size, size);
+  const data = imgData.data;
+
+  const height = new Float32Array(size * size);
+  for (let i = 0; i < size * size; i++) {
+    height[i] = Math.random();
+  }
+
+  const strength = 2.0;
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const idx = (y * size + x) * 4;
+      const hL = height[y * size + Math.max(0, x - 1)];
+      const hR = height[y * size + Math.min(size - 1, x + 1)];
+      const hT = height[Math.max(0, y - 1) * size + x];
+      const hB = height[Math.min(size - 1, y + 1) * size + x];
+
+      const nx = (hL - hR) * strength;
+      const ny = (hT - hB) * strength;
+      const nz = 1.0;
+
+      const len = Math.sqrt(nx * nx + ny * ny + nz * nz);
+      const rx = (nx / len) * 0.5 + 0.5;
+      const ry = (ny / len) * 0.5 + 0.5;
+      const rz = (nz / len) * 0.5 + 0.5;
+
+      data[idx] = Math.floor(rx * 255);
+      data[idx + 1] = Math.floor(ry * 255);
+      data[idx + 2] = Math.floor(rz * 255);
+      data[idx + 3] = 255;
+    }
+  }
+
+  ctx.putImageData(imgData, 0, 0);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(16, 16);
+  return texture;
+}
+
+function createLeatherNormalMap(): THREE.CanvasTexture {
+  const size = 256;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return new THREE.CanvasTexture(canvas);
+
+  const imgData = ctx.createImageData(size, size);
+  const data = imgData.data;
+
+  const numPoints = 45;
+  const points: { x: number; y: number }[] = [];
+  for (let i = 0; i < numPoints; i++) {
+    points.push({
+      x: Math.random() * size,
+      y: Math.random() * size
+    });
+  }
+
+  const height = new Float32Array(size * size);
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      let minDist = size * 2;
+      let secondMinDist = size * 2;
+      for (const p of points) {
+        const dx = Math.min(Math.abs(x - p.x), size - Math.abs(x - p.x));
+        const dy = Math.min(Math.abs(y - p.y), size - Math.abs(y - p.y));
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < minDist) {
+          secondMinDist = minDist;
+          minDist = dist;
+        } else if (dist < secondMinDist) {
+          secondMinDist = dist;
+        }
+      }
+      const cellVal = secondMinDist - minDist;
+      height[y * size + x] = Math.min(1.0, cellVal * 0.07);
+    }
+  }
+
+  const strength = 1.5;
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const idx = (y * size + x) * 4;
+      const hL = height[y * size + Math.max(0, x - 1)];
+      const hR = height[y * size + Math.min(size - 1, x + 1)];
+      const hT = height[Math.max(0, y - 1) * size + x];
+      const hB = height[Math.min(size - 1, y + 1) * size + x];
+
+      const nx = (hL - hR) * strength;
+      const ny = (hT - hB) * strength;
+      const nz = 1.0;
+
+      const len = Math.sqrt(nx * nx + ny * ny + nz * nz);
+      const rx = (nx / len) * 0.5 + 0.5;
+      const ry = (ny / len) * 0.5 + 0.5;
+      const rz = (nz / len) * 0.5 + 0.5;
+
+      data[idx] = Math.floor(rx * 255);
+      data[idx + 1] = Math.floor(ry * 255);
+      data[idx + 2] = Math.floor(rz * 255);
+      data[idx + 3] = 255;
+    }
+  }
+
+  ctx.putImageData(imgData, 0, 0);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(4, 4);
+  return texture;
+}
+
+function createGridNormalMap(): THREE.CanvasTexture {
+  const size = 128;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return new THREE.CanvasTexture(canvas);
+
+  const imgData = ctx.createImageData(size, size);
+  const data = imgData.data;
+
+  const height = new Float32Array(size * size);
+  const center = size / 2;
+  const radius = size * 0.35;
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const dx = x - center;
+      const dy = y - center;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < radius) {
+        height[y * size + x] = Math.cos((dist / radius) * (Math.PI / 2));
+      } else {
+        height[y * size + x] = 0;
+      }
+    }
+  }
+
+  const strength = 1.8;
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const idx = (y * size + x) * 4;
+      const hL = height[y * size + Math.max(0, x - 1)];
+      const hR = height[y * size + Math.min(size - 1, x + 1)];
+      const hT = height[Math.max(0, y - 1) * size + x];
+      const hB = height[Math.min(size - 1, y + 1) * size + x];
+
+      const nx = (hL - hR) * strength;
+      const ny = (hT - hB) * strength;
+      const nz = 1.0;
+
+      const len = Math.sqrt(nx * nx + ny * ny + nz * nz);
+      const rx = (nx / len) * 0.5 + 0.5;
+      const ry = (ny / len) * 0.5 + 0.5;
+      const rz = (nz / len) * 0.5 + 0.5;
+
+      data[idx] = Math.floor(rx * 255);
+      data[idx + 1] = Math.floor(ry * 255);
+      data[idx + 2] = Math.floor(rz * 255);
+      data[idx + 3] = 255;
+    }
+  }
+
+  ctx.putImageData(imgData, 0, 0);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(16, 16);
+  return texture;
+}
+
+const normalCache: Record<string, THREE.CanvasTexture> = {};
+
+function getNormalMap(type: "none" | "noise" | "leather" | "grid") {
+  if (typeof document === "undefined" || type === "none") return null;
+  if (normalCache[type]) return normalCache[type];
+
+  if (type === "noise") {
+    normalCache[type] = createNoiseNormalMap();
+  } else if (type === "leather") {
+    normalCache[type] = createLeatherNormalMap();
+  } else if (type === "grid") {
+    normalCache[type] = createGridNormalMap();
+  }
+  return normalCache[type];
+}
+
+const FloatingParticles: React.FC<{
+  type: "sparkles" | "dust" | "stars";
+  count: number;
+  color: string;
+  speed: number;
+}> = ({ type, count = 50, color = "#ffffff", speed = 1 }) => {
+  const pointsRef = useRef<THREE.Points>(null);
+
+  const positions = useMemo(() => {
+    const arr = new Float32Array(count * 3);
+    for (let i = 0; i < count * 3; i += 3) {
+      arr[i] = (Math.random() - 0.5) * 3.5;
+      arr[i + 1] = (Math.random() - 0.5) * 3.5;
+      arr[i + 2] = (Math.random() - 0.5) * 3.5;
+    }
+    return arr;
+  }, [count]);
+
+  const speeds = useMemo(() => {
+    const arr = new Float32Array(count);
+    for (let i = 0; i < count; i++) {
+      arr[i] = 0.2 + Math.random() * 0.8;
+    }
+    return arr;
+  }, [count]);
+
+  useFrame((state) => {
+    if (!pointsRef.current) return;
+    const positionsAttr = pointsRef.current.geometry.attributes.position as THREE.BufferAttribute;
+    const t = state.clock.getElapsedTime() * 0.1 * speed;
+
+    for (let i = 0; i < count; i++) {
+      positionsAttr.setY(i, positionsAttr.getY(i) + 0.002 * speed * speeds[i]);
+
+      if (positionsAttr.getY(i) > 1.8) {
+        positionsAttr.setY(i, -1.8);
+      }
+      positionsAttr.setX(i, positionsAttr.getX(i) + Math.sin(t + i) * 0.0008);
+    }
+    positionsAttr.needsUpdate = true;
+  });
+
+  const size = type === "sparkles" ? 0.12 : type === "stars" ? 0.08 : 0.04;
+
+  return (
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+      </bufferGeometry>
+      <pointsMaterial
+        size={size}
+        color={color}
+        transparent
+        opacity={0.8}
+        blending={THREE.AdditiveBlending}
+        depthWrite={false}
+      />
+    </points>
+  );
+};
+
 // Internal staging mesh handling animations and hovers
 const IconScene: React.FC<{
   children: (mat: MaterialConfig) => React.ReactNode;
@@ -458,6 +719,11 @@ const IconScene: React.FC<{
   gradientType?: "none" | "linear" | "radial";
   gradientColorStart?: string;
   gradientColorEnd?: string;
+  particleSystem?: "none" | "sparkles" | "dust" | "stars";
+  particleCount?: number;
+  particleColor?: string;
+  particleSpeed?: number;
+  surfaceNormal?: "none" | "noise" | "leather" | "grid";
 }> = ({
   children,
   preset,
@@ -482,7 +748,12 @@ const IconScene: React.FC<{
   gradientAngle = 45,
   manualRotationX,
   manualRotationY,
-  manualRotationZ
+  manualRotationZ,
+  particleSystem = "none",
+  particleCount = 50,
+  particleColor = "#ffffff",
+  particleSpeed = 1,
+  surfaceNormal = "none"
 }) => {
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Group>(null);
@@ -650,6 +921,21 @@ const IconScene: React.FC<{
               }
             }
 
+            // 1b. Assign normal map
+            const normalMapTexture = getNormalMap(surfaceNormal);
+            if (normalMapTexture) {
+              if (material.normalMap !== normalMapTexture) {
+                material.normalMap = normalMapTexture;
+                material.normalScale = new THREE.Vector2(0.2, 0.2);
+                material.needsUpdate = true;
+              }
+            } else {
+              if (material.normalMap) {
+                material.normalMap = null;
+                material.needsUpdate = true;
+              }
+            }
+
             // 2. Modulate emissive pulsing
             if (emissivePulseSpeed > 0) {
               const baseIntensity = mergedMatConfig.emissiveIntensity ?? 0.3;
@@ -703,6 +989,14 @@ const IconScene: React.FC<{
           </Float>
         </group>
       </group>
+      {particleSystem && particleSystem !== "none" && (
+        <FloatingParticles
+          type={particleSystem}
+          count={particleCount ?? 50}
+          color={particleColor ?? "#ffffff"}
+          speed={particleSpeed ?? 1}
+        />
+      )}
     </group>
   );
 };
@@ -749,6 +1043,11 @@ export function SharedWrapper({
   accentLightAngle,
   ambientLightColor,
   ambientLightIntensity,
+  particleSystem,
+  particleCount,
+  particleColor,
+  particleSpeed,
+  surfaceNormal,
   children,
   ...props
 }: IconProps & {
@@ -908,6 +1207,11 @@ export function SharedWrapper({
           manualRotationX={manualRotationX}
           manualRotationY={manualRotationY}
           manualRotationZ={manualRotationZ}
+          particleSystem={particleSystem}
+          particleCount={particleCount}
+          particleColor={particleColor}
+          particleSpeed={particleSpeed}
+          surfaceNormal={surfaceNormal}
         >
           {children}
         </IconScene>

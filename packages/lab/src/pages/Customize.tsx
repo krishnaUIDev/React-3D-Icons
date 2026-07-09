@@ -2887,6 +2887,23 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [animationPlaying, setAnimationPlaying] = useState(true);
   const [scrubberRotation, setScrubberRotation] = useState(0);
 
+  // Particle & Surface normal map states
+  const [particleSystem, setParticleSystem] = useState<"none" | "sparkles" | "dust" | "stars">(
+    "none"
+  );
+  const [particleCount, setParticleCount] = useState(50);
+  const [particleColor, setParticleColor] = useState("#ffffff");
+  const [particleColorInput, setParticleColorInput] = useState("#ffffff");
+  const [particleSpeed, setParticleSpeed] = useState(1.0);
+  const [surfaceNormal, setSurfaceNormal] = useState<"none" | "noise" | "leather" | "grid">("none");
+  const [tuningParticlesOpen, setTuningParticlesOpen] = useState(false);
+  const [tuningNormalsOpen, setTuningNormalsOpen] = useState(false);
+
+  // Consolidation Share Modal
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [shareModalUrl, setShareModalUrl] = useState("");
+  const [shareModalEmbedCode, setShareModalEmbedCode] = useState("");
+
   const [isScreenshotModalOpen, setIsScreenshotModalOpen] = useState(false);
   const [screenshotBackdrop, setScreenshotBackdrop] = useState<
     "transparent" | "solid" | "gradient" | "grid"
@@ -2980,6 +2997,14 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
           setAmbientLightColorInput(decoded.ambientLightColor);
         }
         if (decoded.gradientType) setGradientType(decoded.gradientType);
+        if (decoded.particleSystem) setParticleSystem(decoded.particleSystem);
+        if (decoded.particleCount !== undefined) setParticleCount(decoded.particleCount);
+        if (decoded.particleColor) {
+          setParticleColor(decoded.particleColor);
+          setParticleColorInput(decoded.particleColor);
+        }
+        if (decoded.particleSpeed !== undefined) setParticleSpeed(decoded.particleSpeed);
+        if (decoded.surfaceNormal) setSurfaceNormal(decoded.surfaceNormal);
         if (decoded.gradientColorStart) {
           setGradientColorStart(decoded.gradientColorStart);
           setGradientColorStartInput(decoded.gradientColorStart);
@@ -3134,6 +3159,23 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       ? `\n        gradientAngle={${gradientAngle}}`
       : "";
 
+  const particleSystemProp =
+    particleSystem !== "none" ? `\n        particleSystem="${particleSystem}"` : "";
+  const particleCountProp =
+    particleSystem !== "none" && particleCount !== 50
+      ? `\n        particleCount={${particleCount}}`
+      : "";
+  const particleColorProp =
+    particleSystem !== "none" && particleColor !== "#ffffff"
+      ? `\n        particleColor="${particleColor}"`
+      : "";
+  const particleSpeedProp =
+    particleSystem !== "none" && particleSpeed !== 1.0
+      ? `\n        particleSpeed={${particleSpeed}}`
+      : "";
+  const surfaceNormalProp =
+    surfaceNormal !== "none" ? `\n        surfaceNormal="${surfaceNormal}"` : "";
+
   // Preset Handlers
   const handleSavePreset = () => {
     if (!newPresetName.trim()) return;
@@ -3158,7 +3200,12 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       gradientColorEnd,
       gradientAngle,
       ambientLightIntensity,
-      ambientLightColor
+      ambientLightColor,
+      particleSystem,
+      particleCount,
+      particleColor,
+      particleSpeed,
+      surfaceNormal
     };
     const updated = [...savedPresets, newPreset];
     setSavedPresets(updated);
@@ -3206,65 +3253,28 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
         gradientColorEnd,
         gradientAngle,
         ambientLightIntensity,
-        ambientLightColor
+        ambientLightColor,
+        particleSystem,
+        particleCount,
+        particleColor,
+        particleSpeed,
+        surfaceNormal
       };
       const serialized = btoa(encodeURIComponent(JSON.stringify(data)));
       const shareUrl = `${window.location.origin}${window.location.pathname}?share=${serialized}#/icons/${color.replace("#", "")}-${iconId}`;
+      const embedUrl = `${window.location.origin}${window.location.pathname}?embed=true&share=${serialized}#/icons/${color.replace("#", "")}-${iconId}`;
+      const iframeCode = `<iframe src="${embedUrl}" width="300" height="300" style="border: none; background: transparent;" allowtransparency="true"></iframe>`;
 
-      navigator.clipboard.writeText(shareUrl);
-      setShareSuccess(true);
-      setTimeout(() => setShareSuccess(false), 2000);
+      setShareModalUrl(shareUrl);
+      setShareModalEmbedCode(iframeCode);
+      setIsShareModalOpen(true);
     } catch (e) {
       console.error("Failed to generate share URL", e);
     }
   };
 
   const handleCopyEmbedCode = () => {
-    try {
-      const data = {
-        iconId,
-        preset,
-        angle,
-        renderMode,
-        color,
-        accentColor,
-        spinSpeed,
-        floatHeight,
-        environment,
-        viewportBg,
-        previewContext,
-        cameraZoom,
-        cameraFov,
-        lightIntensity,
-        lightColor,
-        tiltIntensity,
-        animationType,
-        animationAxis,
-        animationDirection,
-        shadowOpacity,
-        shadowBlur,
-        textureType,
-        emissivePulseSpeed,
-        emissivePulseIntensity,
-        lightingPreset,
-        customMaterial,
-        gradientType,
-        gradientColorStart,
-        gradientColorEnd,
-        gradientAngle,
-        ambientLightIntensity,
-        ambientLightColor
-      };
-      const serialized = btoa(encodeURIComponent(JSON.stringify(data)));
-      const embedUrl = `${window.location.origin}${window.location.pathname}?embed=true&share=${serialized}#/icons/${color.replace("#", "")}-${iconId}`;
-      const iframeCode = `<iframe src="${embedUrl}" width="300" height="300" style="border: none; background: transparent;" allowtransparency="true"></iframe>`;
-
-      navigator.clipboard.writeText(iframeCode);
-      setEmbedSuccess(true);
-      setTimeout(() => setEmbedSuccess(false), 2000);
-    } catch (e) {
-      console.error("Failed to copy embed code", e);
-    }
+    handleSharePlayground();
   };
 
   const handleExportPresets = () => {
@@ -3353,6 +3363,14 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       setGradientColorEndInput(p.gradientColorEnd);
     }
     if (p.gradientAngle !== undefined) setGradientAngle(p.gradientAngle);
+    setParticleSystem(p.particleSystem || "none");
+    setParticleCount(p.particleCount !== undefined ? p.particleCount : 50);
+    if (p.particleColor) {
+      setParticleColor(p.particleColor);
+      setParticleColorInput(p.particleColor);
+    }
+    setParticleSpeed(p.particleSpeed !== undefined ? p.particleSpeed : 1.0);
+    setSurfaceNormal(p.surfaceNormal || "none");
 
     // Apply custom material properties
     const defaults = getMaterialConfig(
@@ -3436,7 +3454,7 @@ function App() {
         spinSpeed={${spinSpeed.toFixed(1)}}
         floatHeight={${floatHeight.toFixed(1)}}
         theme="${theme}"
-        interactive={${interactive}}${cameraZoomProp}${cameraFovProp}${lightIntensityProp}${lightColorProp}${tiltIntensityProp}${animationTypeProp}${animationAxisProp}${animationDirectionProp}${shadowOpacityProp}${shadowBlurProp}${textureTypeProp}${emissivePulseSpeedProp}${emissivePulseIntensityProp}${lightingPresetProp}${accentLightColorProp}${accentLightIntensityProp}${accentLightAngleProp}${ambientLightIntensityProp}${ambientLightColorProp}${gradientTypeProp}${gradientColorStartProp}${gradientColorEndProp}${gradientAngleProp}${customMaterialProp}
+        interactive={${interactive}}${cameraZoomProp}${cameraFovProp}${lightIntensityProp}${lightColorProp}${tiltIntensityProp}${animationTypeProp}${animationAxisProp}${animationDirectionProp}${shadowOpacityProp}${shadowBlurProp}${textureTypeProp}${emissivePulseSpeedProp}${emissivePulseIntensityProp}${lightingPresetProp}${accentLightColorProp}${accentLightIntensityProp}${accentLightAngleProp}${ambientLightIntensityProp}${ambientLightColorProp}${gradientTypeProp}${gradientColorStartProp}${gradientColorEndProp}${gradientAngleProp}${particleSystemProp}${particleCountProp}${particleColorProp}${particleSpeedProp}${surfaceNormalProp}${customMaterialProp}
       />
     </div>
   );
@@ -3936,7 +3954,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     gradientAngle,
     manualRotationX: animationPlaying ? undefined : 0,
     manualRotationY: animationPlaying ? undefined : (scrubberRotation * Math.PI) / 180,
-    manualRotationZ: animationPlaying ? undefined : 0
+    manualRotationZ: animationPlaying ? undefined : 0,
+    particleSystem,
+    particleCount,
+    particleColor,
+    particleSpeed,
+    surfaceNormal
   };
 
   const isEmbed = new URLSearchParams(window.location.search).get("embed") === "true";
@@ -4063,6 +4086,41 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
               </div>
             )}
 
+            {/* Camera Angle Snap Bar */}
+            {activeSidebarTab !== "compare" && (
+              <div className="absolute top-4 left-4 z-10 flex items-center gap-1 bg-white/70 dark:bg-[#0c0f18]/80 border border-zinc-200 dark:border-zinc-800 p-1 rounded-xl backdrop-blur-md shadow-sm">
+                <span className="text-[8px] font-extrabold text-zinc-400 dark:text-zinc-555 uppercase tracking-wider px-2 block select-none">
+                  Camera Snap:
+                </span>
+                {[
+                  { id: "perspective", name: "3D" },
+                  { id: "front", name: "Front" },
+                  { id: "top", name: "Top" },
+                  { id: "left", name: "Left" },
+                  { id: "right", name: "Right" }
+                ].map((cam) => (
+                  <button
+                    key={cam.id}
+                    onClick={() => {
+                      setAngle(cam.id as IconAngle);
+                      if (cam.id === "perspective") {
+                        setCameraZoom(4.5);
+                      } else {
+                        setCameraZoom(4.0);
+                      }
+                    }}
+                    className={`px-2 py-1 rounded-lg text-[8px] font-black uppercase tracking-wider transition-all duration-150 cursor-pointer ${
+                      angle === cam.id
+                        ? "bg-indigo-600 text-white shadow-sm"
+                        : "text-zinc-550 dark:text-zinc-450 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white"
+                    }`}
+                  >
+                    {cam.name}
+                  </button>
+                ))}
+              </div>
+            )}
+
             {/* Viewport Control Buttons */}
             {activeSidebarTab !== "compare" && (
               <div className="absolute top-4 right-4 z-10 flex gap-2">
@@ -4127,34 +4185,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       className="relative rounded-2xl border border-zinc-150 dark:border-zinc-850 bg-white dark:bg-[#0e111a] flex flex-col items-center justify-center p-3 group/slot overflow-hidden"
                     >
                       <div className="w-28 h-28 flex items-center justify-center">
-                        <CompareComponent
-                          preset={preset}
-                          angle={angle}
-                          environment={environment}
-                          variant={renderMode}
-                          color={color}
-                          accentColor={accentColor}
-                          spinSpeed={spinSpeed}
-                          floatHeight={floatHeight}
-                          theme={theme}
-                          interactive={interactive}
-                          customMaterial={customMaterial}
-                          cameraZoom={cameraZoom}
-                          cameraFov={cameraFov}
-                          lightIntensity={lightIntensity}
-                          lightColor={lightColor}
-                          tiltIntensity={tiltIntensity}
-                          animationType={animationType}
-                          animationAxis={animationAxis}
-                          animationDirection={animationDirection}
-                          shadowOpacity={shadowOpacity}
-                          shadowBlur={shadowBlur}
-                          textureType={textureType}
-                          emissivePulseSpeed={emissivePulseSpeed}
-                          emissivePulseIntensity={emissivePulseIntensity}
-                          lightingPreset={lightingPreset}
-                          size="100%"
-                        />
+                        <CompareComponent {...canvasIconProps} size="100%" />
                       </div>
                       <span className="text-[9px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mt-1 truncate max-w-full">
                         {iconObj.name}
@@ -4179,18 +4210,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         <div className="flex items-center gap-1">
                           <div className="w-6 h-6">
                             <ActiveComponent
-                              preset={preset}
+                              {...canvasIconProps}
                               angle="front"
-                              environment={environment}
-                              variant={renderMode}
-                              color={color}
-                              accentColor={accentColor}
                               spinSpeed={0}
                               floatHeight={0}
-                              theme={theme}
-                              interactive={false}
-                              customMaterial={customMaterial}
-                              lightingPreset={lightingPreset}
                               size={20}
                             />
                           </div>
@@ -4208,34 +4231,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             className="absolute inset-0 rounded-full blur-xl opacity-10 pointer-events-none"
                             style={{ backgroundColor: color }}
                           />
-                          <ActiveComponent
-                            preset={preset}
-                            angle={angle}
-                            environment={environment}
-                            variant={renderMode}
-                            color={color}
-                            accentColor={accentColor}
-                            spinSpeed={spinSpeed}
-                            floatHeight={floatHeight}
-                            theme={theme}
-                            interactive={interactive}
-                            customMaterial={customMaterial}
-                            cameraZoom={cameraZoom}
-                            cameraFov={cameraFov}
-                            lightIntensity={lightIntensity}
-                            lightColor={lightColor}
-                            tiltIntensity={tiltIntensity}
-                            animationType={animationType}
-                            animationAxis={animationAxis}
-                            animationDirection={animationDirection}
-                            shadowOpacity={shadowOpacity}
-                            shadowBlur={shadowBlur}
-                            textureType={textureType}
-                            emissivePulseSpeed={emissivePulseSpeed}
-                            emissivePulseIntensity={emissivePulseIntensity}
-                            lightingPreset={lightingPreset}
-                            size={44}
-                          />
+                          <ActiveComponent {...canvasIconProps} size={44} />
                         </div>
                         <p className="text-[7px] text-zinc-400 dark:text-zinc-500 leading-normal max-w-[120px] truncate">
                           Header emblem integration
@@ -4253,34 +4249,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                           className="absolute inset-0 rounded-full blur-xl opacity-15 pointer-events-none"
                           style={{ backgroundColor: color }}
                         />
-                        <ActiveComponent
-                          preset={preset}
-                          angle={angle}
-                          environment={environment}
-                          variant={renderMode}
-                          color={color}
-                          accentColor={accentColor}
-                          spinSpeed={spinSpeed}
-                          floatHeight={floatHeight}
-                          theme={theme}
-                          interactive={interactive}
-                          customMaterial={customMaterial}
-                          cameraZoom={cameraZoom}
-                          cameraFov={cameraFov}
-                          lightIntensity={lightIntensity}
-                          lightColor={lightColor}
-                          tiltIntensity={tiltIntensity}
-                          animationType={animationType}
-                          animationAxis={animationAxis}
-                          animationDirection={animationDirection}
-                          shadowOpacity={shadowOpacity}
-                          shadowBlur={shadowBlur}
-                          textureType={textureType}
-                          emissivePulseSpeed={emissivePulseSpeed}
-                          emissivePulseIntensity={emissivePulseIntensity}
-                          lightingPreset={lightingPreset}
-                          size={52}
-                        />
+                        <ActiveComponent {...canvasIconProps} size={52} />
                       </div>
                       <div className="space-y-0.5">
                         <span className="px-1.5 py-0.5 text-[5px] font-extrabold text-indigo-500 bg-indigo-500/10 rounded-full uppercase tracking-wider">
@@ -4304,34 +4273,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         “
                       </span>
                       <div className="absolute top-2 right-2 w-10 h-10 flex items-center justify-center">
-                        <ActiveComponent
-                          preset={preset}
-                          angle={angle}
-                          environment={environment}
-                          variant={renderMode}
-                          color={color}
-                          accentColor={accentColor}
-                          spinSpeed={spinSpeed}
-                          floatHeight={floatHeight}
-                          theme={theme}
-                          interactive={interactive}
-                          customMaterial={customMaterial}
-                          cameraZoom={cameraZoom}
-                          cameraFov={cameraFov}
-                          lightIntensity={lightIntensity}
-                          lightColor={lightColor}
-                          tiltIntensity={tiltIntensity}
-                          animationType={animationType}
-                          animationAxis={animationAxis}
-                          animationDirection={animationDirection}
-                          shadowOpacity={shadowOpacity}
-                          shadowBlur={shadowBlur}
-                          textureType={textureType}
-                          emissivePulseSpeed={emissivePulseSpeed}
-                          emissivePulseIntensity={emissivePulseIntensity}
-                          lightingPreset={lightingPreset}
-                          size="100%"
-                        />
+                        <ActiveComponent {...canvasIconProps} size="100%" />
                       </div>
                       <p className="text-[7px] text-zinc-650 dark:text-zinc-400 font-medium italic leading-normal pt-2 max-w-[85px]">
                         "Interactive sandbox is amazing."
@@ -4371,34 +4313,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             className="absolute inset-1 rounded-full blur-xl opacity-10 pointer-events-none"
                             style={{ backgroundColor: color }}
                           />
-                          <ActiveComponent
-                            preset={preset}
-                            angle={angle}
-                            environment={environment}
-                            variant={renderMode}
-                            color={color}
-                            accentColor={accentColor}
-                            spinSpeed={spinSpeed}
-                            floatHeight={floatHeight}
-                            theme={theme}
-                            interactive={interactive}
-                            customMaterial={customMaterial}
-                            cameraZoom={cameraZoom}
-                            cameraFov={cameraFov}
-                            lightIntensity={lightIntensity}
-                            lightColor={lightColor}
-                            tiltIntensity={tiltIntensity}
-                            animationType={animationType}
-                            animationAxis={animationAxis}
-                            animationDirection={animationDirection}
-                            shadowOpacity={shadowOpacity}
-                            shadowBlur={shadowBlur}
-                            textureType={textureType}
-                            emissivePulseSpeed={emissivePulseSpeed}
-                            emissivePulseIntensity={emissivePulseIntensity}
-                            lightingPreset={lightingPreset}
-                            size="100%"
-                          />
+                          <ActiveComponent {...canvasIconProps} size="100%" />
                         </div>
                         <span className="text-[7px] font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider truncate max-w-[45px]">
                           Receipt Item
@@ -4434,18 +4349,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                           <div className="flex items-center gap-2">
                             <div className="w-8 h-8">
                               <ActiveComponent
-                                preset={preset}
+                                {...canvasIconProps}
                                 angle="front"
-                                environment={environment}
-                                variant={renderMode}
-                                color={color}
-                                accentColor={accentColor}
                                 spinSpeed={0}
                                 floatHeight={0}
-                                theme={theme}
-                                interactive={false}
-                                customMaterial={customMaterial}
-                                lightingPreset={lightingPreset}
                                 size={32}
                               />
                             </div>
@@ -4478,34 +4385,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                               className="absolute inset-0 rounded-full blur-2xl opacity-15"
                               style={{ backgroundColor: color }}
                             />
-                            <ActiveComponent
-                              preset={preset}
-                              angle={angle}
-                              environment={environment}
-                              variant={renderMode}
-                              color={color}
-                              accentColor={accentColor}
-                              spinSpeed={spinSpeed}
-                              floatHeight={floatHeight}
-                              theme={theme}
-                              interactive={interactive}
-                              customMaterial={customMaterial}
-                              cameraZoom={cameraZoom}
-                              cameraFov={cameraFov}
-                              lightIntensity={lightIntensity}
-                              lightColor={lightColor}
-                              tiltIntensity={tiltIntensity}
-                              animationType={animationType}
-                              animationAxis={animationAxis}
-                              animationDirection={animationDirection}
-                              shadowOpacity={shadowOpacity}
-                              shadowBlur={shadowBlur}
-                              textureType={textureType}
-                              emissivePulseSpeed={emissivePulseSpeed}
-                              emissivePulseIntensity={emissivePulseIntensity}
-                              lightingPreset={lightingPreset}
-                              size={80}
-                            />
+                            <ActiveComponent {...canvasIconProps} size={80} />
                           </div>
                           <h4 className="text-[10px] font-extrabold text-zinc-800 dark:text-zinc-100 uppercase tracking-widest pt-2">
                             Logo Header Integration
@@ -4529,34 +4409,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                               className="absolute inset-2 rounded-full blur-2xl opacity-20 pointer-events-none"
                               style={{ backgroundColor: color }}
                             />
-                            <ActiveComponent
-                              preset={preset}
-                              angle={angle}
-                              environment={environment}
-                              variant={renderMode}
-                              color={color}
-                              accentColor={accentColor}
-                              spinSpeed={spinSpeed}
-                              floatHeight={floatHeight}
-                              theme={theme}
-                              interactive={interactive}
-                              customMaterial={customMaterial}
-                              cameraZoom={cameraZoom}
-                              cameraFov={cameraFov}
-                              lightIntensity={lightIntensity}
-                              lightColor={lightColor}
-                              tiltIntensity={tiltIntensity}
-                              animationType={animationType}
-                              animationAxis={animationAxis}
-                              animationDirection={animationDirection}
-                              shadowOpacity={shadowOpacity}
-                              shadowBlur={shadowBlur}
-                              textureType={textureType}
-                              emissivePulseSpeed={emissivePulseSpeed}
-                              emissivePulseIntensity={emissivePulseIntensity}
-                              lightingPreset={lightingPreset}
-                              size={112}
-                            />
+                            <ActiveComponent {...canvasIconProps} size={112} />
                           </div>
 
                           <div className="space-y-1.5">
@@ -4618,34 +4471,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             style={{ backgroundColor: color }}
                           />
                           <div className="w-44 h-44 flex items-center justify-center">
-                            <ActiveComponent
-                              preset={preset}
-                              angle={angle}
-                              environment={environment}
-                              variant={renderMode}
-                              color={color}
-                              accentColor={accentColor}
-                              spinSpeed={spinSpeed}
-                              floatHeight={floatHeight}
-                              theme={theme}
-                              interactive={interactive}
-                              customMaterial={customMaterial}
-                              cameraZoom={cameraZoom}
-                              cameraFov={cameraFov}
-                              lightIntensity={lightIntensity}
-                              lightColor={lightColor}
-                              tiltIntensity={tiltIntensity}
-                              animationType={animationType}
-                              animationAxis={animationAxis}
-                              animationDirection={animationDirection}
-                              shadowOpacity={shadowOpacity}
-                              shadowBlur={shadowBlur}
-                              textureType={textureType}
-                              emissivePulseSpeed={emissivePulseSpeed}
-                              emissivePulseIntensity={emissivePulseIntensity}
-                              lightingPreset={lightingPreset}
-                              size="100%"
-                            />
+                            <ActiveComponent {...canvasIconProps} size="100%" />
                           </div>
                         </div>
                       </div>
@@ -4666,34 +4492,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                               className="absolute inset-0 rounded-full blur-2xl opacity-15 pointer-events-none"
                               style={{ backgroundColor: color }}
                             />
-                            <ActiveComponent
-                              preset={preset}
-                              angle={angle}
-                              environment={environment}
-                              variant={renderMode}
-                              color={color}
-                              accentColor={accentColor}
-                              spinSpeed={spinSpeed}
-                              floatHeight={floatHeight}
-                              theme={theme}
-                              interactive={interactive}
-                              customMaterial={customMaterial}
-                              cameraZoom={cameraZoom}
-                              cameraFov={cameraFov}
-                              lightIntensity={lightIntensity}
-                              lightColor={lightColor}
-                              tiltIntensity={tiltIntensity}
-                              animationType={animationType}
-                              animationAxis={animationAxis}
-                              animationDirection={animationDirection}
-                              shadowOpacity={shadowOpacity}
-                              shadowBlur={shadowBlur}
-                              textureType={textureType}
-                              emissivePulseSpeed={emissivePulseSpeed}
-                              emissivePulseIntensity={emissivePulseIntensity}
-                              lightingPreset={lightingPreset}
-                              size="100%"
-                            />
+                            <ActiveComponent {...canvasIconProps} size="100%" />
                           </div>
 
                           {/* Pricing Tier details */}
@@ -4767,34 +4566,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
 
                               {/* Active Component centered inside launcher */}
                               <div className="w-18 h-18 self-center flex items-center justify-center">
-                                <ActiveComponent
-                                  preset={preset}
-                                  angle={angle}
-                                  environment={environment}
-                                  variant={renderMode}
-                                  color={color}
-                                  accentColor={accentColor}
-                                  spinSpeed={spinSpeed}
-                                  floatHeight={floatHeight}
-                                  theme={theme}
-                                  interactive={interactive}
-                                  customMaterial={customMaterial}
-                                  cameraZoom={cameraZoom}
-                                  cameraFov={cameraFov}
-                                  lightIntensity={lightIntensity}
-                                  lightColor={lightColor}
-                                  tiltIntensity={tiltIntensity}
-                                  animationType={animationType}
-                                  animationAxis={animationAxis}
-                                  animationDirection={animationDirection}
-                                  shadowOpacity={shadowOpacity}
-                                  shadowBlur={shadowBlur}
-                                  textureType={textureType}
-                                  emissivePulseSpeed={emissivePulseSpeed}
-                                  emissivePulseIntensity={emissivePulseIntensity}
-                                  lightingPreset={lightingPreset}
-                                  size="100%"
-                                />
+                                <ActiveComponent {...canvasIconProps} size="100%" />
                               </div>
 
                               {/* Widget Footer */}
@@ -4833,34 +4605,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
 
                           {/* Floating Active 3D Badge on top right */}
                           <div className="absolute -top-6 -right-6 w-20 h-20 flex items-center justify-center pointer-events-auto">
-                            <ActiveComponent
-                              preset={preset}
-                              angle={angle}
-                              environment={environment}
-                              variant={renderMode}
-                              color={color}
-                              accentColor={accentColor}
-                              spinSpeed={spinSpeed}
-                              floatHeight={floatHeight}
-                              theme={theme}
-                              interactive={interactive}
-                              customMaterial={customMaterial}
-                              cameraZoom={cameraZoom}
-                              cameraFov={cameraFov}
-                              lightIntensity={lightIntensity}
-                              lightColor={lightColor}
-                              tiltIntensity={tiltIntensity}
-                              animationType={animationType}
-                              animationAxis={animationAxis}
-                              animationDirection={animationDirection}
-                              shadowOpacity={shadowOpacity}
-                              shadowBlur={shadowBlur}
-                              textureType={textureType}
-                              emissivePulseSpeed={emissivePulseSpeed}
-                              emissivePulseIntensity={emissivePulseIntensity}
-                              lightingPreset={lightingPreset}
-                              size="100%"
-                            />
+                            <ActiveComponent {...canvasIconProps} size="100%" />
                           </div>
 
                           {/* Testimonial speech text */}
@@ -4917,34 +4662,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                                 className="absolute inset-1 rounded-full blur-xl opacity-10 pointer-events-none"
                                 style={{ backgroundColor: color }}
                               />
-                              <ActiveComponent
-                                preset={preset}
-                                angle={angle}
-                                environment={environment}
-                                variant={renderMode}
-                                color={color}
-                                accentColor={accentColor}
-                                spinSpeed={spinSpeed}
-                                floatHeight={floatHeight}
-                                theme={theme}
-                                interactive={interactive}
-                                customMaterial={customMaterial}
-                                cameraZoom={cameraZoom}
-                                cameraFov={cameraFov}
-                                lightIntensity={lightIntensity}
-                                lightColor={lightColor}
-                                tiltIntensity={tiltIntensity}
-                                animationType={animationType}
-                                animationAxis={animationAxis}
-                                animationDirection={animationDirection}
-                                shadowOpacity={shadowOpacity}
-                                shadowBlur={shadowBlur}
-                                textureType={textureType}
-                                emissivePulseSpeed={emissivePulseSpeed}
-                                emissivePulseIntensity={emissivePulseIntensity}
-                                lightingPreset={lightingPreset}
-                                size="100%"
-                              />
+                              <ActiveComponent {...canvasIconProps} size="100%" />
                             </div>
                             <div className="flex flex-col min-w-0">
                               <span className="text-[9px] font-extrabold text-zinc-900 dark:text-white uppercase tracking-wider truncate leading-tight">
@@ -5503,6 +5221,163 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
                           />
                         </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Surface Normal Texture Group */}
+                <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setTuningNormalsOpen(!tuningNormalsOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Surface Tactility</span>
+                    {tuningNormalsOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {tuningNormalsOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-850/60 animate-page-fade">
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                          Tactility Normal Map
+                        </label>
+                        <div className="grid grid-cols-2 gap-2">
+                          {[
+                            { id: "none", name: "Smooth" },
+                            { id: "noise", name: "Noise Bump" },
+                            { id: "leather", name: "Leather" },
+                            { id: "grid", name: "Digital Grid" }
+                          ].map((norm) => (
+                            <button
+                              key={norm.id}
+                              onClick={() => setSurfaceNormal(norm.id as any)}
+                              className={`py-2 px-1 rounded-xl text-[9px] font-bold border uppercase transition cursor-pointer text-center ${
+                                surfaceNormal === norm.id
+                                  ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                  : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-650 dark:text-zinc-400"
+                              }`}
+                            >
+                              {norm.name}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Floating Particles FX Group */}
+                <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setTuningParticlesOpen(!tuningParticlesOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Particle FX Environment</span>
+                    {tuningParticlesOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {tuningParticlesOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-850/60 animate-page-fade">
+                      {/* Particle Type Selector */}
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-550 uppercase tracking-wider block">
+                          Particle Atmosphere
+                        </label>
+                        <div className="grid grid-cols-4 gap-1.5">
+                          {[
+                            { id: "none", name: "None" },
+                            { id: "sparkles", name: "Sparkle" },
+                            { id: "dust", name: "Dust" },
+                            { id: "stars", name: "Stars" }
+                          ].map((pt) => (
+                            <button
+                              key={pt.id}
+                              onClick={() => setParticleSystem(pt.id as any)}
+                              className={`py-1.5 px-1 rounded-xl text-[9px] font-bold border uppercase transition cursor-pointer text-center ${
+                                particleSystem === pt.id
+                                  ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
+                                  : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-655 dark:text-zinc-455"
+                              }`}
+                            >
+                              {pt.name}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {particleSystem !== "none" && (
+                        <>
+                          {/* Particle Color */}
+                          <div className="space-y-1.5">
+                            <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider">
+                              Particle Color
+                            </span>
+                            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
+                              <input
+                                type="color"
+                                value={particleColor}
+                                onChange={(e) => {
+                                  setParticleColor(e.target.value);
+                                  setParticleColorInput(e.target.value);
+                                }}
+                                className="w-4 h-4 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
+                              />
+                              <input
+                                type="text"
+                                value={particleColorInput}
+                                onChange={(e) => {
+                                  setParticleColorInput(e.target.value);
+                                  if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                                    setParticleColor(e.target.value);
+                                  }
+                                }}
+                                maxLength={7}
+                                className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-655 dark:text-zinc-455 focus:outline-none focus:text-indigo-500 uppercase p-0"
+                              />
+                            </div>
+                          </div>
+
+                          {/* Particle Count Slider */}
+                          <div className="space-y-1.5">
+                            <div className="flex justify-between items-center text-[10px] font-bold">
+                              <span className="text-zinc-500 uppercase tracking-wider">
+                                Particle Count
+                              </span>
+                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                                {particleCount}
+                              </span>
+                            </div>
+                            <input
+                              type="range"
+                              min="10"
+                              max="200"
+                              step="5"
+                              value={particleCount}
+                              onChange={(e) => setParticleCount(parseInt(e.target.value))}
+                              className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            />
+                          </div>
+
+                          {/* Particle Speed Slider */}
+                          <div className="space-y-1.5">
+                            <div className="flex justify-between items-center text-[10px] font-bold">
+                              <span className="text-zinc-500 uppercase tracking-wider">
+                                Float Speed
+                              </span>
+                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                                {particleSpeed.toFixed(1)}x
+                              </span>
+                            </div>
+                            <input
+                              type="range"
+                              min="0.1"
+                              max="3.0"
+                              step="0.1"
+                              value={particleSpeed}
+                              onChange={(e) => setParticleSpeed(parseFloat(e.target.value))}
+                              className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            />
+                          </div>
+                        </>
                       )}
                     </div>
                   )}
@@ -6786,7 +6661,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
       </div>
       {/* High-Quality Screenshot Compositor Modal */}
       {isScreenshotModalOpen && (
-        <div className="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-page-fade">
+        <div className="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm z-50 overflow-y-auto flex justify-center items-start p-4 py-8 animate-page-fade">
           <div className="bg-white dark:bg-[#0b0e16] border border-zinc-200 dark:border-zinc-800 rounded-3xl w-full max-w-md p-6 space-y-5 shadow-2xl relative animate-scale-up">
             <button
               onClick={() => setIsScreenshotModalOpen(false)}
@@ -6972,6 +6847,107 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
               >
                 <LucideAll.Camera size={12} fill="currentColor" />
                 <span>Render & Capture</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {/* Share Modal with QR Code */}
+      {isShareModalOpen && (
+        <div className="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm z-50 overflow-y-auto flex justify-center items-start p-4 py-8 animate-page-fade">
+          <div className="bg-white dark:bg-[#0b0e16] border border-zinc-200 dark:border-zinc-800 rounded-3xl w-full max-w-md p-6 space-y-5 shadow-2xl relative animate-scale-up">
+            <button
+              onClick={() => setIsShareModalOpen(false)}
+              className="absolute top-4 right-4 text-zinc-400 dark:text-zinc-550 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors p-1 cursor-pointer"
+            >
+              <LucideAll.X size={18} />
+            </button>
+
+            <div className="space-y-1">
+              <h3 className="text-sm font-extrabold uppercase tracking-wider text-zinc-900 dark:text-white flex items-center gap-2">
+                <LucideAll.Share2 size={16} className="text-indigo-500" />
+                <span>Share Custom 3D Icon</span>
+              </h3>
+              <p className="text-[10px] text-zinc-550 dark:text-zinc-455 leading-normal">
+                Scan the QR code to instantly interact with your custom icon on your mobile device,
+                or copy the links below.
+              </p>
+            </div>
+
+            {/* QR Code Container */}
+            <div className="flex flex-col items-center justify-center p-4 bg-zinc-50 dark:bg-zinc-900/40 rounded-2xl border border-zinc-150 dark:border-zinc-850">
+              <img
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(shareModalUrl)}`}
+                alt="Share QR Code"
+                width={160}
+                height={160}
+                className="rounded-xl shadow-md border-4 border-white bg-white"
+              />
+              <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-500 uppercase tracking-widest mt-3">
+                Scan with mobile camera
+              </span>
+            </div>
+
+            {/* URLs & Embed Inputs */}
+            <div className="space-y-3">
+              {/* Share URL */}
+              <div className="space-y-1">
+                <label className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider block">
+                  Playground URL
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    readOnly
+                    value={shareModalUrl}
+                    className="flex-grow bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-3 py-1.5 text-[10px] font-mono text-zinc-600 dark:text-zinc-455 focus:outline-none"
+                  />
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(shareModalUrl);
+                      setShareSuccess(true);
+                      setTimeout(() => setShareSuccess(false), 2000);
+                    }}
+                    className="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-550 text-white text-[10px] font-bold uppercase tracking-wider transition active:scale-95 cursor-pointer"
+                  >
+                    {shareSuccess ? "Copied!" : "Copy"}
+                  </button>
+                </div>
+              </div>
+
+              {/* Embed Code */}
+              <div className="space-y-1">
+                <label className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider block">
+                  Iframe Embed Code
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    readOnly
+                    value={shareModalEmbedCode}
+                    className="flex-grow bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-3 py-1.5 text-[10px] font-mono text-zinc-600 dark:text-zinc-455 focus:outline-none"
+                  />
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(shareModalEmbedCode);
+                      setEmbedSuccess(true);
+                      setTimeout(() => setEmbedSuccess(false), 2000);
+                    }}
+                    className="px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-550 text-white text-[10px] font-bold uppercase tracking-wider transition active:scale-95 cursor-pointer"
+                  >
+                    {embedSuccess ? "Copied!" : "Copy"}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Close Button */}
+            <div className="pt-2">
+              <button
+                onClick={() => setIsShareModalOpen(false)}
+                className="w-full py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 text-[10px] font-extrabold uppercase tracking-wider transition active:scale-95 cursor-pointer text-center"
+              >
+                Close Share Options
               </button>
             </div>
           </div>

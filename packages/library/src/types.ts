@@ -58,6 +58,11 @@ export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" 
   accentLightAngle?: number; // Secondary custom accent light rotation angle
   ambientLightColor?: string; // Custom ambient light color (hex)
   ambientLightIntensity?: number; // Custom ambient light intensity
+  particleSystem?: "none" | "sparkles" | "dust" | "stars"; // Floating particle FX system style
+  particleCount?: number; // Count of particles in the sandbox
+  particleColor?: string; // Color of the particles (hex)
+  particleSpeed?: number; // Floating animation speed factor
+  surfaceNormal?: "none" | "noise" | "leather" | "grid"; // Procedural normal map texture style
 }
 
 // Internal standard material config interface
