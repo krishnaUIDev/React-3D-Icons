@@ -2,13 +2,14 @@ import React from "react";
 import { useRouter } from "../router/Router";
 import { Heart, Grid, Package, Github, AlertCircle, HelpCircle } from "lucide-react";
 import { useTranslation } from "../i18n/useTranslation";
+import { LetterIcon, HeartIcon } from "r3d-icons";
 
 export const Footer: React.FC = () => {
   const { navigate } = useRouter();
   const { t } = useTranslation();
 
   return (
-    <footer className="border-t border-zinc-200/80 dark:border-zinc-900 bg-white dark:bg-[#07090f] text-zinc-500 py-6 transition-colors duration-300 mt-auto">
+    <footer className="border-t border-zinc-300/80 dark:border-white/10 bg-zinc-100/70 dark:bg-[#070a13]/[0.15] backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_-8px_32px_0_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_-8px_32px_0_rgba(0,0,0,0.4)] text-zinc-550 py-6 transition-all duration-300 mt-auto relative z-10">
       <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
         {/* Left: Branding */}
         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
@@ -16,8 +17,17 @@ export const Footer: React.FC = () => {
             onClick={() => navigate("catalog")}
             className="flex items-center gap-2 cursor-pointer group text-left"
           >
-            <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 shadow-md flex items-center justify-center font-extrabold text-white text-[10px] transition group-hover:scale-105">
-              3D
+            <div className="w-6 h-6 rounded-lg overflow-hidden border border-white/20 dark:border-white/10 bg-white/[0.1] dark:bg-zinc-950/[0.2] backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_2px_8px_rgba(0,0,0,0.1)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_2px_12px_rgba(0,0,0,0.4)] flex items-center justify-center transition group-hover:scale-105">
+              <LetterIcon
+                letter="R"
+                size={24}
+                preset="glass"
+                angle="front"
+                color="#818cf8"
+                accentColor="#f43f5e"
+                interactive={false}
+                cameraZoom={2.2}
+              />
             </div>
             <span className="font-bold text-xs text-zinc-900 dark:text-white leading-none">
               React 3D Icons
@@ -26,10 +36,16 @@ export const Footer: React.FC = () => {
           <span className="text-zinc-300 dark:text-zinc-800 hidden xs:inline">|</span>
           <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400">
             &copy; {new Date().getFullYear()} MIT Licensed. Built with{" "}
-            <Heart
-              size={10}
-              className="inline text-red-500 fill-current animate-pulse align-middle -mt-0.5"
-            />{" "}
+            <span className="inline-block w-4.5 h-4.5 align-middle mx-0.5">
+              <HeartIcon
+                size={18}
+                preset="clay"
+                color="#f43f5e"
+                interactive={false}
+                cameraZoom={2.2}
+                angle="front"
+              />
+            </span>{" "}
             by{" "}
             <a
               href="https://github.com/krishnaUIDev"

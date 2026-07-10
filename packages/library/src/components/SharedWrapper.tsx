@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Float, Environment, ContactShadows } from "@react-three/drei";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { OrbitControls, Float, Environment, ContactShadows, Text } from "@react-three/drei";
 import * as THREE from "three";
 import { IconProps, MaterialConfig, IconPreset, IconAngle, IconAnimationType } from "../types";
 import { isWebGLAvailable } from "../utils/webgl";
@@ -724,12 +724,19 @@ const IconScene: React.FC<{
   particleColor?: string;
   particleSpeed?: number;
   surfaceNormal?: "none" | "noise" | "leather" | "grid";
+  labelText?: string;
+  labelColor?: string;
+  explodeDistance?: number;
+  cameraZoom?: number;
+  turntableActive?: boolean;
 }> = ({
   children,
   preset,
   angle,
   color,
   accentColor,
+  labelText,
+  labelColor = "#ffffff",
   spinSpeed,
   floatHeight,
   theme,
@@ -753,7 +760,10 @@ const IconScene: React.FC<{
   particleCount = 50,
   particleColor = "#ffffff",
   particleSpeed = 1,
-  surfaceNormal = "none"
+  surfaceNormal = "none",
+  explodeDistance = 0,
+  cameraZoom,
+  turntableActive = false
 }) => {
   const groupRef = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.Group>(null);
@@ -801,12 +811,27 @@ const IconScene: React.FC<{
 
   // Compute material configs
   const matConfig = getMaterialConfig(preset, color, theme, accentColor);
-  const mergedMatConfig = { ...matConfig, ...customMaterial };
+  const mergedMatConfig = useMemo(() => {
+    const merged = { ...matConfig, ...customMaterial };
+    if (merged.iridescence !== undefined && merged.iridescence > 0) {
+      (merged as any).iridescenceThicknessRange = [100, merged.iridescenceThickness ?? 400];
+    }
+    return merged;
+  }, [matConfig, customMaterial]);
 
   useFrame((state) => {
     if (!groupRef.current) return;
 
     const t = state.clock.getElapsedTime();
+
+    if (turntableActive) {
+      const orbitTime = t * 0.15;
+      const radius = cameraZoom ?? 4.5;
+      state.camera.position.x = Math.sin(orbitTime) * radius;
+      state.camera.position.z = Math.cos(orbitTime) * radius;
+      state.camera.position.y = THREE.MathUtils.lerp(state.camera.position.y, 0.8, 0.05);
+      state.camera.lookAt(0, 0, 0);
+    }
 
     // Constant rotation/animation based on type
     if (animationType === "spin") {
@@ -963,6 +988,31 @@ const IconScene: React.FC<{
           }
         }
       });
+
+      // 4. Model Explode sub-mesh separation offsets
+      if (explodeDistance > 0) {
+        let index = 0;
+        groupRef.current.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            if (!(child as any).originalPosition) {
+              (child as any).originalPosition = child.position.clone();
+            }
+            const orig = (child as any).originalPosition as THREE.Vector3;
+            const dir = orig.clone().normalize();
+            if (dir.lengthSq() === 0) {
+              dir.set(Math.sin(index), Math.cos(index), 0.25).normalize();
+            }
+            child.position.copy(orig).addScaledVector(dir, explodeDistance);
+            index++;
+          }
+        });
+      } else {
+        groupRef.current.traverse((child) => {
+          if (child instanceof THREE.Mesh && (child as any).originalPosition) {
+            child.position.copy((child as any).originalPosition);
+          }
+        });
+      }
     }
   });
 
@@ -997,9 +1047,29 @@ const IconScene: React.FC<{
           speed={particleSpeed ?? 1}
         />
       )}
+      {labelText && (
+        <Text
+          position={[0, -1.8, 0]}
+          fontSize={0.24}
+          color={labelColor}
+          anchorX="center"
+          anchorY="middle"
+          font="https://fonts.gstatic.com/s/outfit/v11/0oWqF3EKg1z3h1d58S2Y.woff"
+        >
+          {labelText}
+        </Text>
+      )}
     </group>
   );
 };
+
+function SceneGrabber({ onScene }: { onScene: (scene: THREE.Scene) => void }) {
+  const { scene } = useThree();
+  useEffect(() => {
+    onScene(scene);
+  }, [scene, onScene]);
+  return null;
+}
 
 export function SharedWrapper({
   preset = "glass",
@@ -1048,6 +1118,12 @@ export function SharedWrapper({
   particleColor,
   particleSpeed,
   surfaceNormal,
+  labelText,
+  labelColor,
+  explodeDistance,
+  envRotation,
+  onSceneLoaded,
+  turntableActive = false,
   children,
   ...props
 }: IconProps & {
@@ -1145,6 +1221,11 @@ export function SharedWrapper({
         manualRotationX={manualRotationX}
         manualRotationY={manualRotationY}
         manualRotationZ={manualRotationZ}
+        labelText={labelText}
+        labelColor={labelColor}
+        explodeDistance={explodeDistance}
+        cameraZoom={cameraZoom}
+        turntableActive={turntableActive}
       >
         {children}
       </IconScene>
@@ -1174,7 +1255,9 @@ export function SharedWrapper({
           ambientColor={ambientLightColor}
           ambientIntensity={ambientLightIntensity}
         />
-        <Environment preset={environment} />
+        <group rotation={[0, envRotation ?? 0, 0]}>
+          <Environment preset={environment} />
+        </group>
         <ContactShadows
           position={[0, -1.5, 0]}
           opacity={shadowOpacity ?? 0.6}
@@ -1182,6 +1265,7 @@ export function SharedWrapper({
           blur={shadowBlur ?? 2.5}
           far={4.5}
         />
+        {onSceneLoaded && <SceneGrabber onScene={onSceneLoaded} />}
 
         <IconScene
           preset={preset}
@@ -1212,11 +1296,21 @@ export function SharedWrapper({
           particleColor={particleColor}
           particleSpeed={particleSpeed}
           surfaceNormal={surfaceNormal}
+          labelText={labelText}
+          labelColor={labelColor}
+          explodeDistance={explodeDistance}
+          cameraZoom={cameraZoom}
+          turntableActive={turntableActive}
         >
           {children}
         </IconScene>
 
-        <OrbitControls enableZoom={false} enablePan={false} makeDefault />
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          enabled={!turntableActive}
+          makeDefault
+        />
       </Canvas>
     </div>
   );

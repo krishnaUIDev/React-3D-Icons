@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "../i18n/useTranslation";
+import { audioEngine } from "../utils/audio";
 import { Hero } from "../components/Hero";
 import { IconCard } from "../components/IconCard";
 import { HelpCircle, Search, Heart } from "lucide-react";
@@ -3365,7 +3366,10 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                 return (
                   <button
                     key={presetItem.id}
-                    onClick={() => setActivePreset(presetItem.id)}
+                    onClick={() => {
+                      audioEngine.playClick();
+                      setActivePreset(presetItem.id);
+                    }}
                     className={`px-2 py-1 rounded-lg text-[9px] font-extrabold uppercase tracking-wider transition duration-150 cursor-pointer ${
                       isSelected
                         ? "bg-white dark:bg-[#1a1f30] text-indigo-500 shadow-sm border border-zinc-250/10"
@@ -3454,7 +3458,10 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
         <div className="flex flex-wrap gap-1.5 justify-center mb-6">
           {/* Favorites filter tab button */}
           <button
-            onClick={() => setActiveCategory("favorites")}
+            onClick={() => {
+              audioEngine.playClick();
+              setActiveCategory("favorites");
+            }}
             className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-155 cursor-pointer flex items-center gap-1.5 ${
               activeCategory === "favorites"
                 ? "bg-rose-600 text-white shadow-sm shadow-rose-600/20"
@@ -3486,7 +3493,10 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
             return (
               <button
                 key={category}
-                onClick={() => setActiveCategory(category)}
+                onClick={() => {
+                  audioEngine.playClick();
+                  setActiveCategory(category);
+                }}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 cursor-pointer flex items-center gap-1.5 ${
                   isSelected
                     ? "bg-indigo-600 text-white shadow-sm shadow-indigo-600/20"

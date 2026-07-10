@@ -63,6 +63,12 @@ export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" 
   particleColor?: string; // Color of the particles (hex)
   particleSpeed?: number; // Floating animation speed factor
   surfaceNormal?: "none" | "noise" | "leather" | "grid"; // Procedural normal map texture style
+  labelText?: string; // Custom 3D typography text label content
+  labelColor?: string; // Custom 3D typography label text color (hex)
+  explodeDistance?: number; // Outward distance separation of sub-meshes (0.0 to 1.5)
+  envRotation?: number; // Environment lighting rotation angle in radians (0 to 2*PI)
+  onSceneLoaded?: (scene: any) => void; // Callback to capture the 3D scene instance
+  turntableActive?: boolean; // Cinematic turntable showcase mode
 }
 
 // Internal standard material config interface
@@ -77,4 +83,7 @@ export interface MaterialConfig {
   color: string;
   emissive: string;
   emissiveIntensity: number;
+  iridescence?: number; // Foil reflection intensity
+  iridescenceIOR?: number; // Iridescence refraction index
+  iridescenceThickness?: number; // Foil peak thickness
 }

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { useRouter } from "../router/Router";
 import { useTranslation } from "../i18n/useTranslation";
+import { audioEngine } from "../utils/audio";
 import {
   DatabaseIcon,
   CloudIcon,
@@ -2769,6 +2770,98 @@ const CURATED_PALETTES = [
   { name: "Dark Carbon", color: "#27272a", accentColor: "#71717a" }
 ];
 
+// Curated Premium Theme Presets (aesthetic values combinations)
+interface AestheticTheme {
+  id: string;
+  name: string;
+  color: string;
+  accentColor: string;
+  gradientType: "none" | "linear" | "radial";
+  gradientColorStart?: string;
+  gradientColorEnd?: string;
+  preset: IconPreset;
+  lightingPreset: "studio" | "cyber" | "sunset" | "dramatic";
+  viewportBg: "default" | "grid" | "gradient-indigo" | "gradient-sunset" | "gradient-mesh";
+  badgeBg: string;
+}
+
+const AESTHETIC_THEMES: AestheticTheme[] = [
+  {
+    id: "cyberpunk",
+    name: "Cyberpunk Neon",
+    color: "#ff007f",
+    accentColor: "#00f0ff",
+    gradientType: "linear",
+    gradientColorStart: "#ff007f",
+    gradientColorEnd: "#00f0ff",
+    preset: "glass",
+    lightingPreset: "cyber",
+    viewportBg: "gradient-indigo",
+    badgeBg: "from-pink-500 to-cyan-400"
+  },
+  {
+    id: "golden",
+    name: "Golden Hour",
+    color: "#ffd700",
+    accentColor: "#ff4500",
+    gradientType: "linear",
+    gradientColorStart: "#ffd700",
+    gradientColorEnd: "#ff4500",
+    preset: "gold",
+    lightingPreset: "sunset",
+    viewportBg: "gradient-sunset",
+    badgeBg: "from-amber-400 to-red-500"
+  },
+  {
+    id: "emerald",
+    name: "Emerald Glass",
+    color: "#10b981",
+    accentColor: "#047857",
+    gradientType: "radial",
+    gradientColorStart: "#10b981",
+    gradientColorEnd: "#047857",
+    preset: "glass",
+    lightingPreset: "studio",
+    viewportBg: "default",
+    badgeBg: "from-emerald-400 to-teal-600"
+  },
+  {
+    id: "obsidian",
+    name: "Obsidian Dark",
+    color: "#1c1917",
+    accentColor: "#44403c",
+    gradientType: "none",
+    preset: "glass",
+    lightingPreset: "dramatic",
+    viewportBg: "grid",
+    badgeBg: "from-stone-700 to-zinc-900"
+  },
+  {
+    id: "pastel",
+    name: "Pastel Mint",
+    color: "#a7f3d0",
+    accentColor: "#6ee7b7",
+    gradientType: "linear",
+    gradientColorStart: "#a7f3d0",
+    gradientColorEnd: "#d1fae5",
+    preset: "glass",
+    lightingPreset: "studio",
+    viewportBg: "default",
+    badgeBg: "from-teal-200 to-emerald-300"
+  },
+  {
+    id: "pearl",
+    name: "Pearl Gloss",
+    color: "#f3f4f6",
+    accentColor: "#e5e7eb",
+    gradientType: "none",
+    preset: "clay",
+    lightingPreset: "studio",
+    viewportBg: "default",
+    badgeBg: "from-zinc-100 to-zinc-300"
+  }
+];
+
 interface CustomizeProps {
   theme: "light" | "dark";
 }
@@ -2795,6 +2888,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [copiedTSXWrapper, setCopiedTSXWrapper] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const [resetKey, setResetKey] = useState(0);
+  const sceneRef = useRef<any>(null);
   const [renderMode, setRenderMode] = useState<"3d" | "2d">("3d");
   const [environment, setEnvironment] = useState<IconEnvironment>("city");
   const [activeConsoleTab, setActiveConsoleTab] = useState<"react" | "svg">("react");
@@ -2864,6 +2958,9 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [materialClearcoatRoughness, setMaterialClearcoatRoughness] = useState(0.1);
   const [materialIor, setMaterialIor] = useState(1.5);
   const [materialEmissiveIntensity, setMaterialEmissiveIntensity] = useState(0.3);
+  const [materialIridescence, setMaterialIridescence] = useState(0.0);
+  const [materialIridescenceIor, setMaterialIridescenceIor] = useState(1.3);
+  const [materialIridescenceThickness, setMaterialIridescenceThickness] = useState(400);
 
   // Saved Custom Presets
   const [savedPresets, setSavedPresets] = useState<any[]>([]);
@@ -2898,6 +2995,19 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [surfaceNormal, setSurfaceNormal] = useState<"none" | "noise" | "leather" | "grid">("none");
   const [tuningParticlesOpen, setTuningParticlesOpen] = useState(false);
   const [tuningNormalsOpen, setTuningNormalsOpen] = useState(false);
+
+  // Label & Audio states
+  const [labelText, setLabelText] = useState("");
+  const [labelColor, setLabelColor] = useState("#ffffff");
+  const [labelColorInput, setLabelColorInput] = useState("#ffffff");
+  const [tuningLabelOpen, setTuningLabelOpen] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(() => audioEngine.isEnabled());
+  const [turntableActive, setTurntableActive] = useState(false);
+
+  // Round 3 Explode & Reflections states
+  const [explodeDistance, setExplodeDistance] = useState(0.0);
+  const [envRotation, setEnvRotation] = useState(0.0);
+  const [tuningExplodeOpen, setTuningExplodeOpen] = useState(false);
 
   // Consolidation Share Modal
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -3005,6 +3115,13 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
         }
         if (decoded.particleSpeed !== undefined) setParticleSpeed(decoded.particleSpeed);
         if (decoded.surfaceNormal) setSurfaceNormal(decoded.surfaceNormal);
+        if (decoded.labelText !== undefined) setLabelText(decoded.labelText);
+        if (decoded.labelColor) {
+          setLabelColor(decoded.labelColor);
+          setLabelColorInput(decoded.labelColor);
+        }
+        if (decoded.explodeDistance !== undefined) setExplodeDistance(decoded.explodeDistance);
+        if (decoded.envRotation !== undefined) setEnvRotation(decoded.envRotation);
         if (decoded.gradientColorStart) {
           setGradientColorStart(decoded.gradientColorStart);
           setGradientColorStartInput(decoded.gradientColorStart);
@@ -3031,6 +3148,11 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
           setMaterialClearcoatRoughness(mat.clearcoatRoughness);
           setMaterialIor(mat.ior);
           setMaterialEmissiveIntensity(mat.emissiveIntensity);
+          setMaterialIridescence(mat.iridescence !== undefined ? mat.iridescence : 0.0);
+          setMaterialIridescenceIor(mat.iridescenceIOR !== undefined ? mat.iridescenceIOR : 1.3);
+          setMaterialIridescenceThickness(
+            mat.iridescenceThickness !== undefined ? mat.iridescenceThickness : 400
+          );
         }
 
         // Clear share parameter from URL history silently
@@ -3041,6 +3163,11 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       console.error("Failed to restore shared playground configuration", e);
     }
   }, []);
+
+  // Sync audio engine configuration
+  useEffect(() => {
+    audioEngine.setEnabled(soundEnabled);
+  }, [soundEnabled]);
 
   // Sync compare list default icons when active icon changes
   useEffect(() => {
@@ -3092,6 +3219,12 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   if (materialIor !== defaultMat.ior) customMaterial.ior = Number(materialIor.toFixed(2));
   if (materialEmissiveIntensity !== defaultMat.emissiveIntensity)
     customMaterial.emissiveIntensity = Number(materialEmissiveIntensity.toFixed(2));
+  if (materialIridescence !== 0)
+    customMaterial.iridescence = Number(materialIridescence.toFixed(2));
+  if (materialIridescenceIor !== 1.3)
+    customMaterial.iridescenceIOR = Number(materialIridescenceIor.toFixed(2));
+  if (materialIridescenceThickness !== 400)
+    customMaterial.iridescenceThickness = materialIridescenceThickness;
 
   const customMaterialKeys = Object.keys(customMaterial);
   const customMaterialProp =
@@ -3175,6 +3308,12 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       : "";
   const surfaceNormalProp =
     surfaceNormal !== "none" ? `\n        surfaceNormal="${surfaceNormal}"` : "";
+  const labelTextProp = labelText !== "" ? `\n        labelText="${labelText}"` : "";
+  const labelColorProp =
+    labelText !== "" && labelColor !== "#ffffff" ? `\n        labelColor="${labelColor}"` : "";
+  const explodeDistanceProp =
+    explodeDistance > 0 ? `\n        explodeDistance={${explodeDistance}}` : "";
+  const envRotationProp = envRotation > 0 ? `\n        envRotation={${envRotation}}` : "";
 
   // Preset Handlers
   const handleSavePreset = () => {
@@ -3205,18 +3344,58 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       particleCount,
       particleColor,
       particleSpeed,
-      surfaceNormal
+      surfaceNormal,
+      labelText,
+      labelColor,
+      explodeDistance,
+      envRotation
     };
     const updated = [...savedPresets, newPreset];
     setSavedPresets(updated);
     localStorage.setItem("r3d_saved_presets", JSON.stringify(updated));
     setNewPresetName("");
+    audioEngine.playChime();
   };
 
   const handleDeletePreset = (id: string) => {
     const updated = savedPresets.filter((p) => p.id !== id);
     setSavedPresets(updated);
     localStorage.setItem("r3d_saved_presets", JSON.stringify(updated));
+  };
+
+  const applyAestheticTheme = (themePreset: AestheticTheme) => {
+    audioEngine.playSnap();
+    setColor(themePreset.color);
+    setPrimaryInput(themePreset.color);
+    setAccentColor(themePreset.accentColor);
+    setAccentInput(themePreset.accentColor);
+    setGradientType(themePreset.gradientType);
+    if (themePreset.gradientType !== "none") {
+      setGradientColorStart(themePreset.gradientColorStart || themePreset.color);
+      setGradientColorStartInput(themePreset.gradientColorStart || themePreset.color);
+      setGradientColorEnd(themePreset.gradientColorEnd || themePreset.accentColor);
+      setGradientColorEndInput(themePreset.gradientColorEnd || themePreset.accentColor);
+    }
+    setPreset(themePreset.preset);
+    setLightingPreset(themePreset.lightingPreset);
+    setViewportBg(themePreset.viewportBg);
+
+    const mat = getMaterialConfig(
+      themePreset.preset,
+      themePreset.color,
+      theme,
+      themePreset.accentColor
+    );
+    setMaterialRoughness(mat.roughness);
+    setMaterialMetalness(mat.metalness);
+    setMaterialTransmission(mat.transmission);
+    setMaterialThickness(mat.thickness);
+    setMaterialClearcoat(mat.clearcoat);
+    setMaterialClearcoatRoughness(mat.clearcoatRoughness);
+    setMaterialIor(mat.ior);
+    setMaterialEmissiveIntensity(mat.emissiveIntensity);
+    setExplodeDistance(0.0);
+    setEnvRotation(0.0);
   };
 
   const handleSharePlayground = () => {
@@ -3258,7 +3437,11 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
         particleCount,
         particleColor,
         particleSpeed,
-        surfaceNormal
+        surfaceNormal,
+        labelText,
+        labelColor,
+        explodeDistance,
+        envRotation
       };
       const serialized = btoa(encodeURIComponent(JSON.stringify(data)));
       const shareUrl = `${window.location.origin}${window.location.pathname}?share=${serialized}#/icons/${color.replace("#", "")}-${iconId}`;
@@ -3270,6 +3453,39 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       setIsShareModalOpen(true);
     } catch (e) {
       console.error("Failed to generate share URL", e);
+    }
+  };
+
+  const handleExportGLTF = async () => {
+    if (!sceneRef.current) {
+      alert("Please wait until the 3D viewport has fully loaded.");
+      return;
+    }
+    try {
+      audioEngine.playChime();
+      const { GLTFExporter } = await import("three/examples/jsm/exporters/GLTFExporter.js");
+      const exporter = new GLTFExporter();
+      exporter.parse(
+        sceneRef.current,
+        (gltf) => {
+          const output = JSON.stringify(gltf, null, 2);
+          const blob = new Blob([output], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `${currentIcon.id}-custom.gltf`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+        },
+        (error) => {
+          console.error("An error occurred during GLTF export:", error);
+        },
+        { binary: false }
+      );
+    } catch (e) {
+      console.error("Failed to load GLTFExporter:", e);
     }
   };
 
@@ -3388,6 +3604,14 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
     setMaterialClearcoatRoughness(mat.clearcoatRoughness);
     setMaterialIor(mat.ior);
     setMaterialEmissiveIntensity(mat.emissiveIntensity);
+
+    setLabelText(p.labelText || "");
+    if (p.labelColor) {
+      setLabelColor(p.labelColor);
+      setLabelColorInput(p.labelColor);
+    }
+    setExplodeDistance(p.explodeDistance !== undefined ? p.explodeDistance : 0.0);
+    setEnvRotation(p.envRotation !== undefined ? p.envRotation : 0.0);
   };
 
   // Update dynamic SVG preview string inside sandbox console
@@ -3454,7 +3678,7 @@ function App() {
         spinSpeed={${spinSpeed.toFixed(1)}}
         floatHeight={${floatHeight.toFixed(1)}}
         theme="${theme}"
-        interactive={${interactive}}${cameraZoomProp}${cameraFovProp}${lightIntensityProp}${lightColorProp}${tiltIntensityProp}${animationTypeProp}${animationAxisProp}${animationDirectionProp}${shadowOpacityProp}${shadowBlurProp}${textureTypeProp}${emissivePulseSpeedProp}${emissivePulseIntensityProp}${lightingPresetProp}${accentLightColorProp}${accentLightIntensityProp}${accentLightAngleProp}${ambientLightIntensityProp}${ambientLightColorProp}${gradientTypeProp}${gradientColorStartProp}${gradientColorEndProp}${gradientAngleProp}${particleSystemProp}${particleCountProp}${particleColorProp}${particleSpeedProp}${surfaceNormalProp}${customMaterialProp}
+        interactive={${interactive}}${cameraZoomProp}${cameraFovProp}${lightIntensityProp}${lightColorProp}${tiltIntensityProp}${animationTypeProp}${animationAxisProp}${animationDirectionProp}${shadowOpacityProp}${shadowBlurProp}${textureTypeProp}${emissivePulseSpeedProp}${emissivePulseIntensityProp}${lightingPresetProp}${accentLightColorProp}${accentLightIntensityProp}${accentLightAngleProp}${ambientLightIntensityProp}${ambientLightColorProp}${gradientTypeProp}${gradientColorStartProp}${gradientColorEndProp}${gradientAngleProp}${particleSystemProp}${particleCountProp}${particleColorProp}${particleSpeedProp}${surfaceNormalProp}${labelTextProp}${labelColorProp}${explodeDistanceProp}${envRotationProp}${customMaterialProp}
       />
     </div>
   );
@@ -3512,6 +3736,15 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
       ${accentLightIntensity > 0 ? `accentLightColor="${accentLightColor}"` : ""}
       ${accentLightIntensity > 0 ? `accentLightIntensity={${accentLightIntensity}}` : ""}
       ${accentLightIntensity > 0 ? `accentLightAngle={${accentLightAngle}}` : ""}
+      ${particleSystem !== "none" ? `particleSystem="${particleSystem}"` : ""}
+      ${particleSystem !== "none" && particleCount !== 50 ? `particleCount={${particleCount}}` : ""}
+      ${particleSystem !== "none" && particleColor !== "#ffffff" ? `particleColor="${particleColor}"` : ""}
+      ${particleSystem !== "none" && particleSpeed !== 1.0 ? `particleSpeed={${particleSpeed}}` : ""}
+      ${surfaceNormal !== "none" ? `surfaceNormal="${surfaceNormal}"` : ""}
+      ${labelText !== "" ? `labelText="${labelText}"` : ""}
+      ${labelText !== "" && labelColor !== "#ffffff" ? `labelColor="${labelColor}"` : ""}
+      ${explodeDistance > 0 ? `explodeDistance={${explodeDistance}}` : ""}
+      ${envRotation > 0 ? `envRotation={${envRotation}}` : ""}
       ${Object.keys(customMaterial).length > 0 ? "customMaterial={customMaterial}" : ""}
       {...props}
     />
@@ -3532,6 +3765,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+    audioEngine.playChime();
   };
 
   const handleCopyTSXWrapper = () => {
@@ -3566,6 +3800,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
         link.download = `${currentIcon.id}-2d-${preset}.svg`;
         document.body.appendChild(link);
         link.click();
+        audioEngine.playChime();
 
         document.body.removeChild(link);
         URL.revokeObjectURL(url);
@@ -3589,6 +3824,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     }
 
     try {
+      audioEngine.playShutter();
       const compCanvas = document.createElement("canvas");
       const ctx = compCanvas.getContext("2d");
       if (!ctx) return;
@@ -3789,6 +4025,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     setMaterialClearcoatRoughness(defaults.clearcoatRoughness);
     setMaterialIor(defaults.ior);
     setMaterialEmissiveIntensity(defaults.emissiveIntensity);
+    setMaterialIridescence(0.0);
+    setMaterialIridescenceIor(1.3);
+    setMaterialIridescenceThickness(400);
+    setTurntableActive(false);
   };
 
   const handleSurpriseMe = () => {
@@ -3959,7 +4199,15 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     particleCount,
     particleColor,
     particleSpeed,
-    surfaceNormal
+    surfaceNormal,
+    labelText,
+    labelColor,
+    explodeDistance,
+    envRotation,
+    turntableActive,
+    onSceneLoaded: (scene: any) => {
+      sceneRef.current = scene;
+    }
   };
 
   const isEmbed = new URLSearchParams(window.location.search).get("embed") === "true";
@@ -4102,6 +4350,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                   <button
                     key={cam.id}
                     onClick={() => {
+                      audioEngine.playSnap();
                       setAngle(cam.id as IconAngle);
                       if (cam.id === "perspective") {
                         setCameraZoom(4.5);
@@ -4118,6 +4367,34 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                     {cam.name}
                   </button>
                 ))}
+              </div>
+            )}
+
+            {/* Curated Aesthetic Theme Presets HUD Bar */}
+            {activeSidebarTab !== "compare" && (
+              <div className="absolute top-14 left-4 z-10 flex items-center gap-1.5 bg-white/70 dark:bg-[#0c0f18]/80 border border-zinc-200 dark:border-zinc-800 p-1 rounded-xl backdrop-blur-md shadow-sm">
+                <span className="text-[8px] font-extrabold text-zinc-400 dark:text-zinc-555 uppercase tracking-wider px-2 block select-none">
+                  Aesthetic Themes:
+                </span>
+                <div className="flex gap-1">
+                  {AESTHETIC_THEMES.map((themePreset) => (
+                    <button
+                      key={themePreset.id}
+                      onClick={() => {
+                        applyAestheticTheme(themePreset);
+                      }}
+                      title={`Apply ${themePreset.name} Theme`}
+                      className="px-1.5 py-0.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition active:scale-95 cursor-pointer flex items-center gap-1 border border-transparent hover:border-zinc-200/50 dark:hover:border-zinc-700/50"
+                    >
+                      <div
+                        className={`w-2.5 h-2.5 rounded bg-gradient-to-tr ${themePreset.badgeBg} shadow-sm border border-zinc-200/20`}
+                      />
+                      <span className="text-[7.5px] font-black uppercase text-zinc-700 dark:text-zinc-350 pr-0.5">
+                        {themePreset.name.split(" ")[0]}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
 
@@ -4152,6 +4429,50 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                     >
                       <LucideAll.Activity size={16} />
                     </button>
+                    <button
+                      onClick={() => {
+                        const nextVal = !soundEnabled;
+                        setSoundEnabled(nextVal);
+                        if (nextVal) {
+                          audioEngine.setEnabled(true);
+                          audioEngine.playChime();
+                        }
+                      }}
+                      title={soundEnabled ? "Mute Sound Effects" : "Unmute Sound Effects"}
+                      className={`p-2.5 rounded-xl border transition active:scale-95 cursor-pointer flex items-center justify-center ${
+                        soundEnabled
+                          ? "border-emerald-500 bg-emerald-50/20 text-emerald-600 dark:text-emerald-400"
+                          : "border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm"
+                      }`}
+                    >
+                      {soundEnabled ? (
+                        <LucideAll.Volume2 size={16} />
+                      ) : (
+                        <LucideAll.VolumeX size={16} />
+                      )}
+                    </button>
+
+                    {/* Turntable Showcase mode toggle */}
+                    <button
+                      onClick={() => {
+                        const nextVal = !turntableActive;
+                        setTurntableActive(nextVal);
+                        audioEngine.playSnap();
+                      }}
+                      title={
+                        turntableActive
+                          ? "Disable Cinematic Turntable"
+                          : "Enable Cinematic Turntable"
+                      }
+                      className={`p-2.5 rounded-xl border transition active:scale-95 cursor-pointer flex items-center justify-center ${
+                        turntableActive
+                          ? "border-indigo-500 bg-indigo-50/20 text-indigo-600 dark:text-indigo-400"
+                          : "border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm"
+                      }`}
+                    >
+                      <LucideAll.Tv size={16} />
+                    </button>
+
                     <button
                       onClick={handleReset}
                       title={t("reset_btn")}
@@ -4793,6 +5114,18 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                   </button>
                 )}
 
+                {/* Download GLTF 3D Model Asset (only on 3D render) */}
+                {renderMode === "3d" && (
+                  <button
+                    onClick={handleExportGLTF}
+                    title="Export & Download 3D Model Asset (GLTF)"
+                    className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer active:scale-95 flex items-center justify-center gap-1 text-[9px] font-extrabold uppercase tracking-wider px-2.5"
+                  >
+                    <LucideAll.Package size={14} />
+                    <span>3D GLTF</span>
+                  </button>
+                )}
+
                 {/* Download TSX Component (only visible on React tab) */}
                 {activeConsoleTab === "react" && (
                   <button
@@ -5383,6 +5716,131 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                   )}
                 </div>
 
+                {/* 3D Typography Label Group */}
+                <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setTuningLabelOpen(!tuningLabelOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>3D Canvas Typography</span>
+                    {tuningLabelOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {tuningLabelOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-850/60 animate-page-fade">
+                      {/* Label Text Input */}
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-550 uppercase tracking-wider block">
+                          Typography Label
+                        </label>
+                        <input
+                          type="text"
+                          value={labelText}
+                          placeholder="e.g. Awesome Icon"
+                          onChange={(e) => {
+                            setLabelText(e.target.value);
+                            audioEngine.playClick();
+                          }}
+                          className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl px-3 py-2 text-[10px] font-bold text-zinc-700 dark:text-zinc-300 focus:outline-none focus:border-indigo-500 transition-colors"
+                        />
+                      </div>
+
+                      {/* Label Color Input */}
+                      {labelText && (
+                        <div className="space-y-1.5">
+                          <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider">
+                            Label Color
+                          </span>
+                          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
+                            <input
+                              type="color"
+                              value={labelColor}
+                              onChange={(e) => {
+                                setLabelColor(e.target.value);
+                                setLabelColorInput(e.target.value);
+                              }}
+                              className="w-4 h-4 rounded cursor-pointer border-0 p-0 bg-transparent flex-shrink-0"
+                            />
+                            <input
+                              type="text"
+                              value={labelColorInput}
+                              onChange={(e) => {
+                                setLabelColorInput(e.target.value);
+                                if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+                                  setLabelColor(e.target.value);
+                                }
+                              }}
+                              maxLength={7}
+                              className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-655 dark:text-zinc-455 focus:outline-none focus:text-indigo-500 uppercase p-0"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* 3D Explode & Reflections Group */}
+                <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setTuningExplodeOpen(!tuningExplodeOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Explode & Reflections</span>
+                    {tuningExplodeOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {tuningExplodeOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-850/60 animate-page-fade">
+                      {/* Explode Distance Slider */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-500 uppercase tracking-wider">
+                            Mesh Explode Distance
+                          </span>
+                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                            {explodeDistance.toFixed(2)}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="1.2"
+                          step="0.05"
+                          value={explodeDistance}
+                          onChange={(e) => {
+                            setExplodeDistance(parseFloat(e.target.value));
+                            audioEngine.playClick();
+                          }}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* Environment Rotation Slider */}
+                      <div className="space-y-1.5">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-500 uppercase tracking-wider">
+                            Reflection Map Rotation
+                          </span>
+                          <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                            {Math.round((envRotation * 180) / Math.PI)}°
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0"
+                          max={2 * Math.PI}
+                          step={Math.PI / 36}
+                          value={envRotation}
+                          onChange={(e) => {
+                            setEnvRotation(parseFloat(e.target.value));
+                            audioEngine.playClick();
+                          }}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+
                 {/* 3. Motion & Animation Group */}
 
                 <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
@@ -5849,6 +6307,82 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                           className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
                         />
                       </div>
+
+                      {/* Iridescence Intensity */}
+                      <div className="space-y-1.5 pt-2 border-t border-zinc-200/50 dark:border-zinc-800/50">
+                        <div className="flex justify-between items-center text-[10px] font-bold">
+                          <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                            Iridescent Foil Intensity
+                          </span>
+                          <span className="text-zinc-770 dark:text-zinc-300 font-mono">
+                            {materialIridescence.toFixed(2)}
+                            {materialIridescence === 0 ? " (none)" : " (active)"}
+                          </span>
+                        </div>
+                        <input
+                          type="range"
+                          min="0.0"
+                          max="1.0"
+                          step="0.05"
+                          value={materialIridescence}
+                          onChange={(e) => {
+                            setMaterialIridescence(parseFloat(e.target.value));
+                            audioEngine.playClick();
+                          }}
+                          className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                        />
+                      </div>
+
+                      {/* Iridescence IOR */}
+                      {materialIridescence > 0 && (
+                        <>
+                          <div className="space-y-1.5">
+                            <div className="flex justify-between items-center text-[10px] font-bold">
+                              <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                                Foil Refraction Index (IOR)
+                              </span>
+                              <span className="text-zinc-770 dark:text-zinc-300 font-mono">
+                                {materialIridescenceIor.toFixed(2)}
+                              </span>
+                            </div>
+                            <input
+                              type="range"
+                              min="1.0"
+                              max="3.0"
+                              step="0.05"
+                              value={materialIridescenceIor}
+                              onChange={(e) => {
+                                setMaterialIridescenceIor(parseFloat(e.target.value));
+                                audioEngine.playClick();
+                              }}
+                              className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            />
+                          </div>
+
+                          <div className="space-y-1.5">
+                            <div className="flex justify-between items-center text-[10px] font-bold">
+                              <span className="text-zinc-555 dark:text-zinc-500 uppercase tracking-wider">
+                                Foil Film Thickness
+                              </span>
+                              <span className="text-zinc-770 dark:text-zinc-300 font-mono">
+                                {materialIridescenceThickness} nm
+                              </span>
+                            </div>
+                            <input
+                              type="range"
+                              min="100"
+                              max="1000"
+                              step="50"
+                              value={materialIridescenceThickness}
+                              onChange={(e) => {
+                                setMaterialIridescenceThickness(parseInt(e.target.value));
+                                audioEngine.playClick();
+                              }}
+                              className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            />
+                          </div>
+                        </>
+                      )}
                     </div>
                   )}
                 </div>
