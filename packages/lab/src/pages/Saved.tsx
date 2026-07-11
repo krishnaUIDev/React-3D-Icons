@@ -5,6 +5,7 @@ import { Trash2, ExternalLink, Copy, Check, Download, Compass, Sparkles } from "
 import { useTranslation } from "../i18n/useTranslation";
 import { Fallback2D } from "r3d-icons";
 import { createRoot } from "react-dom/client";
+import { Lazy3DIcon } from "../components/Lazy3DIcon";
 
 interface SavedProps {
   theme: "light" | "dark";
@@ -329,7 +330,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
             const registryEntry =
               ICONS_REGISTRY.find((item) => item.id === (preset.iconId || "shield")) ||
               ICONS_REGISTRY[0];
-            const Component = registryEntry.Component;
+            const Component = (props: any) => <Lazy3DIcon name={registryEntry.name} {...props} />;
             const iconName = registryEntry.name;
 
             return (

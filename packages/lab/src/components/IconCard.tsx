@@ -4,11 +4,11 @@ import { IconPreset } from "r3d-icons";
 import { Heart } from "lucide-react";
 import { useTranslation } from "../i18n/useTranslation";
 import { TranslationKey } from "../i18n/translations";
+import { Lazy3DIcon } from "./Lazy3DIcon";
 
 interface IconCardProps {
   id: string;
   name: string;
-  Component: React.ComponentType<any>;
   theme: "light" | "dark";
   color?: string;
   accentColor?: string;
@@ -23,7 +23,6 @@ interface IconCardProps {
 export const IconCard: React.FC<IconCardProps> = ({
   id,
   name,
-  Component,
   theme,
   color = "#6366f1",
   accentColor,
@@ -116,7 +115,8 @@ export default function IconShowcase() {
             />
             {isHovered ? (
               <div className="w-12 h-12 sm:w-16 sm:h-16 transform scale-105 transition-transform duration-300">
-                <Component
+                <Lazy3DIcon
+                  name={name}
                   preset={preset}
                   theme={theme}
                   color={color}
@@ -128,7 +128,8 @@ export default function IconShowcase() {
               </div>
             ) : (
               <div className="relative flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16">
-                <Component
+                <Lazy3DIcon
+                  name={name}
                   variant="2d"
                   preset={preset}
                   theme={theme}
@@ -392,7 +393,8 @@ export default function IconShowcase() {
         />
         {isHovered ? (
           <div className="w-14 h-14 sm:w-16 sm:h-16 transform scale-105 transition-transform duration-300">
-            <Component
+            <Lazy3DIcon
+              name={name}
               preset={preset}
               theme={theme}
               color={color}
@@ -404,7 +406,8 @@ export default function IconShowcase() {
           </div>
         ) : (
           <div className="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16">
-            <Component
+            <Lazy3DIcon
+              name={name}
               variant="2d"
               preset={preset}
               theme={theme}

@@ -1,304 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "../i18n/useTranslation";
 import { audioEngine } from "../utils/audio";
 import { Hero } from "../components/Hero";
 import { IconCard } from "../components/IconCard";
 import { HelpCircle, Search, Heart } from "lucide-react";
-import {
-  FacebookIcon,
-  ShieldIcon,
-  RocketIcon,
-  DatabaseIcon,
-  CloudIcon,
-  CpuIcon,
-  NetworkIcon,
-  GearIcon,
-  FlashIcon,
-  FolderIcon,
-  MailIcon,
-  WalletIcon,
-  CalendarIcon,
-  DollarIcon,
-  ThumbUpIcon,
-  HeartIcon,
-  ChatIcon,
-  KeyIcon,
-  StarIcon,
-  CartIcon,
-  MusicIcon,
-  GamepadIcon,
-  BellIcon,
-  SunIcon,
-  BulbIcon,
-  CameraIcon,
-  ClockIcon,
-  TrophyIcon,
-  LockIcon,
-  MapPinIcon,
-  CreditCardIcon,
-  WifiIcon,
-  SearchIcon,
-  HomeIcon,
-  TrashIcon,
-  UserIcon,
-  PlayIcon,
-  GiftIcon,
-  GlobeIcon,
-  BagIcon,
-  CompassIcon,
-  SendIcon,
-  TargetIcon,
-  EditIcon,
-  PhoneIcon,
-  BookIcon,
-  LinkIcon,
-  CrownIcon,
-  PinIcon,
-  FlagIcon,
-  BriefcaseIcon,
-  EyeIcon,
-  TagIcon,
-  CoffeeIcon,
-  ShareIcon,
-  LayersIcon,
-  SparklesIcon,
-  MegaphoneIcon,
-  DownloadIcon,
-  UploadIcon,
-  MonitorIcon,
-  KeyboardIcon,
-  MouseIcon,
-  HardDriveIcon,
-  GlassmorphismIcon,
-  GithubIcon,
-  TwitterIcon,
-  GoogleIcon,
-  RouterIcon,
-  ServerIcon,
-  WrenchIcon,
-  BoltIcon,
-  SmileIcon,
-  FrownIcon,
-  HeartEyesIcon,
-  HammerIcon,
-  ScrewdriverIcon,
-  NutIcon,
-  PrinterIcon,
-  SpeakerIcon,
-  EthernetIcon,
-  SatelliteIcon,
-  CodeIcon,
-  TerminalIcon,
-  GitIcon,
-  FigmaIcon,
-  BarChartIcon,
-  CheckIcon,
-  ContainerIcon,
-  ShieldCheckIcon,
-  ReactIcon,
-  NodeIcon,
-  AnchorIcon,
-  DiamondIcon,
-  FilterIcon,
-  PipelineIcon,
-  RefreshIcon,
-  WebhookIcon,
-  PlusIcon,
-  MinusIcon,
-  CloseIcon,
-  InfoIcon,
-  AlertCircleIcon,
-  LetterIcon,
-  BugIcon,
-  FlaskIcon,
-  PieChartIcon,
-  FlameIcon,
-  ActivityIcon,
-  GraduationCapIcon,
-  TrendingUpIcon,
-  InstagramIcon,
-  YoutubeIcon,
-  LinkedinIcon,
-  DribbbleIcon,
-  CloudNetworkIcon,
-  FirewallIcon,
-  PackageIcon,
-  AirplaneIcon,
-  BatteryIcon,
-  VideoIcon,
-  MicrophoneIcon,
-  SlidersIcon,
-  MapIcon,
-  UmbrellaIcon,
-  ScissorsIcon,
-  UnlockIcon,
-  ArchiveIcon,
-  ShieldAlertIcon,
-  EyeOffIcon,
-  UserPlusIcon,
-  TrendingDownIcon,
-  CopyIcon,
-  GaugeIcon,
-  MagnetIcon,
-  StackIcon,
-  WorkflowIcon,
-  TopologyIcon,
-  FileIcon,
-  HeadphonesIcon,
-  MoonIcon,
-  PaperclipIcon,
-  BookmarkIcon,
-  CloudLightningIcon,
-  FolderOpenIcon,
-  VolumeIcon,
-  BellOffIcon,
-  SunMoonIcon,
-  PistonIcon,
-  SpringIcon,
-  AnvilIcon,
-  HookIcon,
-  TurbineIcon,
-  PliersIcon,
-  DrillIcon,
-  HacksawIcon,
-  TapeMeasureIcon,
-  CaliperIcon,
-  SpiritLevelIcon,
-  SledgehammerIcon,
-  PhoneMobileIcon,
-  TabletIcon,
-  LaptopIcon,
-  SmartWatchIcon,
-  RouterWifiIcon,
-  ServerRackIcon,
-  HardDriveExternalIcon,
-  WebcamIcon,
-  ChiselIcon,
-  CrowbarIcon,
-  FunnelIcon,
-  OilCanIcon,
-  BearingIcon,
-  PulleyIcon,
-  SprocketIcon,
-  ProjectorIcon,
-  GameConsoleIcon,
-  VRHeadsetIcon,
-  SmartSpeakerIcon,
-  PowerBankIcon,
-  UsbDriveIcon,
-  MotherboardIcon,
-  RamStickIcon,
-  CrankIcon,
-  CamshaftIcon,
-  DriveShaftIcon,
-  ValveIcon,
-  PropellerIcon,
-  HelicopterRotorIcon,
-  HydraulicJackIcon,
-  GpuIcon,
-  PowerSupplyIcon,
-  NetworkSwitchIcon,
-  SmartPlugIcon,
-  SmartBulbIcon,
-  SecurityCameraIcon,
-  SmartLockIcon,
-  ThermostatIcon,
-  GClampIcon,
-  ViceIcon,
-  GreaseGunIcon,
-  GearboxIcon,
-  DifferentialIcon,
-  SuspensionIcon,
-  WindlassIcon,
-  EarbudsIcon,
-  SmartRingIcon,
-  DrawingTabletIcon,
-  BarcodeScannerIcon,
-  POSRegisterIcon,
-  CalculatorIcon,
-  RemoteControlIcon,
-  SoundbarIcon,
-  JackhammerIcon,
-  SolderingIronIcon,
-  BlowtorchIcon,
-  WheelbarrowIcon,
-  PlumbBobIcon,
-  ShearsIcon,
-  WireStripperIcon,
-  PipeWrenchIcon,
-  FloppyDiskIcon,
-  TapeCassetteIcon,
-  CompactDiscIcon,
-  TvIcon,
-  RadioIcon,
-  WalkieTalkieIcon,
-  HeadsetIcon,
-  FishIcon,
-  ButterflyIcon,
-  BirdIcon,
-  CatIcon,
-  DogIcon,
-  RabbitIcon,
-  ElephantIcon,
-  OwlIcon,
-  TurtleIcon,
-  DolphinIcon,
-  RoseIcon,
-  SunflowerIcon,
-  TulipIcon,
-  LotusIcon,
-  DaisyIcon,
-  HibiscusIcon,
-  OrchidIcon,
-  LilyIcon,
-  CactusIcon,
-  LavenderIcon,
-  CloudRainIcon,
-  CloudSnowIcon,
-  WindIcon,
-  TornadoIcon,
-  SnowflakeIcon,
-  RainbowIcon,
-  ThermometerIcon,
-  LeafIcon,
-  TreeIcon,
-  HurricaneIcon,
-  BurgerIcon,
-  PizzaIcon,
-  AppleIcon,
-  BananaIcon,
-  CakeIcon,
-  IceCreamIcon,
-  DonutIcon,
-  PopcornIcon,
-  WatermelonIcon,
-  CookieIcon,
-  SafeIcon,
-  GoldBarsIcon,
-  ScaleIcon,
-  BanknoteIcon,
-  EuroIcon,
-  YenIcon,
-  PoundIcon,
-  AtomIcon,
-  DNAIcon,
-  MicroscopeIcon,
-  TelescopeIcon,
-  BeakerIcon,
-  FolderPlusIcon,
-  FolderMinusIcon,
-  FolderCheckIcon,
-  CalendarPlusIcon,
-  CalendarCheckIcon,
-  BankIcon,
-  CoinIcon,
-  PiggyBankIcon,
-  ShoppingBagIcon,
-  ShoppingCartIcon,
-  ReceiptIcon,
-  IconPreset
-} from "r3d-icons";
 import { TranslationKey } from "../i18n/translations";
+import { IconPreset, LetterIcon } from "r3d-icons";
 
 interface LandingProps {
   theme: "light" | "dark";
@@ -312,7 +19,6 @@ const ICONS_REGISTRY = [
     name: "PlusIcon",
     category: "utility",
     description: "3D mathematical plus sign composed of two intersecting cylinders",
-    Component: PlusIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -321,7 +27,6 @@ const ICONS_REGISTRY = [
     name: "MinusIcon",
     category: "utility",
     description: "3D horizontal minus cylinder bar with glowing status caps",
-    Component: MinusIcon,
     color: "#6b7280",
     accentColor: "#9ca3af"
   },
@@ -330,7 +35,6 @@ const ICONS_REGISTRY = [
     name: "CloseIcon",
     category: "utility",
     description: "3D close cross sign composed of two diagonal intersecting cylinders",
-    Component: CloseIcon,
     color: "#ef4444",
     accentColor: "#f87171"
   },
@@ -339,7 +43,6 @@ const ICONS_REGISTRY = [
     name: "InfoIcon",
     category: "utility",
     description: "3D lowercase letter i inside a circular ring with glowing accent dot",
-    Component: InfoIcon,
     color: "#3b82f6",
     accentColor: "#60a5fa"
   },
@@ -348,7 +51,6 @@ const ICONS_REGISTRY = [
     name: "AlertCircleIcon",
     category: "utility",
     description: "3D exclamation point inside a circular ring with glowing warning dot",
-    Component: AlertCircleIcon,
     color: "#f59e0b",
     accentColor: "#fbbf24"
   },
@@ -357,7 +59,6 @@ const ICONS_REGISTRY = [
     name: "AnchorIcon",
     category: "utility",
     description: "Maritime physical anchor with upper stock bar and bottom crescent flukes",
-    Component: AnchorIcon,
     color: "#475569",
     accentColor: "#f43f5e"
   },
@@ -366,7 +67,6 @@ const ICONS_REGISTRY = [
     name: "DiamondIcon",
     category: "utility",
     description: "Gemstone cut diamond with bevel facet edges and metal girdle belt",
-    Component: DiamondIcon,
     color: "#0ea5e9",
     accentColor: "#10b981"
   },
@@ -375,7 +75,6 @@ const ICONS_REGISTRY = [
     name: "FilterIcon",
     category: "utility",
     description: "Conical liquid funnel filter showing internal tray and bottom droplet",
-    Component: FilterIcon,
     color: "#f43f5e",
     accentColor: "#38bdf8"
   },
@@ -384,7 +83,6 @@ const ICONS_REGISTRY = [
     name: "PipelineIcon",
     category: "networking",
     description: "Multi-joint physical network flow pipelines with central control valve wheel",
-    Component: PipelineIcon,
     color: "#0d9488",
     accentColor: "#10b981"
   },
@@ -393,7 +91,6 @@ const ICONS_REGISTRY = [
     name: "RefreshIcon",
     category: "utility",
     description: "Dual symmetrical circular arrows in continuous sync loop motion",
-    Component: RefreshIcon,
     color: "#8b5cf6",
     accentColor: "#ec4899"
   },
@@ -402,7 +99,6 @@ const ICONS_REGISTRY = [
     name: "WebhookIcon",
     category: "networking",
     description: "Forked merge network connector showing 3 terminal spheres and status bulbs",
-    Component: WebhookIcon,
     color: "#6366f1",
     accentColor: "#10b981"
   },
@@ -411,7 +107,6 @@ const ICONS_REGISTRY = [
     name: "FacebookIcon",
     category: "brands",
     description: "F-logo brand mark badge with glassmorphic backing",
-    Component: FacebookIcon,
     color: "#1877f2",
     accentColor: "#3b82f6"
   },
@@ -420,7 +115,6 @@ const ICONS_REGISTRY = [
     name: "ShieldIcon",
     category: "utility",
     description: "Robust digital fire-wall guard security shield",
-    Component: ShieldIcon,
     color: "#0d9488",
     accentColor: "#34d399"
   },
@@ -429,7 +123,6 @@ const ICONS_REGISTRY = [
     name: "RocketIcon",
     category: "mechanics",
     description: "Aerodynamic space shuttle rocket launch structure",
-    Component: RocketIcon,
     color: "#ef4444",
     accentColor: "#f59e0b"
   },
@@ -438,7 +131,6 @@ const ICONS_REGISTRY = [
     name: "DatabaseIcon",
     category: "storage",
     description: "Layered data towers with status indicator light bars",
-    Component: DatabaseIcon,
     color: "#4f46e5",
     accentColor: "#ec4899"
   },
@@ -447,7 +139,6 @@ const ICONS_REGISTRY = [
     name: "FolderIcon",
     category: "storage",
     description: "Glassmorphic folder vault container with structural dividers",
-    Component: FolderIcon,
     color: "#f59e0b",
     accentColor: "#eab308"
   },
@@ -456,7 +147,6 @@ const ICONS_REGISTRY = [
     name: "CloudIcon",
     category: "systems",
     description: "Glassmorphic data cloud with rounded physical volumes",
-    Component: CloudIcon,
     color: "#0ea5e9",
     accentColor: "#38bdf8"
   },
@@ -465,7 +155,6 @@ const ICONS_REGISTRY = [
     name: "NetworkIcon",
     category: "networking",
     description: "Central network node bound by wireframe geodesics",
-    Component: NetworkIcon,
     color: "#06b6d4",
     accentColor: "#a855f7"
   },
@@ -475,7 +164,6 @@ const ICONS_REGISTRY = [
     category: "networking",
     description:
       "Cloud-hosted computing environment connected to multiple dynamic user node systems",
-    Component: CloudNetworkIcon,
     color: "#3b82f6",
     accentColor: "#10b981"
   },
@@ -485,7 +173,6 @@ const ICONS_REGISTRY = [
     category: "networking",
     description:
       "Network protection firewall with brick-red barrier security and glowing fire flames",
-    Component: FirewallIcon,
     color: "#e11d48",
     accentColor: "#ea580c"
   },
@@ -494,7 +181,6 @@ const ICONS_REGISTRY = [
     name: "CpuIcon",
     category: "hardware",
     description: "Substrate microchip featuring circuit trace geometries",
-    Component: CpuIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -503,7 +189,6 @@ const ICONS_REGISTRY = [
     name: "GearIcon",
     category: "mechanics",
     description: "Rotational gear mechanical engine wheel configuration",
-    Component: GearIcon,
     color: "#71717a",
     accentColor: "#b45309"
   },
@@ -512,7 +197,6 @@ const ICONS_REGISTRY = [
     name: "MailIcon",
     category: "utility",
     description: "Isometric sealed glass envelope with physical letter slots",
-    Component: MailIcon,
     color: "#e11d48",
     accentColor: "#ec4899"
   },
@@ -521,7 +205,6 @@ const ICONS_REGISTRY = [
     name: "CalendarIcon",
     category: "utility",
     description: "Sleek time calendar organizer grid with scheduling pin",
-    Component: CalendarIcon,
     color: "#6366f1",
     accentColor: "#ef4444"
   },
@@ -530,7 +213,6 @@ const ICONS_REGISTRY = [
     name: "WalletIcon",
     category: "utility",
     description: "Dual-compartment leather card holder container",
-    Component: WalletIcon,
     color: "#b45309",
     accentColor: "#d97706"
   },
@@ -539,7 +221,6 @@ const ICONS_REGISTRY = [
     name: "DollarIcon",
     category: "utility",
     description: "Sleek gold currency symbol with circular coin border",
-    Component: DollarIcon,
     color: "#eab308",
     accentColor: "#f59e0b"
   },
@@ -548,7 +229,6 @@ const ICONS_REGISTRY = [
     name: "ThumbUpIcon",
     category: "utility",
     description: "Like thumbs-up gesture hand sign silhouette",
-    Component: ThumbUpIcon,
     color: "#f43f5e",
     accentColor: "#fb7185"
   },
@@ -557,7 +237,6 @@ const ICONS_REGISTRY = [
     name: "FlashIcon",
     category: "utility",
     description: "Angled digital electrical thunder lightning bolt",
-    Component: FlashIcon,
     color: "#eab308",
     accentColor: "#f97316"
   },
@@ -566,7 +245,6 @@ const ICONS_REGISTRY = [
     name: "HeartIcon",
     category: "utility",
     description: "Glossy 3D love heart model with smooth curved surfaces",
-    Component: HeartIcon,
     color: "#ec4899",
     accentColor: "#f43f5e"
   },
@@ -575,7 +253,6 @@ const ICONS_REGISTRY = [
     name: "ChatIcon",
     category: "utility",
     description: "3D message speech bubble with text line overlays",
-    Component: ChatIcon,
     color: "#8b5cf6",
     accentColor: "#a78bfa"
   },
@@ -584,7 +261,6 @@ const ICONS_REGISTRY = [
     name: "KeyIcon",
     category: "utility",
     description: "Security access key with ring head and cut teeth",
-    Component: KeyIcon,
     color: "#f59e0b",
     accentColor: "#fbbf24"
   },
@@ -593,7 +269,6 @@ const ICONS_REGISTRY = [
     name: "StarIcon",
     category: "utility",
     description: "Beveled 3D rating star with glowing faceted surfaces",
-    Component: StarIcon,
     color: "#fbbf24",
     accentColor: "#f59e0b"
   },
@@ -602,7 +277,6 @@ const ICONS_REGISTRY = [
     name: "CartIcon",
     category: "utility",
     description: "Shopping cart basket framework with rolling wheels",
-    Component: CartIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -611,7 +285,6 @@ const ICONS_REGISTRY = [
     name: "MusicIcon",
     category: "utility",
     description: "Slanted double eighth music note vector design",
-    Component: MusicIcon,
     color: "#ec4899",
     accentColor: "#f43f5e"
   },
@@ -620,7 +293,6 @@ const ICONS_REGISTRY = [
     name: "GamepadIcon",
     category: "hardware",
     description: "Dual-analog console gaming controller blueprint",
-    Component: GamepadIcon,
     color: "#6366f1",
     accentColor: "#8b5cf6"
   },
@@ -629,7 +301,6 @@ const ICONS_REGISTRY = [
     name: "BellIcon",
     category: "utility",
     description: "Tactile notification bell model with top hanging loop",
-    Component: BellIcon,
     color: "#f59e0b",
     accentColor: "#d97706"
   },
@@ -638,7 +309,6 @@ const ICONS_REGISTRY = [
     name: "SunIcon",
     category: "systems",
     description: "Central bright weather sun sphere with radiating cylinder rays",
-    Component: SunIcon,
     color: "#f97316",
     accentColor: "#eab308"
   },
@@ -647,7 +317,6 @@ const ICONS_REGISTRY = [
     name: "BulbIcon",
     category: "utility",
     description: "Glowing 3D creative lightbulb with filament and screw base",
-    Component: BulbIcon,
     color: "#fbbf24",
     accentColor: "#f59e0b"
   },
@@ -656,7 +325,6 @@ const ICONS_REGISTRY = [
     name: "CameraIcon",
     category: "hardware",
     description: "Retro 3D camera model with double lens glass",
-    Component: CameraIcon,
     color: "#06b6d4",
     accentColor: "#3b82f6"
   },
@@ -665,7 +333,6 @@ const ICONS_REGISTRY = [
     name: "ClockIcon",
     category: "utility",
     description: "Classic alarm clock layout with double top bell domes",
-    Component: ClockIcon,
     color: "#ef4444",
     accentColor: "#cbd5e1"
   },
@@ -674,7 +341,6 @@ const ICONS_REGISTRY = [
     name: "TrophyIcon",
     category: "utility",
     description: "Shiny victory championship cup with side loops and stand",
-    Component: TrophyIcon,
     color: "#eab308",
     accentColor: "#f59e0b"
   },
@@ -683,7 +349,6 @@ const ICONS_REGISTRY = [
     name: "LockIcon",
     category: "utility",
     description: "High-security padlock structure with U-shackle loop",
-    Component: LockIcon,
     color: "#6366f1",
     accentColor: "#8b5cf6"
   },
@@ -692,7 +357,6 @@ const ICONS_REGISTRY = [
     name: "MapPinIcon",
     category: "utility",
     description: "Location map marker balloon with bottom ground shadow",
-    Component: MapPinIcon,
     color: "#ef4444",
     accentColor: "#f43f5e"
   },
@@ -701,7 +365,6 @@ const ICONS_REGISTRY = [
     name: "CreditCardIcon",
     category: "utility",
     description: "3D plastic bank card with chip and logo overlap",
-    Component: CreditCardIcon,
     color: "#4f46e5",
     accentColor: "#0ea5e9"
   },
@@ -710,7 +373,6 @@ const ICONS_REGISTRY = [
     name: "WifiIcon",
     category: "networking",
     description: "Wireless network signal bands with center dot base",
-    Component: WifiIcon,
     color: "#0ea5e9",
     accentColor: "#38bdf8"
   },
@@ -719,7 +381,6 @@ const ICONS_REGISTRY = [
     name: "SearchIcon",
     category: "utility",
     description: "Magnifying glass with refractive visual lens and themed frame",
-    Component: SearchIcon,
     color: "#3b82f6",
     accentColor: "#38bdf8"
   },
@@ -728,7 +389,6 @@ const ICONS_REGISTRY = [
     name: "HomeIcon",
     category: "utility",
     description: "Charming physical 3D house structure with roof and door",
-    Component: HomeIcon,
     color: "#10b981",
     accentColor: "#f43f5e"
   },
@@ -737,7 +397,6 @@ const ICONS_REGISTRY = [
     name: "TrashIcon",
     category: "utility",
     description: "Ribbed 3D waste basket bin with liftable top handle lid",
-    Component: TrashIcon,
     color: "#71717a",
     accentColor: "#ef4444"
   },
@@ -746,7 +405,6 @@ const ICONS_REGISTRY = [
     name: "UserIcon",
     category: "utility",
     description: "Smooth clay user profile personal avatar shoulder bust",
-    Component: UserIcon,
     color: "#6366f1",
     accentColor: "#10b981"
   },
@@ -755,7 +413,6 @@ const ICONS_REGISTRY = [
     name: "PlayIcon",
     category: "utility",
     description: "Glossy digital player control media play triangle arrow",
-    Component: PlayIcon,
     color: "#10b981",
     accentColor: "#38bdf8"
   },
@@ -764,7 +421,6 @@ const ICONS_REGISTRY = [
     name: "GiftIcon",
     category: "utility",
     description: "Gift box wrapping model featuring ribbon cross bow tie",
-    Component: GiftIcon,
     color: "#f43f5e",
     accentColor: "#ef4444"
   },
@@ -773,7 +429,6 @@ const ICONS_REGISTRY = [
     name: "GlobeIcon",
     category: "systems",
     description: "Desktop geographic navigation map globe sphere on stand",
-    Component: GlobeIcon,
     color: "#0ea5e9",
     accentColor: "#3b82f6"
   },
@@ -782,7 +437,6 @@ const ICONS_REGISTRY = [
     name: "BagIcon",
     category: "utility",
     description: "Shopping utility handle bag with front accent sleeve pocket",
-    Component: BagIcon,
     color: "#f59e0b",
     accentColor: "#38bdf8"
   },
@@ -791,7 +445,6 @@ const ICONS_REGISTRY = [
     name: "CompassIcon",
     category: "utility",
     description: "Sleek navigation compass with dual-tone indicator needle",
-    Component: CompassIcon,
     color: "#d4af37",
     accentColor: "#ef4444"
   },
@@ -800,7 +453,6 @@ const ICONS_REGISTRY = [
     name: "SendIcon",
     category: "utility",
     description: "Sleek 3D paper plane model with aerodynamic creased wings",
-    Component: SendIcon,
     color: "#6366f1",
     accentColor: "#3b82f6"
   },
@@ -809,7 +461,6 @@ const ICONS_REGISTRY = [
     name: "TargetIcon",
     category: "utility",
     description: "Concentric bullseye target rings pierced by a sharp angled arrow",
-    Component: TargetIcon,
     color: "#ef4444",
     accentColor: "#f59e0b"
   },
@@ -818,7 +469,6 @@ const ICONS_REGISTRY = [
     name: "EditIcon",
     category: "utility",
     description: "Classic hexagonal wooden pencil with a gold metal band and pink eraser",
-    Component: EditIcon,
     color: "#eab308",
     accentColor: "#fed7aa"
   },
@@ -827,7 +477,6 @@ const ICONS_REGISTRY = [
     name: "PhoneIcon",
     category: "utility",
     description: "Smooth telephone receiver handset with glossy sound caps",
-    Component: PhoneIcon,
     color: "#10b981",
     accentColor: "#cbd5e1"
   },
@@ -836,7 +485,6 @@ const ICONS_REGISTRY = [
     name: "BookIcon",
     category: "utility",
     description: "Thick closed hardcover binder featuring cream-colored inner pages",
-    Component: BookIcon,
     color: "#e11d48",
     accentColor: "#fda4af"
   },
@@ -845,7 +493,6 @@ const ICONS_REGISTRY = [
     name: "LinkIcon",
     category: "utility",
     description: "Two interlocking rounded metallic chain links rotated 90 degrees",
-    Component: LinkIcon,
     color: "#71717a",
     accentColor: "#cbd5e1"
   },
@@ -854,7 +501,6 @@ const ICONS_REGISTRY = [
     name: "CrownIcon",
     category: "utility",
     description: "Shiny golden royal headpiece adorned with colored diamond gems",
-    Component: CrownIcon,
     color: "#d4af37",
     accentColor: "#fbbf24"
   },
@@ -863,7 +509,6 @@ const ICONS_REGISTRY = [
     name: "PinIcon",
     category: "utility",
     description: "Glossy map pushpin tack with a sharp steel pointer needle",
-    Component: PinIcon,
     color: "#ef4444",
     accentColor: "#fb7185"
   },
@@ -872,7 +517,6 @@ const ICONS_REGISTRY = [
     name: "FlagIcon",
     category: "utility",
     description: "Waving rectangular banner attached to a sleek metal flagpole",
-    Component: FlagIcon,
     color: "#8b5cf6",
     accentColor: "#a78bfa"
   },
@@ -881,7 +525,6 @@ const ICONS_REGISTRY = [
     name: "BriefcaseIcon",
     category: "utility",
     description: "Beveled business luggage suitcase with dual metal lock latches",
-    Component: BriefcaseIcon,
     color: "#b45309",
     accentColor: "#f59e0b"
   },
@@ -890,7 +533,6 @@ const ICONS_REGISTRY = [
     name: "EyeIcon",
     category: "utility",
     description: "Stylized visual organ eyeball with glossy colored iris and pupil",
-    Component: EyeIcon,
     color: "#0ea5e9",
     accentColor: "#a855f7"
   },
@@ -899,7 +541,6 @@ const ICONS_REGISTRY = [
     name: "TagIcon",
     category: "utility",
     description: "Angled merchandise label card featuring string attachment cord",
-    Component: TagIcon,
     color: "#ec4899",
     accentColor: "#fb7185"
   },
@@ -908,7 +549,6 @@ const ICONS_REGISTRY = [
     name: "CoffeeIcon",
     category: "utility",
     description: "Classic ceramic cylinder drinking mug showing hot steam ripples",
-    Component: CoffeeIcon,
     color: "#ea580c",
     accentColor: "#fed7aa"
   },
@@ -917,7 +557,6 @@ const ICONS_REGISTRY = [
     name: "ShareIcon",
     category: "utility",
     description: "Linked node diagram layout displaying circular junction hubs",
-    Component: ShareIcon,
     color: "#6366f1",
     accentColor: "#818cf8"
   },
@@ -926,7 +565,6 @@ const ICONS_REGISTRY = [
     name: "LayersIcon",
     category: "storage",
     description: "Three overlapping stacked semitransparent layout planes",
-    Component: LayersIcon,
     color: "#0ea5e9",
     accentColor: "#38bdf8"
   },
@@ -935,7 +573,6 @@ const ICONS_REGISTRY = [
     name: "SparklesIcon",
     category: "utility",
     description: "Magical group configuration of three four-pointed stars",
-    Component: SparklesIcon,
     color: "#eab308",
     accentColor: "#fbbf24"
   },
@@ -944,7 +581,6 @@ const ICONS_REGISTRY = [
     name: "MegaphoneIcon",
     category: "utility",
     description: "Loud voice amplifier speaker cone featuring handle grip support",
-    Component: MegaphoneIcon,
     color: "#ef4444",
     accentColor: "#f43f5e"
   },
@@ -953,7 +589,6 @@ const ICONS_REGISTRY = [
     name: "DownloadIcon",
     category: "utility",
     description: "Downward pointing indicator arrow nested inside wall storage base",
-    Component: DownloadIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -962,7 +597,6 @@ const ICONS_REGISTRY = [
     name: "UploadIcon",
     category: "utility",
     description: "Upward pointing indicator arrow nested inside wall storage base",
-    Component: UploadIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -971,7 +605,6 @@ const ICONS_REGISTRY = [
     name: "CodeIcon",
     category: "utility",
     description: "Sleek beveled HTML code tag brackets with a floating diagonal slash",
-    Component: CodeIcon,
     color: "#6366f1",
     accentColor: "#ec4899"
   },
@@ -980,7 +613,6 @@ const ICONS_REGISTRY = [
     name: "TerminalIcon",
     category: "utility",
     description: "Charming terminal command window prompt complete with title bar and cursor block",
-    Component: TerminalIcon,
     color: "#10b981",
     accentColor: "#020617"
   },
@@ -989,7 +621,6 @@ const ICONS_REGISTRY = [
     name: "GitIcon",
     category: "utility",
     description: "Extruded git branch diagram on a tilted diamond status board",
-    Component: GitIcon,
     color: "#f43f5e",
     accentColor: "#ffffff"
   },
@@ -998,7 +629,6 @@ const ICONS_REGISTRY = [
     name: "MonitorIcon",
     category: "hardware",
     description: "Sleek modern display screen bezel resting on a metal neck and base",
-    Component: MonitorIcon,
     color: "#06b6d4",
     accentColor: "#3b82f6"
   },
@@ -1007,7 +637,6 @@ const ICONS_REGISTRY = [
     name: "KeyboardIcon",
     category: "hardware",
     description: "Slanted keyboard deck plate populated with individual Key caps",
-    Component: KeyboardIcon,
     color: "#6366f1",
     accentColor: "#a855f7"
   },
@@ -1016,7 +645,6 @@ const ICONS_REGISTRY = [
     name: "MouseIcon",
     category: "hardware",
     description: "Computer mouse model with central scroll wheel and button slots",
-    Component: MouseIcon,
     color: "#10b981",
     accentColor: "#cbd5e1"
   },
@@ -1025,7 +653,6 @@ const ICONS_REGISTRY = [
     name: "HardDriveIcon",
     category: "hardware",
     description: "Solid storage drive plate featuring spindle cover and indicators",
-    Component: HardDriveIcon,
     color: "#71717a",
     accentColor: "#94a3b8"
   },
@@ -1034,7 +661,6 @@ const ICONS_REGISTRY = [
     name: "PrinterIcon",
     category: "hardware",
     description: "Chassis scanner bed printer with active paper output tray sheet",
-    Component: PrinterIcon,
     color: "#64748b",
     accentColor: "#cbd5e1"
   },
@@ -1043,7 +669,6 @@ const ICONS_REGISTRY = [
     name: "SpeakerIcon",
     category: "hardware",
     description: "Cabinet media loudspeaker baffle featuring double cones and active signal arcs",
-    Component: SpeakerIcon,
     color: "#71717a",
     accentColor: "#818cf8"
   },
@@ -1052,7 +677,6 @@ const ICONS_REGISTRY = [
     name: "GlassmorphismIcon",
     category: "utility",
     description: "Concept overlay of a floating frosted glass plate and geometric backdrops",
-    Component: GlassmorphismIcon,
     color: "#ffffff",
     accentColor: "#ec4899"
   },
@@ -1061,7 +685,6 @@ const ICONS_REGISTRY = [
     name: "GithubIcon",
     category: "brands",
     description: "Sleek extruded silhouette of Octocat logo badge",
-    Component: GithubIcon,
     color: "#24292e",
     accentColor: "#6e5494"
   },
@@ -1070,7 +693,6 @@ const ICONS_REGISTRY = [
     name: "TwitterIcon",
     category: "brands",
     description: "Extruded geometric X logo outline on a glossy glass backplate",
-    Component: TwitterIcon,
     color: "#1da1f2",
     accentColor: "#0f1419"
   },
@@ -1079,7 +701,6 @@ const ICONS_REGISTRY = [
     name: "GoogleIcon",
     category: "brands",
     description: "Rotational beveled circular G emblem segmented in brand colors",
-    Component: GoogleIcon,
     color: "#4285f4",
     accentColor: "#ea4335"
   },
@@ -1088,7 +709,6 @@ const ICONS_REGISTRY = [
     name: "FigmaIcon",
     category: "brands",
     description: "Five layered signature brand-color circles stacked vertically in 3D",
-    Component: FigmaIcon,
     color: "#f24e1e",
     accentColor: "#a259ff"
   },
@@ -1097,7 +717,6 @@ const ICONS_REGISTRY = [
     name: "RouterIcon",
     category: "networking",
     description: "Procedural network router model with rear antennas and signal wave arcs",
-    Component: RouterIcon,
     color: "#06b6d4",
     accentColor: "#10b981"
   },
@@ -1106,7 +725,6 @@ const ICONS_REGISTRY = [
     name: "ServerIcon",
     category: "networking",
     description: "Vertical metal server cabinet featuring three stacked blade slots and LEDs",
-    Component: ServerIcon,
     color: "#3b82f6",
     accentColor: "#10b981"
   },
@@ -1116,7 +734,6 @@ const ICONS_REGISTRY = [
     category: "networking",
     description:
       "Extruded transparent RJ45 plug connector with detailed gold contact pins and locking lever",
-    Component: EthernetIcon,
     color: "#3b82f6",
     accentColor: "#d4af37"
   },
@@ -1126,7 +743,6 @@ const ICONS_REGISTRY = [
     category: "networking",
     description:
       "Central communications satellite body featuring solar panel wings and antenna dish",
-    Component: SatelliteIcon,
     color: "#06b6d4",
     accentColor: "#4f46e5"
   },
@@ -1135,7 +751,6 @@ const ICONS_REGISTRY = [
     name: "WrenchIcon",
     category: "mechanics",
     description: "Combination double-head wrench key angled in 3D space",
-    Component: WrenchIcon,
     color: "#94a3b8",
     accentColor: "#475569"
   },
@@ -1144,7 +759,6 @@ const ICONS_REGISTRY = [
     name: "BoltIcon",
     category: "mechanics",
     description: "Hexagonal bolt fastener head with a detailed spiral thread shaft",
-    Component: BoltIcon,
     color: "#71717a",
     accentColor: "#cbd5e1"
   },
@@ -1153,7 +767,6 @@ const ICONS_REGISTRY = [
     name: "HammerIcon",
     category: "mechanics",
     description: "Extruded steel claw hammer head with a rubber-sleeved grip handle",
-    Component: HammerIcon,
     color: "#cbd5e1",
     accentColor: "#f59e0b"
   },
@@ -1162,7 +775,6 @@ const ICONS_REGISTRY = [
     name: "ScrewdriverIcon",
     category: "mechanics",
     description: "Classic flathead screwdriver with fluted grip handle and steel shaft",
-    Component: ScrewdriverIcon,
     color: "#cbd5e1",
     accentColor: "#6366f1"
   },
@@ -1171,7 +783,6 @@ const ICONS_REGISTRY = [
     name: "NutIcon",
     category: "mechanics",
     description: "Hexagonal threaded locknut fastener with concentric inner coil details",
-    Component: NutIcon,
     color: "#94a3b8",
     accentColor: "#475569"
   },
@@ -1180,7 +791,6 @@ const ICONS_REGISTRY = [
     name: "SmileIcon",
     category: "emojies",
     description: "Classic happy face emoji disk featuring R3F beveled smile shapes",
-    Component: SmileIcon,
     color: "#f59e0b",
     accentColor: "#f43f5e"
   },
@@ -1189,7 +799,6 @@ const ICONS_REGISTRY = [
     name: "FrownIcon",
     category: "emojies",
     description: "Classic sad face emoji disk featuring down-curved R3F torus mouth",
-    Component: FrownIcon,
     color: "#f59e0b",
     accentColor: "#f43f5e"
   },
@@ -1198,7 +807,6 @@ const ICONS_REGISTRY = [
     name: "HeartEyesIcon",
     category: "emojies",
     description: "Smiley face emoji featuring dual 3D heart-shaped eye geometry meshes",
-    Component: HeartEyesIcon,
     color: "#f59e0b",
     accentColor: "#ef4444"
   },
@@ -1207,7 +815,6 @@ const ICONS_REGISTRY = [
     name: "BarChartIcon",
     category: "utility",
     description: "Three ascending 3D bar chart columns on a glowing base plate",
-    Component: BarChartIcon,
     color: "#6366f1",
     accentColor: "#ec4899"
   },
@@ -1216,7 +823,6 @@ const ICONS_REGISTRY = [
     name: "CheckIcon",
     category: "utility",
     description: "Bold glowing 3D checkmark on a beveled circular disc backing",
-    Component: CheckIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -1225,7 +831,6 @@ const ICONS_REGISTRY = [
     name: "ContainerIcon",
     category: "systems",
     description: "Corrugated cargo shipping container representing Docker deployments",
-    Component: ContainerIcon,
     color: "#2496ed",
     accentColor: "#f59e0b"
   },
@@ -1235,7 +840,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "Security shield with embedded verified checkmark for trusted payment and security UIs",
-    Component: ShieldCheckIcon,
     color: "#0d9488",
     accentColor: "#10b981"
   },
@@ -1244,7 +848,6 @@ const ICONS_REGISTRY = [
     name: "ReactIcon",
     category: "brands",
     description: "Three-orbital atomic React logo with glowing nucleus sphere",
-    Component: ReactIcon,
     color: "#61dafb",
     accentColor: "#20232a"
   },
@@ -1253,7 +856,6 @@ const ICONS_REGISTRY = [
     name: "NodeIcon",
     category: "brands",
     description: "Hexagonal Node.js badge with inner circuit trace details",
-    Component: NodeIcon,
     color: "#68a063",
     accentColor: "#3c873a"
   },
@@ -1262,7 +864,6 @@ const ICONS_REGISTRY = [
     name: "BugIcon",
     category: "utility",
     description: "3D software bug model with segmented body, glowing eyes and legs",
-    Component: BugIcon,
     color: "#475569",
     accentColor: "#ef4444"
   },
@@ -1271,7 +872,6 @@ const ICONS_REGISTRY = [
     name: "FlaskIcon",
     category: "utility",
     description: "3D chemistry science lab flask containing glowing fluid and rising bubbles",
-    Component: FlaskIcon,
     color: "#4f46e5",
     accentColor: "#a855f7"
   },
@@ -1280,7 +880,6 @@ const ICONS_REGISTRY = [
     name: "PieChartIcon",
     category: "utility",
     description: "3D circular pie chart divided into three distinct colored proportional wedges",
-    Component: PieChartIcon,
     color: "#6366f1",
     accentColor: "#ec4899"
   },
@@ -1289,7 +888,6 @@ const ICONS_REGISTRY = [
     name: "FlameIcon",
     category: "utility",
     description: "3D layered organic fire flame showing warm red, orange, and yellow cores",
-    Component: FlameIcon,
     color: "#f97316",
     accentColor: "#ef4444"
   },
@@ -1298,7 +896,6 @@ const ICONS_REGISTRY = [
     name: "ActivityIcon",
     category: "systems",
     description: "3D medical heartbeat ECG monitor line with glowing joint beads",
-    Component: ActivityIcon,
     color: "#0d9488",
     accentColor: "#10b981"
   },
@@ -1307,7 +904,6 @@ const ICONS_REGISTRY = [
     name: "GraduationCapIcon",
     category: "utility",
     description: "3D academic graduation mortarboard cap with golden hanging tassel",
-    Component: GraduationCapIcon,
     color: "#3f3f46",
     accentColor: "#eab308"
   },
@@ -1316,7 +912,6 @@ const ICONS_REGISTRY = [
     name: "TrendingUpIcon",
     category: "utility",
     description: "3D line chart arrow showing rising analytics growth and trend trajectory",
-    Component: TrendingUpIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -1325,7 +920,6 @@ const ICONS_REGISTRY = [
     name: "InstagramIcon",
     category: "brands",
     description: "3D Instagram brand mark camera lens with metallic ring and golden flash",
-    Component: InstagramIcon,
     color: "#e1306c",
     accentColor: "#f77737"
   },
@@ -1334,7 +928,6 @@ const ICONS_REGISTRY = [
     name: "YoutubeIcon",
     category: "brands",
     description: "3D YouTube brand mark play button with rounded red plate and white play arrow",
-    Component: YoutubeIcon,
     color: "#ff0000",
     accentColor: "#ef4444"
   },
@@ -1343,7 +936,6 @@ const ICONS_REGISTRY = [
     name: "LinkedinIcon",
     category: "brands",
     description: "3D LinkedIn brand mark square badge with extruded letters",
-    Component: LinkedinIcon,
     color: "#0077b5",
     accentColor: "#00a0dc"
   },
@@ -1352,7 +944,6 @@ const ICONS_REGISTRY = [
     name: "DribbbleIcon",
     category: "brands",
     description: "3D Dribbble brand mark basketball with extruded white lines pattern",
-    Component: DribbbleIcon,
     color: "#ea4c89",
     accentColor: "#ff769f"
   },
@@ -1361,7 +952,6 @@ const ICONS_REGISTRY = [
     name: "PackageIcon",
     category: "storage",
     description: "3D cardboard box storage packaging parcel with glowing tape overlay",
-    Component: PackageIcon,
     color: "#b45309",
     accentColor: "#38bdf8"
   },
@@ -1371,7 +961,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "Sleek 3D aircraft with swept-back wings, dual underwing engines, and detailed tail fins",
-    Component: AirplaneIcon,
     color: "#0ea5e9",
     accentColor: "#f43f5e"
   },
@@ -1381,7 +970,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D battery cylinder featuring transparent outer casing and glowing green energy charge indicator cells",
-    Component: BatteryIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -1391,7 +979,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D cinema video camera with physical casing, concentric focus lens, and side-mounted display panel",
-    Component: VideoIcon,
     color: "#8b5cf6",
     accentColor: "#ec4899"
   },
@@ -1400,7 +987,6 @@ const ICONS_REGISTRY = [
     name: "MicrophoneIcon",
     category: "utility",
     description: "3D recording studio microphone capsule mounted on vertical desktop swivel base",
-    Component: MicrophoneIcon,
     color: "#ec4899",
     accentColor: "#3b82f6"
   },
@@ -1410,7 +996,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D control dashboard sliders showing vertical track rods and slider level nodes with glowing indicators",
-    Component: SlidersIcon,
     color: "#6366f1",
     accentColor: "#f59e0b"
   },
@@ -1419,7 +1004,6 @@ const ICONS_REGISTRY = [
     name: "MapIcon",
     category: "utility",
     description: "3D folded accordion map with road lines and a glowing location pin",
-    Component: MapIcon,
     color: "#10b981",
     accentColor: "#f43f5e"
   },
@@ -1428,7 +1012,6 @@ const ICONS_REGISTRY = [
     name: "UmbrellaIcon",
     category: "utility",
     description: "3D open umbrella canopy with a central steel shaft and J-hook handle",
-    Component: UmbrellaIcon,
     color: "#0ea5e9",
     accentColor: "#ec4899"
   },
@@ -1437,7 +1020,6 @@ const ICONS_REGISTRY = [
     name: "ScissorsIcon",
     category: "utility",
     description: "3D scissors with crossing blades, pivot screw, and grip loops",
-    Component: ScissorsIcon,
     color: "#f59e0b",
     accentColor: "#3b82f6"
   },
@@ -1446,7 +1028,6 @@ const ICONS_REGISTRY = [
     name: "UnlockIcon",
     category: "utility",
     description: "3D open lock featuring a physical body base and rotated shackle",
-    Component: UnlockIcon,
     color: "#eab308",
     accentColor: "#22c55e"
   },
@@ -1455,7 +1036,6 @@ const ICONS_REGISTRY = [
     name: "ArchiveIcon",
     category: "storage",
     description: "3D archive cabinet with sliding drawer panels and metal pulls",
-    Component: ArchiveIcon,
     color: "#a855f7",
     accentColor: "#ec4899"
   },
@@ -1464,7 +1044,6 @@ const ICONS_REGISTRY = [
     name: "ShieldAlertIcon",
     category: "utility",
     description: "3D guard shield with a central vertical exclamation warning symbol",
-    Component: ShieldAlertIcon,
     color: "#475569",
     accentColor: "#ef4444"
   },
@@ -1473,7 +1052,6 @@ const ICONS_REGISTRY = [
     name: "EyeOffIcon",
     category: "utility",
     description: "3D eyeball Crossed out by a front-diagonal slash bar indicating hidden state",
-    Component: EyeOffIcon,
     color: "#6366f1",
     accentColor: "#ef4444"
   },
@@ -1483,7 +1061,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D user body profile alongside a floating plus sign badge representing user addition",
-    Component: UserPlusIcon,
     color: "#3b82f6",
     accentColor: "#10b981"
   },
@@ -1492,7 +1069,6 @@ const ICONS_REGISTRY = [
     name: "TrendingDownIcon",
     category: "utility",
     description: "3D line chart arrow pointing downwards indicating negative trend metrics",
-    Component: TrendingDownIcon,
     color: "#ef4444",
     accentColor: "#fb7185"
   },
@@ -1501,7 +1077,6 @@ const ICONS_REGISTRY = [
     name: "CopyIcon",
     category: "utility",
     description: "3D overlapping duplicate document sheets with horizontal glowing layout lines",
-    Component: CopyIcon,
     color: "#06b6d4",
     accentColor: "#22d3ee"
   },
@@ -1510,7 +1085,6 @@ const ICONS_REGISTRY = [
     name: "GaugeIcon",
     category: "mechanics",
     description: "3D dial gauge speedometer with tick marks and a rotating pointer needle",
-    Component: GaugeIcon,
     color: "#64748b",
     accentColor: "#ef4444"
   },
@@ -1519,7 +1093,6 @@ const ICONS_REGISTRY = [
     name: "MagnetIcon",
     category: "mechanics",
     description: "3D horseshoe magnet with polar colored ends and floating force-field rings",
-    Component: MagnetIcon,
     color: "#71717a",
     accentColor: "#ef4444"
   },
@@ -1528,7 +1101,6 @@ const ICONS_REGISTRY = [
     name: "StackIcon",
     category: "systems",
     description: "3D stack of database slabs with glowing illuminated spacer layers",
-    Component: StackIcon,
     color: "#4f46e5",
     accentColor: "#10b981"
   },
@@ -1537,7 +1109,6 @@ const ICONS_REGISTRY = [
     name: "WorkflowIcon",
     category: "systems",
     description: "3D process flowchart hierarchy showing root node connected to child nodes",
-    Component: WorkflowIcon,
     color: "#0ea5e9",
     accentColor: "#10b981"
   },
@@ -1546,7 +1117,6 @@ const ICONS_REGISTRY = [
     name: "TopologyIcon",
     category: "systems",
     description: "3D hub-and-spoke network diagram with central hub and satellite nodes",
-    Component: TopologyIcon,
     color: "#06b6d4",
     accentColor: "#10b981"
   },
@@ -1555,7 +1125,6 @@ const ICONS_REGISTRY = [
     name: "FileIcon",
     category: "utility",
     description: "3D document page sheet with folded corner and glowing text lines",
-    Component: FileIcon,
     color: "#64748b",
     accentColor: "#ef4444"
   },
@@ -1564,7 +1133,6 @@ const ICONS_REGISTRY = [
     name: "HeadphonesIcon",
     category: "utility",
     description: "Sleek 3D over-ear music headphones with soft earcups and metallic sliders",
-    Component: HeadphonesIcon,
     color: "#4f46e5",
     accentColor: "#3b82f6"
   },
@@ -1573,7 +1141,6 @@ const ICONS_REGISTRY = [
     name: "MoonIcon",
     category: "utility",
     description: "Glossy 3D crescent moon with floating yellow night-sky stars",
-    Component: MoonIcon,
     color: "#a855f7",
     accentColor: "#f59e0b"
   },
@@ -1582,7 +1149,6 @@ const ICONS_REGISTRY = [
     name: "PaperclipIcon",
     category: "utility",
     description: "Looping 3D metallic paperclip attachment wireframe with red status band",
-    Component: PaperclipIcon,
     color: "#94a3b8",
     accentColor: "#ef4444"
   },
@@ -1591,7 +1157,6 @@ const ICONS_REGISTRY = [
     name: "BookmarkIcon",
     category: "utility",
     description: "Hanging 3D ribbon bookmark tab with metallic mounting loop and grommet",
-    Component: BookmarkIcon,
     color: "#e11d48",
     accentColor: "#ef4444"
   },
@@ -1600,7 +1165,6 @@ const ICONS_REGISTRY = [
     name: "CloudLightningIcon",
     category: "systems",
     description: "3D fluffy weather data cloud with a central glowing lightning bolt",
-    Component: CloudLightningIcon,
     color: "#0ea5e9",
     accentColor: "#fbbf24"
   },
@@ -1609,7 +1173,6 @@ const ICONS_REGISTRY = [
     name: "FolderOpenIcon",
     category: "storage",
     description: "3D open folder container with nesting document sheet panels",
-    Component: FolderOpenIcon,
     color: "#f59e0b",
     accentColor: "#10b981"
   },
@@ -1618,7 +1181,6 @@ const ICONS_REGISTRY = [
     name: "VolumeIcon",
     category: "hardware",
     description: "3D audio speaker cone with glowing concentric audio wave arcs",
-    Component: VolumeIcon,
     color: "#6366f1",
     accentColor: "#3b82f6"
   },
@@ -1627,7 +1189,6 @@ const ICONS_REGISTRY = [
     name: "BellOffIcon",
     category: "utility",
     description: "3D notification alert bell crossed out by a front diagonal slash bar",
-    Component: BellOffIcon,
     color: "#f59e0b",
     accentColor: "#ef4444"
   },
@@ -1636,7 +1197,6 @@ const ICONS_REGISTRY = [
     name: "SunMoonIcon",
     category: "systems",
     description: "3D hybrid sun sphere and overlapping crescent moon mode switcher",
-    Component: SunMoonIcon,
     color: "#6366f1",
     accentColor: "#f59e0b"
   },
@@ -1645,7 +1205,6 @@ const ICONS_REGISTRY = [
     name: "PistonIcon",
     category: "mechanics",
     description: "3D engine piston chamber with glowing rings and moving connecting rod",
-    Component: PistonIcon,
     color: "#71717a",
     accentColor: "#10b981"
   },
@@ -1654,7 +1213,6 @@ const ICONS_REGISTRY = [
     name: "SpringIcon",
     category: "mechanics",
     description: "3D helical suspension coil spring with glowing top and bottom attachment loops",
-    Component: SpringIcon,
     color: "#64748b",
     accentColor: "#10b981"
   },
@@ -1663,7 +1221,6 @@ const ICONS_REGISTRY = [
     name: "AnvilIcon",
     category: "mechanics",
     description: "3D blacksmith forged anvil body with a horn, deck, and glowing metal bar",
-    Component: AnvilIcon,
     color: "#4b5563",
     accentColor: "#f97316"
   },
@@ -1672,7 +1229,6 @@ const ICONS_REGISTRY = [
     name: "HookIcon",
     category: "mechanics",
     description: "3D heavy crane lifting hook with warning pulley housing and swivel axle",
-    Component: HookIcon,
     color: "#475569",
     accentColor: "#f59e0b"
   },
@@ -1681,7 +1237,6 @@ const ICONS_REGISTRY = [
     name: "TurbineIcon",
     category: "mechanics",
     description: "3D mechanical wind turbine propeller with angled pitch blades and central hub",
-    Component: TurbineIcon,
     color: "#64748b",
     accentColor: "#06b6d4"
   },
@@ -1690,7 +1245,6 @@ const ICONS_REGISTRY = [
     name: "PliersIcon",
     category: "mechanics",
     description: "3D double-handle hand pliers with rubberized grip sleeves and textured jaws",
-    Component: PliersIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1699,7 +1253,6 @@ const ICONS_REGISTRY = [
     name: "DrillIcon",
     category: "mechanics",
     description: "3D cordless power drill with motor housing barrel, battery pack, and steel chuck",
-    Component: DrillIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1708,7 +1261,6 @@ const ICONS_REGISTRY = [
     name: "HacksawIcon",
     category: "mechanics",
     description: "3D metal cutting hacksaw with a steel frame rod, blade, and D-shaped grip",
-    Component: HacksawIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1718,7 +1270,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D pocket tape measure with bumper guard casing, extended steel blade, and lock switch",
-    Component: TapeMeasureIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1727,7 +1278,6 @@ const ICONS_REGISTRY = [
     name: "CaliperIcon",
     category: "mechanics",
     description: "3D precision vernier caliper slide gauge with measuring jaws and depth rod",
-    Component: CaliperIcon,
     color: "#94a3b8",
     accentColor: "#10b981"
   },
@@ -1736,7 +1286,6 @@ const ICONS_REGISTRY = [
     name: "SpiritLevelIcon",
     category: "mechanics",
     description: "3D builder bubble level bar featuring horizontal and vertical indicator vials",
-    Component: SpiritLevelIcon,
     color: "#64748b",
     accentColor: "#22c55e"
   },
@@ -1745,7 +1294,6 @@ const ICONS_REGISTRY = [
     name: "SledgehammerIcon",
     category: "mechanics",
     description: "3D heavy demolition sledgehammer head with fiberglass shaft and rubber grip",
-    Component: SledgehammerIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1754,7 +1302,6 @@ const ICONS_REGISTRY = [
     name: "PhoneMobileIcon",
     category: "hardware",
     description: "3D bezel-less mobile smartphone screen with camera punch and desktop widgets",
-    Component: PhoneMobileIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1763,7 +1310,6 @@ const ICONS_REGISTRY = [
     name: "TabletIcon",
     category: "hardware",
     description: "3D display tablet screen with bezel borders and floating overlay widgets",
-    Component: TabletIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1773,7 +1319,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D open laptop deck with raised keyboard rows, trackpad, and angled display screen",
-    Component: LaptopIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1782,7 +1327,6 @@ const ICONS_REGISTRY = [
     name: "SmartWatchIcon",
     category: "hardware",
     description: "3D smartwatch housing featuring glass watch face screen and wrapping strap bands",
-    Component: SmartWatchIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1791,7 +1335,6 @@ const ICONS_REGISTRY = [
     name: "RouterWifiIcon",
     category: "hardware",
     description: "3D home broadband internet wifi router base with dual vertical antennas",
-    Component: RouterWifiIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1801,7 +1344,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D enterprise datacenter server cabinet with stacked server drawers and LED indicators",
-    Component: ServerRackIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1810,7 +1352,6 @@ const ICONS_REGISTRY = [
     name: "HardDriveExternalIcon",
     category: "hardware",
     description: "3D portable external backup hard drive block with side rubber bumper guards",
-    Component: HardDriveExternalIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1820,7 +1361,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D spherical desktop webcam with lens bezel, aperture glass, and mounting stand clamp",
-    Component: WebcamIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1830,7 +1370,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D octagonal wood chisel tool with beveled steel tip, metal tang, and glowing accent bolster",
-    Component: ChiselIcon,
     color: "#78350f",
     accentColor: "#10b981"
   },
@@ -1840,7 +1379,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D bent steel crowbar pry rod with split claw head, wedge tip, and glowing accent split",
-    Component: CrowbarIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1850,7 +1388,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D conical fluid funnel with narrow outlet spout, rim loop, and a glowing suspended droplet",
-    Component: FunnelIcon,
     color: "#0f766e",
     accentColor: "#10b981"
   },
@@ -1860,7 +1397,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D thumb-pump oil can canister with slanted spout, trigger lever, and glowing fluid drop",
-    Component: OilCanIcon,
     color: "#b45309",
     accentColor: "#10b981"
   },
@@ -1870,7 +1406,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D ball bearing cage assembly with concentric inner/outer rings and spherical steel balls",
-    Component: BearingIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1880,7 +1415,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D mechanical pulley block with U-bracket frame, grooved wheel, and guiding wire rope",
-    Component: PulleyIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1890,7 +1424,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D drive sprocket wheel with beveled teeth, central shaft hole, and glowing concentric tracks",
-    Component: SprocketIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1900,7 +1433,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D table presentation projector with concentric lens, controls pad, and glowing focus ring",
-    Component: ProjectorIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1910,7 +1442,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D slim home console stand with side panels, vertical base, and glowing status stripe",
-    Component: GameConsoleIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1920,7 +1451,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D virtual reality goggle headset with front glass shield visor and glowing indicator strip",
-    Component: VRHeadsetIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1930,7 +1460,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D assistant smart speaker cylinder with control deck and glowing voice response ring",
-    Component: SmartSpeakerIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1940,7 +1469,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D backup power bank battery brick with USB port slots and glowing status level LEDs",
-    Component: PowerBankIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1950,7 +1478,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D flash thumb drive memory key with metal connector plug and glowing keyring loop",
-    Component: UsbDriveIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1960,7 +1487,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D green circuit motherboard board with CPU socket frame, RAM slots, and glowing core",
-    Component: MotherboardIcon,
     color: "#065f46",
     accentColor: "#10b981"
   },
@@ -1970,7 +1496,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D desktop memory RAM stick module with golden pin edge and glowing top RGB light diffuser",
-    Component: RamStickIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1980,7 +1505,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D offset manual crank arm handle with a pivot sleeve, counterweight, and glowing accent cap",
-    Component: CrankIcon,
     color: "#71717a",
     accentColor: "#10b981"
   },
@@ -1990,7 +1514,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D engine camshaft shaft populated with eccentric cam lobes, journals, and a glowing accent gear",
-    Component: CamshaftIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2000,7 +1523,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D torqued driveshaft rod with double universal joints, weld yokes, and a glowing spider cross",
-    Component: DriveShaftIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -2010,7 +1532,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D pipeline fluid control gate valve wheel with a threaded stem and glowing accent ring",
-    Component: ValveIcon,
     color: "#4b5563",
     accentColor: "#10b981"
   },
@@ -2020,7 +1541,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D marine propeller hub containing three twisted blades, adapter shaft, and glowing nose cap",
-    Component: PropellerIcon,
     color: "#78350f",
     accentColor: "#10b981"
   },
@@ -2030,7 +1550,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D multi-blade helicopter rotor hub with control rods, swashplate, and glowing control ring",
-    Component: HelicopterRotorIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2040,7 +1559,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D heavy hydraulic bottle jack cylinder lifting jack with a base plate and glowing accent collar",
-    Component: HydraulicJackIcon,
     color: "#ef4444",
     accentColor: "#10b981"
   },
@@ -2050,7 +1568,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D high-end desktop GPU graphics card with triple active fan spinner blades and top RGB glowing strip",
-    Component: GpuIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2060,7 +1577,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D boxy ATX power unit with a round fan cooling grille, braided cables, and glowing indicator red switch",
-    Component: PowerSupplyIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2070,7 +1586,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D rack unit populated with dual rows of RJ45 ports, mount brackets, and glowing status LED panel",
-    Component: NetworkSwitchIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -2080,7 +1595,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D smart wall outlet adapter plug with US receptacle holes and a glowing status power button",
-    Component: SmartPlugIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2090,7 +1604,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D smart RGB LED lightbulb containing a wifi accent ring and glowing inner LED tower",
-    Component: SmartBulbIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2100,7 +1613,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D spherical dome security surveillance lens camera with mount bracket and glowing status LED ring",
-    Component: SecurityCameraIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2110,7 +1622,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D heavy mechanical cylinder door smart lock with electronic touchpad and glowing status ring",
-    Component: SmartLockIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -2120,7 +1631,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D circular smart home climate thermostat dials with digital number readout and glowing accent scale",
-    Component: ThermostatIcon,
     color: "#0f172a",
     accentColor: "#10b981"
   },
@@ -2130,7 +1640,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D heavy threaded G-clamp frame with a rotatable clamping screw rod and glowing collar guide",
-    Component: GClampIcon,
     color: "#4b5563",
     accentColor: "#10b981"
   },
@@ -2140,7 +1649,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D heavy duty workbench jaws vice tool with sliding track guide and glowing hub dial",
-    Component: ViceIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -2150,7 +1658,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D hand-lever grease injector gun canister with high pressure extension pipe and glowing accent sleeve",
-    Component: GreaseGunIcon,
     color: "#64748b",
     accentColor: "#10b981"
   },
@@ -2160,7 +1667,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D mechanical gearbox casing enclosure showing meshed cogs and a glowing center indicator",
-    Component: GearboxIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2170,7 +1676,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D automotive differential pumpkin gear casing with axle tubes and a glowing perimeter flange",
-    Component: DifferentialIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -2180,7 +1685,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D wishbone frame car suspension arm with shock absorber strut and glowing spiral spring coils",
-    Component: SuspensionIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2190,7 +1694,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D cable winch windlass drum cylinder with a hand crank, support brackets, and glowing end flange",
-    Component: WindlassIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -2200,7 +1703,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D open wireless charging earbuds case with twin nested buds and glowing battery status LED",
-    Component: EarbudsIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2210,7 +1712,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D high gloss titanium smart health tracker ring with glowing exterior sensor crown line",
-    Component: SmartRingIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2220,7 +1721,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D graphics drawing tablet bezel frame and active canvas screen with a hovering stylus pen",
-    Component: DrawingTabletIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2230,7 +1730,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D pistol-trigger barcode laser scanner handle with top rubber guard and red glowing laser window",
-    Component: BarcodeScannerIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2240,7 +1739,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D cashier register terminal display with cash drawer base, printer paper sheet, and pole LCD screen",
-    Component: POSRegisterIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2250,7 +1748,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D pocket calculator casing with 4x4 keypad grid, solar strip, and glowing display matrix",
-    Component: CalculatorIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2260,7 +1757,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D TV remote control wand with navigation D-pad disk, number keys, and glowing power switch",
-    Component: RemoteControlIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2270,7 +1766,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D slim audio soundbar horizontal cabinet with front fabric mesh and standing companion subwoofer",
-    Component: SoundbarIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2280,7 +1775,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D pneumatic demolition jackhammer with T-handle grip, shock absorber spring, and steel chisel bit",
-    Component: JackhammerIcon,
     color: "#e2e8f0",
     accentColor: "#10b981"
   },
@@ -2290,7 +1784,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D pen-style high-temperature soldering iron with grip collar, connection cable, and fine copper tip",
-    Component: SolderingIronIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2300,7 +1793,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D portable welding gas torch cylinder with brass valve knob, angled neck, and glowing jet nozzle",
-    Component: BlowtorchIcon,
     color: "#0284c7",
     accentColor: "#10b981"
   },
@@ -2310,7 +1802,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D heavy construction hand push wheelbarrow with deep container tray, support legs, and front rubber wheel",
-    Component: WheelbarrowIcon,
     color: "#ea580c",
     accentColor: "#10b981"
   },
@@ -2320,7 +1811,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D suspended conical plumb bob alignment weight with brass cap collar and thin hanging wire",
-    Component: PlumbBobIcon,
     color: "#d97706",
     accentColor: "#10b981"
   },
@@ -2330,7 +1820,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D sheet metal hand shears with double pivot hinge and curved rubber-coated handle loops",
-    Component: ShearsIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2340,7 +1829,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D spring-loaded wire insulation stripper plier jaws with metric sizing notches and rubber handle sleeve",
-    Component: WireStripperIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2350,7 +1838,6 @@ const ICONS_REGISTRY = [
     category: "mechanics",
     description:
       "3D plumber heavy pipe wrench with adjustable hook jaw, thread turn ring, and steel grip handle",
-    Component: PipeWrenchIcon,
     color: "#dc2626",
     accentColor: "#10b981"
   },
@@ -2360,7 +1847,6 @@ const ICONS_REGISTRY = [
     category: "storage",
     description:
       "3D vintage 3.5 inch floppy diskette with metal sliding shutter casing, write-protect tab, and paper label",
-    Component: FloppyDiskIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2370,7 +1856,6 @@ const ICONS_REGISTRY = [
     category: "storage",
     description:
       "3D retro audio tape cassette shell case with central sprocket holes and magnetic tape reel spool packs",
-    Component: TapeCassetteIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -2380,7 +1865,6 @@ const ICONS_REGISTRY = [
     category: "storage",
     description:
       "3D optical compact disc showing shiny iridescent colors, clear central hub ring, and spindle hole",
-    Component: CompactDiscIcon,
     color: "#f1f5f9",
     accentColor: "#10b981"
   },
@@ -2390,7 +1874,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D flat widescreen television display screen resting on a central column stand and rectangular base",
-    Component: TvIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2400,7 +1883,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D retro transistor radio cabinet showing left speaker fabric mesh, horizontal tuning bar, and dials",
-    Component: RadioIcon,
     color: "#7c2d12",
     accentColor: "#10b981"
   },
@@ -2410,7 +1892,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D wireless handheld walkie-talkie handset with flexible top antenna, volume knob, and side PTT button",
-    Component: WalkieTalkieIcon,
     color: "#19222f",
     accentColor: "#10b981"
   },
@@ -2420,7 +1901,6 @@ const ICONS_REGISTRY = [
     category: "hardware",
     description:
       "3D call center headset with padded overhead band, left/right earmuff cushions, and a boom microphone",
-    Component: HeadsetIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2430,7 +1910,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D stylized swimming fish with curved dorsal fins, tail fins, and a glowing scale-band",
-    Component: FishIcon,
     color: "#0ea5e9",
     accentColor: "#10b981"
   },
@@ -2440,7 +1919,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D symmetrical butterfly with upper and lower glass wings, antennae, and glowing inner wing slots",
-    Component: ButterflyIcon,
     color: "#d946ef",
     accentColor: "#10b981"
   },
@@ -2450,7 +1928,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D aerodynamic flying bird in upstroke wing pose, with glowing beak and wing tip highlights",
-    Component: BirdIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2460,7 +1937,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D round feline head with pointed ears, whiskers, glowing eyes, and a collar band",
-    Component: CatIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2470,7 +1946,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D canine head showing floppy ears, protruding snout, round glowing eyes, and a collar tag",
-    Component: DogIcon,
     color: "#e2e8f0",
     accentColor: "#10b981"
   },
@@ -2480,7 +1955,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D cute rabbit head with long vertical ears, glowing inner ear canals, and a tiny nose snout",
-    Component: RabbitIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2490,7 +1964,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D stately elephant profile showing raised trunk, large ear plates, and glowing tusks",
-    Component: ElephantIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -2500,7 +1973,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D owl head showing top tufts, large concentric eye rings with glowing pupils, and beak",
-    Component: OwlIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2510,7 +1982,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D domed sea turtle shell wrapped in a glowing collar rim, with four flippers and head",
-    Component: TurtleIcon,
     color: "#16a34a",
     accentColor: "#10b981"
   },
@@ -2520,7 +1991,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D curved dolphin body leaping forward, featuring dorsal fin, tail fluke, and glowing snout tip",
-    Component: DolphinIcon,
     color: "#0ea5e9",
     accentColor: "#10b981"
   },
@@ -2529,7 +1999,6 @@ const ICONS_REGISTRY = [
     name: "RoseIcon",
     category: "emojies",
     description: "3D concentric rose petals structure with stem, thorns, and glowing center core",
-    Component: RoseIcon,
     color: "#ec4899",
     accentColor: "#10b981"
   },
@@ -2539,7 +2008,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D circular array of yellow pointed petals with a dark seed disc and glowing grid seeds",
-    Component: SunflowerIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2548,7 +2016,6 @@ const ICONS_REGISTRY = [
     name: "TulipIcon",
     category: "emojies",
     description: "3D closed cup tulip blossom with green stem leaf and glowing stamen",
-    Component: TulipIcon,
     color: "#f43f5e",
     accentColor: "#10b981"
   },
@@ -2557,7 +2024,6 @@ const ICONS_REGISTRY = [
     name: "LotusIcon",
     category: "emojies",
     description: "3D symmetrical blooming lotus petals layered above a flat water lily pad",
-    Component: LotusIcon,
     color: "#f472b6",
     accentColor: "#10b981"
   },
@@ -2567,7 +2033,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D flat yellow center button with radiating white capsule petals and glowing stamen dots",
-    Component: DaisyIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2577,7 +2042,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D flared hibiscus petals with a curved central style tube and glowing pollen tips",
-    Component: HibiscusIcon,
     color: "#ec4899",
     accentColor: "#10b981"
   },
@@ -2586,7 +2050,6 @@ const ICONS_REGISTRY = [
     name: "OrchidIcon",
     category: "emojies",
     description: "3D exotic asymmetric orchid petals with a center hood and glowing stamen node",
-    Component: OrchidIcon,
     color: "#d946ef",
     accentColor: "#10b981"
   },
@@ -2595,7 +2058,6 @@ const ICONS_REGISTRY = [
     name: "LilyIcon",
     category: "emojies",
     description: "3D trumpet-like recurved lily petals, green calyx base, and glowing stamen tips",
-    Component: LilyIcon,
     color: "#fdf2f8",
     accentColor: "#10b981"
   },
@@ -2605,7 +2067,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D Saguaro cactus silhouette with ribbed trunk, side branches, and glowing spine pins",
-    Component: CactusIcon,
     color: "#16a34a",
     accentColor: "#10b981"
   },
@@ -2615,7 +2076,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D thin green stem with vertically stacked purple flower pod tiers and glowing centers",
-    Component: LavenderIcon,
     color: "#a855f7",
     accentColor: "#10b981"
   },
@@ -2624,7 +2084,6 @@ const ICONS_REGISTRY = [
     name: "CloudRainIcon",
     category: "systems",
     description: "3D glassmorphic cloud body with falling cylindrical glowing raindrops",
-    Component: CloudRainIcon,
     color: "#0ea5e9",
     accentColor: "#38bdf8"
   },
@@ -2633,7 +2092,6 @@ const ICONS_REGISTRY = [
     name: "CloudSnowIcon",
     category: "systems",
     description: "3D glassmorphic cloud body with falling glowing spherical snowflakes",
-    Component: CloudSnowIcon,
     color: "#0ea5e9",
     accentColor: "#e2e8f0"
   },
@@ -2642,7 +2100,6 @@ const ICONS_REGISTRY = [
     name: "WindIcon",
     category: "systems",
     description: "3D horizontal blowing breeze air streams with glowing vector curls",
-    Component: WindIcon,
     color: "#64748b",
     accentColor: "#10b981"
   },
@@ -2651,7 +2108,6 @@ const ICONS_REGISTRY = [
     name: "TornadoIcon",
     category: "systems",
     description: "3D helical spinning funnel vortex storm with a glowing vertical axis core",
-    Component: TornadoIcon,
     color: "#475569",
     accentColor: "#0ea5e9"
   },
@@ -2660,7 +2116,6 @@ const ICONS_REGISTRY = [
     name: "SnowflakeIcon",
     category: "systems",
     description: "3D six-sided symmetrical crystalline snowflake with a central glowing core",
-    Component: SnowflakeIcon,
     color: "#38bdf8",
     accentColor: "#e2e8f0"
   },
@@ -2669,7 +2124,6 @@ const ICONS_REGISTRY = [
     name: "RainbowIcon",
     category: "systems",
     description: "3D multi-layered arching rainbow with nested semi-toruses and base clouds",
-    Component: RainbowIcon,
     color: "#ef4444",
     accentColor: "#06b6d4"
   },
@@ -2678,7 +2132,6 @@ const ICONS_REGISTRY = [
     name: "ThermometerIcon",
     category: "utility",
     description: "3D temperature gauge cylinder tube with base bulb and glowing red fluid core",
-    Component: ThermometerIcon,
     color: "#cbd5e1",
     accentColor: "#ef4444"
   },
@@ -2687,7 +2140,6 @@ const ICONS_REGISTRY = [
     name: "LeafIcon",
     category: "emojies",
     description: "3D organic styled leaf blade with midrib veins and a glowing dewdrop sphere",
-    Component: LeafIcon,
     color: "#16a34a",
     accentColor: "#0ea5e9"
   },
@@ -2696,7 +2148,6 @@ const ICONS_REGISTRY = [
     name: "TreeIcon",
     category: "emojies",
     description: "3D coniferous pine tree with stacked green cones, trunk, and a glowing peak node",
-    Component: TreeIcon,
     color: "#15803d",
     accentColor: "#10b981"
   },
@@ -2705,7 +2156,6 @@ const ICONS_REGISTRY = [
     name: "HurricaneIcon",
     category: "systems",
     description: "3D symmetrical spiral storm vortex arms around a central glowing eye sphere",
-    Component: HurricaneIcon,
     color: "#0284c7",
     accentColor: "#0ea5e9"
   },
@@ -2715,7 +2165,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D stacked burger with buns, sesame seeds, meat patty, cheese, and green lettuce layers",
-    Component: BurgerIcon,
     color: "#d97706",
     accentColor: "#eab308"
   },
@@ -2725,7 +2174,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D triangular pizza slice with cheese, base crust, and glowing red pepperoni discs",
-    Component: PizzaIcon,
     color: "#f59e0b",
     accentColor: "#ef4444"
   },
@@ -2735,7 +2183,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D cleft apple body with top indentation, vertical stem, green leaf, and glowing core seed",
-    Component: AppleIcon,
     color: "#ef4444",
     accentColor: "#eab308"
   },
@@ -2744,7 +2191,6 @@ const ICONS_REGISTRY = [
     name: "BananaIcon",
     category: "emojies",
     description: "3D partially peeled banana with matte cream core and yellow skin peeling flaps",
-    Component: BananaIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2754,7 +2200,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D dual-layer celebration cake with white frosting, rim whipped cream, and glowing candle",
-    Component: CakeIcon,
     color: "#ec4899",
     accentColor: "#f59e0b"
   },
@@ -2764,7 +2209,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D waffle cone containing a scoop of ice cream with whipped cream and glowing cherry on top",
-    Component: IceCreamIcon,
     color: "#f472b6",
     accentColor: "#ef4444"
   },
@@ -2774,7 +2218,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D baked ring donut with thick colored frosting glaze and scattered multi-color sprinkles",
-    Component: DonutIcon,
     color: "#db2777",
     accentColor: "#eab308"
   },
@@ -2784,7 +2227,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D striped popcorn tub overflowing with white and buttery glowing yellow popcorn kernels",
-    Component: PopcornIcon,
     color: "#ef4444",
     accentColor: "#eab308"
   },
@@ -2794,7 +2236,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D triangular watermelon wedge showing green rind, white outline, red flesh, and black seeds",
-    Component: WatermelonIcon,
     color: "#ef4444",
     accentColor: "#1e293b"
   },
@@ -2804,7 +2245,6 @@ const ICONS_REGISTRY = [
     category: "emojies",
     description:
       "3D circular baked cookie disc with dark chocolate chips and a central glowing accent chip",
-    Component: CookieIcon,
     color: "#ca8a04",
     accentColor: "#10b981"
   },
@@ -2814,7 +2254,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D steel combination vault safe box with circular combination dial, lever handle, and a glowing node",
-    Component: SafeIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2824,7 +2263,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D stacked gold bars showing trapezoidal shape contours, polished finish, and a glowing end stamp",
-    Component: GoldBarsIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2834,7 +2272,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D classical temple bank building with vertical pillars, foundation steps, and a glowing portal",
-    Component: BankIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2844,7 +2281,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D ridged gold coin showing raised outer borders and a glowing central currency dollar symbol",
-    Component: CoinIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2853,7 +2289,6 @@ const ICONS_REGISTRY = [
     name: "PiggyBankIcon",
     category: "utility",
     description: "3D stylized piggy bank featuring a top slot and a glowing gold coin drop entry",
-    Component: PiggyBankIcon,
     color: "#f472b6",
     accentColor: "#eab308"
   },
@@ -2863,7 +2298,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D paper shopping bag with rope handles, side crease folds, and a glowing star label badge",
-    Component: ShoppingBagIcon,
     color: "#ca8a04",
     accentColor: "#eab308"
   },
@@ -2873,7 +2307,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D metallic shopping cart with support frames, moving wheels, and a glowing gift item inside",
-    Component: ShoppingCartIcon,
     color: "#94a3b8",
     accentColor: "#10b981"
   },
@@ -2883,7 +2316,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D justice balance scale showing central stand column, balance crossbeam, hanging pans, and glowing pivot",
-    Component: ScaleIcon,
     color: "#94a3b8",
     accentColor: "#10b981"
   },
@@ -2893,7 +2325,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D curved transaction receipt slip with jagged cut edges, printed lines, and a glowing checkmark",
-    Component: ReceiptIcon,
     color: "#f8fafc",
     accentColor: "#10b981"
   },
@@ -2903,7 +2334,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D paper banknote bills stacked together with center strap collar and a glowing coin badge in center",
-    Component: BanknoteIcon,
     color: "#16a34a",
     accentColor: "#eab308"
   },
@@ -2913,7 +2343,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D ridged gold coin showing raised outer borders and a glowing central currency euro symbol",
-    Component: EuroIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2923,7 +2352,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D ridged gold coin showing raised outer borders and a glowing central currency yen symbol",
-    Component: YenIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2933,7 +2361,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D ridged gold coin showing raised outer borders and a glowing central currency pound symbol",
-    Component: PoundIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2942,7 +2369,6 @@ const ICONS_REGISTRY = [
     name: "AtomIcon",
     category: "utility",
     description: "3D Rutherford-Bohr atom model with orbiting electrons and a clustered nucleus",
-    Component: AtomIcon,
     color: "#6366f1",
     accentColor: "#10b981"
   },
@@ -2951,7 +2377,6 @@ const ICONS_REGISTRY = [
     name: "DNAIcon",
     category: "utility",
     description: "3D winding double-helix structure with connected base pairs",
-    Component: DNAIcon,
     color: "#3b82f6",
     accentColor: "#10b981"
   },
@@ -2961,7 +2386,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D laboratory microscope featuring adjustable focus knobs and a specimen platform",
-    Component: MicroscopeIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2970,7 +2394,6 @@ const ICONS_REGISTRY = [
     name: "TelescopeIcon",
     category: "utility",
     description: "3D astronomical telescope with refractor main tube on tripod support legs",
-    Component: TelescopeIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2979,7 +2402,6 @@ const ICONS_REGISTRY = [
     name: "BeakerIcon",
     category: "utility",
     description: "3D laboratory beaker containing bubbling liquid volume and measurement markers",
-    Component: BeakerIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2988,7 +2410,6 @@ const ICONS_REGISTRY = [
     name: "FolderPlusIcon",
     category: "storage",
     description: "3D directory folder with a raised glowing green plus sign on the front cover",
-    Component: FolderPlusIcon,
     color: "#f59e0b",
     accentColor: "#10b981"
   },
@@ -2997,7 +2418,6 @@ const ICONS_REGISTRY = [
     name: "FolderMinusIcon",
     category: "storage",
     description: "3D directory folder with a raised glowing red minus sign on the front cover",
-    Component: FolderMinusIcon,
     color: "#f59e0b",
     accentColor: "#ef4444"
   },
@@ -3006,7 +2426,6 @@ const ICONS_REGISTRY = [
     name: "FolderCheckIcon",
     category: "storage",
     description: "3D directory folder with a raised glowing green checkmark on the front cover",
-    Component: FolderCheckIcon,
     color: "#f59e0b",
     accentColor: "#10b981"
   },
@@ -3016,7 +2435,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D calendar grids plate with a raised glowing green plus sign on the front corner",
-    Component: CalendarPlusIcon,
     color: "#6366f1",
     accentColor: "#10b981"
   },
@@ -3026,7 +2444,6 @@ const ICONS_REGISTRY = [
     category: "utility",
     description:
       "3D calendar grids plate with a raised glowing green checkmark on the front corner",
-    Component: CalendarCheckIcon,
     color: "#6366f1",
     accentColor: "#10b981"
   },
@@ -3085,6 +2502,113 @@ const CATEGORIES = [
   "alphabet"
 ] as const;
 
+function getLevenshteinDistance(a: string, b: string): number {
+  const tmp: number[][] = [];
+  for (let i = 0; i <= a.length; i++) {
+    tmp[i] = [i];
+  }
+  for (let j = 0; j <= b.length; j++) {
+    tmp[0][j] = j;
+  }
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      tmp[i][j] = Math.min(
+        tmp[i - 1][j] + 1,
+        tmp[i][j - 1] + 1,
+        tmp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
+      );
+    }
+  }
+  return tmp[a.length][b.length];
+}
+
+function getFuzzyScore(text: string, query: string): number {
+  const tLower = text.toLowerCase();
+  const qLower = query.toLowerCase();
+
+  if (tLower === qLower) return 1.0;
+  if (tLower.startsWith(qLower)) return 0.9;
+  if (tLower.includes(qLower)) return 0.8;
+
+  // Split target words to match tokens
+  const words = tLower
+    .replace("icon", "")
+    .split(/(?=[0-9])|[^a-zA-Z0-9]/)
+    .filter(Boolean);
+  for (const w of words) {
+    if (w.startsWith(qLower)) return 0.75;
+    if (w.includes(qLower)) return 0.7;
+
+    // Typo matching within words
+    if (qLower.length > 2 && w.length > 2) {
+      const dist = getLevenshteinDistance(w, qLower);
+      if (dist <= 1) return 0.6;
+      if (dist <= 2 && qLower.length > 4) return 0.4;
+    }
+  }
+
+  // Abbreviation / character subsequence matching
+  let qIdx = 0;
+  let matches = 0;
+  for (let i = 0; i < tLower.length; i++) {
+    if (tLower[i] === qLower[qIdx]) {
+      qIdx++;
+      matches++;
+      if (qIdx === qLower.length) break;
+    }
+  }
+
+  if (matches === qLower.length) {
+    return 0.5 + (qLower.length / tLower.length) * 0.15;
+  }
+
+  return 0;
+}
+
+const COLOR_PALETTES = [
+  {
+    id: "all",
+    label: "All Colors",
+    value: "all",
+    bg: "bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"
+  },
+  {
+    id: "slate",
+    label: "Slate / Gray",
+    value: "slate",
+    bg: "bg-slate-500",
+    colors: ["#6b7280", "#475569", "#71717a"]
+  },
+  {
+    id: "blue",
+    label: "Blue / Indigo",
+    value: "blue",
+    bg: "bg-blue-500",
+    colors: ["#3b82f6", "#6366f1", "#4f46e5", "#1877f2", "#0ea5e9", "#06b6d4"]
+  },
+  {
+    id: "emerald",
+    label: "Emerald / Teal",
+    value: "emerald",
+    bg: "bg-emerald-500",
+    colors: ["#10b981", "#0d9488", "#34d399"]
+  },
+  {
+    id: "rose",
+    label: "Red / Pink",
+    value: "rose",
+    bg: "bg-rose-500",
+    colors: ["#ef4444", "#ec4899", "#e11d48", "#f43f5e"]
+  },
+  {
+    id: "amber",
+    label: "Amber / Yellow",
+    value: "amber",
+    bg: "bg-amber-500",
+    colors: ["#f59e0b", "#f97316", "#eab308", "#d4af37", "#b45309", "#fbbf24"]
+  }
+];
+
 export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) => {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<string>("all");
@@ -3127,57 +2651,6 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
 
   const [activeColorFilter, setActiveColorFilter] = useState<string>("all");
 
-  const COLOR_PALETTES = [
-    {
-      id: "all",
-      label: "All Colors",
-      value: "all",
-      bg: "bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500"
-    },
-    {
-      id: "slate",
-      label: "Slate / Gray",
-      value: "slate",
-      bg: "bg-slate-500",
-      colors: ["#6b7280", "#475569", "#71717a"]
-    },
-    {
-      id: "blue",
-      label: "Blue / Indigo",
-      value: "blue",
-      bg: "bg-blue-500",
-      colors: ["#3b82f6", "#6366f1", "#4f46e5", "#1877f2", "#0ea5e9", "#06b6d4"]
-    },
-    {
-      id: "emerald",
-      label: "Emerald / Teal",
-      value: "emerald",
-      bg: "bg-emerald-500",
-      colors: ["#10b981", "#0d9488", "#34d399"]
-    },
-    {
-      id: "rose",
-      label: "Red / Pink",
-      value: "rose",
-      bg: "bg-rose-500",
-      colors: ["#ef4444", "#ec4899", "#e11d48", "#f43f5e"]
-    },
-    {
-      id: "amber",
-      label: "Amber / Yellow",
-      value: "amber",
-      bg: "bg-amber-500",
-      colors: ["#f59e0b", "#f97316", "#eab308", "#d4af37", "#b45309", "#fbbf24"]
-    }
-  ];
-
-  const matchesColorFilter = (iconColor: string) => {
-    if (activeColorFilter === "all") return true;
-    const filter = COLOR_PALETTES.find((p) => p.id === activeColorFilter);
-    if (!filter || !filter.colors) return true;
-    return filter.colors.some((c) => c.toLowerCase() === iconColor.toLowerCase());
-  };
-
   const [requestSubmitted, setRequestSubmitted] = useState(false);
   const [requestIconName, setRequestIconName] = useState(search || "");
   const [requestCategory, setRequestCategory] = useState("utility");
@@ -3216,19 +2689,39 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const filteredIcons = ICONS_REGISTRY.filter((icon) => {
-    const matchesSearch =
-      icon.name.toLowerCase().includes(search.toLowerCase()) ||
-      icon.description.toLowerCase().includes(search.toLowerCase());
-    const matchesCategory =
-      activeCategory === "all"
-        ? true
-        : activeCategory === "favorites"
-          ? favoriteIconIds.includes(icon.id)
-          : icon.category === activeCategory;
-    const matchesColor = matchesColorFilter(icon.color);
-    return matchesSearch && matchesCategory && matchesColor;
-  });
+  const filteredIcons = useMemo(() => {
+    const matchesColorFilter = (iconColor: string) => {
+      if (activeColorFilter === "all") return true;
+      const filter = COLOR_PALETTES.find((p) => p.id === activeColorFilter);
+      if (!filter || !filter.colors) return true;
+      return filter.colors.some((c) => c.toLowerCase() === iconColor.toLowerCase());
+    };
+
+    const filterBase = (icon: (typeof ICONS_REGISTRY)[0]) => {
+      const matchesCategory =
+        activeCategory === "all"
+          ? true
+          : activeCategory === "favorites"
+            ? favoriteIconIds.includes(icon.id)
+            : icon.category === activeCategory;
+      const matchesColor = matchesColorFilter(icon.color);
+      return matchesCategory && matchesColor;
+    };
+
+    if (search === "") {
+      return ICONS_REGISTRY.filter(filterBase);
+    }
+
+    const scored = ICONS_REGISTRY.map((icon) => {
+      const nameScore = getFuzzyScore(icon.name, search);
+      const descScore = getFuzzyScore(icon.description || "", search);
+      const maxScore = Math.max(nameScore, descScore * 0.8);
+      return { icon, score: maxScore };
+    }).filter((item) => item.score > 0 && filterBase(item.icon));
+
+    scored.sort((a, b) => b.score - a.score);
+    return scored.map((item) => item.icon);
+  }, [search, activeCategory, activeColorFilter, favoriteIconIds]);
 
   // Reset visible icons count when filters change
   useEffect(() => {
@@ -3531,7 +3024,6 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
               key={icon.id}
               id={icon.id}
               name={icon.name}
-              Component={icon.Component}
               color={icon.color}
               accentColor={icon.accentColor}
               theme={theme}

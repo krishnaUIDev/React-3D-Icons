@@ -5,305 +5,16 @@ import { createRoot } from "react-dom/client";
 import { useRouter } from "../router/Router";
 import { useTranslation } from "../i18n/useTranslation";
 import { audioEngine } from "../utils/audio";
+import { Lazy3DIcon } from "../components/Lazy3DIcon";
 import {
-  DatabaseIcon,
-  CloudIcon,
-  CpuIcon,
-  NetworkIcon,
-  GearIcon,
-  FacebookIcon,
-  RocketIcon,
-  FlashIcon,
-  ShieldIcon,
-  FolderIcon,
-  MailIcon,
-  WalletIcon,
-  CalendarIcon,
-  DollarIcon,
-  ThumbUpIcon,
-  HeartIcon,
-  ChatIcon,
-  KeyIcon,
-  StarIcon,
-  CartIcon,
-  MusicIcon,
-  GamepadIcon,
-  BellIcon,
-  SunIcon,
-  BulbIcon,
-  CameraIcon,
-  ClockIcon,
-  TrophyIcon,
-  LockIcon,
-  MapPinIcon,
-  CreditCardIcon,
-  WifiIcon,
-  SearchIcon,
-  HomeIcon,
-  TrashIcon,
-  UserIcon,
-  PlayIcon,
-  GiftIcon,
-  GlobeIcon,
-  BagIcon,
-  CompassIcon,
-  SendIcon,
-  TargetIcon,
-  EditIcon,
-  PhoneIcon,
-  BookIcon,
-  LinkIcon,
-  CrownIcon,
-  PinIcon,
-  FlagIcon,
-  BriefcaseIcon,
-  EyeIcon,
-  TagIcon,
-  CoffeeIcon,
-  ShareIcon,
-  LayersIcon,
-  SparklesIcon,
-  MegaphoneIcon,
-  DownloadIcon,
-  UploadIcon,
-  MonitorIcon,
-  KeyboardIcon,
-  MouseIcon,
-  HardDriveIcon,
-  GlassmorphismIcon,
-  GithubIcon,
-  TwitterIcon,
-  GoogleIcon,
-  RouterIcon,
-  ServerIcon,
-  WrenchIcon,
-  BoltIcon,
-  SmileIcon,
-  FrownIcon,
-  HeartEyesIcon,
-  HammerIcon,
-  ScrewdriverIcon,
-  NutIcon,
-  PrinterIcon,
-  SpeakerIcon,
-  EthernetIcon,
-  SatelliteIcon,
-  CodeIcon,
-  TerminalIcon,
-  GitIcon,
-  FigmaIcon,
-  BarChartIcon,
-  CheckIcon,
-  ContainerIcon,
-  ShieldCheckIcon,
-  ReactIcon,
-  NodeIcon,
-  AnchorIcon,
-  DiamondIcon,
-  FilterIcon,
-  PipelineIcon,
-  RefreshIcon,
-  WebhookIcon,
-  PlusIcon,
-  MinusIcon,
-  CloseIcon,
-  InfoIcon,
-  AlertCircleIcon,
-  LetterIcon,
-  Fallback2D,
   IconPreset,
   IconAngle,
   IconEnvironment,
   IconAnimationType,
   getMaterialConfig,
   MaterialConfig,
-  BugIcon,
-  FlaskIcon,
-  PieChartIcon,
-  FlameIcon,
-  ActivityIcon,
-  GraduationCapIcon,
-  TrendingUpIcon,
-  InstagramIcon,
-  YoutubeIcon,
-  LinkedinIcon,
-  DribbbleIcon,
-  CloudNetworkIcon,
-  FirewallIcon,
-  PackageIcon,
-  AirplaneIcon,
-  BatteryIcon,
-  VideoIcon,
-  MicrophoneIcon,
-  SlidersIcon,
-  MapIcon,
-  UmbrellaIcon,
-  ScissorsIcon,
-  UnlockIcon,
-  ArchiveIcon,
-  ShieldAlertIcon,
-  EyeOffIcon,
-  UserPlusIcon,
-  TrendingDownIcon,
-  CopyIcon,
-  GaugeIcon,
-  MagnetIcon,
-  StackIcon,
-  WorkflowIcon,
-  TopologyIcon,
-  FileIcon,
-  HeadphonesIcon,
-  MoonIcon,
-  PaperclipIcon,
-  BookmarkIcon,
-  CloudLightningIcon,
-  FolderOpenIcon,
-  VolumeIcon,
-  BellOffIcon,
-  SunMoonIcon,
-  PistonIcon,
-  SpringIcon,
-  AnvilIcon,
-  HookIcon,
-  TurbineIcon,
-  PliersIcon,
-  DrillIcon,
-  HacksawIcon,
-  TapeMeasureIcon,
-  CaliperIcon,
-  SpiritLevelIcon,
-  SledgehammerIcon,
-  PhoneMobileIcon,
-  TabletIcon,
-  LaptopIcon,
-  SmartWatchIcon,
-  RouterWifiIcon,
-  ServerRackIcon,
-  HardDriveExternalIcon,
-  WebcamIcon,
-  ChiselIcon,
-  CrowbarIcon,
-  FunnelIcon,
-  OilCanIcon,
-  BearingIcon,
-  PulleyIcon,
-  SprocketIcon,
-  ProjectorIcon,
-  GameConsoleIcon,
-  VRHeadsetIcon,
-  SmartSpeakerIcon,
-  PowerBankIcon,
-  UsbDriveIcon,
-  MotherboardIcon,
-  RamStickIcon,
-  CrankIcon,
-  CamshaftIcon,
-  DriveShaftIcon,
-  ValveIcon,
-  PropellerIcon,
-  HelicopterRotorIcon,
-  HydraulicJackIcon,
-  GpuIcon,
-  PowerSupplyIcon,
-  NetworkSwitchIcon,
-  SmartPlugIcon,
-  SmartBulbIcon,
-  SecurityCameraIcon,
-  SmartLockIcon,
-  ThermostatIcon,
-  GClampIcon,
-  ViceIcon,
-  GreaseGunIcon,
-  GearboxIcon,
-  DifferentialIcon,
-  SuspensionIcon,
-  WindlassIcon,
-  EarbudsIcon,
-  SmartRingIcon,
-  DrawingTabletIcon,
-  BarcodeScannerIcon,
-  POSRegisterIcon,
-  CalculatorIcon,
-  RemoteControlIcon,
-  SoundbarIcon,
-  JackhammerIcon,
-  SolderingIronIcon,
-  BlowtorchIcon,
-  WheelbarrowIcon,
-  PlumbBobIcon,
-  ShearsIcon,
-  WireStripperIcon,
-  PipeWrenchIcon,
-  FloppyDiskIcon,
-  TapeCassetteIcon,
-  CompactDiscIcon,
-  TvIcon,
-  RadioIcon,
-  WalkieTalkieIcon,
-  HeadsetIcon,
-  FishIcon,
-  ButterflyIcon,
-  BirdIcon,
-  CatIcon,
-  DogIcon,
-  RabbitIcon,
-  ElephantIcon,
-  OwlIcon,
-  TurtleIcon,
-  DolphinIcon,
-  RoseIcon,
-  SunflowerIcon,
-  TulipIcon,
-  LotusIcon,
-  DaisyIcon,
-  HibiscusIcon,
-  OrchidIcon,
-  LilyIcon,
-  CactusIcon,
-  LavenderIcon,
-  CloudRainIcon,
-  CloudSnowIcon,
-  WindIcon,
-  TornadoIcon,
-  SnowflakeIcon,
-  RainbowIcon,
-  ThermometerIcon,
-  LeafIcon,
-  TreeIcon,
-  HurricaneIcon,
-  BurgerIcon,
-  PizzaIcon,
-  AppleIcon,
-  BananaIcon,
-  CakeIcon,
-  IceCreamIcon,
-  DonutIcon,
-  PopcornIcon,
-  WatermelonIcon,
-  CookieIcon,
-  SafeIcon,
-  GoldBarsIcon,
-  ScaleIcon,
-  BanknoteIcon,
-  EuroIcon,
-  YenIcon,
-  PoundIcon,
-  AtomIcon,
-  DNAIcon,
-  MicroscopeIcon,
-  TelescopeIcon,
-  BeakerIcon,
-  FolderPlusIcon,
-  FolderMinusIcon,
-  FolderCheckIcon,
-  CalendarPlusIcon,
-  CalendarCheckIcon,
-  BankIcon,
-  CoinIcon,
-  PiggyBankIcon,
-  ShoppingBagIcon,
-  ShoppingCartIcon,
-  ReceiptIcon
+  Fallback2D,
+  LetterIcon
 } from "r3d-icons";
 import {
   ArrowLeft,
@@ -322,7 +33,6 @@ export const ICONS_REGISTRY = [
     id: "plus",
     name: "PlusIcon",
     category: "utility",
-    Component: PlusIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -330,7 +40,6 @@ export const ICONS_REGISTRY = [
     id: "minus",
     name: "MinusIcon",
     category: "utility",
-    Component: MinusIcon,
     color: "#6b7280",
     accentColor: "#9ca3af"
   },
@@ -338,7 +47,6 @@ export const ICONS_REGISTRY = [
     id: "close",
     name: "CloseIcon",
     category: "utility",
-    Component: CloseIcon,
     color: "#ef4444",
     accentColor: "#f87171"
   },
@@ -346,7 +54,6 @@ export const ICONS_REGISTRY = [
     id: "info",
     name: "InfoIcon",
     category: "utility",
-    Component: InfoIcon,
     color: "#3b82f6",
     accentColor: "#60a5fa"
   },
@@ -354,7 +61,6 @@ export const ICONS_REGISTRY = [
     id: "alertcircle",
     name: "AlertCircleIcon",
     category: "utility",
-    Component: AlertCircleIcon,
     color: "#f59e0b",
     accentColor: "#fbbf24"
   },
@@ -362,7 +68,6 @@ export const ICONS_REGISTRY = [
     id: "anchor",
     name: "AnchorIcon",
     category: "utility",
-    Component: AnchorIcon,
     color: "#475569",
     accentColor: "#f43f5e"
   },
@@ -370,7 +75,6 @@ export const ICONS_REGISTRY = [
     id: "diamond",
     name: "DiamondIcon",
     category: "utility",
-    Component: DiamondIcon,
     color: "#0ea5e9",
     accentColor: "#10b981"
   },
@@ -378,7 +82,6 @@ export const ICONS_REGISTRY = [
     id: "filter",
     name: "FilterIcon",
     category: "utility",
-    Component: FilterIcon,
     color: "#f43f5e",
     accentColor: "#38bdf8"
   },
@@ -386,7 +89,6 @@ export const ICONS_REGISTRY = [
     id: "pipeline",
     name: "PipelineIcon",
     category: "networking",
-    Component: PipelineIcon,
     color: "#0d9488",
     accentColor: "#10b981"
   },
@@ -394,7 +96,6 @@ export const ICONS_REGISTRY = [
     id: "refresh",
     name: "RefreshIcon",
     category: "utility",
-    Component: RefreshIcon,
     color: "#8b5cf6",
     accentColor: "#ec4899"
   },
@@ -402,7 +103,6 @@ export const ICONS_REGISTRY = [
     id: "webhook",
     name: "WebhookIcon",
     category: "networking",
-    Component: WebhookIcon,
     color: "#6366f1",
     accentColor: "#10b981"
   },
@@ -410,7 +110,6 @@ export const ICONS_REGISTRY = [
     id: "facebook",
     name: "FacebookIcon",
     category: "brands",
-    Component: FacebookIcon,
     color: "#1877f2",
     accentColor: "#3b82f6"
   },
@@ -418,7 +117,6 @@ export const ICONS_REGISTRY = [
     id: "shield",
     name: "ShieldIcon",
     category: "utility",
-    Component: ShieldIcon,
     color: "#0d9488",
     accentColor: "#34d399"
   },
@@ -426,7 +124,6 @@ export const ICONS_REGISTRY = [
     id: "rocket",
     name: "RocketIcon",
     category: "mechanics",
-    Component: RocketIcon,
     color: "#ef4444",
     accentColor: "#f59e0b"
   },
@@ -434,7 +131,6 @@ export const ICONS_REGISTRY = [
     id: "database",
     name: "DatabaseIcon",
     category: "storage",
-    Component: DatabaseIcon,
     color: "#4f46e5",
     accentColor: "#ec4899"
   },
@@ -442,7 +138,6 @@ export const ICONS_REGISTRY = [
     id: "folder",
     name: "FolderIcon",
     category: "storage",
-    Component: FolderIcon,
     color: "#f59e0b",
     accentColor: "#eab308"
   },
@@ -450,7 +145,6 @@ export const ICONS_REGISTRY = [
     id: "cloud",
     name: "CloudIcon",
     category: "systems",
-    Component: CloudIcon,
     color: "#0ea5e9",
     accentColor: "#38bdf8"
   },
@@ -458,7 +152,6 @@ export const ICONS_REGISTRY = [
     id: "network",
     name: "NetworkIcon",
     category: "networking",
-    Component: NetworkIcon,
     color: "#06b6d4",
     accentColor: "#a855f7"
   },
@@ -466,7 +159,6 @@ export const ICONS_REGISTRY = [
     id: "cloudnetwork",
     name: "CloudNetworkIcon",
     category: "networking",
-    Component: CloudNetworkIcon,
     color: "#3b82f6",
     accentColor: "#10b981"
   },
@@ -474,7 +166,6 @@ export const ICONS_REGISTRY = [
     id: "firewall",
     name: "FirewallIcon",
     category: "networking",
-    Component: FirewallIcon,
     color: "#e11d48",
     accentColor: "#ea580c"
   },
@@ -482,7 +173,6 @@ export const ICONS_REGISTRY = [
     id: "cpu",
     name: "CpuIcon",
     category: "hardware",
-    Component: CpuIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -490,7 +180,6 @@ export const ICONS_REGISTRY = [
     id: "gear",
     name: "GearIcon",
     category: "mechanics",
-    Component: GearIcon,
     color: "#71717a",
     accentColor: "#b45309"
   },
@@ -498,7 +187,6 @@ export const ICONS_REGISTRY = [
     id: "mail",
     name: "MailIcon",
     category: "utility",
-    Component: MailIcon,
     color: "#e11d48",
     accentColor: "#ec4899"
   },
@@ -506,7 +194,6 @@ export const ICONS_REGISTRY = [
     id: "calendar",
     name: "CalendarIcon",
     category: "utility",
-    Component: CalendarIcon,
     color: "#6366f1",
     accentColor: "#ef4444"
   },
@@ -514,7 +201,6 @@ export const ICONS_REGISTRY = [
     id: "wallet",
     name: "WalletIcon",
     category: "utility",
-    Component: WalletIcon,
     color: "#b45309",
     accentColor: "#d97706"
   },
@@ -522,7 +208,6 @@ export const ICONS_REGISTRY = [
     id: "dollar",
     name: "DollarIcon",
     category: "utility",
-    Component: DollarIcon,
     color: "#eab308",
     accentColor: "#f59e0b"
   },
@@ -530,7 +215,6 @@ export const ICONS_REGISTRY = [
     id: "thumbup",
     name: "ThumbUpIcon",
     category: "utility",
-    Component: ThumbUpIcon,
     color: "#f43f5e",
     accentColor: "#fb7185"
   },
@@ -538,7 +222,6 @@ export const ICONS_REGISTRY = [
     id: "flash",
     name: "FlashIcon",
     category: "utility",
-    Component: FlashIcon,
     color: "#eab308",
     accentColor: "#f97316"
   },
@@ -546,7 +229,6 @@ export const ICONS_REGISTRY = [
     id: "heart",
     name: "HeartIcon",
     category: "utility",
-    Component: HeartIcon,
     color: "#ec4899",
     accentColor: "#f43f5e"
   },
@@ -554,7 +236,6 @@ export const ICONS_REGISTRY = [
     id: "chat",
     name: "ChatIcon",
     category: "utility",
-    Component: ChatIcon,
     color: "#8b5cf6",
     accentColor: "#a78bfa"
   },
@@ -562,7 +243,6 @@ export const ICONS_REGISTRY = [
     id: "key",
     name: "KeyIcon",
     category: "utility",
-    Component: KeyIcon,
     color: "#f59e0b",
     accentColor: "#fbbf24"
   },
@@ -570,7 +250,6 @@ export const ICONS_REGISTRY = [
     id: "star",
     name: "StarIcon",
     category: "utility",
-    Component: StarIcon,
     color: "#fbbf24",
     accentColor: "#f59e0b"
   },
@@ -578,7 +257,6 @@ export const ICONS_REGISTRY = [
     id: "cart",
     name: "CartIcon",
     category: "utility",
-    Component: CartIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -586,7 +264,6 @@ export const ICONS_REGISTRY = [
     id: "music",
     name: "MusicIcon",
     category: "utility",
-    Component: MusicIcon,
     color: "#ec4899",
     accentColor: "#f43f5e"
   },
@@ -594,7 +271,6 @@ export const ICONS_REGISTRY = [
     id: "gamepad",
     name: "GamepadIcon",
     category: "hardware",
-    Component: GamepadIcon,
     color: "#6366f1",
     accentColor: "#8b5cf6"
   },
@@ -602,7 +278,6 @@ export const ICONS_REGISTRY = [
     id: "bell",
     name: "BellIcon",
     category: "utility",
-    Component: BellIcon,
     color: "#f59e0b",
     accentColor: "#d97706"
   },
@@ -610,7 +285,6 @@ export const ICONS_REGISTRY = [
     id: "sun",
     name: "SunIcon",
     category: "systems",
-    Component: SunIcon,
     color: "#f97316",
     accentColor: "#eab308"
   },
@@ -618,7 +292,6 @@ export const ICONS_REGISTRY = [
     id: "bulb",
     name: "BulbIcon",
     category: "utility",
-    Component: BulbIcon,
     color: "#fbbf24",
     accentColor: "#f59e0b"
   },
@@ -626,7 +299,6 @@ export const ICONS_REGISTRY = [
     id: "camera",
     name: "CameraIcon",
     category: "hardware",
-    Component: CameraIcon,
     color: "#06b6d4",
     accentColor: "#3b82f6"
   },
@@ -634,7 +306,6 @@ export const ICONS_REGISTRY = [
     id: "clock",
     name: "ClockIcon",
     category: "utility",
-    Component: ClockIcon,
     color: "#ef4444",
     accentColor: "#cbd5e1"
   },
@@ -642,7 +313,6 @@ export const ICONS_REGISTRY = [
     id: "trophy",
     name: "TrophyIcon",
     category: "utility",
-    Component: TrophyIcon,
     color: "#eab308",
     accentColor: "#f59e0b"
   },
@@ -650,7 +320,6 @@ export const ICONS_REGISTRY = [
     id: "lock",
     name: "LockIcon",
     category: "utility",
-    Component: LockIcon,
     color: "#6366f1",
     accentColor: "#8b5cf6"
   },
@@ -658,7 +327,6 @@ export const ICONS_REGISTRY = [
     id: "mappin",
     name: "MapPinIcon",
     category: "utility",
-    Component: MapPinIcon,
     color: "#ef4444",
     accentColor: "#f43f5e"
   },
@@ -666,7 +334,6 @@ export const ICONS_REGISTRY = [
     id: "creditcard",
     name: "CreditCardIcon",
     category: "utility",
-    Component: CreditCardIcon,
     color: "#4f46e5",
     accentColor: "#0ea5e9"
   },
@@ -674,7 +341,6 @@ export const ICONS_REGISTRY = [
     id: "wifi",
     name: "WifiIcon",
     category: "networking",
-    Component: WifiIcon,
     color: "#0ea5e9",
     accentColor: "#38bdf8"
   },
@@ -682,7 +348,6 @@ export const ICONS_REGISTRY = [
     id: "search",
     name: "SearchIcon",
     category: "utility",
-    Component: SearchIcon,
     color: "#3b82f6",
     accentColor: "#38bdf8"
   },
@@ -690,7 +355,6 @@ export const ICONS_REGISTRY = [
     id: "home",
     name: "HomeIcon",
     category: "utility",
-    Component: HomeIcon,
     color: "#10b981",
     accentColor: "#f43f5e"
   },
@@ -698,7 +362,6 @@ export const ICONS_REGISTRY = [
     id: "trash",
     name: "TrashIcon",
     category: "utility",
-    Component: TrashIcon,
     color: "#71717a",
     accentColor: "#ef4444"
   },
@@ -706,7 +369,6 @@ export const ICONS_REGISTRY = [
     id: "user",
     name: "UserIcon",
     category: "utility",
-    Component: UserIcon,
     color: "#6366f1",
     accentColor: "#10b981"
   },
@@ -714,7 +376,6 @@ export const ICONS_REGISTRY = [
     id: "play",
     name: "PlayIcon",
     category: "utility",
-    Component: PlayIcon,
     color: "#10b981",
     accentColor: "#38bdf8"
   },
@@ -722,7 +383,6 @@ export const ICONS_REGISTRY = [
     id: "gift",
     name: "GiftIcon",
     category: "utility",
-    Component: GiftIcon,
     color: "#f43f5e",
     accentColor: "#ef4444"
   },
@@ -730,7 +390,6 @@ export const ICONS_REGISTRY = [
     id: "globe",
     name: "GlobeIcon",
     category: "systems",
-    Component: GlobeIcon,
     color: "#0ea5e9",
     accentColor: "#3b82f6"
   },
@@ -738,7 +397,6 @@ export const ICONS_REGISTRY = [
     id: "bag",
     name: "BagIcon",
     category: "utility",
-    Component: BagIcon,
     color: "#f59e0b",
     accentColor: "#38bdf8"
   },
@@ -746,7 +404,6 @@ export const ICONS_REGISTRY = [
     id: "compass",
     name: "CompassIcon",
     category: "utility",
-    Component: CompassIcon,
     color: "#d4af37",
     accentColor: "#ef4444"
   },
@@ -754,7 +411,6 @@ export const ICONS_REGISTRY = [
     id: "send",
     name: "SendIcon",
     category: "utility",
-    Component: SendIcon,
     color: "#6366f1",
     accentColor: "#3b82f6"
   },
@@ -762,7 +418,6 @@ export const ICONS_REGISTRY = [
     id: "target",
     name: "TargetIcon",
     category: "utility",
-    Component: TargetIcon,
     color: "#ef4444",
     accentColor: "#f59e0b"
   },
@@ -770,7 +425,6 @@ export const ICONS_REGISTRY = [
     id: "edit",
     name: "EditIcon",
     category: "utility",
-    Component: EditIcon,
     color: "#eab308",
     accentColor: "#fed7aa"
   },
@@ -778,7 +432,6 @@ export const ICONS_REGISTRY = [
     id: "phone",
     name: "PhoneIcon",
     category: "utility",
-    Component: PhoneIcon,
     color: "#10b981",
     accentColor: "#cbd5e1"
   },
@@ -786,7 +439,6 @@ export const ICONS_REGISTRY = [
     id: "book",
     name: "BookIcon",
     category: "utility",
-    Component: BookIcon,
     color: "#e11d48",
     accentColor: "#fda4af"
   },
@@ -794,7 +446,6 @@ export const ICONS_REGISTRY = [
     id: "link",
     name: "LinkIcon",
     category: "utility",
-    Component: LinkIcon,
     color: "#71717a",
     accentColor: "#cbd5e1"
   },
@@ -802,7 +453,6 @@ export const ICONS_REGISTRY = [
     id: "crown",
     name: "CrownIcon",
     category: "utility",
-    Component: CrownIcon,
     color: "#d4af37",
     accentColor: "#fbbf24"
   },
@@ -810,7 +460,6 @@ export const ICONS_REGISTRY = [
     id: "pin",
     name: "PinIcon",
     category: "utility",
-    Component: PinIcon,
     color: "#ef4444",
     accentColor: "#fb7185"
   },
@@ -818,7 +467,6 @@ export const ICONS_REGISTRY = [
     id: "flag",
     name: "FlagIcon",
     category: "utility",
-    Component: FlagIcon,
     color: "#8b5cf6",
     accentColor: "#a78bfa"
   },
@@ -826,7 +474,6 @@ export const ICONS_REGISTRY = [
     id: "briefcase",
     name: "BriefcaseIcon",
     category: "utility",
-    Component: BriefcaseIcon,
     color: "#b45309",
     accentColor: "#f59e0b"
   },
@@ -834,7 +481,6 @@ export const ICONS_REGISTRY = [
     id: "eye",
     name: "EyeIcon",
     category: "utility",
-    Component: EyeIcon,
     color: "#0ea5e9",
     accentColor: "#a855f7"
   },
@@ -842,7 +488,6 @@ export const ICONS_REGISTRY = [
     id: "tag",
     name: "TagIcon",
     category: "utility",
-    Component: TagIcon,
     color: "#ec4899",
     accentColor: "#fb7185"
   },
@@ -850,7 +495,6 @@ export const ICONS_REGISTRY = [
     id: "coffee",
     name: "CoffeeIcon",
     category: "utility",
-    Component: CoffeeIcon,
     color: "#ea580c",
     accentColor: "#fed7aa"
   },
@@ -858,7 +502,6 @@ export const ICONS_REGISTRY = [
     id: "share",
     name: "ShareIcon",
     category: "utility",
-    Component: ShareIcon,
     color: "#6366f1",
     accentColor: "#818cf8"
   },
@@ -866,7 +509,6 @@ export const ICONS_REGISTRY = [
     id: "layers",
     name: "LayersIcon",
     category: "storage",
-    Component: LayersIcon,
     color: "#0ea5e9",
     accentColor: "#38bdf8"
   },
@@ -874,7 +516,6 @@ export const ICONS_REGISTRY = [
     id: "sparkles",
     name: "SparklesIcon",
     category: "utility",
-    Component: SparklesIcon,
     color: "#eab308",
     accentColor: "#fbbf24"
   },
@@ -882,7 +523,6 @@ export const ICONS_REGISTRY = [
     id: "megaphone",
     name: "MegaphoneIcon",
     category: "utility",
-    Component: MegaphoneIcon,
     color: "#ef4444",
     accentColor: "#f43f5e"
   },
@@ -890,7 +530,6 @@ export const ICONS_REGISTRY = [
     id: "download",
     name: "DownloadIcon",
     category: "utility",
-    Component: DownloadIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -898,7 +537,6 @@ export const ICONS_REGISTRY = [
     id: "upload",
     name: "UploadIcon",
     category: "utility",
-    Component: UploadIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -906,7 +544,6 @@ export const ICONS_REGISTRY = [
     id: "monitor",
     name: "MonitorIcon",
     category: "hardware",
-    Component: MonitorIcon,
     color: "#06b6d4",
     accentColor: "#3b82f6"
   },
@@ -914,7 +551,6 @@ export const ICONS_REGISTRY = [
     id: "keyboard",
     name: "KeyboardIcon",
     category: "hardware",
-    Component: KeyboardIcon,
     color: "#6366f1",
     accentColor: "#a855f7"
   },
@@ -922,7 +558,6 @@ export const ICONS_REGISTRY = [
     id: "mouse",
     name: "MouseIcon",
     category: "hardware",
-    Component: MouseIcon,
     color: "#10b981",
     accentColor: "#cbd5e1"
   },
@@ -930,7 +565,6 @@ export const ICONS_REGISTRY = [
     id: "harddrive",
     name: "HardDriveIcon",
     category: "hardware",
-    Component: HardDriveIcon,
     color: "#71717a",
     accentColor: "#94a3b8"
   },
@@ -938,7 +572,6 @@ export const ICONS_REGISTRY = [
     id: "printer",
     name: "PrinterIcon",
     category: "hardware",
-    Component: PrinterIcon,
     color: "#64748b",
     accentColor: "#cbd5e1"
   },
@@ -946,7 +579,6 @@ export const ICONS_REGISTRY = [
     id: "speaker",
     name: "SpeakerIcon",
     category: "hardware",
-    Component: SpeakerIcon,
     color: "#71717a",
     accentColor: "#818cf8"
   },
@@ -954,7 +586,6 @@ export const ICONS_REGISTRY = [
     id: "glassmorphism",
     name: "GlassmorphismIcon",
     category: "utility",
-    Component: GlassmorphismIcon,
     color: "#ffffff",
     accentColor: "#ec4899"
   },
@@ -962,7 +593,6 @@ export const ICONS_REGISTRY = [
     id: "github",
     name: "GithubIcon",
     category: "brands",
-    Component: GithubIcon,
     color: "#24292e",
     accentColor: "#6e5494"
   },
@@ -970,7 +600,6 @@ export const ICONS_REGISTRY = [
     id: "twitter",
     name: "TwitterIcon",
     category: "brands",
-    Component: TwitterIcon,
     color: "#1da1f2",
     accentColor: "#0f1419"
   },
@@ -978,7 +607,6 @@ export const ICONS_REGISTRY = [
     id: "google",
     name: "GoogleIcon",
     category: "brands",
-    Component: GoogleIcon,
     color: "#4285f4",
     accentColor: "#ea4335"
   },
@@ -986,7 +614,6 @@ export const ICONS_REGISTRY = [
     id: "router",
     name: "RouterIcon",
     category: "networking",
-    Component: RouterIcon,
     color: "#06b6d4",
     accentColor: "#10b981"
   },
@@ -994,7 +621,6 @@ export const ICONS_REGISTRY = [
     id: "server",
     name: "ServerIcon",
     category: "networking",
-    Component: ServerIcon,
     color: "#3b82f6",
     accentColor: "#10b981"
   },
@@ -1002,7 +628,6 @@ export const ICONS_REGISTRY = [
     id: "ethernet",
     name: "EthernetIcon",
     category: "networking",
-    Component: EthernetIcon,
     color: "#3b82f6",
     accentColor: "#d4af37"
   },
@@ -1010,7 +635,6 @@ export const ICONS_REGISTRY = [
     id: "satellite",
     name: "SatelliteIcon",
     category: "networking",
-    Component: SatelliteIcon,
     color: "#06b6d4",
     accentColor: "#4f46e5"
   },
@@ -1018,7 +642,6 @@ export const ICONS_REGISTRY = [
     id: "wrench",
     name: "WrenchIcon",
     category: "mechanics",
-    Component: WrenchIcon,
     color: "#94a3b8",
     accentColor: "#475569"
   },
@@ -1026,7 +649,6 @@ export const ICONS_REGISTRY = [
     id: "bolt",
     name: "BoltIcon",
     category: "mechanics",
-    Component: BoltIcon,
     color: "#71717a",
     accentColor: "#cbd5e1"
   },
@@ -1034,7 +656,6 @@ export const ICONS_REGISTRY = [
     id: "hammer",
     name: "HammerIcon",
     category: "mechanics",
-    Component: HammerIcon,
     color: "#cbd5e1",
     accentColor: "#f59e0b"
   },
@@ -1042,7 +663,6 @@ export const ICONS_REGISTRY = [
     id: "screwdriver",
     name: "ScrewdriverIcon",
     category: "mechanics",
-    Component: ScrewdriverIcon,
     color: "#cbd5e1",
     accentColor: "#6366f1"
   },
@@ -1050,7 +670,6 @@ export const ICONS_REGISTRY = [
     id: "nut",
     name: "NutIcon",
     category: "mechanics",
-    Component: NutIcon,
     color: "#94a3b8",
     accentColor: "#475569"
   },
@@ -1058,7 +677,6 @@ export const ICONS_REGISTRY = [
     id: "smile",
     name: "SmileIcon",
     category: "emojies",
-    Component: SmileIcon,
     color: "#f59e0b",
     accentColor: "#f43f5e"
   },
@@ -1066,7 +684,6 @@ export const ICONS_REGISTRY = [
     id: "frown",
     name: "FrownIcon",
     category: "emojies",
-    Component: FrownIcon,
     color: "#f59e0b",
     accentColor: "#f43f5e"
   },
@@ -1074,7 +691,6 @@ export const ICONS_REGISTRY = [
     id: "hearteyes",
     name: "HeartEyesIcon",
     category: "emojies",
-    Component: HeartEyesIcon,
     color: "#f59e0b",
     accentColor: "#ef4444"
   },
@@ -1082,7 +698,6 @@ export const ICONS_REGISTRY = [
     id: "code",
     name: "CodeIcon",
     category: "utility",
-    Component: CodeIcon,
     color: "#6366f1",
     accentColor: "#ec4899"
   },
@@ -1090,7 +705,6 @@ export const ICONS_REGISTRY = [
     id: "terminal",
     name: "TerminalIcon",
     category: "utility",
-    Component: TerminalIcon,
     color: "#10b981",
     accentColor: "#020617"
   },
@@ -1098,7 +712,6 @@ export const ICONS_REGISTRY = [
     id: "git",
     name: "GitIcon",
     category: "utility",
-    Component: GitIcon,
     color: "#f43f5e",
     accentColor: "#ffffff"
   },
@@ -1106,7 +719,6 @@ export const ICONS_REGISTRY = [
     id: "figma",
     name: "FigmaIcon",
     category: "brands",
-    Component: FigmaIcon,
     color: "#f24e1e",
     accentColor: "#a259ff"
   },
@@ -1114,7 +726,6 @@ export const ICONS_REGISTRY = [
     id: "barchart",
     name: "BarChartIcon",
     category: "utility",
-    Component: BarChartIcon,
     color: "#6366f1",
     accentColor: "#ec4899"
   },
@@ -1122,7 +733,6 @@ export const ICONS_REGISTRY = [
     id: "check",
     name: "CheckIcon",
     category: "utility",
-    Component: CheckIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -1130,7 +740,6 @@ export const ICONS_REGISTRY = [
     id: "container",
     name: "ContainerIcon",
     category: "systems",
-    Component: ContainerIcon,
     color: "#2496ed",
     accentColor: "#f59e0b"
   },
@@ -1138,7 +747,6 @@ export const ICONS_REGISTRY = [
     id: "shieldcheck",
     name: "ShieldCheckIcon",
     category: "utility",
-    Component: ShieldCheckIcon,
     color: "#0d9488",
     accentColor: "#10b981"
   },
@@ -1146,7 +754,6 @@ export const ICONS_REGISTRY = [
     id: "react",
     name: "ReactIcon",
     category: "brands",
-    Component: ReactIcon,
     color: "#61dafb",
     accentColor: "#20232a"
   },
@@ -1154,7 +761,6 @@ export const ICONS_REGISTRY = [
     id: "node",
     name: "NodeIcon",
     category: "brands",
-    Component: NodeIcon,
     color: "#68a063",
     accentColor: "#3c873a"
   },
@@ -1162,7 +768,6 @@ export const ICONS_REGISTRY = [
     id: "bug",
     name: "BugIcon",
     category: "utility",
-    Component: BugIcon,
     color: "#475569",
     accentColor: "#ef4444"
   },
@@ -1170,7 +775,6 @@ export const ICONS_REGISTRY = [
     id: "flask",
     name: "FlaskIcon",
     category: "utility",
-    Component: FlaskIcon,
     color: "#4f46e5",
     accentColor: "#a855f7"
   },
@@ -1178,7 +782,6 @@ export const ICONS_REGISTRY = [
     id: "piechart",
     name: "PieChartIcon",
     category: "utility",
-    Component: PieChartIcon,
     color: "#6366f1",
     accentColor: "#ec4899"
   },
@@ -1186,7 +789,6 @@ export const ICONS_REGISTRY = [
     id: "flame",
     name: "FlameIcon",
     category: "utility",
-    Component: FlameIcon,
     color: "#f97316",
     accentColor: "#ef4444"
   },
@@ -1194,7 +796,6 @@ export const ICONS_REGISTRY = [
     id: "activity",
     name: "ActivityIcon",
     category: "systems",
-    Component: ActivityIcon,
     color: "#0d9488",
     accentColor: "#10b981"
   },
@@ -1202,7 +803,6 @@ export const ICONS_REGISTRY = [
     id: "graduationcap",
     name: "GraduationCapIcon",
     category: "utility",
-    Component: GraduationCapIcon,
     color: "#3f3f46",
     accentColor: "#eab308"
   },
@@ -1210,7 +810,6 @@ export const ICONS_REGISTRY = [
     id: "trendingup",
     name: "TrendingUpIcon",
     category: "utility",
-    Component: TrendingUpIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -1218,7 +817,6 @@ export const ICONS_REGISTRY = [
     id: "instagram",
     name: "InstagramIcon",
     category: "brands",
-    Component: InstagramIcon,
     color: "#e1306c",
     accentColor: "#f77737"
   },
@@ -1226,7 +824,6 @@ export const ICONS_REGISTRY = [
     id: "youtube",
     name: "YoutubeIcon",
     category: "brands",
-    Component: YoutubeIcon,
     color: "#ff0000",
     accentColor: "#ef4444"
   },
@@ -1234,7 +831,6 @@ export const ICONS_REGISTRY = [
     id: "linkedin",
     name: "LinkedinIcon",
     category: "brands",
-    Component: LinkedinIcon,
     color: "#0077b5",
     accentColor: "#00a0dc"
   },
@@ -1242,7 +838,6 @@ export const ICONS_REGISTRY = [
     id: "dribbble",
     name: "DribbbleIcon",
     category: "brands",
-    Component: DribbbleIcon,
     color: "#ea4c89",
     accentColor: "#ff769f"
   },
@@ -1250,7 +845,6 @@ export const ICONS_REGISTRY = [
     id: "package",
     name: "PackageIcon",
     category: "storage",
-    Component: PackageIcon,
     color: "#b45309",
     accentColor: "#38bdf8"
   },
@@ -1258,7 +852,6 @@ export const ICONS_REGISTRY = [
     id: "airplane",
     name: "AirplaneIcon",
     category: "utility",
-    Component: AirplaneIcon,
     color: "#0ea5e9",
     accentColor: "#f43f5e"
   },
@@ -1266,7 +859,6 @@ export const ICONS_REGISTRY = [
     id: "battery",
     name: "BatteryIcon",
     category: "hardware",
-    Component: BatteryIcon,
     color: "#10b981",
     accentColor: "#34d399"
   },
@@ -1274,7 +866,6 @@ export const ICONS_REGISTRY = [
     id: "video",
     name: "VideoIcon",
     category: "utility",
-    Component: VideoIcon,
     color: "#8b5cf6",
     accentColor: "#ec4899"
   },
@@ -1282,7 +873,6 @@ export const ICONS_REGISTRY = [
     id: "microphone",
     name: "MicrophoneIcon",
     category: "utility",
-    Component: MicrophoneIcon,
     color: "#ec4899",
     accentColor: "#3b82f6"
   },
@@ -1290,7 +880,6 @@ export const ICONS_REGISTRY = [
     id: "sliders",
     name: "SlidersIcon",
     category: "utility",
-    Component: SlidersIcon,
     color: "#6366f1",
     accentColor: "#f59e0b"
   },
@@ -1298,7 +887,6 @@ export const ICONS_REGISTRY = [
     id: "map",
     name: "MapIcon",
     category: "utility",
-    Component: MapIcon,
     color: "#10b981",
     accentColor: "#f43f5e"
   },
@@ -1306,7 +894,6 @@ export const ICONS_REGISTRY = [
     id: "umbrella",
     name: "UmbrellaIcon",
     category: "utility",
-    Component: UmbrellaIcon,
     color: "#0ea5e9",
     accentColor: "#ec4899"
   },
@@ -1314,7 +901,6 @@ export const ICONS_REGISTRY = [
     id: "scissors",
     name: "ScissorsIcon",
     category: "utility",
-    Component: ScissorsIcon,
     color: "#f59e0b",
     accentColor: "#3b82f6"
   },
@@ -1322,7 +908,6 @@ export const ICONS_REGISTRY = [
     id: "unlock",
     name: "UnlockIcon",
     category: "utility",
-    Component: UnlockIcon,
     color: "#eab308",
     accentColor: "#22c55e"
   },
@@ -1330,7 +915,6 @@ export const ICONS_REGISTRY = [
     id: "archive",
     name: "ArchiveIcon",
     category: "storage",
-    Component: ArchiveIcon,
     color: "#a855f7",
     accentColor: "#ec4899"
   },
@@ -1338,7 +922,6 @@ export const ICONS_REGISTRY = [
     id: "shieldalert",
     name: "ShieldAlertIcon",
     category: "utility",
-    Component: ShieldAlertIcon,
     color: "#475569",
     accentColor: "#ef4444"
   },
@@ -1346,7 +929,6 @@ export const ICONS_REGISTRY = [
     id: "eyeoff",
     name: "EyeOffIcon",
     category: "utility",
-    Component: EyeOffIcon,
     color: "#6366f1",
     accentColor: "#ef4444"
   },
@@ -1354,7 +936,6 @@ export const ICONS_REGISTRY = [
     id: "userplus",
     name: "UserPlusIcon",
     category: "utility",
-    Component: UserPlusIcon,
     color: "#3b82f6",
     accentColor: "#10b981"
   },
@@ -1362,7 +943,6 @@ export const ICONS_REGISTRY = [
     id: "trendingdown",
     name: "TrendingDownIcon",
     category: "utility",
-    Component: TrendingDownIcon,
     color: "#ef4444",
     accentColor: "#fb7185"
   },
@@ -1370,7 +950,6 @@ export const ICONS_REGISTRY = [
     id: "copy",
     name: "CopyIcon",
     category: "utility",
-    Component: CopyIcon,
     color: "#06b6d4",
     accentColor: "#22d3ee"
   },
@@ -1378,7 +957,6 @@ export const ICONS_REGISTRY = [
     id: "gauge",
     name: "GaugeIcon",
     category: "mechanics",
-    Component: GaugeIcon,
     color: "#64748b",
     accentColor: "#ef4444"
   },
@@ -1386,7 +964,6 @@ export const ICONS_REGISTRY = [
     id: "magnet",
     name: "MagnetIcon",
     category: "mechanics",
-    Component: MagnetIcon,
     color: "#71717a",
     accentColor: "#ef4444"
   },
@@ -1394,7 +971,6 @@ export const ICONS_REGISTRY = [
     id: "stack",
     name: "StackIcon",
     category: "systems",
-    Component: StackIcon,
     color: "#4f46e5",
     accentColor: "#10b981"
   },
@@ -1402,7 +978,6 @@ export const ICONS_REGISTRY = [
     id: "workflow",
     name: "WorkflowIcon",
     category: "systems",
-    Component: WorkflowIcon,
     color: "#0ea5e9",
     accentColor: "#10b981"
   },
@@ -1410,7 +985,6 @@ export const ICONS_REGISTRY = [
     id: "topology",
     name: "TopologyIcon",
     category: "systems",
-    Component: TopologyIcon,
     color: "#06b6d4",
     accentColor: "#10b981"
   },
@@ -1418,7 +992,6 @@ export const ICONS_REGISTRY = [
     id: "file",
     name: "FileIcon",
     category: "utility",
-    Component: FileIcon,
     color: "#64748b",
     accentColor: "#ef4444"
   },
@@ -1426,7 +999,6 @@ export const ICONS_REGISTRY = [
     id: "headphones",
     name: "HeadphonesIcon",
     category: "utility",
-    Component: HeadphonesIcon,
     color: "#4f46e5",
     accentColor: "#3b82f6"
   },
@@ -1434,7 +1006,6 @@ export const ICONS_REGISTRY = [
     id: "moon",
     name: "MoonIcon",
     category: "utility",
-    Component: MoonIcon,
     color: "#a855f7",
     accentColor: "#f59e0b"
   },
@@ -1442,7 +1013,6 @@ export const ICONS_REGISTRY = [
     id: "paperclip",
     name: "PaperclipIcon",
     category: "utility",
-    Component: PaperclipIcon,
     color: "#94a3b8",
     accentColor: "#ef4444"
   },
@@ -1450,7 +1020,6 @@ export const ICONS_REGISTRY = [
     id: "bookmark",
     name: "BookmarkIcon",
     category: "utility",
-    Component: BookmarkIcon,
     color: "#e11d48",
     accentColor: "#ef4444"
   },
@@ -1458,7 +1027,6 @@ export const ICONS_REGISTRY = [
     id: "cloudlightning",
     name: "CloudLightningIcon",
     category: "systems",
-    Component: CloudLightningIcon,
     color: "#0ea5e9",
     accentColor: "#fbbf24"
   },
@@ -1466,7 +1034,6 @@ export const ICONS_REGISTRY = [
     id: "folderopen",
     name: "FolderOpenIcon",
     category: "storage",
-    Component: FolderOpenIcon,
     color: "#f59e0b",
     accentColor: "#10b981"
   },
@@ -1474,7 +1041,6 @@ export const ICONS_REGISTRY = [
     id: "volume",
     name: "VolumeIcon",
     category: "hardware",
-    Component: VolumeIcon,
     color: "#6366f1",
     accentColor: "#3b82f6"
   },
@@ -1482,7 +1048,6 @@ export const ICONS_REGISTRY = [
     id: "belloff",
     name: "BellOffIcon",
     category: "utility",
-    Component: BellOffIcon,
     color: "#f59e0b",
     accentColor: "#ef4444"
   },
@@ -1490,7 +1055,6 @@ export const ICONS_REGISTRY = [
     id: "sunmoon",
     name: "SunMoonIcon",
     category: "systems",
-    Component: SunMoonIcon,
     color: "#6366f1",
     accentColor: "#f59e0b"
   },
@@ -1498,7 +1062,6 @@ export const ICONS_REGISTRY = [
     id: "piston",
     name: "PistonIcon",
     category: "mechanics",
-    Component: PistonIcon,
     color: "#71717a",
     accentColor: "#10b981"
   },
@@ -1506,7 +1069,6 @@ export const ICONS_REGISTRY = [
     id: "spring",
     name: "SpringIcon",
     category: "mechanics",
-    Component: SpringIcon,
     color: "#64748b",
     accentColor: "#10b981"
   },
@@ -1514,7 +1076,6 @@ export const ICONS_REGISTRY = [
     id: "anvil",
     name: "AnvilIcon",
     category: "mechanics",
-    Component: AnvilIcon,
     color: "#4b5563",
     accentColor: "#f97316"
   },
@@ -1522,7 +1083,6 @@ export const ICONS_REGISTRY = [
     id: "hook",
     name: "HookIcon",
     category: "mechanics",
-    Component: HookIcon,
     color: "#475569",
     accentColor: "#f59e0b"
   },
@@ -1530,7 +1090,6 @@ export const ICONS_REGISTRY = [
     id: "turbine",
     name: "TurbineIcon",
     category: "mechanics",
-    Component: TurbineIcon,
     color: "#64748b",
     accentColor: "#06b6d4"
   },
@@ -1538,7 +1097,6 @@ export const ICONS_REGISTRY = [
     id: "pliers",
     name: "PliersIcon",
     category: "mechanics",
-    Component: PliersIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1546,7 +1104,6 @@ export const ICONS_REGISTRY = [
     id: "drill",
     name: "DrillIcon",
     category: "mechanics",
-    Component: DrillIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1554,7 +1111,6 @@ export const ICONS_REGISTRY = [
     id: "hacksaw",
     name: "HacksawIcon",
     category: "mechanics",
-    Component: HacksawIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1562,7 +1118,6 @@ export const ICONS_REGISTRY = [
     id: "tapemeasure",
     name: "TapeMeasureIcon",
     category: "mechanics",
-    Component: TapeMeasureIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1570,7 +1125,6 @@ export const ICONS_REGISTRY = [
     id: "caliper",
     name: "CaliperIcon",
     category: "mechanics",
-    Component: CaliperIcon,
     color: "#94a3b8",
     accentColor: "#10b981"
   },
@@ -1578,7 +1132,6 @@ export const ICONS_REGISTRY = [
     id: "spiritlevel",
     name: "SpiritLevelIcon",
     category: "mechanics",
-    Component: SpiritLevelIcon,
     color: "#64748b",
     accentColor: "#22c55e"
   },
@@ -1586,7 +1139,6 @@ export const ICONS_REGISTRY = [
     id: "sledgehammer",
     name: "SledgehammerIcon",
     category: "mechanics",
-    Component: SledgehammerIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1594,7 +1146,6 @@ export const ICONS_REGISTRY = [
     id: "phonemobile",
     name: "PhoneMobileIcon",
     category: "hardware",
-    Component: PhoneMobileIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1602,7 +1153,6 @@ export const ICONS_REGISTRY = [
     id: "tablet",
     name: "TabletIcon",
     category: "hardware",
-    Component: TabletIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1610,7 +1160,6 @@ export const ICONS_REGISTRY = [
     id: "laptop",
     name: "LaptopIcon",
     category: "hardware",
-    Component: LaptopIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1618,7 +1167,6 @@ export const ICONS_REGISTRY = [
     id: "smartwatch",
     name: "SmartWatchIcon",
     category: "hardware",
-    Component: SmartWatchIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1626,7 +1174,6 @@ export const ICONS_REGISTRY = [
     id: "routerwifi",
     name: "RouterWifiIcon",
     category: "hardware",
-    Component: RouterWifiIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1634,7 +1181,6 @@ export const ICONS_REGISTRY = [
     id: "serverrack",
     name: "ServerRackIcon",
     category: "hardware",
-    Component: ServerRackIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1642,7 +1188,6 @@ export const ICONS_REGISTRY = [
     id: "harddriveexternal",
     name: "HardDriveExternalIcon",
     category: "hardware",
-    Component: HardDriveExternalIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1650,7 +1195,6 @@ export const ICONS_REGISTRY = [
     id: "webcam",
     name: "WebcamIcon",
     category: "hardware",
-    Component: WebcamIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1658,7 +1202,6 @@ export const ICONS_REGISTRY = [
     id: "chisel",
     name: "ChiselIcon",
     category: "mechanics",
-    Component: ChiselIcon,
     color: "#78350f",
     accentColor: "#10b981"
   },
@@ -1666,7 +1209,6 @@ export const ICONS_REGISTRY = [
     id: "crowbar",
     name: "CrowbarIcon",
     category: "mechanics",
-    Component: CrowbarIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1674,7 +1216,6 @@ export const ICONS_REGISTRY = [
     id: "funnel",
     name: "FunnelIcon",
     category: "mechanics",
-    Component: FunnelIcon,
     color: "#0f766e",
     accentColor: "#10b981"
   },
@@ -1682,7 +1223,6 @@ export const ICONS_REGISTRY = [
     id: "oilcan",
     name: "OilCanIcon",
     category: "mechanics",
-    Component: OilCanIcon,
     color: "#b45309",
     accentColor: "#10b981"
   },
@@ -1690,7 +1230,6 @@ export const ICONS_REGISTRY = [
     id: "bearing",
     name: "BearingIcon",
     category: "mechanics",
-    Component: BearingIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1698,7 +1237,6 @@ export const ICONS_REGISTRY = [
     id: "pulley",
     name: "PulleyIcon",
     category: "mechanics",
-    Component: PulleyIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1706,7 +1244,6 @@ export const ICONS_REGISTRY = [
     id: "sprocket",
     name: "SprocketIcon",
     category: "mechanics",
-    Component: SprocketIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1714,7 +1251,6 @@ export const ICONS_REGISTRY = [
     id: "projector",
     name: "ProjectorIcon",
     category: "hardware",
-    Component: ProjectorIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1722,7 +1258,6 @@ export const ICONS_REGISTRY = [
     id: "gameconsole",
     name: "GameConsoleIcon",
     category: "hardware",
-    Component: GameConsoleIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1730,7 +1265,6 @@ export const ICONS_REGISTRY = [
     id: "vrheadset",
     name: "VRHeadsetIcon",
     category: "hardware",
-    Component: VRHeadsetIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1738,7 +1272,6 @@ export const ICONS_REGISTRY = [
     id: "smartspeaker",
     name: "SmartSpeakerIcon",
     category: "hardware",
-    Component: SmartSpeakerIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1746,7 +1279,6 @@ export const ICONS_REGISTRY = [
     id: "powerbank",
     name: "PowerBankIcon",
     category: "hardware",
-    Component: PowerBankIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1754,7 +1286,6 @@ export const ICONS_REGISTRY = [
     id: "usbdrive",
     name: "UsbDriveIcon",
     category: "hardware",
-    Component: UsbDriveIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1762,7 +1293,6 @@ export const ICONS_REGISTRY = [
     id: "motherboard",
     name: "MotherboardIcon",
     category: "hardware",
-    Component: MotherboardIcon,
     color: "#065f46",
     accentColor: "#10b981"
   },
@@ -1770,7 +1300,6 @@ export const ICONS_REGISTRY = [
     id: "ramstick",
     name: "RamStickIcon",
     category: "hardware",
-    Component: RamStickIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1778,7 +1307,6 @@ export const ICONS_REGISTRY = [
     id: "crank",
     name: "CrankIcon",
     category: "mechanics",
-    Component: CrankIcon,
     color: "#71717a",
     accentColor: "#10b981"
   },
@@ -1786,7 +1314,6 @@ export const ICONS_REGISTRY = [
     id: "camshaft",
     name: "CamshaftIcon",
     category: "mechanics",
-    Component: CamshaftIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1794,7 +1321,6 @@ export const ICONS_REGISTRY = [
     id: "driveshaft",
     name: "DriveShaftIcon",
     category: "mechanics",
-    Component: DriveShaftIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1802,7 +1328,6 @@ export const ICONS_REGISTRY = [
     id: "valve",
     name: "ValveIcon",
     category: "mechanics",
-    Component: ValveIcon,
     color: "#4b5563",
     accentColor: "#10b981"
   },
@@ -1810,7 +1335,6 @@ export const ICONS_REGISTRY = [
     id: "propeller",
     name: "PropellerIcon",
     category: "mechanics",
-    Component: PropellerIcon,
     color: "#78350f",
     accentColor: "#10b981"
   },
@@ -1818,7 +1342,6 @@ export const ICONS_REGISTRY = [
     id: "rotor",
     name: "HelicopterRotorIcon",
     category: "mechanics",
-    Component: HelicopterRotorIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1826,7 +1349,6 @@ export const ICONS_REGISTRY = [
     id: "hydraulicjack",
     name: "HydraulicJackIcon",
     category: "mechanics",
-    Component: HydraulicJackIcon,
     color: "#ef4444",
     accentColor: "#10b981"
   },
@@ -1834,7 +1356,6 @@ export const ICONS_REGISTRY = [
     id: "gpu",
     name: "GpuIcon",
     category: "hardware",
-    Component: GpuIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1842,7 +1363,6 @@ export const ICONS_REGISTRY = [
     id: "powersupply",
     name: "PowerSupplyIcon",
     category: "hardware",
-    Component: PowerSupplyIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1850,7 +1370,6 @@ export const ICONS_REGISTRY = [
     id: "networkswitch",
     name: "NetworkSwitchIcon",
     category: "hardware",
-    Component: NetworkSwitchIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1858,7 +1377,6 @@ export const ICONS_REGISTRY = [
     id: "smartplug",
     name: "SmartPlugIcon",
     category: "hardware",
-    Component: SmartPlugIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -1866,7 +1384,6 @@ export const ICONS_REGISTRY = [
     id: "smartbulb",
     name: "SmartBulbIcon",
     category: "hardware",
-    Component: SmartBulbIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -1874,7 +1391,6 @@ export const ICONS_REGISTRY = [
     id: "securitycamera",
     name: "SecurityCameraIcon",
     category: "hardware",
-    Component: SecurityCameraIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -1882,7 +1398,6 @@ export const ICONS_REGISTRY = [
     id: "smartlock",
     name: "SmartLockIcon",
     category: "hardware",
-    Component: SmartLockIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1890,7 +1405,6 @@ export const ICONS_REGISTRY = [
     id: "thermostat",
     name: "ThermostatIcon",
     category: "hardware",
-    Component: ThermostatIcon,
     color: "#0f172a",
     accentColor: "#10b981"
   },
@@ -1898,7 +1412,6 @@ export const ICONS_REGISTRY = [
     id: "gclamp",
     name: "GClampIcon",
     category: "mechanics",
-    Component: GClampIcon,
     color: "#4b5563",
     accentColor: "#10b981"
   },
@@ -1906,7 +1419,6 @@ export const ICONS_REGISTRY = [
     id: "vice",
     name: "ViceIcon",
     category: "mechanics",
-    Component: ViceIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1914,7 +1426,6 @@ export const ICONS_REGISTRY = [
     id: "greasegun",
     name: "GreaseGunIcon",
     category: "mechanics",
-    Component: GreaseGunIcon,
     color: "#64748b",
     accentColor: "#10b981"
   },
@@ -1922,7 +1433,6 @@ export const ICONS_REGISTRY = [
     id: "gearbox",
     name: "GearboxIcon",
     category: "mechanics",
-    Component: GearboxIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1930,7 +1440,6 @@ export const ICONS_REGISTRY = [
     id: "differential",
     name: "DifferentialIcon",
     category: "mechanics",
-    Component: DifferentialIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1938,7 +1447,6 @@ export const ICONS_REGISTRY = [
     id: "suspension",
     name: "SuspensionIcon",
     category: "mechanics",
-    Component: SuspensionIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1946,7 +1454,6 @@ export const ICONS_REGISTRY = [
     id: "windlass",
     name: "WindlassIcon",
     category: "mechanics",
-    Component: WindlassIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -1954,7 +1461,6 @@ export const ICONS_REGISTRY = [
     id: "earbuds",
     name: "EarbudsIcon",
     category: "hardware",
-    Component: EarbudsIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -1962,7 +1468,6 @@ export const ICONS_REGISTRY = [
     id: "smartring",
     name: "SmartRingIcon",
     category: "hardware",
-    Component: SmartRingIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -1970,7 +1475,6 @@ export const ICONS_REGISTRY = [
     id: "drawingtablet",
     name: "DrawingTabletIcon",
     category: "hardware",
-    Component: DrawingTabletIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1978,7 +1482,6 @@ export const ICONS_REGISTRY = [
     id: "barcodescanner",
     name: "BarcodeScannerIcon",
     category: "hardware",
-    Component: BarcodeScannerIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -1986,7 +1489,6 @@ export const ICONS_REGISTRY = [
     id: "posregister",
     name: "POSRegisterIcon",
     category: "hardware",
-    Component: POSRegisterIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -1994,7 +1496,6 @@ export const ICONS_REGISTRY = [
     id: "calculator",
     name: "CalculatorIcon",
     category: "hardware",
-    Component: CalculatorIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2002,7 +1503,6 @@ export const ICONS_REGISTRY = [
     id: "remotecontrol",
     name: "RemoteControlIcon",
     category: "hardware",
-    Component: RemoteControlIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2010,7 +1510,6 @@ export const ICONS_REGISTRY = [
     id: "soundbar",
     name: "SoundbarIcon",
     category: "hardware",
-    Component: SoundbarIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2018,7 +1517,6 @@ export const ICONS_REGISTRY = [
     id: "jackhammer",
     name: "JackhammerIcon",
     category: "mechanics",
-    Component: JackhammerIcon,
     color: "#e2e8f0",
     accentColor: "#10b981"
   },
@@ -2026,7 +1524,6 @@ export const ICONS_REGISTRY = [
     id: "solderingiron",
     name: "SolderingIronIcon",
     category: "mechanics",
-    Component: SolderingIronIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2034,7 +1531,6 @@ export const ICONS_REGISTRY = [
     id: "blowtorch",
     name: "BlowtorchIcon",
     category: "mechanics",
-    Component: BlowtorchIcon,
     color: "#0284c7",
     accentColor: "#10b981"
   },
@@ -2042,7 +1538,6 @@ export const ICONS_REGISTRY = [
     id: "wheelbarrow",
     name: "WheelbarrowIcon",
     category: "mechanics",
-    Component: WheelbarrowIcon,
     color: "#ea580c",
     accentColor: "#10b981"
   },
@@ -2050,7 +1545,6 @@ export const ICONS_REGISTRY = [
     id: "plumbbob",
     name: "PlumbBobIcon",
     category: "mechanics",
-    Component: PlumbBobIcon,
     color: "#d97706",
     accentColor: "#10b981"
   },
@@ -2058,7 +1552,6 @@ export const ICONS_REGISTRY = [
     id: "shears",
     name: "ShearsIcon",
     category: "mechanics",
-    Component: ShearsIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2066,7 +1559,6 @@ export const ICONS_REGISTRY = [
     id: "wirestripper",
     name: "WireStripperIcon",
     category: "mechanics",
-    Component: WireStripperIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2074,7 +1566,6 @@ export const ICONS_REGISTRY = [
     id: "pipewrench",
     name: "PipeWrenchIcon",
     category: "mechanics",
-    Component: PipeWrenchIcon,
     color: "#dc2626",
     accentColor: "#10b981"
   },
@@ -2082,7 +1573,6 @@ export const ICONS_REGISTRY = [
     id: "floppy",
     name: "FloppyDiskIcon",
     category: "storage",
-    Component: FloppyDiskIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2090,7 +1580,6 @@ export const ICONS_REGISTRY = [
     id: "tapecassette",
     name: "TapeCassetteIcon",
     category: "storage",
-    Component: TapeCassetteIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -2098,7 +1587,6 @@ export const ICONS_REGISTRY = [
     id: "cd",
     name: "CompactDiscIcon",
     category: "storage",
-    Component: CompactDiscIcon,
     color: "#f1f5f9",
     accentColor: "#10b981"
   },
@@ -2106,7 +1594,6 @@ export const ICONS_REGISTRY = [
     id: "tv",
     name: "TvIcon",
     category: "hardware",
-    Component: TvIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2114,7 +1601,6 @@ export const ICONS_REGISTRY = [
     id: "radio",
     name: "RadioIcon",
     category: "hardware",
-    Component: RadioIcon,
     color: "#7c2d12",
     accentColor: "#10b981"
   },
@@ -2122,7 +1608,6 @@ export const ICONS_REGISTRY = [
     id: "walkietalkie",
     name: "WalkieTalkieIcon",
     category: "hardware",
-    Component: WalkieTalkieIcon,
     color: "#19222f",
     accentColor: "#10b981"
   },
@@ -2130,7 +1615,6 @@ export const ICONS_REGISTRY = [
     id: "headset",
     name: "HeadsetIcon",
     category: "hardware",
-    Component: HeadsetIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2138,7 +1622,6 @@ export const ICONS_REGISTRY = [
     id: "fish",
     name: "FishIcon",
     category: "emojies",
-    Component: FishIcon,
     color: "#0ea5e9",
     accentColor: "#10b981"
   },
@@ -2146,7 +1629,6 @@ export const ICONS_REGISTRY = [
     id: "butterfly",
     name: "ButterflyIcon",
     category: "emojies",
-    Component: ButterflyIcon,
     color: "#d946ef",
     accentColor: "#10b981"
   },
@@ -2154,7 +1636,6 @@ export const ICONS_REGISTRY = [
     id: "bird",
     name: "BirdIcon",
     category: "emojies",
-    Component: BirdIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2162,7 +1643,6 @@ export const ICONS_REGISTRY = [
     id: "cat",
     name: "CatIcon",
     category: "emojies",
-    Component: CatIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2170,7 +1650,6 @@ export const ICONS_REGISTRY = [
     id: "dog",
     name: "DogIcon",
     category: "emojies",
-    Component: DogIcon,
     color: "#e2e8f0",
     accentColor: "#10b981"
   },
@@ -2178,7 +1657,6 @@ export const ICONS_REGISTRY = [
     id: "rabbit",
     name: "RabbitIcon",
     category: "emojies",
-    Component: RabbitIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2186,7 +1664,6 @@ export const ICONS_REGISTRY = [
     id: "elephant",
     name: "ElephantIcon",
     category: "emojies",
-    Component: ElephantIcon,
     color: "#334155",
     accentColor: "#10b981"
   },
@@ -2194,7 +1671,6 @@ export const ICONS_REGISTRY = [
     id: "owl",
     name: "OwlIcon",
     category: "emojies",
-    Component: OwlIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2202,7 +1678,6 @@ export const ICONS_REGISTRY = [
     id: "turtle",
     name: "TurtleIcon",
     category: "emojies",
-    Component: TurtleIcon,
     color: "#16a34a",
     accentColor: "#10b981"
   },
@@ -2210,7 +1685,6 @@ export const ICONS_REGISTRY = [
     id: "dolphin",
     name: "DolphinIcon",
     category: "emojies",
-    Component: DolphinIcon,
     color: "#0ea5e9",
     accentColor: "#10b981"
   },
@@ -2218,7 +1692,6 @@ export const ICONS_REGISTRY = [
     id: "rose",
     name: "RoseIcon",
     category: "emojies",
-    Component: RoseIcon,
     color: "#ec4899",
     accentColor: "#10b981"
   },
@@ -2226,7 +1699,6 @@ export const ICONS_REGISTRY = [
     id: "sunflower",
     name: "SunflowerIcon",
     category: "emojies",
-    Component: SunflowerIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2234,7 +1706,6 @@ export const ICONS_REGISTRY = [
     id: "tulip",
     name: "TulipIcon",
     category: "emojies",
-    Component: TulipIcon,
     color: "#f43f5e",
     accentColor: "#10b981"
   },
@@ -2242,7 +1713,6 @@ export const ICONS_REGISTRY = [
     id: "lotus",
     name: "LotusIcon",
     category: "emojies",
-    Component: LotusIcon,
     color: "#f472b6",
     accentColor: "#10b981"
   },
@@ -2250,7 +1720,6 @@ export const ICONS_REGISTRY = [
     id: "daisy",
     name: "DaisyIcon",
     category: "emojies",
-    Component: DaisyIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2258,7 +1727,6 @@ export const ICONS_REGISTRY = [
     id: "hibiscus",
     name: "HibiscusIcon",
     category: "emojies",
-    Component: HibiscusIcon,
     color: "#ec4899",
     accentColor: "#10b981"
   },
@@ -2266,7 +1734,6 @@ export const ICONS_REGISTRY = [
     id: "orchid",
     name: "OrchidIcon",
     category: "emojies",
-    Component: OrchidIcon,
     color: "#d946ef",
     accentColor: "#10b981"
   },
@@ -2274,7 +1741,6 @@ export const ICONS_REGISTRY = [
     id: "lily",
     name: "LilyIcon",
     category: "emojies",
-    Component: LilyIcon,
     color: "#fdf2f8",
     accentColor: "#10b981"
   },
@@ -2282,7 +1748,6 @@ export const ICONS_REGISTRY = [
     id: "cactus",
     name: "CactusIcon",
     category: "emojies",
-    Component: CactusIcon,
     color: "#16a34a",
     accentColor: "#10b981"
   },
@@ -2290,7 +1755,6 @@ export const ICONS_REGISTRY = [
     id: "lavender",
     name: "LavenderIcon",
     category: "emojies",
-    Component: LavenderIcon,
     color: "#a855f7",
     accentColor: "#10b981"
   },
@@ -2298,7 +1762,6 @@ export const ICONS_REGISTRY = [
     id: "cloudrain",
     name: "CloudRainIcon",
     category: "systems",
-    Component: CloudRainIcon,
     color: "#0ea5e9",
     accentColor: "#38bdf8"
   },
@@ -2306,7 +1769,6 @@ export const ICONS_REGISTRY = [
     id: "cloudsnow",
     name: "CloudSnowIcon",
     category: "systems",
-    Component: CloudSnowIcon,
     color: "#0ea5e9",
     accentColor: "#e2e8f0"
   },
@@ -2314,7 +1776,6 @@ export const ICONS_REGISTRY = [
     id: "wind",
     name: "WindIcon",
     category: "systems",
-    Component: WindIcon,
     color: "#64748b",
     accentColor: "#10b981"
   },
@@ -2322,7 +1783,6 @@ export const ICONS_REGISTRY = [
     id: "tornado",
     name: "TornadoIcon",
     category: "systems",
-    Component: TornadoIcon,
     color: "#475569",
     accentColor: "#0ea5e9"
   },
@@ -2330,7 +1790,6 @@ export const ICONS_REGISTRY = [
     id: "snowflake",
     name: "SnowflakeIcon",
     category: "systems",
-    Component: SnowflakeIcon,
     color: "#38bdf8",
     accentColor: "#e2e8f0"
   },
@@ -2338,7 +1797,6 @@ export const ICONS_REGISTRY = [
     id: "rainbow",
     name: "RainbowIcon",
     category: "systems",
-    Component: RainbowIcon,
     color: "#ef4444",
     accentColor: "#06b6d4"
   },
@@ -2346,7 +1804,6 @@ export const ICONS_REGISTRY = [
     id: "thermometer",
     name: "ThermometerIcon",
     category: "utility",
-    Component: ThermometerIcon,
     color: "#cbd5e1",
     accentColor: "#ef4444"
   },
@@ -2354,7 +1811,6 @@ export const ICONS_REGISTRY = [
     id: "leaf",
     name: "LeafIcon",
     category: "emojies",
-    Component: LeafIcon,
     color: "#16a34a",
     accentColor: "#0ea5e9"
   },
@@ -2362,7 +1818,6 @@ export const ICONS_REGISTRY = [
     id: "tree",
     name: "TreeIcon",
     category: "emojies",
-    Component: TreeIcon,
     color: "#15803d",
     accentColor: "#10b981"
   },
@@ -2370,7 +1825,6 @@ export const ICONS_REGISTRY = [
     id: "hurricane",
     name: "HurricaneIcon",
     category: "systems",
-    Component: HurricaneIcon,
     color: "#0284c7",
     accentColor: "#0ea5e9"
   },
@@ -2378,7 +1832,6 @@ export const ICONS_REGISTRY = [
     id: "burger",
     name: "BurgerIcon",
     category: "emojies",
-    Component: BurgerIcon,
     color: "#d97706",
     accentColor: "#eab308"
   },
@@ -2386,7 +1839,6 @@ export const ICONS_REGISTRY = [
     id: "pizza",
     name: "PizzaIcon",
     category: "emojies",
-    Component: PizzaIcon,
     color: "#f59e0b",
     accentColor: "#ef4444"
   },
@@ -2394,7 +1846,6 @@ export const ICONS_REGISTRY = [
     id: "apple",
     name: "AppleIcon",
     category: "emojies",
-    Component: AppleIcon,
     color: "#ef4444",
     accentColor: "#eab308"
   },
@@ -2402,7 +1853,6 @@ export const ICONS_REGISTRY = [
     id: "banana",
     name: "BananaIcon",
     category: "emojies",
-    Component: BananaIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2410,7 +1860,6 @@ export const ICONS_REGISTRY = [
     id: "cake",
     name: "CakeIcon",
     category: "emojies",
-    Component: CakeIcon,
     color: "#ec4899",
     accentColor: "#f59e0b"
   },
@@ -2418,7 +1867,6 @@ export const ICONS_REGISTRY = [
     id: "icecream",
     name: "IceCreamIcon",
     category: "emojies",
-    Component: IceCreamIcon,
     color: "#f472b6",
     accentColor: "#ef4444"
   },
@@ -2426,7 +1874,6 @@ export const ICONS_REGISTRY = [
     id: "donut",
     name: "DonutIcon",
     category: "emojies",
-    Component: DonutIcon,
     color: "#db2777",
     accentColor: "#eab308"
   },
@@ -2434,7 +1881,6 @@ export const ICONS_REGISTRY = [
     id: "popcorn",
     name: "PopcornIcon",
     category: "emojies",
-    Component: PopcornIcon,
     color: "#ef4444",
     accentColor: "#eab308"
   },
@@ -2442,7 +1888,6 @@ export const ICONS_REGISTRY = [
     id: "watermelon",
     name: "WatermelonIcon",
     category: "emojies",
-    Component: WatermelonIcon,
     color: "#ef4444",
     accentColor: "#1e293b"
   },
@@ -2450,7 +1895,6 @@ export const ICONS_REGISTRY = [
     id: "cookie",
     name: "CookieIcon",
     category: "emojies",
-    Component: CookieIcon,
     color: "#ca8a04",
     accentColor: "#10b981"
   },
@@ -2458,7 +1902,6 @@ export const ICONS_REGISTRY = [
     id: "safe",
     name: "SafeIcon",
     category: "utility",
-    Component: SafeIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2466,7 +1909,6 @@ export const ICONS_REGISTRY = [
     id: "goldbars",
     name: "GoldBarsIcon",
     category: "utility",
-    Component: GoldBarsIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2474,7 +1916,6 @@ export const ICONS_REGISTRY = [
     id: "bank",
     name: "BankIcon",
     category: "utility",
-    Component: BankIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2482,7 +1923,6 @@ export const ICONS_REGISTRY = [
     id: "coin",
     name: "CoinIcon",
     category: "utility",
-    Component: CoinIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2490,7 +1930,6 @@ export const ICONS_REGISTRY = [
     id: "piggybank",
     name: "PiggyBankIcon",
     category: "utility",
-    Component: PiggyBankIcon,
     color: "#f472b6",
     accentColor: "#eab308"
   },
@@ -2498,7 +1937,6 @@ export const ICONS_REGISTRY = [
     id: "shoppingbag",
     name: "ShoppingBagIcon",
     category: "utility",
-    Component: ShoppingBagIcon,
     color: "#ca8a04",
     accentColor: "#eab308"
   },
@@ -2506,7 +1944,6 @@ export const ICONS_REGISTRY = [
     id: "shoppingcart",
     name: "ShoppingCartIcon",
     category: "utility",
-    Component: ShoppingCartIcon,
     color: "#94a3b8",
     accentColor: "#10b981"
   },
@@ -2514,7 +1951,6 @@ export const ICONS_REGISTRY = [
     id: "scale",
     name: "ScaleIcon",
     category: "utility",
-    Component: ScaleIcon,
     color: "#94a3b8",
     accentColor: "#10b981"
   },
@@ -2522,7 +1958,6 @@ export const ICONS_REGISTRY = [
     id: "receipt",
     name: "ReceiptIcon",
     category: "utility",
-    Component: ReceiptIcon,
     color: "#f8fafc",
     accentColor: "#10b981"
   },
@@ -2530,7 +1965,6 @@ export const ICONS_REGISTRY = [
     id: "banknote",
     name: "BanknoteIcon",
     category: "utility",
-    Component: BanknoteIcon,
     color: "#16a34a",
     accentColor: "#eab308"
   },
@@ -2538,7 +1972,6 @@ export const ICONS_REGISTRY = [
     id: "euro",
     name: "EuroIcon",
     category: "utility",
-    Component: EuroIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2546,7 +1979,6 @@ export const ICONS_REGISTRY = [
     id: "yen",
     name: "YenIcon",
     category: "utility",
-    Component: YenIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2554,7 +1986,6 @@ export const ICONS_REGISTRY = [
     id: "pound",
     name: "PoundIcon",
     category: "utility",
-    Component: PoundIcon,
     color: "#eab308",
     accentColor: "#10b981"
   },
@@ -2562,7 +1993,6 @@ export const ICONS_REGISTRY = [
     id: "atom",
     name: "AtomIcon",
     category: "utility",
-    Component: AtomIcon,
     color: "#6366f1",
     accentColor: "#10b981"
   },
@@ -2570,7 +2000,6 @@ export const ICONS_REGISTRY = [
     id: "dna",
     name: "DNAIcon",
     category: "utility",
-    Component: DNAIcon,
     color: "#3b82f6",
     accentColor: "#10b981"
   },
@@ -2578,7 +2007,6 @@ export const ICONS_REGISTRY = [
     id: "microscope",
     name: "MicroscopeIcon",
     category: "utility",
-    Component: MicroscopeIcon,
     color: "#475569",
     accentColor: "#10b981"
   },
@@ -2586,7 +2014,6 @@ export const ICONS_REGISTRY = [
     id: "telescope",
     name: "TelescopeIcon",
     category: "utility",
-    Component: TelescopeIcon,
     color: "#1e293b",
     accentColor: "#10b981"
   },
@@ -2594,7 +2021,6 @@ export const ICONS_REGISTRY = [
     id: "beaker",
     name: "BeakerIcon",
     category: "utility",
-    Component: BeakerIcon,
     color: "#cbd5e1",
     accentColor: "#10b981"
   },
@@ -2602,7 +2028,6 @@ export const ICONS_REGISTRY = [
     id: "folderplus",
     name: "FolderPlusIcon",
     category: "storage",
-    Component: FolderPlusIcon,
     color: "#f59e0b",
     accentColor: "#10b981"
   },
@@ -2610,7 +2035,6 @@ export const ICONS_REGISTRY = [
     id: "folderminus",
     name: "FolderMinusIcon",
     category: "storage",
-    Component: FolderMinusIcon,
     color: "#f59e0b",
     accentColor: "#ef4444"
   },
@@ -2618,7 +2042,6 @@ export const ICONS_REGISTRY = [
     id: "foldercheck",
     name: "FolderCheckIcon",
     category: "storage",
-    Component: FolderCheckIcon,
     color: "#f59e0b",
     accentColor: "#10b981"
   },
@@ -2626,7 +2049,6 @@ export const ICONS_REGISTRY = [
     id: "calendarplus",
     name: "CalendarPlusIcon",
     category: "utility",
-    Component: CalendarPlusIcon,
     color: "#6366f1",
     accentColor: "#10b981"
   },
@@ -2634,7 +2056,6 @@ export const ICONS_REGISTRY = [
     id: "calendarcheck",
     name: "CalendarCheckIcon",
     category: "utility",
-    Component: CalendarCheckIcon,
     color: "#6366f1",
     accentColor: "#10b981"
   },
@@ -2870,7 +2291,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
 
   // Find current icon component
   const currentIcon = ICONS_REGISTRY.find((item) => item.id === iconId) || ICONS_REGISTRY[0];
-  const ActiveComponent = currentIcon.Component;
+  const ActiveComponent = (props: any) => <Lazy3DIcon name={currentIcon.name} {...props} />;
 
   // Local parameter states
   const [preset, setPreset] = useState<IconPreset>("glass");
@@ -4636,7 +4057,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                 {compareList.map((selectedId, idx) => {
                   const iconObj =
                     ICONS_REGISTRY.find((item) => item.id === selectedId) || currentIcon;
-                  const CompareComponent = iconObj.Component;
+                  const CompareComponent = (props: any) => (
+                    <Lazy3DIcon name={iconObj.name} {...props} />
+                  );
                   return (
                     <div
                       key={idx}
@@ -7736,7 +7159,8 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                     className="absolute inset-1 rounded-full blur-lg opacity-10 dark:opacity-15"
                     style={{ backgroundColor: icon.color }}
                   />
-                  <icon.Component
+                  <Lazy3DIcon
+                    name={icon.name}
                     variant="2d"
                     preset="glass"
                     theme={theme}
@@ -8078,7 +7502,7 @@ const PhysicsBox: React.FC<{
     const randomIcon = ICONS_REGISTRY[Math.floor(Math.random() * ICONS_REGISTRY.length)];
     const newIcon: PhysicalIcon = {
       id,
-      Component: randomIcon.Component,
+      Component: (props: any) => <Lazy3DIcon name={randomIcon.name} {...props} />,
       position: new THREE.Vector3(x, y, 0),
       velocity: new THREE.Vector3(
         (Math.random() - 0.5) * 6,
