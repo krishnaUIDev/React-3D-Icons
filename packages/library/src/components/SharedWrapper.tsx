@@ -1154,8 +1154,26 @@ export function SharedWrapper({
       : { width: "100%", height: "100%" };
 
   const [mounted, setMounted] = useState(false);
+  const glRef = useRef<THREE.WebGLRenderer | null>(null);
+
   useEffect(() => {
     setMounted(true);
+    return () => {
+      if (glRef.current) {
+        try {
+          glRef.current.dispose();
+          const glContext = glRef.current.getContext();
+          if (glContext) {
+            const ext = glContext.getExtension("WEBGL_lose_context");
+            if (ext) {
+              ext.loseContext();
+            }
+          }
+        } catch (e) {
+          console.warn("WebGL context force loss failed:", e);
+        }
+      }
+    };
   }, []);
 
   if (!canvas) {
@@ -1259,6 +1277,9 @@ export function SharedWrapper({
         camera={{ position: [0, 0, cameraZoom ?? (interactive ? 4.5 : 3.0)], fov: cameraFov ?? 45 }}
         gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
         shadows
+        onCreated={({ gl }) => {
+          glRef.current = gl;
+        }}
       >
         <StudioLights
           theme={theme}

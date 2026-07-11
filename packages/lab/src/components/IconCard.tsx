@@ -39,6 +39,15 @@ export const IconCard: React.FC<IconCardProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [copiedSVG, setCopiedSVG] = useState(false);
   const [copiedTSX, setCopiedTSX] = useState(false);
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setCoords({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
 
   const displayName = name.replace("Icon", "");
 
@@ -86,9 +95,18 @@ export default function IconShowcase() {
       <div
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onMouseMove={handleMouseMove}
         onClick={handleCustomize}
-        className="group relative flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:border-indigo-500/50 dark:hover:border-indigo-400/50 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 cursor-pointer select-none"
+        className="group relative flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:border-indigo-500/50 dark:hover:border-indigo-400/50 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 cursor-pointer select-none overflow-hidden"
       >
+        {isHovered && (
+          <div
+            className="absolute inset-0 rounded-3xl pointer-events-none transition duration-300 opacity-100"
+            style={{
+              background: `radial-gradient(240px circle at ${coords.x}px ${coords.y}px, ${color}10, transparent 75%)`
+            }}
+          />
+        )}
         <div className="flex flex-col sm:flex-row items-center gap-4 flex-grow w-full">
           {/* Left: 3D Preview Canvas */}
           <div className="w-16 h-16 sm:w-20 sm:h-20 bg-zinc-50/50 dark:bg-[#090b14]/50 rounded-2xl border border-zinc-150/40 dark:border-zinc-850/40 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
@@ -247,13 +265,22 @@ export default function IconShowcase() {
     <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onMouseMove={handleMouseMove}
       onClick={handleCustomize}
-      className="group relative flex flex-col items-center gap-2 p-3 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer select-none"
+      className="group relative flex flex-col items-center gap-2 p-3 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer select-none overflow-hidden"
       style={{
         borderColor: isHovered ? `${color}40` : undefined,
         boxShadow: isHovered ? `0 10px 20px -5px ${color}15, 0 8px 10px -6px ${color}15` : undefined
       }}
     >
+      {isHovered && (
+        <div
+          className="absolute inset-0 rounded-2xl pointer-events-none transition duration-300 opacity-100"
+          style={{
+            background: `radial-gradient(180px circle at ${coords.x}px ${coords.y}px, ${color}0b, transparent 75%)`
+          }}
+        />
+      )}
       {/* Favorite Button (Top-Left overlay) */}
       <button
         onClick={(e) => {

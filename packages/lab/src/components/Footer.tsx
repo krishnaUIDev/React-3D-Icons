@@ -9,7 +9,7 @@ export const Footer: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="border-t border-zinc-300/80 dark:border-white/10 bg-zinc-100/70 dark:bg-[#070a13]/[0.15] backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_-8px_32px_0_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_-8px_32px_0_rgba(0,0,0,0.4)] text-zinc-550 py-6 transition-all duration-300 mt-auto relative z-10">
+    <footer className="border-t border-zinc-300/80 dark:border-white/10 bg-zinc-100/70 dark:bg-[#070a13]/75 backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_-8px_32px_0_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_-8px_32px_0_rgba(0,0,0,0.4)] text-zinc-550 py-6 transition-colors duration-300 transform-gpu will-change-transform mt-auto relative z-10">
       <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
         {/* Left: Branding */}
         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">

@@ -59,6 +59,26 @@ export default App;
 
 ---
 
+## TypeScript Support & Type-only Imports
+
+The library provides strict TypeScript definitions for all component parameters. You can import type interfaces directly, including type-only imports to preserve a minimal runtime bundle footprint:
+
+```typescript
+import { ShieldIcon } from "react-3d-icons";
+import type { ShieldIconProps, IconPreset } from "react-3d-icons";
+
+const config: ShieldIconProps = {
+  preset: "glassmorphism", // strictly validated literal presets
+  color: "#4f46e5"
+};
+
+export default function Card() {
+  return <ShieldIcon {...config} />;
+}
+```
+
+---
+
 ## API Properties Reference
 
 Every icon component accepts the following customizable props:

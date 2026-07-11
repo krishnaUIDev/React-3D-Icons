@@ -76,6 +76,26 @@ export default App;
 
 ---
 
+## 🛡️ TypeScript Support & Type-only Imports
+
+The library provides strict TypeScript definitions for all component parameters. You can import type interfaces directly, including type-only imports to preserve a minimal runtime bundle footprint:
+
+```typescript
+import { ShieldIcon } from "r3d-icons";
+import type { ShieldIconProps, IconPreset } from "r3d-icons";
+
+const config: ShieldIconProps = {
+  preset: "glassmorphism", // strictly validated literal presets
+  color: "#4f46e5"
+};
+
+export default function Card() {
+  return <ShieldIcon {...config} />;
+}
+```
+
+---
+
 ## ⚙️ API Properties Reference
 
 Every icon component accepts the following customizable props:
@@ -115,11 +135,18 @@ Every icon component accepts the following customizable props:
 The monorepo contains a premium visual editor playground (Vite-based Lab App) allowing developers to iterate, design, and share custom styles:
 
 - **Interactive Material Configurator**: Fine-tune physical settings (Roughness, Metalness, Transmission, Thickness, etc.) in real-time.
+- **Custom Lighting Studio**: Direct spotlights using Position X, Y, and Z coordinate controls.
+- **Neon Bloom Post-processing**: Scale glow intensity, luminance threshold, and boundary smoothing for screenspace neon light bleeds.
 - **Scene & Camera Controls**: Adjust camera Zoom level, Field of View (FOV), and custom Spotlight illumination brightness or color values.
+- **3D Physics Toybox Sandbox**: Switch the viewport to physics simulation mode to drop, swat, and toss 3D icons using rigid-body gravity box math.
+- **Interactive Home Banner**: Play with a horizontal 3D physics bubble banner on the landing screen, dropping and tossing icons.
+- **Specular Cursor Highlights**: Hover over cards to see dynamic radial highlight overlays track the cursor coordinates.
 - **Integration Context Switcher**: Preview the customized icon inside mockup layouts like a Dashboard Header/Navbar, Metric Info Card, or marketing Landing Hero section.
+- **Sound Synth Settings**: Toggle waveform oscillators (Sine, Triangle, Square, Sawtooth) and adjust tone pitch frequency and decay lengths for keyboard feedback.
 - **Saved Presets**: Save custom configs locally to `localStorage` and apply them to other assets.
 - **Grid Comparison Mode**: Split the viewport into a 2x2 grid to preview and configure multiple icons rendering side-by-side with your active material settings.
 - **Share Playgrounds**: Generate a shareable URL containing the complete serialized workspace state. Loading this link will restore your configurations and clean the URL parameters.
+- **3D GLTF Exporter**: Extract the isolated customized icon mesh and download it directly as a binary `.glb` model asset.
 - **TSX Code Downloader**: Click the code downloader action to generate and download a self-contained, pre-configured React component file ready for direct workspace import.
 
 ---

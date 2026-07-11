@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200/80 dark:border-white/5 bg-zinc-50/50 dark:bg-[#070a13]/[0.15] backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-all duration-300">
+    <header className="sticky top-0 z-50 border-b border-zinc-200/80 dark:border-white/5 bg-zinc-50/50 dark:bg-[#070a13]/75 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-colors duration-300 transform-gpu will-change-transform">
       {/* Background neon light leaks matching the mockup design */}
       <div className="absolute top-0 left-[10%] w-80 h-10 bg-cyan-500/20 dark:bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-0 right-[20%] w-80 h-10 bg-pink-500/20 dark:bg-pink-500/15 rounded-full blur-3xl pointer-events-none" />
@@ -221,23 +221,9 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <div className="w-5.5 h-5.5 flex items-center justify-center pointer-events-none">
               {theme === "dark" ? (
-                <SunIcon
-                  size={22}
-                  preset="neon-glow"
-                  color="#fbbf24"
-                  interactive={false}
-                  cameraZoom={2.5}
-                  angle="front"
-                />
+                <SunIcon size={16} variant="2d" color="#fbbf24" />
               ) : (
-                <MoonIcon
-                  size={22}
-                  preset="glass"
-                  color="#38bdf8"
-                  interactive={false}
-                  cameraZoom={2.5}
-                  angle="front"
-                />
+                <MoonIcon size={16} variant="2d" color="#38bdf8" />
               )}
             </div>
           </button>

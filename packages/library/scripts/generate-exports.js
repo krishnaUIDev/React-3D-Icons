@@ -25,8 +25,12 @@ try {
   iconComponents.sort();
 
   let fileContent =
-    iconComponents.map((name) => `export { ${name} } from "./components/${name}";`).join("\n") +
-    "\n\n";
+    iconComponents
+      .map(
+        (name) =>
+          `export { ${name} } from "./components/${name}";\nexport type { ${name}Props } from "./components/${name}/types";`
+      )
+      .join("\n") + "\n\n";
 
   // Append custom/special exports block
   fileContent += `// Special Letter and Digit exports

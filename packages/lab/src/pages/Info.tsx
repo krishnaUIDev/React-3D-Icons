@@ -147,11 +147,45 @@ export default function App() {
           </div>
         </section>
 
+        {/* Section: TypeScript Support */}
+        <section className="space-y-4">
+          <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-zinc-800/80 pb-3">
+            <h2 className="text-sm font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-100">
+              3. TypeScript Support
+            </h2>
+          </div>
+          <div className="p-5 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-zinc-50/50 dark:bg-[#0a0c14] space-y-3">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              Every icon component exports its matching component-specific props type (e.g.{" "}
+              <code>ShieldIconProps</code>) alongside core properties and material types for
+              complete compile-time validation:
+            </p>
+            <div className="relative rounded-2xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800 bg-zinc-950 text-zinc-100 p-4 font-mono text-[11px] leading-relaxed">
+              <pre className="overflow-x-auto">
+                <code>{`// Import component and its types
+import { ShieldIcon } from "r3d-icons";
+import type { ShieldIconProps, IconPreset } from "r3d-icons";
+
+// strictly validate parameters at compile-time
+const props: ShieldIconProps = {
+  size: 120,
+  preset: "glassmorphism",
+  color: "#6366f1"
+};
+
+export default function Card() {
+  return <ShieldIcon {...props} />;
+}`}</code>
+              </pre>
+            </div>
+          </div>
+        </section>
+
         {/* Section: Component Props */}
         <section className="space-y-4">
           <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-zinc-800/80 pb-3">
             <h2 className="text-sm font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-100">
-              3. Props Reference
+              4. Props Reference
             </h2>
           </div>
           <div className="overflow-x-auto rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] shadow-sm">

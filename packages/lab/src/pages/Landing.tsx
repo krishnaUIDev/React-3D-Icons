@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import * as THREE from "three";
 import { useTranslation } from "../i18n/useTranslation";
 import { audioEngine } from "../utils/audio";
 import { Hero } from "../components/Hero";
@@ -3265,6 +3267,9 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
       {/* Hero Section */}
       <Hero totalIcons={ICONS_REGISTRY.length} />
 
+      {/* Physics Toybox Banner */}
+      <LandingPhysicsBanner theme={theme} />
+
       {/* Grid Section */}
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 pb-16">
         {/* Mobile-only Search Input */}
@@ -3701,6 +3706,245 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
           <path d="M18 15l-6-6-6 6" />
         </svg>
       </button>
+    </div>
+  );
+};
+
+interface PhysicalIcon {
+  id: string;
+  Component: any;
+  position: THREE.Vector3;
+  velocity: THREE.Vector3;
+  rotation: THREE.Euler;
+  rotVelocity: THREE.Vector3;
+  color: string;
+  scale: number;
+}
+
+const LandingPhysicsBox: React.FC<{
+  theme: "light" | "dark";
+}> = ({ theme }) => {
+  const { viewport } = useThree();
+  const [icons, setIcons] = useState<PhysicalIcon[]>([]);
+  const nextId = useRef(0);
+
+  const spawnIcon = (x: number, y: number) => {
+    const id = (nextId.current++).toString();
+    const list = [
+      DatabaseIcon,
+      CloudIcon,
+      CpuIcon,
+      RocketIcon,
+      FlashIcon,
+      ShieldIcon,
+      FolderIcon,
+      KeyIcon,
+      StarIcon,
+      GamepadIcon,
+      BellIcon,
+      BulbIcon,
+      CameraIcon,
+      LockIcon,
+      MapPinIcon,
+      WifiIcon,
+      HomeIcon,
+      PlayIcon,
+      GlobeIcon,
+      CompassIcon,
+      WrenchIcon,
+      BoltIcon,
+      SmileIcon,
+      ReactIcon,
+      NodeIcon,
+      FigmaIcon,
+      GitIcon,
+      TerminalIcon
+    ];
+    const randomComp = list[Math.floor(Math.random() * list.length)];
+
+    const newIcon: PhysicalIcon = {
+      id,
+      Component: randomComp,
+      position: new THREE.Vector3(x, y, 0),
+      velocity: new THREE.Vector3(
+        (Math.random() - 0.5) * 5,
+        (Math.random() - 0.5) * 2,
+        (Math.random() - 0.5) * 3
+      ),
+      rotation: new THREE.Euler(Math.random() * Math.PI, Math.random() * Math.PI, 0),
+      rotVelocity: new THREE.Vector3(
+        (Math.random() - 0.5) * 2,
+        (Math.random() - 0.5) * 2,
+        (Math.random() - 0.5) * 2
+      ),
+      color: ["#6366f1", "#ec4899", "#10b981", "#f59e0b", "#3b82f6", "#ef4444"][
+        Math.floor(Math.random() * 6)
+      ],
+      scale: 0.4 + Math.random() * 0.2
+    };
+    setIcons((prev) => [...prev.slice(-12), newIcon]);
+  };
+
+  useEffect(() => {
+    for (let i = 0; i < 6; i++) {
+      setTimeout(() => {
+        spawnIcon((Math.random() - 0.5) * 4, 1 + Math.random() * 1);
+      }, i * 150);
+    }
+  }, []);
+
+  useFrame((state, delta) => {
+    const dt = Math.min(delta, 0.03);
+    const gravity = 4.0;
+    const bounce = 0.6;
+
+    const halfWidth = viewport.width / 2 - 0.35;
+    const halfHeight = viewport.height / 2 - 0.35;
+
+    setIcons((prev) => {
+      const next = prev.map((icon) => {
+        const pos = icon.position.clone();
+        const vel = icon.velocity.clone();
+        const rot = icon.rotation.clone();
+
+        vel.y -= gravity * dt;
+
+        const mouseWorld = state.pointer.clone().multiplyScalar(4);
+        const distToMouse = pos.distanceTo(new THREE.Vector3(mouseWorld.x, mouseWorld.y, 0));
+        if (distToMouse < 1.4) {
+          const pushDir = pos
+            .clone()
+            .sub(new THREE.Vector3(mouseWorld.x, mouseWorld.y, 0))
+            .normalize();
+          const force = (1.4 - distToMouse) * 10;
+          vel.add(pushDir.multiplyScalar(force * dt));
+        }
+
+        pos.addScaledVector(vel, dt);
+
+        if (pos.y < -halfHeight) {
+          pos.y = -halfHeight;
+          vel.y = -vel.y * bounce;
+          vel.x *= 0.95;
+          vel.z *= 0.95;
+        }
+        if (pos.y > halfHeight) {
+          pos.y = halfHeight;
+          vel.y = -vel.y * bounce;
+        }
+        if (pos.x < -halfWidth) {
+          pos.x = -halfWidth;
+          vel.x = -vel.x * bounce;
+        }
+        if (pos.x > halfWidth) {
+          pos.x = halfWidth;
+          vel.x = -vel.x * bounce;
+        }
+        if (pos.z < -1.0) {
+          pos.z = -1.0;
+          vel.z = -vel.z * bounce;
+        }
+        if (pos.z > 1.0) {
+          pos.z = 1.0;
+          vel.z = -vel.z * bounce;
+        }
+
+        rot.x += icon.rotVelocity.x * dt;
+        rot.y += icon.rotVelocity.y * dt;
+        rot.z += icon.rotVelocity.z * dt;
+
+        return {
+          ...icon,
+          position: pos,
+          velocity: vel,
+          rotation: rot
+        };
+      });
+
+      for (let i = 0; i < next.length; i++) {
+        for (let j = i + 1; j < next.length; j++) {
+          const d = next[i].position.distanceTo(next[j].position);
+          const minD = (next[i].scale + next[j].scale) * 0.4;
+          if (d < minD) {
+            const normal = next[j].position.clone().sub(next[i].position).normalize();
+            const overlap = minD - d;
+
+            next[i].position.addScaledVector(normal, -overlap * 0.5);
+            next[j].position.addScaledVector(normal, overlap * 0.5);
+
+            const relativeVel = next[j].velocity.clone().sub(next[i].velocity);
+            const speed = relativeVel.dot(normal);
+            if (speed < 0) {
+              const impulse = -1.3 * speed;
+              next[i].velocity.addScaledVector(normal, -impulse * 0.5);
+              next[j].velocity.addScaledVector(normal, impulse * 0.5);
+            }
+          }
+        }
+      }
+
+      return next;
+    });
+  });
+
+  return (
+    <group>
+      <mesh
+        position={[0, 0, -0.5]}
+        visible={false}
+        onClick={(e) => {
+          e.stopPropagation();
+          spawnIcon(e.point.x, e.point.y);
+          audioEngine.playClick();
+        }}
+      >
+        <planeGeometry args={[25, 25]} />
+        <meshBasicMaterial transparent opacity={0} />
+      </mesh>
+
+      {icons.map((icon) => {
+        const DynComp = icon.Component;
+        return (
+          <group key={icon.id} position={icon.position} rotation={icon.rotation} scale={icon.scale}>
+            <DynComp
+              canvas={false}
+              preset="glass"
+              color={icon.color}
+              theme={theme}
+              interactive={false}
+            />
+          </group>
+        );
+      })}
+    </group>
+  );
+};
+
+export const LandingPhysicsBanner: React.FC<{ theme: "light" | "dark" }> = ({ theme }) => {
+  return (
+    <div className="max-w-4xl mx-auto mb-8 px-6">
+      <div className="relative w-full h-[130px] rounded-3xl border border-zinc-200/50 dark:border-zinc-800 bg-zinc-50/10 dark:bg-[#0c0f1a]/10 backdrop-blur-md overflow-hidden shadow-inner flex items-center justify-center">
+        <Canvas
+          camera={{ position: [0, 0, 4.5], fov: 40 }}
+          gl={{ antialias: true, alpha: true }}
+          className="w-full h-full"
+        >
+          <ambientLight
+            intensity={theme === "dark" ? 0.6 : 0.9}
+            color={theme === "dark" ? "#2a2d3d" : "#ffffff"}
+          />
+          <directionalLight position={[3, 5, 3]} intensity={1.2} />
+          <LandingPhysicsBox theme={theme} />
+        </Canvas>
+        <div className="absolute top-3 left-4 pointer-events-none select-none flex items-center gap-1.5 bg-indigo-500/10 dark:bg-indigo-950/20 px-2 py-0.5 rounded-full border border-indigo-500/20 text-indigo-500 dark:text-indigo-400">
+          <span className="text-[8px] font-black uppercase tracking-wider">
+            🎮 Interactive Toybox
+          </span>
+        </div>
+        <div className="absolute bottom-3 right-4 pointer-events-none select-none text-[8px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
+          Click to drop icons • Hover to toss
+        </div>
+      </div>
     </div>
   );
 };

@@ -307,13 +307,9 @@ import {
 } from "r3d-icons";
 import {
   ArrowLeft,
-  Copy,
-  Check,
-  RotateCw,
   Sparkles,
   Sliders as LucideSliders,
   Palette,
-  Code,
   Zap,
   ChevronDown,
   ChevronRight
@@ -2976,6 +2972,11 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [gradientColorEndInput, setGradientColorEndInput] = useState("#ec4899");
   const [gradientAngle, setGradientAngle] = useState(45);
   const [tuningGradientOpen, setTuningGradientOpen] = useState(false);
+  const [cameraMenuOpen, setCameraMenuOpen] = useState(false);
+  const [themeMenuOpen, setThemeMenuOpen] = useState(false);
+  const [actionsMenuOpen, setActionsMenuOpen] = useState(false);
+  const [copyDropdownOpen, setCopyDropdownOpen] = useState(false);
+  const [downloadDropdownOpen, setDownloadDropdownOpen] = useState(false);
 
   const [ambientLightIntensity, setAmbientLightIntensity] = useState(0.4);
   const [ambientLightColor, setAmbientLightColor] = useState("#3f3f46");
@@ -4376,66 +4377,106 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
               </div>
             )}
 
-            {/* Camera Angle Snap Bar */}
+            {/* Unified compact Top-Left controls menu to clean up viewport space */}
             {activeSidebarTab !== "compare" && (
-              <div className="absolute top-4 left-4 z-10 flex items-center gap-1 bg-white/70 dark:bg-[#0c0f18]/80 border border-zinc-200 dark:border-zinc-800 p-1 rounded-xl backdrop-blur-md shadow-sm">
-                <span className="text-[8px] font-extrabold text-zinc-400 dark:text-zinc-555 uppercase tracking-wider px-2 block select-none">
-                  Camera Snap:
-                </span>
-                {[
-                  { id: "perspective", name: "3D" },
-                  { id: "front", name: "Front" },
-                  { id: "top", name: "Top" },
-                  { id: "left", name: "Left" },
-                  { id: "right", name: "Right" }
-                ].map((cam) => (
+              <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 bg-white/80 dark:bg-[#0c0f18]/90 border border-zinc-200 dark:border-zinc-800 p-1 rounded-xl backdrop-blur-md shadow-sm select-none">
+                {/* 1. Camera Snap Dropdown */}
+                <div className="relative">
                   <button
-                    key={cam.id}
                     onClick={() => {
-                      audioEngine.playSnap();
-                      setAngle(cam.id as IconAngle);
-                      if (cam.id === "perspective") {
-                        setCameraZoom(4.5);
-                      } else {
-                        setCameraZoom(4.0);
-                      }
+                      setCameraMenuOpen(!cameraMenuOpen);
+                      setThemeMenuOpen(false);
                     }}
-                    className={`px-2 py-1 rounded-lg text-[8px] font-black uppercase tracking-wider transition-all duration-150 cursor-pointer ${
-                      angle === cam.id
-                        ? "bg-indigo-600 text-white shadow-sm"
-                        : "text-zinc-550 dark:text-zinc-450 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white"
+                    className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all duration-150 cursor-pointer ${
+                      cameraMenuOpen
+                        ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white"
+                        : "text-zinc-550 dark:text-zinc-450 hover:bg-zinc-50 dark:hover:bg-zinc-850 hover:text-zinc-800 dark:hover:text-zinc-200"
                     }`}
                   >
-                    {cam.name}
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* Curated Aesthetic Theme Presets HUD Bar */}
-            {activeSidebarTab !== "compare" && (
-              <div className="absolute top-14 left-4 z-10 flex items-center gap-1.5 bg-white/70 dark:bg-[#0c0f18]/80 border border-zinc-200 dark:border-zinc-800 p-1 rounded-xl backdrop-blur-md shadow-sm">
-                <span className="text-[8px] font-extrabold text-zinc-400 dark:text-zinc-555 uppercase tracking-wider px-2 block select-none">
-                  Aesthetic Themes:
-                </span>
-                <div className="flex gap-1">
-                  {AESTHETIC_THEMES.map((themePreset) => (
-                    <button
-                      key={themePreset.id}
-                      onClick={() => {
-                        applyAestheticTheme(themePreset);
-                      }}
-                      title={`Apply ${themePreset.name} Theme`}
-                      className="px-1.5 py-0.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition active:scale-95 cursor-pointer flex items-center gap-1 border border-transparent hover:border-zinc-200/50 dark:hover:border-zinc-700/50"
-                    >
-                      <div
-                        className={`w-2.5 h-2.5 rounded bg-gradient-to-tr ${themePreset.badgeBg} shadow-sm border border-zinc-200/20`}
-                      />
-                      <span className="text-[7.5px] font-black uppercase text-zinc-700 dark:text-zinc-350 pr-0.5">
-                        {themePreset.name.split(" ")[0]}
+                    <LucideAll.Camera size={11} />
+                    <span>
+                      Snap:{" "}
+                      <span className="text-indigo-500 dark:text-indigo-400 font-black">
+                        {angle === "perspective" ? "3D" : angle}
                       </span>
-                    </button>
-                  ))}
+                    </span>
+                    <LucideAll.ChevronDown size={10} className="text-zinc-400" />
+                  </button>
+                  {cameraMenuOpen && (
+                    <div className="absolute top-8 left-0 w-28 bg-white dark:bg-[#121624] border border-zinc-200 dark:border-zinc-800/80 p-1.5 rounded-xl shadow-xl z-20 flex flex-col gap-0.5 animate-page-fade">
+                      {[
+                        { id: "perspective", name: "3D View" },
+                        { id: "front", name: "Front" },
+                        { id: "top", name: "Top" },
+                        { id: "left", name: "Left" },
+                        { id: "right", name: "Right" }
+                      ].map((cam) => (
+                        <button
+                          key={cam.id}
+                          onClick={() => {
+                            audioEngine.playSnap();
+                            setAngle(cam.id as IconAngle);
+                            if (cam.id === "perspective") {
+                              setCameraZoom(4.5);
+                            } else {
+                              setCameraZoom(4.0);
+                            }
+                            setCameraMenuOpen(false);
+                          }}
+                          className={`w-full text-left px-2 py-1.5 rounded-lg text-[9px] font-bold uppercase tracking-wider transition ${
+                            angle === cam.id
+                              ? "bg-indigo-600 text-white"
+                              : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white"
+                          }`}
+                        >
+                          {cam.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="w-px h-3.5 bg-zinc-200 dark:bg-zinc-800" />
+
+                {/* 2. Aesthetic Themes Dropdown */}
+                <div className="relative">
+                  <button
+                    onClick={() => {
+                      setThemeMenuOpen(!themeMenuOpen);
+                      setCameraMenuOpen(false);
+                    }}
+                    className={`flex items-center gap-1 px-2 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider transition-all duration-150 cursor-pointer ${
+                      themeMenuOpen
+                        ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white"
+                        : "text-zinc-550 dark:text-zinc-450 hover:bg-zinc-50 dark:hover:bg-zinc-850 hover:text-zinc-800 dark:hover:text-zinc-200"
+                    }`}
+                  >
+                    <div className="w-2 h-2 rounded bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 shadow-sm border border-zinc-200/10" />
+                    <span>Aesthetic Theme</span>
+                    <LucideAll.ChevronDown size={10} className="text-zinc-400" />
+                  </button>
+                  {themeMenuOpen && (
+                    <div className="absolute top-8 left-0 w-36 bg-white dark:bg-[#121624] border border-zinc-200 dark:border-zinc-800/80 p-1.5 rounded-xl shadow-xl z-20 flex flex-col gap-0.5 animate-page-fade">
+                      {AESTHETIC_THEMES.map((themePreset) => (
+                        <button
+                          key={themePreset.id}
+                          onClick={() => {
+                            applyAestheticTheme(themePreset);
+                            setThemeMenuOpen(false);
+                          }}
+                          title={`Apply ${themePreset.name} Theme`}
+                          className="w-full text-left px-2 py-1.5 rounded-lg text-[9px] font-bold uppercase tracking-wider transition hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white flex items-center gap-1.5"
+                        >
+                          <div
+                            className={`w-2.5 h-2.5 rounded bg-gradient-to-tr ${themePreset.badgeBg} shadow-sm border border-zinc-200/10`}
+                          />
+                          <span className="text-zinc-650 dark:text-zinc-350 hover:text-zinc-900 dark:hover:text-white">
+                            {themePreset.name}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -4453,109 +4494,133 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                   </button>
                 ) : (
                   <>
-                    <button
-                      onClick={() => setPresentationMode(true)}
-                      title="Presentation View (Hide Sidebar)"
-                      className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm transition active:scale-95 cursor-pointer"
-                    >
-                      <LucideAll.Maximize2 size={16} />
-                    </button>
-                    <button
-                      onClick={() => setShowPerfStats(!showPerfStats)}
-                      title="Toggle Performance Diagnostics HUD"
-                      className={`p-2.5 rounded-xl border transition active:scale-95 cursor-pointer flex items-center justify-center ${
-                        showPerfStats
-                          ? "border-indigo-500 bg-indigo-50/20 text-indigo-600 dark:text-indigo-400"
-                          : "border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm"
-                      }`}
-                    >
-                      <LucideAll.Activity size={16} />
-                    </button>
-                    <button
-                      onClick={() => {
-                        const nextVal = !soundEnabled;
-                        setSoundEnabled(nextVal);
-                        if (nextVal) {
-                          audioEngine.setEnabled(true);
-                          audioEngine.playChime();
-                        }
-                      }}
-                      title={soundEnabled ? "Mute Sound Effects" : "Unmute Sound Effects"}
-                      className={`p-2.5 rounded-xl border transition active:scale-95 cursor-pointer flex items-center justify-center ${
-                        soundEnabled
-                          ? "border-emerald-500 bg-emerald-50/20 text-emerald-600 dark:text-emerald-400"
-                          : "border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm"
-                      }`}
-                    >
-                      {soundEnabled ? (
-                        <LucideAll.Volume2 size={16} />
-                      ) : (
-                        <LucideAll.VolumeX size={16} />
+                    <div className="relative">
+                      <button
+                        onClick={() => setActionsMenuOpen(!actionsMenuOpen)}
+                        className={`flex items-center gap-1.5 px-3 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-350 shadow-sm transition active:scale-95 cursor-pointer text-[10px] font-black uppercase tracking-wider`}
+                      >
+                        <LucideAll.Sliders size={12} className="text-indigo-500" />
+                        <span>Viewport Actions</span>
+                        <LucideAll.ChevronDown size={10} className="text-zinc-400" />
+                      </button>
+                      {actionsMenuOpen && (
+                        <div className="absolute top-11 right-0 w-48 bg-white dark:bg-[#121624] border border-zinc-200 dark:border-zinc-800/80 p-2 rounded-xl shadow-xl z-20 flex flex-col gap-1 animate-page-fade">
+                          <button
+                            onClick={() => {
+                              setPresentationMode(true);
+                              setActionsMenuOpen(false);
+                            }}
+                            className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition text-[9px] font-extrabold uppercase tracking-wider text-zinc-700 dark:text-zinc-300"
+                          >
+                            <span>Presentation View</span>
+                            <LucideAll.Maximize2 size={11} className="text-zinc-400" />
+                          </button>
+
+                          <button
+                            onClick={() => setShowPerfStats(!showPerfStats)}
+                            className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition text-[9px] font-extrabold uppercase tracking-wider text-zinc-700 dark:text-zinc-300"
+                          >
+                            <span>Diagnostics HUD</span>
+                            <div
+                              className={`w-6 h-3.5 rounded-full p-0.5 transition ${showPerfStats ? "bg-indigo-600" : "bg-zinc-300 dark:bg-zinc-700"}`}
+                            >
+                              <div
+                                className={`w-2.5 h-2.5 rounded-full bg-white transition transform ${showPerfStats ? "translate-x-2.5" : "translate-x-0"}`}
+                              />
+                            </div>
+                          </button>
+
+                          <button
+                            onClick={() => {
+                              const nextVal = !soundEnabled;
+                              setSoundEnabled(nextVal);
+                              if (nextVal) {
+                                audioEngine.setEnabled(true);
+                                audioEngine.playChime();
+                              } else {
+                                audioEngine.setEnabled(false);
+                              }
+                            }}
+                            className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition text-[9px] font-extrabold uppercase tracking-wider text-zinc-700 dark:text-zinc-300"
+                          >
+                            <span>Sound FX</span>
+                            {soundEnabled ? (
+                              <LucideAll.Volume2 size={11} className="text-emerald-500" />
+                            ) : (
+                              <LucideAll.VolumeX size={11} className="text-zinc-400" />
+                            )}
+                          </button>
+
+                          <button
+                            onClick={() => {
+                              const nextVal = !turntableActive;
+                              setTurntableActive(nextVal);
+                              audioEngine.playSnap();
+                              if (nextVal) {
+                                setPhysicsPlayground(false);
+                              }
+                            }}
+                            className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition text-[9px] font-extrabold uppercase tracking-wider text-zinc-700 dark:text-zinc-300"
+                          >
+                            <span>Cinematic Spin</span>
+                            <div
+                              className={`w-6 h-3.5 rounded-full p-0.5 transition ${turntableActive ? "bg-indigo-600" : "bg-zinc-300 dark:bg-zinc-700"}`}
+                            >
+                              <div
+                                className={`w-2.5 h-2.5 rounded-full bg-white transition transform ${turntableActive ? "translate-x-2.5" : "translate-x-0"}`}
+                              />
+                            </div>
+                          </button>
+
+                          <button
+                            onClick={() => {
+                              const nextVal = !physicsPlayground;
+                              setPhysicsPlayground(nextVal);
+                              audioEngine.playChime();
+                              if (nextVal) {
+                                setTurntableActive(false);
+                              }
+                            }}
+                            className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition text-[9px] font-extrabold uppercase tracking-wider text-zinc-700 dark:text-zinc-300"
+                          >
+                            <span>Physics Toybox 💥</span>
+                            <div
+                              className={`w-6 h-3.5 rounded-full p-0.5 transition ${physicsPlayground ? "bg-red-500" : "bg-zinc-300 dark:bg-zinc-700"}`}
+                            >
+                              <div
+                                className={`w-2.5 h-2.5 rounded-full bg-white transition transform ${physicsPlayground ? "translate-x-2.5" : "translate-x-0"}`}
+                              />
+                            </div>
+                          </button>
+
+                          <div className="h-px bg-zinc-150 dark:bg-zinc-800/80 my-1" />
+
+                          <div className="grid grid-cols-2 gap-1.5 px-1.5 py-0.5">
+                            <button
+                              onClick={() => {
+                                handleReset();
+                                setActionsMenuOpen(false);
+                              }}
+                              className="flex items-center justify-center gap-1 py-1.5 rounded-lg border border-zinc-205 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition text-[8.5px] font-bold uppercase tracking-wider text-zinc-650 dark:text-zinc-350 cursor-pointer shadow-sm active:scale-95"
+                              title="Reset Viewport Defaults"
+                            >
+                              <LucideAll.RotateCw size={9} />
+                              <span>Reset</span>
+                            </button>
+                            <button
+                              onClick={() => {
+                                handleSurpriseMe();
+                                setActionsMenuOpen(false);
+                              }}
+                              className="flex items-center justify-center gap-1 py-1.5 rounded-lg border border-zinc-205 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition text-[8.5px] font-bold uppercase tracking-wider text-amber-600 dark:text-amber-500 cursor-pointer shadow-sm active:scale-95"
+                              title="🎲 Randomize Parameters"
+                            >
+                              <span>🎲 Mix</span>
+                            </button>
+                          </div>
+                        </div>
                       )}
-                    </button>
-
-                    {/* Turntable Showcase mode toggle */}
-                    <button
-                      onClick={() => {
-                        const nextVal = !turntableActive;
-                        setTurntableActive(nextVal);
-                        audioEngine.playSnap();
-                        if (nextVal) {
-                          setPhysicsPlayground(false); // disable physics sandbox when turntable active
-                        }
-                      }}
-                      title={
-                        turntableActive
-                          ? "Disable Cinematic Turntable"
-                          : "Enable Cinematic Turntable"
-                      }
-                      className={`p-2.5 rounded-xl border transition active:scale-95 cursor-pointer flex items-center justify-center ${
-                        turntableActive
-                          ? "border-indigo-500 bg-indigo-50/20 text-indigo-600 dark:text-indigo-400"
-                          : "border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm"
-                      }`}
-                    >
-                      <LucideAll.Tv size={16} />
-                    </button>
-
-                    {/* Physics Sandbox Mode toggle */}
-                    <button
-                      onClick={() => {
-                        const nextVal = !physicsPlayground;
-                        setPhysicsPlayground(nextVal);
-                        audioEngine.playChime();
-                        if (nextVal) {
-                          setTurntableActive(false); // disable turntable when physics active
-                        }
-                      }}
-                      title={
-                        physicsPlayground
-                          ? "Disable Physics Playground"
-                          : "Enable Physics Playground 💥"
-                      }
-                      className={`p-2.5 rounded-xl border transition active:scale-95 cursor-pointer flex items-center justify-center ${
-                        physicsPlayground
-                          ? "border-red-500 bg-red-50/20 text-red-500 dark:text-red-450"
-                          : "border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm"
-                      }`}
-                    >
-                      <LucideAll.Sparkles size={16} />
-                    </button>
-
-                    <button
-                      onClick={handleReset}
-                      title={t("reset_btn")}
-                      className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm transition active:scale-95 cursor-pointer"
-                    >
-                      <RotateCw size={16} />
-                    </button>
-                    <button
-                      onClick={handleSurpriseMe}
-                      title="Surprise Me (Shuffle Presets 🎲)"
-                      className="p-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-amber-500 shadow-sm transition hover:scale-105 active:scale-95 cursor-pointer flex items-center justify-center"
-                    >
-                      <span className="text-sm leading-none block font-mono select-none">🎲</span>
-                    </button>
+                    </div>
                   </>
                 )}
               </div>
@@ -5166,92 +5231,144 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
               </div>
 
               {/* Sleek Tool Actions */}
-              <div className="flex items-center gap-1.5">
-                {/* Copy Active Code */}
-                <button
-                  onClick={activeConsoleTab === "react" ? handleCopyCode : handleCopySVG}
-                  title={
-                    activeConsoleTab === "react"
-                      ? "Copy React Component Code"
-                      : "Copy SVG Vector Code"
-                  }
-                  className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer active:scale-95"
-                >
-                  {(activeConsoleTab === "react" ? copied : copiedSVG) ? (
-                    <Check size={14} />
-                  ) : (
-                    <Copy size={14} />
+              <div className="flex items-center gap-1.5 relative">
+                {/* 1. Copy Actions Dropdown */}
+                <div className="relative">
+                  <button
+                    onClick={() => {
+                      setCopyDropdownOpen(!copyDropdownOpen);
+                      setDownloadDropdownOpen(false);
+                    }}
+                    className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white hover:bg-zinc-50 dark:bg-[#0e111a] dark:hover:bg-zinc-850 text-zinc-750 dark:text-zinc-300 text-[10px] font-black uppercase tracking-wider transition active:scale-95 cursor-pointer`}
+                  >
+                    <LucideAll.Copy size={12} className="text-indigo-500" />
+                    <span>Copy</span>
+                    <LucideAll.ChevronDown size={10} className="text-zinc-400" />
+                  </button>
+                  {copyDropdownOpen && (
+                    <div className="absolute top-10 right-0 w-44 bg-white dark:bg-[#121624] border border-zinc-200 dark:border-zinc-800/80 p-1.5 rounded-xl shadow-xl z-20 flex flex-col gap-0.5 animate-page-fade">
+                      <button
+                        onClick={() => {
+                          if (activeConsoleTab === "react") handleCopyCode();
+                          else handleCopySVG();
+                          setCopyDropdownOpen(false);
+                        }}
+                        className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition text-[9px] font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300 flex items-center justify-between"
+                      >
+                        <span>{activeConsoleTab === "react" ? "React Icon Code" : "SVG Code"}</span>
+                        {(activeConsoleTab === "react" ? copied : copiedSVG) ? (
+                          <LucideAll.Check size={11} className="text-emerald-500" />
+                        ) : (
+                          <LucideAll.Copy size={11} />
+                        )}
+                      </button>
+
+                      {activeConsoleTab === "react" && (
+                        <button
+                          onClick={() => {
+                            handleCopyImport();
+                            setCopyDropdownOpen(false);
+                          }}
+                          className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition text-[9px] font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300 flex items-center justify-between"
+                        >
+                          <span>Import Statement</span>
+                          {copiedImport ? (
+                            <LucideAll.Check size={11} className="text-emerald-500" />
+                          ) : (
+                            <LucideAll.Code size={11} />
+                          )}
+                        </button>
+                      )}
+
+                      {activeConsoleTab === "react" && (
+                        <button
+                          onClick={() => {
+                            handleCopyTSXWrapper();
+                            setCopyDropdownOpen(false);
+                          }}
+                          className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition text-[9px] font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300 flex items-center justify-between"
+                        >
+                          <span>Wrapper Component</span>
+                          {copiedTSXWrapper ? (
+                            <LucideAll.Check size={11} className="text-emerald-500" />
+                          ) : (
+                            <LucideAll.Copy size={11} />
+                          )}
+                        </button>
+                      )}
+                    </div>
                   )}
-                </button>
+                </div>
 
-                {/* Copy Import (only visible on React tab) */}
-                {activeConsoleTab === "react" && (
+                {/* 2. Download Actions Dropdown */}
+                <div className="relative">
                   <button
-                    onClick={handleCopyImport}
-                    title="Copy ES6 Import Statement"
-                    className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-purple-600 dark:hover:text-purple-400 transition cursor-pointer active:scale-95"
+                    onClick={() => {
+                      setDownloadDropdownOpen(!downloadDropdownOpen);
+                      setCopyDropdownOpen(false);
+                    }}
+                    className={`flex items-center gap-1 px-2.5 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white hover:bg-zinc-50 dark:bg-[#0e111a] dark:hover:bg-zinc-850 text-zinc-755 dark:text-zinc-300 text-[10px] font-black uppercase tracking-wider transition active:scale-95 cursor-pointer`}
                   >
-                    {copiedImport ? <Check size={14} /> : <Code size={14} />}
+                    <LucideAll.Download size={12} className="text-indigo-500" />
+                    <span>Download</span>
+                    <LucideAll.ChevronDown size={10} className="text-zinc-400" />
                   </button>
-                )}
+                  {downloadDropdownOpen && (
+                    <div className="absolute top-10 right-0 w-48 bg-white dark:bg-[#121624] border border-zinc-200 dark:border-zinc-800/80 p-1.5 rounded-xl shadow-xl z-20 flex flex-col gap-0.5 animate-page-fade">
+                      <button
+                        onClick={() => {
+                          handleDownloadSVG();
+                          setDownloadDropdownOpen(false);
+                        }}
+                        disabled={downloading}
+                        className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition text-[9px] font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300 flex items-center justify-between disabled:opacity-50"
+                      >
+                        <span>SVG Vector File</span>
+                        <LucideAll.Download size={11} />
+                      </button>
 
-                {/* Download SVG */}
-                <button
-                  onClick={handleDownloadSVG}
-                  disabled={downloading}
-                  title="Download SVG Vector Asset"
-                  className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition cursor-pointer active:scale-95 disabled:opacity-50"
-                >
-                  <LucideAll.Download size={14} />
-                </button>
+                      {renderMode === "3d" && (
+                        <button
+                          onClick={() => {
+                            handleDownloadPNG();
+                            setDownloadDropdownOpen(false);
+                          }}
+                          className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition text-[9px] font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300 flex items-center justify-between"
+                        >
+                          <span>PNG 3D Image</span>
+                          <LucideAll.Camera size={11} />
+                        </button>
+                      )}
 
-                {/* Download PNG (only on 3D render) */}
-                {renderMode === "3d" && (
-                  <button
-                    onClick={handleDownloadPNG}
-                    title="Download High-Resolution 3D PNG"
-                    className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-violet-600 dark:hover:text-violet-400 transition cursor-pointer active:scale-95 disabled:opacity-50"
-                  >
-                    <LucideAll.Camera size={14} />
-                  </button>
-                )}
+                      {renderMode === "3d" && (
+                        <button
+                          onClick={() => {
+                            handleExportGLTF();
+                            setDownloadDropdownOpen(false);
+                          }}
+                          disabled={exportingGLTF}
+                          className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition text-[9px] font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300 flex items-center justify-between disabled:opacity-50"
+                        >
+                          <span>{exportingGLTF ? "Exporting..." : "GLTF 3D Model"}</span>
+                          <LucideAll.Package size={11} />
+                        </button>
+                      )}
 
-                {/* Download GLTF 3D Model Asset (only on 3D render) */}
-                {renderMode === "3d" && (
-                  <button
-                    onClick={handleExportGLTF}
-                    disabled={exportingGLTF}
-                    title="Export & Download 3D Model Asset (GLTF)"
-                    className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-850 text-zinc-600 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer active:scale-95 flex items-center justify-center gap-1 text-[9px] font-extrabold uppercase tracking-wider px-2.5 disabled:opacity-50"
-                  >
-                    <LucideAll.Package size={14} />
-                    <span>{exportingGLTF ? "Exporting..." : "3D GLTF"}</span>
-                  </button>
-                )}
-
-                {/* Download TSX Component (only visible on React tab) */}
-                {activeConsoleTab === "react" && (
-                  <button
-                    onClick={handleDownloadTSX}
-                    title="Download Customized React TSX Component File"
-                    className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-amber-600 dark:hover:text-amber-400 transition cursor-pointer active:scale-95"
-                  >
-                    <LucideAll.FileCode size={14} />
-                  </button>
-                )}
-
-                {/* Copy TSX Component Wrapper to clipboard (only visible on React tab) */}
-                {activeConsoleTab === "react" && (
-                  <button
-                    onClick={handleCopyTSXWrapper}
-                    title={
-                      copiedTSXWrapper ? "Copied!" : "Copy Customized React TSX Component Code"
-                    }
-                    className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-amber-600 dark:hover:text-amber-400 transition cursor-pointer active:scale-95 flex items-center justify-center"
-                  >
-                    {copiedTSXWrapper ? <Check size={14} /> : <Copy size={14} />}
-                  </button>
-                )}
+                      {activeConsoleTab === "react" && (
+                        <button
+                          onClick={() => {
+                            handleDownloadTSX();
+                            setDownloadDropdownOpen(false);
+                          }}
+                          className="w-full text-left px-2.5 py-1.5 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800/60 transition text-[9px] font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300 flex items-center justify-between"
+                        >
+                          <span>React Component File</span>
+                          <LucideAll.FileCode size={11} />
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             <pre className="p-6 text-xs text-zinc-700 dark:text-zinc-300 font-mono overflow-x-auto leading-relaxed bg-zinc-50/20 dark:bg-[#0b0e16] custom-scrollbar max-h-60">
