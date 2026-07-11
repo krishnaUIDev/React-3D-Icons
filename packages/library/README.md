@@ -28,7 +28,7 @@ A premium, interactive React component library for high-fidelity 3D and 2D vecto
 Install the package and its peer dependencies:
 
 ```bash
-npm install react-3d-icons three @react-three/fiber @react-three/drei
+npm install r3d-icons three @react-three/fiber @react-three/drei
 ```
 
 ---
@@ -37,7 +37,7 @@ npm install react-3d-icons three @react-three/fiber @react-three/drei
 
 ```jsx
 import React from "react";
-import { ShieldIcon, CrownIcon } from "react-3d-icons";
+import { ShieldIcon, CrownIcon } from "r3d-icons";
 
 function App() {
   return (
@@ -64,8 +64,8 @@ export default App;
 The library provides strict TypeScript definitions for all component parameters. You can import type interfaces directly, including type-only imports to preserve a minimal runtime bundle footprint:
 
 ```typescript
-import { ShieldIcon } from "react-3d-icons";
-import type { ShieldIconProps, IconPreset } from "react-3d-icons";
+import { ShieldIcon } from "r3d-icons";
+import type { ShieldIconProps, IconPreset } from "r3d-icons";
 
 const config: ShieldIconProps = {
   preset: "glassmorphism", // strictly validated literal presets
@@ -76,6 +76,16 @@ export default function Card() {
   return <ShieldIcon {...config} />;
 }
 ```
+
+---
+
+## WebGL Memory & Context Management
+
+To prevent browser crashes and screen flickering caused by WebGL context limits (usually a maximum of 8–16 active contexts per page), the library automatically handles cleanup:
+
+- **Instant Garbage Collection:** On component unmount, `r3d-icons` instantly forces the browser to discard the WebGL context using the native `WEBGL_lose_context` extension.
+- **Resource Disposal:** All materials, geometries, and renderer structures are automatically disposed of during unmounting.
+- **Responsive 2D Fallbacks:** For layouts displaying grids of many icons simultaneously, use the `variant="2d"` prop to run lightweight vector graphics without creating WebGL contexts.
 
 ---
 
