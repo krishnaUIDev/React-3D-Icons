@@ -1,6 +1,6 @@
 {
   "name": "r3d-icons",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "description": "Premium, customizable, high-definition 3D icons built with React Three Fiber",
   "type": "module",
   "main": "./dist/index.cjs",
