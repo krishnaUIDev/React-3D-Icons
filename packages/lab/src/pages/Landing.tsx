@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import * as THREE from "three";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "../i18n/useTranslation";
 import { audioEngine } from "../utils/audio";
 import { Hero } from "../components/Hero";
@@ -3267,9 +3265,6 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
       {/* Hero Section */}
       <Hero totalIcons={ICONS_REGISTRY.length} />
 
-      {/* Physics Toybox Banner */}
-      <LandingPhysicsBanner theme={theme} />
-
       {/* Grid Section */}
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 pb-16">
         {/* Mobile-only Search Input */}
@@ -3298,8 +3293,8 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                   onClick={() => setSearch(isSelected ? "" : tag)}
                   className={`px-2.5 py-1 rounded-lg font-bold border transition duration-155 cursor-pointer ${
                     isSelected
-                      ? "bg-indigo-600/10 border-indigo-500 text-indigo-600 dark:text-indigo-400"
-                      : "bg-white dark:bg-[#0e111a] border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-500 dark:text-zinc-400"
+                      ? "bg-indigo-600/20 dark:bg-indigo-500/25 border-indigo-500/80 text-indigo-600 dark:text-indigo-300 shadow-[0_0_12px_rgba(99,102,241,0.15)] backdrop-blur-md"
+                      : "bg-white/40 dark:bg-[#0e111a]/40 backdrop-blur-md border-zinc-200/50 dark:border-white/5 hover:bg-white/70 dark:hover:bg-zinc-900/50 text-zinc-550 dark:text-zinc-400"
                   }`}
                 >
                   {tag}
@@ -3317,7 +3312,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
           )}
         </div>{" "}
         {/* Controls Toolbar: Brand Color Filter, Preset Switcher & Grid/List View Switcher */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 mb-6 p-3 rounded-2xl border border-zinc-200/55 dark:border-zinc-800/50 bg-zinc-50/20 dark:bg-[#0c0f1a]/10 max-w-4xl mx-auto w-full">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-4 mb-6 p-3.5 rounded-3xl border border-zinc-200/50 dark:border-white/10 bg-white/40 dark:bg-[#0c0f1a]/45 backdrop-blur-xl max-w-4xl mx-auto w-full shadow-lg shadow-indigo-500/[0.02] dark:shadow-indigo-500/[0.01]">
           {/* Brand Color Selector */}
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
@@ -3357,7 +3352,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
             <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
               Material Preset
             </span>
-            <div className="flex flex-wrap gap-1 rounded-xl p-0.5 bg-zinc-100 dark:bg-[#0e111a] border border-zinc-200/40 dark:border-zinc-800/40">
+            <div className="flex flex-wrap gap-1 rounded-2xl p-1 bg-zinc-100/50 dark:bg-zinc-950/40 border border-zinc-200/50 dark:border-white/5 backdrop-blur-md">
               {(
                 [
                   { id: "glass", name: "Glass" },
@@ -3377,8 +3372,8 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                     }}
                     className={`px-2 py-1 rounded-lg text-[9px] font-extrabold uppercase tracking-wider transition duration-150 cursor-pointer ${
                       isSelected
-                        ? "bg-white dark:bg-[#1a1f30] text-indigo-500 shadow-sm border border-zinc-250/10"
-                        : "text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-350"
+                        ? "bg-white dark:bg-zinc-900/80 text-indigo-600 dark:text-indigo-400 shadow-md border border-zinc-250/10 dark:border-white/10"
+                        : "text-zinc-400 hover:text-zinc-655 dark:hover:text-zinc-350"
                     }`}
                   >
                     {presetItem.name}
@@ -3405,12 +3400,12 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
               <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
                 Layout
               </span>
-              <div className="flex rounded-lg p-0.5 bg-zinc-100 dark:bg-[#0e111a] border border-zinc-200/40 dark:border-zinc-800/40">
+              <div className="flex rounded-2xl p-1 bg-zinc-100/50 dark:bg-zinc-950/40 border border-zinc-200/50 dark:border-white/5 backdrop-blur-md">
                 <button
                   onClick={() => setViewMode("grid")}
                   className={`p-1.5 rounded-md transition duration-150 cursor-pointer ${
                     viewMode === "grid"
-                      ? "bg-white dark:bg-[#1a1f30] text-indigo-500 shadow-sm border border-zinc-250/10"
+                      ? "bg-white dark:bg-zinc-900/80 text-indigo-650 dark:text-indigo-400 shadow-md border border-zinc-250/10 dark:border-white/10"
                       : "text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-350"
                   }`}
                   title="Grid View"
@@ -3435,7 +3430,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                   onClick={() => setViewMode("list")}
                   className={`p-1.5 rounded-md transition duration-150 cursor-pointer ${
                     viewMode === "list"
-                      ? "bg-white dark:bg-[#1a1f30] text-indigo-500 shadow-sm border border-zinc-250/10"
+                      ? "bg-white dark:bg-zinc-900/80 text-indigo-650 dark:text-indigo-400 shadow-md border border-zinc-250/10 dark:border-white/10"
                       : "text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-350"
                   }`}
                   title="List View"
@@ -3470,7 +3465,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
             className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-155 cursor-pointer flex items-center gap-1.5 ${
               activeCategory === "favorites"
                 ? "bg-rose-600 text-white shadow-sm shadow-rose-600/20"
-                : "bg-zinc-100 dark:bg-[#0e111a] hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-550 dark:text-zinc-455 border border-zinc-200/80 dark:border-zinc-800"
+                : "bg-white/45 dark:bg-[#0e111a]/45 hover:bg-white/70 dark:hover:bg-zinc-900/50 text-zinc-550 dark:text-zinc-400 border border-zinc-200/40 dark:border-white/5 backdrop-blur-md"
             }`}
           >
             <Heart
@@ -3484,7 +3479,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
               className={`px-1.5 py-0.5 rounded-full text-[9px] font-extrabold ${
                 activeCategory === "favorites"
                   ? "bg-white/20 text-white"
-                  : "bg-zinc-200/60 dark:bg-zinc-850/80 text-zinc-600 dark:text-zinc-500"
+                  : "bg-zinc-200/80 dark:bg-zinc-800/60 text-zinc-600 dark:text-zinc-500"
               }`}
             >
               {favoriteIconIds.length}
@@ -3505,7 +3500,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                 className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-150 cursor-pointer flex items-center gap-1.5 ${
                   isSelected
                     ? "bg-indigo-600 text-white shadow-sm shadow-indigo-600/20"
-                    : "bg-zinc-100 dark:bg-[#0e111a] hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-550 dark:text-zinc-450 border border-zinc-200/80 dark:border-zinc-800"
+                    : "bg-white/45 dark:bg-[#0e111a]/45 hover:bg-white/70 dark:hover:bg-zinc-900/50 text-zinc-550 dark:text-zinc-400 border border-zinc-200/40 dark:border-white/5 backdrop-blur-md"
                 }`}
               >
                 <span>{t(translationKey)}</span>
@@ -3513,7 +3508,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
                   className={`px-1.5 py-0.5 rounded-full text-[9px] font-extrabold ${
                     isSelected
                       ? "bg-white/20 text-white"
-                      : "bg-zinc-200/60 dark:bg-zinc-800/80 text-zinc-600 dark:text-zinc-500"
+                      : "bg-zinc-200/80 dark:bg-zinc-800/60 text-zinc-600 dark:text-zinc-500"
                   }`}
                 >
                   {count}
@@ -3706,245 +3701,6 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
           <path d="M18 15l-6-6-6 6" />
         </svg>
       </button>
-    </div>
-  );
-};
-
-interface PhysicalIcon {
-  id: string;
-  Component: any;
-  position: THREE.Vector3;
-  velocity: THREE.Vector3;
-  rotation: THREE.Euler;
-  rotVelocity: THREE.Vector3;
-  color: string;
-  scale: number;
-}
-
-const LandingPhysicsBox: React.FC<{
-  theme: "light" | "dark";
-}> = ({ theme }) => {
-  const { viewport } = useThree();
-  const [icons, setIcons] = useState<PhysicalIcon[]>([]);
-  const nextId = useRef(0);
-
-  const spawnIcon = (x: number, y: number) => {
-    const id = (nextId.current++).toString();
-    const list = [
-      DatabaseIcon,
-      CloudIcon,
-      CpuIcon,
-      RocketIcon,
-      FlashIcon,
-      ShieldIcon,
-      FolderIcon,
-      KeyIcon,
-      StarIcon,
-      GamepadIcon,
-      BellIcon,
-      BulbIcon,
-      CameraIcon,
-      LockIcon,
-      MapPinIcon,
-      WifiIcon,
-      HomeIcon,
-      PlayIcon,
-      GlobeIcon,
-      CompassIcon,
-      WrenchIcon,
-      BoltIcon,
-      SmileIcon,
-      ReactIcon,
-      NodeIcon,
-      FigmaIcon,
-      GitIcon,
-      TerminalIcon
-    ];
-    const randomComp = list[Math.floor(Math.random() * list.length)];
-
-    const newIcon: PhysicalIcon = {
-      id,
-      Component: randomComp,
-      position: new THREE.Vector3(x, y, 0),
-      velocity: new THREE.Vector3(
-        (Math.random() - 0.5) * 5,
-        (Math.random() - 0.5) * 2,
-        (Math.random() - 0.5) * 3
-      ),
-      rotation: new THREE.Euler(Math.random() * Math.PI, Math.random() * Math.PI, 0),
-      rotVelocity: new THREE.Vector3(
-        (Math.random() - 0.5) * 2,
-        (Math.random() - 0.5) * 2,
-        (Math.random() - 0.5) * 2
-      ),
-      color: ["#6366f1", "#ec4899", "#10b981", "#f59e0b", "#3b82f6", "#ef4444"][
-        Math.floor(Math.random() * 6)
-      ],
-      scale: 0.4 + Math.random() * 0.2
-    };
-    setIcons((prev) => [...prev.slice(-12), newIcon]);
-  };
-
-  useEffect(() => {
-    for (let i = 0; i < 6; i++) {
-      setTimeout(() => {
-        spawnIcon((Math.random() - 0.5) * 4, 1 + Math.random() * 1);
-      }, i * 150);
-    }
-  }, []);
-
-  useFrame((state, delta) => {
-    const dt = Math.min(delta, 0.03);
-    const gravity = 4.0;
-    const bounce = 0.6;
-
-    const halfWidth = viewport.width / 2 - 0.35;
-    const halfHeight = viewport.height / 2 - 0.35;
-
-    setIcons((prev) => {
-      const next = prev.map((icon) => {
-        const pos = icon.position.clone();
-        const vel = icon.velocity.clone();
-        const rot = icon.rotation.clone();
-
-        vel.y -= gravity * dt;
-
-        const mouseWorld = state.pointer.clone().multiplyScalar(4);
-        const distToMouse = pos.distanceTo(new THREE.Vector3(mouseWorld.x, mouseWorld.y, 0));
-        if (distToMouse < 1.4) {
-          const pushDir = pos
-            .clone()
-            .sub(new THREE.Vector3(mouseWorld.x, mouseWorld.y, 0))
-            .normalize();
-          const force = (1.4 - distToMouse) * 10;
-          vel.add(pushDir.multiplyScalar(force * dt));
-        }
-
-        pos.addScaledVector(vel, dt);
-
-        if (pos.y < -halfHeight) {
-          pos.y = -halfHeight;
-          vel.y = -vel.y * bounce;
-          vel.x *= 0.95;
-          vel.z *= 0.95;
-        }
-        if (pos.y > halfHeight) {
-          pos.y = halfHeight;
-          vel.y = -vel.y * bounce;
-        }
-        if (pos.x < -halfWidth) {
-          pos.x = -halfWidth;
-          vel.x = -vel.x * bounce;
-        }
-        if (pos.x > halfWidth) {
-          pos.x = halfWidth;
-          vel.x = -vel.x * bounce;
-        }
-        if (pos.z < -1.0) {
-          pos.z = -1.0;
-          vel.z = -vel.z * bounce;
-        }
-        if (pos.z > 1.0) {
-          pos.z = 1.0;
-          vel.z = -vel.z * bounce;
-        }
-
-        rot.x += icon.rotVelocity.x * dt;
-        rot.y += icon.rotVelocity.y * dt;
-        rot.z += icon.rotVelocity.z * dt;
-
-        return {
-          ...icon,
-          position: pos,
-          velocity: vel,
-          rotation: rot
-        };
-      });
-
-      for (let i = 0; i < next.length; i++) {
-        for (let j = i + 1; j < next.length; j++) {
-          const d = next[i].position.distanceTo(next[j].position);
-          const minD = (next[i].scale + next[j].scale) * 0.4;
-          if (d < minD) {
-            const normal = next[j].position.clone().sub(next[i].position).normalize();
-            const overlap = minD - d;
-
-            next[i].position.addScaledVector(normal, -overlap * 0.5);
-            next[j].position.addScaledVector(normal, overlap * 0.5);
-
-            const relativeVel = next[j].velocity.clone().sub(next[i].velocity);
-            const speed = relativeVel.dot(normal);
-            if (speed < 0) {
-              const impulse = -1.3 * speed;
-              next[i].velocity.addScaledVector(normal, -impulse * 0.5);
-              next[j].velocity.addScaledVector(normal, impulse * 0.5);
-            }
-          }
-        }
-      }
-
-      return next;
-    });
-  });
-
-  return (
-    <group>
-      <mesh
-        position={[0, 0, -0.5]}
-        visible={false}
-        onClick={(e) => {
-          e.stopPropagation();
-          spawnIcon(e.point.x, e.point.y);
-          audioEngine.playClick();
-        }}
-      >
-        <planeGeometry args={[25, 25]} />
-        <meshBasicMaterial transparent opacity={0} />
-      </mesh>
-
-      {icons.map((icon) => {
-        const DynComp = icon.Component;
-        return (
-          <group key={icon.id} position={icon.position} rotation={icon.rotation} scale={icon.scale}>
-            <DynComp
-              canvas={false}
-              preset="glass"
-              color={icon.color}
-              theme={theme}
-              interactive={false}
-            />
-          </group>
-        );
-      })}
-    </group>
-  );
-};
-
-export const LandingPhysicsBanner: React.FC<{ theme: "light" | "dark" }> = ({ theme }) => {
-  return (
-    <div className="max-w-4xl mx-auto mb-8 px-6">
-      <div className="relative w-full h-[130px] rounded-3xl border border-zinc-200/50 dark:border-zinc-800 bg-zinc-50/10 dark:bg-[#0c0f1a]/10 backdrop-blur-md overflow-hidden shadow-inner flex items-center justify-center">
-        <Canvas
-          camera={{ position: [0, 0, 4.5], fov: 40 }}
-          gl={{ antialias: true, alpha: true }}
-          className="w-full h-full"
-        >
-          <ambientLight
-            intensity={theme === "dark" ? 0.6 : 0.9}
-            color={theme === "dark" ? "#2a2d3d" : "#ffffff"}
-          />
-          <directionalLight position={[3, 5, 3]} intensity={1.2} />
-          <LandingPhysicsBox theme={theme} />
-        </Canvas>
-        <div className="absolute top-3 left-4 pointer-events-none select-none flex items-center gap-1.5 bg-indigo-500/10 dark:bg-indigo-950/20 px-2 py-0.5 rounded-full border border-indigo-500/20 text-indigo-500 dark:text-indigo-400">
-          <span className="text-[8px] font-black uppercase tracking-wider">
-            🎮 Interactive Toybox
-          </span>
-        </div>
-        <div className="absolute bottom-3 right-4 pointer-events-none select-none text-[8px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
-          Click to drop icons • Hover to toss
-        </div>
-      </div>
     </div>
   );
 };

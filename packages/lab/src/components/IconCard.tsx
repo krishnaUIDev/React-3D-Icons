@@ -97,7 +97,7 @@ export default function IconShowcase() {
         onMouseLeave={() => setIsHovered(false)}
         onMouseMove={handleMouseMove}
         onClick={handleCustomize}
-        className="group relative flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:border-indigo-500/50 dark:hover:border-indigo-400/50 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 cursor-pointer select-none overflow-hidden"
+        className="group relative flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border border-zinc-200/50 dark:border-white/5 bg-white/45 dark:bg-[#0e111a]/45 backdrop-blur-md hover:border-indigo-500/50 dark:hover:border-indigo-400/50 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 cursor-pointer select-none overflow-hidden"
       >
         {isHovered && (
           <div
@@ -267,7 +267,7 @@ export default function IconShowcase() {
       onMouseLeave={() => setIsHovered(false)}
       onMouseMove={handleMouseMove}
       onClick={handleCustomize}
-      className="group relative flex flex-col items-center gap-2 p-3 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer select-none overflow-hidden"
+      className="group relative flex flex-col items-center gap-2 p-3 rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/45 dark:bg-[#0e111a]/45 backdrop-blur-md hover:-translate-y-0.5 transition-all duration-300 cursor-pointer select-none overflow-hidden"
       style={{
         borderColor: isHovered ? `${color}40` : undefined,
         boxShadow: isHovered ? `0 10px 20px -5px ${color}15, 0 8px 10px -6px ${color}15` : undefined
@@ -289,8 +289,8 @@ export default function IconShowcase() {
         }}
         className={`absolute top-2.5 left-2.5 p-1.5 rounded-lg border transition shadow-sm cursor-pointer z-10 ${
           isFavorite
-            ? "border-rose-200 dark:border-rose-900 bg-rose-50/90 dark:bg-rose-950/90 text-rose-600 dark:text-rose-450 opacity-100 scale-100"
-            : "border-zinc-200/50 dark:border-zinc-800 bg-white/90 dark:bg-[#0e111a]/90 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-450 opacity-0 group-hover:opacity-100 hover:text-rose-500 scale-95 hover:scale-100"
+            ? "border-rose-200 dark:border-rose-900 bg-rose-50/95 dark:bg-rose-950/95 text-rose-600 dark:text-rose-450 opacity-100 scale-100"
+            : "border-zinc-200/40 dark:border-white/5 bg-white/70 dark:bg-zinc-950/70 backdrop-blur-md hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-450 opacity-0 group-hover:opacity-100 hover:text-rose-500 scale-95 hover:scale-100"
         } transition-all duration-300`}
         title={isFavorite ? "Remove from Favorites" : "Add to Favorites"}
       >
@@ -301,7 +301,7 @@ export default function IconShowcase() {
       <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto z-10">
         <button
           onClick={handleCopySVG}
-          className="p-1.5 rounded-lg border border-zinc-200/50 dark:border-zinc-800 bg-white/90 dark:bg-[#0e111a]/90 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 text-zinc-400 transition relative shadow-sm cursor-pointer"
+          className="p-1.5 rounded-lg border border-zinc-200/40 dark:border-white/5 bg-white/70 dark:bg-[#0e111a]/70 backdrop-blur-md hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 text-zinc-400 transition relative shadow-sm cursor-pointer"
           title="Copy 2D SVG code"
         >
           {copiedSVG ? (
@@ -341,7 +341,7 @@ export default function IconShowcase() {
 
         <button
           onClick={handleCopyTSX}
-          className="p-1.5 rounded-lg border border-zinc-200/50 dark:border-zinc-800 bg-white/90 dark:bg-[#0e111a]/90 hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 text-zinc-400 transition relative shadow-sm cursor-pointer"
+          className="p-1.5 rounded-lg border border-zinc-200/40 dark:border-white/5 bg-white/70 dark:bg-[#0e111a]/70 backdrop-blur-md hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 text-zinc-400 transition relative shadow-sm cursor-pointer"
           title="Copy React TSX code"
         >
           {copiedTSX ? (

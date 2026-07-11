@@ -128,7 +128,7 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
       </div>
 
       {/* Interactive Installer Command Snippet */}
-      <div className="mt-8 max-w-sm mx-auto rounded-2xl border border-zinc-200/60 dark:border-zinc-800/60 bg-zinc-50/50 dark:bg-[#0c0f1a]/30 p-2 flex items-center justify-between gap-3 shadow-inner">
+      <div className="mt-8 max-w-sm mx-auto rounded-2xl border border-zinc-200/50 dark:border-white/10 bg-white/40 dark:bg-[#0c0f1a]/40 backdrop-blur-xl p-2 flex items-center justify-between gap-3 shadow-lg shadow-indigo-500/[0.03] dark:shadow-indigo-500/[0.015]">
         <div className="flex gap-1.5 border-r border-zinc-200 dark:border-zinc-800/80 pr-2.5">
           {(["npm", "yarn", "pnpm"] as const).map((p) => (
             <button
@@ -149,7 +149,7 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
         </code>
         <button
           onClick={copyToClipboard}
-          className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer relative"
+          className="p-2 rounded-xl border border-zinc-200/50 dark:border-white/5 bg-white/60 dark:bg-[#0e111a]/60 backdrop-blur-md hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer relative"
           title="Copy command to clipboard"
         >
           {copied ? <Check size={13} className="text-emerald-500" /> : <Copy size={13} />}
