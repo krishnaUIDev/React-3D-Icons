@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "../i18n/useTranslation";
 import { useRouter } from "../router/Router";
 import { LanguageCode } from "../i18n/translations";
+import { Menu, X } from "lucide-react";
+import { audioEngine } from "../utils/audio";
 import {
   LetterIcon,
   SunIcon,
@@ -33,6 +35,11 @@ export const Header: React.FC<HeaderProps> = ({
   const { route, navigate } = useRouter();
   const [langOpen, setLangOpen] = useState(false);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [route]);
 
   useEffect(() => {
     const handleOnline = () => setIsOnline(true);
@@ -111,6 +118,26 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               {t("saved_presets_nav" as any)}
+            </button>
+            <button
+              onClick={() => navigate("sandbox")}
+              className={`px-3 py-1.5 rounded-lg border text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] flex items-center justify-center hover:scale-[1.03] ${
+                route === "sandbox"
+                  ? "border-indigo-500/40 bg-indigo-50/20 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_0_12px_rgba(99,102,241,0.1)]"
+                  : "border-zinc-200/80 dark:border-white/10 bg-zinc-100/40 dark:bg-zinc-950/[0.2] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.3] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+              }`}
+            >
+              {t("sandbox_nav" as any)}
+            </button>
+            <button
+              onClick={() => navigate("requests")}
+              className={`px-3 py-1.5 rounded-lg border text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] flex items-center justify-center hover:scale-[1.03] ${
+                route === "requests"
+                  ? "border-indigo-500/40 bg-indigo-50/20 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_0_12px_rgba(99,102,241,0.1)]"
+                  : "border-zinc-200/80 dark:border-white/10 bg-zinc-100/40 dark:bg-zinc-950/[0.2] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.3] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+              }`}
+            >
+              {t("requests_nav" as any)}
             </button>
           </nav>
         </div>
@@ -250,8 +277,104 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </a>
           </div>
+
+          {/* Hamburger Menu Button for Mobile */}
+          <button
+            onClick={() => {
+              audioEngine.playClick();
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
+            className="md:hidden p-1.5 rounded-lg border border-zinc-200/80 dark:border-white/10 bg-zinc-100/40 dark:bg-zinc-950/[0.2] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.3] text-zinc-650 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all cursor-pointer flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
+            title="Open Menu"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
+
+      {/* Click-away backdrop overlay */}
+      {mobileMenuOpen && (
+        <div
+          className="md:hidden fixed inset-0 top-16 bg-zinc-950/20 dark:bg-black/40 backdrop-blur-[2px] z-40 transition-opacity"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Mobile Navigation Dropdown Panel */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-16 left-0 right-0 border-b border-zinc-200/80 dark:border-white/5 bg-white/95 dark:bg-[#070a13]/95 backdrop-blur-2xl shadow-xl flex flex-col gap-2.5 p-5 animate-in slide-in-from-top-3 duration-200 z-50">
+          <button
+            onClick={() => {
+              audioEngine.playClick();
+              navigate("catalog");
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-4 py-3 rounded-xl border text-xs font-black uppercase tracking-wider transition cursor-pointer select-none ${
+              route === "catalog"
+                ? "border-indigo-500/40 bg-indigo-50/20 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400"
+                : "border-zinc-200/60 dark:border-white/5 bg-zinc-50/40 dark:bg-zinc-900/20 text-zinc-650 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900/30"
+            }`}
+          >
+            Explore Catalog
+          </button>
+          <button
+            onClick={() => {
+              audioEngine.playClick();
+              navigate("info");
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-4 py-3 rounded-xl border text-xs font-black uppercase tracking-wider transition cursor-pointer select-none ${
+              route === "info"
+                ? "border-indigo-500/40 bg-indigo-50/20 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400"
+                : "border-zinc-200/60 dark:border-white/5 bg-zinc-50/40 dark:bg-zinc-900/20 text-zinc-650 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900/30"
+            }`}
+          >
+            Info / Docs
+          </button>
+          <button
+            onClick={() => {
+              audioEngine.playClick();
+              navigate("saved");
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-4 py-3 rounded-xl border text-xs font-black uppercase tracking-wider transition cursor-pointer select-none ${
+              route === "saved"
+                ? "border-indigo-500/40 bg-indigo-50/20 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400"
+                : "border-zinc-200/60 dark:border-white/5 bg-zinc-50/40 dark:bg-zinc-900/20 text-zinc-650 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900/30"
+            }`}
+          >
+            {t("saved_presets_nav" as any)}
+          </button>
+          <button
+            onClick={() => {
+              audioEngine.playClick();
+              navigate("sandbox");
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-4 py-3 rounded-xl border text-xs font-black uppercase tracking-wider transition cursor-pointer select-none ${
+              route === "sandbox"
+                ? "border-indigo-500/40 bg-indigo-50/20 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400"
+                : "border-zinc-200/60 dark:border-white/5 bg-zinc-50/40 dark:bg-zinc-900/20 text-zinc-650 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900/30"
+            }`}
+          >
+            {t("sandbox_nav" as any)}
+          </button>
+          <button
+            onClick={() => {
+              audioEngine.playClick();
+              navigate("requests");
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-4 py-3 rounded-xl border text-xs font-black uppercase tracking-wider transition cursor-pointer select-none ${
+              route === "requests"
+                ? "border-indigo-500/40 bg-indigo-50/20 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400"
+                : "border-zinc-200/60 dark:border-white/5 bg-zinc-50/40 dark:bg-zinc-900/20 text-zinc-650 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900/30"
+            }`}
+          >
+            {t("requests_nav" as any)}
+          </button>
+        </div>
+      )}
     </header>
   );
 };

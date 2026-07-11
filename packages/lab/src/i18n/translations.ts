@@ -47,7 +47,9 @@ export const translations = {
       'Jump into the Customizer laboratory, tweak material attributes, lighting parameters, and click "Save Preset" under the sidebar tab.',
     saved_presets_open_btn: "Open Customizer",
     saved_presets_nav: "Saved Presets",
-    saved_presets_footer: "Saved"
+    saved_presets_footer: "Saved",
+    sandbox_nav: "Layout Sandbox",
+    requests_nav: "Icon Requests"
   },
   es: {
     hero_title: "Iconos 3D premium y de código abierto bellamente diseñados",
@@ -97,7 +99,9 @@ export const translations = {
       'Ingrese al laboratorio de personalización, modifique los atributos de material, los parámetros de iluminación y haga clic en "Guardar Ajuste" en la barra lateral.',
     saved_presets_open_btn: "Abrir Personalizador",
     saved_presets_nav: "Ajustes Guardados",
-    saved_presets_footer: "Guardados"
+    saved_presets_footer: "Guardados",
+    sandbox_nav: "Sandbox de Diseños",
+    requests_nav: "Solicitudes"
   },
   de: {
     hero_title: "Wunderschön gestaltete Open-Source- und Premium-3D-Icons",
@@ -147,7 +151,9 @@ export const translations = {
       'Wechseln Sie in das Customizer-Labor, passen Sie Materialattribute sowie Beleuchtungsparameter an und klicken Sie in der Seitenleiste auf "Vorlage speichern".',
     saved_presets_open_btn: "Customizer Öffnen",
     saved_presets_nav: "Vorlagen",
-    saved_presets_footer: "Gespeichert"
+    saved_presets_footer: "Gespeichert",
+    sandbox_nav: "Layout-Sandbox",
+    requests_nav: "Icon-Wünsche"
   }
 } as const;
 

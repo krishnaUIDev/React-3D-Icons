@@ -12,6 +12,10 @@ const Customize = React.lazy(() =>
 );
 const Info = React.lazy(() => import("./pages/Info").then((m) => ({ default: m.Info })));
 const Saved = React.lazy(() => import("./pages/Saved.tsx")); // lazy-loaded saved page
+const Sandbox = React.lazy(() => import("./pages/Sandbox").then((m) => ({ default: m.Sandbox })));
+const Requests = React.lazy(() =>
+  import("./pages/Requests").then((m) => ({ default: m.Requests }))
+);
 
 function LoadingFallback() {
   return (
@@ -119,6 +123,16 @@ function AppContent() {
           {route === "saved" && (
             <div key="saved" className="animate-page-fade">
               <Saved theme={theme} />
+            </div>
+          )}
+          {route === "sandbox" && (
+            <div key="sandbox" className="animate-page-fade">
+              <Sandbox theme={theme} />
+            </div>
+          )}
+          {route === "requests" && (
+            <div key="requests" className="animate-page-fade">
+              <Requests theme={theme} />
             </div>
           )}
         </Suspense>
