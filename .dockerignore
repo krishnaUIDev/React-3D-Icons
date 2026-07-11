@@ -1,0 +1,9 @@
+node_modules
+packages/lab/dist
+packages/library/dist
+packages/e2e/node_modules
+.git
+.github
+.agents
+.gemini
+*.log
