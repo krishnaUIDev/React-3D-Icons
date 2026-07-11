@@ -35,7 +35,7 @@ const adjustColor = (colorStr: string, percent: number) => {
     const bHex = B.toString(16).padStart(2, "0");
 
     return `#${rHex}${gHex}${bHex}`;
-  } catch (e) {
+  } catch {
     return colorStr;
   }
 };

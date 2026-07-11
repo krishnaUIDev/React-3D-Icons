@@ -3,7 +3,6 @@ import * as THREE from "three";
 import { SharedWrapper } from "../SharedWrapper";
 import { FlameIconProps } from "./types";
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 declare global {
   interface Window {
     THREE: any;
@@ -528,6 +527,7 @@ function FlameStudio() {
       charcoalGeom.dispose();
       emberGeom.dispose();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [threeLoaded]);
 
   useEffect(() => {

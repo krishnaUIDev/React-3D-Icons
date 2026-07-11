@@ -8,6 +8,8 @@ interface HeroProps {
   totalIcons?: number;
 }
 
+const words = ["3D Icons", "SVG Vectors", "React Icons", "Web Assets"];
+
 export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
   const { t } = useTranslation();
   const [version, setVersion] = useState(pkg.version);
@@ -28,8 +30,6 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
-  const words = ["3D Icons", "SVG Vectors", "React Icons", "Web Assets"];
 
   useEffect(() => {
     // Dynamically retrieve the latest version from NPM registry

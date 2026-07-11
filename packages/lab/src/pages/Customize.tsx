@@ -3068,6 +3068,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       setAccentColor(currentIcon.accentColor);
       setAccentInput(currentIcon.accentColor);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [iconId]);
 
   // Load custom presets on mount
@@ -3180,6 +3181,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
     } catch (e) {
       console.error("Failed to restore shared playground configuration", e);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Sync audio engine configuration
@@ -3220,6 +3222,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
     setMaterialClearcoatRoughness(defaultM.clearcoatRoughness);
     setMaterialIor(defaultM.ior);
     setMaterialEmissiveIntensity(defaultM.emissiveIntensity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preset, theme]);
 
   // Compute active customized material overrides
