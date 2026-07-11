@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { IconProps, MaterialConfig, IconPreset, IconAngle, IconAnimationType } from "../types";
 import { isWebGLAvailable } from "../utils/webgl";
 import { Fallback2D } from "./Fallback2D";
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
 // Helper to resolve material configurations from presets
 export function getMaterialConfig(
@@ -189,6 +190,9 @@ const StudioLights: React.FC<{
   accentAngle?: number;
   ambientColor?: string;
   ambientIntensity?: number;
+  keyLightX?: number;
+  keyLightY?: number;
+  keyLightZ?: number;
 }> = ({
   theme,
   intensity,
@@ -198,7 +202,10 @@ const StudioLights: React.FC<{
   accentIntensity,
   accentAngle,
   ambientColor,
-  ambientIntensity
+  ambientIntensity,
+  keyLightX,
+  keyLightY,
+  keyLightZ
 }) => {
   const isDark = theme === "dark";
 
@@ -246,7 +253,7 @@ const StudioLights: React.FC<{
       <>
         <ambientLight intensity={finalAmbientIntensity} color={finalAmbientColor} />
         <directionalLight
-          position={[5, 10, 5]}
+          position={[keyLightX ?? 5, keyLightY ?? 10, keyLightZ ?? 5]}
           intensity={0.8}
           color="#ffffff"
           castShadow
@@ -274,7 +281,7 @@ const StudioLights: React.FC<{
       <>
         <ambientLight intensity={finalAmbientIntensity} color={finalAmbientColor} />
         <directionalLight
-          position={[5, 10, 5]}
+          position={[keyLightX ?? 5, keyLightY ?? 10, keyLightZ ?? 5]}
           intensity={1.0}
           color="#fed7aa"
           castShadow
@@ -302,7 +309,7 @@ const StudioLights: React.FC<{
       <>
         <ambientLight intensity={finalAmbientIntensity} color={finalAmbientColor} />
         <directionalLight
-          position={[5, 10, 5]}
+          position={[keyLightX ?? 5, keyLightY ?? 10, keyLightZ ?? 5]}
           intensity={0.2}
           color="#ffffff"
           castShadow
@@ -334,7 +341,7 @@ const StudioLights: React.FC<{
     <>
       <ambientLight intensity={finalAmbientIntensity} color={finalAmbientColor} />
       <directionalLight
-        position={[5, 10, 5]}
+        position={[keyLightX ?? 5, keyLightY ?? 10, keyLightZ ?? 5]}
         intensity={isDark ? 1.5 : 1.2}
         color={isDark ? "#ffffff" : "#fbfbfb"}
         castShadow
@@ -1124,6 +1131,12 @@ export function SharedWrapper({
   envRotation,
   onSceneLoaded,
   turntableActive = false,
+  keyLightX,
+  keyLightY,
+  keyLightZ,
+  bloomIntensity,
+  bloomThreshold,
+  bloomSmoothing,
   children,
   ...props
 }: IconProps & {
@@ -1144,6 +1157,46 @@ export function SharedWrapper({
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  if (!canvas) {
+    if (!mounted || !isWebGLAvailable() || variant === "2d") {
+      return <group />;
+    }
+    return (
+      <IconScene
+        preset={preset}
+        angle={angle}
+        color={color}
+        accentColor={accentColor}
+        spinSpeed={spinSpeed}
+        floatHeight={floatHeight}
+        theme={theme}
+        interactive={interactive}
+        customMaterial={customMaterial}
+        tiltIntensity={tiltIntensity}
+        animationType={animationType}
+        animationAxis={animationAxis}
+        animationDirection={animationDirection}
+        textureType={textureType}
+        emissivePulseSpeed={emissivePulseSpeed}
+        emissivePulseIntensity={emissivePulseIntensity}
+        gradientType={gradientType}
+        gradientColorStart={gradientColorStart}
+        gradientColorEnd={gradientColorEnd}
+        gradientAngle={gradientAngle}
+        manualRotationX={manualRotationX}
+        manualRotationY={manualRotationY}
+        manualRotationZ={manualRotationZ}
+        labelText={labelText}
+        labelColor={labelColor}
+        explodeDistance={explodeDistance}
+        cameraZoom={cameraZoom}
+        turntableActive={turntableActive}
+      >
+        {children}
+      </IconScene>
+    );
+  }
 
   const use2d = variant === "2d" || !isWebGLAvailable() || !mounted;
   const fallbackLabel =
@@ -1195,43 +1248,6 @@ export function SharedWrapper({
     );
   }
 
-  if (!canvas) {
-    return (
-      <IconScene
-        preset={preset}
-        angle={angle}
-        color={color}
-        accentColor={accentColor}
-        spinSpeed={spinSpeed}
-        floatHeight={floatHeight}
-        theme={theme}
-        interactive={interactive}
-        customMaterial={customMaterial}
-        tiltIntensity={tiltIntensity}
-        animationType={animationType}
-        animationAxis={animationAxis}
-        animationDirection={animationDirection}
-        textureType={textureType}
-        emissivePulseSpeed={emissivePulseSpeed}
-        emissivePulseIntensity={emissivePulseIntensity}
-        gradientType={gradientType}
-        gradientColorStart={gradientColorStart}
-        gradientColorEnd={gradientColorEnd}
-        gradientAngle={gradientAngle}
-        manualRotationX={manualRotationX}
-        manualRotationY={manualRotationY}
-        manualRotationZ={manualRotationZ}
-        labelText={labelText}
-        labelColor={labelColor}
-        explodeDistance={explodeDistance}
-        cameraZoom={cameraZoom}
-        turntableActive={turntableActive}
-      >
-        {children}
-      </IconScene>
-    );
-  }
-
   return (
     <div
       role="img"
@@ -1254,6 +1270,9 @@ export function SharedWrapper({
           accentAngle={accentLightAngle}
           ambientColor={ambientLightColor}
           ambientIntensity={ambientLightIntensity}
+          keyLightX={keyLightX}
+          keyLightY={keyLightY}
+          keyLightZ={keyLightZ}
         />
         <group rotation={[0, envRotation ?? 0, 0]}>
           <Environment preset={environment} />
@@ -1311,6 +1330,17 @@ export function SharedWrapper({
           enabled={!turntableActive}
           makeDefault
         />
+
+        {bloomIntensity !== undefined && bloomIntensity > 0 && (
+          <EffectComposer>
+            <Bloom
+              luminanceThreshold={bloomThreshold ?? 0.25}
+              luminanceSmoothing={bloomSmoothing ?? 0.9}
+              intensity={bloomIntensity}
+              mipmapBlur
+            />
+          </EffectComposer>
+        )}
       </Canvas>
     </div>
   );

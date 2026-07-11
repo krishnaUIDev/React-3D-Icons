@@ -69,6 +69,12 @@ export interface IconProps extends Omit<HTMLAttributes<HTMLDivElement>, "style" 
   envRotation?: number; // Environment lighting rotation angle in radians (0 to 2*PI)
   onSceneLoaded?: (scene: any) => void; // Callback to capture the 3D scene instance
   turntableActive?: boolean; // Cinematic turntable showcase mode
+  keyLightX?: number; // Custom key light position X
+  keyLightY?: number; // Custom key light position Y
+  keyLightZ?: number; // Custom key light position Z
+  bloomIntensity?: number; // Custom post-processing bloom intensity
+  bloomThreshold?: number; // Custom post-processing bloom threshold
+  bloomSmoothing?: number; // Custom post-processing bloom smoothing
 }
 
 // Internal standard material config interface

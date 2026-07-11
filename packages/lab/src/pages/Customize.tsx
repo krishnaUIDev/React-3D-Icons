@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import * as THREE from "three";
 import { createRoot } from "react-dom/client";
 import { useRouter } from "../router/Router";
 import { useTranslation } from "../i18n/useTranslation";
@@ -2979,6 +2981,13 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [ambientLightColor, setAmbientLightColor] = useState("#3f3f46");
   const [ambientLightColorInput, setAmbientLightColorInput] = useState("#3f3f46");
 
+  const [keyLightX, setKeyLightX] = useState(5.0);
+  const [keyLightY, setKeyLightY] = useState(10.0);
+  const [keyLightZ, setKeyLightZ] = useState(5.0);
+  const [bloomIntensity, setBloomIntensity] = useState(0.0);
+  const [bloomThreshold, setBloomThreshold] = useState(0.25);
+  const [bloomSmoothing, setBloomSmoothing] = useState(0.9);
+
   const [showPerfStats, setShowPerfStats] = useState(false);
 
   const [animationPlaying, setAnimationPlaying] = useState(true);
@@ -3002,7 +3011,14 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [labelColorInput, setLabelColorInput] = useState("#ffffff");
   const [tuningLabelOpen, setTuningLabelOpen] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(() => audioEngine.isEnabled());
+  const [audioFrequency, setAudioFrequency] = useState(() => audioEngine.getSynthFrequency());
+  const [audioDuration, setAudioDuration] = useState(() => audioEngine.getSynthDuration());
+  const [audioWaveform, setAudioWaveform] = useState<OscillatorType>(() =>
+    audioEngine.getSynthWaveform()
+  );
+  const [tuningAudioOpen, setTuningAudioOpen] = useState(false);
   const [turntableActive, setTurntableActive] = useState(false);
+  const [physicsPlayground, setPhysicsPlayground] = useState(false);
 
   // Round 3 Explode & Reflections states
   const [explodeDistance, setExplodeDistance] = useState(0.0);
@@ -3015,6 +3031,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [shareModalEmbedCode, setShareModalEmbedCode] = useState("");
 
   const [isScreenshotModalOpen, setIsScreenshotModalOpen] = useState(false);
+  const [exportingGLTF, setExportingGLTF] = useState(false);
   const [screenshotBackdrop, setScreenshotBackdrop] = useState<
     "transparent" | "solid" | "gradient" | "grid"
   >("transparent");
@@ -3167,7 +3184,10 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   // Sync audio engine configuration
   useEffect(() => {
     audioEngine.setEnabled(soundEnabled);
-  }, [soundEnabled]);
+    audioEngine.setSynthFrequency(audioFrequency);
+    audioEngine.setSynthDuration(audioDuration);
+    audioEngine.setSynthWaveform(audioWaveform);
+  }, [soundEnabled, audioFrequency, audioDuration, audioWaveform]);
 
   // Sync compare list default icons when active icon changes
   useEffect(() => {
@@ -3461,31 +3481,47 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
       alert("Please wait until the 3D viewport has fully loaded.");
       return;
     }
+    setExportingGLTF(true);
     try {
       audioEngine.playChime();
       const { GLTFExporter } = await import("three/examples/jsm/exporters/GLTFExporter.js");
       const exporter = new GLTFExporter();
+
+      let modelToExport: THREE.Object3D | null = null;
+      sceneRef.current.traverse((child: any) => {
+        if (child.name && child.name.includes("IconGroup")) {
+          modelToExport = child;
+        }
+      });
+
+      const target = modelToExport || sceneRef.current;
+
       exporter.parse(
-        sceneRef.current,
+        target,
         (gltf) => {
-          const output = JSON.stringify(gltf, null, 2);
-          const blob = new Blob([output], { type: "application/json" });
+          const output = gltf instanceof ArrayBuffer ? gltf : JSON.stringify(gltf, null, 2);
+          const blob = new Blob([output], {
+            type: gltf instanceof ArrayBuffer ? "application/octet-stream" : "application/json"
+          });
           const url = URL.createObjectURL(blob);
           const link = document.createElement("a");
           link.href = url;
-          link.download = `${currentIcon.id}-custom.gltf`;
+          link.download = `${currentIcon.id}-customized.glb`;
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
           URL.revokeObjectURL(url);
+          setExportingGLTF(false);
         },
         (error) => {
           console.error("An error occurred during GLTF export:", error);
+          setExportingGLTF(false);
         },
-        { binary: false }
+        { binary: true }
       );
     } catch (e) {
       console.error("Failed to load GLTFExporter:", e);
+      setExportingGLTF(false);
     }
   };
 
@@ -4188,6 +4224,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     accentLightAngle,
     ambientLightColor,
     ambientLightIntensity,
+    keyLightX,
+    keyLightY,
+    keyLightZ,
+    bloomIntensity,
+    bloomThreshold,
+    bloomSmoothing,
     gradientType,
     gradientColorStart,
     gradientColorEnd,
@@ -4458,6 +4500,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         const nextVal = !turntableActive;
                         setTurntableActive(nextVal);
                         audioEngine.playSnap();
+                        if (nextVal) {
+                          setPhysicsPlayground(false); // disable physics sandbox when turntable active
+                        }
                       }}
                       title={
                         turntableActive
@@ -4471,6 +4516,30 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                       }`}
                     >
                       <LucideAll.Tv size={16} />
+                    </button>
+
+                    {/* Physics Sandbox Mode toggle */}
+                    <button
+                      onClick={() => {
+                        const nextVal = !physicsPlayground;
+                        setPhysicsPlayground(nextVal);
+                        audioEngine.playChime();
+                        if (nextVal) {
+                          setTurntableActive(false); // disable turntable when physics active
+                        }
+                      }}
+                      title={
+                        physicsPlayground
+                          ? "Disable Physics Playground"
+                          : "Enable Physics Playground 💥"
+                      }
+                      className={`p-2.5 rounded-xl border transition active:scale-95 cursor-pointer flex items-center justify-center ${
+                        physicsPlayground
+                          ? "border-red-500 bg-red-50/20 text-red-500 dark:text-red-450"
+                          : "border-zinc-200 dark:border-zinc-700 bg-white hover:bg-zinc-50 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-zinc-700 dark:text-zinc-300 shadow-sm"
+                      }`}
+                    >
+                      <LucideAll.Sparkles size={16} />
                     </button>
 
                     <button
@@ -4655,7 +4724,40 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                         id="main-viewport"
                         className="w-full h-full flex items-center justify-center"
                       >
-                        <ActiveComponent key={resetKey} {...canvasIconProps} />
+                        {physicsPlayground ? (
+                          <div className="w-full h-full relative">
+                            <Canvas
+                              camera={{ position: [0, 0, 5], fov: 45 }}
+                              gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
+                              shadows
+                              className="w-full h-full animate-page-fade"
+                            >
+                              <ambientLight
+                                intensity={theme === "dark" ? 0.6 : 0.9}
+                                color={theme === "dark" ? "#2a2d3d" : "#ffffff"}
+                              />
+                              <directionalLight position={[5, 10, 5]} intensity={1.5} castShadow />
+                              <PhysicsBox
+                                preset={preset}
+                                accentColor={accentColor}
+                                customMaterial={customMaterial}
+                                theme={theme}
+                              />
+                            </Canvas>
+                            <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center bg-white/20 dark:bg-zinc-950/30 backdrop-blur-md border border-zinc-200/50 dark:border-white/10 rounded-xl px-4 py-2 pointer-events-none select-none shadow-lg">
+                              <span className="text-[10px] font-extrabold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
+                                💥 Physics Sandbox Active
+                              </span>
+                              <span className="text-[9px] text-zinc-500 dark:text-zinc-400 font-bold uppercase tracking-wider">
+                                Click canvas to spawn • Drag mouse to toss
+                              </span>
+                            </div>
+                          </div>
+                        ) : (
+                          <>
+                            <ActiveComponent key={resetKey} {...canvasIconProps} />
+                          </>
+                        )}
                         {showPerfStats && <PerformanceStatsHUD activeIconName={currentIcon.name} />}
                       </div>
                     )}
@@ -5118,11 +5220,12 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                 {renderMode === "3d" && (
                   <button
                     onClick={handleExportGLTF}
+                    disabled={exportingGLTF}
                     title="Export & Download 3D Model Asset (GLTF)"
-                    className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer active:scale-95 flex items-center justify-center gap-1 text-[9px] font-extrabold uppercase tracking-wider px-2.5"
+                    className="p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:bg-zinc-50 dark:hover:bg-zinc-850 text-zinc-600 dark:text-zinc-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer active:scale-95 flex items-center justify-center gap-1 text-[9px] font-extrabold uppercase tracking-wider px-2.5 disabled:opacity-50"
                   >
                     <LucideAll.Package size={14} />
-                    <span>3D GLTF</span>
+                    <span>{exportingGLTF ? "Exporting..." : "3D GLTF"}</span>
                   </button>
                 )}
 
@@ -5420,6 +5523,90 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                               className="w-full bg-transparent border-none text-[10px] font-mono font-bold text-zinc-600 dark:text-zinc-400 focus:outline-none focus:text-indigo-500 uppercase p-0"
                             />
                           </div>
+                        </div>
+                      </div>
+
+                      {/* Quick Aesthetic Palettes */}
+                      <div className="space-y-2 pt-3 border-t border-zinc-150 dark:border-zinc-800/80">
+                        <span className="text-[9px] font-bold text-zinc-450 dark:text-zinc-550 uppercase tracking-wider block">
+                          Quick Aesthetic Palettes
+                        </span>
+                        <div className="flex flex-wrap gap-2">
+                          {[
+                            {
+                              name: "Nordic Mint",
+                              primary: "#0ea5e9",
+                              accent: "#2dd4bf",
+                              preset: "studio",
+                              gradient: "linear",
+                              gradStart: "#0ea5e9",
+                              gradEnd: "#2dd4bf"
+                            },
+                            {
+                              name: "Sunset Cyber",
+                              primary: "#f43f5e",
+                              accent: "#f59e0b",
+                              preset: "cyber",
+                              gradient: "linear",
+                              gradStart: "#f43f5e",
+                              gradEnd: "#f59e0b"
+                            },
+                            {
+                              name: "Neon Toxic",
+                              primary: "#a855f7",
+                              accent: "#10b981",
+                              preset: "cyber",
+                              gradient: "radial",
+                              gradStart: "#a855f7",
+                              gradEnd: "#10b981"
+                            },
+                            {
+                              name: "Liquid Gold",
+                              primary: "#eab308",
+                              accent: "#ea580c",
+                              preset: "sunset",
+                              gradient: "linear",
+                              gradStart: "#eab308",
+                              gradEnd: "#ea580c"
+                            },
+                            {
+                              name: "Carbon Noir",
+                              primary: "#18181b",
+                              accent: "#cbd5e1",
+                              preset: "dramatic",
+                              gradient: "none"
+                            }
+                          ].map((p) => (
+                            <button
+                              key={p.name}
+                              onClick={() => {
+                                handleColorChange(p.primary);
+                                setAccentColor(p.accent);
+                                setAccentInput(p.accent);
+                                setLightingPreset(p.preset as any);
+                                if (p.gradient) {
+                                  setGradientType(p.gradient as any);
+                                  if (p.gradStart) {
+                                    setGradientColorStart(p.gradStart);
+                                    setGradientColorStartInput(p.gradStart);
+                                  }
+                                  if (p.gradEnd) {
+                                    setGradientColorEnd(p.gradEnd);
+                                    setGradientColorEndInput(p.gradEnd);
+                                  }
+                                }
+                                audioEngine.playClick();
+                              }}
+                              title={`Apply ${p.name} Theme`}
+                              className="flex items-center gap-1.5 px-2 py-1 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-850 transition active:scale-95 text-[9px] font-bold text-zinc-700 dark:text-zinc-300 cursor-pointer shadow-sm"
+                            >
+                              <div className="flex w-3 h-3 rounded-full overflow-hidden border border-zinc-200 dark:border-zinc-750">
+                                <div style={{ backgroundColor: p.primary }} className="w-1.5 h-3" />
+                                <div style={{ backgroundColor: p.accent }} className="w-1.5 h-3" />
+                              </div>
+                              <span>{p.name}</span>
+                            </button>
+                          ))}
                         </div>
                       </div>
                     </div>
@@ -5774,6 +5961,116 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             />
                           </div>
                         </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Audio Synth Customizer Group */}
+                <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                  <button
+                    onClick={() => setTuningAudioOpen(!tuningAudioOpen)}
+                    className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                  >
+                    <span>Synthesizer Audio Settings</span>
+                    {tuningAudioOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
+                  </button>
+                  {tuningAudioOpen && (
+                    <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-850/60 animate-page-fade">
+                      {/* Audio Enable Toggle */}
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold text-zinc-550 dark:text-zinc-450 uppercase tracking-wider">
+                          Tactile Sound FX
+                        </span>
+                        <button
+                          onClick={() => {
+                            setSoundEnabled(!soundEnabled);
+                            audioEngine.playChime();
+                          }}
+                          className={`relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none ${
+                            soundEnabled ? "bg-indigo-600" : "bg-zinc-200 dark:bg-zinc-800"
+                          }`}
+                        >
+                          <span
+                            className={`pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                              soundEnabled ? "translate-x-4" : "translate-x-0"
+                            }`}
+                          />
+                        </button>
+                      </div>
+
+                      {soundEnabled && (
+                        <>
+                          {/* Tone Waveform Selector */}
+                          <div className="space-y-1.5">
+                            <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-555 uppercase tracking-wider block">
+                              Synthesizer Waveform
+                            </label>
+                            <div className="grid grid-cols-4 gap-1.5">
+                              {(["sine", "triangle", "square", "sawtooth"] as OscillatorType[]).map(
+                                (type) => (
+                                  <button
+                                    key={type}
+                                    onClick={() => {
+                                      setAudioWaveform(type);
+                                      // Trigger immediate test beep
+                                      setTimeout(() => audioEngine.playClick(), 50);
+                                    }}
+                                    className={`py-1.5 rounded-lg text-[9px] font-extrabold uppercase tracking-wider border transition cursor-pointer text-center ${
+                                      audioWaveform === type
+                                        ? "border-indigo-500 bg-indigo-50/20 text-indigo-600 dark:text-indigo-400"
+                                        : "border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 text-zinc-650 dark:text-zinc-455 bg-white dark:bg-zinc-900"
+                                    }`}
+                                  >
+                                    {type}
+                                  </button>
+                                )
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Tone Frequency pitch */}
+                          <div className="space-y-1.5">
+                            <div className="flex justify-between items-center text-[10px] font-bold">
+                              <span className="text-zinc-550 dark:text-zinc-455 uppercase tracking-wider">
+                                Tone Pitch
+                              </span>
+                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                                {audioFrequency} Hz
+                              </span>
+                            </div>
+                            <input
+                              type="range"
+                              min="200"
+                              max="1500"
+                              step="20"
+                              value={audioFrequency}
+                              onChange={(e) => setAudioFrequency(parseInt(e.target.value, 10))}
+                              className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            />
+                          </div>
+
+                          {/* Tone Decay duration */}
+                          <div className="space-y-1.5">
+                            <div className="flex justify-between items-center text-[10px] font-bold">
+                              <span className="text-zinc-555 dark:text-zinc-455 uppercase tracking-wider">
+                                Tone Decay Duration
+                              </span>
+                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                                {(audioDuration * 1000).toFixed(0)} ms
+                              </span>
+                            </div>
+                            <input
+                              type="range"
+                              min="0.02"
+                              max="0.30"
+                              step="0.01"
+                              value={audioDuration}
+                              onChange={(e) => setAudioDuration(parseFloat(e.target.value))}
+                              className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            />
+                          </div>
+                        </>
                       )}
                     </div>
                   )}
@@ -6969,6 +7266,150 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                             className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
                           />
                         </div>
+
+                        {/* Key Light Source Coordinates */}
+                        <div className="space-y-3 pt-2 border-t border-zinc-100 dark:border-zinc-800/80">
+                          <label className="text-[10px] font-bold text-indigo-500 uppercase tracking-wider block">
+                            Custom Key Light Position
+                          </label>
+
+                          {/* Key Light X Coordinate */}
+                          <div className="space-y-1.5">
+                            <div className="flex justify-between items-center text-[10px] font-bold">
+                              <span className="text-zinc-550 dark:text-zinc-455 uppercase tracking-wider">
+                                Position X Axis
+                              </span>
+                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                                {keyLightX.toFixed(1)}
+                              </span>
+                            </div>
+                            <input
+                              type="range"
+                              min="-15"
+                              max="15"
+                              step="0.5"
+                              value={keyLightX}
+                              onChange={(e) => setKeyLightX(parseFloat(e.target.value))}
+                              className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            />
+                          </div>
+
+                          {/* Key Light Y Coordinate */}
+                          <div className="space-y-1.5">
+                            <div className="flex justify-between items-center text-[10px] font-bold">
+                              <span className="text-zinc-550 dark:text-zinc-455 uppercase tracking-wider">
+                                Position Y Axis
+                              </span>
+                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                                {keyLightY.toFixed(1)}
+                              </span>
+                            </div>
+                            <input
+                              type="range"
+                              min="-15"
+                              max="15"
+                              step="0.5"
+                              value={keyLightY}
+                              onChange={(e) => setKeyLightY(parseFloat(e.target.value))}
+                              className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            />
+                          </div>
+
+                          {/* Key Light Z Coordinate */}
+                          <div className="space-y-1.5">
+                            <div className="flex justify-between items-center text-[10px] font-bold">
+                              <span className="text-zinc-555 dark:text-zinc-455 uppercase tracking-wider">
+                                Position Z Axis
+                              </span>
+                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                                {keyLightZ.toFixed(1)}
+                              </span>
+                            </div>
+                            <input
+                              type="range"
+                              min="-15"
+                              max="15"
+                              step="0.5"
+                              value={keyLightZ}
+                              onChange={(e) => setKeyLightZ(parseFloat(e.target.value))}
+                              className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Post-Processing Neon Bloom */}
+                        <div className="space-y-3 pt-2 border-t border-zinc-100 dark:border-zinc-800/80">
+                          <label className="text-[10px] font-bold text-indigo-500 uppercase tracking-wider block">
+                            Post-Processing Neon Bloom
+                          </label>
+
+                          {/* Bloom Intensity */}
+                          <div className="space-y-1.5">
+                            <div className="flex justify-between items-center text-[10px] font-bold">
+                              <span className="text-zinc-550 dark:text-zinc-455 uppercase tracking-wider">
+                                Bloom Intensity
+                              </span>
+                              <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                                {bloomIntensity.toFixed(2)}x
+                              </span>
+                            </div>
+                            <input
+                              type="range"
+                              min="0.0"
+                              max="3.0"
+                              step="0.05"
+                              value={bloomIntensity}
+                              onChange={(e) => setBloomIntensity(parseFloat(e.target.value))}
+                              className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                            />
+                          </div>
+
+                          {/* Bloom Threshold */}
+                          {bloomIntensity > 0 && (
+                            <div className="space-y-1.5 animate-page-fade">
+                              <div className="flex justify-between items-center text-[10px] font-bold">
+                                <span className="text-zinc-550 dark:text-zinc-455 uppercase tracking-wider">
+                                  Luminance Threshold
+                                </span>
+                                <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                                  {bloomThreshold.toFixed(2)}
+                                </span>
+                              </div>
+                              <input
+                                type="range"
+                                min="0.0"
+                                max="1.0"
+                                step="0.05"
+                                value={bloomThreshold}
+                                onChange={(e) => setBloomThreshold(parseFloat(e.target.value))}
+                                className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                              />
+                            </div>
+                          )}
+
+                          {/* Bloom Smoothing */}
+                          {bloomIntensity > 0 && (
+                            <div className="space-y-1.5 animate-page-fade">
+                              <div className="flex justify-between items-center text-[10px] font-bold">
+                                <span className="text-zinc-555 dark:text-zinc-455 uppercase tracking-wider">
+                                  Luminance Smoothing
+                                </span>
+                                <span className="text-zinc-750 dark:text-zinc-350 font-mono">
+                                  {bloomSmoothing.toFixed(2)}
+                                </span>
+                              </div>
+                              <input
+                                type="range"
+                                min="0.0"
+                                max="1.0"
+                                step="0.05"
+                                value={bloomSmoothing}
+                                onChange={(e) => setBloomSmoothing(parseFloat(e.target.value))}
+                                className="w-full h-1.5 bg-zinc-100 dark:bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                              />
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                   )}
@@ -7488,5 +7929,189 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
         </div>
       )}
     </div>
+  );
+};
+
+interface PhysicalIcon {
+  id: string;
+  Component: any;
+  position: THREE.Vector3;
+  velocity: THREE.Vector3;
+  rotation: THREE.Euler;
+  rotVelocity: THREE.Vector3;
+  color: string;
+  scale: number;
+}
+
+const PhysicsBox: React.FC<{
+  preset: any;
+  accentColor: string;
+  customMaterial: any;
+  theme: "light" | "dark";
+}> = ({ preset, accentColor, customMaterial, theme }) => {
+  const { viewport } = useThree();
+  const [icons, setIcons] = useState<PhysicalIcon[]>([]);
+  const nextId = useRef(0);
+
+  const spawnIcon = (x: number, y: number) => {
+    const id = (nextId.current++).toString();
+    const randomIcon = ICONS_REGISTRY[Math.floor(Math.random() * ICONS_REGISTRY.length)];
+    const newIcon: PhysicalIcon = {
+      id,
+      Component: randomIcon.Component,
+      position: new THREE.Vector3(x, y, 0),
+      velocity: new THREE.Vector3(
+        (Math.random() - 0.5) * 6,
+        (Math.random() - 0.5) * 2,
+        (Math.random() - 0.5) * 4
+      ),
+      rotation: new THREE.Euler(Math.random() * Math.PI, Math.random() * Math.PI, 0),
+      rotVelocity: new THREE.Vector3(
+        (Math.random() - 0.5) * 3,
+        (Math.random() - 0.5) * 3,
+        (Math.random() - 0.5) * 3
+      ),
+      color: ["#6366f1", "#ec4899", "#10b981", "#f59e0b", "#3b82f6", "#ef4444"][
+        Math.floor(Math.random() * 6)
+      ],
+      scale: 0.5 + Math.random() * 0.3
+    };
+    setIcons((prev) => [...prev.slice(-18), newIcon]);
+  };
+
+  useEffect(() => {
+    for (let i = 0; i < 7; i++) {
+      setTimeout(() => {
+        spawnIcon((Math.random() - 0.5) * 2.5, 2 + Math.random() * 2);
+      }, i * 150);
+    }
+  }, []);
+
+  useFrame((state, delta) => {
+    const dt = Math.min(delta, 0.03);
+    const gravity = 8.5;
+    const bounce = 0.55;
+
+    const halfWidth = viewport.width / 2 - 0.45;
+    const halfHeight = viewport.height / 2 - 0.45;
+
+    setIcons((prev) => {
+      const next = prev.map((icon) => {
+        const pos = icon.position.clone();
+        const vel = icon.velocity.clone();
+        const rot = icon.rotation.clone();
+
+        vel.y -= gravity * dt;
+
+        const mouseWorld = state.pointer.clone().multiplyScalar(4);
+        const distToMouse = pos.distanceTo(new THREE.Vector3(mouseWorld.x, mouseWorld.y, 0));
+        if (distToMouse < 1.6) {
+          const pushDir = pos
+            .clone()
+            .sub(new THREE.Vector3(mouseWorld.x, mouseWorld.y, 0))
+            .normalize();
+          const force = (1.6 - distToMouse) * 12;
+          vel.add(pushDir.multiplyScalar(force * dt));
+        }
+
+        pos.addScaledVector(vel, dt);
+
+        if (pos.y < -halfHeight) {
+          pos.y = -halfHeight;
+          vel.y = -vel.y * bounce;
+          vel.x *= 0.95;
+          vel.z *= 0.95;
+        }
+        if (pos.y > halfHeight) {
+          pos.y = halfHeight;
+          vel.y = -vel.y * bounce;
+        }
+        if (pos.x < -halfWidth) {
+          pos.x = -halfWidth;
+          vel.x = -vel.x * bounce;
+        }
+        if (pos.x > halfWidth) {
+          pos.x = halfWidth;
+          vel.x = -vel.x * bounce;
+        }
+        if (pos.z < -1.5) {
+          pos.z = -1.5;
+          vel.z = -vel.z * bounce;
+        }
+        if (pos.z > 1.5) {
+          pos.z = 1.5;
+          vel.z = -vel.z * bounce;
+        }
+
+        rot.x += icon.rotVelocity.x * dt;
+        rot.y += icon.rotVelocity.y * dt;
+        rot.z += icon.rotVelocity.z * dt;
+
+        return {
+          ...icon,
+          position: pos,
+          velocity: vel,
+          rotation: rot
+        };
+      });
+
+      for (let i = 0; i < next.length; i++) {
+        for (let j = i + 1; j < next.length; j++) {
+          const d = next[i].position.distanceTo(next[j].position);
+          const minD = (next[i].scale + next[j].scale) * 0.45;
+          if (d < minD) {
+            const normal = next[j].position.clone().sub(next[i].position).normalize();
+            const overlap = minD - d;
+
+            next[i].position.addScaledVector(normal, -overlap * 0.5);
+            next[j].position.addScaledVector(normal, overlap * 0.5);
+
+            const relativeVel = next[j].velocity.clone().sub(next[i].velocity);
+            const speed = relativeVel.dot(normal);
+            if (speed < 0) {
+              const impulse = -1.4 * speed;
+              next[i].velocity.addScaledVector(normal, -impulse * 0.5);
+              next[j].velocity.addScaledVector(normal, impulse * 0.5);
+            }
+          }
+        }
+      }
+
+      return next;
+    });
+  });
+
+  return (
+    <group>
+      <mesh
+        position={[0, 0, -0.5]}
+        visible={false}
+        onClick={(e) => {
+          e.stopPropagation();
+          spawnIcon(e.point.x, e.point.y);
+          audioEngine.playClick();
+        }}
+      >
+        <planeGeometry args={[25, 25]} />
+        <meshBasicMaterial transparent opacity={0} />
+      </mesh>
+
+      {icons.map((icon) => {
+        const DynComp = icon.Component;
+        return (
+          <group key={icon.id} position={icon.position} rotation={icon.rotation} scale={icon.scale}>
+            <DynComp
+              canvas={false}
+              preset={preset}
+              color={icon.color}
+              accentColor={accentColor}
+              customMaterial={customMaterial}
+              theme={theme}
+              interactive={false}
+            />
+          </group>
+        );
+      })}
+    </group>
   );
 };

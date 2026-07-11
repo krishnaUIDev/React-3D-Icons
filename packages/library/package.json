@@ -60,5 +60,8 @@
     "@types/three": "^0.166.0",
     "tsup": "^8.1.0",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@react-three/postprocessing": "^3.0.4"
   }
 }

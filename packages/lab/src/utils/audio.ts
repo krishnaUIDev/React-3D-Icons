@@ -1,11 +1,17 @@
 class AudioEngine {
   private ctx: AudioContext | null = null;
   private soundEnabled: boolean = false;
+  private synthFrequency: number = 800;
+  private synthDuration: number = 0.05;
+  private synthWaveform: OscillatorType = "sine";
 
   constructor() {
     // Persist sound settings across page loads and transitions
     if (typeof window !== "undefined") {
       this.soundEnabled = localStorage.getItem("r3d_sound_enabled") === "true";
+      this.synthFrequency = parseInt(localStorage.getItem("r3d_synth_frequency") || "800", 10);
+      this.synthDuration = parseFloat(localStorage.getItem("r3d_synth_duration") || "0.05");
+      this.synthWaveform = (localStorage.getItem("r3d_synth_waveform") || "sine") as OscillatorType;
     }
   }
 
@@ -18,6 +24,30 @@ class AudioEngine {
 
   public isEnabled() {
     return this.soundEnabled;
+  }
+
+  public getSynthFrequency() {
+    return this.synthFrequency;
+  }
+  public setSynthFrequency(val: number) {
+    this.synthFrequency = val;
+    if (typeof window !== "undefined") localStorage.setItem("r3d_synth_frequency", String(val));
+  }
+
+  public getSynthDuration() {
+    return this.synthDuration;
+  }
+  public setSynthDuration(val: number) {
+    this.synthDuration = val;
+    if (typeof window !== "undefined") localStorage.setItem("r3d_synth_duration", String(val));
+  }
+
+  public getSynthWaveform() {
+    return this.synthWaveform;
+  }
+  public setSynthWaveform(val: OscillatorType) {
+    this.synthWaveform = val;
+    if (typeof window !== "undefined") localStorage.setItem("r3d_synth_waveform", val);
   }
 
   private initCtx() {
@@ -38,17 +68,17 @@ class AudioEngine {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
 
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(800, t);
-      osc.frequency.exponentialRampToValueAtTime(150, t + 0.05);
+      osc.type = this.synthWaveform;
+      osc.frequency.setValueAtTime(this.synthFrequency, t);
+      osc.frequency.exponentialRampToValueAtTime(150, t + this.synthDuration);
 
       gain.gain.setValueAtTime(0.06, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + this.synthDuration);
 
       osc.connect(gain);
       gain.connect(this.ctx.destination);
       osc.start(t);
-      osc.stop(t + 0.05);
+      osc.stop(t + this.synthDuration);
     } catch (e) {
       console.warn("Audio click failed", e);
     }
