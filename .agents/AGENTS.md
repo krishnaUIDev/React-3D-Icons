@@ -41,3 +41,24 @@ This document specifies repository-specific guidelines, coding standards, and ar
 ## 5. Build & Lint Hygiene
 
 - **Rule:** Maintain a warning-free compilation output. Always run `npm run lint` and `npm run build:lab` to confirm changes are clean before pushing commits.
+
+---
+
+## 6. Hash-Based Router System
+
+- **Rule:** Never import standard React Router libraries (`react-router-dom`) or use classic HTML anchor path elements for navigating within the Lab app.
+- **Pattern:** Always use the custom `useRouter` hook from [Router.tsx](file:///Users/krishnakondoju/projects/agents/react-3d-icons/packages/lab/src/router/Router.tsx) and trigger views via `navigate("route_name")`.
+
+---
+
+## 7. Internationalization Dictionary
+
+- **Rule:** Do not hardcode user-facing copy, descriptions, or menu labels inside components.
+- **Pattern:** Add translated strings to all locales (English, Spanish, German) in [translations.ts](file:///Users/krishnakondoju/projects/agents/react-3d-icons/packages/lab/src/i18n/translations.ts) and reference them via `t("key")` from the translation utility.
+
+---
+
+## 8. WebGL Context Garbage Collection
+
+- **Rule:** Always release WebGL resources when mounting/unmounting Three.js `<Canvas>` viewports to prevent memory leaks and browser context limit crashes.
+- **Pattern:** Store the active `THREE.WebGLRenderer` in a ref and trigger the native `WEBGL_lose_context` extension on component unmount.
