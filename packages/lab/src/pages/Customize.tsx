@@ -2495,7 +2495,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   // Load custom presets on mount
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("r3d_saved_presets");
+      const stored = localStorage.getItem("r3d_saved_presets:v1");
       if (stored) {
         setSavedPresets(JSON.parse(stored));
       }
@@ -2797,7 +2797,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
     };
     const updated = [...savedPresets, newPreset];
     setSavedPresets(updated);
-    localStorage.setItem("r3d_saved_presets", JSON.stringify(updated));
+    localStorage.setItem("r3d_saved_presets:v1", JSON.stringify(updated));
     setNewPresetName("");
     audioEngine.playChime();
   };
@@ -2805,7 +2805,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const handleDeletePreset = (id: string) => {
     const updated = savedPresets.filter((p) => p.id !== id);
     setSavedPresets(updated);
-    localStorage.setItem("r3d_saved_presets", JSON.stringify(updated));
+    localStorage.setItem("r3d_saved_presets:v1", JSON.stringify(updated));
   };
 
   const applyAestheticTheme = (themePreset: AestheticTheme) => {
@@ -2992,7 +2992,7 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
             }
           });
           setSavedPresets(merged);
-          localStorage.setItem("r3d_saved_presets", JSON.stringify(merged));
+          localStorage.setItem("r3d_saved_presets:v1", JSON.stringify(merged));
           setImportStatus("success");
           setTimeout(() => setImportStatus("idle"), 2500);
         } else {

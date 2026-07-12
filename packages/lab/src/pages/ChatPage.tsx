@@ -7,6 +7,16 @@ interface ChatPageProps {
   theme: "light" | "dark";
 }
 
+function handleSound(soundType: "send" | "reply" | "click") {
+  if (soundType === "send") {
+    audioEngine.playSnap();
+  } else if (soundType === "reply") {
+    audioEngine.playChime();
+  } else {
+    audioEngine.playClick();
+  }
+}
+
 export const ChatPage: React.FC<ChatPageProps> = ({ theme }) => {
   const { navigate, updateCustomizerURL } = useRouter();
 
@@ -25,16 +35,6 @@ export const ChatPage: React.FC<ChatPageProps> = ({ theme }) => {
         break;
       default:
         break;
-    }
-  };
-
-  const handleSound = (soundType: "send" | "reply" | "click") => {
-    if (soundType === "send") {
-      audioEngine.playSnap();
-    } else if (soundType === "reply") {
-      audioEngine.playChime();
-    } else {
-      audioEngine.playClick();
     }
   };
 

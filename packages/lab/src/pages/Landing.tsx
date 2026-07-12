@@ -2619,7 +2619,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
   // Load favorites on mount
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("r3d_favorite_icons");
+      const stored = localStorage.getItem("r3d_favorite_icons:v1");
       if (stored) {
         setFavoriteIconIds(JSON.parse(stored));
       }
@@ -2637,7 +2637,7 @@ export const Landing: React.FC<LandingProps> = ({ theme, search, setSearch }) =>
       updated = [...favoriteIconIds, id];
     }
     setFavoriteIconIds(updated);
-    localStorage.setItem("r3d_favorite_icons", JSON.stringify(updated));
+    localStorage.setItem("r3d_favorite_icons:v1", JSON.stringify(updated));
   };
 
   // Pre-calculate category counts for quick search badges

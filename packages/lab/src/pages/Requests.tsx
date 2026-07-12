@@ -73,8 +73,8 @@ export const Requests: React.FC<RequestsProps> = () => {
   // Load requests from localStorage or fallback to defaults
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("r3d_community_requests");
-      const votedIds = JSON.parse(localStorage.getItem("r3d_voted_requests") || "[]");
+      const stored = localStorage.getItem("r3d_community_requests:v1");
+      const votedIds = JSON.parse(localStorage.getItem("r3d_voted_requests:v1") || "[]");
 
       if (stored) {
         const parsed: IconRequest[] = JSON.parse(stored);
@@ -89,7 +89,7 @@ export const Requests: React.FC<RequestsProps> = () => {
           voted: votedIds.includes(r.id)
         }));
         setRequests(mapped);
-        localStorage.setItem("r3d_community_requests", JSON.stringify(DEFAULT_REQUESTS));
+        localStorage.setItem("r3d_community_requests:v1", JSON.stringify(DEFAULT_REQUESTS));
       }
     } catch (e) {
       console.error("Failed to load requests", e);
@@ -99,7 +99,7 @@ export const Requests: React.FC<RequestsProps> = () => {
   const handleUpvote = (id: string) => {
     audioEngine.playSnap();
 
-    let votedIds = JSON.parse(localStorage.getItem("r3d_voted_requests") || "[]");
+    let votedIds = JSON.parse(localStorage.getItem("r3d_voted_requests:v1") || "[]");
     const isVoted = votedIds.includes(id);
 
     if (isVoted) {
@@ -109,7 +109,7 @@ export const Requests: React.FC<RequestsProps> = () => {
       // Add vote
       votedIds.push(id);
     }
-    localStorage.setItem("r3d_voted_requests", JSON.stringify(votedIds));
+    localStorage.setItem("r3d_voted_requests:v1", JSON.stringify(votedIds));
 
     const updated = requests.map((r) => {
       if (r.id === id) {
@@ -123,7 +123,7 @@ export const Requests: React.FC<RequestsProps> = () => {
     });
 
     localStorage.setItem(
-      "r3d_community_requests",
+      "r3d_community_requests:v1",
       JSON.stringify(updated.map(({ voted: _voted, ...rest }) => rest))
     );
 
@@ -147,16 +147,16 @@ export const Requests: React.FC<RequestsProps> = () => {
 
     const updated = [newReq, ...requests];
     localStorage.setItem(
-      "r3d_community_requests",
+      "r3d_community_requests:v1",
       JSON.stringify(updated.map(({ voted: _voted, ...rest }) => rest))
     );
 
     setRequests(updated.map((r) => (r.id === newReq.id ? { ...r, voted: true } : r)));
 
     // Mark request ID as voted in local storage
-    const votedIds = JSON.parse(localStorage.getItem("r3d_voted_requests") || "[]");
+    const votedIds = JSON.parse(localStorage.getItem("r3d_voted_requests:v1") || "[]");
     votedIds.push(newReq.id);
-    localStorage.setItem("r3d_voted_requests", JSON.stringify(votedIds));
+    localStorage.setItem("r3d_voted_requests:v1", JSON.stringify(votedIds));
 
     setNewIconName("");
     setNewDescription("");

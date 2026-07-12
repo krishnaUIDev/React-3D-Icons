@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useMemo, useCallback } from "react";
 import { translations, LanguageCode, TranslationKey } from "./translations";
 
 interface LanguageContextProps {
@@ -19,24 +19,27 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return "en";
   });
 
-  const setLang = (code: LanguageCode) => {
+  const setLang = useCallback((code: LanguageCode) => {
     setLangState(code);
     localStorage.setItem("react-3d-icons-lang", code);
-  };
+  }, []);
 
-  const t = (key: TranslationKey, replacements?: Record<string, string | number>): string => {
-    let str: string = translations[lang][key] || translations.en[key] || String(key);
-    if (replacements) {
-      Object.entries(replacements).forEach(([k, v]) => {
-        str = str.replace(`{${k}}`, String(v));
-      });
-    }
-    return str;
-  };
-
-  return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>{children}</LanguageContext.Provider>
+  const t = useCallback(
+    (key: TranslationKey, replacements?: Record<string, string | number>): string => {
+      let str: string = translations[lang][key] || translations.en[key] || String(key);
+      if (replacements) {
+        Object.entries(replacements).forEach(([k, v]) => {
+          str = str.replace(`{${k}}`, String(v));
+        });
+      }
+      return str;
+    },
+    [lang]
   );
+
+  const value = useMemo(() => ({ lang, setLang, t }), [lang, setLang, t]);
+
+  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
 
 export const useTranslation = () => {

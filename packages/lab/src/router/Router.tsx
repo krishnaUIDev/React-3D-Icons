@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from "react";
 
 export type AppRoute = "catalog" | "customize" | "info" | "saved" | "sandbox" | "requests" | "chat";
 
@@ -97,22 +97,23 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
-  const navigate = (path: string) => {
+  const navigate = useCallback((path: string) => {
     window.location.hash = path.startsWith("/") ? path : `/${path}`;
-  };
+  }, []);
 
-  const updateCustomizerURL = (colorHex: string, iconId: string) => {
+  const updateCustomizerURL = useCallback((colorHex: string, iconId: string) => {
     // Strip hash if present
     const cleanColor = colorHex.replace("#", "");
     // Replace hash silently without reloading, or via window.location.hash
     window.location.hash = `/icons/${cleanColor}-${iconId}`;
-  };
+  }, []);
 
-  return (
-    <RouterContext.Provider value={{ ...state, navigate, updateCustomizerURL }}>
-      {children}
-    </RouterContext.Provider>
+  const value = useMemo(
+    () => ({ ...state, navigate, updateCustomizerURL }),
+    [state, navigate, updateCustomizerURL]
   );
+
+  return <RouterContext.Provider value={value}>{children}</RouterContext.Provider>;
 };
 
 export const useRouter = () => {

@@ -11,52 +11,41 @@ interface SavedProps {
   theme: "light" | "dark";
 }
 
-export const Saved: React.FC<SavedProps> = ({ theme }) => {
-  const { navigate } = useRouter();
-  const { t } = useTranslation();
-  const [presets, setPresets] = useState<any[]>([]);
-  const [copiedId, setCopiedId] = useState<string | null>(null);
+async function loadJSZip(): Promise<any> {
+  if ((window as any).JSZip) {
+    return (window as any).JSZip;
+  }
+  return new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
+    script.onload = () => {
+      resolve((window as any).JSZip);
+    };
+    script.onerror = () => {
+      reject(new Error("Failed to load JSZip from CDN"));
+    };
+    document.body.appendChild(script);
+  });
+}
 
-  // Bulk ZIP Export States & Handlers
-  const [exportingZip, setExportingZip] = useState(false);
-  const [showExportModal, setShowExportModal] = useState(false);
-  const [zipFormat, setZipFormat] = useState<"tsx" | "svg" | "json">("tsx");
+function generateTSXContent(preset: any, iconName: string): string {
+  const componentName = `Custom${iconName.replace("Icon", "")}`;
+  const customMatStr =
+    preset.customMaterial && Object.keys(preset.customMaterial).length > 0
+      ? `const customMaterial = ${JSON.stringify(preset.customMaterial, null, 2).replace(/"([^"]+)":/g, "$1:")};\n\n  `
+      : "";
 
-  const loadJSZip = async (): Promise<any> => {
-    if ((window as any).JSZip) {
-      return (window as any).JSZip;
-    }
-    return new Promise((resolve, reject) => {
-      const script = document.createElement("script");
-      script.src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
-      script.onload = () => {
-        resolve((window as any).JSZip);
-      };
-      script.onerror = () => {
-        reject(new Error("Failed to load JSZip from CDN"));
-      };
-      document.body.appendChild(script);
-    });
-  };
+  const gradientProps =
+    preset.gradientType && preset.gradientType !== "none"
+      ? `\n      gradientType="${preset.gradientType}"\n      gradientColorStart="${preset.gradientColorStart}"\n      gradientColorEnd="${preset.gradientColorEnd}"\n      gradientAngle={${preset.gradientAngle}}`
+      : "";
 
-  const generateTSXContent = (preset: any, iconName: string): string => {
-    const componentName = `Custom${iconName.replace("Icon", "")}`;
-    const customMatStr =
-      preset.customMaterial && Object.keys(preset.customMaterial).length > 0
-        ? `const customMaterial = ${JSON.stringify(preset.customMaterial, null, 2).replace(/"([^"]+)":/g, "$1:")};\n\n  `
-        : "";
+  const ambientProps =
+    preset.ambientLightIntensity !== undefined
+      ? `\n      ambientLightIntensity={${preset.ambientLightIntensity}}\n      ambientLightColor="${preset.ambientLightColor}"`
+      : "";
 
-    const gradientProps =
-      preset.gradientType && preset.gradientType !== "none"
-        ? `\n      gradientType="${preset.gradientType}"\n      gradientColorStart="${preset.gradientColorStart}"\n      gradientColorEnd="${preset.gradientColorEnd}"\n      gradientAngle={${preset.gradientAngle}}`
-        : "";
-
-    const ambientProps =
-      preset.ambientLightIntensity !== undefined
-        ? `\n      ambientLightIntensity={${preset.ambientLightIntensity}}\n      ambientLightColor="${preset.ambientLightColor}"`
-        : "";
-
-    return `import React from "react";
+  return `import React from "react";
 import { ${iconName} } from "r3d-icons";
 
 export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>) {
@@ -81,7 +70,18 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
   );
 }
 `;
-  };
+}
+
+export const Saved: React.FC<SavedProps> = ({ theme }) => {
+  const { navigate } = useRouter();
+  const { t } = useTranslation();
+  const [presets, setPresets] = useState<any[]>([]);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  // Bulk ZIP Export States & Handlers
+  const [exportingZip, setExportingZip] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [zipFormat, setZipFormat] = useState<"tsx" | "svg" | "json">("tsx");
 
   const handleBulkExportZIP = async () => {
     if (presets.length === 0 || exportingZip) return;
@@ -166,7 +166,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
   // Load presets from localStorage on mount
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("r3d_saved_presets");
+      const stored = localStorage.getItem("r3d_saved_presets:v1");
       if (stored) {
         setPresets(JSON.parse(stored));
       }
@@ -179,7 +179,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
     e.stopPropagation();
     const updated = presets.filter((p) => p.id !== id);
     setPresets(updated);
-    localStorage.setItem("r3d_saved_presets", JSON.stringify(updated));
+    localStorage.setItem("r3d_saved_presets:v1", JSON.stringify(updated));
   };
 
   const handleCopyLink = (preset: any, e: React.MouseEvent) => {
