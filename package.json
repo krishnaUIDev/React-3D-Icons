@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "diagnose": "npx react-doctor@latest -y --blocking error",
     "format": "prettier --write .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "doctor": "npx react-doctor@latest"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^8.63.0",
