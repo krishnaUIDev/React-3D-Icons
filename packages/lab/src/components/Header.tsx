@@ -139,6 +139,16 @@ export const Header: React.FC<HeaderProps> = ({
             >
               {t("requests_nav" as any)}
             </button>
+            <button
+              onClick={() => navigate("chat")}
+              className={`px-3 py-1.5 rounded-lg border text-[10px] font-black uppercase tracking-wider transition-all cursor-pointer shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] flex items-center justify-center hover:scale-[1.03] ${
+                route === "chat"
+                  ? "border-indigo-500/40 bg-indigo-50/20 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_0_12px_rgba(99,102,241,0.1)]"
+                  : "border-zinc-200/80 dark:border-white/10 bg-zinc-100/40 dark:bg-zinc-950/[0.2] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.3] text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
+              }`}
+            >
+              {t("chat_nav" as any)}
+            </button>
           </nav>
         </div>
 
@@ -372,6 +382,20 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             {t("requests_nav" as any)}
+          </button>
+          <button
+            onClick={() => {
+              audioEngine.playClick();
+              navigate("chat");
+              setMobileMenuOpen(false);
+            }}
+            className={`w-full text-left px-4 py-3 rounded-xl border text-xs font-black uppercase tracking-wider transition cursor-pointer select-none ${
+              route === "chat"
+                ? "border-indigo-500/40 bg-indigo-50/20 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400"
+                : "border-zinc-200/60 dark:border-white/5 bg-zinc-50/40 dark:bg-zinc-900/20 text-zinc-650 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900/30"
+            }`}
+          >
+            {t("chat_nav" as any)}
           </button>
         </div>
       )}

@@ -49,7 +49,8 @@ export const translations = {
     saved_presets_nav: "Saved Presets",
     saved_presets_footer: "Saved",
     sandbox_nav: "Layout Sandbox",
-    requests_nav: "Icon Requests"
+    requests_nav: "Icon Requests",
+    chat_nav: "Chat Agent"
   },
   es: {
     hero_title: "Iconos 3D premium y de código abierto bellamente diseñados",
@@ -101,7 +102,8 @@ export const translations = {
     saved_presets_nav: "Ajustes Guardados",
     saved_presets_footer: "Guardados",
     sandbox_nav: "Sandbox de Diseños",
-    requests_nav: "Solicitudes"
+    requests_nav: "Solicitudes",
+    chat_nav: "Asistente Chat"
   },
   de: {
     hero_title: "Wunderschön gestaltete Open-Source- und Premium-3D-Icons",
@@ -153,7 +155,8 @@ export const translations = {
     saved_presets_nav: "Vorlagen",
     saved_presets_footer: "Gespeichert",
     sandbox_nav: "Layout-Sandbox",
-    requests_nav: "Icon-Wünsche"
+    requests_nav: "Icon-Wünsche",
+    chat_nav: "Chat-Assistent"
   }
 } as const;
 

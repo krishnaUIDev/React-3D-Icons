@@ -48,6 +48,8 @@ export type { LetterIconProps } from "./components/LetterIcon";
 // Core utility and shared components exports
 export { Fallback2D } from "./components/Fallback2D";
 export { getMaterialConfig } from "./components/SharedWrapper";
+export { ChatAgent } from "./components/ChatAgent/ChatAgent";
+export type { ChatAgentProps } from "./components/ChatAgent/ChatAgent";
 export * from "./types";
 `;
 

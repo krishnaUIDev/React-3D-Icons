@@ -16,6 +16,9 @@ const Sandbox = React.lazy(() => import("./pages/Sandbox").then((m) => ({ defaul
 const Requests = React.lazy(() =>
   import("./pages/Requests").then((m) => ({ default: m.Requests }))
 );
+const ChatPage = React.lazy(() =>
+  import("./pages/ChatPage").then((m) => ({ default: m.ChatPage }))
+);
 
 function LoadingFallback() {
   return (
@@ -133,6 +136,11 @@ function AppContent() {
           {route === "requests" && (
             <div key="requests" className="animate-page-fade">
               <Requests theme={theme} />
+            </div>
+          )}
+          {route === "chat" && (
+            <div key="chat" className="animate-page-fade">
+              <ChatPage theme={theme} />
             </div>
           )}
         </Suspense>

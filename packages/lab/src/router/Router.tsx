@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-export type AppRoute = "catalog" | "customize" | "info" | "saved" | "sandbox" | "requests";
+export type AppRoute = "catalog" | "customize" | "info" | "saved" | "sandbox" | "requests" | "chat";
 
 interface RouteState {
   route: AppRoute;
@@ -64,6 +64,14 @@ function parseHash(hash: string): RouteState {
   if (cleanHash === "requests") {
     return {
       route: "requests",
+      color: "#6366f1",
+      iconId: "database"
+    };
+  }
+
+  if (cleanHash === "chat") {
+    return {
+      route: "chat",
       color: "#6366f1",
       iconId: "database"
     };
