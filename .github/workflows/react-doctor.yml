@@ -51,3 +51,15 @@ jobs:
         #   version: "0.4.0"         # Pin to a specific react-doctor version instead of "latest"
         #   directory: apps/web      # Scan a sub-directory (default: ".")
         #   project: "web,admin"     # In a monorepo, scan specific workspace project(s)
+
+      - name: Generate React Doctor Report (JSON)
+        if: always()
+        run: npx react-doctor@latest --format json > react-doctor-report.json 2>/dev/null || true
+
+      - name: Upload React Doctor Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: react-doctor-report-${{ github.sha }}
+          path: react-doctor-report.json
+          retention-days: 30
