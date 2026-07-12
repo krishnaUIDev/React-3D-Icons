@@ -11,6 +11,7 @@
     "build:lab": "npm run build --workspace=packages/lab",
     "test:e2e": "npm run test --workspace=packages/e2e",
     "lint": "eslint .",
+    "diagnose": "npx react-doctor@latest -y --blocking error",
     "format": "prettier --write .",
     "prepare": "husky"
   },

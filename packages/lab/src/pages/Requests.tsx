@@ -111,23 +111,23 @@ export const Requests: React.FC<RequestsProps> = () => {
     }
     localStorage.setItem("r3d_voted_requests", JSON.stringify(votedIds));
 
-    setRequests((prev) => {
-      const updated = prev.map((r) => {
-        if (r.id === id) {
-          return {
-            ...r,
-            votes: r.voted ? r.votes - 1 : r.votes + 1,
-            voted: !r.voted
-          };
-        }
-        return r;
-      });
-      localStorage.setItem(
-        "r3d_community_requests",
-        JSON.stringify(updated.map(({ voted: _voted, ...rest }) => rest))
-      );
-      return updated;
+    const updated = requests.map((r) => {
+      if (r.id === id) {
+        return {
+          ...r,
+          votes: r.voted ? r.votes - 1 : r.votes + 1,
+          voted: !r.voted
+        };
+      }
+      return r;
     });
+
+    localStorage.setItem(
+      "r3d_community_requests",
+      JSON.stringify(updated.map(({ voted: _voted, ...rest }) => rest))
+    );
+
+    setRequests(updated);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -145,14 +145,13 @@ export const Requests: React.FC<RequestsProps> = () => {
       createdAt: new Date().toISOString()
     };
 
-    setRequests((prev) => {
-      const updated = [newReq, ...prev];
-      localStorage.setItem(
-        "r3d_community_requests",
-        JSON.stringify(updated.map(({ voted: _voted, ...rest }) => rest))
-      );
-      return updated.map((r) => (r.id === newReq.id ? { ...r, voted: true } : r));
-    });
+    const updated = [newReq, ...requests];
+    localStorage.setItem(
+      "r3d_community_requests",
+      JSON.stringify(updated.map(({ voted: _voted, ...rest }) => rest))
+    );
+
+    setRequests(updated.map((r) => (r.id === newReq.id ? { ...r, voted: true } : r)));
 
     // Mark request ID as voted in local storage
     const votedIds = JSON.parse(localStorage.getItem("r3d_voted_requests") || "[]");

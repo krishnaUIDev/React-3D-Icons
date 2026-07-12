@@ -7524,11 +7524,17 @@ const PhysicsBox: React.FC<{
   };
 
   useEffect(() => {
-    for (let i = 0; i < 7; i++) {
-      setTimeout(() => {
-        spawnIcon((Math.random() - 0.5) * 2.5, 2 + Math.random() * 2);
-      }, i * 150);
-    }
+    let count = 0;
+    const interval = setInterval(() => {
+      spawnIcon((Math.random() - 0.5) * 2.5, 2 + Math.random() * 2);
+      count++;
+      if (count >= 7) {
+        clearInterval(interval);
+      }
+    }, 150);
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   useFrame((state, delta) => {

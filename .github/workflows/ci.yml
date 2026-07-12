@@ -31,6 +31,9 @@ jobs:
       - name: Run Formatting Checks
         run: npm run format -- --check
 
+      - name: Run React Codebase Diagnostics (React Doctor)
+        run: npm run diagnose
+
       - name: Build Library
         run: npm run build:lib
 
