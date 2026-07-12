@@ -4970,6 +4970,59 @@ const getRawSVG = (id: string, strokeColor: string, isDark: boolean): React.Reac
   }
 };
 
+// Gradient helper — module-scoped so React keeps a stable component identity
+function RenderGradient({
+  gradId,
+  stops,
+  gradientType,
+  gradientAngle
+}: {
+  gradId: string;
+  stops: any[];
+  gradientType?: string;
+  gradientAngle?: number;
+}) {
+  if (gradientType === "radial") {
+    return (
+      <radialGradient id={gradId} cx="50%" cy="50%" r="50%">
+        {stops.map((stop, index) => (
+          <stop
+            key={`stop-${index}`}
+            offset={stop.offset}
+            stopColor={stop.color}
+            stopOpacity={stop.opacity ?? 1}
+          />
+        ))}
+      </radialGradient>
+    );
+  }
+
+  let x1 = "0%",
+    y1 = "0%",
+    x2 = "100%",
+    y2 = "100%";
+  if (gradientAngle !== undefined && gradientType === "linear") {
+    const rad = (gradientAngle * Math.PI) / 180;
+    x1 = `${Math.round(50 - Math.cos(rad) * 50)}%`;
+    y1 = `${Math.round(50 - Math.sin(rad) * 50)}%`;
+    x2 = `${Math.round(50 + Math.cos(rad) * 50)}%`;
+    y2 = `${Math.round(50 + Math.sin(rad) * 50)}%`;
+  }
+
+  return (
+    <linearGradient id={gradId} x1={x1} y1={y1} x2={x2} y2={y2}>
+      {stops.map((stop, index) => (
+        <stop
+          key={`stop-${index}`}
+          offset={stop.offset}
+          stopColor={stop.color}
+          stopOpacity={stop.opacity ?? 1}
+        />
+      ))}
+    </linearGradient>
+  );
+}
+
 export const Fallback2D: React.FC<Fallback2DProps> = ({
   id,
   color = "#6366f1",
@@ -5012,48 +5065,6 @@ export const Fallback2D: React.FC<Fallback2DProps> = ({
     grad.strokeWidth
   );
 
-  const RenderGradient = ({ gradId, stops }: { gradId: string; stops: any[] }) => {
-    if (gradientType === "radial") {
-      return (
-        <radialGradient id={gradId} cx="50%" cy="50%" r="50%">
-          {stops.map((stop, index) => (
-            <stop
-              key={index}
-              offset={stop.offset}
-              stopColor={stop.color}
-              stopOpacity={stop.opacity ?? 1}
-            />
-          ))}
-        </radialGradient>
-      );
-    }
-
-    let x1 = "0%",
-      y1 = "0%",
-      x2 = "100%",
-      y2 = "100%";
-    if (gradientAngle !== undefined && gradientType === "linear") {
-      const rad = (gradientAngle * Math.PI) / 180;
-      x1 = `${Math.round(50 - Math.cos(rad) * 50)}%`;
-      y1 = `${Math.round(50 - Math.sin(rad) * 50)}%`;
-      x2 = `${Math.round(50 + Math.cos(rad) * 50)}%`;
-      y2 = `${Math.round(50 + Math.sin(rad) * 50)}%`;
-    }
-
-    return (
-      <linearGradient id={gradId} x1={x1} y1={y1} x2={x2} y2={y2}>
-        {stops.map((stop, index) => (
-          <stop
-            key={index}
-            offset={stop.offset}
-            stopColor={stop.color}
-            stopOpacity={stop.opacity ?? 1}
-          />
-        ))}
-      </linearGradient>
-    );
-  };
-
   if (id.startsWith("letter-")) {
     const letter = id.replace("letter-", "").toUpperCase();
     return (
@@ -5073,8 +5084,18 @@ export const Fallback2D: React.FC<Fallback2DProps> = ({
               floodOpacity={isDark ? "0.6" : "0.35"}
             />
           </filter>
-          <RenderGradient gradId={strokeGradId} stops={grad.strokeGradient.stops} />
-          <RenderGradient gradId={fillGradId} stops={grad.fillGradient.stops} />
+          <RenderGradient
+            gradId={strokeGradId}
+            stops={grad.strokeGradient.stops}
+            gradientType={gradientType}
+            gradientAngle={gradientAngle}
+          />
+          <RenderGradient
+            gradId={fillGradId}
+            stops={grad.fillGradient.stops}
+            gradientType={gradientType}
+            gradientAngle={gradientAngle}
+          />
           <radialGradient id={`plate-bg-gradient-${id}`} cx="50%" cy="50%" r="70%">
             <stop
               offset="0%"
@@ -5125,8 +5146,18 @@ export const Fallback2D: React.FC<Fallback2DProps> = ({
             floodOpacity={isDark ? "0.6" : "0.35"}
           />
         </filter>
-        <RenderGradient gradId={strokeGradId} stops={grad.strokeGradient.stops} />
-        <RenderGradient gradId={fillGradId} stops={grad.fillGradient.stops} />
+        <RenderGradient
+          gradId={strokeGradId}
+          stops={grad.strokeGradient.stops}
+          gradientType={gradientType}
+          gradientAngle={gradientAngle}
+        />
+        <RenderGradient
+          gradId={fillGradId}
+          stops={grad.fillGradient.stops}
+          gradientType={gradientType}
+          gradientAngle={gradientAngle}
+        />
       </defs>
 
       {/* Ambient inner glow behind the icon */}

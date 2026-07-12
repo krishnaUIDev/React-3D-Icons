@@ -1,9 +1,9 @@
 import { SharedWrapper } from "../SharedWrapper";
 import { BoltIconProps } from "./types";
 
-export function BoltIcon(props: BoltIconProps) {
-  const threadOffsets = [0.08, -0.1, -0.28, -0.46, -0.64];
+const THREAD_OFFSETS = [0.08, -0.1, -0.28, -0.46, -0.64];
 
+export function BoltIcon(props: BoltIconProps) {
   return (
     <SharedWrapper iconId="bolt" {...props}>
       {(mat) => (
@@ -41,9 +41,9 @@ export function BoltIcon(props: BoltIconProps) {
             </mesh>
 
             {/* Thread Ridges */}
-            {threadOffsets.map((yOffset, index) => (
+            {THREAD_OFFSETS.map((yOffset, index) => (
               <mesh
-                key={index}
+                key={`thread-${index}`}
                 position={[0, yOffset, 0]}
                 rotation={[Math.PI / 2, 0, 0]}
                 castShadow

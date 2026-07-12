@@ -1,6 +1,8 @@
 import { SharedWrapper } from "../SharedWrapper";
 import { AnchorIconProps } from "./types";
 
+const STOCK_CAP_OFFSETS: number[] = [-0.275, 0.275];
+
 export function AnchorIcon(props: AnchorIconProps) {
   return (
     <SharedWrapper iconId="anchor" {...props}>
@@ -41,8 +43,8 @@ export function AnchorIcon(props: AnchorIconProps) {
           </mesh>
 
           {/* Decorative stock end caps (using accent color) */}
-          {[-0.275, 0.275].map((xOffset, index) => (
-            <mesh key={index} position={[xOffset, 0.35, 0]}>
+          {STOCK_CAP_OFFSETS.map((xOffset, index) => (
+            <mesh key={`cap-${index}`} position={[xOffset, 0.35, 0]}>
               <sphereGeometry args={[0.06, 16, 16]} />
               <meshStandardMaterial
                 color={mat.emissiveIntensity > 0 ? mat.emissive : props.accentColor || "#ec4899"}
