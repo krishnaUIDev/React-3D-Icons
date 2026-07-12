@@ -185,7 +185,7 @@ function FlameStudio() {
 
   // Interaction vectors
   const previousMousePosition = useRef({ x: 0, y: 0 });
-  const [isDragging, setIsDragging] = useState(false);
+  const isDragging = useRef(false);
 
   useEffect(() => {
     if (window.THREE) {
@@ -618,12 +618,12 @@ function FlameStudio() {
   }, [lightingPreset, threeLoaded]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
+    isDragging.current = true;
     previousMousePosition.current = { x: e.clientX, y: e.clientY };
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !rotationGroupRef.current) return;
+    if (!isDragging.current || !rotationGroupRef.current) return;
     const deltaX = e.clientX - previousMousePosition.current.x;
     const deltaY = e.clientY - previousMousePosition.current.y;
 
@@ -634,12 +634,12 @@ function FlameStudio() {
   };
 
   const handleMouseUp = () => {
-    setIsDragging(false);
+    isDragging.current = false;
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
     if (e.touches.length === 1) {
-      setIsDragging(true);
+      isDragging.current = true;
       previousMousePosition.current = {
         x: e.touches[0].clientX,
         y: e.touches[0].clientY
@@ -648,7 +648,7 @@ function FlameStudio() {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging || e.touches.length !== 1 || !rotationGroupRef.current) return;
+    if (!isDragging.current || e.touches.length !== 1 || !rotationGroupRef.current) return;
     const deltaX = e.touches[0].clientX - previousMousePosition.current.x;
     const deltaY = e.touches[0].clientY - previousMousePosition.current.y;
 
@@ -749,7 +749,10 @@ flameMesh.scale.set(1, 1, ${flatness}); // Modern stylized flat icon look!`;
     <div className="min-h-screen bg-[#f8fafc] text-slate-800 flex flex-col font-sans overflow-x-hidden selection:bg-orange-100 selection:text-orange-900">
       {/* Toast systems */}
       {toastMessage && (
-        <div className="fixed top-6 right-6 z-50 flex items-center bg-white border border-orange-200 text-orange-800 px-4 py-3 rounded-xl shadow-xl backdrop-blur-md animate-bounce">
+        <div
+          className="fixed top-6 right-6 z-50 flex items-center bg-white border border-orange-200 text-orange-800 px-4 py-3 rounded-xl shadow-xl backdrop-blur-md"
+          style={{ animation: "slideIn 0.35s cubic-bezier(0.16,1,0.3,1) forwards" }}
+        >
           <svg
             className="w-5 h-5 mr-2 stroke-current text-orange-500"
             fill="none"
@@ -812,6 +815,7 @@ flameMesh.scale.set(1, 1, ${flatness}); // Modern stylized flat icon look!`;
             { id: "toxic", label: "Plasma Nuclear", color: "#22c55e" }
           ].map((preset, idx) => (
             <button
+              type="button"
               key={idx}
               onClick={() => applySpectrumPreset(preset.id)}
               className="text-xs px-3 py-1.5 rounded-full border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:border-slate-300 transition-all font-medium hover:scale-105 active:scale-95 duration-150 flex items-center gap-1.5 shadow-sm"
@@ -832,18 +836,21 @@ flameMesh.scale.set(1, 1, ${flatness}); // Modern stylized flat icon look!`;
         <div className="lg:col-span-4 border-r border-slate-200 bg-slate-50 flex flex-col overflow-y-auto max-h-[calc(100vh-73px)]">
           <div className="grid grid-cols-3 border-b border-slate-200 text-center sticky top-0 bg-slate-50 z-10">
             <button
+              type="button"
               onClick={() => setActiveTab("flame")}
               className={`py-3 text-xs font-bold border-b-2 transition-all ${activeTab === "flame" ? "border-orange-500 text-orange-600 bg-white" : "border-transparent text-slate-500 hover:text-slate-800"}`}
             >
               Flame Profile
             </button>
             <button
+              type="button"
               onClick={() => setActiveTab("rendering")}
               className={`py-3 text-xs font-bold border-b-2 transition-all ${activeTab === "rendering" ? "border-orange-500 text-orange-600 bg-white" : "border-transparent text-slate-500 hover:text-slate-800"}`}
             >
               Material &amp; Glow
             </button>
             <button
+              type="button"
               onClick={() => setActiveTab("physics")}
               className={`py-3 text-xs font-bold border-b-2 transition-all ${activeTab === "physics" ? "border-orange-500 text-orange-600 bg-white" : "border-transparent text-slate-500 hover:text-slate-800"}`}
             >
@@ -947,6 +954,7 @@ flameMesh.scale.set(1, 1, ${flatness}); // Modern stylized flat icon look!`;
                     </span>
                   </div>
                   <button
+                    type="button"
                     onClick={() => setShowLogs(!showLogs)}
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-all ${showLogs ? "bg-orange-500" : "bg-slate-200"}`}
                   >
@@ -973,6 +981,7 @@ flameMesh.scale.set(1, 1, ${flatness}); // Modern stylized flat icon look!`;
                       { id: "matte", label: "Tactile Clay", desc: "Clean, soft pastel matte" }
                     ].map((style) => (
                       <button
+                        type="button"
                         key={style.id}
                         onClick={() => setFlameStyle(style.id)}
                         className={`p-3.5 rounded-xl border text-left transition-all ${flameStyle === style.id ? "border-orange-500 bg-orange-50/50 shadow-sm" : "border-slate-200 bg-white hover:border-slate-300"}`}
@@ -1006,6 +1015,7 @@ flameMesh.scale.set(1, 1, ${flatness}); // Modern stylized flat icon look!`;
                       }
                     ].map((preset) => (
                       <button
+                        type="button"
                         key={preset.id}
                         onClick={() => setLightingPreset(preset.id)}
                         className={`p-2 rounded-xl text-[10px] font-bold border text-left transition-all ${lightingPreset === preset.id ? "border-orange-500 bg-orange-50/20" : "border-slate-200 bg-white"}`}
@@ -1117,6 +1127,7 @@ flameMesh.scale.set(1, 1, ${flatness}); // Modern stylized flat icon look!`;
 
           <div className="absolute top-4 right-4 z-10">
             <button
+              type="button"
               onClick={resetRotation}
               className="p-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-all text-xs flex items-center gap-1 shadow-sm"
             >
@@ -1163,6 +1174,7 @@ flameMesh.scale.set(1, 1, ${flatness}); // Modern stylized flat icon look!`;
                   Show Helper Floor:
                 </span>
                 <button
+                  type="button"
                   onClick={() => setGridVisible(!gridVisible)}
                   className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all shadow-sm ${gridVisible ? "bg-orange-500 border-orange-400 text-white" : "bg-white border-slate-200 text-slate-600"}`}
                 >
@@ -1176,6 +1188,7 @@ flameMesh.scale.set(1, 1, ${flatness}); // Modern stylized flat icon look!`;
                 Projection:
               </span>
               <button
+                type="button"
                 onClick={() => setOrthographic(!orthographic)}
                 className={`px-3 py-1.5 rounded-lg border text-xs font-bold transition-all shadow-sm ${orthographic ? "bg-orange-500 border-orange-400 text-white" : "bg-white border-slate-200 text-slate-600"}`}
               >
@@ -1238,6 +1251,7 @@ flameMesh.scale.set(1, 1, ${flatness}); // Modern stylized flat icon look!`;
                 Assets Exporter
               </span>
               <button
+                type="button"
                 onClick={downloadPng}
                 className="w-full py-3 bg-gradient-to-r from-orange-400 to-red-500 hover:from-orange-500 hover:to-red-600 font-extrabold text-xs text-white uppercase tracking-widest rounded-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-md shadow-orange-500/10"
               >
@@ -1262,6 +1276,7 @@ flameMesh.scale.set(1, 1, ${flatness}); // Modern stylized flat icon look!`;
             <div className="flex-1 flex flex-col min-h-[220px]">
               <div className="flex border-b border-slate-200 text-[10px] font-bold uppercase tracking-wider mb-2">
                 <button
+                  type="button"
                   onClick={() => setCodeTab("threejs")}
                   className={`flex-1 pb-1.5 border-b-2 text-center transition-all ${codeTab === "threejs" ? "border-orange-500 text-orange-600 font-bold" : "border-transparent text-slate-400"}`}
                 >
@@ -1275,6 +1290,7 @@ flameMesh.scale.set(1, 1, ${flatness}); // Modern stylized flat icon look!`;
                   {getThreeJsCode()}
                 </pre>
                 <button
+                  type="button"
                   onClick={() =>
                     copyToClipboard(getThreeJsCode(), "ThreeJS profile geometry source")
                   }

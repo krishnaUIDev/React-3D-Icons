@@ -21,6 +21,95 @@ export interface ChatAgentProps {
   onSoundTrigger?: (soundType: "send" | "reply" | "click") => void;
 }
 
+function generateAgentReply(query: string): ChatMessage {
+  const q = query.toLowerCase();
+  const ts = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const id = `reply_${Date.now()}`;
+
+  // Gamepad matching
+  if (q.includes("gamepad") || q.includes("game") || q.includes("console")) {
+    return {
+      id,
+      sender: "agent",
+      text: "I've located the 3D Gamepad Icon asset! It's styled with physical joysticks and responsive buttons. Let's load the model in the customizer sandbox.",
+      timestamp: ts,
+      actions: [{ label: "🎮 Load Gamepad Icon", type: "show_icon", payload: "Gamepad" }]
+    };
+  }
+
+  // Router matching
+  if (q.includes("router") || q.includes("network") || q.includes("wifi")) {
+    return {
+      id,
+      sender: "agent",
+      text: "The 3D Router Icon features dual dual-band antennas, dynamic connection indicator LEDs, and a premium metallic chassis structure. You can customize the casing roughness and metalness parameter sliders.",
+      timestamp: ts,
+      actions: [{ label: "📶 Load Router Icon", type: "show_icon", payload: "Router" }]
+    };
+  }
+
+  // Shield matching
+  if (
+    q.includes("shield") ||
+    q.includes("security") ||
+    q.includes("protect") ||
+    q.includes("lock")
+  ) {
+    return {
+      id,
+      sender: "agent",
+      text: "The 3D Shield Icon represents state-of-the-art protection layout. It looks incredibly gorgeous with the 'hologram' or 'glassmorphic' presets.",
+      timestamp: ts,
+      actions: [{ label: "🛡️ Load Shield Icon", type: "show_icon", payload: "Shield" }]
+    };
+  }
+
+  // Gold preset matching
+  if (q.includes("gold")) {
+    return {
+      id,
+      sender: "agent",
+      text: "Applying the premium 'Gold' material configuration. This increases the metalness index to 1.0, drops roughness to 0.15, and applies a rich polished gold reflectivity map.",
+      timestamp: ts,
+      actions: [{ label: "✨ Apply Gold", type: "apply_preset", payload: "gold" }]
+    };
+  }
+
+  // Glass preset matching
+  if (q.includes("glass") || q.includes("frosted") || q.includes("translucent")) {
+    return {
+      id,
+      sender: "agent",
+      text: "Setting up the 'Glassmorphism' preset configuration. This activates the light-transmission layer (physical glass refraction) with an high clearcoat intensity.",
+      timestamp: ts,
+      actions: [{ label: "🔮 Apply Glassmorphism", type: "apply_preset", payload: "glassmorphism" }]
+    };
+  }
+
+  // Hologram preset matching
+  if (q.includes("hologram") || q.includes("neon") || q.includes("cyber")) {
+    return {
+      id,
+      sender: "agent",
+      text: "Switching configuration to the 'Hologram' look. This adjusts refraction indexes and uses a vivid violet emission mapping for that cybernetic look.",
+      timestamp: ts,
+      actions: [{ label: "💫 Apply Hologram", type: "apply_preset", payload: "hologram" }]
+    };
+  }
+
+  // Default reply
+  return {
+    id,
+    sender: "agent",
+    text: "I can help you customize the 3D models in real-time. Try asking me to apply material profiles (like Gold, Glassmorphism, or Hologram) or navigate to specific sections!",
+    timestamp: ts,
+    actions: [
+      { label: "✨ Apply Gold Preset", type: "apply_preset", payload: "gold" },
+      { label: "🛠️ Go to Layout Sandbox", type: "navigate", payload: "sandbox" }
+    ]
+  };
+}
+
 export const ChatAgent: React.FC<ChatAgentProps> = ({
   agentName = "R3D-Assistant",
   placeholderText = "Ask about 3D icons, presets, or parameters...",
@@ -80,97 +169,6 @@ export const ChatAgent: React.FC<ChatAgentProps> = ({
     onActionTriggered?.({ type, payload });
   };
 
-  const generateAgentReply = (query: string): ChatMessage => {
-    const q = query.toLowerCase();
-    const ts = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-    const id = `reply_${Date.now()}`;
-
-    // Gamepad matching
-    if (q.includes("gamepad") || q.includes("game") || q.includes("console")) {
-      return {
-        id,
-        sender: "agent",
-        text: "I've located the 3D Gamepad Icon asset! It's styled with physical joysticks and responsive buttons. Let's load the model in the customizer sandbox.",
-        timestamp: ts,
-        actions: [{ label: "🎮 Load Gamepad Icon", type: "show_icon", payload: "Gamepad" }]
-      };
-    }
-
-    // Router matching
-    if (q.includes("router") || q.includes("network") || q.includes("wifi")) {
-      return {
-        id,
-        sender: "agent",
-        text: "The 3D Router Icon features dual dual-band antennas, dynamic connection indicator LEDs, and a premium metallic chassis structure. You can customize the casing roughness and metalness parameter sliders.",
-        timestamp: ts,
-        actions: [{ label: "📶 Load Router Icon", type: "show_icon", payload: "Router" }]
-      };
-    }
-
-    // Shield matching
-    if (
-      q.includes("shield") ||
-      q.includes("security") ||
-      q.includes("protect") ||
-      q.includes("lock")
-    ) {
-      return {
-        id,
-        sender: "agent",
-        text: "The 3D Shield Icon represents state-of-the-art protection layout. It looks incredibly gorgeous with the 'hologram' or 'glassmorphic' presets.",
-        timestamp: ts,
-        actions: [{ label: "🛡️ Load Shield Icon", type: "show_icon", payload: "Shield" }]
-      };
-    }
-
-    // Gold preset matching
-    if (q.includes("gold")) {
-      return {
-        id,
-        sender: "agent",
-        text: "Applying the premium 'Gold' material configuration. This increases the metalness index to 1.0, drops roughness to 0.15, and applies a rich polished gold reflectivity map.",
-        timestamp: ts,
-        actions: [{ label: "✨ Apply Gold", type: "apply_preset", payload: "gold" }]
-      };
-    }
-
-    // Glass preset matching
-    if (q.includes("glass") || q.includes("frosted") || q.includes("translucent")) {
-      return {
-        id,
-        sender: "agent",
-        text: "Setting up the 'Glassmorphism' preset configuration. This activates the light-transmission layer (physical glass refraction) with an high clearcoat intensity.",
-        timestamp: ts,
-        actions: [
-          { label: "🔮 Apply Glassmorphism", type: "apply_preset", payload: "glassmorphism" }
-        ]
-      };
-    }
-
-    // Hologram preset matching
-    if (q.includes("hologram") || q.includes("neon") || q.includes("cyber")) {
-      return {
-        id,
-        sender: "agent",
-        text: "Switching configuration to the 'Hologram' look. This adjusts refraction indexes and uses a vivid violet emission mapping for that cybernetic look.",
-        timestamp: ts,
-        actions: [{ label: "💫 Apply Hologram", type: "apply_preset", payload: "hologram" }]
-      };
-    }
-
-    // Default reply
-    return {
-      id,
-      sender: "agent",
-      text: "I can help you customize the 3D models in real-time. Try asking me to apply material profiles (like Gold, Glassmorphism, or Hologram) or navigate to specific sections!",
-      timestamp: ts,
-      actions: [
-        { label: "✨ Apply Gold Preset", type: "apply_preset", payload: "gold" },
-        { label: "🛠️ Go to Layout Sandbox", type: "navigate", payload: "sandbox" }
-      ]
-    };
-  };
-
   return (
     <div className="flex flex-col h-full rounded-2xl overflow-hidden bg-white/40 dark:bg-zinc-950/20 backdrop-blur-2xl border border-zinc-200/50 dark:border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_8px_32px_rgba(0,0,0,0.04)]">
       {/* Header */}
@@ -221,6 +219,7 @@ export const ChatAgent: React.FC<ChatAgentProps> = ({
               <div className="flex flex-wrap gap-1.5 mt-2">
                 {m.actions.map((act) => (
                   <button
+                    type="button"
                     key={act.label}
                     onClick={() => handleAction(act.type, act.payload)}
                     className="px-2.5 py-1 rounded-lg border border-zinc-200/60 dark:border-white/5 bg-white/60 dark:bg-zinc-900/40 hover:bg-white dark:hover:bg-zinc-800 hover:scale-[1.03] transition-all text-[9px] font-bold text-indigo-500 dark:text-indigo-400 cursor-pointer shadow-sm"
