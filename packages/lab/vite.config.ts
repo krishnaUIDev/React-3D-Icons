@@ -15,6 +15,7 @@ export default defineConfig({
     exclude: ["r3d-icons"]
   },
   build: {
+    chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
         manualChunks(id) {
