@@ -294,6 +294,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
 
         {presets.length > 0 && (
           <button
+            type="button"
             onClick={() => setShowExportModal(true)}
             className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs uppercase tracking-wider transition active:scale-95 cursor-pointer shadow-md shadow-indigo-600/10 self-start sm:self-center"
           >
@@ -316,6 +317,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
             {t("saved_presets_empty_desc" as any)}
           </p>
           <button
+            type="button"
             onClick={() => navigate("customize")}
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-indigo-600/20 cursor-pointer active:scale-95 transition"
           >
@@ -330,7 +332,6 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
             const registryEntry =
               ICONS_REGISTRY.find((item) => item.id === (preset.iconId || "shield")) ||
               ICONS_REGISTRY[0];
-            const Component = (props: any) => <Lazy3DIcon name={registryEntry.name} {...props} />;
             const iconName = registryEntry.name;
 
             return (
@@ -342,7 +343,8 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                 {/* 3D Canvas Preview Window */}
                 <div className="h-40 w-full rounded-2xl bg-zinc-50 dark:bg-[#07090f] relative overflow-hidden flex items-center justify-center border border-zinc-100 dark:border-zinc-900 group-hover:bg-zinc-100/50 dark:group-hover:bg-[#05070c] transition">
                   <div className="absolute inset-0 z-0">
-                    <Component
+                    <Lazy3DIcon
+                      name={registryEntry.name}
                       size={140}
                       preset={preset.preset}
                       angle={preset.angle}
@@ -380,6 +382,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                 <div className="flex items-center justify-end gap-1.5 mt-5 pt-3 border-t border-zinc-100 dark:border-zinc-800/80">
                   {/* Load / Inspect */}
                   <button
+                    type="button"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleLoadWorkbench(preset);
@@ -392,6 +395,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
 
                   {/* Copy Share Link */}
                   <button
+                    type="button"
                     onClick={(e) => handleCopyLink(preset, e)}
                     title={copiedId === preset.id ? "Copied Link!" : "Copy Share Link"}
                     className="p-2 rounded-lg bg-zinc-50 dark:bg-[#07090f] border border-zinc-200 dark:border-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-green-600 dark:hover:text-green-400 transition cursor-pointer"
@@ -401,6 +405,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
 
                   {/* Download TSX */}
                   <button
+                    type="button"
                     onClick={(e) => handleDownloadTSX(preset, iconName, e)}
                     title="Download Wrapper TSX Component"
                     className="p-2 rounded-lg bg-zinc-50 dark:bg-[#07090f] border border-zinc-200 dark:border-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-amber-600 dark:hover:text-amber-400 transition cursor-pointer"
@@ -410,6 +415,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
 
                   {/* Delete Preset */}
                   <button
+                    type="button"
                     onClick={(e) => handleDelete(preset.id, e)}
                     title="Delete Preset"
                     className="p-2 rounded-lg bg-zinc-50 dark:bg-[#07090f] border border-zinc-200 dark:border-zinc-900 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-600 dark:hover:text-red-400 transition cursor-pointer ml-auto"
@@ -427,6 +433,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
         <div className="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-page-fade">
           <div className="bg-white dark:bg-[#0b0e16] border border-zinc-200 dark:border-zinc-800 rounded-3xl w-full max-w-sm p-6 space-y-5 shadow-2xl relative animate-scale-up">
             <button
+              type="button"
               onClick={() => setShowExportModal(false)}
               className="absolute top-4 right-4 text-zinc-400 dark:text-zinc-550 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors p-1 cursor-pointer"
             >
@@ -456,6 +463,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                   { id: "json", name: "JSON Data" }
                 ].map((fmt) => (
                   <button
+                    type="button"
                     key={fmt.id}
                     onClick={() => setZipFormat(fmt.id as any)}
                     className={`py-2 px-1 rounded-xl text-[9px] font-bold border uppercase transition cursor-pointer text-center ${
@@ -473,12 +481,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
             {/* Action Buttons */}
             <div className="flex gap-3 pt-3 border-t border-zinc-150 dark:border-zinc-800/80">
               <button
+                type="button"
                 onClick={() => setShowExportModal(false)}
                 className="flex-grow py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 text-[10px] font-extrabold uppercase tracking-wider transition active:scale-95 cursor-pointer text-center"
               >
                 Cancel
               </button>
               <button
+                type="button"
                 onClick={handleBulkExportZIP}
                 disabled={exportingZip}
                 className="flex-grow py-2 rounded-xl bg-indigo-600 text-white text-[10px] font-extrabold uppercase tracking-wider transition hover:bg-indigo-550 active:scale-95 cursor-pointer text-center flex items-center justify-center gap-1.5 shadow-md shadow-zinc-900/10 disabled:opacity-50 disabled:pointer-events-none"

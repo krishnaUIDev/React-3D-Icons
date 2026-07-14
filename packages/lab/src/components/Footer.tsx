@@ -23,6 +23,7 @@ export const Footer: React.FC = () => {
         {/* Left: Branding */}
         <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-3 text-center sm:text-left">
           <button
+            type="button"
             onClick={() => navigate("catalog")}
             className="flex items-center gap-2 cursor-pointer group text-left justify-center"
           >
@@ -67,9 +68,9 @@ export const Footer: React.FC = () => {
           </span>
         </div>
 
-        {/* Right: Inline Links */}
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2.5 text-[11px] font-bold uppercase tracking-wider text-zinc-550 dark:text-zinc-450">
           <button
+            type="button"
             onClick={() => navigate("catalog")}
             className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
           >
@@ -77,6 +78,7 @@ export const Footer: React.FC = () => {
             <span>{t("explore_link" as any)}</span>
           </button>
           <button
+            type="button"
             onClick={() => navigate("info")}
             className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
           >
@@ -84,6 +86,7 @@ export const Footer: React.FC = () => {
             <span>Info</span>
           </button>
           <button
+            type="button"
             onClick={() => navigate("saved")}
             className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
           >
@@ -91,6 +94,7 @@ export const Footer: React.FC = () => {
             <span>{t("saved_presets_footer" as any)}</span>
           </button>
           <button
+            type="button"
             onClick={() => navigate("sandbox")}
             className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
           >
@@ -98,6 +102,7 @@ export const Footer: React.FC = () => {
             <span>{t("sandbox_nav" as any)}</span>
           </button>
           <button
+            type="button"
             onClick={() => navigate("requests")}
             className="flex items-center gap-1.5 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
           >

@@ -161,6 +161,7 @@ export default function IconShowcase() {
         {/* Right side: persistent buttons overlay */}
         <div className="flex items-center gap-2 flex-shrink-0 z-10 w-full sm:w-auto justify-center sm:justify-end border-t sm:border-t-0 border-zinc-100 dark:border-zinc-800/80 pt-3 sm:pt-0">
           <button
+            type="button"
             onClick={(e) => {
               e.stopPropagation();
               onToggleFavorite?.(id, e);
@@ -177,6 +178,7 @@ export default function IconShowcase() {
           </button>
 
           <button
+            type="button"
             onClick={handleCopySVG}
             className="px-3 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-[#0e111a] hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 text-zinc-500 transition relative flex items-center gap-1.5 text-[9px] font-extrabold uppercase tracking-wider cursor-pointer shadow-sm"
             title="Copy 2D SVG code"
@@ -218,6 +220,7 @@ export default function IconShowcase() {
           </button>
 
           <button
+            type="button"
             onClick={handleCopyTSX}
             className="px-3 py-1.5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-[#0e111a] hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 text-zinc-500 transition relative flex items-center gap-1.5 text-[9px] font-extrabold uppercase tracking-wider cursor-pointer shadow-sm"
             title="Copy React TSX code"
@@ -284,6 +287,7 @@ export default function IconShowcase() {
       )}
       {/* Favorite Button (Top-Left overlay) */}
       <button
+        type="button"
         onClick={(e) => {
           e.stopPropagation();
           onToggleFavorite?.(id, e);
@@ -301,6 +305,7 @@ export default function IconShowcase() {
       {/* Quick Action Overlay Buttons */}
       <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto z-10">
         <button
+          type="button"
           onClick={handleCopySVG}
           className="p-1.5 rounded-lg border border-zinc-200/40 dark:border-white/5 bg-white/70 dark:bg-[#0e111a]/70 backdrop-blur-md hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 text-zinc-400 transition relative shadow-sm cursor-pointer"
           title="Copy 2D SVG code"
@@ -341,6 +346,7 @@ export default function IconShowcase() {
         </button>
 
         <button
+          type="button"
           onClick={handleCopyTSX}
           className="p-1.5 rounded-lg border border-zinc-200/40 dark:border-white/5 bg-white/70 dark:bg-[#0e111a]/70 backdrop-blur-md hover:bg-zinc-50 dark:hover:bg-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 text-zinc-400 transition relative shadow-sm cursor-pointer"
           title="Copy React TSX code"

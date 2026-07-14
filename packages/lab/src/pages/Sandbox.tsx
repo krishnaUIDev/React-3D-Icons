@@ -10,6 +10,24 @@ interface SandboxProps {
 
 type SandboxLayoutType = "dashboard" | "features" | "checkout";
 
+const PRESETS: { id: IconPreset; label: string }[] = [
+  { id: "glass", label: "Glass" },
+  { id: "glassmorphism", label: "Glassmorphism" },
+  { id: "metal", label: "Chrome" },
+  { id: "clay", label: "Clay" },
+  { id: "hologram", label: "Hologram" },
+  { id: "gold", label: "Gold" },
+  { id: "carbon", label: "Carbon" }
+];
+
+const COLORS = [
+  { label: "Indigo / Amber", primary: "#6366f1", accent: "#fbbf24" },
+  { label: "Emerald / Cyan", primary: "#10b981", accent: "#06b6d4" },
+  { label: "Rose / Purple", primary: "#f43f5e", accent: "#a855f7" },
+  { label: "Sky / Pink", primary: "#0ea5e9", accent: "#ec4899" },
+  { label: "Monochrome / Dark", primary: "#3f3f46", accent: "#a1a1aa" }
+];
+
 export const Sandbox: React.FC<SandboxProps> = ({ theme }) => {
   const [activeLayout, setActiveLayout] = useState<SandboxLayoutType>("dashboard");
   const [activePreset, setActivePreset] = useState<IconPreset>("glass");
@@ -17,24 +35,6 @@ export const Sandbox: React.FC<SandboxProps> = ({ theme }) => {
   const [accentColor, setAccentColor] = useState("#fbbf24");
   const [spinSpeed, setSpinSpeed] = useState(1.0);
   const [floatHeight, setFloatHeight] = useState(0.8);
-
-  const presets: { id: IconPreset; label: string }[] = [
-    { id: "glass", label: "Glass" },
-    { id: "glassmorphism", label: "Glassmorphism" },
-    { id: "metal", label: "Chrome" },
-    { id: "clay", label: "Clay" },
-    { id: "hologram", label: "Hologram" },
-    { id: "gold", label: "Gold" },
-    { id: "carbon", label: "Carbon" }
-  ];
-
-  const colors = [
-    { label: "Indigo / Amber", primary: "#6366f1", accent: "#fbbf24" },
-    { label: "Emerald / Cyan", primary: "#10b981", accent: "#06b6d4" },
-    { label: "Rose / Purple", primary: "#f43f5e", accent: "#a855f7" },
-    { label: "Sky / Pink", primary: "#0ea5e9", accent: "#ec4899" },
-    { label: "Monochrome / Dark", primary: "#3f3f46", accent: "#a1a1aa" }
-  ];
 
   const handleLayoutChange = (layout: SandboxLayoutType) => {
     audioEngine.playClick();
@@ -94,8 +94,9 @@ export const Sandbox: React.FC<SandboxProps> = ({ theme }) => {
               Material Preset
             </label>
             <div className="grid grid-cols-2 gap-1.5">
-              {presets.map((p) => (
+              {PRESETS.map((p) => (
                 <button
+                  type="button"
                   key={p.id}
                   onClick={() => handlePresetChange(p.id)}
                   className={`px-2 py-1.5 rounded-lg border text-[9px] font-bold uppercase tracking-wider transition cursor-pointer text-center ${
@@ -116,8 +117,9 @@ export const Sandbox: React.FC<SandboxProps> = ({ theme }) => {
               Preset Themes
             </label>
             <div className="flex flex-col gap-1.5">
-              {colors.map((c, idx) => (
+              {COLORS.map((c, idx) => (
                 <button
+                  type="button"
                   key={idx}
                   onClick={() => handlePaletteSelect(c.primary, c.accent)}
                   className={`flex items-center justify-between p-2 rounded-xl border text-[10px] font-medium transition cursor-pointer ${
@@ -222,6 +224,7 @@ export const Sandbox: React.FC<SandboxProps> = ({ theme }) => {
           {/* Layout Tabs */}
           <div className="flex items-center gap-2 p-1.5 rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/40 dark:bg-[#0c0f1a]/45 backdrop-blur-md shadow-inner">
             <button
+              type="button"
               onClick={() => handleLayoutChange("dashboard")}
               className={`flex items-center justify-center gap-2 flex-1 py-2 px-3 rounded-xl text-xs font-bold transition cursor-pointer select-none ${
                 activeLayout === "dashboard"
@@ -233,22 +236,24 @@ export const Sandbox: React.FC<SandboxProps> = ({ theme }) => {
               <span>SaaS Dashboard</span>
             </button>
             <button
+              type="button"
               onClick={() => handleLayoutChange("features")}
               className={`flex items-center justify-center gap-2 flex-1 py-2 px-3 rounded-xl text-xs font-bold transition cursor-pointer select-none ${
                 activeLayout === "features"
                   ? "bg-white dark:bg-[#121624] text-indigo-500 dark:text-indigo-400 shadow"
-                  : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                  : "text-zinc-550 hover:text-zinc-900 dark:hover:text-white"
               }`}
             >
               <Grid size={14} />
               <span>Features Grid</span>
             </button>
             <button
+              type="button"
               onClick={() => handleLayoutChange("checkout")}
               className={`flex items-center justify-center gap-2 flex-1 py-2 px-3 rounded-xl text-xs font-bold transition cursor-pointer select-none ${
                 activeLayout === "checkout"
                   ? "bg-white dark:bg-[#121624] text-indigo-500 dark:text-indigo-400 shadow"
-                  : "text-zinc-500 hover:text-zinc-900 dark:hover:text-white"
+                  : "text-zinc-550 hover:text-zinc-900 dark:hover:text-white"
               }`}
             >
               <ShoppingBag size={14} />
@@ -454,6 +459,7 @@ export const Sandbox: React.FC<SandboxProps> = ({ theme }) => {
                     </div>
                   </div>
                   <button
+                    type="button"
                     onClick={() => {
                       audioEngine.playClick();
                       alert("Integration layout configured!");
@@ -516,6 +522,7 @@ export const Sandbox: React.FC<SandboxProps> = ({ theme }) => {
 
                 {/* Action button */}
                 <button
+                  type="button"
                   onClick={() => {
                     audioEngine.playClick();
                     alert("Simulated sandbox payment complete!");

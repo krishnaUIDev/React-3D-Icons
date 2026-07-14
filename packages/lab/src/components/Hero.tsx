@@ -10,6 +10,12 @@ interface HeroProps {
 
 const words = ["3D Icons", "SVG Vectors", "React Icons", "Web Assets"];
 
+const INSTALL_CMDS = {
+  npm: "npm i r3d-icons",
+  yarn: "yarn add r3d-icons",
+  pnpm: "pnpm add r3d-icons"
+};
+
 export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
   const { t } = useTranslation();
   const [version, setVersion] = useState(pkg.version);
@@ -19,14 +25,8 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
   const [copied, setCopied] = useState(false);
   const [pm, setPm] = useState<"npm" | "yarn" | "pnpm">("npm");
 
-  const installCmds = {
-    npm: "npm i r3d-icons",
-    yarn: "yarn add r3d-icons",
-    pnpm: "pnpm add r3d-icons"
-  };
-
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(installCmds[pm]);
+    navigator.clipboard.writeText(INSTALL_CMDS[pm]);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -117,6 +117,7 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
       {/* Action Buttons */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
         <button
+          type="button"
           onClick={() => window.open("https://www.npmjs.com/package/r3d-icons", "_blank")}
           className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-sm font-bold shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/30 hover:scale-[1.02] transition active:scale-98 cursor-pointer"
         >
@@ -132,6 +133,7 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
         <div className="flex gap-1.5 border-r border-zinc-200 dark:border-zinc-800/80 pr-2.5">
           {(["npm", "yarn", "pnpm"] as const).map((p) => (
             <button
+              type="button"
               key={p}
               onClick={() => setPm(p)}
               className={`px-2 py-1 rounded-lg text-[9px] font-black uppercase tracking-wider transition cursor-pointer ${
@@ -145,9 +147,10 @@ export const Hero: React.FC<HeroProps> = ({ totalIcons = 280 }) => {
           ))}
         </div>
         <code className="text-[10px] sm:text-xs font-mono font-bold text-zinc-700 dark:text-zinc-350 select-all flex-grow text-left pl-1">
-          {installCmds[pm]}
+          {INSTALL_CMDS[pm]}
         </code>
         <button
+          type="button"
           onClick={copyToClipboard}
           className="p-2 rounded-xl border border-zinc-200/50 dark:border-white/5 bg-white/60 dark:bg-[#0e111a]/60 backdrop-blur-md hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-500 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer relative"
           title="Copy command to clipboard"

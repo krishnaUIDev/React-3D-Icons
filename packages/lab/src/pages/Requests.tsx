@@ -296,21 +296,23 @@ export const Requests: React.FC<RequestsProps> = () => {
                 Sort:
               </span>
               <button
+                type="button"
                 onClick={() => setSortBy("votes")}
                 className={`px-2.5 py-1.5 rounded-lg border text-[9px] font-bold uppercase tracking-wider transition cursor-pointer ${
                   sortBy === "votes"
                     ? "border-indigo-500/50 bg-indigo-50/30 dark:bg-indigo-950/20 text-indigo-500"
-                    : "border-zinc-200 dark:border-zinc-800 text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-250"
+                    : "border-zinc-200 dark:border-zinc-800 text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-255"
                 }`}
               >
                 Top Voted
               </button>
               <button
+                type="button"
                 onClick={() => setSortBy("date")}
                 className={`px-2.5 py-1.5 rounded-lg border text-[9px] font-bold uppercase tracking-wider transition cursor-pointer ${
                   sortBy === "date"
                     ? "border-indigo-500/50 bg-indigo-50/30 dark:bg-indigo-950/20 text-indigo-500"
-                    : "border-zinc-200 dark:border-zinc-800 text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-250"
+                    : "border-zinc-200 dark:border-zinc-800 text-zinc-400 hover:text-zinc-650 dark:hover:text-zinc-255"
                 }`}
               >
                 Newest
@@ -355,6 +357,7 @@ export const Requests: React.FC<RequestsProps> = () => {
 
                   {/* Upvote Interactive Box */}
                   <button
+                    type="button"
                     onClick={() => handleUpvote(r.id)}
                     className={`flex flex-col items-center justify-center w-14 h-14 rounded-xl border transition cursor-pointer select-none flex-shrink-0 group active:scale-95 ${
                       r.voted
