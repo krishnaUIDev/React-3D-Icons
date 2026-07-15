@@ -389,8 +389,8 @@ function FlameStudioSidebar({
 // Sub-component for WebGL Viewport
 interface ViewportProps {
   threeLoaded: boolean;
-  containerRef: React.RefObject<HTMLDivElement | null>;
-  canvasRef: React.RefObject<HTMLCanvasElement | null>;
+  containerRef: React.RefObject<HTMLDivElement>;
+  canvasRef: React.RefObject<HTMLCanvasElement>;
   resetRotation: () => void;
   gridVisible: boolean;
   setGridVisible: (v: boolean) => void;
@@ -695,8 +695,8 @@ function useFlameThreeEngine({
   lightingPreset: string;
   triggerToast: (msg: string) => void;
 }) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const sceneRef = useRef<any>(null);
   const rendererRef = useRef<any>(null);
   const cameraRef = useRef<any>(null);
