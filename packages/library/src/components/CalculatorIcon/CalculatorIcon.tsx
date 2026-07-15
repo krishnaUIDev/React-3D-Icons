@@ -1,26 +1,26 @@
 import { SharedWrapper } from "../SharedWrapper";
 import { CalculatorIconProps } from "./types";
 
-export function CalculatorIcon(props: CalculatorIconProps) {
-  const buttonGrid = [
-    { r: 0, c: 0, color: "#cbd5e1" },
-    { r: 0, c: 1, color: "#cbd5e1" },
-    { r: 0, c: 2, color: "#cbd5e1" },
-    { r: 0, c: 3, color: "#94a3b8" },
-    { r: 1, c: 0, color: "#f87171" },
-    { r: 1, c: 1, color: "#f87171" },
-    { r: 1, c: 2, color: "#f87171" },
-    { r: 1, c: 3, color: "#94a3b8" },
-    { r: 2, c: 0, color: "#f87171" },
-    { r: 2, c: 1, color: "#f87171" },
-    { r: 2, c: 2, color: "#f87171" },
-    { r: 2, c: 3, color: "#94a3b8" },
-    { r: 3, c: 0, color: "#f87171" },
-    { r: 3, c: 1, color: "#f87171" },
-    { r: 3, c: 2, color: "#eab308" },
-    { r: 3, c: 3, color: "#38bdf8" }
-  ];
+const BUTTON_GRID = [
+  { r: 0, c: 0, color: "#cbd5e1" },
+  { r: 0, c: 1, color: "#cbd5e1" },
+  { r: 0, c: 2, color: "#cbd5e1" },
+  { r: 0, c: 3, color: "#94a3b8" },
+  { r: 1, c: 0, color: "#f87171" },
+  { r: 1, c: 1, color: "#f87171" },
+  { r: 1, c: 2, color: "#f87171" },
+  { r: 1, c: 3, color: "#94a3b8" },
+  { r: 2, c: 0, color: "#f87171" },
+  { r: 2, c: 1, color: "#f87171" },
+  { r: 2, c: 2, color: "#f87171" },
+  { r: 2, c: 3, color: "#94a3b8" },
+  { r: 3, c: 0, color: "#f87171" },
+  { r: 3, c: 1, color: "#f87171" },
+  { r: 3, c: 2, color: "#eab308" },
+  { r: 3, c: 3, color: "#38bdf8" }
+];
 
+export function CalculatorIcon(props: CalculatorIconProps) {
   return (
     <SharedWrapper iconId="calculator" {...props}>
       {(mat) => (
@@ -61,13 +61,13 @@ export function CalculatorIcon(props: CalculatorIconProps) {
 
           {/* 4x4 Grid of Calculator Keys */}
           <group position={[0, -0.06, 0.014]}>
-            {buttonGrid.map((btn, idx) => {
+            {BUTTON_GRID.map((btn) => {
               const xPos = (btn.c - 1.5) * 0.054;
               const yPos = (1.5 - btn.r) * 0.046;
               // Check if button is equal key to give it the glowing accent
               const isEqualKey = btn.r === 3 && btn.c === 3;
               return (
-                <mesh key={idx} position={[xPos, yPos, 0]} castShadow>
+                <mesh key={`btn-${btn.r}-${btn.c}`} position={[xPos, yPos, 0]} castShadow>
                   <boxGeometry args={[0.044, 0.036, 0.01]} />
                   <meshStandardMaterial
                     roughness={0.3}

@@ -2,11 +2,10 @@ import { RoundedBox } from "@react-three/drei";
 import { SharedWrapper } from "../SharedWrapper";
 import { CalendarIconProps } from "./types";
 
-export function CalendarIcon(props: CalendarIconProps) {
-  // 3x3 day grid offsets
-  const dayOffsets = [-0.3, 0, 0.3];
-  const rowOffsets = [0.08, -0.18, -0.44];
+const DAY_OFFSETS = [-0.3, 0, 0.3];
+const ROW_OFFSETS = [0.08, -0.18, -0.44];
 
+export function CalendarIcon(props: CalendarIconProps) {
   return (
     <SharedWrapper iconId="calendar" {...props}>
       {(mat) => (
@@ -53,8 +52,8 @@ export function CalendarIcon(props: CalendarIconProps) {
           </mesh>
 
           {/* Day Grid Squares */}
-          {rowOffsets.map((y, rowIdx) =>
-            dayOffsets.map((x, colIdx) => (
+          {ROW_OFFSETS.map((y, rowIdx) =>
+            DAY_OFFSETS.map((x, colIdx) => (
               <mesh key={`${rowIdx}-${colIdx}`} position={[x, y, 0.095]} castShadow>
                 <boxGeometry args={[0.16, 0.16, 0.03]} />
                 <meshStandardMaterial

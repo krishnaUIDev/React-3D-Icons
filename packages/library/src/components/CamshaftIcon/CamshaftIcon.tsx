@@ -1,14 +1,14 @@
 import { SharedWrapper } from "../SharedWrapper";
 import { CamshaftIconProps } from "./types";
 
-export function CamshaftIcon(props: CamshaftIconProps) {
-  const lobes = [
-    { pos: -0.18, rot: 0 },
-    { pos: -0.06, rot: Math.PI / 2 },
-    { pos: 0.06, rot: Math.PI },
-    { pos: 0.18, rot: -Math.PI / 2 }
-  ];
+const LOBES = [
+  { pos: -0.18, rot: 0 },
+  { pos: -0.06, rot: Math.PI / 2 },
+  { pos: 0.06, rot: Math.PI },
+  { pos: 0.18, rot: -Math.PI / 2 }
+];
 
+export function CamshaftIcon(props: CamshaftIconProps) {
   return (
     <SharedWrapper iconId="camshaft" {...props}>
       {(mat) => (
@@ -26,8 +26,13 @@ export function CamshaftIcon(props: CamshaftIconProps) {
           </mesh>
 
           {/* Core Support Journals (Thicker steel guides) */}
-          {[-0.24, 0, 0.24].map((zPos, idx) => (
-            <mesh key={idx} position={[zPos, 0, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
+          {[-0.24, 0, 0.24].map((zPos) => (
+            <mesh
+              key={`journal-${zPos}`}
+              position={[zPos, 0, 0]}
+              rotation={[0, 0, Math.PI / 2]}
+              castShadow
+            >
               <cylinderGeometry args={[0.038, 0.038, 0.03, 16]} />
               <meshStandardMaterial roughness={0.15} metalness={0.8} color="#94a3b8" />
             </mesh>
@@ -56,8 +61,8 @@ export function CamshaftIcon(props: CamshaftIconProps) {
           </mesh>
 
           {/* Cam Lobes (Eccentric oval shapes) */}
-          {lobes.map((lobe, index) => (
-            <group key={index} position={[lobe.pos, 0, 0]} rotation={[lobe.rot, 0, 0]}>
+          {LOBES.map((lobe, index) => (
+            <group key={`lobe-${index}`} position={[lobe.pos, 0, 0]} rotation={[lobe.rot, 0, 0]}>
               {/* Concentric base circle */}
               <mesh rotation={[0, 0, Math.PI / 2]} castShadow>
                 <cylinderGeometry args={[0.046, 0.046, 0.036, 16]} />
