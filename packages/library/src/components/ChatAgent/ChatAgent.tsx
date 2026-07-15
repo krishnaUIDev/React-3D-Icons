@@ -97,6 +97,33 @@ function generateAgentReply(query: string): ChatMessage {
     };
   }
 
+  // Calendar matching
+  if (q.includes("calendar") || q.includes("date") || q.includes("schedule")) {
+    return {
+      id,
+      sender: "agent",
+      text: "The 3D Calendar Icon features a realistic red header, binder rings, and customizable highlighted days and day-number badges. Let's load the model in the customizer sandbox.",
+      timestamp: ts,
+      actions: [{ label: "📅 Load Calendar Icon", type: "show_icon", payload: "calendar" }]
+    };
+  }
+
+  // Saved / Favorites matching
+  if (
+    q.includes("saved") ||
+    q.includes("favorite") ||
+    q.includes("collection") ||
+    q.includes("bookmark")
+  ) {
+    return {
+      id,
+      sender: "agent",
+      text: "You can manage, copy share links, download TSX components, and bulk export all your saved 3D icon presets on the Saved page. Let's navigate there.",
+      timestamp: ts,
+      actions: [{ label: "⭐ View Saved Icons", type: "navigate", payload: "saved" }]
+    };
+  }
+
   // Default reply
   return {
     id,

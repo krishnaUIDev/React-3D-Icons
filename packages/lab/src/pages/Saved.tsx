@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "../router/Router";
+import { audioEngine } from "../utils/audio";
 import { ICONS_REGISTRY } from "./Customize";
 import { Trash2, ExternalLink, Copy, Check, Download, Compass, Sparkles } from "lucide-react";
 import { useTranslation } from "../i18n/useTranslation";
@@ -155,6 +156,7 @@ export const Saved: React.FC<SavedProps> = ({ theme }) => {
       URL.revokeObjectURL(link.href);
 
       setShowExportModal(false);
+      audioEngine.playChime();
     } catch (err) {
       console.error("Failed to perform bulk zip export:", err);
       alert("Export failed: " + (err instanceof Error ? err.message : String(err)));
@@ -295,7 +297,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
         {presets.length > 0 && (
           <button
             type="button"
-            onClick={() => setShowExportModal(true)}
+            onClick={() => {
+              audioEngine.playClick();
+              setShowExportModal(true);
+            }}
             className="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs uppercase tracking-wider transition active:scale-95 cursor-pointer shadow-md shadow-indigo-600/10 self-start sm:self-center"
           >
             <Download size={14} />
@@ -318,7 +323,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
           </p>
           <button
             type="button"
-            onClick={() => navigate("customize")}
+            onClick={() => {
+              audioEngine.playClick();
+              navigate("customize");
+            }}
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-indigo-600/20 cursor-pointer active:scale-95 transition"
           >
             <Compass size={14} />
@@ -385,6 +393,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
+                      audioEngine.playSnap();
                       handleLoadWorkbench(preset);
                     }}
                     title="Load Preset in Laboratory Customizer"
@@ -396,7 +405,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                   {/* Copy Share Link */}
                   <button
                     type="button"
-                    onClick={(e) => handleCopyLink(preset, e)}
+                    onClick={(e) => {
+                      audioEngine.playChime();
+                      handleCopyLink(preset, e);
+                    }}
                     title={copiedId === preset.id ? "Copied Link!" : "Copy Share Link"}
                     className="p-2 rounded-lg bg-zinc-50 dark:bg-[#07090f] border border-zinc-200 dark:border-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-green-600 dark:hover:text-green-400 transition cursor-pointer"
                   >
@@ -406,7 +418,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                   {/* Download TSX */}
                   <button
                     type="button"
-                    onClick={(e) => handleDownloadTSX(preset, iconName, e)}
+                    onClick={(e) => {
+                      audioEngine.playClick();
+                      handleDownloadTSX(preset, iconName, e);
+                    }}
                     title="Download Wrapper TSX Component"
                     className="p-2 rounded-lg bg-zinc-50 dark:bg-[#07090f] border border-zinc-200 dark:border-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-amber-600 dark:hover:text-amber-400 transition cursor-pointer"
                   >
@@ -416,7 +431,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                   {/* Delete Preset */}
                   <button
                     type="button"
-                    onClick={(e) => handleDelete(preset.id, e)}
+                    onClick={(e) => {
+                      audioEngine.playSnap();
+                      handleDelete(preset.id, e);
+                    }}
                     title="Delete Preset"
                     className="p-2 rounded-lg bg-zinc-50 dark:bg-[#07090f] border border-zinc-200 dark:border-zinc-900 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-600 dark:hover:text-red-400 transition cursor-pointer ml-auto"
                   >
@@ -465,7 +483,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                   <button
                     type="button"
                     key={fmt.id}
-                    onClick={() => setZipFormat(fmt.id as any)}
+                    onClick={() => {
+                      audioEngine.playClick();
+                      setZipFormat(fmt.id as any);
+                    }}
                     className={`py-2 px-1 rounded-xl text-[9px] font-bold border uppercase transition cursor-pointer text-center ${
                       zipFormat === fmt.id
                         ? "border-indigo-500 bg-indigo-50/20 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400"
@@ -482,7 +503,10 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
             <div className="flex gap-3 pt-3 border-t border-zinc-150 dark:border-zinc-800/80">
               <button
                 type="button"
-                onClick={() => setShowExportModal(false)}
+                onClick={() => {
+                  audioEngine.playClick();
+                  setShowExportModal(false);
+                }}
                 className="flex-grow py-2 rounded-xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 text-[10px] font-extrabold uppercase tracking-wider transition active:scale-95 cursor-pointer text-center"
               >
                 Cancel

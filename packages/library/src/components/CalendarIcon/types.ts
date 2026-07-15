@@ -1,3 +1,10 @@
 import { IconProps } from "../../types";
 
-export type CalendarIconProps = IconProps;
+export interface CalendarIconProps extends IconProps {
+  studio?: boolean;
+  selectedDayRow?: number;
+  selectedDayCol?: number;
+  highlightColor?: string;
+  dayText?: string;
+  showGrid?: boolean;
+}

@@ -2290,7 +2290,9 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const { color: urlColor, iconId, navigate, updateCustomizerURL } = useRouter();
 
   // Find current icon component
-  const currentIcon = ICONS_REGISTRY.find((item) => item.id === iconId) || ICONS_REGISTRY[0];
+  const currentIcon =
+    ICONS_REGISTRY.find((item) => item.id.toLowerCase() === iconId.toLowerCase()) ||
+    ICONS_REGISTRY[0];
   const ActiveComponent = (props: any) => <Lazy3DIcon name={currentIcon.name} {...props} />;
 
   // Local parameter states
@@ -2440,6 +2442,15 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   );
   const [tuningAudioOpen, setTuningAudioOpen] = useState(false);
   const [turntableActive, setTurntableActive] = useState(false);
+
+  // Calendar specific properties
+  const [calendarSelectedRow, setCalendarSelectedRow] = useState(1);
+  const [calendarSelectedCol, setCalendarSelectedCol] = useState(1);
+  const [calendarHighlightColor, setCalendarHighlightColor] = useState("#3b82f6");
+  const [calendarHighlightColorInput, setCalendarHighlightColorInput] = useState("#3b82f6");
+  const [calendarDayText, setCalendarDayText] = useState("");
+  const [calendarShowGrid, setCalendarShowGrid] = useState(true);
+  const [calendarSettingsOpen, setCalendarSettingsOpen] = useState(true);
   const [physicsPlayground, setPhysicsPlayground] = useState(false);
 
   // Round 3 Explode & Reflections states
@@ -3672,6 +3683,11 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
     explodeDistance,
     envRotation,
     turntableActive,
+    selectedDayRow: calendarSelectedRow,
+    selectedDayCol: calendarSelectedCol,
+    highlightColor: calendarHighlightColor,
+    dayText: calendarDayText,
+    showGrid: calendarShowGrid,
     onSceneLoaded: (scene: any) => {
       sceneRef.current = scene;
     }
@@ -4978,6 +4994,142 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                     </div>
                   )}
                 </div>
+
+                {/* Calendar Customization (Only for CalendarIcon) */}
+                {currentIcon.id === "calendar" && (
+                  <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
+                    <button
+                      onClick={() => setCalendarSettingsOpen(!calendarSettingsOpen)}
+                      className="w-full flex items-center justify-between p-3.5 text-[10px] font-extrabold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider bg-zinc-50/30 dark:bg-[#0b0e16]/30 cursor-pointer focus:outline-none"
+                    >
+                      <span>Calendar Settings</span>
+                      {calendarSettingsOpen ? (
+                        <ChevronDown size={12} />
+                      ) : (
+                        <ChevronRight size={12} />
+                      )}
+                    </button>
+                    {calendarSettingsOpen && (
+                      <div className="p-4 space-y-4 border-t border-zinc-200/60 dark:border-zinc-850/60 animate-page-fade">
+                        {/* Selected Day Row/Col */}
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                            Highlight Date (Grid Row &amp; Col)
+                          </label>
+                          <div className="grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-[10px] text-zinc-500 block mb-1">
+                                Row (0-2)
+                              </span>
+                              <input
+                                type="number"
+                                min={0}
+                                max={2}
+                                value={calendarSelectedRow}
+                                onChange={(e) => {
+                                  audioEngine.playClick();
+                                  setCalendarSelectedRow(
+                                    Math.max(0, Math.min(2, parseInt(e.target.value) || 0))
+                                  );
+                                }}
+                                className="w-full p-2 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-[#0b0f19] text-xs font-bold"
+                              />
+                            </div>
+                            <div>
+                              <span className="text-[10px] text-zinc-500 block mb-1">
+                                Col (0-2)
+                              </span>
+                              <input
+                                type="number"
+                                min={0}
+                                max={2}
+                                value={calendarSelectedCol}
+                                onChange={(e) => {
+                                  audioEngine.playClick();
+                                  setCalendarSelectedCol(
+                                    Math.max(0, Math.min(2, parseInt(e.target.value) || 0))
+                                  );
+                                }}
+                                className="w-full p-2 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-[#0b0f19] text-xs font-bold"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Highlight Color */}
+                        <div className="space-y-2">
+                          <div className="flex justify-between">
+                            <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                              Highlight Color
+                            </label>
+                            <span className="text-[10px] font-mono text-zinc-500">
+                              {calendarHighlightColor}
+                            </span>
+                          </div>
+                          <div className="flex gap-2">
+                            <input
+                              type="color"
+                              value={calendarHighlightColor}
+                              onChange={(e) => {
+                                setCalendarHighlightColor(e.target.value);
+                                setCalendarHighlightColorInput(e.target.value);
+                              }}
+                              className="w-10 h-10 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-transparent cursor-pointer p-0.5"
+                            />
+                            <input
+                              type="text"
+                              value={calendarHighlightColorInput}
+                              onChange={(e) => {
+                                setCalendarHighlightColorInput(e.target.value);
+                                if (e.target.value.match(/^#[0-9A-Fa-f]{6}$/)) {
+                                  setCalendarHighlightColor(e.target.value);
+                                }
+                              }}
+                              onBlur={() => setCalendarHighlightColorInput(calendarHighlightColor)}
+                              className="flex-grow p-2 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-[#0b0f19] text-xs font-bold uppercase"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Day Text / Number */}
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider block">
+                            Custom 3D Text (e.g. Day "15")
+                          </label>
+                          <input
+                            type="text"
+                            maxLength={3}
+                            value={calendarDayText}
+                            placeholder="e.g. 25"
+                            onChange={(e) => {
+                              setCalendarDayText(e.target.value);
+                            }}
+                            className="w-full p-2 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-[#0b0f19] text-xs font-bold"
+                          />
+                        </div>
+
+                        {/* Show Grid Checkbox */}
+                        <div className="flex items-center justify-between py-1">
+                          <span className="text-xs font-bold text-zinc-655 dark:text-zinc-455">
+                            Show Calendar Day Grid
+                          </span>
+                          <label className="relative inline-flex items-center cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={calendarShowGrid}
+                              onChange={(e) => {
+                                audioEngine.playSnap();
+                                setCalendarShowGrid(e.target.checked);
+                              }}
+                              className="sr-only peer"
+                            />
+                            <div className="w-9 h-5 bg-zinc-200 dark:bg-zinc-850 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-350 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-500"></div>
+                          </label>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* 2. Color System Group */}
                 <div className="border border-zinc-200 dark:border-zinc-850 rounded-2xl overflow-hidden bg-zinc-50/10 dark:bg-[#0b0e16]/10">
