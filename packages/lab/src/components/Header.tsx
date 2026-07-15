@@ -15,6 +15,8 @@ interface HeaderProps {
   setSearch: (search: string) => void;
   installPrompt?: any;
   onInstall?: () => void;
+  soundEnabled: boolean;
+  setSoundEnabled: (enabled: boolean) => void;
 }
 
 const LANGUAGES: { code: LanguageCode; label: string }[] = [
@@ -29,7 +31,9 @@ export const Header: React.FC<HeaderProps> = ({
   search,
   setSearch,
   installPrompt,
-  onInstall
+  onInstall,
+  soundEnabled,
+  setSoundEnabled
 }) => {
   const { t, lang, setLang } = useTranslation();
   const { route, navigate } = useRouter();
@@ -104,6 +108,8 @@ export const Header: React.FC<HeaderProps> = ({
           onInstall={onInstall}
           mobileMenuOpen={mobileMenuOpen}
           setMobileMenuOpen={setMobileMenuOpen}
+          soundEnabled={soundEnabled}
+          setSoundEnabled={setSoundEnabled}
         />
       </div>
 

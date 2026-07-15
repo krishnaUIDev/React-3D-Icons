@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
-import { RoundedBox, Text } from "@react-three/drei";
+import { RoundedBox, Text3D, Center } from "@react-three/drei";
 import { SharedWrapper } from "../SharedWrapper";
 import { CalendarIconProps } from "./types";
 
@@ -106,6 +106,7 @@ function CalendarIconInner({
 
       {/* Day Grid Squares */}
       {showGrid &&
+        !dayText &&
         ROW_OFFSETS.map((y, rowIdx) =>
           DAY_OFFSETS.map((x, colIdx) => (
             <mesh key={`${rowIdx}-${colIdx}`} position={[x, y, 0.095]} castShadow>
@@ -127,16 +128,25 @@ function CalendarIconInner({
 
       {/* 3D Custom Day text badge */}
       {dayText && (
-        <Text
-          position={[0, -0.15, 0.09]}
-          fontSize={0.36}
-          color={theme === "dark" ? "#ffffff" : "#1e293b"}
-          anchorX="center"
-          anchorY="middle"
-          font="https://fonts.gstatic.com/s/outfit/v11/0oWqF3EKg1z3h1d58S2Y.woff"
-        >
-          {dayText}
-        </Text>
+        <Center position={[0, -0.15, 0.09]}>
+          <Text3D
+            font="/fonts/helvetiker_bold.typeface.json"
+            size={0.32}
+            height={0.04}
+            curveSegments={12}
+            bevelEnabled
+            bevelThickness={0.008}
+            bevelSize={0.006}
+            bevelSegments={3}
+          >
+            {dayText}
+            <meshStandardMaterial
+              roughness={0.2}
+              metalness={0.1}
+              color={theme === "dark" ? "#ffffff" : "#1e293b"}
+            />
+          </Text3D>
+        </Center>
       )}
     </group>
   );

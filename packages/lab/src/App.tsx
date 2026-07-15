@@ -2,6 +2,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import { LanguageProvider } from "./i18n/useTranslation";
 import { RouterProvider, useRouter } from "./router/Router";
 import { Header } from "./components/Header";
+import { audioEngine } from "./utils/audio";
 import { Footer } from "./components/Footer";
 import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
@@ -48,6 +49,16 @@ function AppContent() {
   });
   const [search, setSearch] = useState("");
   const { route } = useRouter();
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("r3d_sound_enabled") === "true";
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    audioEngine.setEnabled(soundEnabled);
+  }, [soundEnabled]);
   const [installPrompt, setInstallPrompt] = useState<any>(null);
 
   // Capture PWA browser install prompts
@@ -102,6 +113,8 @@ function AppContent() {
           setSearch={setSearch}
           installPrompt={installPrompt}
           onInstall={handleInstallApp}
+          soundEnabled={soundEnabled}
+          setSoundEnabled={setSoundEnabled}
         />
       )}
 
@@ -115,7 +128,11 @@ function AppContent() {
           )}
           {route === "customize" && (
             <div key="customize" className="animate-page-fade w-full h-full">
-              <Customize theme={theme} />
+              <Customize
+                theme={theme}
+                soundEnabled={soundEnabled}
+                setSoundEnabled={setSoundEnabled}
+              />
             </div>
           )}
           {route === "info" && (

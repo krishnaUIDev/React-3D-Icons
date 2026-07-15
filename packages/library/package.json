@@ -62,6 +62,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@react-three/postprocessing": "^3.0.4"
+    "@react-three/postprocessing": "^3.0.4",
+    "maath": "^0.10.8"
   }
 }

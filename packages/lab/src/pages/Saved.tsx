@@ -282,14 +282,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12 flex-grow">
+    <div className="max-w-7xl mx-auto px-6 py-8 flex-grow">
       {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-10 border-b border-zinc-150 dark:border-zinc-850/60 pb-6">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-zinc-950 via-zinc-800 to-zinc-700 dark:from-white dark:via-zinc-200 dark:to-zinc-400 bg-clip-text text-transparent">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-6 border-b border-zinc-150 dark:border-zinc-850/60 pb-4">
+        <div className="flex flex-col gap-1">
+          <h1 className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-zinc-950 via-zinc-800 to-zinc-700 dark:from-white dark:via-zinc-200 dark:to-zinc-400 bg-clip-text text-transparent">
             {t("saved_presets_title" as any)}
           </h1>
-          <p className="text-sm text-zinc-550 dark:text-zinc-450 max-w-xl font-medium leading-relaxed">
+          <p className="text-xs text-zinc-550 dark:text-zinc-450 max-w-xl font-medium leading-relaxed">
             {t("saved_presets_desc" as any)}
           </p>
         </div>
@@ -335,7 +335,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
         </div>
       ) : (
         /* Grid of Custom Presets */
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-page-fade">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 animate-page-fade">
           {presets.map((preset) => {
             const registryEntry =
               ICONS_REGISTRY.find((item) => item.id === (preset.iconId || "shield")) ||
@@ -346,14 +346,14 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
               <div
                 key={preset.id}
                 onClick={() => handleLoadWorkbench(preset)}
-                className="group relative flex flex-col p-5 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0e111a] hover:border-indigo-500/40 dark:hover:border-indigo-500/30 transition shadow-md hover:shadow-xl cursor-pointer"
+                className="group relative flex flex-col p-3 rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/40 dark:bg-zinc-950/20 backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_8px_32px_rgba(0,0,0,0.04)] hover:border-indigo-500/40 dark:hover:border-indigo-500/30 hover:shadow-indigo-500/5 dark:hover:shadow-indigo-500/5 transition cursor-pointer"
               >
                 {/* 3D Canvas Preview Window */}
-                <div className="h-40 w-full rounded-2xl bg-zinc-50 dark:bg-[#07090f] relative overflow-hidden flex items-center justify-center border border-zinc-100 dark:border-zinc-900 group-hover:bg-zinc-100/50 dark:group-hover:bg-[#05070c] transition">
+                <div className="h-28 w-full rounded-xl bg-zinc-50/50 dark:bg-zinc-950/40 relative overflow-hidden flex items-center justify-center border border-zinc-150/30 dark:border-white/5 group-hover:bg-zinc-100/50 dark:group-hover:bg-zinc-900/40 transition">
                   <div className="absolute inset-0 z-0">
                     <Lazy3DIcon
                       name={registryEntry.name}
-                      size={140}
+                      size={100}
                       preset={preset.preset}
                       angle={preset.angle}
                       environment={preset.environment}
@@ -371,23 +371,23 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                     />
                   </div>
                   {/* Hover visual tag */}
-                  <div className="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-zinc-200/60 dark:bg-[#0e111a]/70 backdrop-blur-sm text-[8px] font-black uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                  <div className="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-white/70 dark:bg-zinc-950/80 backdrop-blur-sm text-[7px] font-black uppercase tracking-wider text-zinc-500 dark:text-zinc-400 border border-zinc-200/30 dark:border-white/5">
                     {preset.preset}
                   </div>
                 </div>
 
                 {/* Preset Details Info */}
-                <div className="flex flex-col mt-4 gap-1">
-                  <span className="font-extrabold text-sm text-zinc-950 dark:text-white leading-tight truncate">
+                <div className="flex flex-col mt-2.5 gap-0.5">
+                  <span className="font-extrabold text-xs text-zinc-950 dark:text-white leading-tight truncate">
                     {preset.name}
                   </span>
-                  <span className="text-[10px] text-zinc-450 dark:text-zinc-500 font-bold uppercase tracking-wider">
+                  <span className="text-[8px] text-zinc-450 dark:text-zinc-500 font-bold uppercase tracking-wider">
                     {iconName.replace("Icon", "")} Icon
                   </span>
                 </div>
 
                 {/* Actions Ribbon */}
-                <div className="flex items-center justify-end gap-1.5 mt-5 pt-3 border-t border-zinc-100 dark:border-zinc-800/80">
+                <div className="flex items-center justify-end gap-1 mt-2.5 pt-2 border-t border-zinc-200/30 dark:border-white/5">
                   {/* Load / Inspect */}
                   <button
                     type="button"
@@ -397,9 +397,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                       handleLoadWorkbench(preset);
                     }}
                     title="Load Preset in Laboratory Customizer"
-                    className="p-2 rounded-lg bg-zinc-50 dark:bg-[#07090f] border border-zinc-200 dark:border-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
+                    className="p-1.5 rounded-md bg-white/50 dark:bg-zinc-900/30 border border-zinc-200/30 dark:border-white/5 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-indigo-600 dark:hover:text-indigo-400 transition cursor-pointer"
                   >
-                    <ExternalLink size={12} />
+                    <ExternalLink size={10} />
                   </button>
 
                   {/* Copy Share Link */}
@@ -410,9 +410,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                       handleCopyLink(preset, e);
                     }}
                     title={copiedId === preset.id ? "Copied Link!" : "Copy Share Link"}
-                    className="p-2 rounded-lg bg-zinc-50 dark:bg-[#07090f] border border-zinc-200 dark:border-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-green-600 dark:hover:text-green-400 transition cursor-pointer"
+                    className="p-1.5 rounded-md bg-white/50 dark:bg-zinc-900/30 border border-zinc-200/30 dark:border-white/5 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-green-600 dark:hover:text-green-400 transition cursor-pointer"
                   >
-                    {copiedId === preset.id ? <Check size={12} /> : <Copy size={12} />}
+                    {copiedId === preset.id ? <Check size={10} /> : <Copy size={10} />}
                   </button>
 
                   {/* Download TSX */}
@@ -423,9 +423,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                       handleDownloadTSX(preset, iconName, e);
                     }}
                     title="Download Wrapper TSX Component"
-                    className="p-2 rounded-lg bg-zinc-50 dark:bg-[#07090f] border border-zinc-200 dark:border-zinc-900 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-amber-600 dark:hover:text-amber-400 transition cursor-pointer"
+                    className="p-1.5 rounded-md bg-white/50 dark:bg-zinc-900/30 border border-zinc-200/30 dark:border-white/5 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-amber-600 dark:hover:text-amber-400 transition cursor-pointer"
                   >
-                    <Download size={12} />
+                    <Download size={10} />
                   </button>
 
                   {/* Delete Preset */}
@@ -436,9 +436,9 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
                       handleDelete(preset.id, e);
                     }}
                     title="Delete Preset"
-                    className="p-2 rounded-lg bg-zinc-50 dark:bg-[#07090f] border border-zinc-200 dark:border-zinc-900 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-600 dark:hover:text-red-400 transition cursor-pointer ml-auto"
+                    className="p-1.5 rounded-md bg-white/50 dark:bg-zinc-900/30 border border-zinc-200/30 dark:border-white/5 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-600 dark:hover:text-red-400 transition cursor-pointer ml-auto"
                   >
-                    <Trash2 size={12} />
+                    <Trash2 size={10} />
                   </button>
                 </div>
               </div>

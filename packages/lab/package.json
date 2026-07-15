@@ -10,6 +10,9 @@
   "dependencies": {
     "@react-three/drei": "^9.108.4",
     "@react-three/fiber": "^8.16.8",
+    "@types/canvas-confetti": "^1.9.0",
+    "canvas-confetti": "^1.9.4",
+    "framer-motion": "^12.42.2",
     "lucide-react": "^0.395.0",
     "r3d-icons": "*",
     "react": "^18.3.1",

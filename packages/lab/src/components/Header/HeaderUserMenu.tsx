@@ -1,6 +1,6 @@
 import React from "react";
 import { GlobeIcon, SunIcon, MoonIcon, GithubIcon, DownloadIcon } from "r3d-icons";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Volume2, VolumeX } from "lucide-react";
 import { LanguageCode } from "../../i18n/translations";
 import { audioEngine } from "../../utils/audio";
 
@@ -17,6 +17,8 @@ interface HeaderUserMenuProps {
   onInstall?: () => void;
   mobileMenuOpen: boolean;
   setMobileMenuOpen: (open: boolean) => void;
+  soundEnabled: boolean;
+  setSoundEnabled: (enabled: boolean) => void;
 }
 
 export const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
@@ -31,7 +33,9 @@ export const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
   installPrompt,
   onInstall,
   mobileMenuOpen,
-  setMobileMenuOpen
+  setMobileMenuOpen,
+  soundEnabled,
+  setSoundEnabled
 }) => {
   return (
     <div className="flex items-center gap-4 flex-shrink-0">
@@ -109,6 +113,31 @@ export const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
           <span className="hidden xs:inline">Install App</span>
         </button>
       )}
+
+      {/* Sound FX Toggler */}
+      <button
+        type="button"
+        onClick={() => {
+          const nextVal = !soundEnabled;
+          setSoundEnabled(nextVal);
+          if (nextVal) {
+            audioEngine.setEnabled(true);
+            audioEngine.playChime();
+          } else {
+            audioEngine.setEnabled(false);
+          }
+        }}
+        className="p-1.5 rounded-lg border border-zinc-200/80 dark:border-white/10 bg-zinc-100/40 dark:bg-zinc-950/[0.2] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.3] hover:scale-[1.05] hover:border-indigo-500/30 dark:hover:border-cyan-500/35 hover:shadow-[0_0_12px_rgba(99,102,241,0.15)] text-zinc-550 dark:text-zinc-400 hover:text-indigo-650 dark:hover:text-cyan-400 transition-all cursor-pointer flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
+        title={soundEnabled ? "Mute Sound Effects" : "Unmute Sound Effects"}
+      >
+        <div className="w-5.5 h-5.5 flex items-center justify-center pointer-events-none">
+          {soundEnabled ? (
+            <Volume2 size={16} className="text-emerald-500 dark:text-emerald-400" />
+          ) : (
+            <VolumeX size={16} className="text-zinc-400 dark:text-zinc-500" />
+          )}
+        </div>
+      </button>
 
       {/* Theme Toggler */}
       <button

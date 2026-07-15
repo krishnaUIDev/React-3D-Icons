@@ -6,6 +6,7 @@ import { useRouter } from "../router/Router";
 import { useTranslation } from "../i18n/useTranslation";
 import { audioEngine } from "../utils/audio";
 import { Lazy3DIcon } from "../components/Lazy3DIcon";
+import confetti from "canvas-confetti";
 import {
   IconPreset,
   IconAngle,
@@ -2283,9 +2284,11 @@ const AESTHETIC_THEMES: AestheticTheme[] = [
 
 interface CustomizeProps {
   theme: "light" | "dark";
+  soundEnabled: boolean;
+  setSoundEnabled: (enabled: boolean) => void;
 }
 
-export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
+export const Customize: React.FC<CustomizeProps> = ({ theme, soundEnabled, setSoundEnabled }) => {
   const { t } = useTranslation();
   const { color: urlColor, iconId, navigate, updateCustomizerURL } = useRouter();
 
@@ -2293,7 +2296,11 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const currentIcon =
     ICONS_REGISTRY.find((item) => item.id.toLowerCase() === iconId.toLowerCase()) ||
     ICONS_REGISTRY[0];
-  const ActiveComponent = (props: any) => <Lazy3DIcon name={currentIcon.name} {...props} />;
+  const ActiveComponent = React.useMemo(() => {
+    const Component = (props: any) => <Lazy3DIcon name={currentIcon.name} {...props} />;
+    Component.displayName = `ActiveComponent(${currentIcon.name})`;
+    return Component;
+  }, [currentIcon.name]);
 
   // Local parameter states
   const [preset, setPreset] = useState<IconPreset>("glass");
@@ -2434,7 +2441,6 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
   const [labelColor, setLabelColor] = useState("#ffffff");
   const [labelColorInput, setLabelColorInput] = useState("#ffffff");
   const [tuningLabelOpen, setTuningLabelOpen] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(() => audioEngine.isEnabled());
   const [audioFrequency, setAudioFrequency] = useState(() => audioEngine.getSynthFrequency());
   const [audioDuration, setAudioDuration] = useState(() => audioEngine.getSynthDuration());
   const [audioWaveform, setAudioWaveform] = useState<OscillatorType>(() =>
@@ -2811,6 +2817,11 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
     localStorage.setItem("r3d_saved_presets:v1", JSON.stringify(updated));
     setNewPresetName("");
     audioEngine.playChime();
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
   };
 
   const handleDeletePreset = (id: string) => {
@@ -3005,6 +3016,12 @@ export const Customize: React.FC<CustomizeProps> = ({ theme }) => {
           setSavedPresets(merged);
           localStorage.setItem("r3d_saved_presets:v1", JSON.stringify(merged));
           setImportStatus("success");
+          audioEngine.playChime();
+          confetti({
+            particleCount: 80,
+            spread: 60,
+            origin: { y: 0.6 }
+          });
           setTimeout(() => setImportStatus("idle"), 2500);
         } else {
           setImportStatus("error");
@@ -4073,16 +4090,13 @@ export function ${componentName}(props: React.ComponentProps<typeof ${currentIco
                 {compareList.map((selectedId, idx) => {
                   const iconObj =
                     ICONS_REGISTRY.find((item) => item.id === selectedId) || currentIcon;
-                  const CompareComponent = (props: any) => (
-                    <Lazy3DIcon name={iconObj.name} {...props} />
-                  );
                   return (
                     <div
                       key={idx}
                       className="relative rounded-2xl border border-zinc-150 dark:border-zinc-850 bg-white dark:bg-[#0e111a] flex flex-col items-center justify-center p-3 group/slot overflow-hidden"
                     >
                       <div className="w-28 h-28 flex items-center justify-center">
-                        <CompareComponent {...canvasIconProps} size="100%" />
+                        <Lazy3DIcon name={iconObj.name} {...canvasIconProps} size="100%" />
                       </div>
                       <span className="text-[9px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-wider mt-1 truncate max-w-full">
                         {iconObj.name}
