@@ -26,13 +26,13 @@ export default function App() {
           <Sparkles size={10} className="animate-pulse" />
           <span>Documentation</span>
         </div>
-        <h1 className="text-3xl font-black tracking-tight text-zinc-950 dark:from-white dark:to-zinc-200">
+        <h1 className="text-3xl font-black tracking-tight text-zinc-950 dark:text-white uppercase tracking-tight">
           Getting Started with{" "}
           <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
             React 3D Icons
           </span>
         </h1>
-        <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto leading-relaxed">
+        <p className="text-xs text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto leading-relaxed font-semibold">
           A premium, tree-shakeable, and highly customizable React 3D icon library utilizing React
           Three Fiber, Three.js, and Tailwind CSS.
         </p>
@@ -40,7 +40,7 @@ export default function App() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         {/* Core Features */}
-        <div className="p-5 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] space-y-3">
+        <div className="p-5 rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/40 dark:bg-zinc-950/20 backdrop-blur-2xl space-y-3">
           <div className="w-14 h-14 rounded-2xl bg-indigo-500/10 dark:bg-indigo-500/5 flex items-center justify-center relative overflow-hidden mb-1">
             <LayersIcon
               size="100%"
@@ -55,13 +55,13 @@ export default function App() {
           <h3 className="text-xs font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-200">
             Fully Tree-Shakeable
           </h3>
-          <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
             Import only the icons you need. Only compiled icons are bundled into your final build,
             maintaining minimal bundle size.
           </p>
         </div>
 
-        <div className="p-5 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] space-y-3">
+        <div className="p-5 rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/40 dark:bg-zinc-950/20 backdrop-blur-2xl space-y-3">
           <div className="w-14 h-14 rounded-2xl bg-purple-500/10 dark:bg-purple-500/5 flex items-center justify-center relative overflow-hidden mb-1">
             <GearIcon
               size="100%"
@@ -76,13 +76,13 @@ export default function App() {
           <h3 className="text-xs font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-200">
             Highly Customizable
           </h3>
-          <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
             Modify colors, variants, sizing, animation rotation, and floating thresholds directly
             via React component props.
           </p>
         </div>
 
-        <div className="p-5 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] space-y-3">
+        <div className="p-5 rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/40 dark:bg-zinc-950/20 backdrop-blur-2xl space-y-3">
           <div className="w-14 h-14 rounded-2xl bg-pink-500/10 dark:bg-pink-500/5 flex items-center justify-center relative overflow-hidden mb-1">
             <CodeIcon
               size="100%"
@@ -97,7 +97,7 @@ export default function App() {
           <h3 className="text-xs font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-200">
             Dual Build Support
           </h3>
-          <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
             Supports both CommonJS (CJS) and ES Modules (ESM) target setups, ensuring compatibility
             with Next.js, Vite, and Webpack.
           </p>
@@ -108,24 +108,24 @@ export default function App() {
       <div className="space-y-12">
         {/* Section: Installation */}
         <section className="space-y-4">
-          <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-zinc-800/80 pb-3">
+          <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-white/5 pb-3">
             <h2 className="text-sm font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-100">
               1. Installation
             </h2>
           </div>
-          <div className="p-4 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-zinc-50/50 dark:bg-[#0a0c14] space-y-2">
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+          <div className="p-4 rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/30 dark:bg-zinc-950/10 backdrop-blur-md space-y-2 animate-in fade-in duration-200">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 font-semibold uppercase tracking-wider">
               Install the core package using your preferred package manager:
             </p>
-            <div className="flex flex-col gap-2 font-mono text-xs text-zinc-850 dark:text-zinc-200 bg-white dark:bg-[#0e111a] border border-zinc-200/60 dark:border-zinc-800 p-3 rounded-2xl">
+            <div className="flex flex-col gap-2 font-mono text-xs text-zinc-850 dark:text-zinc-200 bg-white/50 dark:bg-zinc-950/30 border border-zinc-200/50 dark:border-white/5 p-3 rounded-2xl">
               <div>
                 <span className="text-indigo-500 font-bold">npm</span> install r3d-icons
               </div>
-              <div className="border-t border-zinc-100 dark:border-zinc-850 my-1"></div>
+              <div className="border-t border-zinc-200/30 dark:border-white/5 my-1"></div>
               <div>
                 <span className="text-purple-500 font-bold">yarn</span> add r3d-icons
               </div>
-              <div className="border-t border-zinc-100 dark:border-zinc-850 my-1"></div>
+              <div className="border-t border-zinc-200/30 dark:border-white/5 my-1"></div>
               <div>
                 <span className="text-pink-500 font-bold">pnpm</span> add r3d-icons
               </div>
@@ -135,12 +135,12 @@ export default function App() {
 
         {/* Section: Basic Usage */}
         <section className="space-y-4">
-          <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-zinc-800/80 pb-3">
+          <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-white/5 pb-3">
             <h2 className="text-sm font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-100">
               2. Basic Usage
             </h2>
           </div>
-          <div className="relative rounded-3xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800 bg-zinc-950 text-zinc-100 p-5 font-mono text-xs">
+          <div className="relative rounded-2xl overflow-hidden border border-zinc-200/50 dark:border-white/5 bg-[#0b0c16]/95 text-zinc-100 p-5 font-mono text-xs shadow-lg shadow-indigo-500/5 animate-in fade-in duration-200">
             <pre className="overflow-x-auto">
               <code>{codeString}</code>
             </pre>
@@ -149,18 +149,18 @@ export default function App() {
 
         {/* Section: TypeScript Support */}
         <section className="space-y-4">
-          <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-zinc-800/80 pb-3">
+          <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-white/5 pb-3">
             <h2 className="text-sm font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-100">
               3. TypeScript Support
             </h2>
           </div>
-          <div className="p-5 rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-zinc-50/50 dark:bg-[#0a0c14] space-y-3">
-            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+          <div className="p-5 rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/30 dark:bg-zinc-950/10 backdrop-blur-md space-y-3">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-semibold uppercase tracking-wider">
               Every icon component exports its matching component-specific props type (e.g.{" "}
               <code>ShieldIconProps</code>) alongside core properties and material types for
               complete compile-time validation:
             </p>
-            <div className="relative rounded-2xl overflow-hidden border border-zinc-200/60 dark:border-zinc-800 bg-zinc-950 text-zinc-100 p-4 font-mono text-[11px] leading-relaxed">
+            <div className="relative rounded-xl overflow-hidden border border-zinc-200/50 dark:border-white/5 bg-[#0b0c16]/95 text-zinc-100 p-4 font-mono text-[11px] leading-relaxed shadow-lg shadow-indigo-500/5">
               <pre className="overflow-x-auto">
                 <code>{`// Import component and its types
 import { ShieldIcon } from "r3d-icons";
@@ -183,15 +183,15 @@ export default function Card() {
 
         {/* Section: Component Props */}
         <section className="space-y-4">
-          <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-zinc-800/80 pb-3">
+          <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-white/5 pb-3">
             <h2 className="text-sm font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-100">
               4. Props Reference
             </h2>
           </div>
-          <div className="overflow-x-auto rounded-3xl border border-zinc-200/60 dark:border-zinc-800 bg-white dark:bg-[#0e111a] shadow-sm">
+          <div className="overflow-x-auto rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/40 dark:bg-zinc-950/20 backdrop-blur-2xl shadow-sm">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="bg-zinc-50 dark:bg-[#0d0f17] border-b border-zinc-100 dark:border-zinc-850">
+                <tr className="bg-zinc-100/50 dark:bg-zinc-950/40 border-b border-zinc-200/50 dark:border-white/5">
                   <th className="p-3 font-extrabold uppercase text-[9px] tracking-wider text-zinc-400 dark:text-zinc-500">
                     Prop
                   </th>
@@ -206,7 +206,7 @@ export default function Card() {
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-100 dark:divide-zinc-850 text-zinc-700 dark:text-zinc-300">
+              <tbody className="divide-y divide-zinc-200/30 dark:divide-white/5 text-zinc-700 dark:text-zinc-350">
                 <tr>
                   <td className="p-3 font-mono font-bold text-indigo-500">variant</td>
                   <td className="p-3 font-mono">
@@ -272,9 +272,9 @@ export default function Card() {
       </div>
 
       {/* Footer support notice */}
-      <div className="mt-16 text-center border-t border-zinc-150/40 dark:border-zinc-850/40 pt-8 flex items-center justify-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+      <div className="mt-16 text-center border-t border-zinc-200/50 dark:border-white/5 pt-8 flex items-center justify-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
         <span>Crafted with</span>
-        <Heart size={10} className="text-red-500 fill-red-500" />
+        <Heart size={10} className="text-red-500 fill-red-500 animate-pulse" />
         <span>for the modern web</span>
       </div>
     </div>

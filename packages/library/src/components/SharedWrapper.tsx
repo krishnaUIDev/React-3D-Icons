@@ -710,6 +710,8 @@ function SceneGrabber({ onScene }: { onScene: (scene: THREE.Scene) => void }) {
   return null;
 }
 
+const GL_PARAMS = { antialias: true, alpha: true, preserveDrawingBuffer: true };
+
 export function SharedWrapper({
   preset = "glass",
   angle = "perspective",
@@ -807,6 +809,14 @@ export function SharedWrapper({
       }
     };
   }, []);
+
+  const cameraParams = useMemo(() => {
+    const defaultZoom = interactive ? 4.5 : 3.0;
+    return {
+      position: [0, 0, cameraZoom ?? defaultZoom] as [number, number, number],
+      fov: cameraFov ?? 45
+    };
+  }, [cameraZoom, interactive, cameraFov]);
 
   if (!canvas) {
     if (!mounted || !isWebGLAvailable() || variant === "2d") {
@@ -906,8 +916,8 @@ export function SharedWrapper({
       {...props}
     >
       <Canvas
-        camera={{ position: [0, 0, cameraZoom ?? (interactive ? 4.5 : 3.0)], fov: cameraFov ?? 45 }}
-        gl={{ antialias: true, alpha: true, preserveDrawingBuffer: true }}
+        camera={cameraParams}
+        gl={GL_PARAMS}
         shadows
         onCreated={({ gl }) => {
           glRef.current = gl;

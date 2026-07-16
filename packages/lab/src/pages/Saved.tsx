@@ -335,7 +335,7 @@ export function ${componentName}(props: React.ComponentProps<typeof ${iconName}>
         </div>
       ) : (
         /* Grid of Custom Presets */
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 animate-page-fade">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 max-h-[580px] overflow-y-auto pr-2 animate-page-fade">
           {presets.map((preset) => {
             const registryEntry =
               ICONS_REGISTRY.find((item) => item.id === (preset.iconId || "shield")) ||

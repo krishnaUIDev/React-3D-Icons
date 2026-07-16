@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200/80 dark:border-white/5 bg-zinc-50/50 dark:bg-[#070a13]/75 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.08)] dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)] shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-colors duration-300 transform-gpu will-change-transform">
+    <header className="sticky top-0 z-50 border-b border-zinc-200/50 dark:border-white/5 bg-white/40 dark:bg-zinc-950/20 backdrop-blur-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_8px_32px_rgba(0,0,0,0.04)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_8px_32px_rgba(0,0,0,0.25)] transition-colors duration-300 transform-gpu will-change-transform">
       {/* Background neon light leaks matching the mockup design */}
       <div className="absolute top-0 left-[10%] w-80 h-10 bg-cyan-500/20 dark:bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-0 right-[20%] w-80 h-10 bg-pink-500/20 dark:bg-pink-500/15 rounded-full blur-3xl pointer-events-none" />

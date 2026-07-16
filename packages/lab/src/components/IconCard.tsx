@@ -39,13 +39,25 @@ export const IconCard: React.FC<IconCardProps> = ({
   const [copiedSVG, setCopiedSVG] = useState(false);
   const [copiedTSX, setCopiedTSX] = useState(false);
   const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    setCoords({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setCoords({ x, y });
+
+    // Calculate rotation angles (-8deg to 8deg max tilt for subtleness)
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = -((y - centerY) / centerY) * 8; // pitch
+    const rotateY = ((x - centerX) / centerX) * 8; // yaw
+    setTilt({ x: rotateX, y: rotateY });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setTilt({ x: 0, y: 0 });
   };
 
   const displayName = name.replace("Icon", "");
@@ -93,10 +105,23 @@ export default function IconShowcase() {
     return (
       <div
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseLeave={handleMouseLeave}
         onMouseMove={handleMouseMove}
         onClick={handleCustomize}
-        className="group relative flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border border-zinc-200/50 dark:border-white/5 bg-white/45 dark:bg-[#0e111a]/45 backdrop-blur-md hover:border-indigo-500/50 dark:hover:border-indigo-400/50 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 cursor-pointer select-none overflow-hidden"
+        className="group relative flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl border border-zinc-200/50 dark:border-white/5 bg-white/45 dark:bg-[#0e111a]/45 backdrop-blur-md transition-all duration-300 cursor-pointer select-none overflow-hidden"
+        style={{
+          borderColor: isHovered ? `${color}40` : undefined,
+          boxShadow: isHovered
+            ? `0 10px 20px -5px ${color}15, 0 8px 10px -6px ${color}15`
+            : undefined,
+          transform: isHovered
+            ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale3d(1.01, 1.01, 1.01)`
+            : "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
+          transition: isHovered
+            ? "transform 0.1s ease-out, border-color 0.3s ease, box-shadow 0.3s ease"
+            : "transform 0.5s ease-out, border-color 0.3s ease, box-shadow 0.3s ease",
+          transformStyle: "preserve-3d"
+        }}
       >
         {isHovered && (
           <div
@@ -268,13 +293,22 @@ export default function IconShowcase() {
   return (
     <div
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
       onClick={handleCustomize}
-      className="group relative flex flex-col items-center gap-2 p-3 rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/45 dark:bg-[#0e111a]/45 backdrop-blur-md hover:-translate-y-0.5 transition-all duration-300 cursor-pointer select-none overflow-hidden"
+      className="group relative flex flex-col items-center gap-2 p-3 rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/45 dark:bg-[#0e111a]/45 backdrop-blur-md transition-all duration-300 cursor-pointer select-none overflow-hidden"
       style={{
         borderColor: isHovered ? `${color}40` : undefined,
-        boxShadow: isHovered ? `0 10px 20px -5px ${color}15, 0 8px 10px -6px ${color}15` : undefined
+        boxShadow: isHovered
+          ? `0 10px 20px -5px ${color}15, 0 8px 10px -6px ${color}15`
+          : undefined,
+        transform: isHovered
+          ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale3d(1.02, 1.02, 1.02)`
+          : "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
+        transition: isHovered
+          ? "transform 0.1s ease-out, border-color 0.3s ease, box-shadow 0.3s ease"
+          : "transform 0.5s ease-out, border-color 0.3s ease, box-shadow 0.3s ease",
+        transformStyle: "preserve-3d"
       }}
     >
       {isHovered && (

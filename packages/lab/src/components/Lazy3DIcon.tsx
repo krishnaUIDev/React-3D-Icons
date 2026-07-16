@@ -1,8 +1,10 @@
 import React, { Suspense } from "react";
 
+const LAZY_ICONS_CACHE: Record<string, React.LazyExoticComponent<React.ComponentType<any>>> = {};
+
 export const Lazy3DIcon = React.memo(({ name, ...props }: { name: string; [key: string]: any }) => {
-  const Component = React.useMemo(() => {
-    return React.lazy(() =>
+  if (!LAZY_ICONS_CACHE[name]) {
+    LAZY_ICONS_CACHE[name] = React.lazy(() =>
       import("r3d-icons").then((m) => {
         const Comp = (m as any)[name];
         if (!Comp) {
@@ -12,7 +14,9 @@ export const Lazy3DIcon = React.memo(({ name, ...props }: { name: string; [key: 
         return { default: Comp };
       })
     );
-  }, [name]);
+  }
+
+  const Component = LAZY_ICONS_CACHE[name];
 
   return (
     <Suspense

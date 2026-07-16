@@ -44,7 +44,7 @@ export const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
         <button
           type="button"
           onClick={() => setLangOpen(!langOpen)}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-200/80 dark:border-white/10 bg-zinc-100/40 dark:bg-zinc-950/[0.2] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.3] hover:scale-[1.03] hover:border-indigo-500/30 dark:hover:border-cyan-500/35 hover:shadow-[0_0_12px_rgba(99,102,241,0.15)] text-xs font-semibold text-zinc-700 dark:text-zinc-300 transition-all cursor-pointer select-none shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-200/50 dark:border-white/5 bg-zinc-100/40 dark:bg-zinc-950/[0.1] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.2] hover:scale-[1.03] hover:border-indigo-500/30 dark:hover:border-cyan-500/35 hover:shadow-[0_0_12px_rgba(99,102,241,0.15)] text-xs font-semibold text-zinc-700 dark:text-zinc-300 transition-all cursor-pointer select-none shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
         >
           <div className="w-4 h-4 flex items-center justify-center pointer-events-none">
             <GlobeIcon
@@ -62,7 +62,7 @@ export const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
           <>
             <div className="fixed inset-0 z-10" onClick={() => setLangOpen(false)} />
 
-            <div className="absolute right-0 mt-1.5 w-32 rounded-xl border border-zinc-200/80 dark:border-zinc-850 bg-white dark:bg-[#0e111a] shadow-xl p-1 z-20 animate-in fade-in slide-in-from-top-1 duration-150">
+            <div className="absolute right-0 mt-1.5 w-32 rounded-xl border border-zinc-200/50 dark:border-white/5 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl shadow-xl p-1 z-20 animate-in fade-in slide-in-from-top-1 duration-150">
               {languages.map((l) => (
                 <button
                   type="button"
@@ -127,7 +127,7 @@ export const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
             audioEngine.setEnabled(false);
           }
         }}
-        className="p-1.5 rounded-lg border border-zinc-200/80 dark:border-white/10 bg-zinc-100/40 dark:bg-zinc-950/[0.2] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.3] hover:scale-[1.05] hover:border-indigo-500/30 dark:hover:border-cyan-500/35 hover:shadow-[0_0_12px_rgba(99,102,241,0.15)] text-zinc-550 dark:text-zinc-400 hover:text-indigo-650 dark:hover:text-cyan-400 transition-all cursor-pointer flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
+        className="p-1.5 rounded-lg border border-zinc-200/50 dark:border-white/5 bg-zinc-100/40 dark:bg-zinc-950/[0.1] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.2] hover:scale-[1.05] hover:border-indigo-500/30 dark:hover:border-cyan-500/35 hover:shadow-[0_0_12px_rgba(99,102,241,0.15)] text-zinc-550 dark:text-zinc-400 hover:text-indigo-650 dark:hover:text-cyan-400 transition-all cursor-pointer flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
         title={soundEnabled ? "Mute Sound Effects" : "Unmute Sound Effects"}
       >
         <div className="w-5.5 h-5.5 flex items-center justify-center pointer-events-none">
@@ -143,7 +143,7 @@ export const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
       <button
         type="button"
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="p-1.5 rounded-lg border border-zinc-200/80 dark:border-white/10 bg-zinc-100/40 dark:bg-zinc-950/[0.2] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.3] hover:scale-[1.05] hover:border-indigo-500/30 dark:hover:border-cyan-500/35 hover:shadow-[0_0_12px_rgba(99,102,241,0.15)] text-zinc-655 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-all cursor-pointer flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
+        className="p-1.5 rounded-lg border border-zinc-200/50 dark:border-white/5 bg-zinc-100/40 dark:bg-zinc-950/[0.1] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.2] hover:scale-[1.05] hover:border-indigo-500/30 dark:hover:border-cyan-500/35 hover:shadow-[0_0_12px_rgba(99,102,241,0.15)] text-zinc-655 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-all cursor-pointer flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
         title="Toggle Light/Dark Theme"
       >
         <div className="w-5.5 h-5.5 flex items-center justify-center pointer-events-none">
@@ -161,7 +161,7 @@ export const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
           href="https://github.com/krishnaUIDev/React-3D-Icons"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-1.5 rounded-lg border border-zinc-200/80 dark:border-white/10 bg-zinc-100/40 dark:bg-zinc-950/[0.2] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.3] hover:scale-[1.05] hover:border-indigo-500/30 dark:hover:border-cyan-500/35 hover:shadow-[0_0_12px_rgba(99,102,241,0.15)] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)] flex items-center justify-center"
+          className="p-1.5 rounded-lg border border-zinc-200/50 dark:border-white/5 bg-zinc-100/40 dark:bg-zinc-950/[0.1] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.2] hover:scale-[1.05] hover:border-indigo-500/30 dark:hover:border-cyan-500/35 hover:shadow-[0_0_12px_rgba(99,102,241,0.15)] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] flex items-center justify-center"
           title="GitHub Repository"
         >
           <div className="w-5.5 h-5.5 flex items-center justify-center pointer-events-none">
@@ -185,7 +185,7 @@ export const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
           audioEngine.playClick();
           setMobileMenuOpen(!mobileMenuOpen);
         }}
-        className="md:hidden p-1.5 rounded-lg border border-zinc-200/80 dark:border-white/10 bg-zinc-100/40 dark:bg-zinc-950/[0.2] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.3] text-zinc-655 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all cursor-pointer flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]"
+        className="md:hidden p-1.5 rounded-lg border border-zinc-200/50 dark:border-white/5 bg-zinc-100/40 dark:bg-zinc-950/[0.1] hover:bg-zinc-200/60 dark:hover:bg-zinc-950/[0.2] text-zinc-655 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-all cursor-pointer flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
         title="Open Menu"
       >
         {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}

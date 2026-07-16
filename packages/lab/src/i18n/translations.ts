@@ -50,7 +50,25 @@ export const translations = {
     saved_presets_footer: "Saved",
     sandbox_nav: "Layout Sandbox",
     requests_nav: "Icon Requests",
-    chat_nav: "Chat Agent"
+    chat_nav: "Chat Agent",
+    requests_title: "Requests Hub",
+    requests_subtitle:
+      "Help shape the library's future! Suggest new procedural 3D icons or upvote requested models to prioritize their development.",
+    requests_form_title: "Request New Icon",
+    requests_form_name: "Icon Name",
+    requests_form_name_placeholder: "e.g. Docker, Figma, Kubernetes",
+    requests_form_category: "Category",
+    requests_form_desc: "Description / Details",
+    requests_form_desc_placeholder:
+      "Describe the 3D details (e.g. layers, shapes, transparency presets)...",
+    requests_form_submit: "Submit Request",
+    requests_success_title: "Request Registered!",
+    requests_success_desc: "Your request has been added to the hub with an initial vote.",
+    requests_search_placeholder: "Filter requested icons...",
+    requests_sort_label: "Sort:",
+    requests_sort_votes: "Top Voted",
+    requests_sort_date: "Newest",
+    requests_empty_state: "No matching requests"
   },
   es: {
     hero_title: "Iconos 3D premium y de código abierto bellamente diseñados",
@@ -103,7 +121,25 @@ export const translations = {
     saved_presets_footer: "Guardados",
     sandbox_nav: "Sandbox de Diseños",
     requests_nav: "Solicitudes",
-    chat_nav: "Asistente Chat"
+    chat_nav: "Asistente Chat",
+    requests_title: "Centro de Solicitudes",
+    requests_subtitle:
+      "¡Ayuda a dar forma al futuro de la biblioteca! Sugiere nuevos iconos 3D o vota los modelos solicitados para priorizar su desarrollo.",
+    requests_form_title: "Solicitar Nuevo Icono",
+    requests_form_name: "Nombre del Icono",
+    requests_form_name_placeholder: "ej. Docker, Figma, Kubernetes",
+    requests_form_category: "Categoría",
+    requests_form_desc: "Descripción / Detalles",
+    requests_form_desc_placeholder:
+      "Describe los detalles 3D (ej. capas, formas, ajustes de transparencia)...",
+    requests_form_submit: "Enviar Solicitud",
+    requests_success_title: "¡Solicitud Registrada!",
+    requests_success_desc: "Tu solicitud ha sido agregada al centro con un voto inicial.",
+    requests_search_placeholder: "Filtrar iconos solicitados...",
+    requests_sort_label: "Ordenar:",
+    requests_sort_votes: "Más Votados",
+    requests_sort_date: "Más Nuevos",
+    requests_empty_state: "No hay solicitudes coincidentes"
   },
   de: {
     hero_title: "Wunderschön gestaltete Open-Source- und Premium-3D-Icons",
@@ -156,7 +192,25 @@ export const translations = {
     saved_presets_footer: "Gespeichert",
     sandbox_nav: "Layout-Sandbox",
     requests_nav: "Icon-Wünsche",
-    chat_nav: "Chat-Assistent"
+    chat_nav: "Chat-Assistent",
+    requests_title: "Wunsch-Center",
+    requests_subtitle:
+      "Helfen Sie mit, die Zukunft der Bibliothek zu gestalten! Schlagen Sie neue 3D-Icons vor oder stimmen Sie für gewünschte Modelle ab, um deren Entwicklung zu priorisieren.",
+    requests_form_title: "Neues Icon wünschen",
+    requests_form_name: "Icon-Name",
+    requests_form_name_placeholder: "z.B. Docker, Figma, Kubernetes",
+    requests_form_category: "Kategorie",
+    requests_form_desc: "Beschreibung / Details",
+    requests_form_desc_placeholder:
+      "Beschreiben Sie die 3D-Details (z. B. Ebenen, Formen, Transparenzeinstellungen)...",
+    requests_form_submit: "Wunsch absenden",
+    requests_success_title: "Wunsch registriert!",
+    requests_success_desc: "Ihr Wunsch wurde mit einer ersten Stimme in das Center aufgenommen.",
+    requests_search_placeholder: "Gewünschte Icons filtern...",
+    requests_sort_label: "Sortieren:",
+    requests_sort_votes: "Beliebteste",
+    requests_sort_date: "Neueste",
+    requests_empty_state: "Keine passenden Wünsche gefunden"
   }
 } as const;
 
