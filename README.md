@@ -130,6 +130,22 @@ Every icon component accepts the following customizable props:
 
 ---
 
+### 📅 Component-Specific Custom Properties
+
+Certain icons export component-specific props to allow custom content rendering and internal shape overrides:
+
+#### `CalendarIcon`
+
+| Prop             | Type      | Default     | Description                                                         |
+| :--------------- | :-------- | :---------- | :------------------------------------------------------------------ |
+| `selectedDayRow` | `number`  | `1`         | Highlighted day grid row index (1 to 5).                            |
+| `selectedDayCol` | `number`  | `1`         | Highlighted day grid column index (1 to 7).                         |
+| `highlightColor` | `string`  | `"#3b82f6"` | Primary hex color applied to the highlighted calendar day square.   |
+| `dayText`        | `string`  | `undefined` | String rendering custom 3D text on the calendar face (e.g. `"15"`). |
+| `showGrid`       | `boolean` | `true`      | Toggle rendering of the surrounding day grid squares.               |
+
+---
+
 ## 🧪 Live Customizer Laboratory Sandbox
 
 The monorepo contains a premium visual editor playground (Vite-based Lab App) allowing developers to iterate, design, and share custom styles:
@@ -141,7 +157,8 @@ The monorepo contains a premium visual editor playground (Vite-based Lab App) al
 - **3D Physics Toybox Sandbox**: Switch the viewport to physics simulation mode to drop, swat, and toss 3D icons using rigid-body gravity box math.
 - **Interactive Home Banner**: Play with a horizontal 3D physics bubble banner on the landing screen, dropping and tossing icons.
 - **Specular Cursor Highlights**: Hover over cards to see dynamic radial highlight overlays track the cursor coordinates.
-- **Integration Context Switcher**: Preview the customized icon inside mockup layouts like a Dashboard Header/Navbar, Metric Info Card, or marketing Landing Hero section.
+- **Integration Context Switcher & Interactive SaaS Simulator**: Preview the customized icon inside mockup layouts like a Dashboard Header/Navbar, Metric Info Card, or marketing Landing Hero section. Includes an interactive sidebar tab simulator for mock SaaS dashboards (Dashboard, Security, Storage, Inbox) updating metrics and 3D icons dynamically.
+- **Global Connection Status Indicator**: A pulsing connection status indicator badge (`Live` / `En línea` / `Offline`) synchronized with browser connectivity states and localized translations.
 - **Sound Synth Settings**: Toggle waveform oscillators (Sine, Triangle, Square, Sawtooth) and adjust tone pitch frequency and decay lengths for keyboard feedback.
 - **Saved Presets**: Save custom configs locally to `localStorage` and apply them to other assets.
 - **Grid Comparison Mode**: Split the viewport into a 2x2 grid to preview and configure multiple icons rendering side-by-side with your active material settings.

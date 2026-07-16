@@ -2,6 +2,7 @@ import React from "react";
 import { ChatAgent } from "r3d-icons";
 import { useRouter } from "../router/Router";
 import { audioEngine } from "../utils/audio";
+import { useTranslation } from "../i18n/useTranslation";
 
 interface ChatPageProps {
   theme: "light" | "dark";
@@ -19,6 +20,7 @@ function handleSound(soundType: "send" | "reply" | "click") {
 
 export const ChatPage: React.FC<ChatPageProps> = ({ theme }) => {
   const { navigate, updateCustomizerURL } = useRouter();
+  const { t } = useTranslation();
 
   const handleAction = (action: { type: string; payload: any }) => {
     switch (action.type) {
@@ -43,11 +45,10 @@ export const ChatPage: React.FC<ChatPageProps> = ({ theme }) => {
       {/* Page Info Header */}
       <div className="text-center space-y-2">
         <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-zinc-900 dark:text-white uppercase">
-          AI Chat Assistant
+          {t("chat_title" as any)}
         </h1>
         <p className="text-xs text-zinc-500 dark:text-zinc-400 font-semibold uppercase tracking-wider max-w-md mx-auto">
-          Interact with R3D-Assistant to search components, apply material configurations, and
-          customize layouts.
+          {t("chat_subtitle" as any)}
         </p>
       </div>
 
@@ -55,7 +56,7 @@ export const ChatPage: React.FC<ChatPageProps> = ({ theme }) => {
       <div className="h-[550px] w-full">
         <ChatAgent
           agentName="R3D-Agent"
-          placeholderText="Search icons or apply presets..."
+          placeholderText={t("chat_placeholder" as any)}
           theme={theme}
           onActionTriggered={handleAction}
           onSoundTrigger={handleSound}

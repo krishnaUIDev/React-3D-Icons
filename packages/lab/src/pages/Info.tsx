@@ -1,8 +1,11 @@
 import React from "react";
 import { Sparkles, Heart } from "lucide-react";
 import { LayersIcon, GearIcon, CodeIcon } from "r3d-icons";
+import { useTranslation } from "../i18n/useTranslation";
 
 export const Info: React.FC = () => {
+  const { t } = useTranslation();
+
   const codeString = `import { DatabaseIcon } from "r3d-icons";
 
 export default function App() {
@@ -24,17 +27,16 @@ export default function App() {
       <div className="text-center mb-12 space-y-4">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
           <Sparkles size={10} className="animate-pulse" />
-          <span>Documentation</span>
+          <span>{t("doc_badge" as any)}</span>
         </div>
         <h1 className="text-3xl font-black tracking-tight text-zinc-950 dark:text-white uppercase tracking-tight">
-          Getting Started with{" "}
+          {t("doc_title" as any)}{" "}
           <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
             React 3D Icons
           </span>
         </h1>
         <p className="text-xs text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto leading-relaxed font-semibold">
-          A premium, tree-shakeable, and highly customizable React 3D icon library utilizing React
-          Three Fiber, Three.js, and Tailwind CSS.
+          {t("doc_subtitle" as any)}
         </p>
       </div>
 
@@ -53,11 +55,10 @@ export default function App() {
             />
           </div>
           <h3 className="text-xs font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-200">
-            Fully Tree-Shakeable
+            {t("doc_feature1_title" as any)}
           </h3>
           <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
-            Import only the icons you need. Only compiled icons are bundled into your final build,
-            maintaining minimal bundle size.
+            {t("doc_feature1_desc" as any)}
           </p>
         </div>
 
@@ -74,11 +75,10 @@ export default function App() {
             />
           </div>
           <h3 className="text-xs font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-200">
-            Highly Customizable
+            {t("doc_feature2_title" as any)}
           </h3>
           <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
-            Modify colors, variants, sizing, animation rotation, and floating thresholds directly
-            via React component props.
+            {t("doc_feature2_desc" as any)}
           </p>
         </div>
 
@@ -95,11 +95,10 @@ export default function App() {
             />
           </div>
           <h3 className="text-xs font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-200">
-            Dual Build Support
+            {t("doc_feature3_title" as any)}
           </h3>
           <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-relaxed font-medium">
-            Supports both CommonJS (CJS) and ES Modules (ESM) target setups, ensuring compatibility
-            with Next.js, Vite, and Webpack.
+            {t("doc_feature3_desc" as any)}
           </p>
         </div>
       </div>
@@ -110,12 +109,12 @@ export default function App() {
         <section className="space-y-4">
           <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-white/5 pb-3">
             <h2 className="text-sm font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-100">
-              1. Installation
+              {t("doc_install_title" as any)}
             </h2>
           </div>
           <div className="p-4 rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/30 dark:bg-zinc-950/10 backdrop-blur-md space-y-2 animate-in fade-in duration-200">
             <p className="text-xs text-zinc-500 dark:text-zinc-400 font-semibold uppercase tracking-wider">
-              Install the core package using your preferred package manager:
+              {t("doc_install_desc" as any)}
             </p>
             <div className="flex flex-col gap-2 font-mono text-xs text-zinc-850 dark:text-zinc-200 bg-white/50 dark:bg-zinc-950/30 border border-zinc-200/50 dark:border-white/5 p-3 rounded-2xl">
               <div>
@@ -137,7 +136,7 @@ export default function App() {
         <section className="space-y-4">
           <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-white/5 pb-3">
             <h2 className="text-sm font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-100">
-              2. Basic Usage
+              {t("doc_usage_title" as any)}
             </h2>
           </div>
           <div className="relative rounded-2xl overflow-hidden border border-zinc-200/50 dark:border-white/5 bg-[#0b0c16]/95 text-zinc-100 p-5 font-mono text-xs shadow-lg shadow-indigo-500/5 animate-in fade-in duration-200">
@@ -151,14 +150,12 @@ export default function App() {
         <section className="space-y-4">
           <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-white/5 pb-3">
             <h2 className="text-sm font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-100">
-              3. TypeScript Support
+              {t("doc_ts_title" as any)}
             </h2>
           </div>
           <div className="p-5 rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/30 dark:bg-zinc-950/10 backdrop-blur-md space-y-3">
             <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed font-semibold uppercase tracking-wider">
-              Every icon component exports its matching component-specific props type (e.g.{" "}
-              <code>ShieldIconProps</code>) alongside core properties and material types for
-              complete compile-time validation:
+              {t("doc_ts_desc" as any)}
             </p>
             <div className="relative rounded-xl overflow-hidden border border-zinc-200/50 dark:border-white/5 bg-[#0b0c16]/95 text-zinc-100 p-4 font-mono text-[11px] leading-relaxed shadow-lg shadow-indigo-500/5">
               <pre className="overflow-x-auto">
@@ -185,7 +182,7 @@ export default function Card() {
         <section className="space-y-4">
           <div className="flex items-center gap-2 border-b border-zinc-200/50 dark:border-white/5 pb-3">
             <h2 className="text-sm font-black uppercase tracking-wider text-zinc-800 dark:text-zinc-100">
-              4. Props Reference
+              {t("doc_props_title" as any)}
             </h2>
           </div>
           <div className="overflow-x-auto rounded-2xl border border-zinc-200/50 dark:border-white/5 bg-white/40 dark:bg-zinc-950/20 backdrop-blur-2xl shadow-sm">
@@ -193,77 +190,63 @@ export default function Card() {
               <thead>
                 <tr className="bg-zinc-100/50 dark:bg-zinc-950/40 border-b border-zinc-200/50 dark:border-white/5">
                   <th className="p-3 font-extrabold uppercase text-[9px] tracking-wider text-zinc-400 dark:text-zinc-500">
-                    Prop
+                    {t("doc_table_prop" as any)}
                   </th>
                   <th className="p-3 font-extrabold uppercase text-[9px] tracking-wider text-zinc-400 dark:text-zinc-500">
-                    Type
+                    {t("doc_table_type" as any)}
                   </th>
                   <th className="p-3 font-extrabold uppercase text-[9px] tracking-wider text-zinc-400 dark:text-zinc-500">
-                    Default
+                    {t("doc_table_default" as any)}
                   </th>
                   <th className="p-3 font-extrabold uppercase text-[9px] tracking-wider text-zinc-400 dark:text-zinc-500">
-                    Description
+                    {t("doc_table_description" as any)}
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-zinc-200/30 dark:divide-white/5 text-zinc-700 dark:text-zinc-350">
+              <tbody className="divide-y divide-zinc-200/30 dark:divide-white/5 text-zinc-700 dark:text-zinc-355">
                 <tr>
                   <td className="p-3 font-mono font-bold text-indigo-500">variant</td>
                   <td className="p-3 font-mono">
                     "2d" | "glass" | "metallic" | "flat" | "neon" | "clay"
                   </td>
                   <td className="p-3 font-mono">"glass"</td>
-                  <td className="p-3">
-                    Material preset applied to the 3D meshes inside the rendering scene.
-                  </td>
+                  <td className="p-3">{t("doc_row_variant_desc" as any)}</td>
                 </tr>
                 <tr>
                   <td className="p-3 font-mono font-bold text-indigo-500">color</td>
                   <td className="p-3 font-mono">string</td>
                   <td className="p-3 font-mono">"#6366f1"</td>
-                  <td className="p-3">
-                    Primary hex or RGB color representing the base structure of the icon.
-                  </td>
+                  <td className="p-3">{t("doc_row_color_desc" as any)}</td>
                 </tr>
                 <tr>
                   <td className="p-3 font-mono font-bold text-indigo-500">accentColor</td>
                   <td className="p-3 font-mono">string</td>
                   <td className="p-3 font-mono">undefined</td>
-                  <td className="p-3">
-                    Secondary highlight color applied to accents, decals, or internal shapes.
-                  </td>
+                  <td className="p-3">{t("doc_row_accent_desc" as any)}</td>
                 </tr>
                 <tr>
-                  <td className="p-3 font-mono font-bold text-indigo-500">size</td>
+                  <td className="p-3 font-mono font-bold text-indigo-550">size</td>
                   <td className="p-3 font-mono">number | string</td>
                   <td className="p-3 font-mono">64</td>
-                  <td className="p-3">
-                    Canvas display height and width (values in pixels or percentage strings).
-                  </td>
+                  <td className="p-3">{t("doc_row_size_desc" as any)}</td>
                 </tr>
                 <tr>
-                  <td className="p-3 font-mono font-bold text-indigo-500">interactive</td>
+                  <td className="p-3 font-mono font-bold text-indigo-505">interactive</td>
                   <td className="p-3 font-mono">boolean</td>
                   <td className="p-3 font-mono">false</td>
-                  <td className="p-3">
-                    Enables interactive mouse drag rotation controls over the 3D viewport.
-                  </td>
+                  <td className="p-3">{t("doc_row_interactive_desc" as any)}</td>
                 </tr>
                 <tr>
                   <td className="p-3 font-mono font-bold text-indigo-500">spinSpeed</td>
                   <td className="p-3 font-mono">number</td>
                   <td className="p-3 font-mono">0.5</td>
-                  <td className="p-3">
-                    Sets speed factor for continuous idle rotation. Set to 0 to disable spinning.
-                  </td>
+                  <td className="p-3">{t("doc_row_spin_desc" as any)}</td>
                 </tr>
                 <tr>
                   <td className="p-3 font-mono font-bold text-indigo-500">floatHeight</td>
                   <td className="p-3 font-mono">number</td>
                   <td className="p-3 font-mono">0.4</td>
-                  <td className="p-3">
-                    Idle vertical hover wave/floating amplitude. Set to 0 to make position static.
-                  </td>
+                  <td className="p-3">{t("doc_row_float_desc" as any)}</td>
                 </tr>
               </tbody>
             </table>
@@ -273,9 +256,9 @@ export default function Card() {
 
       {/* Footer support notice */}
       <div className="mt-16 text-center border-t border-zinc-200/50 dark:border-white/5 pt-8 flex items-center justify-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
-        <span>Crafted with</span>
+        <span>{t("doc_footer_crafted" as any)}</span>
         <Heart size={10} className="text-red-500 fill-red-500 animate-pulse" />
-        <span>for the modern web</span>
+        <span>{t("doc_footer_web" as any)}</span>
       </div>
     </div>
   );

@@ -72,6 +72,47 @@ export const translations = {
     requests_sort_votes: "Top Voted",
     requests_sort_date: "Newest",
     requests_empty_state: "No matching requests",
+    chat_title: "AI Chat Assistant",
+    chat_subtitle:
+      "Interact with R3D-Assistant to search components, apply material configurations, and customize layouts.",
+    chat_placeholder: "Search icons or apply presets...",
+    doc_badge: "Documentation",
+    doc_title: "Getting Started with",
+    doc_subtitle:
+      "A premium, tree-shakeable, and highly customizable React 3D icon library utilizing React Three Fiber, Three.js, and Tailwind CSS.",
+    doc_feature1_title: "Fully Tree-Shakeable",
+    doc_feature1_desc:
+      "Import only the icons you need. Only compiled icons are bundled into your final build, maintaining minimal bundle size.",
+    doc_feature2_title: "Highly Customizable",
+    doc_feature2_desc:
+      "Modify colors, variants, sizing, animation rotation, and floating thresholds directly via React component props.",
+    doc_feature3_title: "Dual Build Support",
+    doc_feature3_desc:
+      "Supports both CommonJS (CJS) and ES Modules (ESM) target setups, ensuring compatibility with Next.js, Vite, and Webpack.",
+    doc_install_title: "1. Installation",
+    doc_install_desc: "Install the core package using your preferred package manager:",
+    doc_usage_title: "2. Basic Usage",
+    doc_ts_title: "3. TypeScript Support",
+    doc_ts_desc:
+      "Every icon component exports its matching component-specific props type (e.g. ShieldIconProps) alongside core properties and material types for complete compile-time validation:",
+    doc_props_title: "4. Props Reference",
+    doc_table_prop: "Prop",
+    doc_table_type: "Type",
+    doc_table_default: "Default",
+    doc_table_description: "Description",
+    doc_row_variant_desc: "Material preset applied to the 3D meshes inside the rendering scene.",
+    doc_row_color_desc: "Primary hex or RGB color representing the base structure of the icon.",
+    doc_row_accent_desc:
+      "Secondary highlight color applied to accents, decals, or internal shapes.",
+    doc_row_size_desc: "Canvas display height and width (values in pixels or percentage strings).",
+    doc_row_interactive_desc:
+      "Enables interactive mouse drag rotation controls over the 3D viewport.",
+    doc_row_spin_desc:
+      "Sets speed factor for continuous idle rotation. Set to 0 to disable spinning.",
+    doc_row_float_desc:
+      "Idle vertical hover wave/floating amplitude. Set to 0 to make position static.",
+    doc_footer_crafted: "Crafted with",
+    doc_footer_web: "for the modern web",
     status_live: "Live",
     status_offline: "Offline"
   },
@@ -148,6 +189,51 @@ export const translations = {
     requests_sort_votes: "Más Votados",
     requests_sort_date: "Más Nuevos",
     requests_empty_state: "No hay solicitudes coincidentes",
+    chat_title: "Asistente de Chat IA",
+    chat_subtitle:
+      "Interactúa con R3D-Assistant para buscar componentes, aplicar configuraciones de material y personalizar diseños.",
+    chat_placeholder: "Buscar iconos o aplicar ajustes...",
+    doc_badge: "Documentación",
+    doc_title: "Primeros Pasos con",
+    doc_subtitle:
+      "Una biblioteca de iconos 3D de React premium, tree-shakeable y altamente personalizable que utiliza React Three Fiber, Three.js y Tailwind CSS.",
+    doc_feature1_title: "Totalmente Tree-Shakeable",
+    doc_feature1_desc:
+      "Importe solo los iconos que necesita. Solo los iconos compilados se empaquetan en su compilación final, manteniendo el tamaño mínimo del paquete.",
+    doc_feature2_title: "Altamente Personalizable",
+    doc_feature2_desc:
+      "Modifique colores, variantes, tamaños, rotación de animación y umbrales de flotación directamente a través de las propiedades de los componentes de React.",
+    doc_feature3_title: "Soporte de Compilación Dual",
+    doc_feature3_desc:
+      "Soporta configuraciones de CommonJS (CJS) y ES Modules (ESM), garantizando la compatibilidad con Next.js, Vite y Webpack.",
+    doc_install_title: "1. Instalación",
+    doc_install_desc:
+      "Instale el paquete principal utilizando su administrador de paquetes preferido:",
+    doc_usage_title: "2. Uso Básico",
+    doc_ts_title: "3. Soporte de TypeScript",
+    doc_ts_desc:
+      "Cada componente de icono exporta su tipo de propiedad específico correspondiente (por ejemplo, ShieldIconProps) junto con las propiedades principales y los tipos de material para una validación completa en tiempo de compilación:",
+    doc_props_title: "4. Referencia de Propiedades",
+    doc_table_prop: "Propiedad",
+    doc_table_type: "Tipo",
+    doc_table_default: "Predeterminado",
+    doc_table_description: "Descripción",
+    doc_row_variant_desc:
+      "Ajuste preestablecido de material aplicado a las mallas 3D dentro de la escena de renderizado.",
+    doc_row_color_desc:
+      "Color hexadecimal o RGB principal que representa la estructura base del icono.",
+    doc_row_accent_desc:
+      "Color de realce secundario aplicado a acentos, calcomanías o formas internas.",
+    doc_row_size_desc:
+      "Altura y ancho de visualización del lienzo (valores en píxeles o cadenas de porcentaje).",
+    doc_row_interactive_desc:
+      "Permite controles interactivos de rotación por arrastre del mouse sobre el viewport 3D.",
+    doc_row_spin_desc:
+      "Establece el factor de velocidad para la rotación inactiva continua. Establézcalo en 0 para desactivar la rotación.",
+    doc_row_float_desc:
+      "Amplitud de flotación u onda de desplazamiento vertical inactiva. Establézcalo en 0 para hacer la posición estática.",
+    doc_footer_crafted: "Creado con",
+    doc_footer_web: "para la web moderna",
     status_live: "En línea",
     status_offline: "Fuera de línea"
   },
@@ -224,6 +310,48 @@ export const translations = {
     requests_sort_votes: "Beliebteste",
     requests_sort_date: "Neueste",
     requests_empty_state: "Keine passenden Wünsche gefunden",
+    chat_title: "KI-Chat-Assistent",
+    chat_subtitle:
+      "Interagieren Sie mit dem R3D-Assistenten, um Komponenten zu suchen, Materialkonfigurationen anzuwenden und Layouts anzupassen.",
+    chat_placeholder: "Icons suchen oder Vorlagen anwenden...",
+    doc_badge: "Dokumentation",
+    doc_title: "Erste Schritte mit",
+    doc_subtitle:
+      "Eine erstklassige, tree-shakeable und hochgradig anpassbare React-3D-Icon-Bibliothek, die React Three Fiber, Three.js und Tailwind CSS verwendet.",
+    doc_feature1_title: "Vollständig Tree-Shakeable",
+    doc_feature1_desc:
+      "Importieren Sie nur die Icons, die Sie benötigen. Von kompilierte Icons werden in Ihr finales Build eingebunden, um die minimale Bundle-Größe zu wahren.",
+    doc_feature2_title: "Hochgradig Anpassbar",
+    doc_feature2_desc:
+      "Änder Sie Farben, Varianten, Abmessungen, Animationsrotationen und Schwebe-Schwellenwerte direkt über React-Komponenten-Props.",
+    doc_feature3_title: "Duale Build-Unterstützung",
+    doc_feature3_desc:
+      "Unterstützt sowohl CommonJS- (CJS) als auch ES-Module-Setups (ESM) und sichert die Kompatibilität mit Next.js, Vite und Webpack.",
+    doc_install_title: "1. Installation",
+    doc_install_desc: "Installieren Sie das Kernpaket über Ihren bevorzugten Paketmanager:",
+    doc_usage_title: "2. Grundlegende Nutzung",
+    doc_ts_title: "3. TypeScript-Unterstützung",
+    doc_ts_desc:
+      "Jede Icon-Komponente exportiert ihren passenden komponentenspezifischen Eigenschaftstyp (z. B. ShieldIconProps) neben Kerneigenschaften und Materialtypen für eine vollständige Validierung zur Compilezeit:",
+    doc_props_title: "4. Eigenschaften-Referenz",
+    doc_table_prop: "Eigenschaft",
+    doc_table_type: "Typ",
+    doc_table_default: "Standard",
+    doc_table_description: "Beschreibung",
+    doc_row_variant_desc:
+      "Material-Preset, das auf die 3D-Meshes innerhalb der gerenderten Szene angewendet wird.",
+    doc_row_color_desc: "Primäre Hex- oder RGB-Farbe, die die Basisstruktur des Icons darstellt.",
+    doc_row_accent_desc:
+      "Sekundäre Highlight-Farbe, die auf Akzente, Dekore oder interne Formen angewendet wird.",
+    doc_row_size_desc: "Höhe und Breite der Canvas-Anzeige (Werte in Pixeln oder Prozentangaben).",
+    doc_row_interactive_desc:
+      "Aktiviert die interaktive Maus-Zieh-Rotationssteuerung über das 3D-Viewport.",
+    doc_row_spin_desc:
+      "Legt den Geschwindigkeitsfaktor für die kontinuierliche Leerlaufrotation fest. Auf 0 setzen, um die Rotation zu deaktivieren.",
+    doc_row_float_desc:
+      "Vertikale Schwebewellen- oder Floating-Amplitude im Leerlauf. Auf 0 setzen, um die Position statisch zu machen.",
+    doc_footer_crafted: "Erstellt mit",
+    doc_footer_web: "für das moderne Web",
     status_live: "Live",
     status_offline: "Offline"
   }
