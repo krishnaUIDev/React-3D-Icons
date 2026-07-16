@@ -73,7 +73,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Centered Search Bar on Catalog Screen */}
         {route === "catalog" && (
-          <div className="relative flex-grow max-w-xs md:max-w-sm hidden sm:block">
+          <div className="relative flex-grow max-w-xs md:max-w-sm hidden xl:block">
             <div className="absolute top-2.5 left-3 w-4 h-4 flex items-center justify-center pointer-events-none">
               <SearchIcon
                 size={16}
@@ -110,6 +110,7 @@ export const Header: React.FC<HeaderProps> = ({
           setMobileMenuOpen={setMobileMenuOpen}
           soundEnabled={soundEnabled}
           setSoundEnabled={setSoundEnabled}
+          t={t}
         />
       </div>
 

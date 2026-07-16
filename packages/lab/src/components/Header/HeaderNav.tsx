@@ -15,10 +15,10 @@ interface RouteItem {
 
 const NAV_ITEMS: RouteItem[] = [
   { id: "info", labelKey: "info", defaultLabel: "Info" },
-  { id: "saved", labelKey: "saved_presets_nav", defaultLabel: "Saved Presets" },
-  { id: "sandbox", labelKey: "sandbox_nav", defaultLabel: "Layout Sandbox" },
-  { id: "requests", labelKey: "requests_nav", defaultLabel: "Icon Requests" },
-  { id: "chat", labelKey: "chat_nav", defaultLabel: "Chat Agent" }
+  { id: "saved", labelKey: "saved_presets_footer", defaultLabel: "Saved" },
+  { id: "sandbox", labelKey: "sandbox_nav_short", defaultLabel: "Sandbox" },
+  { id: "requests", labelKey: "requests_nav_short", defaultLabel: "Requests" },
+  { id: "chat", labelKey: "chat_nav_short", defaultLabel: "Chat" }
 ];
 
 export const HeaderNav: React.FC<HeaderNavProps> = ({ route, navigate, t }) => {

@@ -48,6 +48,9 @@ export const translations = {
     saved_presets_open_btn: "Open Customizer",
     saved_presets_nav: "Saved Presets",
     saved_presets_footer: "Saved",
+    sandbox_nav_short: "Sandbox",
+    requests_nav_short: "Requests",
+    chat_nav_short: "Chat",
     sandbox_nav: "Layout Sandbox",
     requests_nav: "Icon Requests",
     chat_nav: "Chat Agent",
@@ -68,7 +71,9 @@ export const translations = {
     requests_sort_label: "Sort:",
     requests_sort_votes: "Top Voted",
     requests_sort_date: "Newest",
-    requests_empty_state: "No matching requests"
+    requests_empty_state: "No matching requests",
+    status_live: "Live",
+    status_offline: "Offline"
   },
   es: {
     hero_title: "Iconos 3D premium y de código abierto bellamente diseñados",
@@ -119,6 +124,9 @@ export const translations = {
     saved_presets_open_btn: "Abrir Personalizador",
     saved_presets_nav: "Ajustes Guardados",
     saved_presets_footer: "Guardados",
+    sandbox_nav_short: "Sandbox",
+    requests_nav_short: "Solicitudes",
+    chat_nav_short: "Chat",
     sandbox_nav: "Sandbox de Diseños",
     requests_nav: "Solicitudes",
     chat_nav: "Asistente Chat",
@@ -139,7 +147,9 @@ export const translations = {
     requests_sort_label: "Ordenar:",
     requests_sort_votes: "Más Votados",
     requests_sort_date: "Más Nuevos",
-    requests_empty_state: "No hay solicitudes coincidentes"
+    requests_empty_state: "No hay solicitudes coincidentes",
+    status_live: "En línea",
+    status_offline: "Fuera de línea"
   },
   de: {
     hero_title: "Wunderschön gestaltete Open-Source- und Premium-3D-Icons",
@@ -190,6 +200,9 @@ export const translations = {
     saved_presets_open_btn: "Customizer Öffnen",
     saved_presets_nav: "Vorlagen",
     saved_presets_footer: "Gespeichert",
+    sandbox_nav_short: "Sandbox",
+    requests_nav_short: "Wünsche",
+    chat_nav_short: "Chat",
     sandbox_nav: "Layout-Sandbox",
     requests_nav: "Icon-Wünsche",
     chat_nav: "Chat-Assistent",
@@ -210,7 +223,9 @@ export const translations = {
     requests_sort_label: "Sortieren:",
     requests_sort_votes: "Beliebteste",
     requests_sort_date: "Neueste",
-    requests_empty_state: "Keine passenden Wünsche gefunden"
+    requests_empty_state: "Keine passenden Wünsche gefunden",
+    status_live: "Live",
+    status_offline: "Offline"
   }
 } as const;
 

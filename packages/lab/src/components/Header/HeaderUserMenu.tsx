@@ -19,6 +19,7 @@ interface HeaderUserMenuProps {
   setMobileMenuOpen: (open: boolean) => void;
   soundEnabled: boolean;
   setSoundEnabled: (enabled: boolean) => void;
+  t: (key: any) => string;
 }
 
 export const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
@@ -35,7 +36,8 @@ export const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
   mobileMenuOpen,
   setMobileMenuOpen,
   soundEnabled,
-  setSoundEnabled
+  setSoundEnabled,
+  t
 }) => {
   return (
     <div className="flex items-center gap-4 flex-shrink-0">
@@ -85,11 +87,16 @@ export const HeaderUserMenu: React.FC<HeaderUserMenuProps> = ({
         )}
       </div>
 
-      {/* Offline Status Badge */}
-      {!isOnline && (
-        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-[10px] font-bold uppercase tracking-wider select-none animate-pulse">
+      {/* Live / Offline Connection Status Indicator */}
+      {isOnline ? (
+        <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-[10px] font-extrabold uppercase tracking-wider select-none shadow-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] animate-pulse" />
+          <span>{t("status_live" as any)}</span>
+        </div>
+      ) : (
+        <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-[10px] font-bold uppercase tracking-wider select-none animate-pulse">
           <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-          <span>Offline</span>
+          <span>{t("status_offline" as any)}</span>
         </div>
       )}
 
