@@ -55,15 +55,20 @@ jobs:
 
       - name: Generate React Doctor Report (JSON)
         if: always()
-        run: npx react-doctor@latest --format json > .react-doctor/report.json 2>/dev/null || true
+        run: |
+          mkdir -p .react-doctor
+          npx react-doctor@latest --format json > .react-doctor/report.json 2>/dev/null || true
 
       - name: Commit Report to Repo (bot)
         # Only commit on push to main — skip on PRs to avoid cross-branch writes
         if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          mkdir -p .react-doctor
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .react-doctor/report.json
-          git diff --cached --quiet && echo "No changes to report" || \
-            git commit -m "chore(react-doctor): update health report [skip ci]" && git push
+          if [ -f .react-doctor/report.json ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add .react-doctor/report.json
+            git diff --cached --quiet && echo "No changes to report" || \
+              (git commit -m "chore(react-doctor): update health report [skip ci]" && git push)
+          else
+            echo "Report file not found, skipping commit"
+          fi
